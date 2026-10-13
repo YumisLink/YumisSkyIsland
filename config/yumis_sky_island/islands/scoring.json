@@ -1,0 +1,6033 @@
+{
+  "schemaVersion": 1,
+  "status": "review_draft",
+  "minecraftVersion": "26.2",
+  "registryVerified": false,
+  "dimension": "minecraft:overworld",
+  "source": "current_world_stock_not_lifetime_placements",
+  "pointScale": 10000,
+  "tiers": {
+    "default": [
+      {
+        "upToCount": 64,
+        "multiplierBps": 10000
+      },
+      {
+        "upToCount": 320,
+        "multiplierBps": 2500
+      },
+      {
+        "upToCount": 2048,
+        "multiplierBps": 500
+      },
+      {
+        "upToCount": null,
+        "multiplierBps": 100
+      }
+    ]
+  },
+  "blocks": {
+    "minecraft:acacia_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_button"
+    },
+    "minecraft:acacia_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_door"
+    },
+    "minecraft:acacia_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_fence"
+    },
+    "minecraft:acacia_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_fence_gate"
+    },
+    "minecraft:acacia_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_hanging_sign"
+    },
+    "minecraft:acacia_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_leaves"
+    },
+    "minecraft:acacia_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_log"
+    },
+    "minecraft:acacia_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_planks"
+    },
+    "minecraft:acacia_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_pressure_plate"
+    },
+    "minecraft:acacia_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_sapling"
+    },
+    "minecraft:acacia_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_shelf"
+    },
+    "minecraft:acacia_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_sign"
+    },
+    "minecraft:acacia_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_slab"
+    },
+    "minecraft:acacia_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_stairs"
+    },
+    "minecraft:acacia_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_trapdoor"
+    },
+    "minecraft:acacia_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_wall_hanging_sign"
+    },
+    "minecraft:acacia_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_wall_sign"
+    },
+    "minecraft:acacia_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:acacia_wood"
+    },
+    "minecraft:activator_rail": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:activator_rail"
+    },
+    "minecraft:air": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:air"
+    },
+    "minecraft:allium": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:allium"
+    },
+    "minecraft:amethyst_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:amethyst_block"
+    },
+    "minecraft:amethyst_cluster": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:amethyst_cluster"
+    },
+    "minecraft:ancient_debris": {
+      "basePoints": 150,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:ancient_debris"
+    },
+    "minecraft:andesite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:andesite"
+    },
+    "minecraft:andesite_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:andesite_slab"
+    },
+    "minecraft:andesite_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:andesite_stairs"
+    },
+    "minecraft:andesite_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:andesite_wall"
+    },
+    "minecraft:anvil": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:anvil"
+    },
+    "minecraft:attached_melon_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:attached_melon_stem"
+    },
+    "minecraft:attached_pumpkin_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:attached_pumpkin_stem"
+    },
+    "minecraft:azalea": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:azalea"
+    },
+    "minecraft:azalea_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:azalea_leaves"
+    },
+    "minecraft:azure_bluet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:azure_bluet"
+    },
+    "minecraft:bamboo": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo"
+    },
+    "minecraft:bamboo_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_block"
+    },
+    "minecraft:bamboo_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_button"
+    },
+    "minecraft:bamboo_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_door"
+    },
+    "minecraft:bamboo_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_fence"
+    },
+    "minecraft:bamboo_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_fence_gate"
+    },
+    "minecraft:bamboo_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_hanging_sign"
+    },
+    "minecraft:bamboo_mosaic": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_mosaic"
+    },
+    "minecraft:bamboo_mosaic_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_mosaic_slab"
+    },
+    "minecraft:bamboo_mosaic_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_mosaic_stairs"
+    },
+    "minecraft:bamboo_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_planks"
+    },
+    "minecraft:bamboo_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_pressure_plate"
+    },
+    "minecraft:bamboo_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_sapling"
+    },
+    "minecraft:bamboo_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_shelf"
+    },
+    "minecraft:bamboo_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_sign"
+    },
+    "minecraft:bamboo_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_slab"
+    },
+    "minecraft:bamboo_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_stairs"
+    },
+    "minecraft:bamboo_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_trapdoor"
+    },
+    "minecraft:bamboo_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_wall_hanging_sign"
+    },
+    "minecraft:bamboo_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bamboo_wall_sign"
+    },
+    "minecraft:barrel": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:barrel"
+    },
+    "minecraft:barrier": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:barrier"
+    },
+    "minecraft:basalt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:basalt"
+    },
+    "minecraft:beacon": {
+      "basePoints": 500,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:beacon"
+    },
+    "minecraft:bedrock": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bedrock"
+    },
+    "minecraft:bee_nest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bee_nest"
+    },
+    "minecraft:beehive": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:beehive"
+    },
+    "minecraft:beetroots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:beetroots"
+    },
+    "minecraft:bell": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bell"
+    },
+    "minecraft:big_dripleaf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:big_dripleaf"
+    },
+    "minecraft:big_dripleaf_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:big_dripleaf_stem"
+    },
+    "minecraft:birch_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_button"
+    },
+    "minecraft:birch_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_door"
+    },
+    "minecraft:birch_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_fence"
+    },
+    "minecraft:birch_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_fence_gate"
+    },
+    "minecraft:birch_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_hanging_sign"
+    },
+    "minecraft:birch_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_leaves"
+    },
+    "minecraft:birch_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_log"
+    },
+    "minecraft:birch_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_planks"
+    },
+    "minecraft:birch_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_pressure_plate"
+    },
+    "minecraft:birch_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_sapling"
+    },
+    "minecraft:birch_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_shelf"
+    },
+    "minecraft:birch_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_sign"
+    },
+    "minecraft:birch_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_slab"
+    },
+    "minecraft:birch_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_stairs"
+    },
+    "minecraft:birch_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_trapdoor"
+    },
+    "minecraft:birch_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_wall_hanging_sign"
+    },
+    "minecraft:birch_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_wall_sign"
+    },
+    "minecraft:birch_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:birch_wood"
+    },
+    "minecraft:black_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_banner"
+    },
+    "minecraft:black_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_bed"
+    },
+    "minecraft:black_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_candle"
+    },
+    "minecraft:black_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_candle_cake"
+    },
+    "minecraft:black_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_carpet"
+    },
+    "minecraft:black_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_concrete"
+    },
+    "minecraft:black_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_concrete_powder"
+    },
+    "minecraft:black_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_glazed_terracotta"
+    },
+    "minecraft:black_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_shulker_box"
+    },
+    "minecraft:black_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_stained_glass"
+    },
+    "minecraft:black_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_stained_glass_pane"
+    },
+    "minecraft:black_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_terracotta"
+    },
+    "minecraft:black_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_wall_banner"
+    },
+    "minecraft:black_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:black_wool"
+    },
+    "minecraft:blackstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blackstone"
+    },
+    "minecraft:blackstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blackstone_slab"
+    },
+    "minecraft:blackstone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blackstone_stairs"
+    },
+    "minecraft:blackstone_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blackstone_wall"
+    },
+    "minecraft:blast_furnace": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blast_furnace"
+    },
+    "minecraft:blue_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_banner"
+    },
+    "minecraft:blue_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_bed"
+    },
+    "minecraft:blue_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_candle"
+    },
+    "minecraft:blue_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_candle_cake"
+    },
+    "minecraft:blue_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_carpet"
+    },
+    "minecraft:blue_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_concrete"
+    },
+    "minecraft:blue_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_concrete_powder"
+    },
+    "minecraft:blue_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_glazed_terracotta"
+    },
+    "minecraft:blue_ice": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_ice"
+    },
+    "minecraft:blue_orchid": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_orchid"
+    },
+    "minecraft:blue_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_shulker_box"
+    },
+    "minecraft:blue_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_stained_glass"
+    },
+    "minecraft:blue_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_stained_glass_pane"
+    },
+    "minecraft:blue_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_terracotta"
+    },
+    "minecraft:blue_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_wall_banner"
+    },
+    "minecraft:blue_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:blue_wool"
+    },
+    "minecraft:bone_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bone_block"
+    },
+    "minecraft:bookshelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bookshelf"
+    },
+    "minecraft:brain_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brain_coral"
+    },
+    "minecraft:brain_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brain_coral_block"
+    },
+    "minecraft:brain_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brain_coral_fan"
+    },
+    "minecraft:brain_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brain_coral_wall_fan"
+    },
+    "minecraft:brewing_stand": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brewing_stand"
+    },
+    "minecraft:brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brick_slab"
+    },
+    "minecraft:brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brick_stairs"
+    },
+    "minecraft:brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brick_wall"
+    },
+    "minecraft:bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bricks"
+    },
+    "minecraft:brown_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_banner"
+    },
+    "minecraft:brown_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_bed"
+    },
+    "minecraft:brown_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_candle"
+    },
+    "minecraft:brown_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_candle_cake"
+    },
+    "minecraft:brown_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_carpet"
+    },
+    "minecraft:brown_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_concrete"
+    },
+    "minecraft:brown_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_concrete_powder"
+    },
+    "minecraft:brown_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_glazed_terracotta"
+    },
+    "minecraft:brown_mushroom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_mushroom"
+    },
+    "minecraft:brown_mushroom_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_mushroom_block"
+    },
+    "minecraft:brown_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_shulker_box"
+    },
+    "minecraft:brown_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_stained_glass"
+    },
+    "minecraft:brown_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_stained_glass_pane"
+    },
+    "minecraft:brown_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_terracotta"
+    },
+    "minecraft:brown_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_wall_banner"
+    },
+    "minecraft:brown_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:brown_wool"
+    },
+    "minecraft:bubble_column": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bubble_column"
+    },
+    "minecraft:bubble_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bubble_coral"
+    },
+    "minecraft:bubble_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bubble_coral_block"
+    },
+    "minecraft:bubble_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bubble_coral_fan"
+    },
+    "minecraft:bubble_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bubble_coral_wall_fan"
+    },
+    "minecraft:budding_amethyst": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:budding_amethyst"
+    },
+    "minecraft:bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:bush"
+    },
+    "minecraft:cactus": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cactus"
+    },
+    "minecraft:cactus_flower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cactus_flower"
+    },
+    "minecraft:cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cake"
+    },
+    "minecraft:calcite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:calcite"
+    },
+    "minecraft:calibrated_sculk_sensor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:calibrated_sculk_sensor"
+    },
+    "minecraft:campfire": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:campfire"
+    },
+    "minecraft:candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:candle"
+    },
+    "minecraft:candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:candle_cake"
+    },
+    "minecraft:carrots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:carrots"
+    },
+    "minecraft:cartography_table": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cartography_table"
+    },
+    "minecraft:carved_pumpkin": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:carved_pumpkin"
+    },
+    "minecraft:cauldron": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cauldron"
+    },
+    "minecraft:cave_air": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cave_air"
+    },
+    "minecraft:cave_vines": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cave_vines"
+    },
+    "minecraft:cave_vines_plant": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cave_vines_plant"
+    },
+    "minecraft:chain_command_block": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chain_command_block"
+    },
+    "minecraft:cherry_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_button"
+    },
+    "minecraft:cherry_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_door"
+    },
+    "minecraft:cherry_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_fence"
+    },
+    "minecraft:cherry_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_fence_gate"
+    },
+    "minecraft:cherry_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_hanging_sign"
+    },
+    "minecraft:cherry_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_leaves"
+    },
+    "minecraft:cherry_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_log"
+    },
+    "minecraft:cherry_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_planks"
+    },
+    "minecraft:cherry_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_pressure_plate"
+    },
+    "minecraft:cherry_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_sapling"
+    },
+    "minecraft:cherry_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_shelf"
+    },
+    "minecraft:cherry_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_sign"
+    },
+    "minecraft:cherry_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_slab"
+    },
+    "minecraft:cherry_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_stairs"
+    },
+    "minecraft:cherry_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_trapdoor"
+    },
+    "minecraft:cherry_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_wall_hanging_sign"
+    },
+    "minecraft:cherry_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_wall_sign"
+    },
+    "minecraft:cherry_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cherry_wood"
+    },
+    "minecraft:chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chest"
+    },
+    "minecraft:chipped_anvil": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chipped_anvil"
+    },
+    "minecraft:chiseled_bookshelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_bookshelf"
+    },
+    "minecraft:chiseled_cinnabar": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_cinnabar"
+    },
+    "minecraft:chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_copper"
+    },
+    "minecraft:chiseled_deepslate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_deepslate"
+    },
+    "minecraft:chiseled_nether_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_nether_bricks"
+    },
+    "minecraft:chiseled_polished_blackstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_polished_blackstone"
+    },
+    "minecraft:chiseled_quartz_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_quartz_block"
+    },
+    "minecraft:chiseled_red_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_red_sandstone"
+    },
+    "minecraft:chiseled_resin_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_resin_bricks"
+    },
+    "minecraft:chiseled_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_sandstone"
+    },
+    "minecraft:chiseled_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_stone_bricks"
+    },
+    "minecraft:chiseled_sulfur": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_sulfur"
+    },
+    "minecraft:chiseled_tuff": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_tuff"
+    },
+    "minecraft:chiseled_tuff_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chiseled_tuff_bricks"
+    },
+    "minecraft:chorus_flower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chorus_flower"
+    },
+    "minecraft:chorus_plant": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:chorus_plant"
+    },
+    "minecraft:cinnabar": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar"
+    },
+    "minecraft:cinnabar_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_brick_slab"
+    },
+    "minecraft:cinnabar_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_brick_stairs"
+    },
+    "minecraft:cinnabar_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_brick_wall"
+    },
+    "minecraft:cinnabar_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_bricks"
+    },
+    "minecraft:cinnabar_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_slab"
+    },
+    "minecraft:cinnabar_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_stairs"
+    },
+    "minecraft:cinnabar_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cinnabar_wall"
+    },
+    "minecraft:clay": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:clay"
+    },
+    "minecraft:closed_eyeblossom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:closed_eyeblossom"
+    },
+    "minecraft:coal_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:coal_block"
+    },
+    "minecraft:coal_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:coal_ore"
+    },
+    "minecraft:coarse_dirt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:coarse_dirt"
+    },
+    "minecraft:cobbled_deepslate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobbled_deepslate"
+    },
+    "minecraft:cobbled_deepslate_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobbled_deepslate_slab"
+    },
+    "minecraft:cobbled_deepslate_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobbled_deepslate_stairs"
+    },
+    "minecraft:cobbled_deepslate_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobbled_deepslate_wall"
+    },
+    "minecraft:cobblestone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobblestone"
+    },
+    "minecraft:cobblestone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobblestone_slab"
+    },
+    "minecraft:cobblestone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobblestone_stairs"
+    },
+    "minecraft:cobblestone_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobblestone_wall"
+    },
+    "minecraft:cobweb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cobweb"
+    },
+    "minecraft:cocoa": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cocoa"
+    },
+    "minecraft:command_block": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:command_block"
+    },
+    "minecraft:comparator": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:comparator"
+    },
+    "minecraft:composter": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:composter"
+    },
+    "minecraft:conduit": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:conduit"
+    },
+    "minecraft:copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_bars"
+    },
+    "minecraft:copper_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_block"
+    },
+    "minecraft:copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_bulb"
+    },
+    "minecraft:copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_chain"
+    },
+    "minecraft:copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_chest"
+    },
+    "minecraft:copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_door"
+    },
+    "minecraft:copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_golem_statue"
+    },
+    "minecraft:copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_grate"
+    },
+    "minecraft:copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_lantern"
+    },
+    "minecraft:copper_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_ore"
+    },
+    "minecraft:copper_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_torch"
+    },
+    "minecraft:copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_trapdoor"
+    },
+    "minecraft:copper_wall_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:copper_wall_torch"
+    },
+    "minecraft:cornflower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cornflower"
+    },
+    "minecraft:cracked_deepslate_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cracked_deepslate_bricks"
+    },
+    "minecraft:cracked_deepslate_tiles": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cracked_deepslate_tiles"
+    },
+    "minecraft:cracked_nether_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cracked_nether_bricks"
+    },
+    "minecraft:cracked_polished_blackstone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cracked_polished_blackstone_bricks"
+    },
+    "minecraft:cracked_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cracked_stone_bricks"
+    },
+    "minecraft:crafter": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crafter"
+    },
+    "minecraft:crafting_table": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crafting_table"
+    },
+    "minecraft:creaking_heart": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:creaking_heart"
+    },
+    "minecraft:creeper_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:creeper_head"
+    },
+    "minecraft:creeper_wall_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:creeper_wall_head"
+    },
+    "minecraft:crimson_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_button"
+    },
+    "minecraft:crimson_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_door"
+    },
+    "minecraft:crimson_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_fence"
+    },
+    "minecraft:crimson_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_fence_gate"
+    },
+    "minecraft:crimson_fungus": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_fungus"
+    },
+    "minecraft:crimson_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_hanging_sign"
+    },
+    "minecraft:crimson_hyphae": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_hyphae"
+    },
+    "minecraft:crimson_nylium": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_nylium"
+    },
+    "minecraft:crimson_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_planks"
+    },
+    "minecraft:crimson_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_pressure_plate"
+    },
+    "minecraft:crimson_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_roots"
+    },
+    "minecraft:crimson_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_shelf"
+    },
+    "minecraft:crimson_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_sign"
+    },
+    "minecraft:crimson_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_slab"
+    },
+    "minecraft:crimson_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_stairs"
+    },
+    "minecraft:crimson_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_stem"
+    },
+    "minecraft:crimson_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_trapdoor"
+    },
+    "minecraft:crimson_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_wall_hanging_sign"
+    },
+    "minecraft:crimson_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crimson_wall_sign"
+    },
+    "minecraft:crying_obsidian": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:crying_obsidian"
+    },
+    "minecraft:cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_copper"
+    },
+    "minecraft:cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_copper_slab"
+    },
+    "minecraft:cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_copper_stairs"
+    },
+    "minecraft:cut_red_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_red_sandstone"
+    },
+    "minecraft:cut_red_sandstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_red_sandstone_slab"
+    },
+    "minecraft:cut_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_sandstone"
+    },
+    "minecraft:cut_sandstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cut_sandstone_slab"
+    },
+    "minecraft:cyan_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_banner"
+    },
+    "minecraft:cyan_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_bed"
+    },
+    "minecraft:cyan_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_candle"
+    },
+    "minecraft:cyan_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_candle_cake"
+    },
+    "minecraft:cyan_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_carpet"
+    },
+    "minecraft:cyan_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_concrete"
+    },
+    "minecraft:cyan_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_concrete_powder"
+    },
+    "minecraft:cyan_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_glazed_terracotta"
+    },
+    "minecraft:cyan_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_shulker_box"
+    },
+    "minecraft:cyan_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_stained_glass"
+    },
+    "minecraft:cyan_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_stained_glass_pane"
+    },
+    "minecraft:cyan_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_terracotta"
+    },
+    "minecraft:cyan_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_wall_banner"
+    },
+    "minecraft:cyan_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:cyan_wool"
+    },
+    "minecraft:damaged_anvil": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:damaged_anvil"
+    },
+    "minecraft:dandelion": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dandelion"
+    },
+    "minecraft:dark_oak_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_button"
+    },
+    "minecraft:dark_oak_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_door"
+    },
+    "minecraft:dark_oak_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_fence"
+    },
+    "minecraft:dark_oak_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_fence_gate"
+    },
+    "minecraft:dark_oak_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_hanging_sign"
+    },
+    "minecraft:dark_oak_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_leaves"
+    },
+    "minecraft:dark_oak_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_log"
+    },
+    "minecraft:dark_oak_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_planks"
+    },
+    "minecraft:dark_oak_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_pressure_plate"
+    },
+    "minecraft:dark_oak_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_sapling"
+    },
+    "minecraft:dark_oak_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_shelf"
+    },
+    "minecraft:dark_oak_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_sign"
+    },
+    "minecraft:dark_oak_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_slab"
+    },
+    "minecraft:dark_oak_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_stairs"
+    },
+    "minecraft:dark_oak_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_trapdoor"
+    },
+    "minecraft:dark_oak_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_wall_hanging_sign"
+    },
+    "minecraft:dark_oak_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_wall_sign"
+    },
+    "minecraft:dark_oak_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_oak_wood"
+    },
+    "minecraft:dark_prismarine": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_prismarine"
+    },
+    "minecraft:dark_prismarine_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_prismarine_slab"
+    },
+    "minecraft:dark_prismarine_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dark_prismarine_stairs"
+    },
+    "minecraft:daylight_detector": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:daylight_detector"
+    },
+    "minecraft:dead_brain_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_brain_coral"
+    },
+    "minecraft:dead_brain_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_brain_coral_block"
+    },
+    "minecraft:dead_brain_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_brain_coral_fan"
+    },
+    "minecraft:dead_brain_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_brain_coral_wall_fan"
+    },
+    "minecraft:dead_bubble_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_bubble_coral"
+    },
+    "minecraft:dead_bubble_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_bubble_coral_block"
+    },
+    "minecraft:dead_bubble_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_bubble_coral_fan"
+    },
+    "minecraft:dead_bubble_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_bubble_coral_wall_fan"
+    },
+    "minecraft:dead_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_bush"
+    },
+    "minecraft:dead_fire_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_fire_coral"
+    },
+    "minecraft:dead_fire_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_fire_coral_block"
+    },
+    "minecraft:dead_fire_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_fire_coral_fan"
+    },
+    "minecraft:dead_fire_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_fire_coral_wall_fan"
+    },
+    "minecraft:dead_horn_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_horn_coral"
+    },
+    "minecraft:dead_horn_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_horn_coral_block"
+    },
+    "minecraft:dead_horn_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_horn_coral_fan"
+    },
+    "minecraft:dead_horn_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_horn_coral_wall_fan"
+    },
+    "minecraft:dead_tube_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_tube_coral"
+    },
+    "minecraft:dead_tube_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_tube_coral_block"
+    },
+    "minecraft:dead_tube_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_tube_coral_fan"
+    },
+    "minecraft:dead_tube_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dead_tube_coral_wall_fan"
+    },
+    "minecraft:decorated_pot": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:decorated_pot"
+    },
+    "minecraft:deepslate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate"
+    },
+    "minecraft:deepslate_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_brick_slab"
+    },
+    "minecraft:deepslate_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_brick_stairs"
+    },
+    "minecraft:deepslate_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_brick_wall"
+    },
+    "minecraft:deepslate_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_bricks"
+    },
+    "minecraft:deepslate_coal_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_coal_ore"
+    },
+    "minecraft:deepslate_copper_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_copper_ore"
+    },
+    "minecraft:deepslate_diamond_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_diamond_ore"
+    },
+    "minecraft:deepslate_emerald_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_emerald_ore"
+    },
+    "minecraft:deepslate_gold_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_gold_ore"
+    },
+    "minecraft:deepslate_iron_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_iron_ore"
+    },
+    "minecraft:deepslate_lapis_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_lapis_ore"
+    },
+    "minecraft:deepslate_redstone_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_redstone_ore"
+    },
+    "minecraft:deepslate_tile_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_tile_slab"
+    },
+    "minecraft:deepslate_tile_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_tile_stairs"
+    },
+    "minecraft:deepslate_tile_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_tile_wall"
+    },
+    "minecraft:deepslate_tiles": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:deepslate_tiles"
+    },
+    "minecraft:detector_rail": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:detector_rail"
+    },
+    "minecraft:diamond_block": {
+      "basePoints": 100,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:diamond_block"
+    },
+    "minecraft:diamond_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:diamond_ore"
+    },
+    "minecraft:diorite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:diorite"
+    },
+    "minecraft:diorite_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:diorite_slab"
+    },
+    "minecraft:diorite_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:diorite_stairs"
+    },
+    "minecraft:diorite_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:diorite_wall"
+    },
+    "minecraft:dirt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dirt"
+    },
+    "minecraft:dirt_path": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dirt_path"
+    },
+    "minecraft:dispenser": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dispenser"
+    },
+    "minecraft:dragon_egg": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dragon_egg"
+    },
+    "minecraft:dragon_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dragon_head"
+    },
+    "minecraft:dragon_wall_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dragon_wall_head"
+    },
+    "minecraft:dried_ghast": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dried_ghast"
+    },
+    "minecraft:dried_kelp_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dried_kelp_block"
+    },
+    "minecraft:dripstone_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dripstone_block"
+    },
+    "minecraft:dropper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:dropper"
+    },
+    "minecraft:emerald_block": {
+      "basePoints": 60,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:emerald_block"
+    },
+    "minecraft:emerald_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:emerald_ore"
+    },
+    "minecraft:enchanting_table": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:enchanting_table"
+    },
+    "minecraft:end_gateway": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_gateway"
+    },
+    "minecraft:end_portal": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_portal"
+    },
+    "minecraft:end_portal_frame": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_portal_frame"
+    },
+    "minecraft:end_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_rod"
+    },
+    "minecraft:end_stone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_stone"
+    },
+    "minecraft:end_stone_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_stone_brick_slab"
+    },
+    "minecraft:end_stone_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_stone_brick_stairs"
+    },
+    "minecraft:end_stone_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_stone_brick_wall"
+    },
+    "minecraft:end_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:end_stone_bricks"
+    },
+    "minecraft:ender_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:ender_chest"
+    },
+    "minecraft:exposed_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_chiseled_copper"
+    },
+    "minecraft:exposed_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper"
+    },
+    "minecraft:exposed_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_bars"
+    },
+    "minecraft:exposed_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_bulb"
+    },
+    "minecraft:exposed_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_chain"
+    },
+    "minecraft:exposed_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_chest"
+    },
+    "minecraft:exposed_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_door"
+    },
+    "minecraft:exposed_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_golem_statue"
+    },
+    "minecraft:exposed_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_grate"
+    },
+    "minecraft:exposed_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_lantern"
+    },
+    "minecraft:exposed_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_copper_trapdoor"
+    },
+    "minecraft:exposed_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_cut_copper"
+    },
+    "minecraft:exposed_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_cut_copper_slab"
+    },
+    "minecraft:exposed_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_cut_copper_stairs"
+    },
+    "minecraft:exposed_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:exposed_lightning_rod"
+    },
+    "minecraft:farmland": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:farmland"
+    },
+    "minecraft:fern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fern"
+    },
+    "minecraft:fire": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fire"
+    },
+    "minecraft:fire_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fire_coral"
+    },
+    "minecraft:fire_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fire_coral_block"
+    },
+    "minecraft:fire_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fire_coral_fan"
+    },
+    "minecraft:fire_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fire_coral_wall_fan"
+    },
+    "minecraft:firefly_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:firefly_bush"
+    },
+    "minecraft:fletching_table": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:fletching_table"
+    },
+    "minecraft:flower_pot": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:flower_pot"
+    },
+    "minecraft:flowering_azalea": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:flowering_azalea"
+    },
+    "minecraft:flowering_azalea_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:flowering_azalea_leaves"
+    },
+    "minecraft:frogspawn": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:frogspawn"
+    },
+    "minecraft:frosted_ice": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:frosted_ice"
+    },
+    "minecraft:furnace": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:furnace"
+    },
+    "minecraft:gilded_blackstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gilded_blackstone"
+    },
+    "minecraft:glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:glass"
+    },
+    "minecraft:glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:glass_pane"
+    },
+    "minecraft:glow_lichen": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:glow_lichen"
+    },
+    "minecraft:glowstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:glowstone"
+    },
+    "minecraft:gold_block": {
+      "basePoints": 40,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gold_block"
+    },
+    "minecraft:gold_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gold_ore"
+    },
+    "minecraft:golden_dandelion": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:golden_dandelion"
+    },
+    "minecraft:granite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:granite"
+    },
+    "minecraft:granite_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:granite_slab"
+    },
+    "minecraft:granite_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:granite_stairs"
+    },
+    "minecraft:granite_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:granite_wall"
+    },
+    "minecraft:grass_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:grass_block"
+    },
+    "minecraft:gravel": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gravel"
+    },
+    "minecraft:gray_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_banner"
+    },
+    "minecraft:gray_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_bed"
+    },
+    "minecraft:gray_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_candle"
+    },
+    "minecraft:gray_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_candle_cake"
+    },
+    "minecraft:gray_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_carpet"
+    },
+    "minecraft:gray_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_concrete"
+    },
+    "minecraft:gray_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_concrete_powder"
+    },
+    "minecraft:gray_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_glazed_terracotta"
+    },
+    "minecraft:gray_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_shulker_box"
+    },
+    "minecraft:gray_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_stained_glass"
+    },
+    "minecraft:gray_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_stained_glass_pane"
+    },
+    "minecraft:gray_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_terracotta"
+    },
+    "minecraft:gray_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_wall_banner"
+    },
+    "minecraft:gray_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:gray_wool"
+    },
+    "minecraft:green_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_banner"
+    },
+    "minecraft:green_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_bed"
+    },
+    "minecraft:green_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_candle"
+    },
+    "minecraft:green_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_candle_cake"
+    },
+    "minecraft:green_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_carpet"
+    },
+    "minecraft:green_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_concrete"
+    },
+    "minecraft:green_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_concrete_powder"
+    },
+    "minecraft:green_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_glazed_terracotta"
+    },
+    "minecraft:green_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_shulker_box"
+    },
+    "minecraft:green_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_stained_glass"
+    },
+    "minecraft:green_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_stained_glass_pane"
+    },
+    "minecraft:green_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_terracotta"
+    },
+    "minecraft:green_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_wall_banner"
+    },
+    "minecraft:green_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:green_wool"
+    },
+    "minecraft:grindstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:grindstone"
+    },
+    "minecraft:hanging_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:hanging_roots"
+    },
+    "minecraft:hay_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:hay_block"
+    },
+    "minecraft:heavy_core": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:heavy_core"
+    },
+    "minecraft:heavy_weighted_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "minecraft:honey_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:honey_block"
+    },
+    "minecraft:honeycomb_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:honeycomb_block"
+    },
+    "minecraft:hopper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:hopper"
+    },
+    "minecraft:horn_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:horn_coral"
+    },
+    "minecraft:horn_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:horn_coral_block"
+    },
+    "minecraft:horn_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:horn_coral_fan"
+    },
+    "minecraft:horn_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:horn_coral_wall_fan"
+    },
+    "minecraft:ice": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:ice"
+    },
+    "minecraft:infested_chiseled_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_chiseled_stone_bricks"
+    },
+    "minecraft:infested_cobblestone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_cobblestone"
+    },
+    "minecraft:infested_cracked_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_cracked_stone_bricks"
+    },
+    "minecraft:infested_deepslate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_deepslate"
+    },
+    "minecraft:infested_mossy_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_mossy_stone_bricks"
+    },
+    "minecraft:infested_stone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_stone"
+    },
+    "minecraft:infested_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:infested_stone_bricks"
+    },
+    "minecraft:iron_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:iron_bars"
+    },
+    "minecraft:iron_block": {
+      "basePoints": 20,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:iron_block"
+    },
+    "minecraft:iron_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:iron_chain"
+    },
+    "minecraft:iron_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:iron_door"
+    },
+    "minecraft:iron_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:iron_ore"
+    },
+    "minecraft:iron_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:iron_trapdoor"
+    },
+    "minecraft:jack_o_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jack_o_lantern"
+    },
+    "minecraft:jigsaw": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jigsaw"
+    },
+    "minecraft:jukebox": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jukebox"
+    },
+    "minecraft:jungle_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_button"
+    },
+    "minecraft:jungle_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_door"
+    },
+    "minecraft:jungle_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_fence"
+    },
+    "minecraft:jungle_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_fence_gate"
+    },
+    "minecraft:jungle_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_hanging_sign"
+    },
+    "minecraft:jungle_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_leaves"
+    },
+    "minecraft:jungle_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_log"
+    },
+    "minecraft:jungle_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_planks"
+    },
+    "minecraft:jungle_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_pressure_plate"
+    },
+    "minecraft:jungle_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_sapling"
+    },
+    "minecraft:jungle_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_shelf"
+    },
+    "minecraft:jungle_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_sign"
+    },
+    "minecraft:jungle_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_slab"
+    },
+    "minecraft:jungle_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_stairs"
+    },
+    "minecraft:jungle_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_trapdoor"
+    },
+    "minecraft:jungle_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_wall_hanging_sign"
+    },
+    "minecraft:jungle_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_wall_sign"
+    },
+    "minecraft:jungle_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:jungle_wood"
+    },
+    "minecraft:kelp": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:kelp"
+    },
+    "minecraft:kelp_plant": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:kelp_plant"
+    },
+    "minecraft:ladder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:ladder"
+    },
+    "minecraft:lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lantern"
+    },
+    "minecraft:lapis_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lapis_block"
+    },
+    "minecraft:lapis_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lapis_ore"
+    },
+    "minecraft:large_amethyst_bud": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:large_amethyst_bud"
+    },
+    "minecraft:large_fern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:large_fern"
+    },
+    "minecraft:lava": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lava"
+    },
+    "minecraft:lava_cauldron": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lava_cauldron"
+    },
+    "minecraft:leaf_litter": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:leaf_litter"
+    },
+    "minecraft:lectern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lectern"
+    },
+    "minecraft:lever": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lever"
+    },
+    "minecraft:light": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light"
+    },
+    "minecraft:light_blue_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_banner"
+    },
+    "minecraft:light_blue_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_bed"
+    },
+    "minecraft:light_blue_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_candle"
+    },
+    "minecraft:light_blue_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_candle_cake"
+    },
+    "minecraft:light_blue_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_carpet"
+    },
+    "minecraft:light_blue_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_concrete"
+    },
+    "minecraft:light_blue_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_concrete_powder"
+    },
+    "minecraft:light_blue_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_glazed_terracotta"
+    },
+    "minecraft:light_blue_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_shulker_box"
+    },
+    "minecraft:light_blue_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_stained_glass"
+    },
+    "minecraft:light_blue_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_stained_glass_pane"
+    },
+    "minecraft:light_blue_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_terracotta"
+    },
+    "minecraft:light_blue_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_wall_banner"
+    },
+    "minecraft:light_blue_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_blue_wool"
+    },
+    "minecraft:light_gray_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_banner"
+    },
+    "minecraft:light_gray_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_bed"
+    },
+    "minecraft:light_gray_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_candle"
+    },
+    "minecraft:light_gray_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_candle_cake"
+    },
+    "minecraft:light_gray_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_carpet"
+    },
+    "minecraft:light_gray_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_concrete"
+    },
+    "minecraft:light_gray_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_concrete_powder"
+    },
+    "minecraft:light_gray_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_glazed_terracotta"
+    },
+    "minecraft:light_gray_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_shulker_box"
+    },
+    "minecraft:light_gray_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_stained_glass"
+    },
+    "minecraft:light_gray_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_stained_glass_pane"
+    },
+    "minecraft:light_gray_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_terracotta"
+    },
+    "minecraft:light_gray_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_wall_banner"
+    },
+    "minecraft:light_gray_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_gray_wool"
+    },
+    "minecraft:light_weighted_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:light_weighted_pressure_plate"
+    },
+    "minecraft:lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lightning_rod"
+    },
+    "minecraft:lilac": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lilac"
+    },
+    "minecraft:lily_of_the_valley": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lily_of_the_valley"
+    },
+    "minecraft:lily_pad": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lily_pad"
+    },
+    "minecraft:lime_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_banner"
+    },
+    "minecraft:lime_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_bed"
+    },
+    "minecraft:lime_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_candle"
+    },
+    "minecraft:lime_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_candle_cake"
+    },
+    "minecraft:lime_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_carpet"
+    },
+    "minecraft:lime_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_concrete"
+    },
+    "minecraft:lime_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_concrete_powder"
+    },
+    "minecraft:lime_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_glazed_terracotta"
+    },
+    "minecraft:lime_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_shulker_box"
+    },
+    "minecraft:lime_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_stained_glass"
+    },
+    "minecraft:lime_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_stained_glass_pane"
+    },
+    "minecraft:lime_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_terracotta"
+    },
+    "minecraft:lime_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_wall_banner"
+    },
+    "minecraft:lime_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lime_wool"
+    },
+    "minecraft:lodestone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:lodestone"
+    },
+    "minecraft:loom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:loom"
+    },
+    "minecraft:magenta_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_banner"
+    },
+    "minecraft:magenta_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_bed"
+    },
+    "minecraft:magenta_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_candle"
+    },
+    "minecraft:magenta_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_candle_cake"
+    },
+    "minecraft:magenta_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_carpet"
+    },
+    "minecraft:magenta_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_concrete"
+    },
+    "minecraft:magenta_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_concrete_powder"
+    },
+    "minecraft:magenta_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_glazed_terracotta"
+    },
+    "minecraft:magenta_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_shulker_box"
+    },
+    "minecraft:magenta_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_stained_glass"
+    },
+    "minecraft:magenta_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_stained_glass_pane"
+    },
+    "minecraft:magenta_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_terracotta"
+    },
+    "minecraft:magenta_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_wall_banner"
+    },
+    "minecraft:magenta_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magenta_wool"
+    },
+    "minecraft:magma_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:magma_block"
+    },
+    "minecraft:mangrove_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_button"
+    },
+    "minecraft:mangrove_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_door"
+    },
+    "minecraft:mangrove_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_fence"
+    },
+    "minecraft:mangrove_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_fence_gate"
+    },
+    "minecraft:mangrove_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_hanging_sign"
+    },
+    "minecraft:mangrove_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_leaves"
+    },
+    "minecraft:mangrove_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_log"
+    },
+    "minecraft:mangrove_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_planks"
+    },
+    "minecraft:mangrove_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_pressure_plate"
+    },
+    "minecraft:mangrove_propagule": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_propagule"
+    },
+    "minecraft:mangrove_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_roots"
+    },
+    "minecraft:mangrove_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_shelf"
+    },
+    "minecraft:mangrove_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_sign"
+    },
+    "minecraft:mangrove_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_slab"
+    },
+    "minecraft:mangrove_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_stairs"
+    },
+    "minecraft:mangrove_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_trapdoor"
+    },
+    "minecraft:mangrove_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_wall_hanging_sign"
+    },
+    "minecraft:mangrove_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_wall_sign"
+    },
+    "minecraft:mangrove_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mangrove_wood"
+    },
+    "minecraft:medium_amethyst_bud": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:medium_amethyst_bud"
+    },
+    "minecraft:melon": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:melon"
+    },
+    "minecraft:melon_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:melon_stem"
+    },
+    "minecraft:moss_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:moss_block"
+    },
+    "minecraft:moss_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:moss_carpet"
+    },
+    "minecraft:mossy_cobblestone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_cobblestone"
+    },
+    "minecraft:mossy_cobblestone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_cobblestone_slab"
+    },
+    "minecraft:mossy_cobblestone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_cobblestone_stairs"
+    },
+    "minecraft:mossy_cobblestone_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_cobblestone_wall"
+    },
+    "minecraft:mossy_stone_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_stone_brick_slab"
+    },
+    "minecraft:mossy_stone_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_stone_brick_stairs"
+    },
+    "minecraft:mossy_stone_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_stone_brick_wall"
+    },
+    "minecraft:mossy_stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mossy_stone_bricks"
+    },
+    "minecraft:moving_piston": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:moving_piston"
+    },
+    "minecraft:mud": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mud"
+    },
+    "minecraft:mud_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mud_brick_slab"
+    },
+    "minecraft:mud_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mud_brick_stairs"
+    },
+    "minecraft:mud_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mud_brick_wall"
+    },
+    "minecraft:mud_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mud_bricks"
+    },
+    "minecraft:muddy_mangrove_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:muddy_mangrove_roots"
+    },
+    "minecraft:mushroom_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mushroom_stem"
+    },
+    "minecraft:mycelium": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:mycelium"
+    },
+    "minecraft:nether_brick_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_brick_fence"
+    },
+    "minecraft:nether_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_brick_slab"
+    },
+    "minecraft:nether_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_brick_stairs"
+    },
+    "minecraft:nether_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_brick_wall"
+    },
+    "minecraft:nether_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_bricks"
+    },
+    "minecraft:nether_gold_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_gold_ore"
+    },
+    "minecraft:nether_portal": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_portal"
+    },
+    "minecraft:nether_quartz_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_quartz_ore"
+    },
+    "minecraft:nether_sprouts": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_sprouts"
+    },
+    "minecraft:nether_wart": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_wart"
+    },
+    "minecraft:nether_wart_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:nether_wart_block"
+    },
+    "minecraft:netherite_block": {
+      "basePoints": 1000,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:netherite_block"
+    },
+    "minecraft:netherrack": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:netherrack"
+    },
+    "minecraft:note_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:note_block"
+    },
+    "minecraft:oak_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_button"
+    },
+    "minecraft:oak_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_door"
+    },
+    "minecraft:oak_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_fence"
+    },
+    "minecraft:oak_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_fence_gate"
+    },
+    "minecraft:oak_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_hanging_sign"
+    },
+    "minecraft:oak_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_leaves"
+    },
+    "minecraft:oak_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_log"
+    },
+    "minecraft:oak_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_planks"
+    },
+    "minecraft:oak_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_pressure_plate"
+    },
+    "minecraft:oak_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_sapling"
+    },
+    "minecraft:oak_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_shelf"
+    },
+    "minecraft:oak_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_sign"
+    },
+    "minecraft:oak_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_slab"
+    },
+    "minecraft:oak_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_stairs"
+    },
+    "minecraft:oak_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_trapdoor"
+    },
+    "minecraft:oak_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_wall_hanging_sign"
+    },
+    "minecraft:oak_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_wall_sign"
+    },
+    "minecraft:oak_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oak_wood"
+    },
+    "minecraft:observer": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:observer"
+    },
+    "minecraft:obsidian": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:obsidian"
+    },
+    "minecraft:ochre_froglight": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:ochre_froglight"
+    },
+    "minecraft:open_eyeblossom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:open_eyeblossom"
+    },
+    "minecraft:orange_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_banner"
+    },
+    "minecraft:orange_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_bed"
+    },
+    "minecraft:orange_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_candle"
+    },
+    "minecraft:orange_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_candle_cake"
+    },
+    "minecraft:orange_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_carpet"
+    },
+    "minecraft:orange_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_concrete"
+    },
+    "minecraft:orange_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_concrete_powder"
+    },
+    "minecraft:orange_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_glazed_terracotta"
+    },
+    "minecraft:orange_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_shulker_box"
+    },
+    "minecraft:orange_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_stained_glass"
+    },
+    "minecraft:orange_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_stained_glass_pane"
+    },
+    "minecraft:orange_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_terracotta"
+    },
+    "minecraft:orange_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_tulip"
+    },
+    "minecraft:orange_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_wall_banner"
+    },
+    "minecraft:orange_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:orange_wool"
+    },
+    "minecraft:oxeye_daisy": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxeye_daisy"
+    },
+    "minecraft:oxidized_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_chiseled_copper"
+    },
+    "minecraft:oxidized_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper"
+    },
+    "minecraft:oxidized_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_bars"
+    },
+    "minecraft:oxidized_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_bulb"
+    },
+    "minecraft:oxidized_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_chain"
+    },
+    "minecraft:oxidized_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_chest"
+    },
+    "minecraft:oxidized_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_door"
+    },
+    "minecraft:oxidized_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_golem_statue"
+    },
+    "minecraft:oxidized_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_grate"
+    },
+    "minecraft:oxidized_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_lantern"
+    },
+    "minecraft:oxidized_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_copper_trapdoor"
+    },
+    "minecraft:oxidized_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_cut_copper"
+    },
+    "minecraft:oxidized_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_cut_copper_slab"
+    },
+    "minecraft:oxidized_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_cut_copper_stairs"
+    },
+    "minecraft:oxidized_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:oxidized_lightning_rod"
+    },
+    "minecraft:packed_ice": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:packed_ice"
+    },
+    "minecraft:packed_mud": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:packed_mud"
+    },
+    "minecraft:pale_hanging_moss": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_hanging_moss"
+    },
+    "minecraft:pale_moss_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_moss_block"
+    },
+    "minecraft:pale_moss_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_moss_carpet"
+    },
+    "minecraft:pale_oak_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_button"
+    },
+    "minecraft:pale_oak_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_door"
+    },
+    "minecraft:pale_oak_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_fence"
+    },
+    "minecraft:pale_oak_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_fence_gate"
+    },
+    "minecraft:pale_oak_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_hanging_sign"
+    },
+    "minecraft:pale_oak_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_leaves"
+    },
+    "minecraft:pale_oak_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_log"
+    },
+    "minecraft:pale_oak_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_planks"
+    },
+    "minecraft:pale_oak_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_pressure_plate"
+    },
+    "minecraft:pale_oak_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_sapling"
+    },
+    "minecraft:pale_oak_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_shelf"
+    },
+    "minecraft:pale_oak_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_sign"
+    },
+    "minecraft:pale_oak_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_slab"
+    },
+    "minecraft:pale_oak_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_stairs"
+    },
+    "minecraft:pale_oak_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_trapdoor"
+    },
+    "minecraft:pale_oak_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_wall_hanging_sign"
+    },
+    "minecraft:pale_oak_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_wall_sign"
+    },
+    "minecraft:pale_oak_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pale_oak_wood"
+    },
+    "minecraft:pearlescent_froglight": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pearlescent_froglight"
+    },
+    "minecraft:peony": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:peony"
+    },
+    "minecraft:petrified_oak_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:petrified_oak_slab"
+    },
+    "minecraft:piglin_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:piglin_head"
+    },
+    "minecraft:piglin_wall_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:piglin_wall_head"
+    },
+    "minecraft:pink_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_banner"
+    },
+    "minecraft:pink_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_bed"
+    },
+    "minecraft:pink_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_candle"
+    },
+    "minecraft:pink_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_candle_cake"
+    },
+    "minecraft:pink_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_carpet"
+    },
+    "minecraft:pink_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_concrete"
+    },
+    "minecraft:pink_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_concrete_powder"
+    },
+    "minecraft:pink_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_glazed_terracotta"
+    },
+    "minecraft:pink_petals": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_petals"
+    },
+    "minecraft:pink_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_shulker_box"
+    },
+    "minecraft:pink_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_stained_glass"
+    },
+    "minecraft:pink_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_stained_glass_pane"
+    },
+    "minecraft:pink_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_terracotta"
+    },
+    "minecraft:pink_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_tulip"
+    },
+    "minecraft:pink_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_wall_banner"
+    },
+    "minecraft:pink_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pink_wool"
+    },
+    "minecraft:piston": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:piston"
+    },
+    "minecraft:piston_head": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:piston_head"
+    },
+    "minecraft:pitcher_crop": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pitcher_crop"
+    },
+    "minecraft:pitcher_plant": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pitcher_plant"
+    },
+    "minecraft:player_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:player_head"
+    },
+    "minecraft:player_wall_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:player_wall_head"
+    },
+    "minecraft:podzol": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:podzol"
+    },
+    "minecraft:pointed_dripstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pointed_dripstone"
+    },
+    "minecraft:polished_andesite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_andesite"
+    },
+    "minecraft:polished_andesite_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_andesite_slab"
+    },
+    "minecraft:polished_andesite_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_andesite_stairs"
+    },
+    "minecraft:polished_basalt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_basalt"
+    },
+    "minecraft:polished_blackstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone"
+    },
+    "minecraft:polished_blackstone_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_brick_slab"
+    },
+    "minecraft:polished_blackstone_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_brick_stairs"
+    },
+    "minecraft:polished_blackstone_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_brick_wall"
+    },
+    "minecraft:polished_blackstone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_bricks"
+    },
+    "minecraft:polished_blackstone_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_button"
+    },
+    "minecraft:polished_blackstone_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_pressure_plate"
+    },
+    "minecraft:polished_blackstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_slab"
+    },
+    "minecraft:polished_blackstone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_stairs"
+    },
+    "minecraft:polished_blackstone_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_blackstone_wall"
+    },
+    "minecraft:polished_cinnabar": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_cinnabar"
+    },
+    "minecraft:polished_cinnabar_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_cinnabar_slab"
+    },
+    "minecraft:polished_cinnabar_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_cinnabar_stairs"
+    },
+    "minecraft:polished_cinnabar_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_cinnabar_wall"
+    },
+    "minecraft:polished_deepslate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_deepslate"
+    },
+    "minecraft:polished_deepslate_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_deepslate_slab"
+    },
+    "minecraft:polished_deepslate_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_deepslate_stairs"
+    },
+    "minecraft:polished_deepslate_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_deepslate_wall"
+    },
+    "minecraft:polished_diorite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_diorite"
+    },
+    "minecraft:polished_diorite_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_diorite_slab"
+    },
+    "minecraft:polished_diorite_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_diorite_stairs"
+    },
+    "minecraft:polished_granite": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_granite"
+    },
+    "minecraft:polished_granite_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_granite_slab"
+    },
+    "minecraft:polished_granite_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_granite_stairs"
+    },
+    "minecraft:polished_sulfur": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_sulfur"
+    },
+    "minecraft:polished_sulfur_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_sulfur_slab"
+    },
+    "minecraft:polished_sulfur_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_sulfur_stairs"
+    },
+    "minecraft:polished_sulfur_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_sulfur_wall"
+    },
+    "minecraft:polished_tuff": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_tuff"
+    },
+    "minecraft:polished_tuff_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_tuff_slab"
+    },
+    "minecraft:polished_tuff_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_tuff_stairs"
+    },
+    "minecraft:polished_tuff_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:polished_tuff_wall"
+    },
+    "minecraft:poppy": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:poppy"
+    },
+    "minecraft:potatoes": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potatoes"
+    },
+    "minecraft:potent_sulfur": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potent_sulfur"
+    },
+    "minecraft:potted_acacia_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_acacia_sapling"
+    },
+    "minecraft:potted_allium": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_allium"
+    },
+    "minecraft:potted_azalea_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_azalea_bush"
+    },
+    "minecraft:potted_azure_bluet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_azure_bluet"
+    },
+    "minecraft:potted_bamboo": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_bamboo"
+    },
+    "minecraft:potted_birch_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_birch_sapling"
+    },
+    "minecraft:potted_blue_orchid": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_blue_orchid"
+    },
+    "minecraft:potted_brown_mushroom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_brown_mushroom"
+    },
+    "minecraft:potted_cactus": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_cactus"
+    },
+    "minecraft:potted_cherry_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_cherry_sapling"
+    },
+    "minecraft:potted_closed_eyeblossom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_closed_eyeblossom"
+    },
+    "minecraft:potted_cornflower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_cornflower"
+    },
+    "minecraft:potted_crimson_fungus": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_crimson_fungus"
+    },
+    "minecraft:potted_crimson_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_crimson_roots"
+    },
+    "minecraft:potted_dandelion": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_dandelion"
+    },
+    "minecraft:potted_dark_oak_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_dark_oak_sapling"
+    },
+    "minecraft:potted_dead_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_dead_bush"
+    },
+    "minecraft:potted_fern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_fern"
+    },
+    "minecraft:potted_flowering_azalea_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_flowering_azalea_bush"
+    },
+    "minecraft:potted_golden_dandelion": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_golden_dandelion"
+    },
+    "minecraft:potted_jungle_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_jungle_sapling"
+    },
+    "minecraft:potted_lily_of_the_valley": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_lily_of_the_valley"
+    },
+    "minecraft:potted_mangrove_propagule": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_mangrove_propagule"
+    },
+    "minecraft:potted_oak_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_oak_sapling"
+    },
+    "minecraft:potted_open_eyeblossom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_open_eyeblossom"
+    },
+    "minecraft:potted_orange_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_orange_tulip"
+    },
+    "minecraft:potted_oxeye_daisy": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_oxeye_daisy"
+    },
+    "minecraft:potted_pale_oak_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_pale_oak_sapling"
+    },
+    "minecraft:potted_pink_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_pink_tulip"
+    },
+    "minecraft:potted_poppy": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_poppy"
+    },
+    "minecraft:potted_red_mushroom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_red_mushroom"
+    },
+    "minecraft:potted_red_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_red_tulip"
+    },
+    "minecraft:potted_spruce_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_spruce_sapling"
+    },
+    "minecraft:potted_torchflower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_torchflower"
+    },
+    "minecraft:potted_warped_fungus": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_warped_fungus"
+    },
+    "minecraft:potted_warped_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_warped_roots"
+    },
+    "minecraft:potted_white_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_white_tulip"
+    },
+    "minecraft:potted_wither_rose": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:potted_wither_rose"
+    },
+    "minecraft:powder_snow": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:powder_snow"
+    },
+    "minecraft:powder_snow_cauldron": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:powder_snow_cauldron"
+    },
+    "minecraft:powered_rail": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:powered_rail"
+    },
+    "minecraft:prismarine": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine"
+    },
+    "minecraft:prismarine_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine_brick_slab"
+    },
+    "minecraft:prismarine_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine_brick_stairs"
+    },
+    "minecraft:prismarine_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine_bricks"
+    },
+    "minecraft:prismarine_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine_slab"
+    },
+    "minecraft:prismarine_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine_stairs"
+    },
+    "minecraft:prismarine_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:prismarine_wall"
+    },
+    "minecraft:pumpkin": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pumpkin"
+    },
+    "minecraft:pumpkin_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:pumpkin_stem"
+    },
+    "minecraft:purple_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_banner"
+    },
+    "minecraft:purple_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_bed"
+    },
+    "minecraft:purple_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_candle"
+    },
+    "minecraft:purple_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_candle_cake"
+    },
+    "minecraft:purple_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_carpet"
+    },
+    "minecraft:purple_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_concrete"
+    },
+    "minecraft:purple_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_concrete_powder"
+    },
+    "minecraft:purple_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_glazed_terracotta"
+    },
+    "minecraft:purple_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_shulker_box"
+    },
+    "minecraft:purple_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_stained_glass"
+    },
+    "minecraft:purple_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_stained_glass_pane"
+    },
+    "minecraft:purple_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_terracotta"
+    },
+    "minecraft:purple_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_wall_banner"
+    },
+    "minecraft:purple_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purple_wool"
+    },
+    "minecraft:purpur_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purpur_block"
+    },
+    "minecraft:purpur_pillar": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purpur_pillar"
+    },
+    "minecraft:purpur_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purpur_slab"
+    },
+    "minecraft:purpur_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:purpur_stairs"
+    },
+    "minecraft:quartz_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:quartz_block"
+    },
+    "minecraft:quartz_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:quartz_bricks"
+    },
+    "minecraft:quartz_pillar": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:quartz_pillar"
+    },
+    "minecraft:quartz_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:quartz_slab"
+    },
+    "minecraft:quartz_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:quartz_stairs"
+    },
+    "minecraft:rail": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:rail"
+    },
+    "minecraft:raw_copper_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:raw_copper_block"
+    },
+    "minecraft:raw_gold_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:raw_gold_block"
+    },
+    "minecraft:raw_iron_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:raw_iron_block"
+    },
+    "minecraft:red_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_banner"
+    },
+    "minecraft:red_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_bed"
+    },
+    "minecraft:red_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_candle"
+    },
+    "minecraft:red_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_candle_cake"
+    },
+    "minecraft:red_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_carpet"
+    },
+    "minecraft:red_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_concrete"
+    },
+    "minecraft:red_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_concrete_powder"
+    },
+    "minecraft:red_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_glazed_terracotta"
+    },
+    "minecraft:red_mushroom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_mushroom"
+    },
+    "minecraft:red_mushroom_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_mushroom_block"
+    },
+    "minecraft:red_nether_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_nether_brick_slab"
+    },
+    "minecraft:red_nether_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_nether_brick_stairs"
+    },
+    "minecraft:red_nether_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_nether_brick_wall"
+    },
+    "minecraft:red_nether_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_nether_bricks"
+    },
+    "minecraft:red_sand": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_sand"
+    },
+    "minecraft:red_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_sandstone"
+    },
+    "minecraft:red_sandstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_sandstone_slab"
+    },
+    "minecraft:red_sandstone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_sandstone_stairs"
+    },
+    "minecraft:red_sandstone_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_sandstone_wall"
+    },
+    "minecraft:red_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_shulker_box"
+    },
+    "minecraft:red_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_stained_glass"
+    },
+    "minecraft:red_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_stained_glass_pane"
+    },
+    "minecraft:red_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_terracotta"
+    },
+    "minecraft:red_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_tulip"
+    },
+    "minecraft:red_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_wall_banner"
+    },
+    "minecraft:red_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:red_wool"
+    },
+    "minecraft:redstone_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:redstone_block"
+    },
+    "minecraft:redstone_lamp": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:redstone_lamp"
+    },
+    "minecraft:redstone_ore": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:redstone_ore"
+    },
+    "minecraft:redstone_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:redstone_torch"
+    },
+    "minecraft:redstone_wall_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:redstone_wall_torch"
+    },
+    "minecraft:redstone_wire": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:redstone_wire"
+    },
+    "minecraft:reinforced_deepslate": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:reinforced_deepslate"
+    },
+    "minecraft:repeater": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:repeater"
+    },
+    "minecraft:repeating_command_block": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:repeating_command_block"
+    },
+    "minecraft:resin_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:resin_block"
+    },
+    "minecraft:resin_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:resin_brick_slab"
+    },
+    "minecraft:resin_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:resin_brick_stairs"
+    },
+    "minecraft:resin_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:resin_brick_wall"
+    },
+    "minecraft:resin_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:resin_bricks"
+    },
+    "minecraft:resin_clump": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:resin_clump"
+    },
+    "minecraft:respawn_anchor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:respawn_anchor"
+    },
+    "minecraft:rooted_dirt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:rooted_dirt"
+    },
+    "minecraft:rose_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:rose_bush"
+    },
+    "minecraft:sand": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sand"
+    },
+    "minecraft:sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sandstone"
+    },
+    "minecraft:sandstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sandstone_slab"
+    },
+    "minecraft:sandstone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sandstone_stairs"
+    },
+    "minecraft:sandstone_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sandstone_wall"
+    },
+    "minecraft:scaffolding": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:scaffolding"
+    },
+    "minecraft:sculk": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sculk"
+    },
+    "minecraft:sculk_catalyst": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sculk_catalyst"
+    },
+    "minecraft:sculk_sensor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sculk_sensor"
+    },
+    "minecraft:sculk_shrieker": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sculk_shrieker"
+    },
+    "minecraft:sculk_vein": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sculk_vein"
+    },
+    "minecraft:sea_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sea_lantern"
+    },
+    "minecraft:sea_pickle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sea_pickle"
+    },
+    "minecraft:seagrass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:seagrass"
+    },
+    "minecraft:short_dry_grass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:short_dry_grass"
+    },
+    "minecraft:short_grass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:short_grass"
+    },
+    "minecraft:shroomlight": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:shroomlight"
+    },
+    "minecraft:shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:shulker_box"
+    },
+    "minecraft:skeleton_skull": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:skeleton_skull"
+    },
+    "minecraft:skeleton_wall_skull": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:skeleton_wall_skull"
+    },
+    "minecraft:slime_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:slime_block"
+    },
+    "minecraft:small_amethyst_bud": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:small_amethyst_bud"
+    },
+    "minecraft:small_dripleaf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:small_dripleaf"
+    },
+    "minecraft:smithing_table": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smithing_table"
+    },
+    "minecraft:smoker": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smoker"
+    },
+    "minecraft:smooth_basalt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_basalt"
+    },
+    "minecraft:smooth_quartz": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_quartz"
+    },
+    "minecraft:smooth_quartz_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_quartz_slab"
+    },
+    "minecraft:smooth_quartz_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_quartz_stairs"
+    },
+    "minecraft:smooth_red_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_red_sandstone"
+    },
+    "minecraft:smooth_red_sandstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_red_sandstone_slab"
+    },
+    "minecraft:smooth_red_sandstone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_red_sandstone_stairs"
+    },
+    "minecraft:smooth_sandstone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_sandstone"
+    },
+    "minecraft:smooth_sandstone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_sandstone_slab"
+    },
+    "minecraft:smooth_sandstone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_sandstone_stairs"
+    },
+    "minecraft:smooth_stone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_stone"
+    },
+    "minecraft:smooth_stone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:smooth_stone_slab"
+    },
+    "minecraft:sniffer_egg": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sniffer_egg"
+    },
+    "minecraft:snow": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:snow"
+    },
+    "minecraft:snow_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:snow_block"
+    },
+    "minecraft:soul_campfire": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_campfire"
+    },
+    "minecraft:soul_fire": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_fire"
+    },
+    "minecraft:soul_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_lantern"
+    },
+    "minecraft:soul_sand": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_sand"
+    },
+    "minecraft:soul_soil": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_soil"
+    },
+    "minecraft:soul_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_torch"
+    },
+    "minecraft:soul_wall_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:soul_wall_torch"
+    },
+    "minecraft:spawner": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spawner"
+    },
+    "minecraft:sponge": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sponge"
+    },
+    "minecraft:spore_blossom": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spore_blossom"
+    },
+    "minecraft:spruce_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_button"
+    },
+    "minecraft:spruce_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_door"
+    },
+    "minecraft:spruce_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_fence"
+    },
+    "minecraft:spruce_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_fence_gate"
+    },
+    "minecraft:spruce_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_hanging_sign"
+    },
+    "minecraft:spruce_leaves": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_leaves"
+    },
+    "minecraft:spruce_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_log"
+    },
+    "minecraft:spruce_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_planks"
+    },
+    "minecraft:spruce_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_pressure_plate"
+    },
+    "minecraft:spruce_sapling": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_sapling"
+    },
+    "minecraft:spruce_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_shelf"
+    },
+    "minecraft:spruce_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_sign"
+    },
+    "minecraft:spruce_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_slab"
+    },
+    "minecraft:spruce_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_stairs"
+    },
+    "minecraft:spruce_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_trapdoor"
+    },
+    "minecraft:spruce_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_wall_hanging_sign"
+    },
+    "minecraft:spruce_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_wall_sign"
+    },
+    "minecraft:spruce_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:spruce_wood"
+    },
+    "minecraft:sticky_piston": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sticky_piston"
+    },
+    "minecraft:stone": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone"
+    },
+    "minecraft:stone_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_brick_slab"
+    },
+    "minecraft:stone_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_brick_stairs"
+    },
+    "minecraft:stone_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_brick_wall"
+    },
+    "minecraft:stone_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_bricks"
+    },
+    "minecraft:stone_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_button"
+    },
+    "minecraft:stone_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_pressure_plate"
+    },
+    "minecraft:stone_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_slab"
+    },
+    "minecraft:stone_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stone_stairs"
+    },
+    "minecraft:stonecutter": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stonecutter"
+    },
+    "minecraft:stripped_acacia_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_acacia_log"
+    },
+    "minecraft:stripped_acacia_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_acacia_wood"
+    },
+    "minecraft:stripped_bamboo_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_bamboo_block"
+    },
+    "minecraft:stripped_birch_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_birch_log"
+    },
+    "minecraft:stripped_birch_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_birch_wood"
+    },
+    "minecraft:stripped_cherry_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_cherry_log"
+    },
+    "minecraft:stripped_cherry_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_cherry_wood"
+    },
+    "minecraft:stripped_crimson_hyphae": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_crimson_hyphae"
+    },
+    "minecraft:stripped_crimson_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_crimson_stem"
+    },
+    "minecraft:stripped_dark_oak_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_dark_oak_log"
+    },
+    "minecraft:stripped_dark_oak_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_dark_oak_wood"
+    },
+    "minecraft:stripped_jungle_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_jungle_log"
+    },
+    "minecraft:stripped_jungle_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_jungle_wood"
+    },
+    "minecraft:stripped_mangrove_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_mangrove_log"
+    },
+    "minecraft:stripped_mangrove_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_mangrove_wood"
+    },
+    "minecraft:stripped_oak_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_oak_log"
+    },
+    "minecraft:stripped_oak_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_oak_wood"
+    },
+    "minecraft:stripped_pale_oak_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_pale_oak_log"
+    },
+    "minecraft:stripped_pale_oak_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_pale_oak_wood"
+    },
+    "minecraft:stripped_spruce_log": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_spruce_log"
+    },
+    "minecraft:stripped_spruce_wood": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_spruce_wood"
+    },
+    "minecraft:stripped_warped_hyphae": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_warped_hyphae"
+    },
+    "minecraft:stripped_warped_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:stripped_warped_stem"
+    },
+    "minecraft:structure_block": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:structure_block"
+    },
+    "minecraft:structure_void": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:structure_void"
+    },
+    "minecraft:sugar_cane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sugar_cane"
+    },
+    "minecraft:sulfur": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur"
+    },
+    "minecraft:sulfur_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_brick_slab"
+    },
+    "minecraft:sulfur_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_brick_stairs"
+    },
+    "minecraft:sulfur_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_brick_wall"
+    },
+    "minecraft:sulfur_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_bricks"
+    },
+    "minecraft:sulfur_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_slab"
+    },
+    "minecraft:sulfur_spike": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_spike"
+    },
+    "minecraft:sulfur_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_stairs"
+    },
+    "minecraft:sulfur_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sulfur_wall"
+    },
+    "minecraft:sunflower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sunflower"
+    },
+    "minecraft:suspicious_gravel": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:suspicious_gravel"
+    },
+    "minecraft:suspicious_sand": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:suspicious_sand"
+    },
+    "minecraft:sweet_berry_bush": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:sweet_berry_bush"
+    },
+    "minecraft:tall_dry_grass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tall_dry_grass"
+    },
+    "minecraft:tall_grass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tall_grass"
+    },
+    "minecraft:tall_seagrass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tall_seagrass"
+    },
+    "minecraft:target": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:target"
+    },
+    "minecraft:terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:terracotta"
+    },
+    "minecraft:test_block": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:test_block"
+    },
+    "minecraft:test_instance_block": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:test_instance_block"
+    },
+    "minecraft:tinted_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tinted_glass"
+    },
+    "minecraft:tnt": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tnt"
+    },
+    "minecraft:torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:torch"
+    },
+    "minecraft:torchflower": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:torchflower"
+    },
+    "minecraft:torchflower_crop": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:torchflower_crop"
+    },
+    "minecraft:trapped_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:trapped_chest"
+    },
+    "minecraft:trial_spawner": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:trial_spawner"
+    },
+    "minecraft:tripwire": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tripwire"
+    },
+    "minecraft:tripwire_hook": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tripwire_hook"
+    },
+    "minecraft:tube_coral": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tube_coral"
+    },
+    "minecraft:tube_coral_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tube_coral_block"
+    },
+    "minecraft:tube_coral_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tube_coral_fan"
+    },
+    "minecraft:tube_coral_wall_fan": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tube_coral_wall_fan"
+    },
+    "minecraft:tuff": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff"
+    },
+    "minecraft:tuff_brick_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_brick_slab"
+    },
+    "minecraft:tuff_brick_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_brick_stairs"
+    },
+    "minecraft:tuff_brick_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_brick_wall"
+    },
+    "minecraft:tuff_bricks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_bricks"
+    },
+    "minecraft:tuff_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_slab"
+    },
+    "minecraft:tuff_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_stairs"
+    },
+    "minecraft:tuff_wall": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:tuff_wall"
+    },
+    "minecraft:turtle_egg": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:turtle_egg"
+    },
+    "minecraft:twisting_vines": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:twisting_vines"
+    },
+    "minecraft:twisting_vines_plant": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:twisting_vines_plant"
+    },
+    "minecraft:vault": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:vault"
+    },
+    "minecraft:verdant_froglight": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:verdant_froglight"
+    },
+    "minecraft:vine": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:vine"
+    },
+    "minecraft:void_air": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:void_air"
+    },
+    "minecraft:wall_torch": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wall_torch"
+    },
+    "minecraft:warped_button": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_button"
+    },
+    "minecraft:warped_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_door"
+    },
+    "minecraft:warped_fence": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_fence"
+    },
+    "minecraft:warped_fence_gate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_fence_gate"
+    },
+    "minecraft:warped_fungus": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_fungus"
+    },
+    "minecraft:warped_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_hanging_sign"
+    },
+    "minecraft:warped_hyphae": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_hyphae"
+    },
+    "minecraft:warped_nylium": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_nylium"
+    },
+    "minecraft:warped_planks": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_planks"
+    },
+    "minecraft:warped_pressure_plate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_pressure_plate"
+    },
+    "minecraft:warped_roots": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_roots"
+    },
+    "minecraft:warped_shelf": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_shelf"
+    },
+    "minecraft:warped_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_sign"
+    },
+    "minecraft:warped_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_slab"
+    },
+    "minecraft:warped_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_stairs"
+    },
+    "minecraft:warped_stem": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_stem"
+    },
+    "minecraft:warped_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_trapdoor"
+    },
+    "minecraft:warped_wall_hanging_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_wall_hanging_sign"
+    },
+    "minecraft:warped_wall_sign": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_wall_sign"
+    },
+    "minecraft:warped_wart_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:warped_wart_block"
+    },
+    "minecraft:water": {
+      "basePoints": 0,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:water"
+    },
+    "minecraft:water_cauldron": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:water_cauldron"
+    },
+    "minecraft:waxed_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_chiseled_copper"
+    },
+    "minecraft:waxed_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_bars"
+    },
+    "minecraft:waxed_copper_block": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_block"
+    },
+    "minecraft:waxed_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_bulb"
+    },
+    "minecraft:waxed_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_chain"
+    },
+    "minecraft:waxed_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_chest"
+    },
+    "minecraft:waxed_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_door"
+    },
+    "minecraft:waxed_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_golem_statue"
+    },
+    "minecraft:waxed_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_grate"
+    },
+    "minecraft:waxed_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_lantern"
+    },
+    "minecraft:waxed_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_copper_trapdoor"
+    },
+    "minecraft:waxed_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_cut_copper"
+    },
+    "minecraft:waxed_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_cut_copper_slab"
+    },
+    "minecraft:waxed_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_cut_copper_stairs"
+    },
+    "minecraft:waxed_exposed_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_chiseled_copper"
+    },
+    "minecraft:waxed_exposed_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper"
+    },
+    "minecraft:waxed_exposed_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_bars"
+    },
+    "minecraft:waxed_exposed_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_bulb"
+    },
+    "minecraft:waxed_exposed_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_chain"
+    },
+    "minecraft:waxed_exposed_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_chest"
+    },
+    "minecraft:waxed_exposed_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_door"
+    },
+    "minecraft:waxed_exposed_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_golem_statue"
+    },
+    "minecraft:waxed_exposed_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_grate"
+    },
+    "minecraft:waxed_exposed_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_lantern"
+    },
+    "minecraft:waxed_exposed_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_copper_trapdoor"
+    },
+    "minecraft:waxed_exposed_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_cut_copper"
+    },
+    "minecraft:waxed_exposed_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_cut_copper_slab"
+    },
+    "minecraft:waxed_exposed_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_cut_copper_stairs"
+    },
+    "minecraft:waxed_exposed_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_exposed_lightning_rod"
+    },
+    "minecraft:waxed_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_lightning_rod"
+    },
+    "minecraft:waxed_oxidized_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_chiseled_copper"
+    },
+    "minecraft:waxed_oxidized_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper"
+    },
+    "minecraft:waxed_oxidized_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_bars"
+    },
+    "minecraft:waxed_oxidized_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_bulb"
+    },
+    "minecraft:waxed_oxidized_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_chain"
+    },
+    "minecraft:waxed_oxidized_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_chest"
+    },
+    "minecraft:waxed_oxidized_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_door"
+    },
+    "minecraft:waxed_oxidized_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_golem_statue"
+    },
+    "minecraft:waxed_oxidized_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_grate"
+    },
+    "minecraft:waxed_oxidized_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_lantern"
+    },
+    "minecraft:waxed_oxidized_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_copper_trapdoor"
+    },
+    "minecraft:waxed_oxidized_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_cut_copper"
+    },
+    "minecraft:waxed_oxidized_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_cut_copper_slab"
+    },
+    "minecraft:waxed_oxidized_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_cut_copper_stairs"
+    },
+    "minecraft:waxed_oxidized_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_oxidized_lightning_rod"
+    },
+    "minecraft:waxed_weathered_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_chiseled_copper"
+    },
+    "minecraft:waxed_weathered_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper"
+    },
+    "minecraft:waxed_weathered_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_bars"
+    },
+    "minecraft:waxed_weathered_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_bulb"
+    },
+    "minecraft:waxed_weathered_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_chain"
+    },
+    "minecraft:waxed_weathered_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_chest"
+    },
+    "minecraft:waxed_weathered_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_door"
+    },
+    "minecraft:waxed_weathered_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_golem_statue"
+    },
+    "minecraft:waxed_weathered_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_grate"
+    },
+    "minecraft:waxed_weathered_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_lantern"
+    },
+    "minecraft:waxed_weathered_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_copper_trapdoor"
+    },
+    "minecraft:waxed_weathered_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_cut_copper"
+    },
+    "minecraft:waxed_weathered_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_cut_copper_slab"
+    },
+    "minecraft:waxed_weathered_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_cut_copper_stairs"
+    },
+    "minecraft:waxed_weathered_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:waxed_weathered_lightning_rod"
+    },
+    "minecraft:weathered_chiseled_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_chiseled_copper"
+    },
+    "minecraft:weathered_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper"
+    },
+    "minecraft:weathered_copper_bars": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_bars"
+    },
+    "minecraft:weathered_copper_bulb": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_bulb"
+    },
+    "minecraft:weathered_copper_chain": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_chain"
+    },
+    "minecraft:weathered_copper_chest": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_chest"
+    },
+    "minecraft:weathered_copper_door": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_door"
+    },
+    "minecraft:weathered_copper_golem_statue": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_golem_statue"
+    },
+    "minecraft:weathered_copper_grate": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_grate"
+    },
+    "minecraft:weathered_copper_lantern": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_lantern"
+    },
+    "minecraft:weathered_copper_trapdoor": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_copper_trapdoor"
+    },
+    "minecraft:weathered_cut_copper": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_cut_copper"
+    },
+    "minecraft:weathered_cut_copper_slab": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_cut_copper_slab"
+    },
+    "minecraft:weathered_cut_copper_stairs": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_cut_copper_stairs"
+    },
+    "minecraft:weathered_lightning_rod": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weathered_lightning_rod"
+    },
+    "minecraft:weeping_vines": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weeping_vines"
+    },
+    "minecraft:weeping_vines_plant": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:weeping_vines_plant"
+    },
+    "minecraft:wet_sponge": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wet_sponge"
+    },
+    "minecraft:wheat": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wheat"
+    },
+    "minecraft:white_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_banner"
+    },
+    "minecraft:white_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_bed"
+    },
+    "minecraft:white_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_candle"
+    },
+    "minecraft:white_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_candle_cake"
+    },
+    "minecraft:white_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_carpet"
+    },
+    "minecraft:white_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_concrete"
+    },
+    "minecraft:white_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_concrete_powder"
+    },
+    "minecraft:white_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_glazed_terracotta"
+    },
+    "minecraft:white_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_shulker_box"
+    },
+    "minecraft:white_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_stained_glass"
+    },
+    "minecraft:white_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_stained_glass_pane"
+    },
+    "minecraft:white_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_terracotta"
+    },
+    "minecraft:white_tulip": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_tulip"
+    },
+    "minecraft:white_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_wall_banner"
+    },
+    "minecraft:white_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:white_wool"
+    },
+    "minecraft:wildflowers": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wildflowers"
+    },
+    "minecraft:wither_rose": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wither_rose"
+    },
+    "minecraft:wither_skeleton_skull": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wither_skeleton_skull"
+    },
+    "minecraft:wither_skeleton_wall_skull": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:wither_skeleton_wall_skull"
+    },
+    "minecraft:yellow_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_banner"
+    },
+    "minecraft:yellow_bed": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_bed"
+    },
+    "minecraft:yellow_candle": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_candle"
+    },
+    "minecraft:yellow_candle_cake": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_candle_cake"
+    },
+    "minecraft:yellow_carpet": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_carpet"
+    },
+    "minecraft:yellow_concrete": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_concrete"
+    },
+    "minecraft:yellow_concrete_powder": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_concrete_powder"
+    },
+    "minecraft:yellow_glazed_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_glazed_terracotta"
+    },
+    "minecraft:yellow_shulker_box": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_shulker_box"
+    },
+    "minecraft:yellow_stained_glass": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_stained_glass"
+    },
+    "minecraft:yellow_stained_glass_pane": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_stained_glass_pane"
+    },
+    "minecraft:yellow_terracotta": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_terracotta"
+    },
+    "minecraft:yellow_wall_banner": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_wall_banner"
+    },
+    "minecraft:yellow_wool": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:yellow_wool"
+    },
+    "minecraft:zombie_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:zombie_head"
+    },
+    "minecraft:zombie_wall_head": {
+      "basePoints": 1,
+      "tierProfile": "default",
+      "scoreGroup": "minecraft:zombie_wall_head"
+    },
+    "yumis_sky_island:shipping_chest": {
+      "basePoints": 5,
+      "tierProfile": "default",
+      "scoreGroup": "yumis_sky_island:shipping_chest"
+    }
+  },
+  "placementAliasHints": {
+    "minecraft:redstone": "minecraft:redstone_wire",
+    "minecraft:string": "minecraft:tripwire",
+    "minecraft:powder_snow_bucket": "minecraft:powder_snow",
+    "minecraft:wheat_seeds": "minecraft:wheat",
+    "minecraft:cocoa_beans": "minecraft:cocoa",
+    "minecraft:carrot": "minecraft:carrots",
+    "minecraft:potato": "minecraft:potatoes",
+    "minecraft:torchflower_seeds": "minecraft:torchflower_crop",
+    "minecraft:pitcher_pod": "minecraft:pitcher_crop",
+    "minecraft:beetroot_seeds": "minecraft:beetroots",
+    "minecraft:sweet_berries": "minecraft:sweet_berry_bush",
+    "minecraft:glow_berries": "minecraft:cave_vines",
+    "minecraft:pumpkin_seeds": "minecraft:pumpkin_stem",
+    "minecraft:melon_seeds": "minecraft:melon_stem"
+  },
+  "placementMappingAuthority": "runtime_Item.BY_BLOCK_and_item_use_handlers"
+}

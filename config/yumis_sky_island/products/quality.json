@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "status": "review_draft",
+  "minecraftVersion": "26.2",
+  "registryVerified": false,
+  "independentOfItemRarity": true,
+  "shopsOnlyOrdinary": true,
+  "grades": [
+    {
+      "id": "ordinary",
+      "name": "普通",
+      "valueBps": 10000,
+      "durabilityBps": 10000,
+      "attackAndMiningBonusBps": 0
+    },
+    {
+      "id": "fine",
+      "name": "精良",
+      "valueBps": 15000,
+      "durabilityBps": 11500,
+      "attackAndMiningBonusBps": 200
+    },
+    {
+      "id": "rare",
+      "name": "稀有",
+      "valueBps": 20000,
+      "durabilityBps": 13000,
+      "attackAndMiningBonusBps": 500
+    },
+    {
+      "id": "epic",
+      "name": "史诗",
+      "valueBps": 30000,
+      "durabilityBps": 15000,
+      "attackAndMiningBonusBps": 800
+    },
+    {
+      "id": "legendary",
+      "name": "传说",
+      "valueBps": 50000,
+      "durabilityBps": 17500,
+      "attackAndMiningBonusBps": 1000
+    }
+  ],
+  "professions": [
+    "blacksmith",
+    "stonemason",
+    "artisan",
+    "chef",
+    "farmer",
+    "hunter"
+  ],
+  "allCanBeLearned": true,
+  "maxProfessionLevel": 100,
+  "diamondPickaxeQualityUnlockLevel": 65,
+  "automatedProductionQuality": "ordinary",
+  "automatedProfessionXp": 0,
+  "zeroXpRecipeKinds": [
+    "lossless_pack_unpack",
+    "copy",
+    "repair",
+    "preview"
+  ],
+  "qualityRollTiming": "once_after_material_consumption_before_output_transfer"
+}

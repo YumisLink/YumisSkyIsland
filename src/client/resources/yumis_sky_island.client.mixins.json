@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "cn.yumis.skyisland.client.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["ShopHudMixin", "ShopToastMixin", "RarityNameMixin"],
+  "injectors": {"defaultRequire": 1}
+}

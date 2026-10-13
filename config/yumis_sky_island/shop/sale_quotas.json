@@ -1,0 +1,2466 @@
+{
+  "schemaVersion": 1,
+  "status": "review_draft",
+  "minecraftVersion": "26.2",
+  "registryVerified": false,
+  "scope": "party",
+  "epochSource": "shop_marketEpoch",
+  "defaultGroup": "canonical_item_id",
+  "defaultUnitsPerItem": {
+    "numerator": 1,
+    "denominator": 1
+  },
+  "groups": {
+    "metal:iron": {
+      "unitItemId": "minecraft:iron_ingot",
+      "unitName": "铁锭"
+    },
+    "metal:copper": {
+      "unitItemId": "minecraft:copper_ingot",
+      "unitName": "铜锭"
+    },
+    "metal:gold": {
+      "unitItemId": "minecraft:gold_ingot",
+      "unitName": "金锭"
+    },
+    "mineral:diamond": {
+      "unitItemId": "minecraft:diamond",
+      "unitName": "钻石"
+    },
+    "mineral:emerald": {
+      "unitItemId": "minecraft:emerald",
+      "unitName": "绿宝石"
+    },
+    "mineral:redstone": {
+      "unitItemId": "minecraft:redstone",
+      "unitName": "红石粉"
+    },
+    "mineral:coal": {
+      "unitItemId": "minecraft:coal",
+      "unitName": "煤"
+    },
+    "mineral:lapis": {
+      "unitItemId": "minecraft:lapis_lazuli",
+      "unitName": "青金石"
+    },
+    "mineral:netherite": {
+      "unitItemId": "minecraft:netherite_ingot",
+      "unitName": "下界合金锭"
+    },
+    "mineral:quartz": {
+      "unitItemId": "minecraft:quartz",
+      "unitName": "石英"
+    },
+    "bio:bone": {
+      "unitItemId": "minecraft:bone",
+      "unitName": "骨头"
+    },
+    "bio:slime": {
+      "unitItemId": "minecraft:slime_ball",
+      "unitName": "黏液球"
+    },
+    "bio:honey": {
+      "unitItemId": "minecraft:honey_bottle",
+      "unitName": "蜂蜜瓶"
+    },
+    "bio:honeycomb": {
+      "unitItemId": "minecraft:honeycomb",
+      "unitName": "蜜脾"
+    },
+    "bio:kelp": {
+      "unitItemId": "minecraft:dried_kelp",
+      "unitName": "海带"
+    },
+    "bio:wheat": {
+      "unitItemId": "minecraft:wheat",
+      "unitName": "小麦"
+    },
+    "bio:nether_wart": {
+      "unitItemId": "minecraft:nether_wart",
+      "unitName": "下界疣"
+    },
+    "bio:melon": {
+      "unitItemId": "minecraft:melon_slice",
+      "unitName": "西瓜片"
+    },
+    "stone:dirt": {
+      "unitItemId": "minecraft:dirt",
+      "unitName": "泥土"
+    },
+    "stone:cobblestone": {
+      "unitItemId": "minecraft:cobblestone",
+      "unitName": "圆石"
+    },
+    "bio:wood": {
+      "unitItemId": "minecraft:oak_log",
+      "unitName": "原木"
+    },
+    "bio:bamboo": {
+      "unitItemId": "minecraft:bamboo",
+      "unitName": "竹子"
+    },
+    "bio:chorus": {
+      "unitItemId": "minecraft:chorus_fruit",
+      "unitName": "紫颂果"
+    },
+    "mineral:amethyst": {
+      "unitItemId": "minecraft:amethyst_shard",
+      "unitName": "紫水晶碎片"
+    },
+    "stone:sulfur": {
+      "unitItemId": "minecraft:sulfur",
+      "unitName": "硫磺块"
+    },
+    "stone:ice": {
+      "unitItemId": "minecraft:ice",
+      "unitName": "普通冰"
+    },
+    "stone:snow": {
+      "unitItemId": "minecraft:snowball",
+      "unitName": "雪球"
+    },
+    "stone:clay": {
+      "unitItemId": "minecraft:clay_ball",
+      "unitName": "黏土球"
+    },
+    "end:shulker": {
+      "unitItemId": "minecraft:shulker_shell",
+      "unitName": "潜影壳"
+    },
+    "bio:wool": {
+      "unitItemId": "minecraft:white_wool",
+      "unitName": "羊毛"
+    }
+  },
+  "itemEquivalents": {
+    "minecraft:iron_ingot": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:iron_nugget": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 9
+    },
+    "minecraft:iron_block": {
+      "quotaGroup": "metal:iron",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:raw_iron": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:raw_iron_block": {
+      "quotaGroup": "metal:iron",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:iron_ore": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_iron_ore": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:copper_ingot": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:copper_nugget": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 9
+    },
+    "minecraft:copper_block": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:raw_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:raw_copper_block": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:copper_ore": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_copper_ore": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:gold_ingot": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:gold_nugget": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 9
+    },
+    "minecraft:gold_block": {
+      "quotaGroup": "metal:gold",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:raw_gold": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:raw_gold_block": {
+      "quotaGroup": "metal:gold",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:gold_ore": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_gold_ore": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:nether_gold_ore": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:diamond": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:diamond_block": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:diamond_ore": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_diamond_ore": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:emerald": {
+      "quotaGroup": "mineral:emerald",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:emerald_block": {
+      "quotaGroup": "mineral:emerald",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:emerald_ore": {
+      "quotaGroup": "mineral:emerald",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_emerald_ore": {
+      "quotaGroup": "mineral:emerald",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:redstone": {
+      "quotaGroup": "mineral:redstone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:redstone_block": {
+      "quotaGroup": "mineral:redstone",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:redstone_ore": {
+      "quotaGroup": "mineral:redstone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_redstone_ore": {
+      "quotaGroup": "mineral:redstone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:coal": {
+      "quotaGroup": "mineral:coal",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:coal_block": {
+      "quotaGroup": "mineral:coal",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:coal_ore": {
+      "quotaGroup": "mineral:coal",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_coal_ore": {
+      "quotaGroup": "mineral:coal",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:lapis_lazuli": {
+      "quotaGroup": "mineral:lapis",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:lapis_block": {
+      "quotaGroup": "mineral:lapis",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:lapis_ore": {
+      "quotaGroup": "mineral:lapis",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:deepslate_lapis_ore": {
+      "quotaGroup": "mineral:lapis",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:netherite_ingot": {
+      "quotaGroup": "mineral:netherite",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:netherite_block": {
+      "quotaGroup": "mineral:netherite",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:netherite_scrap": {
+      "quotaGroup": "mineral:netherite",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:ancient_debris": {
+      "quotaGroup": "mineral:netherite",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:quartz": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:nether_quartz_ore": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:quartz_block": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:quartz_pillar": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:chiseled_quartz_block": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:quartz_bricks": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:smooth_quartz": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:quartz_slab": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:smooth_quartz_slab": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:quartz_stairs": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:smooth_quartz_stairs": {
+      "quotaGroup": "mineral:quartz",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:bone": {
+      "quotaGroup": "bio:bone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:bone_meal": {
+      "quotaGroup": "bio:bone",
+      "numerator": 1,
+      "denominator": 3
+    },
+    "minecraft:bone_block": {
+      "quotaGroup": "bio:bone",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:slime_ball": {
+      "quotaGroup": "bio:slime",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:slime_block": {
+      "quotaGroup": "bio:slime",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:honey_bottle": {
+      "quotaGroup": "bio:honey",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:honey_block": {
+      "quotaGroup": "bio:honey",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:honeycomb": {
+      "quotaGroup": "bio:honeycomb",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:honeycomb_block": {
+      "quotaGroup": "bio:honeycomb",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:kelp": {
+      "quotaGroup": "bio:kelp",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:dried_kelp": {
+      "quotaGroup": "bio:kelp",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:dried_kelp_block": {
+      "quotaGroup": "bio:kelp",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:wheat": {
+      "quotaGroup": "bio:wheat",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:hay_block": {
+      "quotaGroup": "bio:wheat",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:nether_wart": {
+      "quotaGroup": "bio:nether_wart",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:nether_wart_block": {
+      "quotaGroup": "bio:nether_wart",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:melon_slice": {
+      "quotaGroup": "bio:melon",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:melon": {
+      "quotaGroup": "bio:melon",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:dirt": {
+      "quotaGroup": "stone:dirt",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:coarse_dirt": {
+      "quotaGroup": "stone:dirt",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:rooted_dirt": {
+      "quotaGroup": "stone:dirt",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:mud": {
+      "quotaGroup": "stone:dirt",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:cobblestone": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stone": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:smooth_stone": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:cobblestone_stairs": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:cobblestone_slab": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:cobblestone_wall": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stone_stairs": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stone_slab": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:smooth_stone_slab": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:stone_bricks": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:cracked_stone_bricks": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:chiseled_stone_bricks": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stone_brick_stairs": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stone_brick_slab": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:stone_brick_wall": {
+      "quotaGroup": "stone:cobblestone",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:oak_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:oak_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_oak_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_oak_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:oak_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:oak_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:oak_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:oak_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:oak_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:oak_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:oak_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:spruce_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:spruce_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_spruce_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_spruce_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:spruce_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:spruce_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:spruce_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:spruce_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:spruce_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:spruce_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:spruce_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:birch_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:birch_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_birch_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_birch_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:birch_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:birch_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:birch_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:birch_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:birch_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:birch_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:birch_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:acacia_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:acacia_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_acacia_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_acacia_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:acacia_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:acacia_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:acacia_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:acacia_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:acacia_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:acacia_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:acacia_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:jungle_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:jungle_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_jungle_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_jungle_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:jungle_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:jungle_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:jungle_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:jungle_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:jungle_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:jungle_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:jungle_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:dark_oak_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:dark_oak_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_dark_oak_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_dark_oak_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:dark_oak_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:dark_oak_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:dark_oak_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:dark_oak_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:dark_oak_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:dark_oak_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:dark_oak_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:mangrove_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:mangrove_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_mangrove_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_mangrove_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:mangrove_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:mangrove_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:mangrove_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:mangrove_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:mangrove_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:mangrove_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:mangrove_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:cherry_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:cherry_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_cherry_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_cherry_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:cherry_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:cherry_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:cherry_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:cherry_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:cherry_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:cherry_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:cherry_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:pale_oak_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:pale_oak_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_pale_oak_log": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_pale_oak_wood": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:pale_oak_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:pale_oak_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:pale_oak_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:pale_oak_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:pale_oak_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:pale_oak_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:pale_oak_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:crimson_stem": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:crimson_hyphae": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_crimson_stem": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_crimson_hyphae": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:crimson_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:crimson_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:crimson_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:crimson_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:crimson_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:crimson_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:crimson_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:warped_stem": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:warped_hyphae": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:stripped_warped_stem": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:stripped_warped_hyphae": {
+      "quotaGroup": "bio:wood",
+      "numerator": 4,
+      "denominator": 3
+    },
+    "minecraft:warped_planks": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:warped_slab": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 8
+    },
+    "minecraft:warped_stairs": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:warped_button": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:warped_pressure_plate": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:warped_door": {
+      "quotaGroup": "bio:wood",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:warped_trapdoor": {
+      "quotaGroup": "bio:wood",
+      "numerator": 3,
+      "denominator": 4
+    },
+    "minecraft:bamboo": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:bamboo_block": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:stripped_bamboo_block": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:bamboo_planks": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 9,
+      "denominator": 2
+    },
+    "minecraft:bamboo_slab": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:bamboo_stairs": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:bamboo_mosaic": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 9,
+      "denominator": 2
+    },
+    "minecraft:bamboo_mosaic_slab": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:bamboo_mosaic_stairs": {
+      "quotaGroup": "bio:bamboo",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:chorus_fruit": {
+      "quotaGroup": "bio:chorus",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:popped_chorus_fruit": {
+      "quotaGroup": "bio:chorus",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:purpur_block": {
+      "quotaGroup": "bio:chorus",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:purpur_pillar": {
+      "quotaGroup": "bio:chorus",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:purpur_stairs": {
+      "quotaGroup": "bio:chorus",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:purpur_slab": {
+      "quotaGroup": "bio:chorus",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:amethyst_shard": {
+      "quotaGroup": "mineral:amethyst",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:amethyst_block": {
+      "quotaGroup": "mineral:amethyst",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:amethyst_cluster": {
+      "quotaGroup": "mineral:amethyst",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:sulfur_spike": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 4
+    },
+    "minecraft:sulfur": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:potent_sulfur": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:polished_sulfur": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:sulfur_bricks": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:chiseled_sulfur": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:sulfur_stairs": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:sulfur_wall": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:sulfur_slab": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:polished_sulfur_stairs": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:polished_sulfur_wall": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:polished_sulfur_slab": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:sulfur_brick_stairs": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:sulfur_brick_wall": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:sulfur_brick_slab": {
+      "quotaGroup": "stone:sulfur",
+      "numerator": 1,
+      "denominator": 2
+    },
+    "minecraft:ice": {
+      "quotaGroup": "stone:ice",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:packed_ice": {
+      "quotaGroup": "stone:ice",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:blue_ice": {
+      "quotaGroup": "stone:ice",
+      "numerator": 81,
+      "denominator": 1
+    },
+    "minecraft:snowball": {
+      "quotaGroup": "stone:snow",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:snow_block": {
+      "quotaGroup": "stone:snow",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:clay_ball": {
+      "quotaGroup": "stone:clay",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:clay": {
+      "quotaGroup": "stone:clay",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:brick": {
+      "quotaGroup": "stone:clay",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:bricks": {
+      "quotaGroup": "stone:clay",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:shulker_shell": {
+      "quotaGroup": "end:shulker",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:white_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:orange_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:magenta_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:light_blue_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:yellow_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:lime_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:pink_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:gray_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:light_gray_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:cyan_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:purple_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:blue_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:brown_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:green_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:red_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:black_wool": {
+      "quotaGroup": "bio:wool",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:white_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:orange_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:magenta_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:light_blue_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:yellow_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:lime_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:pink_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:gray_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:light_gray_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:cyan_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:purple_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:blue_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:brown_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:green_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:red_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:black_carpet": {
+      "quotaGroup": "bio:wool",
+      "numerator": 2,
+      "denominator": 3
+    },
+    "minecraft:white_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:orange_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:magenta_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:light_blue_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:yellow_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:lime_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:pink_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:gray_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:light_gray_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:cyan_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:purple_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:blue_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:brown_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:green_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:red_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:black_shulker_box": {
+      "quotaGroup": "end:shulker",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:copper_pickaxe": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:copper_axe": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:copper_shovel": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:copper_hoe": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:copper_sword": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:copper_spear": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:copper_helmet": {
+      "quotaGroup": "metal:copper",
+      "numerator": 5,
+      "denominator": 1
+    },
+    "minecraft:copper_chestplate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:copper_leggings": {
+      "quotaGroup": "metal:copper",
+      "numerator": 7,
+      "denominator": 1
+    },
+    "minecraft:copper_boots": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:iron_pickaxe": {
+      "quotaGroup": "metal:iron",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:iron_axe": {
+      "quotaGroup": "metal:iron",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:iron_shovel": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:iron_hoe": {
+      "quotaGroup": "metal:iron",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:iron_sword": {
+      "quotaGroup": "metal:iron",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:iron_spear": {
+      "quotaGroup": "metal:iron",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:iron_helmet": {
+      "quotaGroup": "metal:iron",
+      "numerator": 5,
+      "denominator": 1
+    },
+    "minecraft:iron_chestplate": {
+      "quotaGroup": "metal:iron",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:iron_leggings": {
+      "quotaGroup": "metal:iron",
+      "numerator": 7,
+      "denominator": 1
+    },
+    "minecraft:iron_boots": {
+      "quotaGroup": "metal:iron",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:golden_pickaxe": {
+      "quotaGroup": "metal:gold",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:golden_axe": {
+      "quotaGroup": "metal:gold",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:golden_shovel": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:golden_hoe": {
+      "quotaGroup": "metal:gold",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:golden_sword": {
+      "quotaGroup": "metal:gold",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:golden_spear": {
+      "quotaGroup": "metal:gold",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:golden_helmet": {
+      "quotaGroup": "metal:gold",
+      "numerator": 5,
+      "denominator": 1
+    },
+    "minecraft:golden_chestplate": {
+      "quotaGroup": "metal:gold",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:golden_leggings": {
+      "quotaGroup": "metal:gold",
+      "numerator": 7,
+      "denominator": 1
+    },
+    "minecraft:golden_boots": {
+      "quotaGroup": "metal:gold",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:diamond_pickaxe": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:diamond_axe": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:diamond_shovel": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:diamond_hoe": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:diamond_sword": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:diamond_spear": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 1,
+      "denominator": 1
+    },
+    "minecraft:diamond_helmet": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 5,
+      "denominator": 1
+    },
+    "minecraft:diamond_chestplate": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:diamond_leggings": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 7,
+      "denominator": 1
+    },
+    "minecraft:diamond_boots": {
+      "quotaGroup": "mineral:diamond",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:copper_torch": {
+      "quotaGroup": "metal:copper",
+      "numerator": 1,
+      "denominator": 36
+    },
+    "minecraft:copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:waxed_copper_block": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:waxed_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:waxed_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:waxed_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:waxed_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:waxed_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:waxed_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:waxed_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:waxed_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:waxed_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:exposed_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:exposed_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:exposed_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:exposed_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:exposed_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:exposed_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:exposed_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:exposed_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:exposed_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:exposed_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:exposed_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:exposed_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:exposed_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:exposed_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:waxed_exposed_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:waxed_exposed_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_exposed_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_exposed_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_exposed_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:waxed_exposed_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_exposed_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:waxed_exposed_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:waxed_exposed_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:waxed_exposed_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:waxed_exposed_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:waxed_exposed_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:waxed_exposed_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:waxed_exposed_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:weathered_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:weathered_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:weathered_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:weathered_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:weathered_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:weathered_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:weathered_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:weathered_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:weathered_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:weathered_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:weathered_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:weathered_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:weathered_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:weathered_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:waxed_weathered_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:waxed_weathered_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_weathered_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_weathered_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_weathered_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:waxed_weathered_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_weathered_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:waxed_weathered_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:waxed_weathered_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:waxed_weathered_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:waxed_weathered_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:waxed_weathered_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:waxed_weathered_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:waxed_weathered_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:oxidized_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:oxidized_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:oxidized_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:oxidized_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:oxidized_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:oxidized_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:oxidized_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:oxidized_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:oxidized_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:oxidized_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:oxidized_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:oxidized_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:oxidized_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:oxidized_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    },
+    "minecraft:waxed_oxidized_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 1
+    },
+    "minecraft:waxed_oxidized_cut_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_oxidized_chiseled_copper": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_oxidized_copper_grate": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_oxidized_copper_bulb": {
+      "quotaGroup": "metal:copper",
+      "numerator": 27,
+      "denominator": 4
+    },
+    "minecraft:waxed_oxidized_cut_copper_stairs": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 4
+    },
+    "minecraft:waxed_oxidized_cut_copper_slab": {
+      "quotaGroup": "metal:copper",
+      "numerator": 9,
+      "denominator": 8
+    },
+    "minecraft:waxed_oxidized_copper_door": {
+      "quotaGroup": "metal:copper",
+      "numerator": 2,
+      "denominator": 1
+    },
+    "minecraft:waxed_oxidized_copper_trapdoor": {
+      "quotaGroup": "metal:copper",
+      "numerator": 4,
+      "denominator": 1
+    },
+    "minecraft:waxed_oxidized_copper_bars": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 8
+    },
+    "minecraft:waxed_oxidized_copper_chain": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 9
+    },
+    "minecraft:waxed_oxidized_copper_chest": {
+      "quotaGroup": "metal:copper",
+      "numerator": 8,
+      "denominator": 1
+    },
+    "minecraft:waxed_oxidized_copper_lantern": {
+      "quotaGroup": "metal:copper",
+      "numerator": 11,
+      "denominator": 12
+    },
+    "minecraft:waxed_oxidized_lightning_rod": {
+      "quotaGroup": "metal:copper",
+      "numerator": 3,
+      "denominator": 1
+    }
+  },
+  "tiers": [
+    {
+      "upToUnits": 1000,
+      "saleMultiplierBps": 10000
+    },
+    {
+      "upToUnits": 10000,
+      "saleMultiplierBps": 5000
+    },
+    {
+      "upToUnits": null,
+      "saleMultiplierBps": 1000
+    }
+  ],
+  "counterUsesExactRationals": true,
+  "splitAnItemAcrossTierBoundaries": true,
+  "sumAllLinesThenFloorCoins": true,
+  "zeroCoinTransaction": "refuse_without_removing_items_or_advancing_counters",
+  "bypassTriggers": {
+    "reset": false,
+    "login": false,
+    "quality_change": false,
+    "enchantment_change": false,
+    "compression": false,
+    "sell_channel_change": false
+  },
+  "channels": [
+    "shop_ui",
+    "sell_hand",
+    "sell_inventory",
+    "shipping_chest"
+  ],
+  "multiIngredientGoods": "independent_item_quota_unless_explicit_equivalent",
+  "tierCounterChangesOnlyOnSuccessfulSale": true
+}

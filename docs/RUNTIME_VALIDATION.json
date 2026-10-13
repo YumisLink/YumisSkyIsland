@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-13",
+  "minecraft": "26.2",
+  "fabricLoader": "0.19.3",
+  "fabricApi": "0.156.0+26.2",
+  "java": 25,
+  "sourceVersion": "0.1.0-dev",
+  "cloudLeapValidation": "CLOUD_LEAP_VALIDATION.json",
+  "junit": {
+    "tests": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "clientScenario": {
+    "passed": true,
+    "gradleExitCode": 0,
+    "durationSeconds": 406,
+    "initialRefreshChunks": 202,
+    "afterResetRefreshChunks": 1404,
+    "logSha256": "9c7034387b576c6aeee01e6cbbd57b09acd7e98b1d0e6397d8180f91c998460e",
+    "observedMixinLoadErrors": false,
+    "completedAtLocal": "2026-10-13 11:07:35 Asia/Hong_Kong",
+    "shopCoverage": [
+      "normal_font_gui_scale_2",
+      "adaptive_grid_48_and_68",
+      "two_line_names",
+      "independent_seed_purchase_premium",
+      "craftable_wood_purchase_rejected",
+      "disabled_equipment_mineral_blocks_and_hostile_eggs_rejected",
+      "disabled_item_has_no_economic_tooltip",
+      "fishing_book_levels_against_native_bound_tags_and_power_candidates",
+      "shipping_retains_disabled_mineral_block"
+    ]
+  },
+  "registry": {
+    "enabledProducts": 1045,
+    "scoringBlocks": 1197,
+    "professionGoods": 375
+  },
+  "noPublishedJar": true,
+  "pclInstanceModified": false,
+  "remainingValidation": [
+    "multi_party_adversarial_protection",
+    "50_player_load",
+    "full_world_crash_matrix",
+    "long_term_income_and_recipe_arbitrage",
+    "iron_farms_raids_and_long_barering_runs"
+  ],
+  "shopRevision": {
+    "id": "q34-q48-material-shop-v2",
+    "totalProducts": 1851,
+    "regularPurchaseProducts": 128,
+    "dailyOrHiddenPurchaseCandidates": 221,
+    "sellOnlyProducts": 696,
+    "disabledProducts": 806,
+    "basePriceScaleFromLegacy": 10,
+    "saleDivisor": 100,
+    "starterBuyMultiplier": 100,
+    "monsterMaterialBuyMultiplier": 100,
+    "fallbackPricedActiveProducts": 180,
+    "gameConfigsMigrated": true,
+    "legacyPricesPreserved": true
+  },
+  "screenshots": [
+    {
+      "path": "screenshots/shop-wide.png",
+      "resolution": "1920x1080",
+      "guiScale": 2,
+      "cellSize": 48,
+      "columns": 16
+    },
+    {
+      "path": "screenshots/shop-large-cells.png",
+      "resolution": "1920x1080",
+      "guiScale": 2,
+      "cellSize": 68,
+      "columns": 11
+    },
+    {
+      "path": "screenshots/shop-small-window.png",
+      "resolution": "1280x720",
+      "guiScale": 2,
+      "cellSize": 48,
+      "columns": 10
+    }
+  ]
+}

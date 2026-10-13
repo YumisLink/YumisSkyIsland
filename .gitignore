@@ -1,0 +1,64 @@
+# Local development SDKs, dependency caches and build output
+/.tools/
+.gradle/
+.gradle-user-home/
+.fabric/
+build/
+out/
+
+# Local Minecraft runs, logs, installed mods and saved worlds
+/run/
+/logs/
+/mods/
+/saves/
+/world/
+/world_nether/
+/world_the_end/
+/crash-reports/
+/screenshots/
+/backups/
+/server-template/logs/
+/server-template/mods/
+/server-template/world/
+/server-template/world_nether/
+/server-template/world_the_end/
+/server-template/crash-reports/
+/server-template/server.properties
+/server-template/eula.txt
+/server-template/ops.json
+/server-template/whitelist.json
+/server-template/banned-ips.json
+/server-template/banned-players.json
+/server-template/usercache.json
+state.journal
+state.checkpoint
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Temporary files, migration backups and diagnostic dumps
+/tmp/
+/temp/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.log
+*.hprof
+hs_err_pid*
+replay_pid*
+*~
+/config/yumis_sky_island/shop/products.before-*.json
+
+# Local editor and operating system files
+.idea/
+*.iml
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini

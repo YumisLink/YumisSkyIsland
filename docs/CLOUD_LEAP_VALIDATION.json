@@ -1,0 +1,67 @@
+{
+  "completedAt": "2026-10-13T18:37:51+08:00",
+  "timezone": "Asia/Hong_Kong",
+  "minecraft": "26.2",
+  "sourceVersion": "0.1.0-dev",
+  "junit": {
+    "tests": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fullClientRegression": {
+    "passed": true,
+    "gradleExitCode": 0,
+    "durationSeconds": 214,
+    "scenarios": [
+      "CloudLeapScenario",
+      "SkyIslandScenario"
+    ],
+    "log": "build/cloud-leap-validation/full-regression.log",
+    "logSha256": "b7a7edb9b01a5aba4e5219f233ebb4e3f6a7459e471240de248047ad1be310d0"
+  },
+  "finalCloudLeapScenario": {
+    "passed": true,
+    "gradleExitCode": 0,
+    "durationSeconds": 56,
+    "log": "build/cloud-leap-validation/cloud-leap.log",
+    "logSha256": "925593765a3931f704308a17386cc02818723006bcb8b94c0ff83ee6cb8510ec",
+    "sourceSha256": "07f931d9e72136a7be9ae5c4d740fa774d797078ff8417315a6b5a47c258797c",
+    "coverage": [
+      "actual_C_key_forward_and_upward_motion",
+      "pitch_independent_server_yaw_direction",
+      "holding_C_does_not_repeat",
+      "actual_C_plus_jump_key_strong_vertical_mode",
+      "airborne_recast_while_falling",
+      "same_tick_duplicate_rejected",
+      "cooldown_rejects_ticks_1_through_4_accepts_tick_5",
+      "rejected_requests_do_not_refresh_effect_or_change_velocity",
+      "successful_recast_refreshes_200_ticks",
+      "fall_damage_is_cancelled_other_damage_is_applied",
+      "actual_20_block_fall_reaches_platform_without_health_loss",
+      "natural_effect_expiration_restores_fall_damage",
+      "inventory_screen_ignores_C_and_does_not_queue_it",
+      "Chinese_effect_name_icon_and_countdown_visually_verified"
+    ]
+  },
+  "ability": {
+    "cooldownTicks": 5,
+    "protectionTicks": 200,
+    "normalForwardSpeed": 0.8,
+    "normalUpwardSpeed": 0.7,
+    "strongVerticalSpeed": 1.1,
+    "effect": "yumis_sky_island:cloud_step"
+  },
+  "artifacts": {
+    "icon": "src/main/resources/assets/yumis_sky_island/textures/mob_effect/cloud_step.png",
+    "iconSize": [
+      18,
+      18
+    ],
+    "iconSha256": "34abd15f4e4a9677f63db062ca848e82abaf2584e5554b6bd577119534d374fa",
+    "editableSprite": "art/mob_effect/cloud_step.aseprite",
+    "screenshot": "docs/screenshots/cloud-leap-buff.png",
+    "screenshotSha256": "2c3f3b648d4d7d6d9931db12c06bb202031d78797ec9dd68cc7693e2a40e6d52"
+  },
+  "fullTestEntrypointsRestored": true
+}

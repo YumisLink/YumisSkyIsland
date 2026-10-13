@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "yumis_sky_island_test",
+  "version": "1.0.0",
+  "name": "Yumi Sky Island Development Tests",
+  "environment": "client",
+  "entrypoints": {"fabric-client-gametest": ["cn.yumis.skyisland.clienttest.CloudLeapScenario", "cn.yumis.skyisland.clienttest.SkyIslandScenario"]},
+  "depends": {"yumis_sky_island": "*"}
+}

@@ -1,0 +1,1505 @@
+{
+  "schemaVersion": 1,
+  "items": {
+    "minecraft:acacia_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:acacia_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:acacia_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:acacia_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:acacia_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:activator_rail": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:andesite_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:andesite_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:andesite_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:anvil": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:baked_potato": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:bamboo_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:bamboo_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:bamboo_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:barrel": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:beacon": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:beehive": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:beetroot_soup": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:birch_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:birch_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:birch_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:birch_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:birch_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:black_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:black_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:blackstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:blackstone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:blackstone_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:blast_furnace": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:blue_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:blue_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:bookshelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:bow": {
+      "profession": "hunter",
+      "qualityAllowed": true
+    },
+    "minecraft:bread": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:brewing_stand": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:brown_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:brown_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cake": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:carrot_on_a_stick": {
+      "profession": "hunter",
+      "qualityAllowed": true
+    },
+    "minecraft:cauldron": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cherry_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cherry_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cherry_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cherry_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cherry_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:chest": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:chiseled_bookshelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:chiseled_nether_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:chiseled_stone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:chiseled_tuff_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cinnabar_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cobbled_deepslate_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cobbled_deepslate_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cobbled_deepslate_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cobblestone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cobblestone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cobblestone_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:comparator": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:composter": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:conduit": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_beef": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_chicken": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_cod": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_mutton": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_porkchop": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_rabbit": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cooked_salmon": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:cookie": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_boots": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_chestplate": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_leggings": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:copper_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:cracked_deepslate_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cracked_deepslate_tiles": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cracked_nether_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cracked_polished_blackstone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cracked_stone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:crafter": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:crimson_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:crimson_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:crimson_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:crossbow": {
+      "profession": "hunter",
+      "qualityAllowed": true
+    },
+    "minecraft:cut_copper_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cut_copper_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cut_red_sandstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cut_sandstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:cyan_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:cyan_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_oak_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_oak_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_oak_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_oak_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_oak_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_prismarine_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:dark_prismarine_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:daylight_detector": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_tile_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_tile_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_tile_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:deepslate_tiles": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:detector_rail": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_boots": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_chestplate": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_leggings": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diamond_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:diorite_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:diorite_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:diorite_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:dispenser": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:dropper": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:enchanting_table": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:end_stone_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:end_stone_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:end_stone_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:end_stone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:fishing_rod": {
+      "profession": "hunter",
+      "qualityAllowed": true
+    },
+    "minecraft:flint_and_steel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:flower_pot": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:furnace": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:glass": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_boots": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_carrot": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_chestplate": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_leggings": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:golden_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:granite_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:granite_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:granite_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:gray_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:gray_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:green_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:green_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:hay_block": {
+      "profession": "farmer",
+      "qualityAllowed": true
+    },
+    "minecraft:hopper": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_boots": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_chestplate": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_leggings": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:iron_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:jukebox": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:jungle_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:jungle_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:jungle_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:jungle_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:jungle_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:lantern": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:leather_boots": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:leather_chestplate": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:leather_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:leather_leggings": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:lectern": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:light_blue_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:light_blue_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:light_gray_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:light_gray_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:lime_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:lime_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:lodestone": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mace": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:magenta_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:magenta_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mangrove_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mangrove_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mangrove_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mangrove_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mangrove_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_cobblestone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_cobblestone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_cobblestone_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_stone_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_stone_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_stone_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mossy_stone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mud_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mud_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mud_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mud_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:mushroom_stew": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:nether_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:nether_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:nether_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:nether_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_boots": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_chestplate": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_leggings": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:netherite_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:note_block": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:oak_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:oak_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:oak_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:oak_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:oak_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:observer": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:orange_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:orange_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pale_oak_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pale_oak_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pale_oak_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pale_oak_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pale_oak_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pink_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:pink_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:piston": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_andesite_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_andesite_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_blackstone_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_cinnabar_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_cinnabar_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_cinnabar_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_deepslate_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_deepslate_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_deepslate_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_diorite_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_diorite_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_granite_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_granite_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_sulfur_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_sulfur_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_sulfur_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_tuff_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_tuff_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:polished_tuff_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:powered_rail": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:prismarine_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:prismarine_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:prismarine_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:prismarine_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:prismarine_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:prismarine_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:pumpkin_pie": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:purple_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:purple_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:purpur_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:purpur_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:quartz_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:quartz_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:quartz_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:rabbit_stew": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:rail": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:red_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:red_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:red_nether_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:red_nether_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:red_nether_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:red_nether_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:red_sandstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:red_sandstone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:red_sandstone_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:redstone_lamp": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:repeater": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:resin_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:respawn_anchor": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:sandstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sandstone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sandstone_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:scaffolding": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:shears": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:shield": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:smoker": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_quartz_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_quartz_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_red_sandstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_red_sandstone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_sandstone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_sandstone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:smooth_stone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:soul_lantern": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:spectral_arrow": {
+      "profession": "hunter",
+      "qualityAllowed": true
+    },
+    "minecraft:spruce_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:spruce_chest_boat": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:spruce_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:spruce_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:spruce_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:sticky_piston": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:stone_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:sugar": {
+      "profession": "farmer",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:sulfur_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:suspicious_stew": {
+      "profession": "chef",
+      "qualityAllowed": true
+    },
+    "minecraft:target": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:tinted_glass": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_brick_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_brick_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_brick_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_bricks": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:tuff_wall": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:turtle_helmet": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:warped_fungus_on_a_stick": {
+      "profession": "hunter",
+      "qualityAllowed": true
+    },
+    "minecraft:warped_hanging_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:warped_shelf": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:warped_sign": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_cut_copper_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_cut_copper_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_exposed_cut_copper_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_exposed_cut_copper_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_oxidized_cut_copper_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_oxidized_cut_copper_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_weathered_cut_copper_slab": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:waxed_weathered_cut_copper_stairs": {
+      "profession": "stonemason",
+      "qualityAllowed": true
+    },
+    "minecraft:white_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:white_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:wooden_axe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:wooden_hoe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:wooden_pickaxe": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:wooden_shovel": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:wooden_spear": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:wooden_sword": {
+      "profession": "blacksmith",
+      "qualityAllowed": true
+    },
+    "minecraft:yellow_banner": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    },
+    "minecraft:yellow_bed": {
+      "profession": "artisan",
+      "qualityAllowed": true
+    }
+  }
+}

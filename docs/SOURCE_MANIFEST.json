@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "status": "review_draft",
+  "minecraftVersion": "26.2",
+  "registryVerified": false,
+  "jarName": "xplus.jar",
+  "jarSha1": "2dc72797acbc1b63fc16a11c4ac393605f453754",
+  "javaVersion": 25,
+  "protocolVersion": 776,
+  "itemCandidateSource": "assets/minecraft/items",
+  "candidateCount": 1537,
+  "vanillaRecipeCount": 1585,
+  "parsedRecipeCount": 1536,
+  "worldTransformCostPaths": 128,
+  "enchantmentCount": 43,
+  "potionCount": 46,
+  "customProductCount": 1,
+  "verificationRequired": [
+    "BuiltInRegistries.ITEM",
+    "Item.BY_BLOCK",
+    "BuiltInRegistries.POTION",
+    "world enchantment registry",
+    "CreativeModeTabs"
+  ]
+}

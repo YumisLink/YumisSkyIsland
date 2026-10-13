@@ -1,0 +1,15 @@
+# New-world template for the future dedicated Fabric server.
+# This file has not been applied to an existing server or launcher instance.
+level-name=yumis_sky_island_world
+level-type=yumis_sky_island:sky_island
+gamemode=survival
+difficulty=normal
+max-players=50
+view-distance=6
+simulation-distance=5
+spawn-protection=0
+online-mode=true
+enable-command-block=false
+pvp=false
+pause-when-empty-seconds=60
+motd=Yumi Sky Island

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "status": "review_draft",
+  "minecraftVersion": "26.2",
+  "registryVerified": false,
+  "villagerTradingEnabled": false,
+  "wanderingTraderTradingEnabled": false,
+  "piglinBarteringEnabled": true,
+  "villagerBreedingEnabled": true,
+  "villagerWorkAiEnabled": true,
+  "ironGolemSpawningEnabled": true,
+  "globalMobGriefingOverride": null,
+  "automationUnlockPolicy": "shop_purchase_only"
+}

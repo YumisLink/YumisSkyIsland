@@ -1,0 +1,125 @@
+{
+  "catalogRows": 1851,
+  "activeRows": 1045,
+  "shopRevision": "q34-q48-material-shop-v2",
+  "saleDivisor": 100,
+  "minimumBaseCoins": 100,
+  "purchasePremiumsIndependent": true,
+  "ordinaryRows": 128,
+  "dailyRows": 221,
+  "sellOnlyRows": 696,
+  "quotaGroups": 30,
+  "quotaEquivalentRows": 459,
+  "automationPurchaseGates": 17,
+  "quotaReferenceMath": {
+    "quotaBoundaryChecks": true,
+    "ironBlockAndIngotsSameRevenueAtBasePrices": true,
+    "exactNuggetUnit": "1/9",
+    "example1CoinNormal100000UnitsRevenue": 14500
+  },
+  "disabledRows": 806,
+  "enchantments": 43,
+  "rarityCounts": {
+    "rare": 552,
+    "common": 404,
+    "epic": 80,
+    "legendary": 9
+  },
+  "priceOriginCounts": {
+    "recipe_path": 450,
+    "category_draft": 180,
+    "anchor": 123,
+    "vanilla_transform": 22,
+    "standard_enchantment_variant": 126,
+    "standard_potion_variant": 138,
+    "standard_ominous_variant": 5,
+    "custom_recipe": 1
+  },
+  "source": {
+    "jarName": "xplus.jar",
+    "jarSha1": "2dc72797acbc1b63fc16a11c4ac393605f453754",
+    "javaVersion": 25,
+    "protocolVersion": 776,
+    "itemCandidateSource": "assets/minecraft/items",
+    "candidateCount": 1537,
+    "vanillaRecipeCount": 1585,
+    "parsedRecipeCount": 1536,
+    "worldTransformCostPaths": 128,
+    "enchantmentCount": 43,
+    "potionCount": 46,
+    "customProductCount": 1,
+    "verificationRequired": [
+      "BuiltInRegistries.ITEM",
+      "Item.BY_BLOCK",
+      "BuiltInRegistries.POTION",
+      "world enchantment registry",
+      "CreativeModeTabs"
+    ]
+  },
+  "durabilityExamples": [
+    {
+      "remainingPercent": 100,
+      "valueMultiplier": "1"
+    },
+    {
+      "remainingPercent": 95,
+      "valueMultiplier": "7/8"
+    },
+    {
+      "remainingPercent": 90,
+      "valueMultiplier": "3/4"
+    },
+    {
+      "remainingPercent": 80,
+      "valueMultiplier": "1/2"
+    },
+    {
+      "remainingPercent": 70,
+      "valueMultiplier": "1/3"
+    },
+    {
+      "remainingPercent": 65,
+      "valueMultiplier": "1/4"
+    },
+    {
+      "remainingPercent": 60,
+      "valueMultiplier": "1/6"
+    },
+    {
+      "remainingPercent": 50,
+      "valueMultiplier": "0"
+    },
+    {
+      "remainingPercent": 49,
+      "valueMultiplier": "0"
+    }
+  ],
+  "checksPassed": [
+    "metadata_references",
+    "100_level_thresholds",
+    "weighted_shop_config",
+    "no_pity_no_reroll",
+    "stock_and_min_prices",
+    "43_enchantment_tables",
+    "durability_boundaries_monotonicity",
+    "single_final_rounding",
+    "party_resource_equivalent_quotas",
+    "quota_cross_boundary_rational_math",
+    "core_purchase_only_gates",
+    "villager_wandering_disabled_piglin_preserved",
+    "shipping_chest_rising_edge_configuration"
+  ],
+  "notYetVerified": [
+    "live_registry",
+    "real_creative_categories",
+    "complete_recipe_arbitrage",
+    "runtime_sale_matching",
+    "refresh_latency",
+    "networking_and_restart",
+    "80_150_hour_pacing",
+    "late_game_income_rate",
+    "trading_menu_bypass",
+    "redstone_hopper_interaction",
+    "shipping_atomic_restart_recovery"
+  ]
+}
