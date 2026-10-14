@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Plain data, serialized in the world's journal, never global to all saves. */
 public final class IslandState {
-    public int schemaVersion = 2;
+    public int schemaVersion = 3;
     public long sequence, effectiveTicks, nextSlot;
     public long worldSeed;
     public boolean lobbyReady;
@@ -31,6 +31,11 @@ public final class IslandState {
         public int highestIslandLevel, paidBountySlots;
         public String cachedPoints;
         public long initialScanEpoch = -1;
+        /** Historical non-air mutations in this overworldEpoch, including zero-score blocks. */
+        public Set<Long> placedChunks = new LinkedHashSet<>();
+        public Set<String> readyQuestIds = new LinkedHashSet<>();
+        public Map<String, Long> questResetVersions = new LinkedHashMap<>();
+        public boolean featureDefaultsInitialized;
         public double scanChunksPerSecond;
         public Set<String> soldProductIds = new LinkedHashSet<>(), acquiredStarterIds = new LinkedHashSet<>(),
             completedQuestIds = new LinkedHashSet<>(), unlockedFeatures = new LinkedHashSet<>();
@@ -41,6 +46,9 @@ public final class IslandState {
         public long invitationExpiresAt;
         public String name;
         public Map<String, Long> professionXp = new LinkedHashMap<>();
+        public Set<String> completedQuestIds = new LinkedHashSet<>(), readyQuestIds = new LinkedHashSet<>();
+        public Map<String, Long> questResetVersions = new LinkedHashMap<>();
+        public Map<String, Map<String, Integer>> questProgress = new LinkedHashMap<>();
         public Set<String> milestones = new LinkedHashSet<>();
     }
     public static final class Box {
@@ -54,6 +62,7 @@ public final class IslandState {
     public static final class InventoryRecovery {
         public long sequence;
         public JsonElement items;
+        public int experiencePoints;
     }
     public static final class Refresh {
         public boolean initial;

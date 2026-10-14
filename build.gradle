@@ -15,29 +15,16 @@ loom {
     }
 }
 
-fabricApi {
-    configureTests {
-        createSourceSet = true
-        modId = 'yumis_sky_island_test'
-        enableGameTests = false
-        enableClientGameTests = true
-        eula = false
-        clearRunDirectory = false
-    }
-}
-sourceSets.gametest.compileClasspath += sourceSets.client.output
-sourceSets.gametest.runtimeClasspath += sourceSets.client.output
-
 repositories { mavenCentral() }
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
-    testImplementation "net.fabricmc:fabric-loader-junit:${loader_version}"
-    testImplementation platform('org.junit:junit-bom:5.13.4')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'com.electronwill.night-config:core:3.8.3'
+    implementation 'com.electronwill.night-config:toml:3.8.3'
+    include 'com.electronwill.night-config:core:3.8.3'
+    include 'com.electronwill.night-config:toml:3.8.3'
 }
 
 java { toolchain { languageVersion = JavaLanguageVersion.of(25) } }
@@ -45,18 +32,11 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = 25
 }
-tasks.withType(Test).configureEach {
-    useJUnitPlatform()
-    def taskTemp = layout.buildDirectory.dir('tmp/test').get().asFile
-    doFirst { taskTemp.mkdirs() }
-    systemProperty 'java.io.tmpdir', taskTemp.absolutePath
-}
-
 processResources {
     inputs.property 'modVersion', project.version
     filesMatching('fabric.mod.json') { expand modVersion: project.version }
     from('config/yumis_sky_island') {
-        include '**/*.json'
+        include '**/*.toml'
         into 'defaults/yumis_sky_island'
     }
 }

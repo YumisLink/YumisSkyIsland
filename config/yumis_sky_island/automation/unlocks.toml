@@ -1,0 +1,139 @@
+# Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
+# 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
+
+# 配置结构版本；资料字段，勿随意降低；当前默认：1
+schemaVersion = 1
+# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+status = "review_draft"
+# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+minecraftVersion = "26.2"
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+registryVerified = false
+# 说明字段 purchaseOnly；资料用途，不单独改变运行行为；当前默认：true
+purchaseOnly = true
+# 说明字段 blockCrafting；资料用途，不单独改变运行行为；当前默认：false
+blockCrafting = false
+# 说明字段 blockPlacement；资料用途，不单独改变运行行为；当前默认：false
+blockPlacement = false
+# 说明字段 blockNaturalGeneration；资料用途，不单独改变运行行为；当前默认：false
+blockNaturalGeneration = false
+# 说明字段 corePurchaseLevels；资料用途，不单独改变运行行为
+shopRevision = "q34-q48-material-shop-v2"
+
+[corePurchaseLevels]
+# 注册 ID／组件参数；保持 ID 原样；当前默认：0
+"minecraft:grass_block" = 0
+# 注册 ID／组件参数；保持 ID 原样；当前默认：0
+"minecraft:oak_sapling" = 0
+# 注册 ID／组件参数；保持 ID 原样；当前默认：0
+"minecraft:wheat_seeds" = 0
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:moss_block" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:azalea" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:flowering_azalea" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：25
+"minecraft:pointed_dripstone" = 25
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:villager_spawn_egg" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：35
+"minecraft:piglin_spawn_egg" = 35
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:bee_spawn_egg" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:sulfur" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：30
+"minecraft:blaze_rod" = 30
+# 注册 ID／组件参数；保持 ID 原样；当前默认：55
+"minecraft:chorus_flower" = 55
+# 注册 ID／组件参数；保持 ID 原样；当前默认：55
+"minecraft:end_stone" = 55
+# 注册 ID／组件参数；保持 ID 原样；当前默认：65
+"minecraft:shulker_shell" = 65
+# 注册 ID／组件参数；保持 ID 原样；当前默认：40
+"minecraft:frog_spawn_egg" = 40
+# 注册 ID／组件参数；保持 ID 原样；当前默认：40
+"minecraft:budding_amethyst" = 40
+# 说明字段 legacyCorePurchaseLevels；资料用途，不单独改变运行行为
+
+[legacyCorePurchaseLevels]
+# 注册 ID／组件参数；保持 ID 原样；当前默认：0
+"minecraft:grass_block" = 0
+# 注册 ID／组件参数；保持 ID 原样；当前默认：0
+"minecraft:oak_sapling" = 0
+# 注册 ID／组件参数；保持 ID 原样；当前默认：0
+"minecraft:wheat_seeds" = 0
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:moss_block" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:azalea" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:flowering_azalea" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+"minecraft:composter" = 5
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:hopper" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:hopper_minecart" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:piston" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:sticky_piston" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:repeater" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:dispenser" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:dropper" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:observer" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:comparator" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：25
+"minecraft:pointed_dripstone" = 25
+# 注册 ID／组件参数；保持 ID 原样；当前默认：25
+"minecraft:dripstone_block" = 25
+# 注册 ID／组件参数；保持 ID 原样；当前默认：25
+"minecraft:cauldron" = 25
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:villager_spawn_egg" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:zombie_spawn_egg" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：35
+"minecraft:piglin_spawn_egg" = 35
+# 注册 ID／组件参数；保持 ID 原样；当前默认：30
+"minecraft:turtle_egg" = 30
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:bee_spawn_egg" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:bee_nest" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：15
+"minecraft:beehive" = 15
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:sulfur" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：20
+"minecraft:sulfur_spike" = 20
+# 注册 ID／组件参数；保持 ID 原样；当前默认：30
+"minecraft:blaze_rod" = 30
+# 注册 ID／组件参数；保持 ID 原样；当前默认：30
+"minecraft:brewing_stand" = 30
+# 注册 ID／组件参数；保持 ID 原样；当前默认：35
+"minecraft:crafter" = 35
+# 注册 ID／组件参数；保持 ID 原样；当前默认：55
+"minecraft:chorus_flower" = 55
+# 注册 ID／组件参数；保持 ID 原样；当前默认：55
+"minecraft:end_stone" = 55
+# 注册 ID／组件参数；保持 ID 原样；当前默认：65
+"minecraft:shulker_spawn_egg" = 65
+# 注册 ID／组件参数；保持 ID 原样；当前默认：65
+"minecraft:shulker_shell" = 65
+# 注册 ID／组件参数；保持 ID 原样；当前默认：40
+"minecraft:frog_spawn_egg" = 40
+# 注册 ID／组件参数；保持 ID 原样；当前默认：40
+"minecraft:tadpole_bucket" = 40
+# 注册 ID／组件参数；保持 ID 原样；当前默认：45
+"minecraft:ominous_bottle" = 45
+# 注册 ID／组件参数；保持 ID 原样；当前默认：40
+"minecraft:budding_amethyst" = 40
+# 商品政策版本说明，不用于重复涨价；当前默认："q34-q48-material-shop-v2"

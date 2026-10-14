@@ -1,0 +1,25 @@
+# Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
+# 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
+
+# 配置结构版本；资料字段，勿随意降低；当前默认：1
+schemaVersion = 1
+# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+status = "review_draft"
+# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+minecraftVersion = "26.2"
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+registryVerified = false
+# 是否允许村民交易；默认false；当前默认：false
+villagerTradingEnabled = false
+# 是否允许流浪商人交易；默认false；当前默认：false
+wanderingTraderTradingEnabled = false
+# 猪灵以物易物规则说明，保留原版行为；当前默认：true
+piglinBarteringEnabled = true
+# 村民繁殖规则说明，保留原版行为；当前默认：true
+villagerBreedingEnabled = true
+# 村民工作 AI 规则说明，保留原版行为；当前默认：true
+villagerWorkAiEnabled = true
+# 铁傀儡生成规则说明，保留原版行为；当前默认：true
+ironGolemSpawningEnabled = true
+# 说明字段 automationUnlockPolicy；资料用途，不单独改变运行行为；当前默认："shop_purchase_only"
+automationUnlockPolicy = "shop_purchase_only"

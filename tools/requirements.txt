@@ -1,0 +1,2 @@
+# 项目内 TOML 配置编辑库；安装到 .tools/python-libs，不修改系统 Python。
+tomlkit==0.13.3

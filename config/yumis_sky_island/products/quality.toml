@@ -1,0 +1,92 @@
+# Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
+# 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
+
+# 配置结构版本；资料字段，勿随意降低；当前默认：1
+schemaVersion = 1
+# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+status = "review_draft"
+# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+minecraftVersion = "26.2"
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+registryVerified = false
+# 说明字段 independentOfItemRarity；资料用途，不单独改变运行行为；当前默认：true
+independentOfItemRarity = true
+# 说明字段 shopsOnlyOrdinary；资料用途，不单独改变运行行为；当前默认：true
+shopsOnlyOrdinary = true
+# 制造品质档位；顺序必须为普通、精良、稀有、史诗、传说
+professions = ["blacksmith", "stonemason", "artisan", "chef", "farmer", "hunter"]
+allCanBeLearned = true
+maxProfessionLevel = 100
+diamondPickaxeQualityUnlockLevel = 65
+automatedProductionQuality = "ordinary"
+automatedProfessionXp = 0
+zeroXpRecipeKinds = ["lossless_pack_unpack", "copy", "repair", "preview"]
+qualityRollTiming = "once_after_material_consumption_before_output_transfer"
+
+[[grades]]
+# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："ordinary"
+id = "ordinary"
+# 界面显示名称；当前默认："普通"
+name = "普通"
+# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：10000
+valueBps = 10000
+# 品质最大耐久倍率；万分比，10000=1倍，正整数；当前默认：10000
+durabilityBps = 10000
+# 品质攻击／挖掘加成；万分比，运行时限制0～1000；当前默认：0
+attackAndMiningBonusBps = 0
+
+[[grades]]
+# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fine"
+id = "fine"
+# 界面显示名称；当前默认："精良"
+name = "精良"
+# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：15000
+valueBps = 15000
+# 品质最大耐久倍率；万分比，10000=1倍，正整数；当前默认：11500
+durabilityBps = 11500
+# 品质攻击／挖掘加成；万分比，运行时限制0～1000；当前默认：200
+attackAndMiningBonusBps = 200
+
+[[grades]]
+# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："rare"
+id = "rare"
+# 界面显示名称；当前默认："稀有"
+name = "稀有"
+# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：20000
+valueBps = 20000
+# 品质最大耐久倍率；万分比，10000=1倍，正整数；当前默认：13000
+durabilityBps = 13000
+# 品质攻击／挖掘加成；万分比，运行时限制0～1000；当前默认：500
+attackAndMiningBonusBps = 500
+
+[[grades]]
+# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："epic"
+id = "epic"
+# 界面显示名称；当前默认："史诗"
+name = "史诗"
+# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：30000
+valueBps = 30000
+# 品质最大耐久倍率；万分比，10000=1倍，正整数；当前默认：15000
+durabilityBps = 15000
+# 品质攻击／挖掘加成；万分比，运行时限制0～1000；当前默认：800
+attackAndMiningBonusBps = 800
+
+[[grades]]
+# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："legendary"
+id = "legendary"
+# 界面显示名称；当前默认："传说"
+name = "传说"
+# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：50000
+valueBps = 50000
+# 品质最大耐久倍率；万分比，10000=1倍，正整数；当前默认：17500
+durabilityBps = 17500
+# 品质攻击／挖掘加成；万分比，运行时限制0～1000；当前默认：1000
+attackAndMiningBonusBps = 1000
+# 个人职业 ID 清单
+# 说明字段 allCanBeLearned；资料用途，不单独改变运行行为；当前默认：true
+# 说明字段 maxProfessionLevel；资料用途，不单独改变运行行为；当前默认：100
+# 说明字段 diamondPickaxeQualityUnlockLevel；资料用途，不单独改变运行行为；当前默认：65
+# 说明字段 automatedProductionQuality；资料用途，不单独改变运行行为；当前默认："ordinary"
+# 说明字段 automatedProfessionXp；资料用途，不单独改变运行行为；当前默认：0
+# 说明字段 zeroXpRecipeKinds；资料用途，不单独改变运行行为
+# 说明字段 qualityRollTiming；资料用途，不单独改变运行行为；当前默认："once_after_material_consumption_before_output_transfer"

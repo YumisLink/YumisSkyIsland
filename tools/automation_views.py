@@ -55,7 +55,7 @@ def render_automation(cfg: Path, data: dict) -> None:
                   "sulfur", "iron_ingot", "gold_ingot", "copper_ingot", "redstone", "emerald",
                   "lapis_lazuli", "quartz", "chorus_fruit", "nether_wart", "amethyst_shard",
                   "shulker_shell", "totem_of_undying", "diamond", "elytra"):
-        item = products["minecraft:" + short]
+        item = products.get("minecraft:" + short, {"name": short, "tradeMode": "disabled"})
         active = item["tradeMode"] != "disabled"
         production.append(table_row([item["name"], item["baseValueCoins"] if active else "禁交易",
                                      str(Fraction(item["baseValueCoins"], divisor)) if active else "—"]))
@@ -96,10 +96,10 @@ def render_automation(cfg: Path, data: dict) -> None:
     ]
     for key, entry in sorted(quota["itemEquivalents"].items(), key=lambda pair: (pair[1]["quotaGroup"], pair[0])):
         group = quota["groups"][entry["quotaGroup"]]
-        quotas.append(table_row([products[key]["name"], key, group["unitName"],
+        quotas.append(table_row([products.get(key, {"name": key})["name"], key, group["unitName"],
                                  Fraction(entry["numerator"], entry["denominator"])]))
     quotas += [
-        "", "以上表格由sale_quotas.json生成；增补或改等份后必须保留稳定的计数组ID，避免热重载意外重置额度。",
+        "", "以上表格由sale_quotas.toml生成；增补或改等份后必须保留稳定的计数组ID，避免热重载意外重置额度。",
         "配置重载不会抹去已售计数；影响计数单位的改动在下一轮生效，当前轮次保留原规则快照。",
     ]
     (cfg / "shop" / "SALE_QUOTA_TABLE.md").write_text("\n".join(quotas) + "\n", encoding="utf-8")
@@ -112,8 +112,8 @@ def render_automation(cfg: Path, data: dict) -> None:
         "## 合成", "",
         "```text", *shipping["recipe"]["pattern"], "```", "",
         "I=铁锭，R=红石粉，C=普通箱子。消耗4铁锭、4红石、1普通箱子，得到1出货箱。",
-        "只合成，不在商店出售；合成不要求岛等级。允许收购空出货箱，非空容器不能整体自动出售。",
-        f"当前材料基准总价为{shipping['baseValueCoins']}金币，作为空箱的价值基线。", "",
+        "只合成，不在商店出售；合成不要求岛等级。空出货箱不参与交易；箱内物品按各自交易规则出货。",
+        "出货箱为非交易制造物，不设置整箱收购价值。支线奖励独立于商品目录。", "",
         "## 红石触发", "",
         "1. 无信号→有信号：服务端标记一次出售请求，下一次预算可用时处理。",
         "2. 持续通电或重复邻块通知：不会重复出售。",
@@ -133,6 +133,6 @@ def render_automation(cfg: Path, data: dict) -> None:
         "不能只分别调用箱子setChanged和钱包保存来声称跨存档原子性。主线程内的事务与崩溃恢复是两层要求。",
         "全服出货任务共享每tick最多1000微秒计算预算；不会强制加载无人区块，也不在邻块更新里同步扫描大量箱子。",
         "已实现并通过真实客户端脉冲场景；大规模负载与完整崩溃矩阵仍待进一步验证。", "",
-        "配置：shipping_chest.json；收购额度：../shop/sale_quotas.json；价格：../shop/products.json。",
+        "配置：shipping_chest.toml；收购额度：../shop/sale_quotas.toml；价格：../shop/products.toml。",
     ]
     (cfg / "automation" / "SHIPPING_CHEST.md").write_text("\n".join(chest) + "\n", encoding="utf-8")

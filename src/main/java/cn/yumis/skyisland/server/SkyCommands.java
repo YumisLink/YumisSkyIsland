@@ -36,7 +36,7 @@ public final class SkyCommands {
             .then(literal("info").executes(c -> run(c,SkyCommands::info)).then(argument("player",StringArgumentType.word()).executes(c -> run(c,(rt,p) -> { var party = rt.parties.active(target(rt,StringArgumentType.getString(c,"player"))); if (party == null) throw new IllegalArgumentException("对方没有岛"); infoParty(rt,p,party); }))))
             .then(literal("level").executes(c -> run(c,SkyCommands::info)))
             .then(literal("top").executes(c -> run(c,(rt,p) -> rt.state().parties.values().stream().filter(x -> !x.members.isEmpty()).sorted(Comparator.<cn.yumis.skyisland.data.IslandState.Party>comparingInt(rt::level).reversed().thenComparing(rt::points,Comparator.reverseOrder())).limit(10).forEach(x -> SkyServer.tell(p,x.name + "：" + rt.level(x) + "级")))))
-            .then(literal("profession").executes(c -> run(c,(rt,p) -> { for (String profession : List.of("blacksmith","stonemason","artisan","chef","farmer","hunter")) SkyServer.tell(p,ProfessionService.name(profession) + " " + rt.professions.level(rt.state().players.get(p.getUUID()),profession) + "级"); })))
+            .then(literal("profession").executes(c -> run(c,(rt,p) -> { for (String profession : QuestCatalog.PROFESSIONS) SkyServer.tell(p,ProfessionService.name(profession) + " " + rt.professions.level(rt.state().players.get(p.getUUID()),profession) + "级"); })))
             .then(literal("reset").executes(c -> run(c,(rt,p) -> rt.resets.propose(p))).then(literal("confirm").then(argument("code",StringArgumentType.word()).executes(c -> run(c,(rt,p) -> rt.resets.confirm(p,StringArgumentType.getString(c,"code")))))))
             .then(literal("help").executes(c -> run(c,(rt,p) -> SkyServer.tell(p,"/is home、invite、accept、leave、transfer、team、trust、untrust、visit、sethome、spawn、level、top、profession、reset；/refresh；/shop（I）；/sell hand|inventory；/balance"))));
         island.then(literal("admin").requires(hasPermission(LEVEL_GAMEMASTERS)).then(literal("coins").then(argument("player",EntityArgument.player()).then(argument("amount",LongArgumentType.longArg(0)).executes(c -> {
@@ -49,6 +49,10 @@ public final class SkyCommands {
                 return 1;
             } catch (IllegalArgumentException e) { c.getSource().sendFailure(Component.literal(e.getMessage())); return 0; }
         })))));
+        island.then(literal("admin").requires(hasPermission(LEVEL_GAMEMASTERS))
+            .then(literal("tasks").then(literal("edit")
+                .then(literal("on").executes(c -> run(c,(rt,p) -> rt.questEditor.setMode(p,true))))
+                .then(literal("off").executes(c -> run(c,(rt,p) -> rt.questEditor.setMode(p,false)))))));
         d.register(island);
         d.register(literal("refresh").executes(c -> run(c,(rt,p) -> rt.refresh.request(p))));
         d.register(literal("shop").executes(c -> run(c,(rt,p) -> rt.openShop(p))));

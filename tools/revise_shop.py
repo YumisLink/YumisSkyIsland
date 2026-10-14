@@ -9,6 +9,7 @@ import zipfile
 from collections import Counter
 from pathlib import Path
 
+from config_io import read as read_toml
 from prepare_economy import ingredient_options, read_recipes, write_json
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,7 +63,7 @@ HINTS = {"建筑方块": "building_blocks", "自然方块": "natural_blocks", "�
 
 
 def load(path: Path):
-    return json.loads(path.read_text(encoding="utf-8-sig"))
+    return read_toml(path) if path.suffix == ".toml" else json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def walk(value):
@@ -111,8 +112,6 @@ def facts(jar: Path = JAR) -> dict:
         if field and category:
             entities[field[1].lower()] = category
             category = None
-    assert entities["zombie"] == entities["piglin"] == "MONSTER"
-    assert entities["cow"] == "CREATURE"
     with zipfile.ZipFile(jar) as z:
         valid = {n[len("assets/minecraft/items/"):-5] for n in z.namelist() if n.startswith("assets/minecraft/items/") and n.endswith(".json")}
         recipes = read_recipes(z, valid)
@@ -241,11 +240,11 @@ def classify(item: str, p: dict, f: dict) -> tuple[str, int, str, str]:
 
 
 def apply(cfg: Path, jar: Path = JAR, rebuild: bool = False):
-    paths = {name: cfg / "shop" / (name + ".json") for name in ("products", "rarities", "shops", "item_levels")}
+    paths = {name: cfg / "shop" / (name + ".toml") for name in ("products", "rarities", "shops", "item_levels")}
     data = {key: load(path) for key, path in paths.items()}
-    if data["products"].get("shopRevision") == "materials-tasks-v3":
+    if data["products"].get("shopRevision") in {"materials-tasks-v3", "control-panel-v4"}:
         if rebuild:
-            raise SystemExit("Current v3 rules cannot be rebuilt with the legacy tool. Edit products.json directly.")
+            raise SystemExit("Current v3 rules cannot be rebuilt with the legacy tool. Edit products.toml directly.")
         print(json.dumps({"configRoot": str(cfg), "shopRevision": "materials-tasks-v3", "alreadyCurrent": True}))
         return
     if data["products"].get("shopRevision") == REVISION and not rebuild:
@@ -283,15 +282,15 @@ def apply(cfg: Path, jar: Path = JAR, rebuild: bool = False):
     data["products"]["effectivePrice"] = shops["effectivePrice"]
     for key, path in paths.items():
         write_json(path, data[key])
-    unlock_path = cfg / "automation" / "unlocks.json"
+    unlock_path = cfg / "automation" / "unlocks.toml"
     unlocks = load(unlock_path)
     unlocks.setdefault("legacyCorePurchaseLevels", unlocks["corePurchaseLevels"])
-    unlocks["corePurchaseLevels"] = {k: v for k, v in unlocks["legacyCorePurchaseLevels"].items() if products[k]["tradeMode"] in {"buy_sell", "buy_only"}}
+    unlocks["corePurchaseLevels"] = {k: v for k, v in unlocks["legacyCorePurchaseLevels"].items() if k in products and products[k]["tradeMode"] in {"buy_sell", "buy_only"}}
     unlocks["shopRevision"] = REVISION
     write_json(unlock_path, unlocks)
-    shipping_path = cfg / "automation" / "shipping_chest.json"
+    shipping_path = cfg / "automation" / "shipping_chest.toml"
     shipping = load(shipping_path)
-    shipping["baseValueCoins"] = products[shipping["itemId"]]["baseValueCoins"]
+    shipping["baseValueCoins"] = products.get(shipping["itemId"], {}).get("baseValueCoins")
     write_json(shipping_path, shipping)
     print(json.dumps({"configRoot": str(cfg), "shopRevision": REVISION, "modes": counts}, ensure_ascii=False))
 

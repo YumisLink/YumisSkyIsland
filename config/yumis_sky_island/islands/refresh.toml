@@ -1,0 +1,43 @@
+# Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
+# 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
+
+# 配置结构版本；资料字段，勿随意降低；当前默认：1
+schemaVersion = 1
+# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+status = "review_draft"
+# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+minecraftVersion = "26.2"
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+registryVerified = false
+# 全服每刻刷新计算预算，单位微秒；默认1000，正整数；当前默认：1000
+globalComputeBudgetMicrosPerTick = 1000
+# 每刻最多计数区段数量；默认2，正整数；当前默认：2
+maxSectionsPerTick = 2
+# 每刻最多新异步区块读取数；默认1，正整数；当前默认：1
+maxNewChunkRequestsPerTick = 1
+# 同时异步读取上限；默认2，正整数；当前默认：2
+maxConcurrentChunkRequests = 2
+# 说明字段 forceGenerateMissingChunks；资料用途，不单独改变运行行为；当前默认：false
+forceGenerateMissingChunks = false
+# 说明字段 blockMainThreadOnDisk；资料用途，不单独改变运行行为；当前默认：false
+blockMainThreadOnDisk = false
+# 说明字段 onlyExistingChunks；资料用途，不单独改变运行行为；当前默认：true
+onlyExistingChunks = true
+# 说明字段 maxJobsPerParty；资料用途，不单独改变运行行为；当前默认：1
+maxJobsPerParty = 1
+# 说明字段 duplicateRequests；资料用途，不单独改变运行行为；当前默认："reuse_existing_job"
+duplicateRequests = "reuse_existing_job"
+# 说明字段 queue；资料用途，不单独改变运行行为；当前默认："round_robin_across_parties"
+queue = "round_robin_across_parties"
+# 说明字段 captureConcurrentBlockChanges；资料用途，不单独改变运行行为；当前默认：true
+captureConcurrentBlockChanges = true
+# 说明字段 progressUpdateTicks；资料用途，不单独改变运行行为；当前默认：100
+progressUpdateTicks = 100
+# 说明字段 checkpointOnChunkCompletion；资料用途，不单独改变运行行为；当前默认：true
+checkpointOnChunkCompletion = true
+# 说明字段 resumeAfterRestart；资料用途，不单独改变运行行为；当前默认：true
+resumeAfterRestart = true
+# 说明字段 publishNewScore；资料用途，不单独改变运行行为；当前默认："after_consistent_scan_complete"
+publishNewScore = "after_consistent_scan_complete"
+# 说明字段 slowTickPolicy；资料用途，不单独改变运行行为；当前默认："reduce_budget_and_pause_new_load_requests"
+slowTickPolicy = "reduce_budget_and_pause_new_load_requests"

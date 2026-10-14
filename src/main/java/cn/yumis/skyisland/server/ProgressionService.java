@@ -14,10 +14,20 @@ import java.util.*;
 public final class ProgressionService {
     private final SkyServer rt;
     private final JsonObject rules;
-    private final List<JsonObject> quests = new ArrayList<>();
-    private final Set<String> gated = new HashSet<>();
+    private QuestCatalog catalog;
+    private record Production(ItemStack output,boolean repair) {}
+    private final Map<net.minecraft.world.inventory.Slot,Production> production=new WeakHashMap<>();
+    public void prepareProduction(net.minecraft.world.inventory.Slot slot){
+        if(slot.getItem().isEmpty())return;
+        boolean repair=slot.container instanceof net.minecraft.world.inventory.ResultContainer result&&result.getRecipeUsed()!=null&&result.getRecipeUsed().value() instanceof net.minecraft.world.item.crafting.RepairItemRecipe;
+        production.put(slot,new Production(slot.getItem().copy(),repair));
+    }
+    public void takeProduction(net.minecraft.world.inventory.Slot slot,ServerPlayer player,String source,ItemStack fallback,int quantity){
+        Production saved=production.remove(slot);if(saved!=null&&saved.repair())return;
+        ItemStack output=saved==null?fallback:saved.output();if(!output.isEmpty())produced(player,source,output,quantity);
+    }
     public ProgressionService(SkyServer rt) {
-        this.rt = rt; rules = rt.config.object("tasks/bounties.json");
+        this.rt = rt; rules = rt.config.object("tasks/bounties.toml");
         BountyRules.slotCost(rules.get("maximumSlots").getAsInt(), rules.get("firstSlotCost").getAsLong(), rules.get("subsequentSlotCostStep").getAsLong());
         long weightSum=0; for(String key:List.of("rare","epic","legendary")) { int w=rules.getAsJsonObject("rarityWeights").get(key).getAsInt(); if(w<0)throw new IllegalArgumentException("悬赏权重不能为负"); weightSum+=w; }
         if(weightSum==0)throw new IllegalArgumentException("悬赏权重不能全部为0");
@@ -27,27 +37,15 @@ public final class ProgressionService {
             rules.get("maximumMaterialQuantity").getAsInt() < 1 || rules.get("maximumMaterialQuantity").getAsInt() > 1536 ||
             rules.get("materialAttemptsPerReward").getAsInt() < 1 || rules.get("materialAttemptsPerReward").getAsInt() > 5)
             throw new IllegalArgumentException("悬赏配置范围无效");
-        Set<String> ids = new HashSet<>();
-        for (JsonElement value : rt.config.object("tasks/quests.json").getAsJsonArray("quests")) {
-            JsonObject q = value.getAsJsonObject();
-            if (!ids.add(q.get("id").getAsString()) || q.get("rewardCoins").getAsLong() < 0) throw new IllegalArgumentException("任务ID重复或奖励金币无效");
-            for (JsonElement e : q.getAsJsonArray("requirements")) {
-                var r = e.getAsJsonObject();
-                if (materialEntry(r.get("productId").getAsString()) == null || r.get("quantity").getAsInt() < 1)
-                    throw new IllegalArgumentException("任务需求物品或数量无效：" + q.get("id"));
-            }
-            for (JsonElement e : q.getAsJsonArray("rewardItems")) {
-                if (rt.economy.decode(e).isEmpty()) throw new IllegalArgumentException("任务奖励为空");
-            }
-            for (JsonElement e : q.getAsJsonArray("unlockFeatures")) {
-                String key = e.getAsString();
-                if (!Set.of("bounty.use", "shop.special", "automation.shipping").contains(key)) throw new IllegalArgumentException("未知任务权限：" + key);
-                gated.add(key);
-            }
-            quests.add(q);
-        }
+        catalog = new QuestCatalog(rt.config.object("tasks/quests.toml"),rt.economy,rt.config.object("products/quality.toml"));
     }
-    public boolean allows(IslandState.Party p, String feature) { return !gated.contains(feature) || p.unlockedFeatures.contains(feature); }
+    public QuestCatalog catalog() { return catalog; }
+    public boolean allows(IslandState.Party p, String feature) { return p.unlockedFeatures.contains(feature); }
+    public void saveDefinitions(JsonObject document) throws java.io.IOException {
+        QuestCatalog validated = new QuestCatalog(document,rt.economy,rt.config.object("products/quality.toml"));
+        rt.config.saveObject("tasks/quests.toml",document);
+        catalog = validated;
+    }
     public int slots(IslandState.Party p) {
         return Math.min(rules.get("maximumSlots").getAsInt(), rules.get("initialSlots").getAsInt() +
             p.highestIslandLevel / rules.get("levelsPerSlot").getAsInt() + p.paidBountySlots);
@@ -75,7 +73,13 @@ public final class ProgressionService {
         while (p.bounties.size() > slots(p)) p.bounties.removeLast();
         for (var b : p.bounties) if (b.expiresAt <= rt.state().effectiveTicks || invalid(b) || b.material == null && !context(p).equals(b.attemptContext)) fill(p, b);
     }
-    public void initialize(IslandState.Party p){maintain(p);}
+    public void initialize(IslandState.Party p) {
+        if (!p.featureDefaultsInitialized) {
+            for (var feature : catalog.features.values()) if (feature.defaultUnlocked()) p.unlockedFeatures.add(feature.id());
+            p.featureDefaultsInitialized = true;
+        }
+        maintain(p);
+    }
     private void fill(IslandState.Party p, IslandState.Bounty b) {
         b.generation++; b.createdAt = rt.state().effectiveTicks;
         b.expiresAt = Math.addExact(b.createdAt, Math.multiplyExact(rules.get("durationGameDays").getAsLong(), 24000));
@@ -130,36 +134,101 @@ public final class ProgressionService {
             fill(current, current.bounties.get(slot));
         }, () -> SkyServer.tell(player, "悬赏兑换完成，获得 " + reward.product().name() + " ×1；新悬赏已生成"));
     }
-    private JsonObject next(IslandState.Party p) { return quests.stream().filter(q -> !p.completedQuestIds.contains(q.get("id").getAsString())).findFirst().orElse(null); }
-    public void claimQuest(ServerPlayer player, String id) {
-        var p = rt.trades.available(player); JsonObject q = next(p);
-        int split=id.lastIndexOf('@');
-        if(split<0||Long.parseLong(id.substring(split+1))!=p.overworldEpoch)throw new IllegalArgumentException("岛屿已经重开，请重新确认任务");
-        id=id.substring(0,split);final String questId=id;
-        if (q == null || !q.get("id").getAsString().equals(id)) throw new IllegalArgumentException("该任务尚未解锁或已经完成");
-        var requirements = new ArrayList<Requirement>();
-        for (var e : q.getAsJsonArray("requirements")) { var r = e.getAsJsonObject(); requirements.add(new Requirement(r.get("productId").getAsString(), r.get("quantity").getAsInt())); }
-        var rewards = new ArrayList<ItemStack>(); for (var e : q.getAsJsonArray("rewardItems")) rewards.add(rt.economy.decode(e));
-        long balance = Money.add(p.coins, q.get("rewardCoins").getAsLong());
-        JsonArray inventory = exchange(player, requirements, rewards);
-        rt.trades.commitInventory(player, inventory, s -> {
-            var current = s.parties.get(p.id); current.coins = balance; current.completedQuestIds.add(questId);
+    private JsonObject next(IslandState.Party p) {
+        var quest = catalog.nextMain(p);
+        return quest == null ? null : catalog.detail(p,quest);
+    }
+    /** Compatibility for server-side callers only; the network protocol requires explicit revisions. */
+    public void claimQuest(ServerPlayer player, String encoded) {
+        var party = rt.parties.requireMember(player); int split = encoded.lastIndexOf('@');
+        if (split < 0 || Long.parseLong(encoded.substring(split+1)) != party.overworldEpoch) throw new IllegalArgumentException("岛屿已经重开，请重新确认任务");
+        String id = encoded.substring(0,split);
+        claimQuest(player,id,catalog.revision,catalog.resetVersion(party,rt.state().players.get(player.getUUID()),catalog.get(id)));
+    }
+    public void claimQuest(ServerPlayer player, String id, long expectedRevision, long expectedReset) {
+        var p = rt.trades.available(player);
+        if (expectedRevision != catalog.revision) throw new IllegalArgumentException("任务内容已修改，请查看新任务后重新确认");
+        var quest = catalog.get(id); JsonObject q = quest.definition();
+        var person=rt.state().players.get(player.getUUID());
+        if (expectedReset != catalog.resetVersion(p,person,quest)) throw new IllegalArgumentException("任务进度已重置，请重新确认");
+        if (!catalog.available(p,person,quest)) throw new IllegalArgumentException("该任务尚未解锁或已经完成");
+        if (!quest.objective().equals("materials")&&!catalog.status(p,person,quest).equals("ready")) throw new IllegalArgumentException("请先完成本人的任务目标");
+        long balance = Money.add(p.coins,q.get("rewardCoins").getAsLong());
+        JsonArray inventory = exchangeMaterials(player,quest.requirements(),quest.rewards());
+        rt.trades.commitInventory(player,inventory,q.get("rewardExperiencePoints").getAsInt(),state -> {
+            var current=state.parties.get(p.id); current.coins=balance;
+            var progress=QuestCatalog.progress(current,state.players.get(player.getUUID()),quest);progress.completed().add(id);progress.ready().remove(id);
             for (var key : q.getAsJsonArray("unlockFeatures")) current.unlockedFeatures.add(key.getAsString());
-            for (ItemStack stack : rewards) { var e = rt.economy.match(stack); if (e != null) acquired(current, e.product().id()); }
-        }, () -> SkyServer.tell(player, "任务完成：" + q.get("name").getAsString() + "，奖励已领取"));
+            for (ItemStack reward : quest.rewards()) { var entry=rt.economy.match(reward); if(entry!=null)acquired(current,entry.product().id()); }
+        }, () -> {SkyServer.tell(player,"任务完成："+q.get("name").getAsString()+"，奖励已领取");rt.questEditor.sendDetail(player,id);});
+    }
+    public void shippingPlaced(ServerPlayer player, net.minecraft.server.level.ServerLevel world, net.minecraft.core.BlockPos position) {
+        var p = rt.parties.active(player.getUUID()); var claim=rt.claim(position);
+        if (p==null || claim==null || !p.id.equals(claim.id) || !claim.members.contains(player.getUUID()) || claim.resetInProgress) return;
+        Map<String,Long> eligible = new LinkedHashMap<>();
+        var person=rt.state().players.get(player.getUUID());
+        for (var quest : catalog.quests) if (quest.objective().equals("place_shipping_chest") && catalog.available(p,person,quest))
+            eligible.put(quest.id(),catalog.resetVersion(p,person,quest));
+        if (eligible.isEmpty()) return;
+        UUID party=p.id; long epoch=p.overworldEpoch, definitionRevision=catalog.revision;
+        rt.deferred(() -> {
+            var current=rt.state().parties.get(party);
+            var owner=rt.state().players.get(player.getUUID());
+            if(current==null || owner==null||!party.equals(owner.activeParty)||current.resetInProgress || current.overworldEpoch!=epoch || catalog.revision!=definitionRevision) return;
+            rt.change(null,state -> {
+                var saved=state.parties.get(party);
+                eligible.forEach((id,version) -> {var progress=QuestCatalog.progress(saved,state.players.get(player.getUUID()),catalog.get(id));if(Objects.equals(progress.resetVersions().getOrDefault(id,0L),version) && !progress.completed().contains(id))progress.ready().add(id);});
+            }, () -> {});
+        });
+    }
+    private record ActionTarget(String quest,QuestCatalog.Goal goal,long reset) {}
+    public void action(ServerPlayer player,String type,String targetId,int amount,String sourceBlockId,String toolId){
+        if(amount<=0||player.isCreative())return;
+        var party=rt.parties.active(player.getUUID());var person=rt.state().players.get(player.getUUID());
+        if(party==null||person==null||party.resetInProgress)return;
+        List<ActionTarget> targets=new ArrayList<>();
+        for(var quest:catalog.quests)if(catalog.available(party,person,quest))for(var goal:quest.goals())
+            if(goal.matches(type,targetId,sourceBlockId,toolId)&&catalog.count(party,person,quest,goal)<goal.quantity())targets.add(new ActionTarget(quest.id(),goal,catalog.resetVersion(party,person,quest)));
+        if(targets.isEmpty())return;
+        UUID owner=player.getUUID(),partyId=party.id;long epoch=party.overworldEpoch,revision=catalog.revision;
+        rt.deferred(()->{
+            var current=rt.state().parties.get(partyId);var actor=rt.state().players.get(owner);
+            if(current==null||actor==null||!partyId.equals(actor.activeParty)||current.resetInProgress||current.overworldEpoch!=epoch||catalog.revision!=revision)return;
+            rt.change(null,state->{
+                var saved=state.players.get(owner);var savedParty=state.parties.get(partyId);
+                for(var target:targets){var quest=catalog.get(target.quest());
+                    if(!catalog.available(savedParty,saved,quest)||catalog.resetVersion(savedParty,saved,quest)!=target.reset())continue;
+                    var counters=saved.questProgress.computeIfAbsent(quest.id(),k->new LinkedHashMap<>());
+                    counters.compute(target.goal().key(),(k,old)->(int)Math.min(target.goal().quantity(),(long)(old==null?0:old)+amount));
+                }
+            },()->{});
+        });
+    }
+    public void produced(ServerPlayer player,String source,ItemStack output,int amount){
+        action(player,source,net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(output.getItem()).toString(),amount,"","");
+    }
+    public void fished(ServerPlayer player,Collection<ItemStack> loot){
+        for(var stack:loot)if(!stack.isEmpty())produced(player,"fish",stack,stack.getCount());
+        rt.professions.fished(player);
+    }
+    private JsonArray exchangeMaterials(ServerPlayer player, List<cn.yumis.skyisland.shop.TaskMaterialPlanner.Requirement> requirements, List<ItemStack> rewards) {
+        player.stopUsingItem(); if(player.containerMenu!=player.inventoryMenu)player.closeContainer();
+        JsonArray inventory=rt.economy.capture(player.getInventory()); SimpleContainer copy=new SimpleContainer(36);
+        for(int i=0;i<36;i++)copy.setItem(i,rt.economy.decode(inventory.get(i)));
+        int[] removals=cn.yumis.skyisland.shop.TaskMaterialPlanner.allocate(copy,requirements).orElseThrow(() -> new IllegalArgumentException("任务材料不足或属性未达到要求"));
+        for(int i=0;i<removals.length;i++)copy.getItem(i).shrink(removals[i]);
+        addRewards(copy,rewards);
+        for(int i=0;i<36;i++)inventory.set(i,rt.economy.encode(copy.getItem(i)));
+        return inventory;
+    }
+    private static void addRewards(SimpleContainer copy,List<ItemStack> rewards) {
+        for(var reward:rewards){int left=reward.getCount();while(left>0){int count=Math.min(left,reward.getMaxStackSize());if(!copy.addItem(reward.copyWithCount(count)).isEmpty())throw new IllegalArgumentException("背包空间不足，材料未扣除，任务仍可领取");left-=count;}}
     }
     public void acquired(IslandState.Party p, String id) {
         var e = rt.economy.entries.get(id); if (e != null && rt.economy.starter(e)) p.acquiredStarterIds.add(id);
     }
     private record Requirement(String product, int quantity) {}
-    private ItemEconomy.Entry materialEntry(String id) {
-        var active=rt.economy.entries.get(id);if(active!=null)return active;
-        var products=rt.config.object("shop/products.json").getAsJsonObject("products");if(!products.has(id))return null;
-        var row=products.getAsJsonObject(id);var canonical=row.getAsJsonObject("canonicalStack");
-        JsonObject stack=new JsonObject();stack.addProperty("id",canonical.get("itemId").getAsString());stack.addProperty("count",1);stack.add("components",canonical.get("componentPatch"));
-        var template=rt.economy.decode(stack);if(template.isEmpty())return null;
-        return new ItemEconomy.Entry(new GameConfig.Product(id,row.get("name").getAsString(),canonical,1,10000,"disabled","common",0,0,1,"other"),template);
-    }
+    private ItemEconomy.Entry materialEntry(String id) { return rt.economy.entries.get(id); }
     private JsonArray exchange(ServerPlayer player, List<Requirement> requirements, List<ItemStack> rewards) {
         player.stopUsingItem(); if (player.containerMenu != player.inventoryMenu) player.closeContainer();
         JsonArray inventory = rt.economy.capture(player.getInventory()); SimpleContainer copy = new SimpleContainer(36);
@@ -180,7 +249,8 @@ public final class ProgressionService {
         for (int i = 0; i < 36; i++) inventory.set(i, rt.economy.encode(copy.getItem(i)));
         return inventory;
     }
-    public JsonObject snapshot(IslandState.Party p) {
+    public JsonObject snapshot(IslandState.Party p) {return snapshot(p,null);}
+    public JsonObject snapshot(IslandState.Party p,IslandState.Person person) {
         JsonObject data = new JsonObject(); data.addProperty("slots", slots(p)); data.addProperty("maximumSlots", rules.get("maximumSlots").getAsInt());
         data.addProperty("paidSlots", p.paidBountySlots); data.addProperty("slotCost", slotCost(p)); data.addProperty("bountyAllowed", allows(p, "bounty.use"));
         data.addProperty("specialAllowed",allows(p,"shop.special"));data.addProperty("shippingAllowed",allows(p,"automation.shipping"));
@@ -191,12 +261,19 @@ public final class ProgressionService {
             else o.add("material",JsonNull.INSTANCE);
             offers.add(o);
         }
-        JsonObject quest=next(p)==null?null:next(p).deepCopy();
-        if(quest!=null)for(var value:quest.getAsJsonArray("requirements")){var r=value.getAsJsonObject();var entry=materialEntry(r.get("productId").getAsString());r.addProperty("name",entry.product().name());r.add("stack",rt.economy.encode(entry.template()));r.add("canonical",entry.product().canonical());}
-        data.add("offers", offers); data.add("quest",quest==null?JsonNull.INSTANCE:quest); data.add("completed", GameConfig.JSON.toJsonTree(p.completedQuestIds)); return data;
+        JsonObject quest=next(p);
+        data.add("offers",offers);data.add("quest",quest==null?JsonNull.INSTANCE:quest);
+        data.add("quests",catalog.summaries(p,person));data.addProperty("revision",catalog.revision);
+        Set<String> completed=new LinkedHashSet<>(p.completedQuestIds),ready=new LinkedHashSet<>(p.readyQuestIds);Map<String,Long> reset=new LinkedHashMap<>(p.questResetVersions);
+        if(person!=null){completed.addAll(person.completedQuestIds);ready.addAll(person.readyQuestIds);reset.putAll(person.questResetVersions);}
+        data.add("completed",GameConfig.JSON.toJsonTree(completed));data.add("ready",GameConfig.JSON.toJsonTree(ready));data.add("resetVersions",GameConfig.JSON.toJsonTree(reset));return data;
+    }
+    public JsonObject preview() {
+        JsonObject data=new JsonObject();data.add("quests",catalog.summaries(null));data.addProperty("revision",catalog.revision);return data;
     }
     public static void reset(IslandState.Party p) {
         p.highestIslandLevel = 0; p.cachedPoints = "0"; p.paidBountySlots = 0; p.initialScanEpoch = -1;
+        p.placedChunks.clear(); p.readyQuestIds.clear(); p.questResetVersions.clear(); p.featureDefaultsInitialized=false;
         p.soldProductIds.clear(); p.acquiredStarterIds.clear(); p.completedQuestIds.clear(); p.unlockedFeatures.clear(); p.bounties.clear(); p.research.clear();
     }
 }

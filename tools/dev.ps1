@@ -22,11 +22,14 @@ try {
     $env:JAVA_HOME = $development.javaHome
     $env:GRADLE_USER_HOME = Join-Path $taskRoot '.gradle-user-home'
     $arguments = @(switch ($Task) {
-        'Check' { @('test', 'compileClientJava', 'compileGametestJava') }
+        'Check' { @('compileJava', 'compileClientJava', 'processResources') }
         'Client' { @('runClient') }
-        'GameTest' { @('runClientGameTest') }
-        'Export' { @('test', 'compileGametestJava', 'assemble') }
+        'GameTest' { @('-I', 'local-tests/testing.init.gradle', 'runClientGameTest') }
+        'Export' { @('assemble') }
     })
+    if ($Task -eq 'GameTest' -and !(Test-Path -LiteralPath (Join-Path $taskRoot 'local-tests/testing.init.gradle'))) {
+        throw 'GameTest requires the private local-tests directory. Formal Check, Client and Export do not.'
+    }
     $arguments += @('--console=plain', '--no-daemon')
     if ($Offline) { $arguments += '--offline' }
     Push-Location -LiteralPath $taskRoot
@@ -41,7 +44,7 @@ try {
             $configurationRoot = Join-Path $taskRoot 'config\yumis_sky_island'
             $matched = 0
             try {
-                foreach ($configurationFile in Get-ChildItem -LiteralPath $configurationRoot -Recurse -File -Filter '*.json') {
+                foreach ($configurationFile in Get-ChildItem -LiteralPath $configurationRoot -Recurse -File -Filter '*.toml') {
                     $relative = $configurationFile.FullName.Substring($configurationRoot.Length).TrimStart('\').Replace('\', '/')
                     $entry = $archive.GetEntry('defaults/yumis_sky_island/' + $relative)
                     if ($null -eq $entry) { throw "Missing JAR default: $relative" }
@@ -57,9 +60,13 @@ try {
                 foreach ($requiredEntry in @('fabric.mod.json', 'yumis_sky_island.mixins.json', 'yumis_sky_island.client.mixins.json')) {
                     if ($null -eq $archive.GetEntry($requiredEntry)) { throw "Missing JAR entry: $requiredEntry" }
                 }
+                if ($matched -ne 19) { throw "Expected 18 server configurations and client preferences; found $matched TOML files" }
+                foreach ($entry in $archive.Entries) {
+                    if ($entry.FullName -match '(^|/)(local-tests|clienttest|gametest|test)(/|$)|fabric\.mod\.json.*test') { throw "Test content in release: $($entry.FullName)" }
+                }
             } finally { $archive.Dispose() }
             Write-Output "JAR: $artifactPath"
-            Write-Output "Verified $matched default JSON files against current source."
+            Write-Output "Verified $matched default TOML files against current source; tests excluded."
             Write-Output ('SHA256: ' + (Get-FileHash -LiteralPath $artifactPath -Algorithm SHA256).Hash)
         }
     } finally { Pop-Location }

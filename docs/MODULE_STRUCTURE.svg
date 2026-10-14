@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1240" viewBox="0 0 1600 1240" role="img" aria-labelledby="title desc">
+  <title id="title">Yumi’s Sky Island 模块结构图</title>
+  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。TOML、历史放置索引、单页控制面板、指令编辑、个人职业追踪、金币提示及本地测试隔离已实现，规则见 AGENTS.md。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#526780"/>
+    </marker>
+    <style>
+      text { font-family: "Microsoft YaHei", "Noto Sans CJK SC", "Segoe UI", sans-serif; fill: #24354c; }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #61718b; }
+      .heading { font-size: 20px; font-weight: 700; }
+      .name { font-size: 17px; font-weight: 600; }
+      .body { font-size: 15px; }
+      .small { font-size: 13px; fill: #61718b; }
+      .note { font-size: 14px; fill: #8a5e22; }
+      .card { stroke-width: 1.5; }
+      .server { fill: #ffffff; stroke: #adc3e8; }
+      .client { fill: #f0fbf8; stroke: #a2d2c5; }
+      .config { fill: #f5f1fc; stroke: #c7b8e3; }
+      .foundation { fill: #ffffff; stroke: #c5cfdd; }
+      .development { fill: #fbf8f1; stroke: #cbbb9b; stroke-dasharray: 7 5; }
+      .edge { fill: none; stroke: #526780; stroke-width: 2; marker-end: url(#arrow); }
+      .dev-edge { fill: none; stroke: #526780; stroke-width: 1.8; stroke-dasharray: 7 5; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1240" fill="#f5f7fb"/>
+  <text x="40" y="65" class="title">Yumi’s Sky Island · 模块结构图</text>
+  <text x="40" y="96" class="subtitle">Minecraft 26.2 / Fabric / Java 25 · 当前源码职责与数据流 · 2026-10-14</text>
+  <path d="M 1170 58 H 1220" class="edge"/>
+  <text x="1233" y="63" class="small">运行调用 / 数据流</text>
+  <path d="M 1170 91 H 1220" class="dev-edge"/>
+  <text x="1233" y="96" class="small">开发 / 测试依赖</text>
+
+  <!-- Configuration -->
+  <rect x="40" y="142" width="326" height="180" rx="14" class="card config"/>
+  <text x="60" y="179" class="heading">配置入口</text>
+  <text x="60" y="210" class="name">GameConfig</text>
+  <text x="60" y="239" class="body">config/yumis_sky_island</text>
+  <text x="60" y="265" class="body">补齐缺失默认文件，读取运行配置</text>
+  <text x="60" y="297" class="note">NightConfig · 19份中文注释TOML</text>
+
+  <!-- Common entry and sky-world runtime -->
+  <rect x="442" y="142" width="650" height="100" rx="14" class="card server"/>
+  <text x="466" y="178" class="heading">YumisSkyIsland · Fabric 通用入口</text>
+  <text x="466" y="209" class="body">配置 / 生成器 / 方块 / 效果注册；命令、生命周期与网络事件</text>
+  <rect x="442" y="315" width="650" height="135" rx="14" fill="#e6eefc" stroke="#7e9ed0" stroke-width="1.8"/>
+  <text x="466" y="354" class="heading">SkyServer · 空岛服务协调器</text>
+  <text x="466" y="386" class="body">服务生命周期、tick、队伍/世界状态、请求路由、快照同步</text>
+  <text x="466" y="417" class="body">服务端决定权限、扣物、金币、库存、任务奖励与解锁</text>
+  <path d="M 366 232 H 442" class="edge"/>
+  <path d="M 767 242 V 315" class="edge"/>
+  <text x="786" y="292" class="small">仅空岛世界启动</text>
+
+  <!-- World integrations / hooks -->
+  <rect x="40" y="360" width="326" height="155" rx="14" class="card foundation"/>
+  <text x="60" y="397" class="heading">原版集成与世界组件</text>
+  <text x="60" y="426" class="body">VoidWorlds / block / Protection</text>
+  <text x="60" y="453" class="body">通用 Mixin：生成、建造、容器</text>
+  <text x="60" y="480" class="body">生产、门户、伤害、跨界保护</text>
+  <path d="M 366 412 H 402 V 382 H 442" class="edge"/>
+
+  <!-- Domain calculations -->
+  <rect x="40" y="568" width="326" height="156" rx="14" class="card foundation"/>
+  <text x="60" y="605" class="heading">core · 规则计算</text>
+  <text x="60" y="634" class="body">ClaimGrid / BlockScorer / Money</text>
+  <text x="60" y="661" class="body">Rational / Durability / QuotaCurve</text>
+  <text x="60" y="688" class="body">SalePlanner / BountyRules / 抽取</text>
+  <path d="M 366 646 H 432" class="edge"/>
+
+  <!-- Business services -->
+  <rect x="432" y="492" width="670" height="277" rx="15" fill="#edf2fb" stroke="#c5d4ec"/>
+  <text x="452" y="523" class="heading">服务端业务 · server / shop</text>
+  <rect x="448" y="542" width="198" height="91" rx="9" class="card server"/>
+  <text x="461" y="569" class="name">PartyService</text>
+  <text x="461" y="596" class="small">成员 / 岛主 / 外部授权</text>
+  <text x="461" y="618" class="small">个人岛 / 岛区分配</text>
+  <rect x="665" y="542" width="198" height="91" rx="9" class="card server"/>
+  <text x="678" y="569" class="name">WorldService</text>
+  <text x="678" y="594" class="name">ResetService</text>
+  <text x="678" y="618" class="small">建岛 / 门户 / 传送 / 重开</text>
+  <rect x="882" y="542" width="198" height="91" rx="9" class="card server"/>
+  <text x="895" y="569" class="name">RefreshService</text>
+  <text x="895" y="596" class="small">历史放置索引 / 增量合并</text>
+  <text x="895" y="618" class="small">暂停 / 续扫 / 检查点</text>
+  <rect x="448" y="650" width="198" height="91" rx="9" class="card server"/>
+  <text x="461" y="677" class="name">TradeService</text>
+  <text x="461" y="702" class="name">ItemEconomy</text>
+  <text x="461" y="727" class="small">物品匹配 / 估值 / 交易</text>
+  <rect x="665" y="650" width="198" height="91" rx="9" class="card server"/>
+  <text x="678" y="677" class="name">ProfessionService</text>
+  <text x="678" y="705" class="small">七职业 / 制造与获钓经验</text>
+  <text x="678" y="727" class="small">品质 / 自动化隔离</text>
+  <rect x="882" y="650" width="198" height="91" rx="9" class="card server"/>
+  <text x="895" y="677" class="name">ProgressionService</text>
+  <text x="895" y="705" class="small">QuestCatalog / QuestEditor</text>
+  <text x="895" y="727" class="small">个人目标 / 队伍主线</text>
+  <path d="M 767 450 V 492" class="edge"/>
+
+  <!-- Durable state -->
+  <rect x="442" y="835" width="650" height="140" rx="14" class="card server"/>
+  <text x="466" y="873" class="heading">data · DurableStore ＋ IslandState</text>
+  <text x="466" y="904" class="body">队伍主线 / 个人任务 / 市场 / 刷新 / 重开 / 物品与经验恢复</text>
+  <text x="466" y="935" class="body">世界/yumis_sky_island：CRC 日志、落盘后发布、检查点</text>
+  <text x="466" y="959" class="small">方块、实体与玩家物品仍由 Minecraft 原生存档保存，协同恢复</text>
+  <path d="M 767 769 V 835" class="edge"/>
+
+  <!-- Client -->
+  <rect x="1154" y="142" width="406" height="126" rx="14" class="card client"/>
+  <text x="1175" y="179" class="heading">客户端 · SkyIslandClient</text>
+  <text x="1175" y="211" class="body">I / C 按键、HUD、Tooltip、网络接收</text>
+  <text x="1175" y="240" class="body">src/client；通用源码不引用客户端类</text>
+  <rect x="1154" y="316" width="406" height="172" rx="14" class="card client"/>
+  <text x="1175" y="352" class="heading">ClientCatalog ＋ 控制面板</text>
+  <text x="1175" y="383" class="body">商品 / 规则 / 行情 / 队伍快照缓存</text>
+  <text x="1175" y="412" class="body">ControlPanelScreen · 区域内嵌</text>
+  <text x="1175" y="441" class="body">常驻 / 每日收藏 · client.toml</text>
+  <text x="1175" y="472" class="note">四区域直切 / 等级隐藏 / 收藏分类</text>
+  <path d="M 1357 268 V 316" class="edge"/>
+
+  <!-- Shop protocol -->
+  <rect x="1154" y="545" width="406" height="106" rx="14" class="card client"/>
+  <text x="1175" y="578" class="heading">ShopPayloads / TaskPayloads</text>
+  <text x="1175" y="608" class="body">Purchase：上下文与轮次；Task：修订号</text>
+  <text x="1175" y="634" class="body">Snapshot：目录 / 个人任务 / 报价 / 入账</text>
+  <path d="M 1357 488 V 545" class="edge"/>
+  <path d="M 1154 598 H 1123 V 382 H 1092" class="edge" marker-start="url(#arrow)"/>
+
+  <!-- Cloud leap is independent of SkyServer startup -->
+  <rect x="1154" y="733" width="406" height="192" rx="14" class="card client"/>
+  <text x="1175" y="770" class="heading">梯云纵 · 独立技能入口</text>
+  <text x="1175" y="802" class="body">CloudLeapPayload → CloudLeapService</text>
+  <text x="1175" y="831" class="body">ModEffects / PlayerSafetyMixin</text>
+  <text x="1175" y="860" class="body">服务器校验冷却 / 速度 / 免摔伤效果</text>
+  <text x="1175" y="891" class="body">普通生存世界也可使用，原版包同步效果</text>
+  <path d="M 1560 212 H 1580 V 817 H 1560" class="edge"/>
+  <text x="1589" y="438" class="small" transform="rotate(90 1589 438)">C：只提交跳跃模式</text>
+
+  <!-- Tooling -->
+  <rect x="40" y="835" width="326" height="235" rx="14" class="card development"/>
+  <text x="60" y="872" class="heading">开发工具 · tools / Gradle</text>
+  <text x="60" y="904" class="body">dev.ps1：启动 / 检查 / 导出</text>
+  <text x="60" y="934" class="body">配置、价目文档与美术资源生成</text>
+  <text x="60" y="964" class="body">processResources：默认配置打包</text>
+  <text x="60" y="1001" class="small">tools/ 受版本管理，不是测试目录</text>
+  <text x="60" y="1029" class="small">.tools/、run/、build/ 等本地数据忽略</text>
+  <path d="M 366 925 H 413 V 275 H 510 V 242" class="dev-edge"/>
+  <text x="440" y="296" class="small">构建 / 启动</text>
+
+  <!-- Test sources are deliberately outside production -->
+  <rect x="442" y="1050" width="1118" height="140" rx="14" class="card development"/>
+  <text x="466" y="1086" class="heading">本地测试与验证 · local-tests（忽略）</text>
+  <text x="466" y="1118" class="body">local-tests：JUnit / 客户端场景 / 脚本 / 自检；旧测试取消Git跟踪，本地init独立注册</text>
+  <text x="466" y="1147" class="body">测试允许依赖正式代码；正式代码不能反向依赖测试。发布不带测试类、测试模组或运行数据</text>
+  <text x="466" y="1175" class="small">报告 / 日志 / 临时世界位于 build 下隔离目录；排除发布内容，本地保留测试源码</text>
+  <path d="M 767 1050 V 975" class="dev-edge"/>
+  <path d="M 366 1030 H 405 V 1120 H 442" class="dev-edge"/>
+
+  <text x="40" y="1221" class="subtitle">当前规则：收藏位于左侧末尾，隐藏至少1传说＋2史诗，现有三功能默认开放，出货箱支线64原木＋3铁锭＋附魔金镐；详见AGENTS.md。</text>
+</svg>

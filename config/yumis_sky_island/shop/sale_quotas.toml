@@ -1,0 +1,4417 @@
+# Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
+# 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
+
+# 配置结构版本；资料字段，勿随意降低；当前默认：1
+schemaVersion = 1
+# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+status = "review_draft"
+# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+minecraftVersion = "26.2"
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+registryVerified = false
+# 共享范围说明；目前按队伍共享，不通过此字段切换范围；当前默认："party"
+scope = "party"
+# 说明字段 epochSource；资料用途，不单独改变运行行为；当前默认："shop_marketEpoch"
+epochSource = "shop_marketEpoch"
+# 说明字段 defaultGroup；资料用途，不单独改变运行行为；当前默认："canonical_item_id"
+defaultGroup = "canonical_item_id"
+# 说明字段 defaultUnitsPerItem；资料用途，不单独改变运行行为
+counterUsesExactRationals = true
+splitAnItemAcrossTierBoundaries = true
+sumAllLinesThenFloorCoins = true
+zeroCoinTransaction = "refuse_without_removing_items_or_advancing_counters"
+channels = ["shop_ui", "sell_hand", "sell_inventory", "shipping_chest"]
+multiIngredientGoods = "independent_item_quota_unless_explicit_equivalent"
+tierCounterChangesOnlyOnSuccessfulSale = true
+
+[defaultUnitsPerItem]
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 原料额度组定义
+
+[groups]
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."metal:iron"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:iron_ingot"
+unitItemId = "minecraft:iron_ingot"
+# 原料单位中文名称；当前默认："铁锭"
+unitName = "铁锭"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."metal:copper"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:copper_ingot"
+unitItemId = "minecraft:copper_ingot"
+# 原料单位中文名称；当前默认："铜锭"
+unitName = "铜锭"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."metal:gold"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:gold_ingot"
+unitItemId = "minecraft:gold_ingot"
+# 原料单位中文名称；当前默认："金锭"
+unitName = "金锭"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:diamond"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:diamond"
+unitItemId = "minecraft:diamond"
+# 原料单位中文名称；当前默认："钻石"
+unitName = "钻石"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:emerald"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:emerald"
+unitItemId = "minecraft:emerald"
+# 原料单位中文名称；当前默认："绿宝石"
+unitName = "绿宝石"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:redstone"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:redstone"
+unitItemId = "minecraft:redstone"
+# 原料单位中文名称；当前默认："红石粉"
+unitName = "红石粉"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:coal"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:coal"
+unitItemId = "minecraft:coal"
+# 原料单位中文名称；当前默认："煤"
+unitName = "煤"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:lapis"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:lapis_lazuli"
+unitItemId = "minecraft:lapis_lazuli"
+# 原料单位中文名称；当前默认："青金石"
+unitName = "青金石"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:netherite"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:netherite_ingot"
+unitItemId = "minecraft:netherite_ingot"
+# 原料单位中文名称；当前默认："下界合金锭"
+unitName = "下界合金锭"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:quartz"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:quartz"
+unitItemId = "minecraft:quartz"
+# 原料单位中文名称；当前默认："石英"
+unitName = "石英"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:bone"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:bone"
+unitItemId = "minecraft:bone"
+# 原料单位中文名称；当前默认："骨头"
+unitName = "骨头"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:slime"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:slime_ball"
+unitItemId = "minecraft:slime_ball"
+# 原料单位中文名称；当前默认："黏液球"
+unitName = "黏液球"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:honey"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:honey_bottle"
+unitItemId = "minecraft:honey_bottle"
+# 原料单位中文名称；当前默认："蜂蜜瓶"
+unitName = "蜂蜜瓶"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:honeycomb"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:honeycomb"
+unitItemId = "minecraft:honeycomb"
+# 原料单位中文名称；当前默认："蜜脾"
+unitName = "蜜脾"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:kelp"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:dried_kelp"
+unitItemId = "minecraft:dried_kelp"
+# 原料单位中文名称；当前默认："海带"
+unitName = "海带"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:wheat"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:wheat"
+unitItemId = "minecraft:wheat"
+# 原料单位中文名称；当前默认："小麦"
+unitName = "小麦"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:nether_wart"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:nether_wart"
+unitItemId = "minecraft:nether_wart"
+# 原料单位中文名称；当前默认："下界疣"
+unitName = "下界疣"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:melon"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:melon_slice"
+unitItemId = "minecraft:melon_slice"
+# 原料单位中文名称；当前默认："西瓜片"
+unitName = "西瓜片"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."stone:dirt"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:dirt"
+unitItemId = "minecraft:dirt"
+# 原料单位中文名称；当前默认："泥土"
+unitName = "泥土"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."stone:cobblestone"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:cobblestone"
+unitItemId = "minecraft:cobblestone"
+# 原料单位中文名称；当前默认："圆石"
+unitName = "圆石"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:wood"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:oak_log"
+unitItemId = "minecraft:oak_log"
+# 原料单位中文名称；当前默认："原木"
+unitName = "原木"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:bamboo"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:bamboo"
+unitItemId = "minecraft:bamboo"
+# 原料单位中文名称；当前默认："竹子"
+unitName = "竹子"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:chorus"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:chorus_fruit"
+unitItemId = "minecraft:chorus_fruit"
+# 原料单位中文名称；当前默认："紫颂果"
+unitName = "紫颂果"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."mineral:amethyst"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:amethyst_shard"
+unitItemId = "minecraft:amethyst_shard"
+# 原料单位中文名称；当前默认："紫水晶碎片"
+unitName = "紫水晶碎片"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."stone:sulfur"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:sulfur"
+unitItemId = "minecraft:sulfur"
+# 原料单位中文名称；当前默认："硫磺块"
+unitName = "硫磺块"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."stone:ice"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:ice"
+unitItemId = "minecraft:ice"
+# 原料单位中文名称；当前默认："普通冰"
+unitName = "普通冰"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."stone:snow"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:snowball"
+unitItemId = "minecraft:snowball"
+# 原料单位中文名称；当前默认："雪球"
+unitName = "雪球"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."stone:clay"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:clay_ball"
+unitItemId = "minecraft:clay_ball"
+# 原料单位中文名称；当前默认："黏土球"
+unitName = "黏土球"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."end:shulker"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:shulker_shell"
+unitItemId = "minecraft:shulker_shell"
+# 原料单位中文名称；当前默认："潜影壳"
+unitName = "潜影壳"
+# 注册 ID／组件参数；保持 ID 原样
+
+[groups."bio:wool"]
+# 原料单位物品 ID；资料与分组参考；当前默认："minecraft:white_wool"
+unitItemId = "minecraft:white_wool"
+# 原料单位中文名称；当前默认："羊毛"
+unitName = "羊毛"
+# 物品的精确原料等份；保留历史映射不意味着开放交易
+
+[itemEquivalents]
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_ingot"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_nugget"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:raw_iron"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:raw_iron_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_iron_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_ingot"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_nugget"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:raw_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:raw_copper_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_copper_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gold_ingot"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gold_nugget"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gold_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:raw_gold"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:raw_gold_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gold_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_gold_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:nether_gold_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_diamond_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:emerald"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:emerald"
+quotaGroup = "mineral:emerald"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:emerald_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:emerald"
+quotaGroup = "mineral:emerald"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:emerald_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:emerald"
+quotaGroup = "mineral:emerald"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_emerald_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:emerald"
+quotaGroup = "mineral:emerald"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:redstone"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:redstone"
+quotaGroup = "mineral:redstone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:redstone_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:redstone"
+quotaGroup = "mineral:redstone"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:redstone_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:redstone"
+quotaGroup = "mineral:redstone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_redstone_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:redstone"
+quotaGroup = "mineral:redstone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:coal"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:coal"
+quotaGroup = "mineral:coal"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:coal_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:coal"
+quotaGroup = "mineral:coal"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:coal_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:coal"
+quotaGroup = "mineral:coal"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_coal_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:coal"
+quotaGroup = "mineral:coal"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lapis_lazuli"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:lapis"
+quotaGroup = "mineral:lapis"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lapis_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:lapis"
+quotaGroup = "mineral:lapis"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lapis_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:lapis"
+quotaGroup = "mineral:lapis"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:deepslate_lapis_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:lapis"
+quotaGroup = "mineral:lapis"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:netherite_ingot"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:netherite"
+quotaGroup = "mineral:netherite"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:netherite_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:netherite"
+quotaGroup = "mineral:netherite"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:netherite_scrap"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:netherite"
+quotaGroup = "mineral:netherite"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:ancient_debris"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:netherite"
+quotaGroup = "mineral:netherite"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:quartz"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:nether_quartz_ore"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:quartz_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:quartz_pillar"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:chiseled_quartz_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:quartz_bricks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:smooth_quartz"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:quartz_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:smooth_quartz_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:quartz_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:smooth_quartz_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:quartz"
+quotaGroup = "mineral:quartz"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bone"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bone"
+quotaGroup = "bio:bone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bone_meal"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bone"
+quotaGroup = "bio:bone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bone_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bone"
+quotaGroup = "bio:bone"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:slime_ball"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:slime"
+quotaGroup = "bio:slime"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:slime_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:slime"
+quotaGroup = "bio:slime"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:honey_bottle"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:honey"
+quotaGroup = "bio:honey"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:honey_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:honey"
+quotaGroup = "bio:honey"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:honeycomb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:honeycomb"
+quotaGroup = "bio:honeycomb"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:honeycomb_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:honeycomb"
+quotaGroup = "bio:honeycomb"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:kelp"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:kelp"
+quotaGroup = "bio:kelp"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dried_kelp"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:kelp"
+quotaGroup = "bio:kelp"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dried_kelp_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:kelp"
+quotaGroup = "bio:kelp"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:wheat"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wheat"
+quotaGroup = "bio:wheat"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:hay_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wheat"
+quotaGroup = "bio:wheat"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:nether_wart"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:nether_wart"
+quotaGroup = "bio:nether_wart"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:nether_wart_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:nether_wart"
+quotaGroup = "bio:nether_wart"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:melon_slice"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:melon"
+quotaGroup = "bio:melon"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:melon"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:melon"
+quotaGroup = "bio:melon"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dirt"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:dirt"
+quotaGroup = "stone:dirt"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:coarse_dirt"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:dirt"
+quotaGroup = "stone:dirt"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:rooted_dirt"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:dirt"
+quotaGroup = "stone:dirt"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mud"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:dirt"
+quotaGroup = "stone:dirt"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cobblestone"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:smooth_stone"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cobblestone_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cobblestone_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cobblestone_wall"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:smooth_stone_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone_bricks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cracked_stone_bricks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:chiseled_stone_bricks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone_brick_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone_brick_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stone_brick_wall"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:cobblestone"
+quotaGroup = "stone:cobblestone"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_oak_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_oak_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oak_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_spruce_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_spruce_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:spruce_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_birch_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_birch_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:birch_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_acacia_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_acacia_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:acacia_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_jungle_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_jungle_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:jungle_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_dark_oak_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_dark_oak_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:dark_oak_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_mangrove_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_mangrove_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:mangrove_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_cherry_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_cherry_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cherry_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_pale_oak_log"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_pale_oak_wood"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pale_oak_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_stem"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_hyphae"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_crimson_stem"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_crimson_hyphae"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:crimson_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_stem"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_hyphae"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_warped_stem"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_warped_hyphae"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_button"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_pressure_plate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:warped_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wood"
+quotaGroup = "bio:wood"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:stripped_bamboo_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_planks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_mosaic"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_mosaic_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bamboo_mosaic_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:bamboo"
+quotaGroup = "bio:bamboo"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:chorus_fruit"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:chorus"
+quotaGroup = "bio:chorus"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:popped_chorus_fruit"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:chorus"
+quotaGroup = "bio:chorus"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purpur_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:chorus"
+quotaGroup = "bio:chorus"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purpur_pillar"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:chorus"
+quotaGroup = "bio:chorus"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purpur_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:chorus"
+quotaGroup = "bio:chorus"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purpur_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:chorus"
+quotaGroup = "bio:chorus"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:amethyst_shard"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:amethyst"
+quotaGroup = "mineral:amethyst"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:amethyst_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:amethyst"
+quotaGroup = "mineral:amethyst"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:amethyst_cluster"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:amethyst"
+quotaGroup = "mineral:amethyst"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_spike"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:potent_sulfur"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:polished_sulfur"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_bricks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:chiseled_sulfur"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_wall"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:polished_sulfur_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:polished_sulfur_wall"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:polished_sulfur_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_brick_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_brick_wall"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:sulfur_brick_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:sulfur"
+quotaGroup = "stone:sulfur"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：2
+denominator = 2
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:ice"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:ice"
+quotaGroup = "stone:ice"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:packed_ice"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:ice"
+quotaGroup = "stone:ice"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:blue_ice"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:ice"
+quotaGroup = "stone:ice"
+# 每件原料等份分子；正整数；当前默认：81
+numerator = 81
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:snowball"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:snow"
+quotaGroup = "stone:snow"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:snow_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:snow"
+quotaGroup = "stone:snow"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:clay_ball"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:clay"
+quotaGroup = "stone:clay"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:clay"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:clay"
+quotaGroup = "stone:clay"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:brick"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:clay"
+quotaGroup = "stone:clay"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:bricks"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："stone:clay"
+quotaGroup = "stone:clay"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:shulker_shell"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:white_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:orange_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:magenta_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:light_blue_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:yellow_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lime_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pink_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gray_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:light_gray_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cyan_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purple_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:blue_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:brown_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:green_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:red_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:black_wool"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:white_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:orange_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:magenta_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:light_blue_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:yellow_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lime_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pink_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gray_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:light_gray_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cyan_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purple_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:blue_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:brown_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:green_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:red_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:black_carpet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："bio:wool"
+quotaGroup = "bio:wool"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：3
+denominator = 3
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:white_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:orange_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:magenta_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:light_blue_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:yellow_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lime_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:pink_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:gray_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:light_gray_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cyan_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:purple_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:blue_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:brown_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:green_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:red_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:black_shulker_box"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："end:shulker"
+quotaGroup = "end:shulker"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_pickaxe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_axe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_shovel"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_hoe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_sword"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_spear"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_helmet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：5
+numerator = 5
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_chestplate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_leggings"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：7
+numerator = 7
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_boots"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_pickaxe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_axe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_shovel"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_hoe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_sword"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_spear"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_helmet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：5
+numerator = 5
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_chestplate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_leggings"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：7
+numerator = 7
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:iron_boots"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:iron"
+quotaGroup = "metal:iron"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_pickaxe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_axe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_shovel"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_hoe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_sword"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_spear"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_helmet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：5
+numerator = 5
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_chestplate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_leggings"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：7
+numerator = 7
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:golden_boots"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:gold"
+quotaGroup = "metal:gold"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_pickaxe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_axe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_shovel"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_hoe"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_sword"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_spear"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_helmet"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：5
+numerator = 5
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_chestplate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_leggings"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：7
+numerator = 7
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:diamond_boots"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："mineral:diamond"
+quotaGroup = "mineral:diamond"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_torch"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：1
+numerator = 1
+# 每件原料等份分母；正整数；当前默认：36
+denominator = 36
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_block"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:exposed_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_exposed_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:weathered_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_weathered_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:oxidized_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_cut_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_chiseled_copper"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_grate"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_bulb"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：27
+numerator = 27
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_cut_copper_stairs"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：4
+denominator = 4
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_cut_copper_slab"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：9
+numerator = 9
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_door"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：2
+numerator = 2
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_trapdoor"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：4
+numerator = 4
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_bars"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：8
+denominator = 8
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_chain"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：9
+denominator = 9
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_chest"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：8
+numerator = 8
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_copper_lantern"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：11
+numerator = 11
+# 每件原料等份分母；正整数；当前默认：12
+denominator = 12
+# 注册 ID／组件参数；保持 ID 原样
+
+[itemEquivalents."minecraft:waxed_oxidized_lightning_rod"]
+# 共享原料额度组 ID；同组共用当日计数；当前默认："metal:copper"
+quotaGroup = "metal:copper"
+# 每件原料等份分子；正整数；当前默认：3
+numerator = 3
+# 每件原料等份分母；正整数；当前默认：1
+denominator = 1
+# 递减阶梯；数量上限须递增，最后省略上限表示无限
+
+[[tiers]]
+# 本档累计原料等份上限；省略表示无限，非负整数；当前默认：1000
+upToUnits = 1000
+# 收购阶梯倍率，万分比；10000=100%，非负整数；当前默认：10000
+saleMultiplierBps = 10000
+
+[[tiers]]
+# 本档累计原料等份上限；省略表示无限，非负整数；当前默认：10000
+upToUnits = 10000
+# 收购阶梯倍率，万分比；10000=100%，非负整数；当前默认：5000
+saleMultiplierBps = 5000
+
+[[tiers]]
+# 收购阶梯倍率，万分比；10000=100%，非负整数；当前默认：1000
+saleMultiplierBps = 1000
+# 说明字段 counterUsesExactRationals；资料用途，不单独改变运行行为；当前默认：true
+# 说明字段 splitAnItemAcrossTierBoundaries；资料用途，不单独改变运行行为；当前默认：true
+# 说明字段 sumAllLinesThenFloorCoins；资料用途，不单独改变运行行为；当前默认：true
+# 说明字段 zeroCoinTransaction；资料用途，不单独改变运行行为；当前默认："refuse_without_removing_items_or_advancing_counters"
+# 说明字段 bypassTriggers；资料用途，不单独改变运行行为
+
+[bypassTriggers]
+# 说明字段 reset；资料用途，不单独改变运行行为；当前默认：false
+reset = false
+# 说明字段 login；资料用途，不单独改变运行行为；当前默认：false
+login = false
+# 说明字段 quality_change；资料用途，不单独改变运行行为；当前默认：false
+quality_change = false
+# 说明字段 enchantment_change；资料用途，不单独改变运行行为；当前默认：false
+enchantment_change = false
+# 说明字段 compression；资料用途，不单独改变运行行为；当前默认：false
+compression = false
+# 说明字段 sell_channel_change；资料用途，不单独改变运行行为；当前默认：false
+sell_channel_change = false
+# 说明字段 channels；资料用途，不单独改变运行行为
+# 说明字段 multiIngredientGoods；资料用途，不单独改变运行行为；当前默认："independent_item_quota_unless_explicit_equivalent"
+# 说明字段 tierCounterChangesOnlyOnSuccessfulSale；资料用途，不单独改变运行行为；当前默认：true

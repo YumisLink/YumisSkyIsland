@@ -1,8 +1,6 @@
 package cn.yumis.skyisland.client.mixin;
 
-import cn.yumis.skyisland.client.ShopScreen;
-import cn.yumis.skyisland.client.SaleScreen;
-import cn.yumis.skyisland.client.TaskScreen;
+import cn.yumis.skyisland.client.ControlPanelScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -17,6 +15,6 @@ public abstract class ShopHudMixin {
     @Inject(method="extractRenderState", at=@At("HEAD"), cancellable=true)
     private void shop(GuiGraphicsExtractor graphics, DeltaTracker delta, CallbackInfo ci) {
         var screen=Minecraft.getInstance().gui.screen();
-        if (screen instanceof ShopScreen || screen instanceof SaleScreen || screen instanceof TaskScreen) ci.cancel();
+        if (screen instanceof ControlPanelScreen) ci.cancel();
     }
 }

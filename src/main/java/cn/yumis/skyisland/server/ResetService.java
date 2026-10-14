@@ -25,7 +25,7 @@ public final class ResetService implements AutoCloseable {
     public String propose(ServerPlayer owner) {
         runtime.parties.requireOwner(owner); String code = Integer.toString(100000 + owner.getRandom().nextInt(900000));
         confirmations.put(owner.getUUID(),new Confirmation(code,runtime.state().effectiveTicks + 1200));
-        SkyServer.tell(owner,"重开会删除本队主世界、金币、最高岛等级、任务、悬赏格、售出历史和首获记录。背包、个人职业、地狱、末地、当日库存与售出额度保留。60秒内输入 /is reset confirm " + code);
+        SkyServer.tell(owner,"重开会删除本队主世界、金币、最高岛等级、队伍主线、悬赏格、售出历史和首获记录。背包、个人职业、个人支线与职业任务、地狱、末地、当日库存与售出额度保留。60秒内输入 /is reset confirm " + code);
         return code;
     }
     public void confirm(ServerPlayer owner,String code) {

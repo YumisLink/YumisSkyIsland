@@ -22,7 +22,8 @@ public final class RefreshService implements AutoCloseable {
     private final SkyServer runtime;
     private final ExecutorService io = Executors.newSingleThreadExecutor(Thread.ofPlatform().name("yumis-refresh").factory());
     private final Set<Long> known = new LinkedHashSet<>();
-    private final Map<Long,Set<Long>> knownBySlot=new HashMap<>();
+    private record PendingHistory(long epoch, Set<Long> chunks) {}
+    private final Map<UUID, PendingHistory> pendingHistory = new HashMap<>();
     private final Map<UUID, Job> jobs = new LinkedHashMap<>();
     private final Set<UUID> enumerating = new HashSet<>();
     private final Set<UUID> paused = new HashSet<>();
@@ -38,7 +39,7 @@ public final class RefreshService implements AutoCloseable {
         int startCursor;
         boolean notified;
         net.minecraft.server.level.ServerPlayer requester;
-        Job(IslandState.Party p) { id = p.id; scanned.addAll(p.refresh.scanned); delta.putAll(p.refresh.delta);chunkKeys.addAll(p.refresh.chunks);for(long key:knownBySlot.getOrDefault(p.slot,Set.of()))addChunk(key); }
+        Job(IslandState.Party p) { id = p.id; scanned.addAll(p.refresh.scanned); delta.putAll(p.refresh.delta);chunkKeys.addAll(p.refresh.chunks);for(long key:historyChunks(p))addChunk(key); }
         void addChunk(long key){if(chunkKeys.add(key))newChunks.add(key);}
     }
     private static final class Work {
@@ -48,7 +49,30 @@ public final class RefreshService implements AutoCloseable {
         Map<String, Long> counts = new HashMap<>(), changes = new HashMap<>();
     }
     public RefreshService(SkyServer runtime) { this.runtime = runtime; for(var p:runtime.state().parties.values())if(p.refresh!=null)paused.add(p.id); }
-    public void loaded(LevelChunk chunk) { long key=chunk.getPos().pack();known.add(key);var slot=ClaimGrid.slotAt(chunk.getPos().getMinBlockX(),chunk.getPos().getMinBlockZ());if(slot.isPresent())knownBySlot.computeIfAbsent(slot.getAsLong(),_->new HashSet<>()).add(key);var party=runtime.claim(chunk.getPos().getWorldPosition());if(party!=null&&jobs.containsKey(party.id))jobs.get(party.id).addChunk(key); }
+    public void loaded(LevelChunk chunk) {
+        long key = chunk.getPos().pack();
+        known.add(key); // The complete loaded set is retained for island reset, never for refresh.
+    }
+    public Set<Long> historyChunks(IslandState.Party party) {
+        Set<Long> result = new TreeSet<>(party.placedChunks);
+        PendingHistory pending = pendingHistory.get(party.id);
+        if (pending != null && pending.epoch == party.overworldEpoch) result.addAll(pending.chunks);
+        return result;
+    }
+    public void recordPlacement(IslandState.Party party, BlockPos position) {
+        long key = ChunkPos.pack(position.getX() >> 4, position.getZ() >> 4);
+        if (party.placedChunks.contains(key)) return;
+        long epoch = party.overworldEpoch;
+        PendingHistory pending = pendingHistory.compute(party.id, (_, old) -> old == null || old.epoch != epoch ? new PendingHistory(epoch, new HashSet<>()) : old);
+        if (!pending.chunks.add(key)) return;
+        Job running = jobs.get(party.id);
+        if (running != null) running.addChunk(key);
+        runtime.deferred(() -> {
+            var current = runtime.state().parties.get(party.id);
+            if (current == null || current.resetInProgress || current.overworldEpoch != epoch) { pending.chunks.remove(key); return; }
+            runtime.change(null, state -> state.parties.get(party.id).placedChunks.add(key), () -> pending.chunks.remove(key));
+        });
+    }
     public List<Long> knownChunks() { return new ArrayList<>(known); }
     public boolean isRunning(UUID partyId) {
         var party = runtime.state().parties.get(partyId);
@@ -82,18 +106,12 @@ public final class RefreshService implements AutoCloseable {
         final boolean firstScan=initial;
         if (party.refresh != null || !enumerating.add(party.id)) { if(player!=null)SkyServer.tell(player, "刷新任务已在进行，输入 /is level 查看进度"); return; }
         if(player!=null)SkyServer.tell(player,"正在开始加载，请等候；正在读取区块索引和扫描速度");
-        List<Long> inMemory = new ArrayList<>(known); ClaimGrid.Region region = ClaimGrid.region(party.slot);
         long epoch = party.overworldEpoch;
-        Path folder = DimensionType.getStorageFolder(runtime.server.overworld().dimension(), runtime.server.getWorldPath(LevelResource.ROOT)).resolve("region");
-        io.execute(() -> {
-            try {
-                List<Long> chunks = existing(folder, region, inMemory);
-                runtime.server.execute(() -> runtime.deferred(() -> {
+        runtime.deferred(() -> {
                     var current = runtime.state().parties.get(party.id);
                     if (runtime.closing || current == null || current.resetInProgress || current.overworldEpoch != epoch) { enumerating.remove(party.id); return; }
+                    List<Long> chunks = new ArrayList<>(historyChunks(current));
                     runtime.change(player, s -> { var p = s.parties.get(party.id); p.refresh = new IslandState.Refresh(); p.refresh.chunks = chunks; p.refresh.initial=firstScan; }, () -> { enumerating.remove(party.id);paused.remove(party.id);var job=new Job(runtime.state().parties.get(party.id));job.requester=player;jobs.put(party.id,job);notifyStart(job); });
-                }));
-            } catch (IOException e) { runtime.server.execute(() -> { enumerating.remove(party.id); if(player!=null)SkyServer.tell(player, "读取区块索引失败，旧等级保留"); }); }
         });
     }
     /** Read-only location headers. Boundary chunks are included and cropped during counting. */
@@ -136,6 +154,7 @@ public final class RefreshService implements AutoCloseable {
             Job job = queue.get(Math.floorMod(roundRobin++, queue.size())); IslandState.Party party = runtime.state().parties.get(job.id);
             if (party.refresh == null || party.resetInProgress) continue;
             while(!job.newChunks.isEmpty()&&System.nanoTime()<deadline)party.refresh.chunks.add(job.newChunks.remove());
+            if (!job.newChunks.isEmpty()) continue;
             if (party.refresh.cursor >= party.refresh.chunks.size()) { finish(job); continue; }
             if (job.work == null) {
                 // Sustained load reduces reads to one opportunity per second instead of starving the job forever.
@@ -166,7 +185,7 @@ public final class RefreshService implements AutoCloseable {
         SkyServer.tell(job.requester,"正在开始加载，请等候，预计等待 "+seconds/60+"分"+seconds%60+"秒（"+p.refresh.chunks.size()+"个区块，按扫描速度估算）");job.notified=true;
     }
     private record JsonSettings(long micros, int sections, int requests, int concurrent) {
-        JsonSettings(GameConfig c) { this(c.object("islands/refresh.json").get("globalComputeBudgetMicrosPerTick").getAsLong(), c.object("islands/refresh.json").get("maxSectionsPerTick").getAsInt(), c.object("islands/refresh.json").get("maxNewChunkRequestsPerTick").getAsInt(), c.object("islands/refresh.json").get("maxConcurrentChunkRequests").getAsInt()); }
+        JsonSettings(GameConfig c) { this(c.object("islands/refresh.toml").get("globalComputeBudgetMicrosPerTick").getAsLong(), c.object("islands/refresh.toml").get("maxSectionsPerTick").getAsInt(), c.object("islands/refresh.toml").get("maxNewChunkRequestsPerTick").getAsInt(), c.object("islands/refresh.toml").get("maxConcurrentChunkRequests").getAsInt()); }
     }
     private void read(Job job, ClaimGrid.Region region) {
         Work w = job.work; w.loading = true; w.touched = false; inflight++;
@@ -222,7 +241,7 @@ public final class RefreshService implements AutoCloseable {
             if(p.refresh.initial)p.initialScanEpoch=p.overworldEpoch;
             p.scanChunksPerSecond=Math.max(0.001,(p.refresh.cursor-job.startCursor)/Math.max(0.001,(System.nanoTime()-job.started)/1_000_000_000.0));
             p.refresh = null;runtime.updateScore(p);
-        }, () -> { jobs.remove(job.id);paused.remove(job.id); for (var player : runtime.server.getPlayerList().getPlayers()) if (runtime.parties.active(player.getUUID()) != null && runtime.parties.active(player.getUUID()).id.equals(job.id)) SkyServer.tell(player, "测试结束，刷新完成，空岛 " + runtime.level(runtime.state().parties.get(job.id)) + " 级"); });
+        }, () -> { jobs.remove(job.id);paused.remove(job.id); for (var player : runtime.server.getPlayerList().getPlayers()) if (runtime.parties.active(player.getUUID()) != null && runtime.parties.active(player.getUUID()).id.equals(job.id)) SkyServer.tell(player, "刷新完成，空岛 " + runtime.level(runtime.state().parties.get(job.id)) + " 级"); });
     }
     public void checkpointDeltas() { jobs.forEach((id,job) -> { var p = runtime.state().parties.get(id); if (p != null && p.refresh != null) p.refresh.delta = new LinkedHashMap<>(job.delta); }); }
     private void release(Work work){if(work!=null&&work.live!=null)runtime.server.overworld().getChunkSource().removeTicketWithRadius(WorldService.REFRESH_LOAD,work.live.getPos(),0);}

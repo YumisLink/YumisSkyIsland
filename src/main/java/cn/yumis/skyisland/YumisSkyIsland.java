@@ -3,6 +3,7 @@ import cn.yumis.skyisland.block.ModBlocks;
 import cn.yumis.skyisland.config.GameConfig;
 import cn.yumis.skyisland.effect.ModEffects;
 import cn.yumis.skyisland.network.ShopPayloads;
+import cn.yumis.skyisland.network.TaskPayloads;
 import cn.yumis.skyisland.server.*;
 import cn.yumis.skyisland.world.VoidWorlds;
 import com.mojang.serialization.Codec;
@@ -31,8 +32,13 @@ public final class YumisSkyIsland implements ModInitializer {
         ModBlocks.register(); VoidWorlds.register(); WorldService.registerTickets();
         ModEffects.register(); CloudLeapService.register();
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Request.TYPE,ShopPayloads.Request.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Purchase.TYPE,ShopPayloads.Purchase.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(ShopPayloads.Snapshot.TYPE,ShopPayloads.Snapshot.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(TaskPayloads.Request.TYPE,TaskPayloads.Request.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(TaskPayloads.Snapshot.TYPE,TaskPayloads.Snapshot.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Request.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.request(context.player(),payload); });
+        ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Purchase.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.purchase(context.player(),payload); });
+        ServerPlayNetworking.registerGlobalReceiver(TaskPayloads.Request.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.questEditor.request(context.player(),payload); });
         CommandRegistrationCallback.EVENT.register((dispatcher,access,environment) -> SkyCommands.register(dispatcher));
         ServerLifecycleEvents.SERVER_STARTED.register(server -> { try { SkyServer.start(server,CONFIG); } catch (Exception e) { throw new IllegalStateException("空岛存档加载失败",e); } });
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> { var rt = SkyServer.get(server); if (rt != null) try { rt.close(); } catch (Exception e) { LOGGER.error("空岛关闭保存失败",e); } });
@@ -50,10 +56,13 @@ public final class YumisSkyIsland implements ModInitializer {
             }
         });
         PlayerBlockBreakEvents.BEFORE.register((world,player,pos,state,be) -> !(world instanceof ServerLevel level) || Protection.canBuild(level,player,pos));
+        net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AFTER_DEATH.register((entity,source)->{
+            if(entity instanceof net.minecraft.world.entity.Mob&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player){var rt=SkyServer.get(player.level().getServer());if(rt!=null)rt.progression.action(player,"kill",net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString(),1,"","");}
+        });
         UseBlockCallback.EVENT.register((player,world,hand,hit) -> world instanceof ServerLevel level && !Protection.canBuild(level,player,hit.getBlockPos()) ? InteractionResult.FAIL : InteractionResult.PASS);
         AttackBlockCallback.EVENT.register((player,world,hand,pos,face) -> world instanceof ServerLevel level && !Protection.canBuild(level,player,pos) ? InteractionResult.FAIL : InteractionResult.PASS);
         UseEntityCallback.EVENT.register((player,world,hand,entity,hit) -> {
-            if (entity instanceof Villager && !CONFIG.object("server_rules.json").get("villagerTradingEnabled").getAsBoolean() || entity instanceof WanderingTrader && !CONFIG.object("server_rules.json").get("wanderingTraderTradingEnabled").getAsBoolean()) return InteractionResult.FAIL;
+            if (entity instanceof Villager && !CONFIG.object("server_rules.toml").get("villagerTradingEnabled").getAsBoolean() || entity instanceof WanderingTrader && !CONFIG.object("server_rules.toml").get("wanderingTraderTradingEnabled").getAsBoolean()) return InteractionResult.FAIL;
             return world instanceof ServerLevel level && !Protection.canBuild(level,player,entity.blockPosition()) ? InteractionResult.FAIL : InteractionResult.PASS;
         });
         AttackEntityCallback.EVENT.register((player,world,hand,entity,hit) -> world instanceof ServerLevel level && !Protection.canBuild(level,player,entity.blockPosition()) ? InteractionResult.FAIL : InteractionResult.PASS);

@@ -8,6 +8,8 @@ Minecraft 26.2 / Fabric 空岛服务器模组。
 
 ## 审阅入口
 
+- [开发规则与必须注意事项](AGENTS.md)：最新配置、UI、权限、测试隔离和发布约定。
+- [模块结构图与源码索引](docs/MODULE_STRUCTURE.md)：模块职责、当前调用关系与工程边界。
 - [源码运行说明](docs/DEV_GUIDE.md)：直接启动开发客户端、自动测试、配置生效位置。
 - [实现与验证记录](docs/IMPLEMENTATION_STATUS.md)：已实现功能、实际验证和后续验收范围。
 - [第一版开发基线](docs/PROJECT_PLAN.md)：三维度空岛、party、权限、指令、UI和完整实施顺序。
@@ -24,17 +26,19 @@ Minecraft 26.2 / Fabric 空岛服务器模组。
 
 ## 配置约定
 
-根目录 `config/yumis_sky_island` 是默认配置源。模组首次运行会补齐运行目录内 `config/yumis_sky_island` 中缺失的 JSON，保留已有改价。修改运行配置后重启生效。
+根目录 `config/yumis_sky_island` 是默认配置源。模组首次运行会补齐运行目录内 `config/yumis_sky_island` 中缺失的 TOML，保留已有改价。修改运行配置后重启生效。
 
-shop/products.json 保存价格与可交易范围；shop/item_levels.json 保存物品岛等级门槛；shop/rarities.json 保存物品稀有度和抽取权重；shop/enchantments.json 保存附魔等级倍率；shop/shops.json 保存每日库存、自然游戏日和隐藏概率。
+shop/products.toml 保存价格与可交易范围；shop/item_levels.toml 保存物品岛等级门槛；shop/rarities.toml 保存物品稀有度和抽取权重；shop/enchantments.toml 保存附魔等级倍率；shop/shops.toml 保存每日库存、自然游戏日和隐藏概率。
 
-islands/scoring.json 保存按存量递减的计分规则；islands/levels.json 保存0～100级阈值；islands/refresh.json 保存刷新预算；products/quality.json、professions.json、goods.json 保存品质、职业与商品资格。
+islands/scoring.toml 保存按存量递减的计分规则；islands/levels.toml 保存0～100级阈值；islands/refresh.toml 保存刷新预算；products/quality.toml、professions.toml、goods.toml 保存品质、职业与商品资格。
 
-server_rules.json 保存禁村民/流浪商人交易、保留猪灵和原版村民生产规则；shop/sale_quotas.json 保存全队每日售出额度与精确原料等份；automation下保存核心购买等级、生电规划和出货箱规则。
+server_rules.toml 保存禁村民/流浪商人交易、保留猪灵和原版村民生产规则；shop/sale_quotas.toml 保存全队每日售出额度与精确原料等份；automation下保存核心购买等级、生电规划和出货箱规则。
 
-价格审阅文档由上述数据生成。价目生成工具使用 Python 标准库，只读原版客户端 JAR、资产索引和语言资源，不写入 Minecraft 实例。开发工具和客户端测试另在项目内运行。
+价格审阅文档由上述数据生成。价目生成工具使用 Python 3.11+ 与 tomlkit（见 tools/requirements.txt），只读原版客户端 JAR、资产索引和语言资源，不写入 Minecraft 实例。开发工具和客户端测试另在项目内运行。
 
-已使用实际 26.2 注册表解码、回编码并匹配全部 1045 个启用商品，开发客户端也加载了商品目录。其中128项可常规购买、221项可从每日／隐藏店购买、696项仅收购；806项禁交易。配置仍保留价格草案标记：注册成功不等于全部价格与生产收益完成平衡，180 个启用商品的分类兜底价还需要逐项审阅。完整覆盖范围见实现记录。
+当前交易目录仅保留688项正价可出售商品（可买可卖368项，仅收购320项），已通过实际26.2注册表解析、组件解码及回编码匹配。完整物品稀有度、计分、职业和任务物品目录独立保留；任务可使用非交易物品。注册与组件校验不代表长期价格平衡已完成。最新源码和实际验收范围见[控制面板交付记录](docs/CONTROL_PANEL_DELIVERY.md)。
+
+管理员任务修改模式：`/is admin tasks edit on|off`，也可在任务区域开启。现有悬赏、每日／隐藏商店和出货箱默认可用。常驻及每日／隐藏收藏分别位于左侧分类最后；隐藏保底至少1传说、2史诗，候选不足按等级与稀有度向下回退。
 
 ## 启动源码
 
@@ -42,16 +46,19 @@ server_rules.json 保存禁村民/流浪商人交易、保留猪灵和原版村�
 .\tools\dev.ps1 -Task Client
 ```
 
-在开发客户端中新建 **Yumi 空岛** 世界，进入后 `/is` 建岛，按 **I** 开商店。命令编译并直接启动源码，不导出发布 JAR。
+在开发客户端中新建 **Yumi 空岛** 世界，进入后 `/is` 建岛，按 **I** 打开控制面板。命令编译并直接启动源码，不导出发布 JAR。
 
 按 **C** 使用梯云纵，沿朝向斜上跃起；按住 **空格** 再按 **C**，强力向上跃起。可在空中再次使用，施放间隔0.25秒，每次刷新10秒免摔伤效果。[游戏内 buff 图标与倒计时](docs/screenshots/cloud-leap-buff.png)。
 
 ```powershell
 .\tools\dev.ps1 -Task Check -Offline
-.\tools\dev.ps1 -Task GameTest -Offline
+.\local-tests\run.ps1 -Task Unit -Offline
+.\local-tests\run.ps1 -Task Client -Offline
 ```
 
 SDK 已准备在项目 `.tools`。迁移到新电脑时先运行 `python tools/bootstrap_development.py`，首次下载依赖时去掉 `-Offline`。
+
+`Check` 只编译正式代码与资源；`local-tests/` 是本地保留、不上传、不打包的可选测试区。
 
 ## 生成与校验
 

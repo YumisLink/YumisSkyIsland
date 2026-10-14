@@ -19,7 +19,15 @@ public final class ShippingChestBlock extends ChestBlock {
     @Override public BlockEntity newBlockEntity(BlockPos pos, BlockState state) { return new ShippingChestEntity(pos, state); }
     @Override public BlockState getStateForPlacement(BlockPlaceContext context) { BlockState s = super.getStateForPlacement(context); return s == null ? null : s.setValue(TYPE, ChestType.SINGLE); }
     @Override protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos adjacent, BlockState adjacentState, RandomSource random) { return super.updateShape(state, level, ticks, pos, direction, adjacent, adjacentState, random).setValue(TYPE, ChestType.SINGLE); }
-    @Override public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) { super.setPlacedBy(level,pos,state,placer,stack); if (!level.isClientSide() && level.getBlockEntity(pos) instanceof ShippingChestEntity box) box.freshPlacement(); }
+    @Override public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        super.setPlacedBy(level,pos,state,placer,stack);
+        if (level instanceof net.minecraft.server.level.ServerLevel world && level.getBlockEntity(pos) instanceof ShippingChestEntity box) {
+            box.freshPlacement();
+            var runtime = cn.yumis.skyisland.server.SkyServer.get(world.getServer());
+            if (runtime != null && placer instanceof net.minecraft.server.level.ServerPlayer player && level.getBlockState(pos).getBlock() == this)
+                runtime.progression.shippingPlaced(player,world,pos);
+        }
+    }
     @Override protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean moved) { super.neighborChanged(state,level,pos,block,orientation,moved); if (!level.isClientSide() && level.getBlockEntity(pos) instanceof ShippingChestEntity box) box.powerChanged(); }
     @Override public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide()) return super.getTicker(level,state,type);

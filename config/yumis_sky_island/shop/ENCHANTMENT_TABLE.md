@@ -2,7 +2,7 @@
 
 43个附魔来自本机原版附魔数据，最大等级和诅咒/宝藏标签来自原版；倍率为本项目可编辑初稿。
 
-修改enchantments.json中的levelMultiplierBps；10000表示×1，15000表示×1.5。
+修改enchantments.toml中的levelMultiplierBps；10000表示×1，15000表示×1.5。
 
 组合价值按每个附魔实际等级的系数相乘，不把附魔系数相加。普通附魔与附魔书分别读取ENCHANTMENTS/STORED_ENCHANTMENTS。
 品质倍率、所有附魔倍率、耐久倍率与1/100一起计算，最后才对金币向下取整。

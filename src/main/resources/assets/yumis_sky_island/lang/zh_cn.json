@@ -1,7 +1,7 @@
 {
   "generator.yumis_sky_island.sky_island": "Yumi 空岛",
   "block.yumis_sky_island.shipping_chest": "出货箱",
-  "key.yumis_sky_island.shop": "打开空岛商店",
+  "key.yumis_sky_island.shop": "打开控制面板",
   "key.yumis_sky_island.cloud_leap": "梯云纵（按住跳跃键向上跃起）",
   "effect.yumis_sky_island.cloud_step": "踏云护体",
   "key.category.yumis_sky_island.sky_island": "Yumi 空岛"

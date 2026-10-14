@@ -1,0 +1,2633 @@
+# Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
+# 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
+
+# 配置结构版本；资料字段，勿随意降低；当前默认：1
+schemaVersion = 1
+# 独立的手工制造商品资格，不能随可交易商品一起删除
+
+[items]
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:acacia_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:acacia_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:acacia_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:acacia_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:acacia_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:activator_rail"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:andesite_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:andesite_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:andesite_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:anvil"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:baked_potato"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:bamboo_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:bamboo_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:bamboo_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:barrel"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:beacon"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:beehive"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:beetroot_soup"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:birch_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:birch_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:birch_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:birch_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:birch_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:black_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:black_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:blackstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:blackstone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:blackstone_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:blast_furnace"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:blue_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:blue_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:bookshelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:bow"]
+# 手工制造所属职业 ID；当前默认："hunter"
+profession = "hunter"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:bread"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:brewing_stand"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:brown_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:brown_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cake"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:carrot_on_a_stick"]
+# 手工制造所属职业 ID；当前默认："hunter"
+profession = "hunter"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cauldron"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cherry_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cherry_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cherry_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cherry_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cherry_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:chest"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:chiseled_bookshelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:chiseled_nether_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:chiseled_stone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:chiseled_tuff_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cinnabar_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cobbled_deepslate_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cobbled_deepslate_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cobbled_deepslate_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cobblestone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cobblestone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cobblestone_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:comparator"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:composter"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:conduit"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_beef"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_chicken"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_cod"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_mutton"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_porkchop"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_rabbit"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cooked_salmon"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cookie"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_boots"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_chestplate"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_leggings"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:copper_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cracked_deepslate_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cracked_deepslate_tiles"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cracked_nether_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cracked_polished_blackstone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cracked_stone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:crafter"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:crimson_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:crimson_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:crimson_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:crossbow"]
+# 手工制造所属职业 ID；当前默认："hunter"
+profession = "hunter"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cut_copper_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cut_copper_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cut_red_sandstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cut_sandstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cyan_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:cyan_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_oak_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_oak_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_oak_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_oak_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_oak_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_prismarine_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dark_prismarine_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:daylight_detector"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_tile_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_tile_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_tile_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:deepslate_tiles"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:detector_rail"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_boots"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_chestplate"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_leggings"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diamond_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diorite_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diorite_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:diorite_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dispenser"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:dropper"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:enchanting_table"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:end_stone_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:end_stone_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:end_stone_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:end_stone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:fishing_rod"]
+# 手工制造所属职业 ID；当前默认："hunter"
+profession = "hunter"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:flint_and_steel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:flower_pot"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:furnace"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:glass"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_boots"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_carrot"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_chestplate"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_leggings"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:golden_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:granite_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:granite_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:granite_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:gray_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:gray_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:green_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:green_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:hay_block"]
+# 手工制造所属职业 ID；当前默认："farmer"
+profession = "farmer"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:hopper"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_boots"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_chestplate"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_leggings"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:iron_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:jukebox"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:jungle_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:jungle_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:jungle_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:jungle_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:jungle_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:lantern"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:leather_boots"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:leather_chestplate"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:leather_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:leather_leggings"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:lectern"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:light_blue_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:light_blue_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:light_gray_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:light_gray_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:lime_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:lime_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:lodestone"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mace"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:magenta_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:magenta_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mangrove_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mangrove_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mangrove_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mangrove_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mangrove_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_cobblestone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_cobblestone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_cobblestone_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_stone_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_stone_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_stone_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mossy_stone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mud_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mud_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mud_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mud_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:mushroom_stew"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:nether_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:nether_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:nether_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:nether_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_boots"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_chestplate"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_leggings"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:netherite_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:note_block"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:oak_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:oak_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:oak_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:oak_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:oak_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:observer"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:orange_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:orange_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pale_oak_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pale_oak_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pale_oak_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pale_oak_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pale_oak_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pink_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pink_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:piston"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_andesite_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_andesite_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_blackstone_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_cinnabar_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_cinnabar_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_cinnabar_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_deepslate_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_deepslate_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_deepslate_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_diorite_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_diorite_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_granite_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_granite_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_sulfur_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_sulfur_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_sulfur_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_tuff_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_tuff_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:polished_tuff_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:powered_rail"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:prismarine_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:prismarine_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:prismarine_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:prismarine_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:prismarine_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:prismarine_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:pumpkin_pie"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:purple_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:purple_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:purpur_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:purpur_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:quartz_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:quartz_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:quartz_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:rabbit_stew"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:rail"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_nether_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_nether_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_nether_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_nether_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_sandstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_sandstone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:red_sandstone_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:redstone_lamp"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:repeater"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:resin_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:respawn_anchor"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sandstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sandstone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sandstone_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:scaffolding"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:shears"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:shield"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smoker"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_quartz_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_quartz_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_red_sandstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_red_sandstone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_sandstone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_sandstone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:smooth_stone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:soul_lantern"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:spectral_arrow"]
+# 手工制造所属职业 ID；当前默认："hunter"
+profession = "hunter"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:spruce_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:spruce_chest_boat"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:spruce_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:spruce_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:spruce_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sticky_piston"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:stone_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sugar"]
+# 手工制造所属职业 ID；当前默认："farmer"
+profession = "farmer"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:sulfur_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:suspicious_stew"]
+# 手工制造所属职业 ID；当前默认："chef"
+profession = "chef"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:target"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tinted_glass"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_brick_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_brick_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_brick_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_bricks"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:tuff_wall"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:turtle_helmet"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:warped_fungus_on_a_stick"]
+# 手工制造所属职业 ID；当前默认："hunter"
+profession = "hunter"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:warped_hanging_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:warped_shelf"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:warped_sign"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_cut_copper_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_cut_copper_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_exposed_cut_copper_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_exposed_cut_copper_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_oxidized_cut_copper_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_oxidized_cut_copper_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_weathered_cut_copper_slab"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:waxed_weathered_cut_copper_stairs"]
+# 手工制造所属职业 ID；当前默认："stonemason"
+profession = "stonemason"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:white_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:white_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:wooden_axe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:wooden_hoe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:wooden_pickaxe"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:wooden_shovel"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:wooden_spear"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:wooden_sword"]
+# 手工制造所属职业 ID；当前默认："blacksmith"
+profession = "blacksmith"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:yellow_banner"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true
+# 注册 ID／组件参数；保持 ID 原样
+
+[items."minecraft:yellow_bed"]
+# 手工制造所属职业 ID；当前默认："artisan"
+profession = "artisan"
+# 此物品的手工制造是否可判定品质；true/false；当前默认：true
+qualityAllowed = true

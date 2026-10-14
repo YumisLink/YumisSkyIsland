@@ -87,7 +87,7 @@ public final class WorldService implements AutoCloseable {
             var current = runtime.state().parties.get(party.id);
             if (current == null || current.resetInProgress || current.overworldEpoch != epoch || current.starterReady) { finished.run(); return; }
             ServerLevel world = runtime.server.overworld();
-            for (int x = cx - 3; x < cx + 3; x++) for (int y = 75; y < 81; y++) for (int z = cz - 3; z < cz + 3; z++) world.setBlock(new BlockPos(x, y, z), Blocks.DIRT.defaultBlockState(), 3);
+            for (int x = cx - 3; x < cx + 3; x++) for (int y = 75; y < 81; y++) for (int z = cz - 3; z < cz + 3; z++) world.setBlock(new BlockPos(x, y, z), (y == 80 ? Blocks.GRASS_BLOCK : Blocks.DIRT).defaultBlockState(), 3);
             int tx = cx + 1, tz = cz + 1;
             for (int y = 81; y <= 85; y++) world.setBlock(new BlockPos(tx, y, tz), Blocks.OAK_LOG.defaultBlockState(), 3);
             for (int y = 83; y <= 86; y++) {

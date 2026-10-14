@@ -27,11 +27,13 @@ public final class TradeService {
             var p = e.product(); int rarity = switch (p.rarity()) { case "rare" -> 1; case "epic" -> 2; case "legendary" -> 3; default -> 0; };
             return new DailyShopSelector.Candidate(p.id(), rarity, p.level(), p.weight(), p.stock());
         }).toList();
-        JsonObject shops = runtime.config.object("shop/shops.json"); JsonObject definitions = runtime.config.object("shop/rarities.json").getAsJsonObject("definitions");
+        JsonObject shops = runtime.config.object("shop/shops.toml"); JsonObject definitions = runtime.config.object("shop/rarities.toml").getAsJsonObject("definitions");
         int[] ordinary = new int[4], hidden = new int[4]; String[] rarity = {"common", "rare", "epic", "legendary"};
         for (int i = 1; i < 4; i++) { var row = definitions.getAsJsonObject(rarity[i]); ordinary[i] = row.get("dailyWeight").getAsInt(); hidden[i] = row.get("hiddenWeight").getAsInt(); }
-        var selection = DailyShopSelector.roll(runtime.state().worldSeed, party.id, runtime.epoch(), runtime.level(party), pool,
-            shops.getAsJsonObject("hidden").get("chanceBps").getAsInt(), shops.getAsJsonObject("daily").get("slots").getAsInt(), shops.getAsJsonObject("hidden").get("slots").getAsInt(), ordinary, hidden);
+        JsonObject hiddenRules = shops.getAsJsonObject("hidden");
+        var selection = DailyShopSelector.rollShop(runtime.state().worldSeed, party.id, runtime.epoch(), runtime.level(party), pool,
+            hiddenRules.get("chanceBps").getAsInt(), shops.getAsJsonObject("daily").get("slots").getAsInt(), hiddenRules.get("slots").getAsInt(), ordinary, hidden,
+            hiddenRules.get("guaranteedLegendary").getAsInt(), hiddenRules.get("guaranteedEpic").getAsInt());
         runtime.change(null, state -> {
             var p = state.parties.get(party.id); p.marketEpoch = selection.epoch(); p.hidden = selection.hidden(); p.quota.clear(); p.dailyStock.clear();
             for (var offer : selection.offers()) p.dailyStock.put(offer.productId(), offer.remainingStock());
@@ -46,14 +48,23 @@ public final class TradeService {
         return p;
     }
     public void buy(ServerPlayer player, String id, int quantity) {
+        var party = available(player);
+        var entry = runtime.economy.entries.get(id);
+        buy(player,id,quantity,entry != null && !entry.product().rarity().equals("common") ? "special" : "permanent",runtime.epoch(),party.id,party.overworldEpoch);
+    }
+    public void buy(ServerPlayer player, String id, int quantity, String shop, long expectedMarket, UUID expectedParty, long expectedIsland) {
         if (quantity < 1 || quantity > 64) throw new IllegalArgumentException("每次购买数量须为1～64");
         IslandState.Party party = available(player); ItemEconomy.Entry entry = runtime.economy.entries.get(id);
         if (entry == null || !entry.product().canBuy()) throw new IllegalArgumentException("商品未上架");
         if (runtime.level(party) < entry.product().level()) throw new IllegalArgumentException("需要空岛 " + entry.product().level() + " 级");
-        boolean special = !entry.product().rarity().equals("common");
+        if (!party.id.equals(expectedParty) || party.overworldEpoch != expectedIsland) throw new IllegalArgumentException("队伍或岛屿已变化，请重新打开控制面板");
+        if (expectedMarket != runtime.epoch()) throw new IllegalArgumentException("市场已换日，请重新确认购买");
+        if (!Set.of("permanent","special").contains(shop)) throw new IllegalArgumentException("商店类型无效");
+        boolean special = shop.equals("special");
+        if (!special && !entry.product().rarity().equals("common")) throw new IllegalArgumentException("该商品仅在每日／隐藏商店供货");
         if (special && !runtime.progression.allows(party, "shop.special")) throw new IllegalArgumentException("每日/隐藏商店尚未通过任务解锁");
         if (special && party.dailyStock.getOrDefault(id, 0) < quantity) throw new IllegalArgumentException("今日库存不足或今日未抽到该商品");
-        long cost = Math.multiplyExact(runtime.economy.buyPrice(entry, party), quantity); long balance = Money.subtract(party.coins, cost);
+        long cost = Math.multiplyExact(runtime.economy.buyPrice(entry, party, !special), quantity); long balance = Money.subtract(party.coins, cost);
         player.stopUsingItem();if(player.containerMenu!=player.inventoryMenu)player.closeContainer(); JsonArray inventory = runtime.economy.capture(player.getInventory());
         SimpleContainer copy = new SimpleContainer(36);
         for (int i = 0; i < 36; i++) copy.setItem(i, runtime.economy.decode(inventory.get(i)));
@@ -73,7 +84,11 @@ public final class TradeService {
         }, () -> { applyRecovery(player); SkyServer.tell(player, "购入 " + entry.product().name() + " ×" + quantity + "，花费 " + Money.format(cost)); });
     }
     public void sell(ServerPlayer player, boolean hand) {
+        sell(player,hand,true);
+    }
+    public void sell(ServerPlayer player, boolean hand, boolean command) {
         available(player); player.stopUsingItem(); if(player.containerMenu!=player.inventoryMenu)player.closeContainer();
+        if(command)runtime.send(player,"sale_begin",new JsonObject());
         saleModes.put(player.getUUID(), hand); preview(player, "", true);
     }
     public void preview(ServerPlayer player, String selection, boolean open) {
@@ -129,8 +144,12 @@ public final class TradeService {
     }
     public void forget(ServerPlayer player){previews.remove(player.getUUID());saleModes.remove(player.getUUID());}
     public void commitInventory(ServerPlayer player, JsonArray inventory, java.util.function.Consumer<IslandState> edit, Runnable after) {
+        commitInventory(player,inventory,0,edit,after);
+    }
+    public void commitInventory(ServerPlayer player, JsonArray inventory, int experiencePoints, java.util.function.Consumer<IslandState> edit, Runnable after) {
+        if(experiencePoints < 0)throw new IllegalArgumentException("经验奖励不能为负");
         runtime.inventoryLocks.add(player.getUUID());
-        runtime.change(player,s->{edit.accept(s);recovery(s,player,inventory);},()->{applyRecovery(player);after.run();});
+        runtime.change(player,s->{edit.accept(s);recovery(s,player,inventory);s.inventoryRecovery.get(player.getUUID()).experiencePoints=experiencePoints;},()->{applyRecovery(player);after.run();});
     }
     private void recordSales(IslandState.Party p, SalePlanner.Plan plan) {
         for(var input:plan.removals()){var e=runtime.economy.match(runtime.economy.decode(com.google.gson.JsonParser.parseString(input.fingerprint())));if(e!=null)p.soldProductIds.add(e.product().id());}
@@ -147,7 +166,9 @@ public final class TradeService {
     private void applyRecovery(ServerPlayer player) {
         var recovery = runtime.state().inventoryRecovery.get(player.getUUID());
         if (recovery == null) return;
+        if(((AttachmentTarget)player).getAttachedOrCreate(YumisSkyIsland.TRANSACTION_SEQUENCE) >= recovery.sequence){runtime.inventoryLocks.remove(player.getUUID());return;}
         runtime.economy.restore(player.getInventory(), recovery.items);
+        if(recovery.experiencePoints > 0)player.giveExperiencePoints(recovery.experiencePoints);
         ((AttachmentTarget)player).setAttached(YumisSkyIsland.TRANSACTION_SEQUENCE, recovery.sequence);
         player.inventoryMenu.broadcastChanges(); player.containerMenu.broadcastChanges();
         ((PlayerListAccessor)runtime.server.getPlayerList()).yumis$save(player);

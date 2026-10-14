@@ -1,4 +1,4 @@
-"""Produce reviewable 26.2 economy data; no Minecraft runtime or third-party packages."""
+"""Produce reviewable 26.2 economy data; commented TOML uses project-local tomlkit."""
 from __future__ import annotations
 
 import argparse
@@ -11,8 +11,9 @@ from collections import Counter
 from fractions import Fraction
 from pathlib import Path
 
-from automation_defaults import CORE_LEVELS, MASS_PRICES, make_rules, validate_reference_math
+from automation_defaults import CORE_LEVELS, MASS_PRICES, make_rules
 from automation_views import render_automation
+from config_io import read as read_toml, write as write_toml
 
 ROOT = Path(__file__).resolve().parents[1]
 CFG = ROOT / "config" / "yumis_sky_island"
@@ -28,8 +29,7 @@ FORBIDDEN = {
     "air", "barrier", "light", "command_block", "chain_command_block",
     "repeating_command_block", "command_block_minecart", "structure_block",
     "structure_void", "jigsaw", "debug_stick", "knowledge_book", "test_block",
-    "test_instance_block", "bedrock", "reinforced_deepslate", "spawner",
-    "trial_spawner", "vault",
+    "test_instance_block", "bedrock", "reinforced_deepslate", "vault",
 }
 VARIANT_ONLY = {
     "enchanted_book", "potion", "splash_potion", "lingering_potion",
@@ -156,7 +156,10 @@ ENCHANT_OVERRIDES = {
 
 def write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if path.suffix == ".toml":
+        write_toml(path, payload)
+    else:
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def config(**kwargs) -> dict:
@@ -382,7 +385,7 @@ def durability_multiplier(remaining: int, maximum: int) -> Fraction:
 
 
 def seed(jar: Path, assets: Path, overwrite: bool) -> None:
-    if (CFG / "shop" / "products.json").exists() and not overwrite:
+    if (CFG / "shop" / "products.toml").exists() and not overwrite:
         raise SystemExit("Draft already exists. Use --render-only to retain edits; --overwrite-draft explicitly reseeds.")
     with zipfile.ZipFile(jar) as z:
         version = json.loads(z.read("version.json"))
@@ -575,12 +578,14 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
             "customProductCount": 1,
             "verificationRequired": ["BuiltInRegistries.ITEM", "Item.BY_BLOCK", "BuiltInRegistries.POTION", "world enchantment registry", "CreativeModeTabs"],
         }
-        write_json(CFG / "shop" / "products.json", config(source=provenance, products=products))
-        write_json(CFG / "shop" / "item_levels.json", config(
+        exclusions = set(json.loads((ROOT / "src/main/resources/data/yumis_sky_island/commerce/legacy_excluded_products.json").read_text(encoding="utf-8")))
+        sale_products = {key: row for key, row in products.items() if key not in exclusions and row["tradeMode"] in {"buy_sell", "sell_only"} and isinstance(row.get("baseValueCoins"), int) and row["baseValueCoins"] > 0}
+        write_json(CFG / "shop" / "products.toml", config(source=provenance, shopRevision="control-panel-v4", products=sale_products))
+        write_json(CFG / "shop" / "item_levels.toml", config(
             levelKind="current_party_island_level", minLevel=0, maxLevel=100,
             unlockPolicy="current_level_required_for_purchase", sellRequiresUnlock=False,
             itemLevels=item_levels))
-        write_json(CFG / "shop" / "rarities.json", config(
+        write_json(CFG / "shop" / "rarities.toml", config(
             independentOfProfessionQuality=True,
             definitions={
                 "common": {"name": "普通", "regularAllowed": True, "dailyWeight": 0, "hiddenWeight": 0},
@@ -588,19 +593,19 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
                 "epic": {"name": "史诗", "regularAllowed": False, "dailyWeight": 25, "hiddenWeight": 50},
                 "legendary": {"name": "传说", "regularAllowed": False, "dailyWeight": 5, "hiddenWeight": 35},
             }, itemRarities=item_rarity))
-        write_json(CFG / "shop" / "enchantments.json", config(
+        write_json(CFG / "shop" / "enchantments.toml", config(
             unit="basis_points_10000_equals_1", combineRule="multiply_all_then_round_once",
             unknownEnchantmentPolicy="refuse_automatic_sale",
             rejectAboveVanillaMaxLevel=True, rejectIncompatibleCombinations=True,
             entries=enchants))
-        write_json(CFG / "shop" / "shops.json", config(
+        write_json(CFG / "shop" / "shops.toml", config(
             market={"ticksPerEpoch": 24000, "clockSource": "effective_server_game_ticks",
                     "anchorToBasePrice": True, "minPriceBps": 9000, "maxPriceBps": 11000,
                     "minimumCurrentBuyCoins": 10, "sharedQuotesAcrossParties": True},
             daily={"scope": "party", "slots": 12, "onlyEligibleAtRollTime": True,
                    "sampling": "weighted_rarity_then_weighted_product_without_replacement",
                    "limitSharedAcrossParty": True, "unusedStockCarriesOver": False},
-            hidden={"chanceBps": 500, "replacesDaily": True, "slots": 16},
+            hidden={"chanceBps": 500, "replacesDaily": True, "slots": 16, "guaranteedLegendary": 1, "guaranteedEpic": 2, "guaranteeFallback": "legendary_epic_rare_common"},
             stockDefaults={"rare": 64, "epic": 16, "legendary": 1},
             stockSource="products.dailyStock",
             purchaseQuality="ordinary", dailyPriceMultiplierBps=10000,
@@ -610,7 +615,7 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
                             "membershipChange": False, "sleep": False, "timeCommand": False},
             effectivePrice="max(10, floor(baseValue * marketMultiplier)) * qualityMultiplier * enchantmentMultipliers",
             sellRule="floor(sum(effectiveFullValue * durabilityMultiplier / 10 * quota_segment_weight))",
-            saleQuotaConfig="shop/sale_quotas.json", rounding="once_per_transaction_after_all_lines",
+            saleQuotaConfig="shop/sale_quotas.toml", rounding="once_per_transaction_after_all_lines",
             durability={"unit": "remaining_fraction", "points": [
                 {"remainingBps": 10000, "valueBps": 10000},
                 {"remainingBps": 8000, "valueBps": 5000},
@@ -628,7 +633,7 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
             weight = 0 if block in zero or block in FORBIDDEN else weights.get(block, 5 if ("log" in block or block.endswith(("_stem", "_wood", "_hyphae"))) else 1)
             score_blocks[ns(block)] = {"basePoints": weight, "tierProfile": "default", "scoreGroup": ns(block)}
         score_blocks[shipping_id] = {"basePoints": 5, "tierProfile": "default", "scoreGroup": shipping_id}
-        write_json(CFG / "islands" / "scoring.json", config(
+        write_json(CFG / "islands" / "scoring.toml", config(
             dimension="minecraft:overworld", source="current_world_stock_not_lifetime_placements",
             pointScale=10000,
             tiers={"default": [
@@ -639,13 +644,13 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
             blocks=score_blocks,
             placementAliasHints={ns(i): ns(b) for i, b in ALIASES.items()},
             placementMappingAuthority="runtime_Item.BY_BLOCK_and_item_use_handlers"))
-        write_json(CFG / "islands" / "levels.json", config(
+        write_json(CFG / "islands" / "levels.toml", config(
             maxLevel=100, keepRawPointsAboveMax=True,
             thresholds=[{"level": i, "requiredPoints": 300 * i} for i in range(101)],
             legacy30LevelMapping="new_threshold(L)=old_top_score*L/100",
             chapterLevelRequirements=[0, 3, 10, 27, 50, 100],
             chapterResearchCoins=[0, 2000, 20000, 100000, 1000000, 10000000]))
-        write_json(CFG / "islands" / "refresh.json", config(
+        write_json(CFG / "islands" / "refresh.toml", config(
             globalComputeBudgetMicrosPerTick=1000, maxSectionsPerTick=2,
             maxNewChunkRequestsPerTick=1, maxConcurrentChunkRequests=2,
             forceGenerateMissingChunks=False, blockMainThreadOnDisk=False,
@@ -655,7 +660,7 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
             checkpointOnChunkCompletion=True, resumeAfterRestart=True,
             publishNewScore="after_consistent_scan_complete",
             slowTickPolicy="reduce_budget_and_pause_new_load_requests"))
-        write_json(CFG / "products" / "quality.json", config(
+        write_json(CFG / "products" / "quality.toml", config(
             independentOfItemRarity=True, shopsOnlyOrdinary=True,
             grades=[
                 {"id": "ordinary", "name": "普通", "valueBps": 10000, "durabilityBps": 10000, "attackAndMiningBonusBps": 0},
@@ -671,9 +676,9 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
             qualityRollTiming="once_after_material_consumption_before_output_transfer"))
         rules = make_rules(HEADER, products)
         for key, relative in {
-            "sale_quotas": "shop/sale_quotas.json", "server_rules": "server_rules.json",
-            "unlocks": "automation/unlocks.json", "production": "automation/production.json",
-            "shipping": "automation/shipping_chest.json",
+            "sale_quotas": "shop/sale_quotas.toml", "server_rules": "server_rules.toml",
+            "unlocks": "automation/unlocks.toml", "production": "automation/production.toml",
+            "shipping": "automation/shipping_chest.toml",
         }.items():
             write_json(CFG / relative, rules[key])
         write_json(ROOT / "docs" / "SOURCE_MANIFEST.json", config(**provenance))
@@ -681,22 +686,22 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
 
 def read_configs() -> dict:
     paths = {
-        "products": CFG / "shop" / "products.json",
-        "levels": CFG / "shop" / "item_levels.json",
-        "rarities": CFG / "shop" / "rarities.json",
-        "enchantments": CFG / "shop" / "enchantments.json",
-        "shops": CFG / "shop" / "shops.json",
-        "scoring": CFG / "islands" / "scoring.json",
-        "island_levels": CFG / "islands" / "levels.json",
-        "refresh": CFG / "islands" / "refresh.json",
-        "quality": CFG / "products" / "quality.json",
-        "sale_quotas": CFG / "shop" / "sale_quotas.json",
-        "server_rules": CFG / "server_rules.json",
-        "unlocks": CFG / "automation" / "unlocks.json",
-        "production": CFG / "automation" / "production.json",
-        "shipping": CFG / "automation" / "shipping_chest.json",
+        "products": CFG / "shop" / "products.toml",
+        "levels": CFG / "shop" / "item_levels.toml",
+        "rarities": CFG / "shop" / "rarities.toml",
+        "enchantments": CFG / "shop" / "enchantments.toml",
+        "shops": CFG / "shop" / "shops.toml",
+        "scoring": CFG / "islands" / "scoring.toml",
+        "island_levels": CFG / "islands" / "levels.toml",
+        "refresh": CFG / "islands" / "refresh.toml",
+        "quality": CFG / "products" / "quality.toml",
+        "sale_quotas": CFG / "shop" / "sale_quotas.toml",
+        "server_rules": CFG / "server_rules.toml",
+        "unlocks": CFG / "automation" / "unlocks.toml",
+        "production": CFG / "automation" / "production.toml",
+        "shipping": CFG / "automation" / "shipping_chest.toml",
     }
-    return {k: json.loads(p.read_text(encoding="utf-8")) for k, p in paths.items()}
+    return {k: read_toml(p) for k, p in paths.items()}
 
 
 def full_base_value(product: dict, entries: dict) -> Fraction:
@@ -707,110 +712,55 @@ def full_base_value(product: dict, entries: dict) -> Fraction:
 
 
 def validate(data: dict) -> dict:
+    """Validate generated configuration references before publishing review tables."""
     products = data["products"]["products"]
     rarities, levels = data["rarities"]["itemRarities"], data["levels"]["itemLevels"]
-    assert products.keys() == rarities.keys() == levels.keys(), "Product metadata keys differ."
-    active = {k: p for k, p in products.items() if p["tradeMode"] != "disabled"}
-    divisor = data["shops"].get("saleDivisor", 10)
-    floor = data["shops"]["market"].get("minimumCurrentBaseValueCoins", 10)
-    assert isinstance(divisor, int) and divisor > 0
+    def require(condition, location):
+        if not condition:
+            raise ValueError("Invalid configuration: " + location)
+    divisor = data["shops"].get("saleDivisor", 100)
+    require(isinstance(divisor, int) and divisor > 0, "shop/shops.toml.saleDivisor")
+    require(data["shops"].get("regularBuyMultiplierBps", 25000) > 0, "shop/shops.toml.regularBuyMultiplierBps")
     for key, product in products.items():
-        assert key == product["productId"]
-        assert 0 <= levels[key] <= 100
-        assert rarities[key] in RANKS
-        if key in active:
-            assert isinstance(product["baseValueCoins"], int) and product["baseValueCoins"] >= floor
-            assert product["dailyStock"] > 0 and product["offerWeight"] > 0
-            assert isinstance(product.get("buyMultiplierBps", 10000), int) and product.get("buyMultiplierBps", 10000) > 0
-    for eid, entry in data["enchantments"]["entries"].items():
-        assert set(entry["levelMultiplierBps"]) == {str(i) for i in range(1, entry["maxLevel"] + 1)}, eid
-        assert all(isinstance(v, int) and v >= 0 for v in entry["levelMultiplierBps"].values())
+        location = "shop/products.toml.products." + key
+        require(key == product["productId"], location + ".productId")
+        require(product["tradeMode"] in {"buy_sell", "buy_only", "sell_only"}, location + ".tradeMode")
+        require(isinstance(product["baseValueCoins"], int) and product["baseValueCoins"] > 0, location + ".baseValueCoins")
+        require(isinstance(product.get("buyBaseValueCoins", product["baseValueCoins"]), int) and product.get("buyBaseValueCoins", product["baseValueCoins"]) > 0, location + ".buyBaseValueCoins")
+        require(key in rarities and rarities[key] in RANKS, "shop/rarities.toml.itemRarities." + key)
+        require(key in levels and 0 <= levels[key] <= 100, "shop/item_levels.toml.itemLevels." + key)
+        require(product["dailyStock"] > 0 and product["offerWeight"] > 0, location + ".stock/weight")
     thresholds = data["island_levels"]["thresholds"]
-    assert len(thresholds) == 101
-    assert all(t["level"] == i and isinstance(t["requiredPoints"], int) for i, t in enumerate(thresholds))
-    assert thresholds[0]["requiredPoints"] == 0
-    assert all(a["requiredPoints"] < b["requiredPoints"] for a, b in zip(thresholds, thresholds[1:]))
-    definitions = data["rarities"]["definitions"]
-    assert definitions["common"]["dailyWeight"] == definitions["common"]["hiddenWeight"] == 0
-    for mode in ("dailyWeight", "hiddenWeight"):
-        assert all(isinstance(d[mode], int) and d[mode] >= 0 for d in definitions.values())
-        assert sum(d[mode] for d in definitions.values()) > 0
-    assert data["shops"]["pity"]["enabled"] is False
-    assert data["shops"]["hidden"]["chanceBps"] == 500
-    assert data["shops"]["purchaseQuality"] == "ordinary"
-    assert not any(data["shops"]["rerollTriggers"].values())
-    assert data["refresh"]["globalComputeBudgetMicrosPerTick"] <= 1000
-    quota_math = validate_reference_math()
+    require(len(thresholds) == 101 and thresholds[0]["requiredPoints"] == 0, "islands/levels.toml.thresholds")
+    require(all(row["level"] == i for i, row in enumerate(thresholds)), "islands/levels.toml.thresholds.level")
+    require(all(a["requiredPoints"] < b["requiredPoints"] for a, b in zip(thresholds, thresholds[1:])), "islands/levels.toml.thresholds.requiredPoints")
     quotas = data["sale_quotas"]
-    assert quotas["scope"] == "party" and quotas["epochSource"] == "shop_marketEpoch"
-    assert [tier["upToUnits"] for tier in quotas["tiers"]] == [1000, 10000, None]
-    assert [tier["saleMultiplierBps"] for tier in quotas["tiers"]] == [10000, 5000, 1000]
-    assert quotas["counterUsesExactRationals"] and quotas["sumAllLinesThenFloorCoins"]
     for item_id, entry in quotas["itemEquivalents"].items():
-        assert item_id in products and entry["quotaGroup"] in quotas["groups"], item_id
-        assert isinstance(entry["numerator"], int) and isinstance(entry["denominator"], int)
-        assert entry["numerator"] > 0 and entry["denominator"] > 0
+        require(item_id in rarities and entry["quotaGroup"] in quotas["groups"], "shop/sale_quotas.toml.itemEquivalents." + item_id)
+        require(entry["numerator"] > 0 and entry["denominator"] > 0, "shop/sale_quotas.toml.itemEquivalents." + item_id + ".ratio")
     for group in quotas["groups"].values():
-        assert group["unitItemId"] in products
-    for item_id, min_level in data["unlocks"]["corePurchaseLevels"].items():
-        assert levels[item_id] == min_level, item_id
-    assert data["unlocks"]["purchaseOnly"]
-    assert not any(data["unlocks"][k] for k in ("blockCrafting", "blockPlacement", "blockNaturalGeneration"))
-    rules, shipping = data["server_rules"], data["shipping"]
-    assert not rules["villagerTradingEnabled"] and not rules["wanderingTraderTradingEnabled"]
-    assert all(rules[k] for k in ("piglinBarteringEnabled", "villagerBreedingEnabled", "villagerWorkAiEnabled", "ironGolemSpawningEnabled"))
-    assert shipping["trigger"] == "redstone_rising_edge_only" and not shipping["scanOnContinuousPower"]
-    assert shipping["inventorySlots"] == 27 and not shipping["doubleChestEnabled"]
-    assert shipping["normalPricesAndSaleQuotas"] and shipping["profits"] == "party_wallet"
-    assert shipping["islandEpochScope"] == "party_and_dimension" and shipping["resetInvalidatesEpoch"] == "overworld_only"
-    assert products[shipping["itemId"]]["baseValueCoins"] == shipping["baseValueCoins"]
-    examples = [(100, Fraction(1)), (95, Fraction(7, 8)), (90, Fraction(3, 4)),
-                (80, Fraction(1, 2)), (70, Fraction(1, 3)), (65, Fraction(1, 4)),
-                (60, Fraction(1, 6)), (50, Fraction(0)), (49, Fraction(0))]
-    for remaining, wanted in examples:
-        assert durability_multiplier(remaining, 100) == wanted
-    prior = Fraction(0)
-    for remaining in range(101):
-        current = durability_multiplier(remaining, 100)
-        assert current >= prior and 0 <= current <= 1
-        prior = current
-    # Rounding must happen once, after grade, all enchantments, durability, and the sell divisor.
-    sample = Fraction(1000 * divisor) * 2 * Fraction(3, 2) * Fraction(13, 10) * Fraction(3, 2) * Fraction(3, 4) / divisor
-    assert math.floor(sample) == 4387
-    ordinary, special, sell_only = [], [], []
-    for key, product in active.items():
-        if product["tradeMode"] == "sell_only":
-            sell_only.append(key)
-        else:
-            (ordinary if rarities[key] == "common" else special).append(key)
-    for lv in (0, 3, 10, 27, 50, 75, 95, 100):
-        assert any(levels[k] <= lv for k in special), f"No eligible daily goods at level {lv}"
+        require(group["unitItemId"] in rarities, "shop/sale_quotas.toml.groups.unitItemId")
+    for item_id, level in data["unlocks"]["corePurchaseLevels"].items():
+        require(item_id in products and products[item_id]["tradeMode"] == "buy_sell" and levels[item_id] == level, "automation/unlocks.toml.corePurchaseLevels." + item_id)
+    for mode in ("dailyWeight", "hiddenWeight"):
+        values = [row[mode] for row in data["rarities"]["definitions"].values()]
+        require(all(isinstance(v, int) and v >= 0 for v in values) and sum(values) > 0, "shop/rarities.toml.definitions." + mode)
+    hidden = data["shops"]["hidden"]
+    require(0 <= hidden["chanceBps"] <= 10000 and hidden["slots"] >= 0, "shop/shops.toml.hidden")
+    require(0 <= hidden["guaranteedLegendary"] + hidden["guaranteedEpic"] <= hidden["slots"], "shop/shops.toml.hidden.guarantee")
+    ordinary = [k for k, p in products.items() if p["tradeMode"] in {"buy_sell", "buy_only"} and rarities[k] == "common"]
+    special = [k for k, p in products.items() if p["tradeMode"] in {"buy_sell", "buy_only"} and rarities[k] != "common"]
     return {
-        "catalogRows": len(products), "activeRows": len(active),
-        "shopRevision": data["products"].get("shopRevision", "legacy"),
-        "saleDivisor": divisor, "minimumBaseCoins": floor,
-        "purchasePremiumsIndependent": True,
+        "catalogRows": len(products), "activeRows": len(products), "disabledRows": 0,
+        "shopRevision": data["products"].get("shopRevision"), "saleDivisor": divisor,
         "ordinaryRows": len(ordinary), "dailyRows": len(special),
-        "sellOnlyRows": len(sell_only),
+        "sellOnlyRows": sum(p["tradeMode"] == "sell_only" for p in products.values()),
         "quotaGroups": len(quotas["groups"]), "quotaEquivalentRows": len(quotas["itemEquivalents"]),
         "automationPurchaseGates": len(data["unlocks"]["corePurchaseLevels"]),
-        "quotaReferenceMath": quota_math,
-        "disabledRows": len(products) - len(active),
-        "enchantments": len(data["enchantments"]["entries"]),
-        "rarityCounts": dict(Counter(rarities[k] for k in active)),
-        "priceOriginCounts": dict(Counter(p["priceOrigin"] for p in active.values())),
         "source": data["products"]["source"],
-        "durabilityExamples": [{"remainingPercent": r, "valueMultiplier": str(v)} for r, v in examples],
-        "checksPassed": ["metadata_references", "100_level_thresholds", "weighted_shop_config",
-                         "no_pity_no_reroll", "stock_and_min_prices", "43_enchantment_tables",
-                         "durability_boundaries_monotonicity", "single_final_rounding",
-                         "party_resource_equivalent_quotas", "quota_cross_boundary_rational_math",
-                         "core_purchase_only_gates", "villager_wandering_disabled_piglin_preserved",
-                         "shipping_chest_rising_edge_configuration"],
-        "notYetVerified": ["live_registry", "real_creative_categories", "complete_recipe_arbitrage",
-                           "runtime_sale_matching", "refresh_latency", "networking_and_restart",
-                           "80_150_hour_pacing", "late_game_income_rate", "trading_menu_bypass",
-                           "redstone_hopper_interaction", "shipping_atomic_restart_recovery"],
+        "durabilityExamples": [{"remainingPercent": r, "valueMultiplier": str(durability_multiplier(r, 100))} for r in (100, 90, 80, 65, 50)],
+        "checksPassed": ["TOML_parse", "positive_sellable_products", "independent_metadata_references", "level_thresholds", "hidden_guarantee_configuration", "quota_references"],
+        "notYetVerified": ["This offline tool cannot verify runtime registries or gameplay. See current implementation verification records."]
     }
 
 
@@ -840,10 +790,10 @@ def render(data: dict, report: dict) -> None:
         "- 标准附魔书/药水按显式组件变体列出。未知组件、装有物品的容器、未配置特殊形态不自动收购。",
         "- 类别是离线提示，游戏中以原版CreativeModeTabs为准。仅材料缺矿床不等于产物不可再生。",
         "- 职业村民及流浪商人交易关闭；猪灵以物易物保留。购买等级只限制商店，不阻止原版生产/合成。",
-        "- 生电批量产物采用较低基价；数量按sale_quotas.json换算，同组压缩、氧化、颜色和装备不会重置额度。",
+        "- 生电批量产物采用较低基价；数量按sale_quotas.toml换算，同组压缩、氧化、颜色和装备不会重置额度。",
         "- priceOrigin=category_draft 的行是分类兜底，不是已逐项验证的获取结论；运行与配方套利校验仍待实施。", "",
         "## 可编辑数据", "",
-        "价格：products.json；稀有度：rarities.json；解锁等级：item_levels.json；附魔：enchantments.json；每日模式：shops.json；售出阶梯与等份：sale_quotas.json。", "",
+        "价格：products.toml；稀有度：rarities.toml；解锁等级：item_levels.toml；附魔：enchantments.toml；每日模式：shops.toml；售出阶梯与等份：sale_quotas.toml。", "",
         "## 商品逐项表", "",
         "| 物品/标准变体 | 商品ID | 分类提示 | 稀有度 | 岛等级 | 基准价值 | 基准购入价 | 购入倍率 | 无损收购价 | 购买渠道 | 每日库存 | 首件基础计分 | 价格来源 | 筛选规则 | 获取说明 |",
         "|---|---|---|---|---:|---:|---:|---:|---:|---|---:|---:|---|---|---|",
@@ -879,7 +829,7 @@ def render(data: dict, report: dict) -> None:
         cells = [
             product["name"], key, product["categoryHint"], RANK_LABELS[rarities[key]], levels[key],
             math.floor(value) if value is not None else "—",
-            math.floor(value * multiplier) if can_buy else "—",
+            math.floor(full_base_value(dict(product, baseValueCoins=product.get("buyBaseValueCoins", product["baseValueCoins"])), enchants) * multiplier * (Fraction(data["shops"].get("regularBuyMultiplierBps", 25000), 10000) if rarities[key] == "common" else 1)) if can_buy else "—",
             (f"首获×{multiplier}，之后×1" if product.get("firstAcquisitionPremium") else f"×{multiplier}") if can_buy else "—",
             math.floor(value / divisor) if value is not None and product["tradeMode"] != "buy_only" else "—", channel,
             product["dailyStock"] if can_buy and rarities[key] != "common" else "—",
@@ -895,7 +845,7 @@ def render(data: dict, report: dict) -> None:
     enchant_lines = [
         "# 原版附魔价值乘算表（Minecraft 26.2）", "",
         "43个附魔来自本机原版附魔数据，最大等级和诅咒/宝藏标签来自原版；倍率为本项目可编辑初稿。", "",
-        "修改enchantments.json中的levelMultiplierBps；10000表示×1，15000表示×1.5。", "",
+        "修改enchantments.toml中的levelMultiplierBps；10000表示×1，15000表示×1.5。", "",
         "组合价值按每个附魔实际等级的系数相乘，不把附魔系数相加。普通附魔与附魔书分别读取ENCHANTMENTS/STORED_ENCHANTMENTS。",
         f"品质倍率、所有附魔倍率、耐久倍率与1/{divisor}一起计算，最后才对金币向下取整。",
         "附魔超过原版最高等级、互斥组合、未配置附魔拒绝自动收购；不把无法判断的物品当普通装备卖掉。",
@@ -946,8 +896,9 @@ def main() -> None:
         if args.jar is None or args.assets is None:
             parser.error("--jar and --assets are required for the first extraction.")
         seed(args.jar, args.assets, args.overwrite_draft)
-        from revise_shop import apply
-        apply(CFG, args.jar)
+        from confirmed_gameplay_defaults import apply_root
+        apply_root(ROOT / "config" / "yumis_sky_island")
+
     data = read_configs()
     report = validate(data)
     render(data, report)

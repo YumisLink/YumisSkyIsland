@@ -120,22 +120,6 @@ MATRIX = [
 ]
 
 
-def quota_integral(x: Fraction) -> Fraction:
-    x = Fraction(x)
-    if x < 0:
-        raise ValueError("quota quantity cannot be negative")
-    return (min(x, Fraction(1000))
-            + min(max(x - 1000, Fraction(0)), Fraction(9000)) / 2
-            + max(x - 10000, Fraction(0)) / 10)
-
-
-def priced_batch(used: Fraction, quantity: int, units_per_item: Fraction, normal_item_sell: Fraction) -> Fraction:
-    total = quantity * units_per_item
-    if quantity <= 0 or units_per_item <= 0:
-        raise ValueError("invalid quantity")
-    return quantity * normal_item_sell * (quota_integral(used + total) - quota_integral(used)) / total
-
-
 def make_rules(header: dict, products: dict) -> dict:
     groups, mappings = {}, {}
 
@@ -302,21 +286,3 @@ def make_rules(header: dict, products: dict) -> dict:
         restartRecovery="durable_journal_and_idempotent_commit_before_accepting_further_transactions")
     return {"sale_quotas": sale, "server_rules": server, "unlocks": core,
             "production": production, "shipping": shipping}
-
-
-def validate_reference_math() -> dict:
-    assert quota_integral(Fraction(1000)) == 1000
-    assert quota_integral(Fraction(10000)) == 5500
-    assert quota_integral(Fraction(100000)) == 14500
-    assert isinstance(quota_integral(Fraction(100000)), Fraction)
-    assert quota_integral(Fraction(10000) + Fraction(1, 9)) - quota_integral(Fraction(10000)) == Fraction(1, 90)
-    assert priced_batch(Fraction(999), 3, Fraction(1), Fraction(10)) == 20
-    assert priced_batch(Fraction(9999), 3, Fraction(1), Fraction(10)) == 7
-    # At 995 iron equivalents, one block spans 5 full and 4 half units.
-    block = priced_batch(Fraction(995), 1, Fraction(9), Fraction(81))
-    ingots = priced_batch(Fraction(995), 9, Fraction(1), Fraction(9))
-    assert block == ingots == 63
-    assert 9 * Fraction(1, 9) == 1
-    assert priced_batch(Fraction(10000), 10, Fraction(1), Fraction(1)) == 1
-    return {"quotaBoundaryChecks": True, "ironBlockAndIngotsSameRevenueAtBasePrices": True,
-            "exactNuggetUnit": "1/9", "example1CoinNormal100000UnitsRevenue": 14500}

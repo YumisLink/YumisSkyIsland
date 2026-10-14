@@ -12,5 +12,11 @@ public abstract class ProductionResultMixin {
     @Shadow(remap=false) @Final private Player player;
     @Shadow(remap=false) private int removeCount;
     @Inject(method="checkTakeAchievements", at=@At("HEAD"))
-    private void take(ItemStack stack,CallbackInfo ci) { if (removeCount > 0 && player instanceof ServerPlayer p) { var rt = SkyServer.get(p.level().getServer()); if (rt != null) rt.professions.take((Slot)(Object)this,p,removeCount); } }
+    private void take(ItemStack stack,CallbackInfo ci) {
+        if(removeCount>0&&player instanceof ServerPlayer p){var rt=SkyServer.get(p.level().getServer());if(rt==null)return;
+            Slot slot=(Slot)(Object)this;
+            rt.progression.takeProduction(slot,p,slot instanceof FurnaceResultSlot?"smelt":"craft",stack.copy(),removeCount);
+            rt.professions.take(slot,p,removeCount);
+        }
+    }
 }

@@ -30,9 +30,15 @@ public final class ItemEconomy {
         for (GameConfig.Product p : config.products.values()) {
             JsonObject data = new JsonObject(); data.addProperty("id", p.canonical().get("itemId").getAsString()); data.addProperty("count", 1);
             data.add("components", p.canonical().get("componentPatch"));
-            ItemStack.CODEC.parse(ops, data).result().filter(s -> !s.isEmpty()).ifPresent(stack -> {
+            try {
+                ItemStack stack = ItemStack.CODEC.parse(ops, data).getOrThrow();
+                if (stack.isEmpty() || !BuiltInRegistries.ITEM.containsKey(Identifier.parse(p.canonical().get("itemId").getAsString()))) throw new IllegalArgumentException("物品为空或 ID 未注册");
+                ItemStack roundtrip = decode(encode(stack));
+                if (!matchesCanonical(roundtrip,stack,p.canonical().getAsJsonObject("componentPatch"))) throw new IllegalArgumentException("标准栈回编码后不匹配");
                 Entry e = new Entry(p, stack); entries.put(p.id(), e); byItem.computeIfAbsent(stack.getItem(), _ -> new ArrayList<>()).add(e);
-            });
+            } catch (RuntimeException error) {
+                throw new IllegalArgumentException("shop/products.toml：商品 " + p.id() + " 无法加载：" + error.getMessage(),error);
+            }
         }
     }
     public DynamicOps<JsonElement> ops() { return ops; }
@@ -49,22 +55,32 @@ public final class ItemEconomy {
     }
     public void epoch(long epoch) { this.epoch = epoch; }
     public int marketBps(String product) {
-        JsonObject market = config.object("shop/shops.json").getAsJsonObject("market");
+        JsonObject market = config.object("shop/shops.toml").getAsJsonObject("market");
         int min = market.get("minPriceBps").getAsInt(), max = market.get("maxPriceBps").getAsInt();
         return new SplittableRandom(DailyShopSelector.mix(seed ^ product.hashCode() ^ DailyShopSelector.mix(epoch))).nextInt(min, max + 1);
     }
     public long buyPrice(Entry entry) {
-        long price = full(entry, entry.template()).multiply(Rational.of(entry.product().buyMultiplierBps(), 10000)).floorLongExact();
+        long price = purchaseValue(entry).multiply(Rational.of(entry.product().buyMultiplierBps(), 10000)).floorLongExact();
         if (price < 1) throw new IllegalArgumentException("商品价格配置无效");
         return price;
     }
     public boolean starter(Entry entry) {
-        JsonObject p = config.object("shop/products.json").getAsJsonObject("products").getAsJsonObject(entry.product().id());
+        JsonObject p = config.object("shop/products.toml").getAsJsonObject("products").getAsJsonObject(entry.product().id());
         return p.has("firstAcquisitionPremium") && p.get("firstAcquisitionPremium").getAsBoolean();
     }
     public long buyPrice(Entry entry, cn.yumis.skyisland.data.IslandState.Party party) {
         return starter(entry) && party.acquiredStarterIds.contains(entry.product().id())
-            ? full(entry, entry.template()).floorLongExact() : buyPrice(entry);
+            ? purchaseValue(entry).floorLongExact() : buyPrice(entry);
+    }
+    private Rational purchaseValue(Entry entry) {
+        return fullValue(entry.product().buyBaseCoins(),marketBps(entry.product().id()),entry.template(),config.object("products/quality.toml"),config.object("shop/enchantments.toml"),config.minimumBaseCoins);
+    }
+    public long buyPrice(Entry entry, cn.yumis.skyisland.data.IslandState.Party party, boolean permanent) {
+        long premium = starter(entry) && party.acquiredStarterIds.contains(entry.product().id()) ? 10000 : entry.product().buyMultiplierBps();
+        long price = purchaseValue(entry).multiply(Rational.of(premium,10000))
+            .multiply(Rational.of(permanent ? config.regularBuyMultiplierBps : 10000,10000)).floorLongExact();
+        if(price < 1)throw new IllegalArgumentException("商品购价配置无效");
+        return price;
     }
     public static int grade(ItemStack stack) {
         CustomData data = stack.get(DataComponents.CUSTOM_DATA);
@@ -92,7 +108,7 @@ public final class ItemEconomy {
         return true;
     }
     public Rational full(Entry entry, ItemStack stack) {
-        return fullValue(entry.product().baseCoins(),marketBps(entry.product().id()),stack,config.object("products/quality.json"),config.object("shop/enchantments.json"),config.minimumBaseCoins);
+        return fullValue(entry.product().baseCoins(),marketBps(entry.product().id()),stack,config.object("products/quality.toml"),config.object("shop/enchantments.toml"),config.minimumBaseCoins);
     }
     public static Rational fullValue(long base,int marketBps,ItemStack stack,JsonObject quality,JsonObject enchantments,long minimumBaseCoins) {
         // Purchase premiums are applied separately and never enter the buyback value.

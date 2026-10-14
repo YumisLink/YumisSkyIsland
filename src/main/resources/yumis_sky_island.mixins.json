@@ -19,7 +19,9 @@
     "ExplosionMixin",
     "FallingBlockMixin",
     "FireMixin",
+    "FishingQuestMixin",
     "FluidMixin",
+    "HarvestQuestMixin",
     "HopperMixin",
     "InventoryPacketMixin",
     "ItemPickupMixin",
@@ -37,6 +39,7 @@
     "ProductionResultMixin",
     "ServerLevelEntitiesAccessor",
     "StonecutResultMixin",
+    "StonecutTransferMixin",
     "WorldInteractionMixin"
   ],
   "injectors": {

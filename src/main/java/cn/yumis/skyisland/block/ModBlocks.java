@@ -15,7 +15,7 @@ public final class ModBlocks {
     public static void register() {
         Identifier id = YumisSkyIsland.id("shipping_chest");
         SHIPPING_CHEST = Registry.register(BuiltInRegistries.BLOCK, id, new ShippingChestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHEST).setId(ResourceKey.create(Registries.BLOCK, id)).pushReaction(PushReaction.BLOCK)));
-        Registry.register(BuiltInRegistries.ITEM, id, new BlockItem(SHIPPING_CHEST, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
+        Registry.register(BuiltInRegistries.ITEM, id, new BlockItem(SHIPPING_CHEST, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id)).useBlockDescriptionPrefix()));
         SHIPPING_TYPE = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, id, FabricBlockEntityTypeBuilder.create(ShippingChestEntity::new, SHIPPING_CHEST).build());
     }
 }
