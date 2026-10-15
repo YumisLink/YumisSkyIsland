@@ -4,20 +4,22 @@
 # 配置结构版本；资料字段，勿随意降低；当前默认：1
 schemaVersion = 1
 # 个人职业经验等级曲线
-diamondPickaxeMinimumQualityLevel = 65
+# 所有职业默认开放，等级没有上限。
+allCanBeLearned = true
 eligibleManualSources = ["crafting", "stonecutting", "furnace"]
-qualityEligible = "damageable_whitelisted_profession_goods"
 minimumXpBatchSize = 1
 noXpItems = ["minecraft:iron_ingot", "minecraft:gold_ingot", "minecraft:copper_ingot", "minecraft:diamond", "minecraft:emerald", "minecraft:iron_nugget", "minecraft:gold_nugget", "minecraft:copper_nugget", "minecraft:bone_meal", "minecraft:dried_kelp_block", "minecraft:iron_block", "minecraft:gold_block", "minecraft:copper_block", "minecraft:diamond_block", "minecraft:emerald_block", "minecraft:coal_block", "minecraft:redstone_block", "minecraft:lapis_block", "minecraft:slime_block", "minecraft:honey_block"]
 successfulFishingXp = 12
+# 每次符合名单的猎物击杀经验。
+successfulHunterKillXp = 6
 
 [xpCurve]
 # 每级基础经验要求；非负整数；当前默认：100
 perLevelBase = 100
 # 每级增加的经验要求；非负整数；当前默认：25
 perLevelGrowth = 25
-# 等级上限资料；岛／职业默认为100；当前默认：100
-maxLevel = 100
+# 100级起每级增量中的额外增长；曲线持续递增且不封顶。
+post100Growth = 100
 # 每件手工制作成功给予的职业经验；非负整数
 
 [successfulCraftXp]
@@ -33,58 +35,102 @@ chef = 4
 farmer = 3
 # 说明字段 hunter；资料用途，不单独改变运行行为；当前默认：6
 hunter = 6
-# 按职业等级分段的品质抽取权重
+# 品质按职业等级减物品等级的差值抽取，万分比。
 
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：0
-minLevel = 0
-# 五档品质权重；非负整数，总和必须大于0
-weights = [10000, 0, 0, 0, 0]
+[[qualityDifference]]
+minDifference = 0
+silverBps = 900
+goldBps = 100
 
+[[qualityDifference]]
+minDifference = 20
+silverBps = 2500
+goldBps = 500
 
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：10
-minLevel = 10
-# 五档品质权重；非负整数，总和必须大于0
-weights = [9000, 1000, 0, 0, 0]
+[[qualityDifference]]
+minDifference = 100
+silverBps = 8500
+goldBps = 1500
 
+[[qualityDifference]]
+minDifference = 200
+silverBps = 5000
+goldBps = 5000
 
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：30
-minLevel = 30
-# 五档品质权重；非负整数，总和必须大于0
-weights = [7800, 1800, 400, 0, 0]
-
-
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：50
-minLevel = 50
-# 五档品质权重；非负整数，总和必须大于0
-weights = [6500, 2500, 900, 100, 0]
-
-
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：65
-minLevel = 65
-# 五档品质权重；非负整数，总和必须大于0
-weights = [5500, 2800, 1400, 290, 10]
-
-
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：80
-minLevel = 80
-# 五档品质权重；非负整数，总和必须大于0
-weights = [4300, 3100, 2000, 570, 30]
-
-
-[[qualityChanceBands]]
-# 本区间起始等级；非负整数；当前默认：100
-minLevel = 100
-# 五档品质权重；非负整数，总和必须大于0
-weights = [3000, 3500, 2500, 900, 100]
-# 钻石镐产生高品质的铁匠最低等级；默认65；当前默认：65
+[[qualityDifference]]
+minDifference = 500
+silverBps = 0
+goldBps = 10000
 # 说明字段 eligibleManualSources；资料用途，不单独改变运行行为
-# 说明字段 qualityEligible；资料用途，不单独改变运行行为；当前默认："damageable_whitelisted_profession_goods"
 # 说明字段 minimumXpBatchSize；资料用途，不单独改变运行行为；当前默认：1
 # 无损压缩／还原等不提供制作经验的物品 ID 列表
 # 每次真实成功获钓的渔夫职业经验；默认12，空收杆／钩实体不计；当前默认：12
+
+# 非制造产物的独立物品等级；只影响品质概率和产出经验折减。
+[sourceItems."minecraft:wheat"]
+profession = "farmer"
+itemLevel = 0
+[sourceItems."minecraft:sweet_berries"]
+profession = "farmer"
+itemLevel = 0
+[sourceItems."minecraft:carrot"]
+profession = "farmer"
+itemLevel = 10
+[sourceItems."minecraft:potato"]
+profession = "farmer"
+itemLevel = 20
+[sourceItems."minecraft:beetroot"]
+profession = "farmer"
+itemLevel = 30
+[sourceItems."minecraft:pumpkin"]
+profession = "farmer"
+itemLevel = 40
+[sourceItems."minecraft:melon_slice"]
+profession = "farmer"
+itemLevel = 50
+[sourceItems."minecraft:sugar_cane"]
+profession = "farmer"
+itemLevel = 60
+[sourceItems."minecraft:cocoa_beans"]
+profession = "farmer"
+itemLevel = 70
+[sourceItems."minecraft:nether_wart"]
+profession = "farmer"
+itemLevel = 80
+[sourceItems."minecraft:chorus_fruit"]
+profession = "farmer"
+itemLevel = 90
+[sourceItems."minecraft:cod"]
+profession = "fisherman"
+itemLevel = 0
+[sourceItems."minecraft:salmon"]
+profession = "fisherman"
+itemLevel = 10
+[sourceItems."minecraft:pufferfish"]
+profession = "fisherman"
+itemLevel = 20
+[sourceItems."minecraft:tropical_fish"]
+profession = "fisherman"
+itemLevel = 30
+[sourceItems."minecraft:enchanted_book"]
+profession = "fisherman"
+itemLevel = 80
+[sourceItems."minecraft:nautilus_shell"]
+profession = "fisherman"
+itemLevel = 50
+
+# 只有以下本人或本人投射物击杀才给猎人经验与掉落品质；敌对击杀仍可推进任务。
+[hunterMobs."minecraft:chicken"]
+itemLevel = 0
+[hunterMobs."minecraft:pig"]
+itemLevel = 10
+[hunterMobs."minecraft:sheep"]
+itemLevel = 20
+[hunterMobs."minecraft:cow"]
+itemLevel = 30
+[hunterMobs."minecraft:rabbit"]
+itemLevel = 40
+[hunterMobs."minecraft:mooshroom"]
+itemLevel = 50
+[hunterMobs."minecraft:goat"]
+itemLevel = 60

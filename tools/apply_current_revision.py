@@ -42,7 +42,7 @@ def apply(folder):
             product["shopRule"] = "加工建筑品删除购买、收购与金币估值"
             changed += 1
         product["firstAcquisitionPremium"] = item in starters and product["tradeMode"] != "disabled"
-    data["products"] = {k: p for k, p in data["products"].items() if p["tradeMode"] in {"buy_sell", "sell_only"} and isinstance(p.get("baseValueCoins"), int) and p["baseValueCoins"] > 0}
+    data["products"] = {k: p for k, p in data["products"].items() if p["tradeMode"] in {"buy_sell", "buy_only", "sell_only"} and isinstance(p.get("baseValueCoins"), int) and p["baseValueCoins"] > 0}
     data["shopRevision"] = "control-panel-v4"
     write(path, data)
     shipping_path = folder / "automation/shipping_chest.toml"

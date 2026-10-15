@@ -131,7 +131,6 @@ public final class TomlConfigIO {
         String label = switch (key) {
             case "id" -> "固定标识；已有任务标识不可修改";
             case "name" -> "界面显示名称";
-            case "description" -> "任务说明，支持中文";
             case "kind" -> "任务类型：main 队伍主线，side 个人支线，profession 个人职业任务";
             case "objective" -> "完成目标：materials 提交材料，place_shipping_chest 本人放置，tracked 追踪本人行动";
             case "profession" -> "职业ID：fisherman、farmer、blacksmith、stonemason、artisan、chef、hunter";
@@ -149,9 +148,9 @@ public final class TomlConfigIO {
             case "itemId" -> "有效注册物品 ID，例如 minecraft:oak_log";
             case "quantity", "count" -> "物品数量；正整数";
             case "components" -> "Minecraft 物品组件；保留合法的附魔、药水及其它属性";
-            case "minimumQuality" -> "最低品质：0普通、1精良、2稀有、3史诗、4传说；省略表示不限";
+            case "minimumQuality" -> "最低品质：0普通、1银星、2金星；省略表示不限";
             case "rewardItems" -> "领取的物品奖励列表；背包不足时不扣材料";
-            case "rewardCoins" -> "金币奖励；非负64位整数，0表示不发金币";
+            case "rewardCoins" -> "货币奖励；非负64位整数，0表示不发货币";
             case "unlockFeatures" -> "完成后永久授予的预设功能 ID；删除或重置任务不会撤销";
             case "revision" -> "任务定义修订号；由服务器保存时递增，勿手工回退";
             case "features" -> "独立的预设功能定义；不由任务数量决定是否开放";

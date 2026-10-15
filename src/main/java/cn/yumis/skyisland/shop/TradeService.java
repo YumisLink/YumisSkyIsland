@@ -81,7 +81,12 @@ public final class TradeService {
             runtime.progression.acquired(p, id);
             if (special) p.dailyStock.put(id, p.dailyStock.get(id) - quantity);
             recovery(state, player, inventory);
-        }, () -> { applyRecovery(player); SkyServer.tell(player, "购入 " + entry.product().name() + " ×" + quantity + "，花费 " + Money.format(cost)); });
+        }, () -> {
+            applyRecovery(player);
+            JsonObject notice=new JsonObject();notice.addProperty("partyId",party.id.toString());notice.addProperty("actor",player.getGameProfile().name());
+            notice.addProperty("itemId",id);notice.addProperty("quantity",quantity);notice.addProperty("cost",cost);
+            runtime.partyEvent(party.id,"purchase_notice",notice);
+        });
     }
     public void sell(ServerPlayer player, boolean hand) {
         sell(player,hand,true);
@@ -121,7 +126,7 @@ public final class TradeService {
             sum=sum.add(runtime.config.quotaCurve.quote(old,input.quantity(),input.unitsPerItem(),input.normalItemSale()));
             used.put(input.group(),old.add(input.unitsPerItem().multiply(input.quantity())));
             JsonObject row=new JsonObject(); row.addProperty("slot",input.slot()); row.addProperty("quantity",input.quantity());
-            row.addProperty("name",player.getInventory().getItem(input.slot()).getHoverName().getString()); row.addProperty("unit",input.normalItemSale().toString());
+            row.addProperty("unit",input.normalItemSale().toString());
             row.addProperty("coins",sum.floorLongExact()-before.floorLongExact()); lines.add(row);
         }
         data.add("inventory",inventory); data.add("lines",lines); runtime.send(player,"sale_preview",data);
@@ -136,7 +141,7 @@ public final class TradeService {
             try { preview(player,preview.selection,false); } catch(IllegalArgumentException e) { preview(player,"",false); }
             SkyServer.tell(player,"物品、行情或额度已变化，请查看新报价后再次确认"); return;
         }
-        if(!preview.plan.canCommit()) throw new IllegalArgumentException("请选择可售物品；整笔收益须至少1金币");
+        if(!preview.plan.canCommit()) throw new IllegalArgumentException("请选择可售物品；整笔收益须至少1"+Money.currencyName());
         previews.remove(player.getUUID()); var plan=planner.prepare(party.coins,counters(party),preview.plan.removals());
         JsonArray inventory=runtime.economy.capture(player.getInventory());
         for(var input:plan.removals()){var stack=runtime.economy.decode(inventory.get(input.slot()));stack.shrink(input.quantity());inventory.set(input.slot(),runtime.economy.encode(stack));}

@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -22,7 +23,9 @@ import java.math.*;
 import java.util.*;
 
 public final class ClientCatalog {
-    public record Product(String id,String name,ItemStack stack,JsonObject canonical,long base,long buyBase,long buyMultiplierBps,String rarity,int level,boolean buy,boolean sell,String category,String quotaGroup,Rational units,boolean starter) {}
+    public record Product(String id,String name,ItemStack stack,JsonObject canonical,long base,long buyBase,long buyMultiplierBps,String rarity,int level,boolean buy,boolean sell,String category,String quotaGroup,Rational units,boolean starter) {
+        @Override public String name(){return stack.getHoverName().getString();}
+    }
     public record Category(String id,String name,ItemStack icon) {}
     public final Map<String,Product> products = new LinkedHashMap<>();
     private final Map<Item,List<Product>> byItem = new HashMap<>();
@@ -34,6 +37,7 @@ public final class ClientCatalog {
     public JsonObject editorState = new JsonObject();
     public final Map<String,JsonObject> questDetails = new HashMap<>();
     public final CoinGainHud coinGains=new CoinGainHud();
+    public final FloatingEventHud events=new FloatingEventHud();
     public JsonObject state = new JsonObject(),prices = new JsonObject(),scoring = new JsonObject(),quality = new JsonObject(),enchantments = new JsonObject();
     public JsonObject itemRarities=new JsonObject(),sale=new JsonObject();
     public String lastError="";
@@ -65,7 +69,7 @@ public final class ClientCatalog {
             if(data.has("specialFavorites"))for(var id:data.getAsJsonArray("specialFavorites"))specialFavorites.add(id.getAsString());
         }catch(Exception error){YumisSkyIsland.LOGGER.warn("无法读取控制面板偏好："+preferences,error);}
     }
-    public void clearConnection() { coinGains.clear(); products.clear(); byItem.clear(); tabs.clear(); categories.clear(); state = new JsonObject(); prices = new JsonObject(); scoring = new JsonObject(); quality = new JsonObject(); enchantments = new JsonObject();itemRarities=new JsonObject();sale=new JsonObject();lastError="";questDetails.clear();ItemPickerCatalog.clear();editorState=new JsonObject();saleDesired=false;taskBusy=false; revision++; }
+    public void clearConnection() { coinGains.clear(); events.clear(); products.clear(); byItem.clear(); tabs.clear(); categories.clear(); state = new JsonObject(); prices = new JsonObject(); scoring = new JsonObject(); quality = new JsonObject(); enchantments = new JsonObject();itemRarities=new JsonObject();sale=new JsonObject();lastError="";questDetails.clear();ItemPickerCatalog.clear();editorState=new JsonObject();saleDesired=false;taskBusy=false; revision++; }
     public void receive(String json) {
         JsonObject packet = JsonParser.parseString(json).getAsJsonObject(); String kind = packet.get("kind").getAsString(); JsonElement data = packet.get("data");
         if(kind.equals("rules")&&data.getAsJsonObject().has("itemRarities"))itemRarities=data.getAsJsonObject().getAsJsonObject("itemRarities");
@@ -76,7 +80,7 @@ public final class ClientCatalog {
                 var ops = RegistryOps.create(JsonOps.INSTANCE,mc.getConnection().registryAccess());
                 for (JsonElement element : data.getAsJsonArray()) {
                     JsonObject row = element.getAsJsonObject(); ItemStack stack = ItemStack.CODEC.parse(ops,row.get("stack")).getOrThrow();
-                    Product p = new Product(row.get("id").getAsString(),row.get("name").getAsString(),stack,row.getAsJsonObject("canonical"),row.get("base").getAsLong(),row.get("buyBase").getAsLong(),row.get("buyMultiplierBps").getAsLong(),row.get("rarity").getAsString(),row.get("level").getAsInt(),row.get("buy").getAsBoolean(),row.get("sell").getAsBoolean(),row.get("category").getAsString(),row.get("quotaGroup").getAsString(),Rational.parse(row.get("quotaUnits").getAsString()),row.has("firstAcquisitionPremium")&&row.get("firstAcquisitionPremium").getAsBoolean());
+                    Product p = new Product(row.get("id").getAsString(),stack.getHoverName().getString(),stack,row.getAsJsonObject("canonical"),row.get("base").getAsLong(),row.get("buyBase").getAsLong(),row.get("buyMultiplierBps").getAsLong(),row.get("rarity").getAsString(),row.get("level").getAsInt(),row.get("buy").getAsBoolean(),row.get("sell").getAsBoolean(),row.get("category").getAsString(),row.get("quotaGroup").getAsString(),Rational.parse(row.get("quotaUnits").getAsString()),row.has("firstAcquisitionPremium")&&row.get("firstAcquisitionPremium").getAsBoolean());
                     products.put(p.id(),p); byItem.computeIfAbsent(stack.getItem(),_ -> new ArrayList<>()).add(p);
                 }
                 if (tabs.isEmpty()) buildTabs(); revision++;
@@ -85,7 +89,7 @@ public final class ClientCatalog {
             case "state" -> {
                 JsonObject next=data.getAsJsonObject();
                 if(!taskContext(state).equals(taskContext(next)))questDetails.clear();
-                if(!partyId(state).equals(partyId(next)))coinGains.clear();
+                if(!partyId(state).equals(partyId(next))){coinGains.clear();events.clear();}
                 state=next;
                 if(state.has("progression")&&state.getAsJsonObject("progression").has("quests"))for(var element:state.getAsJsonObject("progression").getAsJsonArray("quests")){
                     var row=element.getAsJsonObject();var cached=questDetails.get(row.get("id").getAsString());
@@ -96,14 +100,17 @@ public final class ClientCatalog {
                 }
                 revision++;
             }
-            case "rules" -> { importFavorites(); JsonObject rules = data.getAsJsonObject(); scoring = rules.getAsJsonObject("scoring"); quality = rules.getAsJsonObject("quality"); enchantments = rules.getAsJsonObject("enchantments");saleDivisor=rules.get("saleDivisor").getAsLong();minimumBaseCoins=rules.get("minimumBaseCoins").getAsLong();regularBuyMultiplierBps=rules.get("regularBuyMultiplierBps").getAsLong();if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);List<QuotaCurve.Tier> tiers=new ArrayList<>();for(JsonElement e:rules.getAsJsonArray("quotas")){var t=e.getAsJsonObject();tiers.add(new QuotaCurve.Tier(t.get("upToUnits").isJsonNull()?null:Rational.of(t.get("upToUnits").getAsLong()),t.get("saleMultiplierBps").getAsInt()));}quotaCurve=new QuotaCurve(tiers);revision++; }
+            case "rules" -> { importFavorites(); JsonObject rules = data.getAsJsonObject(); scoring = rules.getAsJsonObject("scoring"); quality = rules.getAsJsonObject("quality"); enchantments = rules.getAsJsonObject("enchantments");saleDivisor=rules.get("saleDivisor").getAsLong();minimumBaseCoins=rules.get("minimumBaseCoins").getAsLong();regularBuyMultiplierBps=rules.get("regularBuyMultiplierBps").getAsLong();Money.currencyName(rules.get("genshinMode").getAsBoolean()?"摩拉":"金币");if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);List<QuotaCurve.Tier> tiers=new ArrayList<>();for(JsonElement e:rules.getAsJsonArray("quotas")){var t=e.getAsJsonObject();tiers.add(new QuotaCurve.Tier(t.get("upToUnits").isJsonNull()?null:Rational.of(t.get("upToUnits").getAsLong()),t.get("saleMultiplierBps").getAsInt()));}quotaCurve=new QuotaCurve(tiers);revision++; }
             case "sale_begin" -> {saleDesired=true;panel().showSale();}
             case "sale_preview" -> {
                 if(saleDesired){sale=data.getAsJsonObject();lastError="";if(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.saleUpdated();revision++;}
             }
             case "sale_done" -> {sale=new JsonObject();if(saleDesired&&Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.cancelSale(false);saleDesired=false;revision++;}
             case "request_error" -> {lastError=data.getAsJsonObject().get("message").getAsString();if(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.saleFailed();revision++;}
-            case "coin_gain" -> {var gain=data.getAsJsonObject();if(gain.get("partyId").getAsString().equals(partyId(state)))coinGains.receive(gain.get("sequence").getAsLong(),gain.get("amount").getAsLong());}
+            case "coin_gain", "coin_change" -> {var gain=data.getAsJsonObject();if(gain.get("partyId").getAsString().equals(partyId(state)))coinGains.receive(gain.get("sequence").getAsLong(),gain.get("amount").getAsLong());}
+            case "purchase_notice" -> {var row=data.getAsJsonObject();if(row.get("partyId").getAsString().equals(partyId(state))){Product product=products.get(row.get("itemId").getAsString());String item=product==null?new ItemStack(BuiltInRegistries.ITEM.getValue(Identifier.parse(row.get("itemId").getAsString()))).getHoverName().getString():product.stack().getHoverName().getString();events.receive(row.get("actor").getAsString()+"花了"+Money.format(row.get("cost").getAsLong())+"购买了"+item+" ×"+row.get("quantity").getAsInt(),0xFFE4CF91);}}
+            case "death_notice" -> {var row=data.getAsJsonObject();if(row.get("partyId").getAsString().equals(partyId(state)))events.receive(row.get("actor").getAsString()+"死亡了，扣除"+Money.format(row.get("cost").getAsLong())+"作为医药费。",0xFFFFA6A6);}
+            case "profession_xp" -> {var row=data.getAsJsonObject();events.receiveXp(row.get("profession").getAsString(),new java.math.BigInteger(row.get("amount").getAsString()));}
             case "open" -> panel();
             default -> { }
         }
@@ -142,6 +149,7 @@ public final class ClientCatalog {
         }
         return null;
     }
+    public String productName(String id){Product product=products.get(id);if(product!=null)return product.stack().getHoverName().getString();var key=Identifier.tryParse(id);if(key!=null&&BuiltInRegistries.ITEM.containsKey(key))return new ItemStack(BuiltInRegistries.ITEM.getValue(key)).getHoverName().getString();return id;}
     public void tooltip(ItemStack stack,List<Component> lines) {
         if(products.isEmpty()&&itemRarities.isEmpty())return;
         String rarity=rarity(stack);int color=RarityColors.color(rarity)&0xFFFFFF;
@@ -149,7 +157,7 @@ public final class ClientCatalog {
         lines.add(Component.literal("种类稀有度："+RarityColors.name(rarity)).withStyle(s->s.withColor(color)));
         Product p = match(stack);
         int grade = ItemEconomy.grade(stack);
-        if (grade > 0 && quality.has("grades")) lines.add(Component.literal("制造品质：" + quality.getAsJsonArray("grades").get(grade).getAsJsonObject().get("name").getAsString()).withStyle(grade >= 3 ? ChatFormatting.GOLD : ChatFormatting.AQUA));
+        if (grade > 0 && quality.has("grades")) lines.add(Component.literal("制造品质：" + quality.getAsJsonArray("grades").get(grade).getAsJsonObject().get("name").getAsString()).withStyle(grade == 2 ? ChatFormatting.GOLD : ChatFormatting.AQUA));
         if (p != null) {
             Rational full = value(p,stack), durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()) : Rational.ONE;
             lines.add(Component.literal("价值：" + Money.format(full.multiply(durability).floorLongExact()) + " / 件").withStyle(ChatFormatting.YELLOW));
@@ -157,7 +165,7 @@ public final class ClientCatalog {
                 Rational normal = full.multiply(durability).divide(Rational.of(saleDivisor)), used = Rational.ZERO;
                 if (state.has("quotas") && state.getAsJsonObject("quotas").has(p.quotaGroup())) used = Rational.parse(state.getAsJsonObject("quotas").get(p.quotaGroup()).getAsString());
                 long quote = quotaCurve.quote(used,stack.getCount(),p.units(),normal).floorLongExact();
-                lines.add(Component.literal("常规收购：" + decimal(normal) + "金币 / 件").withStyle(ChatFormatting.GRAY));
+                lines.add(Component.literal("行情后基础价值：" + decimal(normal) + Money.currencyName() + " / 件").withStyle(ChatFormatting.GRAY));
                 lines.add(Component.literal("本队当前阶梯：" + Money.format(quote) + " / " + stack.getCount() + "件").withStyle(ChatFormatting.GREEN));
             }
         }
@@ -196,7 +204,7 @@ public final class ClientCatalog {
         try{return wallet()>=Math.multiplyExact(price(p,shop),quantity);}catch(ArithmeticException error){return false;}
     }
     public void purchase(Product p,int shop,int quantity){
-        if(!canBuy(p,shop,quantity)){lastError="等级、金币、权限或库存不足";return;}
+        if(!canBuy(p,shop,quantity)){lastError="等级、"+Money.currencyName()+"、权限或库存不足";return;}
         if(net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(cn.yumis.skyisland.network.ShopPayloads.Purchase.TYPE))
             net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(new cn.yumis.skyisland.network.ShopPayloads.Purchase(p.id(),quantity,shop==0?"permanent":"special",state.get("epoch").getAsLong(),UUID.fromString(state.get("partyId").getAsString()),state.get("islandEpoch").getAsLong()));
     }

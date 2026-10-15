@@ -132,7 +132,7 @@ public final class ProgressionService {
         rt.trades.commitInventory(player, inventory, s -> {
             var current = s.parties.get(p.id); acquired(current, b.reward);
             fill(current, current.bounties.get(slot));
-        }, () -> SkyServer.tell(player, "悬赏兑换完成，获得 " + reward.product().name() + " ×1；新悬赏已生成"));
+        }, () -> SkyServer.tell(player, net.minecraft.network.chat.Component.literal("悬赏兑换完成，获得 ").append(reward.template().getHoverName()).append(" ×1；新悬赏已生成")));
     }
     private JsonObject next(IslandState.Party p) {
         var quest = catalog.nextMain(p);
@@ -209,7 +209,7 @@ public final class ProgressionService {
     }
     public void fished(ServerPlayer player,Collection<ItemStack> loot){
         for(var stack:loot)if(!stack.isEmpty())produced(player,"fish",stack,stack.getCount());
-        rt.professions.fished(player);
+        rt.professions.fished(player,loot);
     }
     private JsonArray exchangeMaterials(ServerPlayer player, List<cn.yumis.skyisland.shop.TaskMaterialPlanner.Requirement> requirements, List<ItemStack> rewards) {
         player.stopUsingItem(); if(player.containerMenu!=player.inventoryMenu)player.closeContainer();
@@ -240,7 +240,7 @@ public final class ProgressionService {
                 if (!ItemEconomy.safeToSell(stack) || !ItemEconomy.matchesCanonical(stack, entry.template(), entry.product().canonical().getAsJsonObject("componentPatch"))) continue;
                 int take = Math.min(left, stack.getCount()); stack.shrink(take); left -= take;
             }
-            if (left != 0) throw new IllegalArgumentException("材料不足：" + entry.product().name() + " ×" + r.quantity);
+            if (left != 0) throw new IllegalArgumentException("悬赏材料不足，请检查数量 ×" + r.quantity);
         }
         for (var reward : rewards) {
             int left = reward.getCount();
@@ -257,7 +257,7 @@ public final class ProgressionService {
         JsonArray offers = new JsonArray();
         for (var b : p.bounties) {
             JsonObject o = GameConfig.JSON.toJsonTree(b).getAsJsonObject();
-            if (b.material != null && !invalid(b)) { o.addProperty("materialName", rt.economy.entries.get(b.material).product().name()); o.addProperty("rewardName", rt.economy.entries.get(b.reward).product().name()); o.add("rewardStack", b.rewardStack==null?rt.economy.encode(rt.economy.entries.get(b.reward).template()):b.rewardStack.deepCopy()); }
+            if (b.material != null && !invalid(b)) { o.add("rewardStack", b.rewardStack==null?rt.economy.encode(rt.economy.entries.get(b.reward).template()):b.rewardStack.deepCopy()); }
             else o.add("material",JsonNull.INSTANCE);
             offers.add(o);
         }

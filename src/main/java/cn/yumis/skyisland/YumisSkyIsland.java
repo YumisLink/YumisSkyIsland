@@ -57,8 +57,11 @@ public final class YumisSkyIsland implements ModInitializer {
         });
         PlayerBlockBreakEvents.BEFORE.register((world,player,pos,state,be) -> !(world instanceof ServerLevel level) || Protection.canBuild(level,player,pos));
         net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AFTER_DEATH.register((entity,source)->{
-            if(entity instanceof net.minecraft.world.entity.Mob&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player){var rt=SkyServer.get(player.level().getServer());if(rt!=null)rt.progression.action(player,"kill",net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString(),1,"","");}
+            if(entity instanceof net.minecraft.server.level.ServerPlayer dead){var rt=SkyServer.get(dead.level().getServer());if(rt!=null)rt.playerDied(dead);}
+            if(entity instanceof net.minecraft.world.entity.Mob&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player){var rt=SkyServer.get(player.level().getServer());if(rt!=null){String id=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString();rt.progression.action(player,"kill",id,1,"","");rt.professions.hunterKill(player,id);}}
         });
+        net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer,newPlayer,alive)->
+            newPlayer.getFoodData().setFoodLevel(CONFIG.object("economy.toml").getAsJsonObject("death").get("respawnFoodLevel").getAsInt()));
         UseBlockCallback.EVENT.register((player,world,hand,hit) -> world instanceof ServerLevel level && !Protection.canBuild(level,player,hit.getBlockPos()) ? InteractionResult.FAIL : InteractionResult.PASS);
         AttackBlockCallback.EVENT.register((player,world,hand,pos,face) -> world instanceof ServerLevel level && !Protection.canBuild(level,player,pos) ? InteractionResult.FAIL : InteractionResult.PASS);
         UseEntityCallback.EVENT.register((player,world,hand,entity,hit) -> {

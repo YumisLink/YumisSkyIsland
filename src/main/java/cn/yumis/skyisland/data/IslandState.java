@@ -1,12 +1,14 @@
 package cn.yumis.skyisland.data;
 
 import com.google.gson.JsonElement;
+import java.math.BigInteger;
 import java.util.*;
 
 /** Plain data, serialized in the world's journal, never global to all saves. */
 public final class IslandState {
     public int schemaVersion = 3;
-    public long sequence, effectiveTicks, nextSlot;
+    public long sequence, effectiveTicks, nextSlot, marketRound;
+    public long lastMarketDay = -1;
     public long worldSeed;
     public boolean lobbyReady;
     public Map<UUID, Party> parties = new LinkedHashMap<>();
@@ -20,6 +22,7 @@ public final class IslandState {
         public Set<UUID> members = new LinkedHashSet<>(), trusted = new LinkedHashSet<>();
         public Map<String, Long> blockCounts = new LinkedHashMap<>();
         public Map<String, String> quota = new LinkedHashMap<>();
+        public Map<UUID, Long> islandDeaths = new LinkedHashMap<>();
         public Map<String, Integer> dailyStock = new LinkedHashMap<>();
         public boolean hidden, starterReady, resetInProgress;
         public long homeX, homeZ;
@@ -45,7 +48,7 @@ public final class IslandState {
         public UUID activeParty, soloParty, inviteParty;
         public long invitationExpiresAt;
         public String name;
-        public Map<String, Long> professionXp = new LinkedHashMap<>();
+        public Map<String, BigInteger> professionXp = new LinkedHashMap<>();
         public Set<String> completedQuestIds = new LinkedHashSet<>(), readyQuestIds = new LinkedHashSet<>();
         public Map<String, Long> questResetVersions = new LinkedHashMap<>();
         public Map<String, Map<String, Integer>> questProgress = new LinkedHashMap<>();

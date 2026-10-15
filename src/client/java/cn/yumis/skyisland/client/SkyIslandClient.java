@@ -40,6 +40,7 @@ public final class SkyIslandClient implements ClientModInitializer {
             int x = graphics.guiWidth()-mc.font.width(text)-12,y = graphics.guiHeight()-28;
             graphics.fill(x-6,y-4,graphics.guiWidth()-6,y+13,0x98000000); graphics.text(mc.font,text,x,y,0xFFFFDD74,true);
             CATALOG.coinGains.render(graphics,y);
+            CATALOG.events.render(graphics);
         });
     }
 }

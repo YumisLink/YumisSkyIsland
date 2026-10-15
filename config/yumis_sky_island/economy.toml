@@ -1,0 +1,11 @@
+# 经济与死亡规则。修改后重启服务器生效。
+schemaVersion = 1
+# 原神模式当前仅切换货币显示：开启为摩拉，关闭为金币。
+genshinMode = true
+
+[death]
+# 空岛上玩家在同一岛屿第 N 次死亡扣 N 摩拉；允许余额为负。
+firstCost = 1
+additionalCostPerDeath = 1
+# 所有世界复活后的内部饥饿值，满值为20。
+respawnFoodLevel = 6

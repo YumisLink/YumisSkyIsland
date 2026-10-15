@@ -55,14 +55,14 @@ public final class QuestCatalog {
             try {
                 if (!id.matches("[a-z0-9_.-]+")) throw new IllegalArgumentException("ID只能包含小写字母、数字、_、-、.");
                 text(q,"name",80);
-                if (!q.has("description") || q.get("description").getAsString().length() > 2048) throw new IllegalArgumentException("说明最多2048字");
+                q.remove("description");
                 if (!q.has("kind")) q.addProperty("kind","main");
                 if (!q.has("objective")) q.addProperty("objective","materials");
                 if (!Set.of("main","side","profession").contains(q.get("kind").getAsString())) throw new IllegalArgumentException("任务类型必须为 main、side 或 profession");
                 if (!Set.of("materials","place_shipping_chest","tracked").contains(q.get("objective").getAsString())) throw new IllegalArgumentException("未知任务目标");
                 if(q.get("kind").getAsString().equals("profession")&&(!q.has("profession")||!PROFESSIONS.contains(q.get("profession").getAsString())||!q.get("objective").getAsString().equals("tracked")))throw new IllegalArgumentException("职业任务必须指定有效职业并使用 tracked 目标");
                 if(q.get("kind").getAsString().equals("main")&&q.get("objective").getAsString().equals("tracked"))throw new IllegalArgumentException("追踪目标用于个人任务");
-                if (q.get("rewardCoins").getAsLong() < 0) throw new IllegalArgumentException("金币奖励不能为负");
+                if (q.get("rewardCoins").getAsLong() < 0) throw new IllegalArgumentException("货币奖励不能为负");
                 if(!q.has("rewardExperiencePoints"))q.addProperty("rewardExperiencePoints",0);
                 if(q.get("rewardExperiencePoints").getAsLong()<0||q.get("rewardExperiencePoints").getAsLong()>Integer.MAX_VALUE)throw new IllegalArgumentException("经验点奖励必须为非负整数");
                 if (q.getAsJsonArray("requirements").size() > 32 || q.getAsJsonArray("rewardItems").size() > 32) throw new IllegalArgumentException("材料和奖励各最多32条");
@@ -188,7 +188,6 @@ public final class QuestCatalog {
         int index = 0;
         for (JsonElement row : data.getAsJsonArray("requirements")) {
             var requirement = quest.requirements.get(index++); JsonObject r = row.getAsJsonObject();
-            r.addProperty("name",requirement.template().getHoverName().getString());
             r.add("stack",economy.encode(requirement.template()));
             JsonObject canonical = new JsonObject(); canonical.addProperty("itemId",r.get("itemId").getAsString()); canonical.add("componentPatch",requirement.components());
             r.add("canonical",canonical);
@@ -201,8 +200,9 @@ public final class QuestCatalog {
         JsonArray rows=new JsonArray();
         for(Goal goal:quest.goals()){
             JsonObject row=new JsonObject();row.addProperty("type",goal.type());row.addProperty("targetId",goal.targetId());row.addProperty("quantity",goal.quantity());row.addProperty("progress",count(party,person,quest,goal));
-            String name=goal.type().equals("kill")?BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.parse(goal.targetId())).getDescription().getString():new ItemStack(BuiltInRegistries.ITEM.getValue(Identifier.parse(goal.targetId()))).getHoverName().getString();
-            row.addProperty("name",name);rows.add(row);
+            if(!goal.sourceBlockId().isEmpty())row.addProperty("sourceBlockId",goal.sourceBlockId());
+            if(!goal.toolId().isEmpty())row.addProperty("toolId",goal.toolId());
+            rows.add(row);
         }return rows;
     }
     public static String actionName(String type){return switch(type){case "craft"->"制作／加工";case "smelt"->"手动领取熔炼";case "fish"->"钓获";case "harvest"->"亲自采集";case "kill"->"亲自击杀";default->type;};}

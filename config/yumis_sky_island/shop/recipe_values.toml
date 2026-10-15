@@ -1,0 +1,16 @@
+# 非交易中间材料的配方基础价值；装备配方使用，删去被引用的值会导致配置校验报错。
+schemaVersion = 1
+
+[ingredientValues]
+"minecraft:diamond_axe" = 300100
+"minecraft:diamond_boots" = 400000
+"minecraft:diamond_chestplate" = 800000
+"minecraft:diamond_helmet" = 500000
+"minecraft:diamond_hoe" = 200100
+"minecraft:diamond_leggings" = 700000
+"minecraft:diamond_pickaxe" = 300100
+"minecraft:diamond_shovel" = 100100
+"minecraft:diamond_spear" = 100100
+"minecraft:diamond_sword" = 200050
+"minecraft:stick" = 50
+"minecraft:tripwire_hook" = 525

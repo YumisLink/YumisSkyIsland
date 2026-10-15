@@ -64,6 +64,7 @@ public final class QuestEditorService {
         for(int i=0;i<rows.size();i++)if(rows.get(i).getAsJsonObject().get("id").getAsString().equals(id)){index=i;break;}
         if(action.equals("save")){
             JsonObject definition=body.getAsJsonObject("definition").deepCopy();
+            definition.remove("description");
             if(id.isEmpty()){
                 id="quest_"+UUID.randomUUID().toString().replace("-","");
                 definition.addProperty("id",id);rows.add(definition);

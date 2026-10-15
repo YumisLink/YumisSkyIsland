@@ -3,6 +3,7 @@
   "package": "cn.yumis.skyisland.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "AnvilQualityMixin",
     "BlockChangesMixin",
     "BlockPlacementMixin",
     "BreakBlockMixin",
@@ -23,6 +24,8 @@
     "FluidMixin",
     "HarvestQuestMixin",
     "HopperMixin",
+    "HunterLootMixin",
+    "SweetBerryHarvestMixin",
     "InventoryPacketMixin",
     "ItemPickupMixin",
     "ItemUseContextMixin",

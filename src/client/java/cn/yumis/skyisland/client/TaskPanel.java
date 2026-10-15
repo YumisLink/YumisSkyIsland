@@ -68,18 +68,23 @@ public final class TaskPanel {
         int top=model.editing()?104:74,y=top-detailScroll;
         g.enableScissor(left,top,parent.width-8,parent.height-65);
         text(g,quest.get("name").getAsString(),left,y,titleColor(quest.get("kind").getAsString()),right);y+=18;
-        for(var line:parent.uiFont().split(Component.literal(quest.get("description").getAsString()),right)){g.text(parent.uiFont(),line,left,y,0xFFDDE6EA,false);y+=12;}
         y+=8;
         if(quest.get("objective").getAsString().equals("place_shipping_chest")){text(g,"目标：本人在本队岛成功放置出货箱",left,y,0xFF9DE5C7,right);y+=16;}
         if(quest.has("goals"))for(var element:quest.getAsJsonArray("goals")){
-            var goal=element.getAsJsonObject();String label=cn.yumis.skyisland.server.QuestCatalog.actionName(goal.get("type").getAsString())+" "+goal.get("name").getAsString()+"  "+goal.get("progress").getAsInt()+"/"+goal.get("quantity").getAsInt();
+            var goal=element.getAsJsonObject();String type=goal.get("type").getAsString();var id=net.minecraft.resources.Identifier.parse(goal.get("targetId").getAsString());
+            String name=type.equals("kill")?net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getValue(id).getDescription().getString():new net.minecraft.world.item.ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(id)).getHoverName().getString();
+            String label=cn.yumis.skyisland.server.QuestCatalog.actionName(type)+" "+name+"  "+goal.get("progress").getAsInt()+"/"+goal.get("quantity").getAsInt();
             text(g,label,left,y,0xFF9DE5C7,right);y+=18;
+            var conditions=new ArrayList<String>();
+            if(goal.has("sourceBlockId"))conditions.add("来源："+net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(net.minecraft.resources.Identifier.parse(goal.get("sourceBlockId").getAsString())).getName().getString());
+            if(goal.has("toolId"))conditions.add("工具："+new net.minecraft.world.item.ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(net.minecraft.resources.Identifier.parse(goal.get("toolId").getAsString()))).getHoverName().getString());
+            if(!conditions.isEmpty()){text(g,String.join("；",conditions),left,y,0xFFAFC3CE,right);y+=18;}
         }
         for(var row:quest.getAsJsonArray("requirements")){
             var requirement=row.getAsJsonObject();var template=model.decode(requirement.get("stack"));
             var compiled=compile(requirement);
             int have=0;if(Minecraft.getInstance().player!=null)for(int i=0;i<36;i++){var actual=Minecraft.getInstance().player.getInventory().getItem(i);if(TaskMaterialPlanner.matches(actual,compiled))have+=actual.getCount();}
-            g.item(template,left,y);text(g,"提交 "+requirement.get("name").getAsString()+" ×"+compiled.quantity()+"（背包 "+have+"）",left+23,y+5,RarityColors.color(model.rarity(template)),right-23);y+=24;
+            g.item(template,left,y);text(g,"提交 "+template.getHoverName().getString()+" ×"+compiled.quantity()+"（背包 "+have+"）",left+23,y+5,RarityColors.color(model.rarity(template)),right-23);y+=24;
             if(requirement.has("minimumQuality")){text(g,"品质至少 "+gradeName(requirement.get("minimumQuality").getAsInt()),left,y,0xFFAFC3CE,right);y+=14;}
             String properties=enchantments(template,true);if(!properties.isEmpty()){text(g,properties,left,y,0xFFAFC3CE,right);y+=14;}
         }
@@ -96,7 +101,7 @@ public final class TaskPanel {
             button(g,"重置全服此任务",left+249,parent.height-32,125,!model.taskBusy);
         }
     }
-    private static String gradeName(int grade){return new String[]{"普通","精良","稀有","史诗","传说"}[Math.clamp(grade,0,4)];}
+    private static String gradeName(int grade){return new String[]{"普通","银星","金星"}[Math.clamp(grade,0,2)];}
     private static int titleColor(String kind){return switch(kind){case "main"->0xFFFFD700;case "profession"->0xFF5599FF;default->0xFFFFFFFF;};}
     private static String enchantments(net.minecraft.world.item.ItemStack stack,boolean minimum){var labels=new ArrayList<String>();for(var entry:net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantmentsForCrafting(stack).entrySet())labels.add(entry.getKey().value().description().getString()+(minimum?" ≥":" ")+entry.getIntValue());return labels.isEmpty()?"":"附魔："+String.join("、",labels);}
     private TaskMaterialPlanner.Requirement compile(JsonObject row){return new TaskMaterialPlanner.Requirement(model.decode(row.get("stack")),row.has("components")?row.getAsJsonObject("components"):new JsonObject(),row.get("quantity").getAsInt(),row.has("minimumQuality")?row.get("minimumQuality").getAsInt():null);}
@@ -156,8 +161,8 @@ public final class TaskPanel {
             var row=offers.get(i).getAsJsonObject();int y=112+(i-bountyScroll)*55;g.fill(10,y,parent.width-10,y+51,0xBB252B32);
             if(!row.has("material")||row.get("material").isJsonNull()){text(g,"格 "+(i+1)+" · 暂无合格悬赏；请先卖出普通材料",16,y+18,0xFFBBC6CE,parent.width-32);continue;}
             var reward=model.decode(row.get("rewardStack"));g.item(reward,16,y+5);
-            text(g,row.get("rewardName").getAsString()+" ×1",39,y+7,RarityColors.color(model.rarity(reward)),parent.width-128);
-            text(g,"提交 "+row.get("materialName").getAsString()+" ×"+row.get("quantity").getAsInt(),16,y+24,0xFFDDE6EA,parent.width-130);
+            text(g,reward.getHoverName().getString()+" ×1",39,y+7,RarityColors.color(model.rarity(reward)),parent.width-128);
+            text(g,"提交 "+model.productName(row.get("material").getAsString())+" ×"+row.get("quantity").getAsInt(),16,y+24,0xFFDDE6EA,parent.width-130);
             long ticks=Math.max(0,row.get("expiresAt").getAsLong()-model.state.get("effectiveTicks").getAsLong());
             text(g,"更替 "+ticks/24000+"日 "+ticks%24000/20/60+"分（报价已锁定）",16,y+38,0xFFADB9C3,parent.width-130);
             button(g,"兑换",parent.width-83,y+14,60,data.get("bountyAllowed").getAsBoolean()&&data.get("specialAllowed").getAsBoolean());
@@ -173,7 +178,7 @@ public final class TaskPanel {
         for(int i=bountyScroll;i<Math.min(offers.size(),bountyScroll+visible);i++)if(hit(x,y,parent.width-83,126+(i-bountyScroll)*55,60,22)){
             var row=offers.get(i).getAsJsonObject();if(!row.has("material")||row.get("material").isJsonNull())return true;
             String id=row.get("slot").getAsInt()+":"+row.get("generation").getAsLong()+":"+epoch;
-            parent.confirm("提交 "+row.get("materialName").getAsString()+" ×"+row.get("quantity").getAsInt()+"，获得 "+row.get("rewardName").getAsString()+"。",()->ClientPlayNetworking.send(new ShopPayloads.Request("bounty_claim",party+"|"+id,0)));return true;
+            parent.confirm("提交 "+model.productName(row.get("material").getAsString())+" ×"+row.get("quantity").getAsInt()+"，获得 "+model.productName(row.get("reward").getAsString())+"。",()->ClientPlayNetworking.send(new ShopPayloads.Request("bounty_claim",party+"|"+id,0)));return true;
         }
         return true;
     }

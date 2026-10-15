@@ -57,6 +57,7 @@ public final class SkyServer implements AutoCloseable {
         state().schemaVersion=3;
         state().worldSeed = server.overworld().getSeed();
         lastWorldTime=server.overworld().getGameTime();
+        if(state().lastMarketDay<0)state().lastMarketDay=marketDay();
         economy = new ItemEconomy(config, server.registryAccess(), state().worldSeed);
         economy.epoch(epoch());
         parties = new PartyService(this); worlds = new WorldService(this); trades = new TradeService(this);
@@ -65,7 +66,8 @@ public final class SkyServer implements AutoCloseable {
         progression = new ProgressionService(this);
         questEditor = new QuestEditorService(this);
         for (var p : state().parties.values()) {
-            if (p.cachedPoints == null) { p.cachedPoints = calculatePoints(p).toString(); p.highestIslandLevel = BlockScorer.level(new BigInteger(p.cachedPoints), Arrays.stream(config.levelThresholds).boxed().toList()); if(p.starterReady)p.initialScanEpoch=p.overworldEpoch; }
+            if (p.cachedPoints == null) { p.cachedPoints = calculatePoints(p).toString(); if(p.starterReady)p.initialScanEpoch=p.overworldEpoch; }
+            p.highestIslandLevel=BlockScorer.level(points(p));
             if(!p.resetInProgress)progression.initialize(p);
         }
         economy.epoch(epoch());
@@ -73,21 +75,48 @@ public final class SkyServer implements AutoCloseable {
         if (economy.entries.size() != config.products.size()) YumisSkyIsland.LOGGER.warn("商品真实注册校验：{} / {}；无法创建的商品不会上架", economy.entries.size(), config.products.size());
     }
     public IslandState state() { return store.state(); }
-    public long epoch() { return state().effectiveTicks / config.object("shop/shops.toml").getAsJsonObject("market").get("ticksPerEpoch").getAsLong(); }
+    public long epoch() { return state().marketRound; }
+    private long marketDay(){
+        long anchor=config.object("shop/shops.toml").getAsJsonObject("market").get("refreshAtDayTick").getAsLong();
+        return MarketClock.day(server.overworld().getOverworldClockTime(),anchor);
+    }
     public static void tell(ServerPlayer player, String message) { player.sendSystemMessage(Component.literal("[空岛] " + message)); }
+    public static void tell(ServerPlayer player, Component message) { player.sendSystemMessage(Component.literal("[空岛] ").append(message)); }
     public void change(ServerPlayer actor, Consumer<IslandState> edit, Runnable after) {
         if (closing) return;
         if (!store.available()) { if (actor != null) tell(actor, store.failure() == null ? "数据正在保存，请稍后重试" : "数据写入失败，交易已停止，请联系管理员"); return; }
-        Map<UUID,JsonObject> gains=new LinkedHashMap<>();
+        Map<UUID,JsonObject> changes=new LinkedHashMap<>();
         store.commit(next->{
             Map<UUID,Long> before=new HashMap<>();next.parties.forEach((id,p)->before.put(id,p.coins));edit.accept(next);
-            next.parties.forEach((id,p)->{long old=before.getOrDefault(id,p.coins);if(p.coins>old){JsonObject data=new JsonObject();data.addProperty("partyId",id.toString());data.addProperty("sequence",next.sequence+1);data.addProperty("amount",p.coins-old);gains.put(id,data);}});
+            next.parties.forEach((id,p)->{long old=before.getOrDefault(id,p.coins);if(p.coins!=old){JsonObject data=new JsonObject();data.addProperty("partyId",id.toString());data.addProperty("sequence",next.sequence+1);data.addProperty("amount",Math.subtractExact(p.coins,old));changes.put(id,data);}});
         }, () -> {
-            gains.forEach((id,data)->{var party=state().parties.get(id);if(party!=null)for(var online:server.getPlayerList().getPlayers())if(party.members.contains(online.getUUID())&&id.equals(state().players.get(online.getUUID()).activeParty))send(online,"coin_gain",data);});
+            changes.forEach((id,data)->partyEvent(id,"coin_change",data));
             drain();after.run();syncAll();
         }, e -> { YumisSkyIsland.LOGGER.error("空岛持久化失败", e); if (actor != null) tell(actor, "保存失败，操作未开放继续执行"); });
     }
     public void deferred(Runnable task) { if (store.available()) task.run(); else deferred.add(task); }
+    public void partyEvent(UUID partyId,String kind,JsonObject data){
+        var party=state().parties.get(partyId);if(party==null)return;
+        for(var online:server.getPlayerList().getPlayers()){
+            var person=state().players.get(online.getUUID());
+            if(party.members.contains(online.getUUID())&&person!=null&&partyId.equals(person.activeParty))send(online,kind,data);
+        }
+    }
+    public void playerDied(ServerPlayer player){
+        if(player.level()!=server.overworld()||!VoidWorlds.isSky(server.overworld()))return;
+        IslandState.Party location=claim(player.blockPosition());
+        if(location==null||location.resetInProgress)return;
+        JsonObject death=new JsonObject();
+        change(null,s->{
+            IslandState.Party party=s.parties.get(location.id);
+            long count=Math.addExact(party.islandDeaths.getOrDefault(player.getUUID(),0L),1);
+            JsonObject rules=config.object("economy.toml").getAsJsonObject("death");
+            long cost=DeathRules.cost(count-1,rules.get("firstCost").getAsLong(),rules.get("additionalCostPerDeath").getAsLong());
+            party.islandDeaths.put(player.getUUID(),count);
+            party.coins=Math.subtractExact(party.coins,cost);
+            death.addProperty("actor",player.getGameProfile().name());death.addProperty("cost",cost);death.addProperty("partyId",party.id.toString());
+        },()->partyEvent(location.id,"death_notice",death));
+    }
     private void drain() { while (store.available() && !deferred.isEmpty()) deferred.remove().run(); }
     public IslandState.Party claim(BlockPos pos) {
         var slot = ClaimGrid.slotAt(pos.getX(), pos.getZ());
@@ -108,7 +137,7 @@ public final class SkyServer implements AutoCloseable {
     public int level(IslandState.Party party) { return party.highestIslandLevel; }
     public void updateScore(IslandState.Party party) {
         party.cachedPoints=calculatePoints(party).toString();
-        party.highestIslandLevel=Math.max(party.highestIslandLevel,BlockScorer.level(points(party),Arrays.stream(config.levelThresholds).boxed().toList()));
+        party.highestIslandLevel=BlockScorer.level(points(party));
     }
     public void blockChanged(ServerLevel world, BlockPos pos, BlockState old, BlockState next) {
         if (!world.dimension().equals(Level.OVERWORLD) || old.equals(next)) return;
@@ -123,7 +152,7 @@ public final class SkyServer implements AutoCloseable {
         long islandEpoch=claim.overworldEpoch;
         if (a != null) refresh.changed(claim, a.group(), -1, pos);
         if (b != null) refresh.changed(claim, b.group(), 1, pos);
-        deferred(() -> { IslandState.Party p = state().parties.get(id); if (p == null || p.resetInProgress || p.overworldEpoch!=islandEpoch) return; int highest=p.highestIslandLevel; adjust(p, a, -1); adjust(p, b, 1); updateScore(p); if(p.highestIslandLevel>highest){refresh.checkpointDeltas();change(null,_->{},()->{});} });
+        deferred(() -> { IslandState.Party p = state().parties.get(id); if (p == null || p.resetInProgress || p.overworldEpoch!=islandEpoch) return; int previous=p.highestIslandLevel; adjust(p, a, -1); adjust(p, b, 1); updateScore(p); if(p.highestIslandLevel!=previous){refresh.checkpointDeltas();change(null,_->{},()->{});} });
     }
     private void adjust(IslandState.Party p, GameConfig.BlockValue b, long amount) {
         if (b == null) return;
@@ -131,6 +160,10 @@ public final class SkyServer implements AutoCloseable {
     }
     public void tick() {
         tick++;long worldTime=server.overworld().getGameTime();if(worldTime>lastWorldTime)deferred(()->state().effectiveTicks++);lastWorldTime=worldTime;
+        long today=marketDay();
+        if(today>state().lastMarketDay && store.available())change(null,s->{s.lastMarketDay=today;s.marketRound++;},()->{
+            for(ServerPlayer online:server.getPlayerList().getPlayers())tell(online,"早上了，每日刷新了。");
+        });
         drain(); economy.epoch(epoch());
         trades.tick(); refresh.tick(); resets.tick(); worlds.tick(); progression.tick(); Protection.clear();
         if (store.available()) {
@@ -202,13 +235,14 @@ public final class SkyServer implements AutoCloseable {
             var p = e.product(); JsonObject row = new JsonObject(); row.addProperty("id", p.id()); row.addProperty("name", p.name()); row.add("stack", economy.encode(e.template())); row.add("canonical",p.canonical());
             row.addProperty("base", p.baseCoins());row.addProperty("buyBase",p.buyBaseCoins()); row.addProperty("buyMultiplierBps",p.buyMultiplierBps()); row.addProperty("rarity", p.rarity()); row.addProperty("level", p.level()); row.addProperty("buy", p.canBuy()); row.addProperty("sell", p.canSell()); row.addProperty("category", p.category());
             row.addProperty("firstAcquisitionPremium",economy.starter(e));
-            var unit = config.quotaUnits.getOrDefault(p.canonical().get("itemId").getAsString(), new GameConfig.QuotaUnit(p.canonical().get("itemId").getAsString(), Rational.ONE));
+            var unit = new GameConfig.QuotaUnit(p.canonical().get("itemId").getAsString(), Rational.ONE);
             row.addProperty("quotaGroup", unit.group()); row.addProperty("quotaUnits", unit.units().toString()); entries.add(row);
             if (entries.size() == 64) { pages.add(catalogPage(entries, page++)); entries = new JsonArray(); }
         }
         if (!entries.isEmpty()) pages.add(catalogPage(entries, page));
         JsonObject rules = new JsonObject(); rules.add("scoring", config.object("islands/scoring.toml")); rules.add("enchantments", config.object("shop/enchantments.toml")); rules.add("quality", config.object("products/quality.toml")); rules.add("quotas",config.object("shop/sale_quotas.toml").get("tiers"));
         rules.addProperty("saleDivisor",config.saleDivisor);rules.addProperty("minimumBaseCoins",config.minimumBaseCoins);
+        rules.addProperty("genshinMode",config.object("economy.toml").get("genshinMode").getAsBoolean());
         rules.addProperty("regularBuyMultiplierBps",config.regularBuyMultiplierBps);
         rules.add("itemRarities",config.object("shop/rarities.toml").get("itemRarities"));
         JsonObject packet = new JsonObject(); packet.addProperty("kind", "rules"); packet.add("data", rules); pages.add(packet.toString()); catalogQueue.put(player.getUUID(), pages);
@@ -219,8 +253,12 @@ public final class SkyServer implements AutoCloseable {
     public void syncAll() { for (ServerPlayer p : server.getPlayerList().getPlayers()) sendState(p); }
     public void sendState(ServerPlayer player) {
         IslandState.Party party = parties.active(player.getUUID());
-        JsonObject json = new JsonObject(); long period=config.object("shop/shops.toml").getAsJsonObject("market").get("ticksPerEpoch").getAsLong();json.addProperty("epoch", epoch()); json.addProperty("ticksLeft", period-state().effectiveTicks%period);json.addProperty("effectiveTicks",state().effectiveTicks);
+        JsonObject json = new JsonObject(); long period=24000,anchor=config.object("shop/shops.toml").getAsJsonObject("market").get("refreshAtDayTick").getAsLong();long left=Math.floorMod(anchor-server.overworld().getOverworldClockTime(),period);json.addProperty("epoch", epoch()); json.addProperty("ticksLeft", left==0?period:left);json.addProperty("effectiveTicks",state().effectiveTicks);
         json.addProperty("wallet", party == null ? 0 : party.coins); json.addProperty("level", party == null ? 0 : level(party)); json.addProperty("party", party == null ? "尚未加入空岛" : party.name);
+        int islandLevel=party==null?0:level(party);
+        BigInteger scaled=party==null?BigInteger.ZERO:points(party);
+        json.addProperty("currentLevelScoreScaled",scaled.subtract(BlockScorer.threshold(islandLevel).multiply(BigInteger.valueOf(10000))).toString());
+        json.addProperty("nextLevelScoreScaled",BlockScorer.required(islandLevel).multiply(BigInteger.valueOf(10000)).toString());
         json.addProperty("islandEpoch",party==null?0:party.overworldEpoch);
         json.addProperty("partyId",party==null?"":party.id.toString());
         json.addProperty("admin",Protection.admin(player));

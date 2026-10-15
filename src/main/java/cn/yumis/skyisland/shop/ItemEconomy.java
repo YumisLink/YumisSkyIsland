@@ -84,7 +84,7 @@ public final class ItemEconomy {
     }
     public static int grade(ItemStack stack) {
         CustomData data = stack.get(DataComponents.CUSTOM_DATA);
-        return data == null ? 0 : Math.clamp(data.copyTag().getIntOr("yumis_quality", 0), 0, 4);
+        return data == null ? 0 : Math.clamp(data.copyTag().getIntOr("yumis_quality", 0), 0, 2);
     }
     public Entry match(ItemStack stack) {
         if (stack.isEmpty()) return null;
@@ -112,7 +112,8 @@ public final class ItemEconomy {
     }
     public static Rational fullValue(long base,int marketBps,ItemStack stack,JsonObject quality,JsonObject enchantments,long minimumBaseCoins) {
         // Purchase premiums are applied separately and never enter the buyback value.
-        Rational value = Rational.of(Math.max(minimumBaseCoins, Rational.of(base).multiply(Rational.of(marketBps, 10000)).floorLongExact()));
+        Rational value = Rational.of(base).multiply(Rational.of(marketBps, 10000))
+            .max(Rational.of(minimumBaseCoins));
         JsonArray grades = quality.getAsJsonArray("grades");
         value = value.multiply(Rational.of(grades.get(grade(stack)).getAsJsonObject().get("valueBps").getAsLong(), 10000));
         ItemEnchantments enchants = stack.getOrDefault(stack.is(Items.ENCHANTED_BOOK) ? DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
@@ -149,7 +150,7 @@ public final class ItemEconomy {
         Rational full = full(entry, stack);
         Rational durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage() - stack.getDamageValue(), stack.getMaxDamage()) : Rational.ONE;
         String item = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
-        var unit = config.quotaUnits.getOrDefault(item, new GameConfig.QuotaUnit(item, Rational.ONE));
+        var unit = new GameConfig.QuotaUnit(item, Rational.ONE);
         return new Quote(entry, full, full.multiply(durability).divide(Rational.of(config.saleDivisor)), unit);
     }
     public List<SalePlanner.Input> saleInputs(Container container, int onlySlot) {

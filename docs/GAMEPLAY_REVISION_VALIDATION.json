@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-14",
+  "version": "0.1.0-dev",
+  "minecraft": "26.2",
+  "junit": {
+    "tests": 42,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "professionTasks": 64,
+  "matchingDefaultTomlFiles": 19,
+  "testsExcludedFromJar": true,
+  "gameTestDurationSeconds": 56,
+  "gameTestPassedLine": "[23:13:41] [Server thread/INFO] (yumis_sky_island) GAMEPLAY REVISION PASSED: native craft/shift/stonecut/furnace/fishing/harvest/direct/projectile kills, canceled/environment/duplicate death exclusion, blank cages/eggs, second-member isolation, personal shipping/claims/XP/recovery, shared main/offline reset/stale requests, live task details/command editor, party change and reset",
+  "gameTestLogSha256": "67b76323a7487b51d8e3ba8d05f4afe3ad6ab6ad34df593b791d0318a0c50738",
+  "nativeClients": 1,
+  "additionalOfflineServerPlayerRecords": 1,
+  "forbiddenSpawnEggCount": 42,
+  "screenshots": [
+    "screenshots/profession-live-progress.png",
+    "screenshots/profession-inline-editor.png",
+    "screenshots/profession-farmer-conditions.png"
+  ],
+  "artifacts": {
+    "YumisSkyIsland-0.1.0-dev.jar": {
+      "bytes": 932390,
+      "sha256": "b1c3b806b9492d9413e2bd6dfbbc36df4aca9a741e8fd6d21452c5f56ecbef1c"
+    },
+    "YumisSkyIsland-0.1.0-dev-config.zip": {
+      "bytes": 147760,
+      "sha256": "e31f3628221a8082447c425b98ae4c905451b0958e544bc916a7debce2861b16"
+    }
+  }
+}

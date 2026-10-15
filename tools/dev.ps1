@@ -60,14 +60,27 @@ try {
                 foreach ($requiredEntry in @('fabric.mod.json', 'yumis_sky_island.mixins.json', 'yumis_sky_island.client.mixins.json')) {
                     if ($null -eq $archive.GetEntry($requiredEntry)) { throw "Missing JAR entry: $requiredEntry" }
                 }
-                if ($matched -ne 19) { throw "Expected 18 server configurations and client preferences; found $matched TOML files" }
+                if ($matched -ne 21) { throw "Expected 21 default TOML files; found $matched" }
                 foreach ($entry in $archive.Entries) {
                     if ($entry.FullName -match '(^|/)(local-tests|clienttest|gametest|test)(/|$)|fabric\.mod\.json.*test') { throw "Test content in release: $($entry.FullName)" }
                 }
             } finally { $archive.Dispose() }
+            $configBundle = Join-Path $taskRoot ('build\libs\YumisSkyIsland-' + $versionLine.Matches[0].Groups[1].Value + '-config.zip')
+            $bundleStream = [System.IO.File]::Open($configBundle, [System.IO.FileMode]::Create)
+            try {
+                $bundle = [System.IO.Compression.ZipArchive]::new($bundleStream, [System.IO.Compression.ZipArchiveMode]::Create)
+                try {
+                    foreach ($configurationFile in Get-ChildItem -LiteralPath $configurationRoot -Recurse -File -Filter '*.toml') {
+                        $relative = $configurationFile.FullName.Substring($configurationRoot.Length).TrimStart('\').Replace('\', '/')
+                        [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($bundle, $configurationFile.FullName, 'config/yumis_sky_island/' + $relative) | Out-Null
+                    }
+                } finally { $bundle.Dispose() }
+            } finally { $bundleStream.Dispose() }
             Write-Output "JAR: $artifactPath"
             Write-Output "Verified $matched default TOML files against current source; tests excluded."
             Write-Output ('SHA256: ' + (Get-FileHash -LiteralPath $artifactPath -Algorithm SHA256).Hash)
+            Write-Output "Configuration ZIP: $configBundle"
+            Write-Output ('Configuration SHA256: ' + (Get-FileHash -LiteralPath $configBundle -Algorithm SHA256).Hash)
         }
     } finally { Pop-Location }
 } finally {

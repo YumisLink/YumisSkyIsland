@@ -96,17 +96,11 @@ def task_lines():
             ("地狱回声", "kill", [("ghast", 4)], [("diamond", 1)]),
         ],
     }
-    verbs = {"craft": "本人工作台／切石机实际产出", "smelt": "本人手动领取熔炼结果", "fish": "本人真实钓获", "harvest": "本人破坏产生的实际掉落", "kill": "本人直接或投射物造成的有效击杀"}
     result = []
     for profession, entries in lines.items():
         for index, (name, kind, targets, items) in enumerate(entries, 1):
             coins = [1000, 500, 1000, 1000][index-1] if profession == "farmer" else COINS[index-1]
-            description = f"{PROFESSIONS[profession]}训练：{name}。按下方目标追踪{verbs[kind]}；只统计本任务解锁后的行动。达标后点击领取{coins}金币及列表奖励，产物保留。领取后解锁本线下一项。"
-            if profession == "fisherman" and index in (6, 7, 8, 10):
-                description += "宝藏渔获须满足原版开放水域条件。"
-            if profession == "fisherman" and index == 10:
-                description += "集齐8个鹦鹉螺壳，探寻海洋之心。"
-            row = dict(id=f"{profession}_{index:02}", name=name, description=description, kind="profession", profession=profession, objective="tracked", requirements=[], goals=[goal(kind, item, count) for item, count in targets], rewardItems=rewards(*items), rewardCoins=coins, rewardExperiencePoints=500 if profession == "fisherman" and index == 7 else 0, unlockFeatures=[])
+            row = dict(id=f"{profession}_{index:02}", name=name, kind="profession", profession=profession, objective="tracked", requirements=[], goals=[goal(kind, item, count) for item, count in targets], rewardItems=rewards(*items), rewardCoins=coins, rewardExperiencePoints=500 if profession == "fisherman" and index == 7 else 0, unlockFeatures=[])
             if index > 1:
                 row["previousQuestId"] = f"{profession}_{index-1:02}"
             if profession == "farmer" and index == 2:
@@ -154,8 +148,7 @@ def apply_root(root: Path):
     ours = {row["id"] for row in task_lines()}
     quests["quests"] = [q for q in quests["quests"] if q["id"] not in ours] + task_lines()
     for q in quests["quests"]:
-        if q["id"] == "place_shipping_chest":
-            q["description"] = "本人在本队岛屿成功放置一个出货箱，领取64橡木原木、3铁锭和全新耐久IV／效率V金镐。个人进度跨队和重开保留。"
+        q.pop("description", None)
     quests["schemaVersion"] = 3
     write(root / "tasks/quests.toml", quests)
 

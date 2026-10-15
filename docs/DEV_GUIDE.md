@@ -41,13 +41,13 @@ JUnit 报告位于 `build/reports/tests/test/index.html`，XML 位于 `build/tes
 python tools/bootstrap_development.py
 ```
 
-安装器只写项目 `.tools`，校验下载归档 SHA-256，不修改系统 Java、环境变量或启动器。`dev.ps1` 只在本次调用期间设置 Java/Gradle 路径，结束后恢复环境变量；三个任务均不调用 `jar`、`build` 或发布任务。
+安装器只写项目 `.tools`，校验下载归档 SHA-256，不修改系统 Java、环境变量或启动器。`dev.ps1` 只在本次调用期间设置 Java/Gradle 路径，结束后恢复环境变量；`Check`、`Client`、`GameTest` 不导出 JAR，`Export` 才执行打包。
 
 ## 配置生效位置
 
 仓库 `config/yumis_sky_island` 是默认配置源，编译时进入资源包。首次加载模组时，仅补齐开发客户端 `run/config/yumis_sky_island` 中缺失的文件；已有管理员改价不会被覆盖。运行测试时配置在 `build/run/clientGameTest/config/yumis_sky_island`。
 
-18份服务端配置及客户端偏好均为逐字段中文注释TOML。修改运行目录的TOML后重启生效；管理员任务编辑器逐任务保存后立即全服生效。仓库默认配置只补缺失文件，保留运行目录人工值与注释。旧JSON配置首次导入后存为 `.before-toml.bak`，不做旧世界历史区块回补。客户端收藏和格子大小保存在客户端的 `config/yumis_sky_island/client.toml`，不进入队伍存档。
+当前共21份可编辑TOML（含服务端规则与客户端偏好），关键字段有中文注释。修改运行目录的TOML后重启生效；管理员任务编辑器逐任务保存后立即全服生效。仓库默认配置只补缺失文件，保留运行目录人工值与注释。旧JSON配置首次导入后存为 `.before-toml.bak`，不做旧世界历史区块回补。客户端收藏和格子大小保存在客户端的 `config/yumis_sky_island/client.toml`，不进入队伍存档。
 
 旧JSON运行配置由首次启动加载器导入TOML并备份；当前control-panel-v4不会再次套用历史乘价修订。已有人工TOML保留，同日库存不会因升级、重登或界面切换重抽。
 
@@ -128,7 +128,11 @@ itemId = "minecraft:zombie_spawn_egg"
 
 手改后可以运行 `python tools/prepare_economy.py --render-only` 更新审阅表；该命令不改商品配置。`confirmed_gameplay_defaults.py` 是测试期显式生成确认默认数据的工具，会重置本轮默认字段和64项任务；日常手改配置无需运行它。
 
-最新交付与本轮验证见[CONTROL_PANEL_DELIVERY](CONTROL_PANEL_DELIVERY.md)。
+本轮商店、64项职业任务与金币提示的交付和验证见[GAMEPLAY_REVISION_DELIVERY](GAMEPLAY_REVISION_DELIVERY.md)；此前控制面板记录见[CONTROL_PANEL_DELIVERY](CONTROL_PANEL_DELIVERY.md)。
+
+导出测试JAR使用 `.\tools\dev.ps1 -Task Export -Offline`，输出 `build/libs/YumisSkyIsland-0.1.0-dev.jar`；脚本校验21份包内默认TOML并排除测试内容，同时生成 `build/libs/YumisSkyIsland-0.1.0-dev-config.zip`。已有测试实例需要关闭后同步本轮 `config/yumis_sky_island` 再替换JAR、重启，单换JAR只补缺失配置。配置ZIP可解压到实例根目录。新实例自动生成默认配置。
+
+本轮规则入口：`economy.toml` 设置原神模式与死亡费，`products/quality.toml` 设置银星／金星效果，`products/professions.toml` 与 `products/goods.toml` 设置职业经验、产物等级和品质概率，`shop/sale_quotas.toml` 按物品ID设置日售出阶梯，`shop/shops.toml` 的 `refreshAtDayTick = 22000` 表示主世界04:00刷新，`islands/levels.toml` 设置无限等级的每级基础分。测试期旧存档作废，不提供品质或任务字段迁移。
 
 ## 存档与验证范围
 

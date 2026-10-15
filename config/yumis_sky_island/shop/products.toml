@@ -89,6 +89,7 @@ itemId = "minecraft:acacia_log"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:acacia_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:acacia_planks"
 productId = "minecraft:acacia_planks"
@@ -133,6 +134,7 @@ itemId = "minecraft:acacia_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:acacia_sapling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:acacia_sapling"
 productId = "minecraft:acacia_sapling"
@@ -175,6 +177,7 @@ itemId = "minecraft:acacia_sapling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:allay_spawn_egg"]
@@ -223,6 +226,7 @@ itemId = "minecraft:allay_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:allium"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:allium"
 productId = "minecraft:allium"
@@ -265,6 +269,7 @@ itemId = "minecraft:allium"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:amethyst_shard"]
@@ -311,6 +316,7 @@ itemId = "minecraft:amethyst_shard"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:ancient_debris"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ancient_debris"
 productId = "minecraft:ancient_debris"
@@ -353,6 +359,7 @@ itemId = "minecraft:ancient_debris"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:andesite"]
@@ -399,6 +406,7 @@ itemId = "minecraft:andesite"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:angler_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:angler_pottery_sherd"
 productId = "minecraft:angler_pottery_sherd"
@@ -441,6 +449,7 @@ itemId = "minecraft:angler_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:apple"]
@@ -487,6 +496,7 @@ itemId = "minecraft:apple"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:archer_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:archer_pottery_sherd"
 productId = "minecraft:archer_pottery_sherd"
@@ -531,6 +541,7 @@ itemId = "minecraft:archer_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:armadillo_scute"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:armadillo_scute"
 productId = "minecraft:armadillo_scute"
@@ -573,6 +584,7 @@ itemId = "minecraft:armadillo_scute"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:armadillo_spawn_egg"]
@@ -621,6 +633,7 @@ itemId = "minecraft:armadillo_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:arms_up_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:arms_up_pottery_sherd"
 productId = "minecraft:arms_up_pottery_sherd"
@@ -663,6 +676,7 @@ itemId = "minecraft:arms_up_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:axolotl_spawn_egg"]
@@ -711,6 +725,7 @@ itemId = "minecraft:axolotl_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:azalea"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:azalea"
 productId = "minecraft:azalea"
@@ -753,6 +768,7 @@ itemId = "minecraft:azalea"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:azure_bluet"]
@@ -799,6 +815,7 @@ itemId = "minecraft:azure_bluet"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:baked_potato"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:baked_potato"
 productId = "minecraft:baked_potato"
@@ -841,6 +858,7 @@ itemId = "minecraft:baked_potato"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:bamboo"]
@@ -887,6 +905,7 @@ itemId = "minecraft:bamboo"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:bamboo_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bamboo_planks"
 productId = "minecraft:bamboo_planks"
@@ -931,6 +950,7 @@ itemId = "minecraft:bamboo_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:basalt"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:basalt"
 productId = "minecraft:basalt"
@@ -973,6 +993,7 @@ itemId = "minecraft:basalt"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:bat_spawn_egg"]
@@ -1021,6 +1042,7 @@ itemId = "minecraft:bat_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:bee_spawn_egg"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bee_spawn_egg"
 productId = "minecraft:bee_spawn_egg"
@@ -1067,6 +1089,7 @@ itemId = "minecraft:bee_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：1000000
 
+
 [products."minecraft:beef"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:beef"
 productId = "minecraft:beef"
@@ -1109,6 +1132,7 @@ itemId = "minecraft:beef"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："无种子的原始食材"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:beetroot"]
@@ -1155,6 +1179,7 @@ itemId = "minecraft:beetroot"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:beetroot_seeds"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:beetroot_seeds"
 productId = "minecraft:beetroot_seeds"
@@ -1197,6 +1222,7 @@ itemId = "minecraft:beetroot_seeds"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:beetroot_soup"]
@@ -1243,6 +1269,7 @@ itemId = "minecraft:beetroot_soup"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:birch_log"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:birch_log"
 productId = "minecraft:birch_log"
@@ -1285,6 +1312,7 @@ itemId = "minecraft:birch_log"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:birch_planks"]
@@ -1331,6 +1359,7 @@ itemId = "minecraft:birch_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:birch_sapling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:birch_sapling"
 productId = "minecraft:birch_sapling"
@@ -1373,6 +1402,7 @@ itemId = "minecraft:birch_sapling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:black_bundle"]
@@ -1419,6 +1449,7 @@ itemId = "minecraft:black_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:black_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:black_dye"
 productId = "minecraft:black_dye"
@@ -1461,6 +1492,7 @@ itemId = "minecraft:black_dye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:black_harness"]
@@ -1507,6 +1539,7 @@ itemId = "minecraft:black_harness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:blackstone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:blackstone"
 productId = "minecraft:blackstone"
@@ -1549,6 +1582,7 @@ itemId = "minecraft:blackstone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:blade_pottery_sherd"]
@@ -1595,6 +1629,7 @@ itemId = "minecraft:blade_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:blaze_powder"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:blaze_powder"
 productId = "minecraft:blaze_powder"
@@ -1637,6 +1672,7 @@ itemId = "minecraft:blaze_powder"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:blaze_rod"]
@@ -1683,6 +1719,7 @@ itemId = "minecraft:blaze_rod"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:blue_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:blue_bundle"
 productId = "minecraft:blue_bundle"
@@ -1725,6 +1762,7 @@ itemId = "minecraft:blue_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:blue_dye"]
@@ -1771,6 +1809,7 @@ itemId = "minecraft:blue_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:blue_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:blue_harness"
 productId = "minecraft:blue_harness"
@@ -1813,6 +1852,7 @@ itemId = "minecraft:blue_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:blue_ice"]
@@ -1859,6 +1899,7 @@ itemId = "minecraft:blue_ice"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:blue_orchid"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:blue_orchid"
 productId = "minecraft:blue_orchid"
@@ -1901,6 +1942,7 @@ itemId = "minecraft:blue_orchid"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:bolt_armor_trim_smithing_template"]
@@ -1947,6 +1989,7 @@ itemId = "minecraft:bolt_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:bone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bone"
 productId = "minecraft:bone"
@@ -1989,6 +2032,7 @@ itemId = "minecraft:bone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:bone_block"]
@@ -2035,6 +2079,7 @@ itemId = "minecraft:bone_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:book"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:book"
 productId = "minecraft:book"
@@ -2077,6 +2122,7 @@ itemId = "minecraft:book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼产物仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:bordure_indented_banner_pattern"]
@@ -2123,6 +2169,7 @@ itemId = "minecraft:bordure_indented_banner_pattern"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:bowl"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bowl"
 productId = "minecraft:bowl"
@@ -2165,6 +2212,7 @@ itemId = "minecraft:bowl"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼产物仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:brain_coral"]
@@ -2211,6 +2259,7 @@ itemId = "minecraft:brain_coral"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:brain_coral_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:brain_coral_block"
 productId = "minecraft:brain_coral_block"
@@ -2253,6 +2302,7 @@ itemId = "minecraft:brain_coral_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:brain_coral_fan"]
@@ -2299,6 +2349,7 @@ itemId = "minecraft:brain_coral_fan"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:bread"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bread"
 productId = "minecraft:bread"
@@ -2341,6 +2392,7 @@ itemId = "minecraft:bread"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:breeze_rod"]
@@ -2387,6 +2439,7 @@ itemId = "minecraft:breeze_rod"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:brewer_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:brewer_pottery_sherd"
 productId = "minecraft:brewer_pottery_sherd"
@@ -2429,6 +2482,7 @@ itemId = "minecraft:brewer_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:brick"]
@@ -2475,6 +2529,7 @@ itemId = "minecraft:brick"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:brown_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:brown_bundle"
 productId = "minecraft:brown_bundle"
@@ -2517,6 +2572,7 @@ itemId = "minecraft:brown_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:brown_dye"]
@@ -2563,6 +2619,7 @@ itemId = "minecraft:brown_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:brown_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:brown_harness"
 productId = "minecraft:brown_harness"
@@ -2605,6 +2662,7 @@ itemId = "minecraft:brown_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:brown_mushroom"]
@@ -2651,6 +2709,7 @@ itemId = "minecraft:brown_mushroom"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:bubble_coral"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bubble_coral"
 productId = "minecraft:bubble_coral"
@@ -2693,6 +2752,7 @@ itemId = "minecraft:bubble_coral"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:bubble_coral_block"]
@@ -2739,6 +2799,7 @@ itemId = "minecraft:bubble_coral_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:bubble_coral_fan"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:bubble_coral_fan"
 productId = "minecraft:bubble_coral_fan"
@@ -2781,6 +2842,7 @@ itemId = "minecraft:bubble_coral_fan"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:budding_amethyst"]
@@ -2827,6 +2889,7 @@ itemId = "minecraft:budding_amethyst"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:burn_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:burn_pottery_sherd"
 productId = "minecraft:burn_pottery_sherd"
@@ -2869,6 +2932,7 @@ itemId = "minecraft:burn_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cactus"]
@@ -2915,6 +2979,7 @@ itemId = "minecraft:cactus"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cake"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cake"
 productId = "minecraft:cake"
@@ -2959,6 +3024,7 @@ itemId = "minecraft:cake"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:calcite"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:calcite"
 productId = "minecraft:calcite"
@@ -3001,6 +3067,7 @@ itemId = "minecraft:calcite"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:camel_spawn_egg"]
@@ -3049,6 +3116,7 @@ itemId = "minecraft:camel_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:carrot"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:carrot"
 productId = "minecraft:carrot"
@@ -3091,6 +3159,7 @@ itemId = "minecraft:carrot"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cat_spawn_egg"]
@@ -3139,6 +3208,7 @@ itemId = "minecraft:cat_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:charcoal"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:charcoal"
 productId = "minecraft:charcoal"
@@ -3181,6 +3251,7 @@ itemId = "minecraft:charcoal"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cherry_log"]
@@ -3227,6 +3298,7 @@ itemId = "minecraft:cherry_log"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cherry_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cherry_planks"
 productId = "minecraft:cherry_planks"
@@ -3269,6 +3341,7 @@ itemId = "minecraft:cherry_planks"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cherry_sapling"]
@@ -3315,6 +3388,7 @@ itemId = "minecraft:cherry_sapling"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:chicken"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:chicken"
 productId = "minecraft:chicken"
@@ -3357,6 +3431,7 @@ itemId = "minecraft:chicken"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："无种子的原始食材"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:chicken_spawn_egg"]
@@ -3405,6 +3480,7 @@ itemId = "minecraft:chicken_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：1000000
 
+
 [products."minecraft:chorus_flower"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:chorus_flower"
 productId = "minecraft:chorus_flower"
@@ -3447,6 +3523,7 @@ itemId = "minecraft:chorus_flower"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:chorus_fruit"]
@@ -3493,6 +3570,7 @@ itemId = "minecraft:chorus_fruit"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cinnabar"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cinnabar"
 productId = "minecraft:cinnabar"
@@ -3535,6 +3613,7 @@ itemId = "minecraft:cinnabar"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:clay"]
@@ -3581,6 +3660,7 @@ itemId = "minecraft:clay"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:clay_ball"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:clay_ball"
 productId = "minecraft:clay_ball"
@@ -3623,6 +3703,7 @@ itemId = "minecraft:clay_ball"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:closed_eyeblossom"]
@@ -3669,6 +3750,7 @@ itemId = "minecraft:closed_eyeblossom"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:coal"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:coal"
 productId = "minecraft:coal"
@@ -3711,6 +3793,7 @@ itemId = "minecraft:coal"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:coarse_dirt"]
@@ -3757,6 +3840,7 @@ itemId = "minecraft:coarse_dirt"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:coast_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:coast_armor_trim_smithing_template"
 productId = "minecraft:coast_armor_trim_smithing_template"
@@ -3799,6 +3883,7 @@ itemId = "minecraft:coast_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cobbled_deepslate"]
@@ -3845,6 +3930,7 @@ itemId = "minecraft:cobbled_deepslate"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cobblestone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cobblestone"
 productId = "minecraft:cobblestone"
@@ -3887,6 +3973,7 @@ itemId = "minecraft:cobblestone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cobweb"]
@@ -3933,6 +4020,7 @@ itemId = "minecraft:cobweb"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cocoa_beans"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cocoa_beans"
 productId = "minecraft:cocoa_beans"
@@ -3977,6 +4065,7 @@ itemId = "minecraft:cocoa_beans"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cod"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cod"
 productId = "minecraft:cod"
@@ -4019,6 +4108,7 @@ itemId = "minecraft:cod"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cod_spawn_egg"]
@@ -4067,6 +4157,7 @@ itemId = "minecraft:cod_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:cooked_beef"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cooked_beef"
 productId = "minecraft:cooked_beef"
@@ -4109,6 +4200,7 @@ itemId = "minecraft:cooked_beef"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cooked_chicken"]
@@ -4155,6 +4247,7 @@ itemId = "minecraft:cooked_chicken"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cooked_cod"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cooked_cod"
 productId = "minecraft:cooked_cod"
@@ -4197,6 +4290,7 @@ itemId = "minecraft:cooked_cod"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cooked_mutton"]
@@ -4243,6 +4337,7 @@ itemId = "minecraft:cooked_mutton"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cooked_porkchop"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cooked_porkchop"
 productId = "minecraft:cooked_porkchop"
@@ -4285,6 +4380,7 @@ itemId = "minecraft:cooked_porkchop"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cooked_rabbit"]
@@ -4331,6 +4427,7 @@ itemId = "minecraft:cooked_rabbit"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cooked_salmon"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cooked_salmon"
 productId = "minecraft:cooked_salmon"
@@ -4375,6 +4472,7 @@ itemId = "minecraft:cooked_salmon"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cookie"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cookie"
 productId = "minecraft:cookie"
@@ -4417,6 +4515,7 @@ itemId = "minecraft:cookie"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:copper_golem_spawn_egg"]
@@ -4465,6 +4564,7 @@ itemId = "minecraft:copper_golem_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:copper_ingot"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:copper_ingot"
 productId = "minecraft:copper_ingot"
@@ -4509,6 +4609,7 @@ itemId = "minecraft:copper_ingot"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cornflower"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cornflower"
 productId = "minecraft:cornflower"
@@ -4551,6 +4652,7 @@ itemId = "minecraft:cornflower"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cow_spawn_egg"]
@@ -4599,6 +4701,7 @@ itemId = "minecraft:cow_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：1000000
 
+
 [products."minecraft:creaking_heart"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:creaking_heart"
 productId = "minecraft:creaking_heart"
@@ -4641,6 +4744,7 @@ itemId = "minecraft:creaking_heart"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:creeper_banner_pattern"]
@@ -4687,6 +4791,7 @@ itemId = "minecraft:creeper_banner_pattern"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:crimson_fungus"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:crimson_fungus"
 productId = "minecraft:crimson_fungus"
@@ -4729,6 +4834,7 @@ itemId = "minecraft:crimson_fungus"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:crimson_nylium"]
@@ -4775,6 +4881,7 @@ itemId = "minecraft:crimson_nylium"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:crimson_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:crimson_planks"
 productId = "minecraft:crimson_planks"
@@ -4817,6 +4924,7 @@ itemId = "minecraft:crimson_planks"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:crimson_stem"]
@@ -4863,6 +4971,7 @@ itemId = "minecraft:crimson_stem"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:crying_obsidian"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:crying_obsidian"
 productId = "minecraft:crying_obsidian"
@@ -4905,6 +5014,7 @@ itemId = "minecraft:crying_obsidian"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cyan_bundle"]
@@ -4951,6 +5061,7 @@ itemId = "minecraft:cyan_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:cyan_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:cyan_dye"
 productId = "minecraft:cyan_dye"
@@ -4993,6 +5104,7 @@ itemId = "minecraft:cyan_dye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:cyan_harness"]
@@ -5039,6 +5151,7 @@ itemId = "minecraft:cyan_harness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:dandelion"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dandelion"
 productId = "minecraft:dandelion"
@@ -5081,6 +5194,7 @@ itemId = "minecraft:dandelion"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:danger_pottery_sherd"]
@@ -5127,6 +5241,7 @@ itemId = "minecraft:danger_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:dark_oak_log"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dark_oak_log"
 productId = "minecraft:dark_oak_log"
@@ -5169,6 +5284,7 @@ itemId = "minecraft:dark_oak_log"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:dark_oak_planks"]
@@ -5215,6 +5331,7 @@ itemId = "minecraft:dark_oak_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:dark_oak_sapling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dark_oak_sapling"
 productId = "minecraft:dark_oak_sapling"
@@ -5257,6 +5374,7 @@ itemId = "minecraft:dark_oak_sapling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:deepslate"]
@@ -5303,6 +5421,7 @@ itemId = "minecraft:deepslate"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:diamond"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:diamond"
 productId = "minecraft:diamond"
@@ -5345,6 +5464,7 @@ itemId = "minecraft:diamond"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:diorite"]
@@ -5391,6 +5511,7 @@ itemId = "minecraft:diorite"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:dirt"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dirt"
 productId = "minecraft:dirt"
@@ -5433,6 +5554,7 @@ itemId = "minecraft:dirt"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:disc_fragment_5"]
@@ -5481,6 +5603,7 @@ itemId = "minecraft:disc_fragment_5"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：100000
 
+
 [products."minecraft:dolphin_spawn_egg"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dolphin_spawn_egg"
 productId = "minecraft:dolphin_spawn_egg"
@@ -5526,6 +5649,7 @@ itemId = "minecraft:dolphin_spawn_egg"
 # 注册 ID／组件参数；保持 ID 原样
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
+
 
 [products."minecraft:donkey_spawn_egg"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:donkey_spawn_egg"
@@ -5573,6 +5697,7 @@ itemId = "minecraft:donkey_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:dragon_breath"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dragon_breath"
 productId = "minecraft:dragon_breath"
@@ -5615,6 +5740,7 @@ itemId = "minecraft:dragon_breath"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:dried_ghast"]
@@ -5661,6 +5787,7 @@ itemId = "minecraft:dried_ghast"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:dried_kelp"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dried_kelp"
 productId = "minecraft:dried_kelp"
@@ -5703,6 +5830,7 @@ itemId = "minecraft:dried_kelp"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:dried_kelp_block"]
@@ -5749,6 +5877,7 @@ itemId = "minecraft:dried_kelp_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:dripstone_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:dripstone_block"
 productId = "minecraft:dripstone_block"
@@ -5791,6 +5920,7 @@ itemId = "minecraft:dripstone_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:dune_armor_trim_smithing_template"]
@@ -5837,6 +5967,7 @@ itemId = "minecraft:dune_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:echo_shard"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:echo_shard"
 productId = "minecraft:echo_shard"
@@ -5879,6 +6010,7 @@ itemId = "minecraft:echo_shard"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:emerald"]
@@ -5925,6 +6057,7 @@ itemId = "minecraft:emerald"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_golden_apple"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_golden_apple"
 productId = "minecraft:enchanted_golden_apple"
@@ -5967,6 +6100,7 @@ itemId = "minecraft:enchanted_golden_apple"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："食物购买以首种／原始材料为主"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:end_portal_frame"]
@@ -6013,6 +6147,7 @@ itemId = "minecraft:end_portal_frame"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:end_stone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:end_stone"
 productId = "minecraft:end_stone"
@@ -6055,6 +6190,7 @@ itemId = "minecraft:end_stone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:experience_bottle"]
@@ -6101,6 +6237,7 @@ itemId = "minecraft:experience_bottle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:explorer_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:explorer_pottery_sherd"
 productId = "minecraft:explorer_pottery_sherd"
@@ -6143,6 +6280,7 @@ itemId = "minecraft:explorer_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:eye_armor_trim_smithing_template"]
@@ -6189,6 +6327,7 @@ itemId = "minecraft:eye_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:feather"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:feather"
 productId = "minecraft:feather"
@@ -6231,6 +6370,7 @@ itemId = "minecraft:feather"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:fermented_spider_eye"]
@@ -6277,6 +6417,7 @@ itemId = "minecraft:fermented_spider_eye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:field_masoned_banner_pattern"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:field_masoned_banner_pattern"
 productId = "minecraft:field_masoned_banner_pattern"
@@ -6319,6 +6460,7 @@ itemId = "minecraft:field_masoned_banner_pattern"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:fire_coral"]
@@ -6365,6 +6507,7 @@ itemId = "minecraft:fire_coral"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:fire_coral_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:fire_coral_block"
 productId = "minecraft:fire_coral_block"
@@ -6407,6 +6550,7 @@ itemId = "minecraft:fire_coral_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:fire_coral_fan"]
@@ -6453,6 +6597,7 @@ itemId = "minecraft:fire_coral_fan"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:firefly_bush"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:firefly_bush"
 productId = "minecraft:firefly_bush"
@@ -6495,6 +6640,7 @@ itemId = "minecraft:firefly_bush"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:flint"]
@@ -6541,6 +6687,7 @@ itemId = "minecraft:flint"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:flow_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:flow_armor_trim_smithing_template"
 productId = "minecraft:flow_armor_trim_smithing_template"
@@ -6583,6 +6730,7 @@ itemId = "minecraft:flow_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:flow_banner_pattern"]
@@ -6629,6 +6777,7 @@ itemId = "minecraft:flow_banner_pattern"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:flow_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:flow_pottery_sherd"
 productId = "minecraft:flow_pottery_sherd"
@@ -6671,6 +6820,7 @@ itemId = "minecraft:flow_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:flower_banner_pattern"]
@@ -6717,6 +6867,7 @@ itemId = "minecraft:flower_banner_pattern"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:flowering_azalea"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:flowering_azalea"
 productId = "minecraft:flowering_azalea"
@@ -6759,6 +6910,7 @@ itemId = "minecraft:flowering_azalea"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:fox_spawn_egg"]
@@ -6807,6 +6959,7 @@ itemId = "minecraft:fox_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:friend_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:friend_pottery_sherd"
 productId = "minecraft:friend_pottery_sherd"
@@ -6849,6 +7002,7 @@ itemId = "minecraft:friend_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:frog_spawn_egg"]
@@ -6897,6 +7051,7 @@ itemId = "minecraft:frog_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:ghast_tear"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ghast_tear"
 productId = "minecraft:ghast_tear"
@@ -6939,6 +7094,7 @@ itemId = "minecraft:ghast_tear"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:gilded_blackstone"]
@@ -6985,6 +7141,7 @@ itemId = "minecraft:gilded_blackstone"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:glass_bottle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:glass_bottle"
 productId = "minecraft:glass_bottle"
@@ -7027,6 +7184,7 @@ itemId = "minecraft:glass_bottle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:glistering_melon_slice"]
@@ -7073,6 +7231,7 @@ itemId = "minecraft:glistering_melon_slice"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:globe_banner_pattern"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:globe_banner_pattern"
 productId = "minecraft:globe_banner_pattern"
@@ -7115,6 +7274,7 @@ itemId = "minecraft:globe_banner_pattern"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:glow_berries"]
@@ -7161,6 +7321,7 @@ itemId = "minecraft:glow_berries"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:glow_ink_sac"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:glow_ink_sac"
 productId = "minecraft:glow_ink_sac"
@@ -7205,6 +7366,7 @@ itemId = "minecraft:glow_ink_sac"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:glow_lichen"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:glow_lichen"
 productId = "minecraft:glow_lichen"
@@ -7247,6 +7409,7 @@ itemId = "minecraft:glow_lichen"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:glow_squid_spawn_egg"]
@@ -7295,6 +7458,7 @@ itemId = "minecraft:glow_squid_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:glowstone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:glowstone"
 productId = "minecraft:glowstone"
@@ -7337,6 +7501,7 @@ itemId = "minecraft:glowstone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:glowstone_dust"]
@@ -7383,6 +7548,7 @@ itemId = "minecraft:glowstone_dust"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:goat_horn"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:goat_horn"
 productId = "minecraft:goat_horn"
@@ -7425,6 +7591,7 @@ itemId = "minecraft:goat_horn"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:goat_spawn_egg"]
@@ -7473,6 +7640,7 @@ itemId = "minecraft:goat_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:gold_ingot"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:gold_ingot"
 productId = "minecraft:gold_ingot"
@@ -7515,6 +7683,7 @@ itemId = "minecraft:gold_ingot"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:golden_apple"]
@@ -7561,6 +7730,7 @@ itemId = "minecraft:golden_apple"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:golden_carrot"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:golden_carrot"
 productId = "minecraft:golden_carrot"
@@ -7603,6 +7773,7 @@ itemId = "minecraft:golden_carrot"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:golden_dandelion"]
@@ -7649,6 +7820,7 @@ itemId = "minecraft:golden_dandelion"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:granite"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:granite"
 productId = "minecraft:granite"
@@ -7691,6 +7863,7 @@ itemId = "minecraft:granite"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:grass_block"]
@@ -7737,6 +7910,7 @@ itemId = "minecraft:grass_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:gravel"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:gravel"
 productId = "minecraft:gravel"
@@ -7779,6 +7953,7 @@ itemId = "minecraft:gravel"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:gray_bundle"]
@@ -7825,6 +8000,7 @@ itemId = "minecraft:gray_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:gray_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:gray_dye"
 productId = "minecraft:gray_dye"
@@ -7867,6 +8043,7 @@ itemId = "minecraft:gray_dye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:gray_harness"]
@@ -7913,6 +8090,7 @@ itemId = "minecraft:gray_harness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:green_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:green_bundle"
 productId = "minecraft:green_bundle"
@@ -7955,6 +8133,7 @@ itemId = "minecraft:green_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:green_dye"]
@@ -8001,6 +8180,7 @@ itemId = "minecraft:green_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:green_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:green_harness"
 productId = "minecraft:green_harness"
@@ -8043,6 +8223,7 @@ itemId = "minecraft:green_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:gunpowder"]
@@ -8089,6 +8270,7 @@ itemId = "minecraft:gunpowder"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:guster_banner_pattern"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:guster_banner_pattern"
 productId = "minecraft:guster_banner_pattern"
@@ -8133,6 +8315,7 @@ itemId = "minecraft:guster_banner_pattern"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:guster_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:guster_pottery_sherd"
 productId = "minecraft:guster_pottery_sherd"
@@ -8175,6 +8358,7 @@ itemId = "minecraft:guster_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:happy_ghast_spawn_egg"]
@@ -8223,6 +8407,7 @@ itemId = "minecraft:happy_ghast_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:hay_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:hay_block"
 productId = "minecraft:hay_block"
@@ -8265,6 +8450,7 @@ itemId = "minecraft:hay_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:heart_of_the_sea"]
@@ -8311,6 +8497,7 @@ itemId = "minecraft:heart_of_the_sea"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:heart_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:heart_pottery_sherd"
 productId = "minecraft:heart_pottery_sherd"
@@ -8353,6 +8540,7 @@ itemId = "minecraft:heart_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:heartbreak_pottery_sherd"]
@@ -8399,6 +8587,7 @@ itemId = "minecraft:heartbreak_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:heavy_core"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:heavy_core"
 productId = "minecraft:heavy_core"
@@ -8441,6 +8630,7 @@ itemId = "minecraft:heavy_core"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:honey_block"]
@@ -8487,6 +8677,7 @@ itemId = "minecraft:honey_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:honey_bottle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:honey_bottle"
 productId = "minecraft:honey_bottle"
@@ -8529,6 +8720,7 @@ itemId = "minecraft:honey_bottle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："无种子的原始食材"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:honeycomb"]
@@ -8575,6 +8767,7 @@ itemId = "minecraft:honeycomb"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:honeycomb_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:honeycomb_block"
 productId = "minecraft:honeycomb_block"
@@ -8617,6 +8810,7 @@ itemId = "minecraft:honeycomb_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:horn_coral"]
@@ -8663,6 +8857,7 @@ itemId = "minecraft:horn_coral"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:horn_coral_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:horn_coral_block"
 productId = "minecraft:horn_coral_block"
@@ -8707,6 +8902,7 @@ itemId = "minecraft:horn_coral_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:horn_coral_fan"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:horn_coral_fan"
 productId = "minecraft:horn_coral_fan"
@@ -8749,6 +8945,7 @@ itemId = "minecraft:horn_coral_fan"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:horse_spawn_egg"]
@@ -8797,6 +8994,7 @@ itemId = "minecraft:horse_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:host_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:host_armor_trim_smithing_template"
 productId = "minecraft:host_armor_trim_smithing_template"
@@ -8839,6 +9037,7 @@ itemId = "minecraft:host_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:howl_pottery_sherd"]
@@ -8885,6 +9084,7 @@ itemId = "minecraft:howl_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:ice"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ice"
 productId = "minecraft:ice"
@@ -8929,6 +9129,7 @@ itemId = "minecraft:ice"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:ink_sac"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ink_sac"
 productId = "minecraft:ink_sac"
@@ -8971,6 +9172,7 @@ itemId = "minecraft:ink_sac"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼产物仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:iron_golem_spawn_egg"]
@@ -9019,6 +9221,7 @@ itemId = "minecraft:iron_golem_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:iron_ingot"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:iron_ingot"
 productId = "minecraft:iron_ingot"
@@ -9061,6 +9264,7 @@ itemId = "minecraft:iron_ingot"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:jack_o_lantern"]
@@ -9107,6 +9311,7 @@ itemId = "minecraft:jack_o_lantern"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:jungle_log"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:jungle_log"
 productId = "minecraft:jungle_log"
@@ -9149,6 +9354,7 @@ itemId = "minecraft:jungle_log"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:jungle_planks"]
@@ -9195,6 +9401,7 @@ itemId = "minecraft:jungle_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:jungle_sapling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:jungle_sapling"
 productId = "minecraft:jungle_sapling"
@@ -9237,6 +9444,7 @@ itemId = "minecraft:jungle_sapling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:kelp"]
@@ -9283,6 +9491,7 @@ itemId = "minecraft:kelp"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lapis_lazuli"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lapis_lazuli"
 productId = "minecraft:lapis_lazuli"
@@ -9325,6 +9534,7 @@ itemId = "minecraft:lapis_lazuli"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:leather"]
@@ -9371,6 +9581,7 @@ itemId = "minecraft:leather"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:light_blue_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:light_blue_bundle"
 productId = "minecraft:light_blue_bundle"
@@ -9413,6 +9624,7 @@ itemId = "minecraft:light_blue_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:light_blue_dye"]
@@ -9459,6 +9671,7 @@ itemId = "minecraft:light_blue_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:light_blue_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:light_blue_harness"
 productId = "minecraft:light_blue_harness"
@@ -9501,6 +9714,7 @@ itemId = "minecraft:light_blue_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:light_gray_bundle"]
@@ -9547,6 +9761,7 @@ itemId = "minecraft:light_gray_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:light_gray_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:light_gray_dye"
 productId = "minecraft:light_gray_dye"
@@ -9589,6 +9804,7 @@ itemId = "minecraft:light_gray_dye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:light_gray_harness"]
@@ -9635,6 +9851,7 @@ itemId = "minecraft:light_gray_harness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lilac"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lilac"
 productId = "minecraft:lilac"
@@ -9677,6 +9894,7 @@ itemId = "minecraft:lilac"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lily_of_the_valley"]
@@ -9723,6 +9941,7 @@ itemId = "minecraft:lily_of_the_valley"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lily_pad"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lily_pad"
 productId = "minecraft:lily_pad"
@@ -9765,6 +9984,7 @@ itemId = "minecraft:lily_pad"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼产物仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lime_bundle"]
@@ -9811,6 +10031,7 @@ itemId = "minecraft:lime_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lime_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lime_dye"
 productId = "minecraft:lime_dye"
@@ -9855,6 +10076,7 @@ itemId = "minecraft:lime_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lime_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lime_harness"
 productId = "minecraft:lime_harness"
@@ -9897,6 +10119,7 @@ itemId = "minecraft:lime_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:llama_spawn_egg"]
@@ -9945,6 +10168,7 @@ itemId = "minecraft:llama_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:magenta_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:magenta_bundle"
 productId = "minecraft:magenta_bundle"
@@ -9987,6 +10211,7 @@ itemId = "minecraft:magenta_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:magenta_dye"]
@@ -10033,6 +10258,7 @@ itemId = "minecraft:magenta_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:magenta_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:magenta_harness"
 productId = "minecraft:magenta_harness"
@@ -10075,6 +10301,7 @@ itemId = "minecraft:magenta_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:magma_block"]
@@ -10121,6 +10348,7 @@ itemId = "minecraft:magma_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:magma_cream"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:magma_cream"
 productId = "minecraft:magma_cream"
@@ -10163,6 +10391,7 @@ itemId = "minecraft:magma_cream"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:mangrove_log"]
@@ -10209,6 +10438,7 @@ itemId = "minecraft:mangrove_log"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:mangrove_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:mangrove_planks"
 productId = "minecraft:mangrove_planks"
@@ -10251,6 +10481,7 @@ itemId = "minecraft:mangrove_planks"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:mangrove_propagule"]
@@ -10297,6 +10528,7 @@ itemId = "minecraft:mangrove_propagule"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:melon"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:melon"
 productId = "minecraft:melon"
@@ -10339,6 +10571,7 @@ itemId = "minecraft:melon"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："种植产物仅收购，购买对应首种"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:melon_seeds"]
@@ -10385,6 +10618,7 @@ itemId = "minecraft:melon_seeds"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:melon_slice"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:melon_slice"
 productId = "minecraft:melon_slice"
@@ -10427,6 +10661,7 @@ itemId = "minecraft:melon_slice"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："种植产物仅收购，购买对应首种"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:miner_pottery_sherd"]
@@ -10473,6 +10708,7 @@ itemId = "minecraft:miner_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:mojang_banner_pattern"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:mojang_banner_pattern"
 productId = "minecraft:mojang_banner_pattern"
@@ -10515,6 +10751,7 @@ itemId = "minecraft:mojang_banner_pattern"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:mooshroom_spawn_egg"]
@@ -10563,6 +10800,7 @@ itemId = "minecraft:mooshroom_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:moss_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:moss_block"
 productId = "minecraft:moss_block"
@@ -10605,6 +10843,7 @@ itemId = "minecraft:moss_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:moss_carpet"]
@@ -10651,6 +10890,7 @@ itemId = "minecraft:moss_carpet"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:mourner_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:mourner_pottery_sherd"
 productId = "minecraft:mourner_pottery_sherd"
@@ -10693,6 +10933,7 @@ itemId = "minecraft:mourner_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:mule_spawn_egg"]
@@ -10741,6 +10982,7 @@ itemId = "minecraft:mule_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:mushroom_stew"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:mushroom_stew"
 productId = "minecraft:mushroom_stew"
@@ -10783,6 +11025,7 @@ itemId = "minecraft:mushroom_stew"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:mutton"]
@@ -10829,6 +11072,7 @@ itemId = "minecraft:mutton"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:mycelium"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:mycelium"
 productId = "minecraft:mycelium"
@@ -10873,6 +11117,7 @@ itemId = "minecraft:mycelium"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:nautilus_shell"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:nautilus_shell"
 productId = "minecraft:nautilus_shell"
@@ -10915,6 +11160,7 @@ itemId = "minecraft:nautilus_shell"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼产物仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:nautilus_spawn_egg"]
@@ -10963,6 +11209,7 @@ itemId = "minecraft:nautilus_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:nether_brick"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:nether_brick"
 productId = "minecraft:nether_brick"
@@ -11005,6 +11252,7 @@ itemId = "minecraft:nether_brick"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:nether_star"]
@@ -11051,6 +11299,7 @@ itemId = "minecraft:nether_star"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:nether_wart"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:nether_wart"
 productId = "minecraft:nether_wart"
@@ -11093,6 +11342,7 @@ itemId = "minecraft:nether_wart"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:netherite_ingot"]
@@ -11139,6 +11389,7 @@ itemId = "minecraft:netherite_ingot"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:netherite_scrap"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:netherite_scrap"
 productId = "minecraft:netherite_scrap"
@@ -11181,6 +11432,7 @@ itemId = "minecraft:netherite_scrap"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："由远古残骸自行熔炼／制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:netherite_upgrade_smithing_template"]
@@ -11227,6 +11479,7 @@ itemId = "minecraft:netherite_upgrade_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:netherrack"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:netherrack"
 productId = "minecraft:netherrack"
@@ -11269,6 +11522,7 @@ itemId = "minecraft:netherrack"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:oak_log"]
@@ -11315,6 +11569,7 @@ itemId = "minecraft:oak_log"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:oak_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:oak_planks"
 productId = "minecraft:oak_planks"
@@ -11357,6 +11612,7 @@ itemId = "minecraft:oak_planks"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:oak_sapling"]
@@ -11403,6 +11659,7 @@ itemId = "minecraft:oak_sapling"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:obsidian"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:obsidian"
 productId = "minecraft:obsidian"
@@ -11445,6 +11702,7 @@ itemId = "minecraft:obsidian"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:ocelot_spawn_egg"]
@@ -11493,6 +11751,7 @@ itemId = "minecraft:ocelot_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:ochre_froglight"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ochre_froglight"
 productId = "minecraft:ochre_froglight"
@@ -11535,6 +11794,7 @@ itemId = "minecraft:ochre_froglight"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:ominous_trial_key"]
@@ -11583,6 +11843,7 @@ itemId = "minecraft:ominous_trial_key"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：100000
 
+
 [products."minecraft:open_eyeblossom"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:open_eyeblossom"
 productId = "minecraft:open_eyeblossom"
@@ -11625,6 +11886,7 @@ itemId = "minecraft:open_eyeblossom"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:orange_bundle"]
@@ -11671,6 +11933,7 @@ itemId = "minecraft:orange_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:orange_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:orange_dye"
 productId = "minecraft:orange_dye"
@@ -11713,6 +11976,7 @@ itemId = "minecraft:orange_dye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:orange_harness"]
@@ -11759,6 +12023,7 @@ itemId = "minecraft:orange_harness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:orange_tulip"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:orange_tulip"
 productId = "minecraft:orange_tulip"
@@ -11801,6 +12066,7 @@ itemId = "minecraft:orange_tulip"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:oxeye_daisy"]
@@ -11847,6 +12113,7 @@ itemId = "minecraft:oxeye_daisy"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:packed_ice"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:packed_ice"
 productId = "minecraft:packed_ice"
@@ -11889,6 +12156,7 @@ itemId = "minecraft:packed_ice"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pale_moss_block"]
@@ -11935,6 +12203,7 @@ itemId = "minecraft:pale_moss_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pale_moss_carpet"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pale_moss_carpet"
 productId = "minecraft:pale_moss_carpet"
@@ -11977,6 +12246,7 @@ itemId = "minecraft:pale_moss_carpet"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pale_oak_log"]
@@ -12023,6 +12293,7 @@ itemId = "minecraft:pale_oak_log"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pale_oak_planks"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pale_oak_planks"
 productId = "minecraft:pale_oak_planks"
@@ -12067,6 +12338,7 @@ itemId = "minecraft:pale_oak_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pale_oak_sapling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pale_oak_sapling"
 productId = "minecraft:pale_oak_sapling"
@@ -12109,6 +12381,7 @@ itemId = "minecraft:pale_oak_sapling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:panda_spawn_egg"]
@@ -12157,6 +12430,7 @@ itemId = "minecraft:panda_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:paper"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:paper"
 productId = "minecraft:paper"
@@ -12199,6 +12473,7 @@ itemId = "minecraft:paper"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:parrot_spawn_egg"]
@@ -12247,6 +12522,7 @@ itemId = "minecraft:parrot_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:pearlescent_froglight"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pearlescent_froglight"
 productId = "minecraft:pearlescent_froglight"
@@ -12289,6 +12565,7 @@ itemId = "minecraft:pearlescent_froglight"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:peony"]
@@ -12335,6 +12612,7 @@ itemId = "minecraft:peony"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:phantom_membrane"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:phantom_membrane"
 productId = "minecraft:phantom_membrane"
@@ -12377,6 +12655,7 @@ itemId = "minecraft:phantom_membrane"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pig_spawn_egg"]
@@ -12425,6 +12704,7 @@ itemId = "minecraft:pig_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：1000000
 
+
 [products."minecraft:piglin_banner_pattern"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:piglin_banner_pattern"
 productId = "minecraft:piglin_banner_pattern"
@@ -12467,6 +12747,7 @@ itemId = "minecraft:piglin_banner_pattern"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:piglin_spawn_egg"]
@@ -12515,6 +12796,7 @@ itemId = "minecraft:piglin_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:pink_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pink_bundle"
 productId = "minecraft:pink_bundle"
@@ -12557,6 +12839,7 @@ itemId = "minecraft:pink_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pink_dye"]
@@ -12603,6 +12886,7 @@ itemId = "minecraft:pink_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pink_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pink_harness"
 productId = "minecraft:pink_harness"
@@ -12645,6 +12929,7 @@ itemId = "minecraft:pink_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pink_petals"]
@@ -12691,6 +12976,7 @@ itemId = "minecraft:pink_petals"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pink_tulip"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pink_tulip"
 productId = "minecraft:pink_tulip"
@@ -12733,6 +13019,7 @@ itemId = "minecraft:pink_tulip"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pitcher_plant"]
@@ -12779,6 +13066,7 @@ itemId = "minecraft:pitcher_plant"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pitcher_pod"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pitcher_pod"
 productId = "minecraft:pitcher_pod"
@@ -12821,6 +13109,7 @@ itemId = "minecraft:pitcher_pod"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:plenty_pottery_sherd"]
@@ -12867,6 +13156,7 @@ itemId = "minecraft:plenty_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:podzol"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:podzol"
 productId = "minecraft:podzol"
@@ -12909,6 +13199,7 @@ itemId = "minecraft:podzol"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首次生产所需自然基底"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pointed_dripstone"]
@@ -12955,6 +13246,7 @@ itemId = "minecraft:pointed_dripstone"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:poisonous_potato"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:poisonous_potato"
 productId = "minecraft:poisonous_potato"
@@ -12997,6 +13289,7 @@ itemId = "minecraft:poisonous_potato"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："食物购买以首种／原始材料为主"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:polar_bear_spawn_egg"]
@@ -13045,6 +13338,7 @@ itemId = "minecraft:polar_bear_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:popped_chorus_fruit"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:popped_chorus_fruit"
 productId = "minecraft:popped_chorus_fruit"
@@ -13087,6 +13381,7 @@ itemId = "minecraft:popped_chorus_fruit"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:poppy"]
@@ -13133,6 +13428,7 @@ itemId = "minecraft:poppy"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:porkchop"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:porkchop"
 productId = "minecraft:porkchop"
@@ -13175,6 +13471,7 @@ itemId = "minecraft:porkchop"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potato"]
@@ -13221,6 +13518,7 @@ itemId = "minecraft:potato"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potent_sulfur"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potent_sulfur"
 productId = "minecraft:potent_sulfur"
@@ -13263,6 +13561,7 @@ itemId = "minecraft:potent_sulfur"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:prismarine_crystals"]
@@ -13309,6 +13608,7 @@ itemId = "minecraft:prismarine_crystals"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:prismarine_shard"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:prismarine_shard"
 productId = "minecraft:prismarine_shard"
@@ -13351,6 +13651,7 @@ itemId = "minecraft:prismarine_shard"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:prize_pottery_sherd"]
@@ -13397,6 +13698,7 @@ itemId = "minecraft:prize_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pufferfish"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pufferfish"
 productId = "minecraft:pufferfish"
@@ -13439,6 +13741,7 @@ itemId = "minecraft:pufferfish"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pufferfish_spawn_egg"]
@@ -13487,6 +13790,7 @@ itemId = "minecraft:pufferfish_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:pumpkin"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pumpkin"
 productId = "minecraft:pumpkin"
@@ -13529,6 +13833,7 @@ itemId = "minecraft:pumpkin"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："种植产物仅收购，购买对应首种"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:pumpkin_pie"]
@@ -13575,6 +13880,7 @@ itemId = "minecraft:pumpkin_pie"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:pumpkin_seeds"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:pumpkin_seeds"
 productId = "minecraft:pumpkin_seeds"
@@ -13617,6 +13923,7 @@ itemId = "minecraft:pumpkin_seeds"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:purple_bundle"]
@@ -13663,6 +13970,7 @@ itemId = "minecraft:purple_bundle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:purple_dye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:purple_dye"
 productId = "minecraft:purple_dye"
@@ -13705,6 +14013,7 @@ itemId = "minecraft:purple_dye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:purple_harness"]
@@ -13751,6 +14060,7 @@ itemId = "minecraft:purple_harness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:quartz"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:quartz"
 productId = "minecraft:quartz"
@@ -13793,6 +14103,7 @@ itemId = "minecraft:quartz"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:rabbit"]
@@ -13839,6 +14150,7 @@ itemId = "minecraft:rabbit"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:rabbit_foot"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:rabbit_foot"
 productId = "minecraft:rabbit_foot"
@@ -13883,6 +14195,7 @@ itemId = "minecraft:rabbit_foot"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:rabbit_hide"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:rabbit_hide"
 productId = "minecraft:rabbit_hide"
@@ -13925,6 +14238,7 @@ itemId = "minecraft:rabbit_hide"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:rabbit_spawn_egg"]
@@ -13973,6 +14287,7 @@ itemId = "minecraft:rabbit_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：1000000
 
+
 [products."minecraft:rabbit_stew"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:rabbit_stew"
 productId = "minecraft:rabbit_stew"
@@ -14015,6 +14330,7 @@ itemId = "minecraft:rabbit_stew"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:raiser_armor_trim_smithing_template"]
@@ -14061,6 +14377,7 @@ itemId = "minecraft:raiser_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:red_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:red_bundle"
 productId = "minecraft:red_bundle"
@@ -14103,6 +14420,7 @@ itemId = "minecraft:red_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:red_dye"]
@@ -14149,6 +14467,7 @@ itemId = "minecraft:red_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:red_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:red_harness"
 productId = "minecraft:red_harness"
@@ -14191,6 +14510,7 @@ itemId = "minecraft:red_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:red_mushroom"]
@@ -14237,6 +14557,7 @@ itemId = "minecraft:red_mushroom"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:red_sand"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:red_sand"
 productId = "minecraft:red_sand"
@@ -14279,6 +14600,7 @@ itemId = "minecraft:red_sand"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:red_tulip"]
@@ -14325,6 +14647,7 @@ itemId = "minecraft:red_tulip"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:redstone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:redstone"
 productId = "minecraft:redstone"
@@ -14367,6 +14690,7 @@ itemId = "minecraft:redstone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础矿物／粉末例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:resin_block"]
@@ -14413,6 +14737,7 @@ itemId = "minecraft:resin_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:resin_brick"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:resin_brick"
 productId = "minecraft:resin_brick"
@@ -14455,6 +14780,7 @@ itemId = "minecraft:resin_brick"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:resin_clump"]
@@ -14501,6 +14827,7 @@ itemId = "minecraft:resin_clump"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:rib_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:rib_armor_trim_smithing_template"
 productId = "minecraft:rib_armor_trim_smithing_template"
@@ -14543,6 +14870,7 @@ itemId = "minecraft:rib_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:rose_bush"]
@@ -14589,6 +14917,7 @@ itemId = "minecraft:rose_bush"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:rotten_flesh"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:rotten_flesh"
 productId = "minecraft:rotten_flesh"
@@ -14633,6 +14962,7 @@ itemId = "minecraft:rotten_flesh"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:salmon"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:salmon"
 productId = "minecraft:salmon"
@@ -14675,6 +15005,7 @@ itemId = "minecraft:salmon"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:salmon_spawn_egg"]
@@ -14723,6 +15054,7 @@ itemId = "minecraft:salmon_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:sand"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sand"
 productId = "minecraft:sand"
@@ -14765,6 +15097,7 @@ itemId = "minecraft:sand"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:scrape_pottery_sherd"]
@@ -14811,6 +15144,7 @@ itemId = "minecraft:scrape_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sculk"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sculk"
 productId = "minecraft:sculk"
@@ -14855,6 +15189,7 @@ itemId = "minecraft:sculk"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sculk_catalyst"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sculk_catalyst"
 productId = "minecraft:sculk_catalyst"
@@ -14897,6 +15232,7 @@ itemId = "minecraft:sculk_catalyst"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:sculk_sensor"]
@@ -14945,6 +15281,7 @@ itemId = "minecraft:sculk_sensor"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：100000
 
+
 [products."minecraft:sculk_shrieker"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sculk_shrieker"
 productId = "minecraft:sculk_shrieker"
@@ -14991,6 +15328,7 @@ itemId = "minecraft:sculk_shrieker"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：100000
 
+
 [products."minecraft:sculk_vein"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sculk_vein"
 productId = "minecraft:sculk_vein"
@@ -15033,6 +15371,7 @@ itemId = "minecraft:sculk_vein"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留不可合成的幽匿系列"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:sea_pickle"]
@@ -15079,6 +15418,7 @@ itemId = "minecraft:sea_pickle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sentry_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sentry_armor_trim_smithing_template"
 productId = "minecraft:sentry_armor_trim_smithing_template"
@@ -15121,6 +15461,7 @@ itemId = "minecraft:sentry_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:shaper_armor_trim_smithing_template"]
@@ -15167,6 +15508,7 @@ itemId = "minecraft:shaper_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sheaf_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sheaf_pottery_sherd"
 productId = "minecraft:sheaf_pottery_sherd"
@@ -15209,6 +15551,7 @@ itemId = "minecraft:sheaf_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:sheep_spawn_egg"]
@@ -15257,6 +15600,7 @@ itemId = "minecraft:sheep_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：1000000
 
+
 [products."minecraft:shelter_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:shelter_pottery_sherd"
 productId = "minecraft:shelter_pottery_sherd"
@@ -15299,6 +15643,7 @@ itemId = "minecraft:shelter_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:shulker_shell"]
@@ -15345,6 +15690,7 @@ itemId = "minecraft:shulker_shell"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:silence_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:silence_armor_trim_smithing_template"
 productId = "minecraft:silence_armor_trim_smithing_template"
@@ -15387,6 +15733,7 @@ itemId = "minecraft:silence_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:skeleton_horse_spawn_egg"]
@@ -15435,6 +15782,7 @@ itemId = "minecraft:skeleton_horse_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:skull_banner_pattern"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:skull_banner_pattern"
 productId = "minecraft:skull_banner_pattern"
@@ -15477,6 +15825,7 @@ itemId = "minecraft:skull_banner_pattern"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:skull_pottery_sherd"]
@@ -15523,6 +15872,7 @@ itemId = "minecraft:skull_pottery_sherd"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:slime_ball"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:slime_ball"
 productId = "minecraft:slime_ball"
@@ -15565,6 +15915,7 @@ itemId = "minecraft:slime_ball"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:slime_block"]
@@ -15611,6 +15962,7 @@ itemId = "minecraft:slime_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:small_dripleaf"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:small_dripleaf"
 productId = "minecraft:small_dripleaf"
@@ -15655,6 +16007,7 @@ itemId = "minecraft:small_dripleaf"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sniffer_egg"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sniffer_egg"
 productId = "minecraft:sniffer_egg"
@@ -15697,6 +16050,7 @@ itemId = "minecraft:sniffer_egg"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:sniffer_spawn_egg"]
@@ -15745,6 +16099,7 @@ itemId = "minecraft:sniffer_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:snort_pottery_sherd"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:snort_pottery_sherd"
 productId = "minecraft:snort_pottery_sherd"
@@ -15787,6 +16142,7 @@ itemId = "minecraft:snort_pottery_sherd"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:snout_armor_trim_smithing_template"]
@@ -15833,6 +16189,7 @@ itemId = "minecraft:snout_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:snow"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:snow"
 productId = "minecraft:snow"
@@ -15877,6 +16234,7 @@ itemId = "minecraft:snow"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:snow_block"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:snow_block"
 productId = "minecraft:snow_block"
@@ -15919,6 +16277,7 @@ itemId = "minecraft:snow_block"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:snow_golem_spawn_egg"]
@@ -15967,6 +16326,7 @@ itemId = "minecraft:snow_golem_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:soul_sand"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:soul_sand"
 productId = "minecraft:soul_sand"
@@ -16009,6 +16369,7 @@ itemId = "minecraft:soul_sand"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:soul_soil"]
@@ -16055,6 +16416,7 @@ itemId = "minecraft:soul_soil"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:spider_eye"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:spider_eye"
 productId = "minecraft:spider_eye"
@@ -16097,6 +16459,7 @@ itemId = "minecraft:spider_eye"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:spire_armor_trim_smithing_template"]
@@ -16143,6 +16506,7 @@ itemId = "minecraft:spire_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sponge"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sponge"
 productId = "minecraft:sponge"
@@ -16185,6 +16549,7 @@ itemId = "minecraft:sponge"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:spore_blossom"]
@@ -16231,6 +16596,7 @@ itemId = "minecraft:spore_blossom"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:spruce_log"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:spruce_log"
 productId = "minecraft:spruce_log"
@@ -16273,6 +16639,7 @@ itemId = "minecraft:spruce_log"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:spruce_planks"]
@@ -16319,6 +16686,7 @@ itemId = "minecraft:spruce_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:spruce_sapling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:spruce_sapling"
 productId = "minecraft:spruce_sapling"
@@ -16361,6 +16729,7 @@ itemId = "minecraft:spruce_sapling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:squid_spawn_egg"]
@@ -16409,6 +16778,7 @@ itemId = "minecraft:squid_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:stone"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:stone"
 productId = "minecraft:stone"
@@ -16451,6 +16821,7 @@ itemId = "minecraft:stone"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:strider_spawn_egg"]
@@ -16499,6 +16870,7 @@ itemId = "minecraft:strider_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:string"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:string"
 productId = "minecraft:string"
@@ -16541,6 +16913,7 @@ itemId = "minecraft:string"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:sugar"]
@@ -16587,6 +16960,7 @@ itemId = "minecraft:sugar"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sugar_cane"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sugar_cane"
 productId = "minecraft:sugar_cane"
@@ -16629,6 +17003,7 @@ itemId = "minecraft:sugar_cane"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:sulfur"]
@@ -16675,6 +17050,7 @@ itemId = "minecraft:sulfur"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sunflower"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sunflower"
 productId = "minecraft:sunflower"
@@ -16719,6 +17095,7 @@ itemId = "minecraft:sunflower"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:sweet_berries"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:sweet_berries"
 productId = "minecraft:sweet_berries"
@@ -16761,6 +17138,7 @@ itemId = "minecraft:sweet_berries"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:tadpole_spawn_egg"]
@@ -16809,6 +17187,7 @@ itemId = "minecraft:tadpole_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:tide_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:tide_armor_trim_smithing_template"
 productId = "minecraft:tide_armor_trim_smithing_template"
@@ -16851,6 +17230,7 @@ itemId = "minecraft:tide_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:torchflower"]
@@ -16897,6 +17277,7 @@ itemId = "minecraft:torchflower"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:torchflower_seeds"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:torchflower_seeds"
 productId = "minecraft:torchflower_seeds"
@@ -16939,6 +17320,7 @@ itemId = "minecraft:torchflower_seeds"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:trader_llama_spawn_egg"]
@@ -16987,6 +17369,7 @@ itemId = "minecraft:trader_llama_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:trial_key"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:trial_key"
 productId = "minecraft:trial_key"
@@ -17033,6 +17416,7 @@ itemId = "minecraft:trial_key"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：50000
 
+
 [products."minecraft:tropical_fish"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:tropical_fish"
 productId = "minecraft:tropical_fish"
@@ -17075,6 +17459,7 @@ itemId = "minecraft:tropical_fish"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:tropical_fish_spawn_egg"]
@@ -17123,6 +17508,7 @@ itemId = "minecraft:tropical_fish_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:tube_coral"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:tube_coral"
 productId = "minecraft:tube_coral"
@@ -17165,6 +17551,7 @@ itemId = "minecraft:tube_coral"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:tube_coral_block"]
@@ -17211,6 +17598,7 @@ itemId = "minecraft:tube_coral_block"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:tube_coral_fan"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:tube_coral_fan"
 productId = "minecraft:tube_coral_fan"
@@ -17253,6 +17641,7 @@ itemId = "minecraft:tube_coral_fan"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:tuff"]
@@ -17299,6 +17688,7 @@ itemId = "minecraft:tuff"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:turtle_scute"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:turtle_scute"
 productId = "minecraft:turtle_scute"
@@ -17341,6 +17731,7 @@ itemId = "minecraft:turtle_scute"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："基础原料／无法制作的剩余物资"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:turtle_spawn_egg"]
@@ -17389,6 +17780,7 @@ itemId = "minecraft:turtle_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:twisting_vines"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:twisting_vines"
 productId = "minecraft:twisting_vines"
@@ -17431,6 +17823,7 @@ itemId = "minecraft:twisting_vines"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:verdant_froglight"]
@@ -17477,6 +17870,7 @@ itemId = "minecraft:verdant_froglight"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:vex_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:vex_armor_trim_smithing_template"
 productId = "minecraft:vex_armor_trim_smithing_template"
@@ -17519,6 +17913,7 @@ itemId = "minecraft:vex_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:villager_spawn_egg"]
@@ -17567,6 +17962,7 @@ itemId = "minecraft:villager_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:vine"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:vine"
 productId = "minecraft:vine"
@@ -17609,6 +18005,7 @@ itemId = "minecraft:vine"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:wandering_trader_spawn_egg"]
@@ -17657,6 +18054,7 @@ itemId = "minecraft:wandering_trader_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:ward_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ward_armor_trim_smithing_template"
 productId = "minecraft:ward_armor_trim_smithing_template"
@@ -17699,6 +18097,7 @@ itemId = "minecraft:ward_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:warped_fungus"]
@@ -17745,6 +18144,7 @@ itemId = "minecraft:warped_fungus"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:warped_nylium"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:warped_nylium"
 productId = "minecraft:warped_nylium"
@@ -17787,6 +18187,7 @@ itemId = "minecraft:warped_nylium"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首次生产所需自然基底"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:warped_planks"]
@@ -17833,6 +18234,7 @@ itemId = "minecraft:warped_planks"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:warped_stem"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:warped_stem"
 productId = "minecraft:warped_stem"
@@ -17875,6 +18277,7 @@ itemId = "minecraft:warped_stem"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："保留基础原木、木板、原始石材；可买可卖"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:wayfinder_armor_trim_smithing_template"]
@@ -17921,6 +18324,7 @@ itemId = "minecraft:wayfinder_armor_trim_smithing_template"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:weeping_vines"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:weeping_vines"
 productId = "minecraft:weeping_vines"
@@ -17963,6 +18367,7 @@ itemId = "minecraft:weeping_vines"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："首种购买为旧价1000倍，回收独立"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：true
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:wet_sponge"]
@@ -18009,6 +18414,7 @@ itemId = "minecraft:wet_sponge"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:wheat"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:wheat"
 productId = "minecraft:wheat"
@@ -18051,6 +18457,7 @@ itemId = "minecraft:wheat"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："种植产物仅收购，购买对应首种"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:wheat_seeds"]
@@ -18097,6 +18504,7 @@ itemId = "minecraft:wheat_seeds"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:white_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:white_bundle"
 productId = "minecraft:white_bundle"
@@ -18139,6 +18547,7 @@ itemId = "minecraft:white_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:white_dye"]
@@ -18185,6 +18594,7 @@ itemId = "minecraft:white_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:white_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:white_harness"
 productId = "minecraft:white_harness"
@@ -18227,6 +18637,7 @@ itemId = "minecraft:white_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:white_tulip"]
@@ -18273,6 +18684,7 @@ itemId = "minecraft:white_tulip"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:wild_armor_trim_smithing_template"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:wild_armor_trim_smithing_template"
 productId = "minecraft:wild_armor_trim_smithing_template"
@@ -18315,6 +18727,7 @@ itemId = "minecraft:wild_armor_trim_smithing_template"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："不可从零取得的推进／首件例外"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:wildflowers"]
@@ -18361,6 +18774,7 @@ itemId = "minecraft:wildflowers"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:wither_rose"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:wither_rose"
 productId = "minecraft:wither_rose"
@@ -18403,6 +18817,7 @@ itemId = "minecraft:wither_rose"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:wolf_spawn_egg"]
@@ -18451,6 +18866,7 @@ itemId = "minecraft:wolf_spawn_egg"
 
 # 独立购入基价；正整数，省略沿用基础价值，不改变收购价；当前默认：30000000
 
+
 [products."minecraft:yellow_bundle"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:yellow_bundle"
 productId = "minecraft:yellow_bundle"
@@ -18493,6 +18909,7 @@ itemId = "minecraft:yellow_bundle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:yellow_dye"]
@@ -18539,6 +18956,7 @@ itemId = "minecraft:yellow_dye"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:yellow_harness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:yellow_harness"
 productId = "minecraft:yellow_harness"
@@ -18581,6 +18999,7 @@ itemId = "minecraft:yellow_harness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："可自行制作，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__aqua_affinity_1"]
@@ -18632,6 +19051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__bane_of_arthropods_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__bane_of_arthropods_1"
 productId = "minecraft:enchanted_book__bane_of_arthropods_1"
@@ -18679,6 +19099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__bane_of_arthropods_2"]
@@ -18730,6 +19151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__bane_of_arthropods_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__bane_of_arthropods_3"
 productId = "minecraft:enchanted_book__bane_of_arthropods_3"
@@ -18777,6 +19199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__bane_of_arthropods_4"]
@@ -18828,6 +19251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__bane_of_arthropods_5"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__bane_of_arthropods_5"
 productId = "minecraft:enchanted_book__bane_of_arthropods_5"
@@ -18875,6 +19299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__blast_protection_1"]
@@ -18926,6 +19351,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__blast_protection_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__blast_protection_2"
 productId = "minecraft:enchanted_book__blast_protection_2"
@@ -18973,6 +19399,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__blast_protection_3"]
@@ -19024,6 +19451,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__blast_protection_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__blast_protection_4"
 productId = "minecraft:enchanted_book__blast_protection_4"
@@ -19071,6 +19499,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__breach_1"]
@@ -19122,6 +19551,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__breach_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__breach_2"
 productId = "minecraft:enchanted_book__breach_2"
@@ -19169,6 +19599,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__breach_3"]
@@ -19220,6 +19651,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__breach_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__breach_4"
 productId = "minecraft:enchanted_book__breach_4"
@@ -19267,6 +19699,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__channeling_1"]
@@ -19318,6 +19751,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__density_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__density_1"
 productId = "minecraft:enchanted_book__density_1"
@@ -19365,6 +19799,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__density_2"]
@@ -19416,6 +19851,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__density_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__density_3"
 productId = "minecraft:enchanted_book__density_3"
@@ -19463,6 +19899,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__density_4"]
@@ -19514,6 +19951,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__density_5"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__density_5"
 productId = "minecraft:enchanted_book__density_5"
@@ -19561,6 +19999,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__depth_strider_1"]
@@ -19612,6 +20051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__depth_strider_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__depth_strider_2"
 productId = "minecraft:enchanted_book__depth_strider_2"
@@ -19659,6 +20099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__depth_strider_3"]
@@ -19710,6 +20151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__efficiency_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__efficiency_1"
 productId = "minecraft:enchanted_book__efficiency_1"
@@ -19757,6 +20199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__efficiency_2"]
@@ -19808,6 +20251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__efficiency_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__efficiency_3"
 productId = "minecraft:enchanted_book__efficiency_3"
@@ -19855,6 +20299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__efficiency_4"]
@@ -19906,6 +20351,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__efficiency_5"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__efficiency_5"
 productId = "minecraft:enchanted_book__efficiency_5"
@@ -19953,6 +20399,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__feather_falling_1"]
@@ -20004,6 +20451,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__feather_falling_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__feather_falling_2"
 productId = "minecraft:enchanted_book__feather_falling_2"
@@ -20051,6 +20499,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__feather_falling_3"]
@@ -20102,6 +20551,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__feather_falling_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__feather_falling_4"
 productId = "minecraft:enchanted_book__feather_falling_4"
@@ -20149,6 +20599,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__fire_aspect_1"]
@@ -20200,6 +20651,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__fire_aspect_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__fire_aspect_2"
 productId = "minecraft:enchanted_book__fire_aspect_2"
@@ -20247,6 +20699,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__fire_protection_1"]
@@ -20298,6 +20751,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__fire_protection_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__fire_protection_2"
 productId = "minecraft:enchanted_book__fire_protection_2"
@@ -20345,6 +20799,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__fire_protection_3"]
@@ -20396,6 +20851,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__fire_protection_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__fire_protection_4"
 productId = "minecraft:enchanted_book__fire_protection_4"
@@ -20443,6 +20899,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__flame_1"]
@@ -20494,6 +20951,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__fortune_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__fortune_1"
 productId = "minecraft:enchanted_book__fortune_1"
@@ -20541,6 +20999,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__fortune_2"]
@@ -20592,6 +21051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__fortune_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__fortune_3"
 productId = "minecraft:enchanted_book__fortune_3"
@@ -20639,6 +21099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__frost_walker_1"]
@@ -20690,6 +21151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__frost_walker_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__frost_walker_2"
 productId = "minecraft:enchanted_book__frost_walker_2"
@@ -20737,6 +21199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__impaling_1"]
@@ -20788,6 +21251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__impaling_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__impaling_2"
 productId = "minecraft:enchanted_book__impaling_2"
@@ -20835,6 +21299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__impaling_3"]
@@ -20886,6 +21351,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__impaling_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__impaling_4"
 productId = "minecraft:enchanted_book__impaling_4"
@@ -20933,6 +21399,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__impaling_5"]
@@ -20984,6 +21451,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__infinity_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__infinity_1"
 productId = "minecraft:enchanted_book__infinity_1"
@@ -21031,6 +21499,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__knockback_1"]
@@ -21082,6 +21551,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__knockback_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__knockback_2"
 productId = "minecraft:enchanted_book__knockback_2"
@@ -21129,6 +21599,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__looting_1"]
@@ -21180,6 +21651,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__looting_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__looting_2"
 productId = "minecraft:enchanted_book__looting_2"
@@ -21227,6 +21699,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__looting_3"]
@@ -21278,6 +21751,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__loyalty_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__loyalty_1"
 productId = "minecraft:enchanted_book__loyalty_1"
@@ -21325,6 +21799,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__loyalty_2"]
@@ -21376,6 +21851,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__loyalty_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__loyalty_3"
 productId = "minecraft:enchanted_book__loyalty_3"
@@ -21423,6 +21899,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__luck_of_the_sea_1"]
@@ -21474,6 +21951,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__luck_of_the_sea_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__luck_of_the_sea_2"
 productId = "minecraft:enchanted_book__luck_of_the_sea_2"
@@ -21521,6 +21999,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__luck_of_the_sea_3"]
@@ -21572,6 +22051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__lunge_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__lunge_1"
 productId = "minecraft:enchanted_book__lunge_1"
@@ -21619,6 +22099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__lunge_2"]
@@ -21670,6 +22151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__lunge_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__lunge_3"
 productId = "minecraft:enchanted_book__lunge_3"
@@ -21717,6 +22199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__lure_1"]
@@ -21768,6 +22251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__lure_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__lure_2"
 productId = "minecraft:enchanted_book__lure_2"
@@ -21815,6 +22299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__lure_3"]
@@ -21866,6 +22351,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__mending_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__mending_1"
 productId = "minecraft:enchanted_book__mending_1"
@@ -21913,6 +22399,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__multishot_1"]
@@ -21964,6 +22451,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__piercing_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__piercing_1"
 productId = "minecraft:enchanted_book__piercing_1"
@@ -22011,6 +22499,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__piercing_2"]
@@ -22062,6 +22551,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__piercing_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__piercing_3"
 productId = "minecraft:enchanted_book__piercing_3"
@@ -22109,6 +22599,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__piercing_4"]
@@ -22160,6 +22651,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__power_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__power_1"
 productId = "minecraft:enchanted_book__power_1"
@@ -22207,6 +22699,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__power_2"]
@@ -22258,6 +22751,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__power_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__power_3"
 productId = "minecraft:enchanted_book__power_3"
@@ -22305,6 +22799,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__power_4"]
@@ -22356,6 +22851,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__power_5"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__power_5"
 productId = "minecraft:enchanted_book__power_5"
@@ -22403,6 +22899,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__projectile_protection_1"]
@@ -22454,6 +22951,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__projectile_protection_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__projectile_protection_2"
 productId = "minecraft:enchanted_book__projectile_protection_2"
@@ -22501,6 +22999,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__projectile_protection_3"]
@@ -22552,6 +23051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__projectile_protection_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__projectile_protection_4"
 productId = "minecraft:enchanted_book__projectile_protection_4"
@@ -22599,6 +23099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__protection_1"]
@@ -22650,6 +23151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__protection_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__protection_2"
 productId = "minecraft:enchanted_book__protection_2"
@@ -22697,6 +23199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__protection_3"]
@@ -22748,6 +23251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__protection_4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__protection_4"
 productId = "minecraft:enchanted_book__protection_4"
@@ -22795,6 +23299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__punch_1"]
@@ -22846,6 +23351,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__punch_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__punch_2"
 productId = "minecraft:enchanted_book__punch_2"
@@ -22893,6 +23399,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__quick_charge_1"]
@@ -22944,6 +23451,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__quick_charge_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__quick_charge_2"
 productId = "minecraft:enchanted_book__quick_charge_2"
@@ -22991,6 +23499,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__quick_charge_3"]
@@ -23042,6 +23551,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__respiration_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__respiration_1"
 productId = "minecraft:enchanted_book__respiration_1"
@@ -23089,6 +23599,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__respiration_2"]
@@ -23140,6 +23651,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__respiration_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__respiration_3"
 productId = "minecraft:enchanted_book__respiration_3"
@@ -23187,6 +23699,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__riptide_1"]
@@ -23238,6 +23751,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__riptide_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__riptide_2"
 productId = "minecraft:enchanted_book__riptide_2"
@@ -23285,6 +23799,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__riptide_3"]
@@ -23336,6 +23851,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__sharpness_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__sharpness_1"
 productId = "minecraft:enchanted_book__sharpness_1"
@@ -23383,6 +23899,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__sharpness_2"]
@@ -23434,6 +23951,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__sharpness_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__sharpness_3"
 productId = "minecraft:enchanted_book__sharpness_3"
@@ -23481,6 +23999,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__sharpness_4"]
@@ -23532,6 +24051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__sharpness_5"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__sharpness_5"
 productId = "minecraft:enchanted_book__sharpness_5"
@@ -23579,6 +24099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__silk_touch_1"]
@@ -23630,6 +24151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__smite_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__smite_1"
 productId = "minecraft:enchanted_book__smite_1"
@@ -23677,6 +24199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__smite_2"]
@@ -23728,6 +24251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__smite_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__smite_3"
 productId = "minecraft:enchanted_book__smite_3"
@@ -23775,6 +24299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__smite_4"]
@@ -23826,6 +24351,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__smite_5"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__smite_5"
 productId = "minecraft:enchanted_book__smite_5"
@@ -23873,6 +24399,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__soul_speed_1"]
@@ -23924,6 +24451,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__soul_speed_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__soul_speed_2"
 productId = "minecraft:enchanted_book__soul_speed_2"
@@ -23971,6 +24499,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__soul_speed_3"]
@@ -24022,6 +24551,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__sweeping_edge_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__sweeping_edge_1"
 productId = "minecraft:enchanted_book__sweeping_edge_1"
@@ -24069,6 +24599,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__sweeping_edge_2"]
@@ -24120,6 +24651,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__sweeping_edge_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__sweeping_edge_3"
 productId = "minecraft:enchanted_book__sweeping_edge_3"
@@ -24167,6 +24699,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__swift_sneak_1"]
@@ -24218,6 +24751,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__swift_sneak_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__swift_sneak_2"
 productId = "minecraft:enchanted_book__swift_sneak_2"
@@ -24265,6 +24799,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__swift_sneak_3"]
@@ -24316,6 +24851,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__thorns_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__thorns_1"
 productId = "minecraft:enchanted_book__thorns_1"
@@ -24363,6 +24899,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："该附魔等级可由26.2钓鱼产生，仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__thorns_2"]
@@ -24414,6 +24951,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__thorns_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__thorns_3"
 productId = "minecraft:enchanted_book__thorns_3"
@@ -24461,6 +24999,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__unbreaking_1"]
@@ -24512,6 +25051,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__unbreaking_2"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__unbreaking_2"
 productId = "minecraft:enchanted_book__unbreaking_2"
@@ -24559,6 +25099,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__unbreaking_3"]
@@ -24610,6 +25151,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__wind_burst_1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__wind_burst_1"
 productId = "minecraft:enchanted_book__wind_burst_1"
@@ -24657,6 +25199,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:enchanted_book__wind_burst_2"]
@@ -24708,6 +25251,7 @@ itemId = "minecraft:enchanted_book"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:enchanted_book__wind_burst_3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:enchanted_book__wind_burst_3"
 productId = "minecraft:enchanted_book__wind_burst_3"
@@ -24755,6 +25299,7 @@ itemId = "minecraft:enchanted_book"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："钓鱼无法产生的附魔等级，保留特殊供货"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__awkward"]
@@ -24806,6 +25351,7 @@ potion = "minecraft:awkward"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__fire_resistance"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__fire_resistance"
 productId = "minecraft:potion__fire_resistance"
@@ -24853,6 +25399,7 @@ potion = "minecraft:fire_resistance"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__harming"]
@@ -24904,6 +25451,7 @@ potion = "minecraft:harming"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__healing"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__healing"
 productId = "minecraft:potion__healing"
@@ -24951,6 +25499,7 @@ potion = "minecraft:healing"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__infested"]
@@ -25002,6 +25551,7 @@ potion = "minecraft:infested"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__invisibility"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__invisibility"
 productId = "minecraft:potion__invisibility"
@@ -25049,6 +25599,7 @@ potion = "minecraft:invisibility"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__leaping"]
@@ -25100,6 +25651,7 @@ potion = "minecraft:leaping"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_fire_resistance"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_fire_resistance"
 productId = "minecraft:potion__long_fire_resistance"
@@ -25147,6 +25699,7 @@ potion = "minecraft:long_fire_resistance"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__long_invisibility"]
@@ -25198,6 +25751,7 @@ potion = "minecraft:long_invisibility"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_leaping"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_leaping"
 productId = "minecraft:potion__long_leaping"
@@ -25245,6 +25799,7 @@ potion = "minecraft:long_leaping"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__long_night_vision"]
@@ -25296,6 +25851,7 @@ potion = "minecraft:long_night_vision"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_poison"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_poison"
 productId = "minecraft:potion__long_poison"
@@ -25343,6 +25899,7 @@ potion = "minecraft:long_poison"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__long_regeneration"]
@@ -25394,6 +25951,7 @@ potion = "minecraft:long_regeneration"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_slow_falling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_slow_falling"
 productId = "minecraft:potion__long_slow_falling"
@@ -25441,6 +25999,7 @@ potion = "minecraft:long_slow_falling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__long_slowness"]
@@ -25492,6 +26051,7 @@ potion = "minecraft:long_slowness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_strength"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_strength"
 productId = "minecraft:potion__long_strength"
@@ -25539,6 +26099,7 @@ potion = "minecraft:long_strength"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__long_swiftness"]
@@ -25590,6 +26151,7 @@ potion = "minecraft:long_swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_turtle_master"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_turtle_master"
 productId = "minecraft:potion__long_turtle_master"
@@ -25637,6 +26199,7 @@ potion = "minecraft:long_turtle_master"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__long_water_breathing"]
@@ -25688,6 +26251,7 @@ potion = "minecraft:long_water_breathing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__long_weakness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__long_weakness"
 productId = "minecraft:potion__long_weakness"
@@ -25735,6 +26299,7 @@ potion = "minecraft:long_weakness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__luck"]
@@ -25786,6 +26351,7 @@ potion = "minecraft:luck"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__mundane"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__mundane"
 productId = "minecraft:potion__mundane"
@@ -25833,6 +26399,7 @@ potion = "minecraft:mundane"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__night_vision"]
@@ -25884,6 +26451,7 @@ potion = "minecraft:night_vision"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__oozing"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__oozing"
 productId = "minecraft:potion__oozing"
@@ -25931,6 +26499,7 @@ potion = "minecraft:oozing"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__poison"]
@@ -25982,6 +26551,7 @@ potion = "minecraft:poison"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__regeneration"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__regeneration"
 productId = "minecraft:potion__regeneration"
@@ -26029,6 +26599,7 @@ potion = "minecraft:regeneration"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__slow_falling"]
@@ -26080,6 +26651,7 @@ potion = "minecraft:slow_falling"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__slowness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__slowness"
 productId = "minecraft:potion__slowness"
@@ -26127,6 +26699,7 @@ potion = "minecraft:slowness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__strength"]
@@ -26178,6 +26751,7 @@ potion = "minecraft:strength"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__strong_harming"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__strong_harming"
 productId = "minecraft:potion__strong_harming"
@@ -26225,6 +26799,7 @@ potion = "minecraft:strong_harming"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__strong_healing"]
@@ -26276,6 +26851,7 @@ potion = "minecraft:strong_healing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__strong_leaping"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__strong_leaping"
 productId = "minecraft:potion__strong_leaping"
@@ -26323,6 +26899,7 @@ potion = "minecraft:strong_leaping"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__strong_poison"]
@@ -26374,6 +26951,7 @@ potion = "minecraft:strong_poison"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__strong_regeneration"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__strong_regeneration"
 productId = "minecraft:potion__strong_regeneration"
@@ -26421,6 +26999,7 @@ potion = "minecraft:strong_regeneration"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__strong_slowness"]
@@ -26472,6 +27051,7 @@ potion = "minecraft:strong_slowness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__strong_strength"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__strong_strength"
 productId = "minecraft:potion__strong_strength"
@@ -26519,6 +27099,7 @@ potion = "minecraft:strong_strength"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__strong_swiftness"]
@@ -26570,6 +27151,7 @@ potion = "minecraft:strong_swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__strong_turtle_master"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__strong_turtle_master"
 productId = "minecraft:potion__strong_turtle_master"
@@ -26617,6 +27199,7 @@ potion = "minecraft:strong_turtle_master"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__swiftness"]
@@ -26668,6 +27251,7 @@ potion = "minecraft:swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__thick"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__thick"
 productId = "minecraft:potion__thick"
@@ -26715,6 +27299,7 @@ potion = "minecraft:thick"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__turtle_master"]
@@ -26766,6 +27351,7 @@ potion = "minecraft:turtle_master"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__water"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__water"
 productId = "minecraft:potion__water"
@@ -26813,6 +27399,7 @@ potion = "minecraft:water"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__water_breathing"]
@@ -26864,6 +27451,7 @@ potion = "minecraft:water_breathing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__weakness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__weakness"
 productId = "minecraft:potion__weakness"
@@ -26911,6 +27499,7 @@ potion = "minecraft:weakness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:potion__weaving"]
@@ -26962,6 +27551,7 @@ potion = "minecraft:weaving"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:potion__wind_charged"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:potion__wind_charged"
 productId = "minecraft:potion__wind_charged"
@@ -27009,6 +27599,7 @@ potion = "minecraft:wind_charged"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__awkward"]
@@ -27060,6 +27651,7 @@ potion = "minecraft:awkward"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__fire_resistance"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__fire_resistance"
 productId = "minecraft:splash_potion__fire_resistance"
@@ -27107,6 +27699,7 @@ potion = "minecraft:fire_resistance"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__harming"]
@@ -27158,6 +27751,7 @@ potion = "minecraft:harming"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__healing"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__healing"
 productId = "minecraft:splash_potion__healing"
@@ -27205,6 +27799,7 @@ potion = "minecraft:healing"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__infested"]
@@ -27256,6 +27851,7 @@ potion = "minecraft:infested"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__invisibility"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__invisibility"
 productId = "minecraft:splash_potion__invisibility"
@@ -27303,6 +27899,7 @@ potion = "minecraft:invisibility"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__leaping"]
@@ -27354,6 +27951,7 @@ potion = "minecraft:leaping"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_fire_resistance"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_fire_resistance"
 productId = "minecraft:splash_potion__long_fire_resistance"
@@ -27401,6 +27999,7 @@ potion = "minecraft:long_fire_resistance"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__long_invisibility"]
@@ -27452,6 +28051,7 @@ potion = "minecraft:long_invisibility"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_leaping"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_leaping"
 productId = "minecraft:splash_potion__long_leaping"
@@ -27499,6 +28099,7 @@ potion = "minecraft:long_leaping"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__long_night_vision"]
@@ -27550,6 +28151,7 @@ potion = "minecraft:long_night_vision"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_poison"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_poison"
 productId = "minecraft:splash_potion__long_poison"
@@ -27597,6 +28199,7 @@ potion = "minecraft:long_poison"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__long_regeneration"]
@@ -27648,6 +28251,7 @@ potion = "minecraft:long_regeneration"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_slow_falling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_slow_falling"
 productId = "minecraft:splash_potion__long_slow_falling"
@@ -27695,6 +28299,7 @@ potion = "minecraft:long_slow_falling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__long_slowness"]
@@ -27746,6 +28351,7 @@ potion = "minecraft:long_slowness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_strength"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_strength"
 productId = "minecraft:splash_potion__long_strength"
@@ -27793,6 +28399,7 @@ potion = "minecraft:long_strength"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__long_swiftness"]
@@ -27844,6 +28451,7 @@ potion = "minecraft:long_swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_turtle_master"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_turtle_master"
 productId = "minecraft:splash_potion__long_turtle_master"
@@ -27891,6 +28499,7 @@ potion = "minecraft:long_turtle_master"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__long_water_breathing"]
@@ -27942,6 +28551,7 @@ potion = "minecraft:long_water_breathing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__long_weakness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__long_weakness"
 productId = "minecraft:splash_potion__long_weakness"
@@ -27989,6 +28599,7 @@ potion = "minecraft:long_weakness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__luck"]
@@ -28040,6 +28651,7 @@ potion = "minecraft:luck"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__mundane"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__mundane"
 productId = "minecraft:splash_potion__mundane"
@@ -28087,6 +28699,7 @@ potion = "minecraft:mundane"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__night_vision"]
@@ -28138,6 +28751,7 @@ potion = "minecraft:night_vision"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__oozing"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__oozing"
 productId = "minecraft:splash_potion__oozing"
@@ -28185,6 +28799,7 @@ potion = "minecraft:oozing"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__poison"]
@@ -28236,6 +28851,7 @@ potion = "minecraft:poison"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__regeneration"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__regeneration"
 productId = "minecraft:splash_potion__regeneration"
@@ -28283,6 +28899,7 @@ potion = "minecraft:regeneration"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__slow_falling"]
@@ -28334,6 +28951,7 @@ potion = "minecraft:slow_falling"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__slowness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__slowness"
 productId = "minecraft:splash_potion__slowness"
@@ -28381,6 +28999,7 @@ potion = "minecraft:slowness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__strength"]
@@ -28432,6 +29051,7 @@ potion = "minecraft:strength"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__strong_harming"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__strong_harming"
 productId = "minecraft:splash_potion__strong_harming"
@@ -28479,6 +29099,7 @@ potion = "minecraft:strong_harming"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__strong_healing"]
@@ -28530,6 +29151,7 @@ potion = "minecraft:strong_healing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__strong_leaping"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__strong_leaping"
 productId = "minecraft:splash_potion__strong_leaping"
@@ -28577,6 +29199,7 @@ potion = "minecraft:strong_leaping"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__strong_poison"]
@@ -28628,6 +29251,7 @@ potion = "minecraft:strong_poison"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__strong_regeneration"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__strong_regeneration"
 productId = "minecraft:splash_potion__strong_regeneration"
@@ -28675,6 +29299,7 @@ potion = "minecraft:strong_regeneration"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__strong_slowness"]
@@ -28726,6 +29351,7 @@ potion = "minecraft:strong_slowness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__strong_strength"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__strong_strength"
 productId = "minecraft:splash_potion__strong_strength"
@@ -28773,6 +29399,7 @@ potion = "minecraft:strong_strength"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__strong_swiftness"]
@@ -28824,6 +29451,7 @@ potion = "minecraft:strong_swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__strong_turtle_master"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__strong_turtle_master"
 productId = "minecraft:splash_potion__strong_turtle_master"
@@ -28871,6 +29499,7 @@ potion = "minecraft:strong_turtle_master"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__swiftness"]
@@ -28922,6 +29551,7 @@ potion = "minecraft:swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__thick"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__thick"
 productId = "minecraft:splash_potion__thick"
@@ -28969,6 +29599,7 @@ potion = "minecraft:thick"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__turtle_master"]
@@ -29020,6 +29651,7 @@ potion = "minecraft:turtle_master"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__water"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__water"
 productId = "minecraft:splash_potion__water"
@@ -29067,6 +29699,7 @@ potion = "minecraft:water"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__water_breathing"]
@@ -29118,6 +29751,7 @@ potion = "minecraft:water_breathing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__weakness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__weakness"
 productId = "minecraft:splash_potion__weakness"
@@ -29165,6 +29799,7 @@ potion = "minecraft:weakness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:splash_potion__weaving"]
@@ -29216,6 +29851,7 @@ potion = "minecraft:weaving"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:splash_potion__wind_charged"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:splash_potion__wind_charged"
 productId = "minecraft:splash_potion__wind_charged"
@@ -29263,6 +29899,7 @@ potion = "minecraft:wind_charged"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__awkward"]
@@ -29314,6 +29951,7 @@ potion = "minecraft:awkward"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__fire_resistance"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__fire_resistance"
 productId = "minecraft:lingering_potion__fire_resistance"
@@ -29361,6 +29999,7 @@ potion = "minecraft:fire_resistance"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__harming"]
@@ -29412,6 +30051,7 @@ potion = "minecraft:harming"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__healing"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__healing"
 productId = "minecraft:lingering_potion__healing"
@@ -29459,6 +30099,7 @@ potion = "minecraft:healing"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__infested"]
@@ -29510,6 +30151,7 @@ potion = "minecraft:infested"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__invisibility"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__invisibility"
 productId = "minecraft:lingering_potion__invisibility"
@@ -29557,6 +30199,7 @@ potion = "minecraft:invisibility"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__leaping"]
@@ -29608,6 +30251,7 @@ potion = "minecraft:leaping"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_fire_resistance"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_fire_resistance"
 productId = "minecraft:lingering_potion__long_fire_resistance"
@@ -29655,6 +30299,7 @@ potion = "minecraft:long_fire_resistance"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__long_invisibility"]
@@ -29706,6 +30351,7 @@ potion = "minecraft:long_invisibility"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_leaping"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_leaping"
 productId = "minecraft:lingering_potion__long_leaping"
@@ -29753,6 +30399,7 @@ potion = "minecraft:long_leaping"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__long_night_vision"]
@@ -29804,6 +30451,7 @@ potion = "minecraft:long_night_vision"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_poison"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_poison"
 productId = "minecraft:lingering_potion__long_poison"
@@ -29851,6 +30499,7 @@ potion = "minecraft:long_poison"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__long_regeneration"]
@@ -29902,6 +30551,7 @@ potion = "minecraft:long_regeneration"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_slow_falling"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_slow_falling"
 productId = "minecraft:lingering_potion__long_slow_falling"
@@ -29949,6 +30599,7 @@ potion = "minecraft:long_slow_falling"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__long_slowness"]
@@ -30000,6 +30651,7 @@ potion = "minecraft:long_slowness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_strength"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_strength"
 productId = "minecraft:lingering_potion__long_strength"
@@ -30047,6 +30699,7 @@ potion = "minecraft:long_strength"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__long_swiftness"]
@@ -30098,6 +30751,7 @@ potion = "minecraft:long_swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_turtle_master"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_turtle_master"
 productId = "minecraft:lingering_potion__long_turtle_master"
@@ -30145,6 +30799,7 @@ potion = "minecraft:long_turtle_master"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__long_water_breathing"]
@@ -30196,6 +30851,7 @@ potion = "minecraft:long_water_breathing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__long_weakness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__long_weakness"
 productId = "minecraft:lingering_potion__long_weakness"
@@ -30243,6 +30899,7 @@ potion = "minecraft:long_weakness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__luck"]
@@ -30294,6 +30951,7 @@ potion = "minecraft:luck"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__mundane"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__mundane"
 productId = "minecraft:lingering_potion__mundane"
@@ -30341,6 +30999,7 @@ potion = "minecraft:mundane"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__night_vision"]
@@ -30392,6 +31051,7 @@ potion = "minecraft:night_vision"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__oozing"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__oozing"
 productId = "minecraft:lingering_potion__oozing"
@@ -30439,6 +31099,7 @@ potion = "minecraft:oozing"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__poison"]
@@ -30490,6 +31151,7 @@ potion = "minecraft:poison"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__regeneration"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__regeneration"
 productId = "minecraft:lingering_potion__regeneration"
@@ -30537,6 +31199,7 @@ potion = "minecraft:regeneration"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__slow_falling"]
@@ -30588,6 +31251,7 @@ potion = "minecraft:slow_falling"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__slowness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__slowness"
 productId = "minecraft:lingering_potion__slowness"
@@ -30635,6 +31299,7 @@ potion = "minecraft:slowness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__strength"]
@@ -30686,6 +31351,7 @@ potion = "minecraft:strength"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__strong_harming"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__strong_harming"
 productId = "minecraft:lingering_potion__strong_harming"
@@ -30733,6 +31399,7 @@ potion = "minecraft:strong_harming"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__strong_healing"]
@@ -30784,6 +31451,7 @@ potion = "minecraft:strong_healing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__strong_leaping"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__strong_leaping"
 productId = "minecraft:lingering_potion__strong_leaping"
@@ -30831,6 +31499,7 @@ potion = "minecraft:strong_leaping"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__strong_poison"]
@@ -30882,6 +31551,7 @@ potion = "minecraft:strong_poison"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__strong_regeneration"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__strong_regeneration"
 productId = "minecraft:lingering_potion__strong_regeneration"
@@ -30929,6 +31599,7 @@ potion = "minecraft:strong_regeneration"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__strong_slowness"]
@@ -30980,6 +31651,7 @@ potion = "minecraft:strong_slowness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__strong_strength"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__strong_strength"
 productId = "minecraft:lingering_potion__strong_strength"
@@ -31027,6 +31699,7 @@ potion = "minecraft:strong_strength"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__strong_swiftness"]
@@ -31078,6 +31751,7 @@ potion = "minecraft:strong_swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__strong_turtle_master"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__strong_turtle_master"
 productId = "minecraft:lingering_potion__strong_turtle_master"
@@ -31125,6 +31799,7 @@ potion = "minecraft:strong_turtle_master"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__swiftness"]
@@ -31176,6 +31851,7 @@ potion = "minecraft:swiftness"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__thick"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__thick"
 productId = "minecraft:lingering_potion__thick"
@@ -31223,6 +31899,7 @@ potion = "minecraft:thick"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__turtle_master"]
@@ -31274,6 +31951,7 @@ potion = "minecraft:turtle_master"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__water"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__water"
 productId = "minecraft:lingering_potion__water"
@@ -31321,6 +31999,7 @@ potion = "minecraft:water"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__water_breathing"]
@@ -31372,6 +32051,7 @@ potion = "minecraft:water_breathing"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__weakness"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__weakness"
 productId = "minecraft:lingering_potion__weakness"
@@ -31419,6 +32099,7 @@ potion = "minecraft:weakness"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："所有药水仅收购"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:lingering_potion__weaving"]
@@ -31470,6 +32151,7 @@ potion = "minecraft:weaving"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:lingering_potion__wind_charged"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:lingering_potion__wind_charged"
 productId = "minecraft:lingering_potion__wind_charged"
@@ -31519,6 +32201,7 @@ potion = "minecraft:wind_charged"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:ominous_bottle__1"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ominous_bottle__1"
 productId = "minecraft:ominous_bottle__1"
@@ -31563,6 +32246,7 @@ itemId = "minecraft:ominous_bottle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:ominous_bottle__2"]
@@ -31611,6 +32295,7 @@ itemId = "minecraft:ominous_bottle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:ominous_bottle__3"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ominous_bottle__3"
 productId = "minecraft:ominous_bottle__3"
@@ -31657,6 +32342,7 @@ itemId = "minecraft:ominous_bottle"
 # 注册 ID／组件参数；保持 ID 原样
 
 
+
 [products."minecraft:ominous_bottle__4"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:ominous_bottle__4"
 productId = "minecraft:ominous_bottle__4"
@@ -31701,6 +32387,7 @@ itemId = "minecraft:ominous_bottle"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："怪物掉落优先，仅特殊商店100倍新基础价购买"
 # 是否首次整批购入加价；队伍首次获得后永久解除；当前默认：false
 # 注册 ID／组件参数；保持 ID 原样
+
 
 
 [products."minecraft:ominous_bottle__5"]
@@ -31750,6 +32437,7 @@ itemId = "minecraft:ominous_bottle"
 # 商品政策版本说明，不用于重复涨价；当前默认："control-panel-v4"
 # 注册 ID／组件参数；保持 ID 原样
 
+
 [products."minecraft:trial_spawner"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:trial_spawner"
 productId = "minecraft:trial_spawner"
@@ -31785,6 +32473,7 @@ itemId = "minecraft:trial_spawner"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："仅购买，不收购"
 # 注册 ID／组件参数；保持 ID 原样
 
+
 [products."minecraft:spawner"]
 # 商品固定 ID；须与表键一致；当前默认："minecraft:spawner"
 productId = "minecraft:spawner"
@@ -31818,3 +32507,1125 @@ itemId = "minecraft:spawner"
 # 基础价格的推导来源；资料字段；当前默认："confirmed_gameplay"
 # 获取途径说明；不直接改变运行价格；当前默认："传奇空白笼；放置后用原版刷怪蛋设置生物。"
 # 交易政策说明；实际开关由 tradeMode 决定；当前默认："仅购买，不收购"
+
+# 职业目录装备仅收购；基础价值按原版有效配方中最低材料成本生成。
+
+[products."minecraft:bow"]
+productId = "minecraft:bow"
+name = "minecraft:bow"
+categoryHint = "职业装备"
+baseValueCoins = 450
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:stick", "minecraft:string", "minecraft:stick", "minecraft:string", "minecraft:stick", "minecraft:string"]
+
+[products."minecraft:bow".canonicalStack]
+itemId = "minecraft:bow"
+
+[products."minecraft:bow".canonicalStack.componentPatch]
+
+[products."minecraft:copper_axe"]
+productId = "minecraft:copper_axe"
+name = "minecraft:copper_axe"
+categoryHint = "职业装备"
+baseValueCoins = 2800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:copper_axe".canonicalStack]
+itemId = "minecraft:copper_axe"
+
+[products."minecraft:copper_axe".canonicalStack.componentPatch]
+
+[products."minecraft:copper_boots"]
+productId = "minecraft:copper_boots"
+name = "minecraft:copper_boots"
+categoryHint = "职业装备"
+baseValueCoins = 3600
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot"]
+
+[products."minecraft:copper_boots".canonicalStack]
+itemId = "minecraft:copper_boots"
+
+[products."minecraft:copper_boots".canonicalStack.componentPatch]
+
+[products."minecraft:copper_chestplate"]
+productId = "minecraft:copper_chestplate"
+name = "minecraft:copper_chestplate"
+categoryHint = "职业装备"
+baseValueCoins = 7200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot"]
+
+[products."minecraft:copper_chestplate".canonicalStack]
+itemId = "minecraft:copper_chestplate"
+
+[products."minecraft:copper_chestplate".canonicalStack.componentPatch]
+
+[products."minecraft:copper_helmet"]
+productId = "minecraft:copper_helmet"
+name = "minecraft:copper_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 4500
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot"]
+
+[products."minecraft:copper_helmet".canonicalStack]
+itemId = "minecraft:copper_helmet"
+
+[products."minecraft:copper_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:copper_hoe"]
+productId = "minecraft:copper_hoe"
+name = "minecraft:copper_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 1900
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:copper_hoe".canonicalStack]
+itemId = "minecraft:copper_hoe"
+
+[products."minecraft:copper_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:copper_leggings"]
+productId = "minecraft:copper_leggings"
+name = "minecraft:copper_leggings"
+categoryHint = "职业装备"
+baseValueCoins = 6300
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot"]
+
+[products."minecraft:copper_leggings".canonicalStack]
+itemId = "minecraft:copper_leggings"
+
+[products."minecraft:copper_leggings".canonicalStack.componentPatch]
+
+[products."minecraft:copper_pickaxe"]
+productId = "minecraft:copper_pickaxe"
+name = "minecraft:copper_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 2800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:copper_pickaxe".canonicalStack]
+itemId = "minecraft:copper_pickaxe"
+
+[products."minecraft:copper_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:copper_shovel"]
+productId = "minecraft:copper_shovel"
+name = "minecraft:copper_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:copper_shovel".canonicalStack]
+itemId = "minecraft:copper_shovel"
+
+[products."minecraft:copper_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:copper_spear"]
+productId = "minecraft:copper_spear"
+name = "minecraft:copper_spear"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:copper_spear".canonicalStack]
+itemId = "minecraft:copper_spear"
+
+[products."minecraft:copper_spear".canonicalStack.componentPatch]
+
+[products."minecraft:copper_sword"]
+productId = "minecraft:copper_sword"
+name = "minecraft:copper_sword"
+categoryHint = "职业装备"
+baseValueCoins = 1850
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:copper_ingot", "minecraft:copper_ingot", "minecraft:stick"]
+
+[products."minecraft:copper_sword".canonicalStack]
+itemId = "minecraft:copper_sword"
+
+[products."minecraft:copper_sword".canonicalStack.componentPatch]
+
+[products."minecraft:crossbow"]
+productId = "minecraft:crossbow"
+name = "minecraft:crossbow"
+categoryHint = "职业装备"
+baseValueCoins = 1775
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:stick", "minecraft:iron_ingot", "minecraft:stick", "minecraft:string", "minecraft:tripwire_hook", "minecraft:string", "minecraft:stick"]
+
+[products."minecraft:crossbow".canonicalStack]
+itemId = "minecraft:crossbow"
+
+[products."minecraft:crossbow".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_axe"]
+productId = "minecraft:diamond_axe"
+name = "minecraft:diamond_axe"
+categoryHint = "职业装备"
+baseValueCoins = 300100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:diamond_axe".canonicalStack]
+itemId = "minecraft:diamond_axe"
+
+[products."minecraft:diamond_axe".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_boots"]
+productId = "minecraft:diamond_boots"
+name = "minecraft:diamond_boots"
+categoryHint = "职业装备"
+baseValueCoins = 400000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond"]
+
+[products."minecraft:diamond_boots".canonicalStack]
+itemId = "minecraft:diamond_boots"
+
+[products."minecraft:diamond_boots".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_chestplate"]
+productId = "minecraft:diamond_chestplate"
+name = "minecraft:diamond_chestplate"
+categoryHint = "职业装备"
+baseValueCoins = 800000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond"]
+
+[products."minecraft:diamond_chestplate".canonicalStack]
+itemId = "minecraft:diamond_chestplate"
+
+[products."minecraft:diamond_chestplate".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_helmet"]
+productId = "minecraft:diamond_helmet"
+name = "minecraft:diamond_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 500000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond"]
+
+[products."minecraft:diamond_helmet".canonicalStack]
+itemId = "minecraft:diamond_helmet"
+
+[products."minecraft:diamond_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_hoe"]
+productId = "minecraft:diamond_hoe"
+name = "minecraft:diamond_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 200100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:diamond_hoe".canonicalStack]
+itemId = "minecraft:diamond_hoe"
+
+[products."minecraft:diamond_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_leggings"]
+productId = "minecraft:diamond_leggings"
+name = "minecraft:diamond_leggings"
+categoryHint = "职业装备"
+baseValueCoins = 700000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:diamond"]
+
+[products."minecraft:diamond_leggings".canonicalStack]
+itemId = "minecraft:diamond_leggings"
+
+[products."minecraft:diamond_leggings".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_pickaxe"]
+productId = "minecraft:diamond_pickaxe"
+name = "minecraft:diamond_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 300100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:diamond", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:diamond_pickaxe".canonicalStack]
+itemId = "minecraft:diamond_pickaxe"
+
+[products."minecraft:diamond_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_shovel"]
+productId = "minecraft:diamond_shovel"
+name = "minecraft:diamond_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 100100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:diamond_shovel".canonicalStack]
+itemId = "minecraft:diamond_shovel"
+
+[products."minecraft:diamond_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_spear"]
+productId = "minecraft:diamond_spear"
+name = "minecraft:diamond_spear"
+categoryHint = "职业装备"
+baseValueCoins = 100100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:diamond_spear".canonicalStack]
+itemId = "minecraft:diamond_spear"
+
+[products."minecraft:diamond_spear".canonicalStack.componentPatch]
+
+[products."minecraft:diamond_sword"]
+productId = "minecraft:diamond_sword"
+name = "minecraft:diamond_sword"
+categoryHint = "职业装备"
+baseValueCoins = 200050
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:diamond", "minecraft:diamond", "minecraft:stick"]
+
+[products."minecraft:diamond_sword".canonicalStack]
+itemId = "minecraft:diamond_sword"
+
+[products."minecraft:diamond_sword".canonicalStack.componentPatch]
+
+[products."minecraft:golden_axe"]
+productId = "minecraft:golden_axe"
+name = "minecraft:golden_axe"
+categoryHint = "职业装备"
+baseValueCoins = 2800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:golden_axe".canonicalStack]
+itemId = "minecraft:golden_axe"
+
+[products."minecraft:golden_axe".canonicalStack.componentPatch]
+
+[products."minecraft:golden_boots"]
+productId = "minecraft:golden_boots"
+name = "minecraft:golden_boots"
+categoryHint = "职业装备"
+baseValueCoins = 3600
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot"]
+
+[products."minecraft:golden_boots".canonicalStack]
+itemId = "minecraft:golden_boots"
+
+[products."minecraft:golden_boots".canonicalStack.componentPatch]
+
+[products."minecraft:golden_chestplate"]
+productId = "minecraft:golden_chestplate"
+name = "minecraft:golden_chestplate"
+categoryHint = "职业装备"
+baseValueCoins = 7200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot"]
+
+[products."minecraft:golden_chestplate".canonicalStack]
+itemId = "minecraft:golden_chestplate"
+
+[products."minecraft:golden_chestplate".canonicalStack.componentPatch]
+
+[products."minecraft:golden_helmet"]
+productId = "minecraft:golden_helmet"
+name = "minecraft:golden_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 4500
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot"]
+
+[products."minecraft:golden_helmet".canonicalStack]
+itemId = "minecraft:golden_helmet"
+
+[products."minecraft:golden_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:golden_hoe"]
+productId = "minecraft:golden_hoe"
+name = "minecraft:golden_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 1900
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:golden_hoe".canonicalStack]
+itemId = "minecraft:golden_hoe"
+
+[products."minecraft:golden_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:golden_leggings"]
+productId = "minecraft:golden_leggings"
+name = "minecraft:golden_leggings"
+categoryHint = "职业装备"
+baseValueCoins = 6300
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot"]
+
+[products."minecraft:golden_leggings".canonicalStack]
+itemId = "minecraft:golden_leggings"
+
+[products."minecraft:golden_leggings".canonicalStack.componentPatch]
+
+[products."minecraft:golden_pickaxe"]
+productId = "minecraft:golden_pickaxe"
+name = "minecraft:golden_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 2800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:golden_pickaxe".canonicalStack]
+itemId = "minecraft:golden_pickaxe"
+
+[products."minecraft:golden_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:golden_shovel"]
+productId = "minecraft:golden_shovel"
+name = "minecraft:golden_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:golden_shovel".canonicalStack]
+itemId = "minecraft:golden_shovel"
+
+[products."minecraft:golden_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:golden_spear"]
+productId = "minecraft:golden_spear"
+name = "minecraft:golden_spear"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:golden_spear".canonicalStack]
+itemId = "minecraft:golden_spear"
+
+[products."minecraft:golden_spear".canonicalStack.componentPatch]
+
+[products."minecraft:golden_sword"]
+productId = "minecraft:golden_sword"
+name = "minecraft:golden_sword"
+categoryHint = "职业装备"
+baseValueCoins = 1850
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:gold_ingot", "minecraft:gold_ingot", "minecraft:stick"]
+
+[products."minecraft:golden_sword".canonicalStack]
+itemId = "minecraft:golden_sword"
+
+[products."minecraft:golden_sword".canonicalStack.componentPatch]
+
+[products."minecraft:iron_axe"]
+productId = "minecraft:iron_axe"
+name = "minecraft:iron_axe"
+categoryHint = "职业装备"
+baseValueCoins = 2800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:iron_axe".canonicalStack]
+itemId = "minecraft:iron_axe"
+
+[products."minecraft:iron_axe".canonicalStack.componentPatch]
+
+[products."minecraft:iron_boots"]
+productId = "minecraft:iron_boots"
+name = "minecraft:iron_boots"
+categoryHint = "职业装备"
+baseValueCoins = 3600
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot"]
+
+[products."minecraft:iron_boots".canonicalStack]
+itemId = "minecraft:iron_boots"
+
+[products."minecraft:iron_boots".canonicalStack.componentPatch]
+
+[products."minecraft:iron_chestplate"]
+productId = "minecraft:iron_chestplate"
+name = "minecraft:iron_chestplate"
+categoryHint = "职业装备"
+baseValueCoins = 7200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot"]
+
+[products."minecraft:iron_chestplate".canonicalStack]
+itemId = "minecraft:iron_chestplate"
+
+[products."minecraft:iron_chestplate".canonicalStack.componentPatch]
+
+[products."minecraft:iron_helmet"]
+productId = "minecraft:iron_helmet"
+name = "minecraft:iron_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 4500
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot"]
+
+[products."minecraft:iron_helmet".canonicalStack]
+itemId = "minecraft:iron_helmet"
+
+[products."minecraft:iron_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:iron_hoe"]
+productId = "minecraft:iron_hoe"
+name = "minecraft:iron_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 1900
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:iron_hoe".canonicalStack]
+itemId = "minecraft:iron_hoe"
+
+[products."minecraft:iron_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:iron_leggings"]
+productId = "minecraft:iron_leggings"
+name = "minecraft:iron_leggings"
+categoryHint = "职业装备"
+baseValueCoins = 6300
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot"]
+
+[products."minecraft:iron_leggings".canonicalStack]
+itemId = "minecraft:iron_leggings"
+
+[products."minecraft:iron_leggings".canonicalStack.componentPatch]
+
+[products."minecraft:iron_pickaxe"]
+productId = "minecraft:iron_pickaxe"
+name = "minecraft:iron_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 2800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:iron_pickaxe".canonicalStack]
+itemId = "minecraft:iron_pickaxe"
+
+[products."minecraft:iron_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:iron_shovel"]
+productId = "minecraft:iron_shovel"
+name = "minecraft:iron_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:iron_shovel".canonicalStack]
+itemId = "minecraft:iron_shovel"
+
+[products."minecraft:iron_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:iron_spear"]
+productId = "minecraft:iron_spear"
+name = "minecraft:iron_spear"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:iron_spear".canonicalStack]
+itemId = "minecraft:iron_spear"
+
+[products."minecraft:iron_spear".canonicalStack.componentPatch]
+
+[products."minecraft:iron_sword"]
+productId = "minecraft:iron_sword"
+name = "minecraft:iron_sword"
+categoryHint = "职业装备"
+baseValueCoins = 1850
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:iron_ingot", "minecraft:iron_ingot", "minecraft:stick"]
+
+[products."minecraft:iron_sword".canonicalStack]
+itemId = "minecraft:iron_sword"
+
+[products."minecraft:iron_sword".canonicalStack.componentPatch]
+
+[products."minecraft:leather_boots"]
+productId = "minecraft:leather_boots"
+name = "minecraft:leather_boots"
+categoryHint = "职业装备"
+baseValueCoins = 800
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather"]
+
+[products."minecraft:leather_boots".canonicalStack]
+itemId = "minecraft:leather_boots"
+
+[products."minecraft:leather_boots".canonicalStack.componentPatch]
+
+[products."minecraft:leather_chestplate"]
+productId = "minecraft:leather_chestplate"
+name = "minecraft:leather_chestplate"
+categoryHint = "职业装备"
+baseValueCoins = 1600
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather"]
+
+[products."minecraft:leather_chestplate".canonicalStack]
+itemId = "minecraft:leather_chestplate"
+
+[products."minecraft:leather_chestplate".canonicalStack.componentPatch]
+
+[products."minecraft:leather_helmet"]
+productId = "minecraft:leather_helmet"
+name = "minecraft:leather_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 1000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather"]
+
+[products."minecraft:leather_helmet".canonicalStack]
+itemId = "minecraft:leather_helmet"
+
+[products."minecraft:leather_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:leather_leggings"]
+productId = "minecraft:leather_leggings"
+name = "minecraft:leather_leggings"
+categoryHint = "职业装备"
+baseValueCoins = 1400
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather", "minecraft:leather"]
+
+[products."minecraft:leather_leggings".canonicalStack]
+itemId = "minecraft:leather_leggings"
+
+[products."minecraft:leather_leggings".canonicalStack.componentPatch]
+
+[products."minecraft:mace"]
+productId = "minecraft:mace"
+name = "minecraft:mace"
+categoryHint = "职业装备"
+baseValueCoins = 100800000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:heavy_core", "minecraft:breeze_rod"]
+
+[products."minecraft:mace".canonicalStack]
+itemId = "minecraft:mace"
+
+[products."minecraft:mace".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_axe"]
+productId = "minecraft:netherite_axe"
+name = "minecraft:netherite_axe"
+categoryHint = "职业装备"
+baseValueCoins = 7300100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_axe", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_axe".canonicalStack]
+itemId = "minecraft:netherite_axe"
+
+[products."minecraft:netherite_axe".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_boots"]
+productId = "minecraft:netherite_boots"
+name = "minecraft:netherite_boots"
+categoryHint = "职业装备"
+baseValueCoins = 7400000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_boots", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_boots".canonicalStack]
+itemId = "minecraft:netherite_boots"
+
+[products."minecraft:netherite_boots".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_chestplate"]
+productId = "minecraft:netherite_chestplate"
+name = "minecraft:netherite_chestplate"
+categoryHint = "职业装备"
+baseValueCoins = 7800000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_chestplate", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_chestplate".canonicalStack]
+itemId = "minecraft:netherite_chestplate"
+
+[products."minecraft:netherite_chestplate".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_helmet"]
+productId = "minecraft:netherite_helmet"
+name = "minecraft:netherite_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 7500000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_helmet", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_helmet".canonicalStack]
+itemId = "minecraft:netherite_helmet"
+
+[products."minecraft:netherite_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_hoe"]
+productId = "minecraft:netherite_hoe"
+name = "minecraft:netherite_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 7200100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_hoe", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_hoe".canonicalStack]
+itemId = "minecraft:netherite_hoe"
+
+[products."minecraft:netherite_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_leggings"]
+productId = "minecraft:netherite_leggings"
+name = "minecraft:netherite_leggings"
+categoryHint = "职业装备"
+baseValueCoins = 7700000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_leggings", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_leggings".canonicalStack]
+itemId = "minecraft:netherite_leggings"
+
+[products."minecraft:netherite_leggings".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_pickaxe"]
+productId = "minecraft:netherite_pickaxe"
+name = "minecraft:netherite_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 7300100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_pickaxe", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_pickaxe".canonicalStack]
+itemId = "minecraft:netherite_pickaxe"
+
+[products."minecraft:netherite_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_shovel"]
+productId = "minecraft:netherite_shovel"
+name = "minecraft:netherite_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 7100100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_shovel", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_shovel".canonicalStack]
+itemId = "minecraft:netherite_shovel"
+
+[products."minecraft:netherite_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_spear"]
+productId = "minecraft:netherite_spear"
+name = "minecraft:netherite_spear"
+categoryHint = "职业装备"
+baseValueCoins = 7100100
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_spear", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_spear".canonicalStack]
+itemId = "minecraft:netherite_spear"
+
+[products."minecraft:netherite_spear".canonicalStack.componentPatch]
+
+[products."minecraft:netherite_sword"]
+productId = "minecraft:netherite_sword"
+name = "minecraft:netherite_sword"
+categoryHint = "职业装备"
+baseValueCoins = 7200050
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:netherite_upgrade_smithing_template", "minecraft:diamond_sword", "minecraft:netherite_ingot"]
+
+[products."minecraft:netherite_sword".canonicalStack]
+itemId = "minecraft:netherite_sword"
+
+[products."minecraft:netherite_sword".canonicalStack.componentPatch]
+
+[products."minecraft:stone_axe"]
+productId = "minecraft:stone_axe"
+name = "minecraft:stone_axe"
+categoryHint = "职业装备"
+baseValueCoins = 400
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:blackstone", "minecraft:blackstone", "minecraft:blackstone", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:stone_axe".canonicalStack]
+itemId = "minecraft:stone_axe"
+
+[products."minecraft:stone_axe".canonicalStack.componentPatch]
+
+[products."minecraft:stone_hoe"]
+productId = "minecraft:stone_hoe"
+name = "minecraft:stone_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 300
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:blackstone", "minecraft:blackstone", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:stone_hoe".canonicalStack]
+itemId = "minecraft:stone_hoe"
+
+[products."minecraft:stone_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:stone_pickaxe"]
+productId = "minecraft:stone_pickaxe"
+name = "minecraft:stone_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 400
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:blackstone", "minecraft:blackstone", "minecraft:blackstone", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:stone_pickaxe".canonicalStack]
+itemId = "minecraft:stone_pickaxe"
+
+[products."minecraft:stone_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:stone_shovel"]
+productId = "minecraft:stone_shovel"
+name = "minecraft:stone_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:blackstone", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:stone_shovel".canonicalStack]
+itemId = "minecraft:stone_shovel"
+
+[products."minecraft:stone_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:stone_spear"]
+productId = "minecraft:stone_spear"
+name = "minecraft:stone_spear"
+categoryHint = "职业装备"
+baseValueCoins = 200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:blackstone", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:stone_spear".canonicalStack]
+itemId = "minecraft:stone_spear"
+
+[products."minecraft:stone_spear".canonicalStack.componentPatch]
+
+[products."minecraft:stone_sword"]
+productId = "minecraft:stone_sword"
+name = "minecraft:stone_sword"
+categoryHint = "职业装备"
+baseValueCoins = 250
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:blackstone", "minecraft:blackstone", "minecraft:stick"]
+
+[products."minecraft:stone_sword".canonicalStack]
+itemId = "minecraft:stone_sword"
+
+[products."minecraft:stone_sword".canonicalStack.componentPatch]
+
+[products."minecraft:turtle_helmet"]
+productId = "minecraft:turtle_helmet"
+name = "minecraft:turtle_helmet"
+categoryHint = "职业装备"
+baseValueCoins = 2500
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:turtle_scute", "minecraft:turtle_scute", "minecraft:turtle_scute", "minecraft:turtle_scute", "minecraft:turtle_scute"]
+
+[products."minecraft:turtle_helmet".canonicalStack]
+itemId = "minecraft:turtle_helmet"
+
+[products."minecraft:turtle_helmet".canonicalStack.componentPatch]
+
+[products."minecraft:wooden_axe"]
+productId = "minecraft:wooden_axe"
+name = "minecraft:wooden_axe"
+categoryHint = "职业装备"
+baseValueCoins = 400
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:acacia_planks", "minecraft:acacia_planks", "minecraft:acacia_planks", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:wooden_axe".canonicalStack]
+itemId = "minecraft:wooden_axe"
+
+[products."minecraft:wooden_axe".canonicalStack.componentPatch]
+
+[products."minecraft:wooden_hoe"]
+productId = "minecraft:wooden_hoe"
+name = "minecraft:wooden_hoe"
+categoryHint = "职业装备"
+baseValueCoins = 300
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:acacia_planks", "minecraft:acacia_planks", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:wooden_hoe".canonicalStack]
+itemId = "minecraft:wooden_hoe"
+
+[products."minecraft:wooden_hoe".canonicalStack.componentPatch]
+
+[products."minecraft:wooden_pickaxe"]
+productId = "minecraft:wooden_pickaxe"
+name = "minecraft:wooden_pickaxe"
+categoryHint = "职业装备"
+baseValueCoins = 400
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:acacia_planks", "minecraft:acacia_planks", "minecraft:acacia_planks", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:wooden_pickaxe".canonicalStack]
+itemId = "minecraft:wooden_pickaxe"
+
+[products."minecraft:wooden_pickaxe".canonicalStack.componentPatch]
+
+[products."minecraft:wooden_shovel"]
+productId = "minecraft:wooden_shovel"
+name = "minecraft:wooden_shovel"
+categoryHint = "职业装备"
+baseValueCoins = 200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:acacia_planks", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:wooden_shovel".canonicalStack]
+itemId = "minecraft:wooden_shovel"
+
+[products."minecraft:wooden_shovel".canonicalStack.componentPatch]
+
+[products."minecraft:wooden_spear"]
+productId = "minecraft:wooden_spear"
+name = "minecraft:wooden_spear"
+categoryHint = "职业装备"
+baseValueCoins = 200
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:acacia_planks", "minecraft:stick", "minecraft:stick"]
+
+[products."minecraft:wooden_spear".canonicalStack]
+itemId = "minecraft:wooden_spear"
+
+[products."minecraft:wooden_spear".canonicalStack.componentPatch]
+
+[products."minecraft:wooden_sword"]
+productId = "minecraft:wooden_sword"
+name = "minecraft:wooden_sword"
+categoryHint = "职业装备"
+baseValueCoins = 250
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+priceOrigin = "profession_recipe"
+recipeMaterials = ["minecraft:acacia_planks", "minecraft:acacia_planks", "minecraft:stick"]
+
+[products."minecraft:wooden_sword".canonicalStack]
+itemId = "minecraft:wooden_sword"
+
+[products."minecraft:wooden_sword".canonicalStack.componentPatch]

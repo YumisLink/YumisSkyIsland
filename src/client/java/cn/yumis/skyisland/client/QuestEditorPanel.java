@@ -19,7 +19,7 @@ public final class QuestEditorPanel {
     private final long baseRevision;
     private final List<Hit> buttons=new ArrayList<>(),suggestions=new ArrayList<>();
     private final List<Field> fields=new ArrayList<>();
-    private final EditBox name,description,coins,experience,previous;
+    private final EditBox name,coins,experience,previous;
     private EditBox itemSearch,quantity,potion,enchantment,enchantLevel;
     private EditBox sourceBlock,tool;
     private JsonObject selectedRow;
@@ -31,15 +31,15 @@ public final class QuestEditorPanel {
     public QuestEditorPanel(ControlPanelScreen parent,JsonObject definition,long revision){
         this.parent=parent;model=parent.model();baseRevision=revision;
         if(definition==null){
-            draft=new JsonObject();draft.addProperty("id","");draft.addProperty("name","新任务");draft.addProperty("description","");
+            draft=new JsonObject();draft.addProperty("id","");draft.addProperty("name","新任务");
             draft.addProperty("kind","main");draft.addProperty("objective","materials");draft.addProperty("rewardCoins",0);
             draft.add("requirements",new JsonArray());draft.add("rewardItems",new JsonArray());draft.add("unlockFeatures",new JsonArray());
         }else draft=definition.deepCopy();
+        draft.remove("description");
         if(!draft.has("goals"))draft.add("goals",new JsonArray());
         if(!draft.has("rewardExperiencePoints"))draft.addProperty("rewardExperiencePoints",0);
         name=box("名称",draft.get("name").getAsString(),80,v->draft.addProperty("name",v));
-        description=box("说明",draft.get("description").getAsString(),2048,v->draft.addProperty("description",v));
-        coins=box("金币奖励",draft.get("rewardCoins").getAsString(),19,v->draft.addProperty("rewardCoins",integer(v,-1)));
+        coins=box("货币奖励",draft.get("rewardCoins").getAsString(),19,v->draft.addProperty("rewardCoins",integer(v,-1)));
         experience=box("原版经验点",draft.get("rewardExperiencePoints").getAsString(),10,v->draft.addProperty("rewardExperiencePoints",integer(v,-1)));
         previous=box("前置任务ID",draft.has("previousQuestId")?draft.get("previousQuestId").getAsString():"",64,v->{if(v.isBlank())draft.remove("previousQuestId");else draft.addProperty("previousQuestId",v);});
     }
@@ -65,21 +65,20 @@ public final class QuestEditorPanel {
         g.enableScissor(left,top,parent.width-8,parent.height-42);
         text(g,draft.get("id").getAsString().isEmpty()?"新增任务 · 保存后分配固定ID":"编辑 "+draft.get("id").getAsString(),left,top-formScroll,0xFF9DE5C7,w);
         label(g,"任务名称",left,top+19,w);field(g,name,0,top+31,w,mx,my,delta);
-        label(g,"任务说明",left,top+56,w);field(g,description,0,top+68,w,mx,my,delta);
-        label(g,"金币奖励（0为无）",left,top+93,110);field(g,coins,0,top+105,110,mx,my,delta);
-        button(g,"类型："+switch(draft.get("kind").getAsString()){case "side"->"支线";case "profession"->"职业";default->"主线";},left+116,top+105-formScroll,Math.min(130,w-116),!model.taskBusy,()->{
+        label(g,cn.yumis.skyisland.core.Money.currencyName()+"奖励（0为无）",left,top+56,110);field(g,coins,0,top+68,110,mx,my,delta);
+        button(g,"类型："+switch(draft.get("kind").getAsString()){case "side"->"支线";case "profession"->"职业";default->"主线";},left+116,top+68-formScroll,Math.min(130,w-116),!model.taskBusy,()->{
             String kind=draft.get("kind").getAsString();String next=kind.equals("main")?"side":kind.equals("side")?"profession":"main";draft.addProperty("kind",next);
             if(next.equals("profession")){draft.addProperty("profession","fisherman");draft.addProperty("objective","tracked");draft.add("requirements",new JsonArray());}
             else{draft.remove("profession");draft.remove("previousQuestId");previous.setValue("");if(next.equals("main")&&draft.get("objective").getAsString().equals("tracked")){draft.addProperty("objective","materials");draft.add("goals",new JsonArray());}}
             selectedRow=null;
         });
-        label(g,"原版经验点（0为无）",left,top+131,w);field(g,experience,0,top+143,110,mx,my,delta);
-        button(g,"目标："+switch(draft.get("objective").getAsString()){case "tracked"->"追踪本人行动";case "place_shipping_chest"->"放置出货箱";default->"提交材料";},left,top+170-formScroll,Math.min(220,w),!model.taskBusy&&!draft.get("kind").getAsString().equals("profession"),()->{
+        label(g,"原版经验点（0为无）",left,top+94,w);field(g,experience,0,top+106,110,mx,my,delta);
+        button(g,"目标："+switch(draft.get("objective").getAsString()){case "tracked"->"追踪本人行动";case "place_shipping_chest"->"放置出货箱";default->"提交材料";},left,top+133-formScroll,Math.min(220,w),!model.taskBusy&&!draft.get("kind").getAsString().equals("profession"),()->{
             var types=draft.get("kind").getAsString().equals("main")?List.of("materials","place_shipping_chest"):List.of("materials","place_shipping_chest","tracked");
             String next=types.get((types.indexOf(draft.get("objective").getAsString())+1)%types.size());draft.addProperty("objective",next);
             draft.add("requirements",new JsonArray());draft.add("goals",new JsonArray());selectedRow=null;selectedIndex=-1;
         });
-        int featureY=top+200;
+        int featureY=top+163;
         if(draft.get("kind").getAsString().equals("profession")){
             String profession=draft.get("profession").getAsString();
             button(g,"职业："+cn.yumis.skyisland.server.ProfessionService.name(profession),left,featureY-formScroll,Math.min(180,w),!model.taskBusy,()->{var jobs=cn.yumis.skyisland.server.QuestCatalog.PROFESSIONS;draft.addProperty("profession",jobs.get((jobs.indexOf(profession)+1)%jobs.size()));});
@@ -149,9 +148,21 @@ public final class QuestEditorPanel {
         materialScroll=Math.clamp(materialScroll,0,Math.max(0,rows.size()-3));
         for(int i=materialScroll;i<Math.min(rows.size(),materialScroll+3);i++){
             var row=rows.get(i).getAsJsonObject();int index=i,yy=y+22+(i-materialScroll)*24-formScroll;g.fill(x,yy,x+w,yy+22,selectedRow==row?0xCC354D51:0x66303A42);
-            text(g,cn.yumis.skyisland.server.QuestCatalog.actionName(row.get("type").getAsString())+" "+row.get("targetId").getAsString()+" ×"+row.get("quantity").getAsString(),x+3,yy+7,0xFFE4E8EC,w-27);
+            String type=row.get("type").getAsString(),id=row.get("targetId").getAsString();
+            text(g,cn.yumis.skyisland.server.QuestCatalog.actionName(type)+" "+goalName(type,id)+" ×"+row.get("quantity").getAsString(),x+3,yy+7,0xFFE4E8EC,w-27);
             buttons.add(new Hit(x,yy,w-22,22,()->selectGoal(row,index)));button(g,"×",x+w-21,yy,21,!model.taskBusy,()->{rows.remove(index);selectedRow=null;});
         }
+    }
+    private static String goalName(String type,String id){
+        try{
+            var key=net.minecraft.resources.Identifier.parse(id);
+            if(type.equals("kill")){
+                var entity=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getValue(key);
+                return entity==null?id:entity.getDescription().getString();
+            }
+            var item=net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(key);
+            return item==null?id:new net.minecraft.world.item.ItemStack(item).getHoverName().getString();
+        }catch(RuntimeException invalid){return id;}
     }
     private void selectGoal(JsonObject row,int index){
         blur();selectedGoal=true;selectedReward=false;selectedRow=row;selectedIndex=index;itemResultsScroll=0;
@@ -192,9 +203,9 @@ public final class QuestEditorPanel {
         label(g,"物品名称／ID搜索（从候选选择）",left,top+21,w);field(g,itemSearch,0,top+34,w,mx,my,delta);
         label(g,"数量",left,top+60,65);field(g,quantity,0,top+73,65,mx,my,delta);
         int grade=selectedReward?selectedRow.has("quality")?selectedRow.get("quality").getAsInt():0:selectedRow.has("minimumQuality")?selectedRow.get("minimumQuality").getAsInt():-1;
-        String[] grades={"普通","精良","稀有","史诗","传说"};
-        button(g,selectedReward?"品质："+grades[Math.clamp(grade,0,4)]:grade<0?"品质：不限":"至少："+grades[Math.clamp(grade,0,4)],left+73,top+73-formScroll,Math.min(160,w-73),!model.taskBusy,()->{
-            int next=grade+1;if(next>4)next=selectedReward?0:-1;
+        String[] grades={"普通","银星","金星"};
+        button(g,selectedReward?"品质："+grades[Math.clamp(grade,0,2)]:grade<0?"品质：不限":"至少："+grades[Math.clamp(grade,0,2)],left+73,top+73-formScroll,Math.min(160,w-73),!model.taskBusy,()->{
+            int next=grade+1;if(next>2)next=selectedReward?0:-1;
             if(next<0)selectedRow.remove("minimumQuality");else selectedRow.addProperty(selectedReward?"quality":"minimumQuality",next);
         });
         label(g,"药水类型（无条件可清除）",left,top+101,w);
@@ -288,7 +299,7 @@ public final class QuestEditorPanel {
         if(ControlPanelScreen.hit(x,y,left+half+8,rewardTop+20-formScroll,half,75)){rewardScroll=Math.clamp(rewardScroll-(int)Math.signum(amount),0,Math.max(0,draft.getAsJsonArray("rewardItems").size()-3));return;}
         formScroll=Math.max(0,formScroll-(int)Math.signum(amount)*26);
     }
-    private List<EditBox> boxes(){var result=new ArrayList<EditBox>(List.of(name,description,coins,experience,previous));for(var box:Arrays.asList(itemSearch,quantity,potion,enchantment,enchantLevel,sourceBlock,tool))if(box!=null)result.add(box);return result;}
+    private List<EditBox> boxes(){var result=new ArrayList<EditBox>(List.of(name,coins,experience,previous));for(var box:Arrays.asList(itemSearch,quantity,potion,enchantment,enchantLevel,sourceBlock,tool))if(box!=null)result.add(box);return result;}
     private void blur(){for(var box:boxes())box.setFocused(false);}
     private EditBox focused(){for(var box:boxes())if(box.isFocused())return box;return null;}
     public boolean dismissSuggestion(){if(itemSearch!=null&&(itemSearch.isFocused()||potion!=null&&potion.isFocused()||enchantment!=null&&enchantment.isFocused())){blur();return true;}return false;}

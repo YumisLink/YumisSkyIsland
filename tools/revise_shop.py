@@ -174,6 +174,8 @@ def classify(item: str, p: dict, f: dict) -> tuple[str, int, str, str]:
         native = native.get("category") or native.get("id")
     tab = native or "minecraft:" + HINTS.get(p["categoryHint"], "ingredients")
     section = tab.removeprefix("minecraft:")
+    if item in {"spawner", "trial_spawner"}:
+        return "buy_only", 10000, "minecraft:functional_blocks", "传奇空白刷怪笼，仅购买；生物由原版刷怪蛋配置"
     if p["legacyTradeMode"] == "disabled":
         return "disabled", 10000, tab, "原禁交易／需显式变体"
     if item in {"stick", "petrified_oak_slab"}:

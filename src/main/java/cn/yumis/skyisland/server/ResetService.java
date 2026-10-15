@@ -25,7 +25,7 @@ public final class ResetService implements AutoCloseable {
     public String propose(ServerPlayer owner) {
         runtime.parties.requireOwner(owner); String code = Integer.toString(100000 + owner.getRandom().nextInt(900000));
         confirmations.put(owner.getUUID(),new Confirmation(code,runtime.state().effectiveTicks + 1200));
-        SkyServer.tell(owner,"重开会删除本队主世界、金币、最高岛等级、队伍主线、悬赏格、售出历史和首获记录。背包、个人职业、个人支线与职业任务、地狱、末地、当日库存与售出额度保留。60秒内输入 /is reset confirm " + code);
+        SkyServer.tell(owner,"重开会删除本队主世界、"+cn.yumis.skyisland.core.Money.currencyName()+"、岛等级、队伍主线、死亡次数、悬赏格、售出历史和首获记录。背包、个人职业、个人支线与职业任务、地狱、末地、当日库存与售出额度保留。60秒内输入 /is reset confirm " + code);
         return code;
     }
     public void confirm(ServerPlayer owner,String code) {
@@ -33,7 +33,7 @@ public final class ResetService implements AutoCloseable {
         if (token == null || token.expires < runtime.state().effectiveTicks || !token.code.equals(code)) throw new IllegalArgumentException("确认码无效或已过期，请重新 /is reset");
         if (party.resetInProgress) throw new IllegalArgumentException("已有重开任务");
         runtime.change(owner,s -> {
-            var p = s.parties.get(party.id); p.resetInProgress = true; p.resetChunks = null; p.resetCursor = 0; p.overworldEpoch++; p.coins = 0; p.refresh = null; p.blockCounts.clear(); p.starterReady = false;
+            var p = s.parties.get(party.id); p.resetInProgress = true; p.resetChunks = null; p.resetCursor = 0; p.overworldEpoch++; p.coins = 0; p.refresh = null; p.blockCounts.clear(); p.islandDeaths.clear(); p.starterReady = false;
             ProgressionService.reset(p);
             s.boxes.entrySet().removeIf(e -> e.getValue().party.equals(p.id) && e.getValue().dimension.equals("minecraft:overworld"));
         }, () -> {

@@ -18,8 +18,7 @@ public final class ControlPanelScreen extends Screen {
     private SalePanel salePanel;
     private final StoreView[] stores={new StoreView(),new StoreView()};
     private static final class StoreView {String category="all",search="";int scroll,categoryScroll;}
-    private String confirmation="";
-    private Runnable confirmed;
+    private final ConfirmDialog confirmation=new ConfirmDialog();
     public ClientCatalog model(){return model;}
     public net.minecraft.client.gui.Font uiFont(){return font;}
     int contentLeft(){return sidebar()+12;}
@@ -38,7 +37,7 @@ public final class ControlPanelScreen extends Screen {
     public void saleUpdated(){if(salePanel!=null)salePanel.updated();}
     public void saleFailed(){if(salePanel!=null)salePanel.failed();}
     public void taskSaved(com.google.gson.JsonObject data){tasks.saved(data);}
-    void confirm(String label,Runnable action){confirmation=label;confirmed=action;}
+    void confirm(String label,Runnable action){confirmation.open(label,action);}
     public void textLine(GuiGraphicsExtractor g,String label,int x,int y,int color,int maximum){text(g,label,x,y,color,maximum);}
     public void actionButton(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?0xCC354D51:0xA5202429);text(g,label,x+5,y+7,active?0xFFE9EBEE:0xFF777F88,w-10);}
     public static boolean hit(double x,double y,int a,int b,int w,int h){return inside(x,y,a,b,w,h);}
@@ -109,7 +108,7 @@ public final class ControlPanelScreen extends Screen {
     @Override public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float delta) {
         if(mode<2)layout(); hovered = null;
         g.fill(0, 0, width, height, 0xB0000000); g.fill(6, 6, width - 6, 32, 0xB51A1D20);
-        text(g, "YUMI · 控制面板", 14, 14, 0xFFF3F5F7, width / 2 - 16);
+        text(g, "YUMIS · 控制面板", 14, 14, 0xFFF3F5F7, width / 2 - 16);
         String wallet = Money.format(model.wallet());
         text(g, wallet, width - Math.min(width / 2 - 16, font.width(wallet)) - 14, 14, 0xFFFFDC78, width / 2 - 16);
         String[] modes = {"常驻商店", model.hidden() ? "隐藏商店" : "每日商店", "任务", "悬赏"};
@@ -131,8 +130,8 @@ public final class ControlPanelScreen extends Screen {
         g.fill(sx, 72, width - 128, 96, searchFocused ? 0xD7333A3E : 0xAC252A2D);
         text(g, search.isEmpty() && !searchFocused ? "搜索物品名 / ID" : search + (searchFocused ? "_" : ""), sx + 6, 79, 0xFFDDDEE0, width - sx - 140);
         button(g,model.showLockedItems?"☑ 显示未解锁":"☐ 显示未解锁",width-120,72,108,24,model.showLockedItems,inside(mx,my,width-120,72,108,24));
-        g.fill(6, 64, sidebar() + 6, height - FOOTER, 0xA017191D);
-        var categories = categories(); int available = Math.max(1, (height - 130) / 26);
+        g.fill(6, 64, sidebar() + 6, height - 80, 0xA017191D);
+        var categories = categories(); int available = Math.max(1, (height - 160) / 26);
         categoryScroll = Math.clamp(categoryScroll, 0, Math.max(0, categories.size() - available));
         for (int i = categoryScroll; i < Math.min(categories.size(), categoryScroll + available); i++) {
             var c = categories.get(i); int y = 72 + (i - categoryScroll) * 26;
@@ -141,7 +140,8 @@ public final class ControlPanelScreen extends Screen {
             if (!c.icon().isEmpty()) g.item(c.icon(), 13, y + 4);
             text(g, c.name(), c.icon().isEmpty() ? 16 : 34, y + 8, active ? 0xFFB3F2E5 : 0xFFD3D5D7, sidebar() - (c.icon().isEmpty() ? 20 : 38));
         }
-        text(g, "岛等级 " + model.level(), 14, height - 57, 0xFF8DDAC8, sidebar() - 20);
+        text(g, "岛等级 " + model.level(), 14, height - 71, 0xFF8DDAC8, sidebar() - 20);
+        if(model.state.has("currentLevelScoreScaled"))text(g,"本级 "+score(model.state.get("currentLevelScoreScaled").getAsString())+" / "+score(model.state.get("nextLevelScoreScaled").getAsString()),14,height-57,0xFFB9D7D0,sidebar()-20);
         int rows = Math.max(1, (height - FOOTER - TOP) / rowHeight), first = scroll * columns, last = Math.min(visible.size(), first + rows * columns);
         g.enableScissor(left, TOP, width - 8, height - FOOTER);
         for (int index = first; index < last; index++) {
@@ -164,9 +164,8 @@ public final class ControlPanelScreen extends Screen {
         g.disableScissor();
         if (visible.isEmpty()) text(g, model.products.isEmpty() ? "正在同步商品资料…" : "此分类暂无商品；每日物资按队伍等级随机抽取", left + 8, TOP + 18, 0xFFA0A7AC, width - left - 24);
         g.fill(6, height - 35, width - 6, height - 5, 0xCF171C20);
-        button(g, "卖出手持", sidebar() + 12, height - 31, 86, 24, false, inside(mx, my, sidebar() + 12, height - 31, 86, 24));
-        button(g, "卖出背包材料", sidebar() + 102, height - 31, 120, 24, false, inside(mx, my, sidebar() + 102, height - 31, 120, 24));
-        text(g, "A 收藏 · 左键详情 · 右键买1 · 滚轮翻页", sidebar() + 234, height - 23, 0xFFADB4BA, width - sidebar() - 252);
+        button(g, "卖出背包材料", sidebar() + 12, height - 31, 120, 24, false, inside(mx, my, sidebar() + 12, height - 31, 120, 24));
+        text(g, "A 收藏 · 左键详情 · 右键买1 · 滚轮翻页", sidebar() + 144, height - 23, 0xFFADB4BA, width - sidebar() - 162);
         if (detail != null) drawDetail(g, mx, my); else if (hovered != null) drawTooltip(g, mx, my, hovered);
         drawMessages(g);drawConfirmation(g,mx,my);
     }
@@ -180,20 +179,31 @@ public final class ControlPanelScreen extends Screen {
         }
         return Long.toString(value / unit) + suffix;
     }
+    private static String score(String scaled){
+        java.math.BigDecimal amount=new java.math.BigDecimal(new java.math.BigInteger(scaled)).movePointLeft(4);
+        java.math.BigDecimal yi=java.math.BigDecimal.valueOf(100_000_000),wan=java.math.BigDecimal.valueOf(10_000);
+        if(amount.compareTo(yi)>=0)return amount.divide(yi,1,java.math.RoundingMode.DOWN).stripTrailingZeros().toPlainString()+"亿";
+        if(amount.compareTo(wan)>=0)return amount.divide(wan,1,java.math.RoundingMode.DOWN).stripTrailingZeros().toPlainString()+"万";
+        return amount.stripTrailingZeros().toPlainString();
+    }
     private static String rarity(String value) { return switch (value) { case "rare" -> "稀有"; case "epic" -> "史诗"; case "legendary" -> "传说"; default -> "普通"; }; }
     private void drawTooltip(GuiGraphicsExtractor g, int mx, int my, ClientCatalog.Product p) {
         List<Component> lines = new ArrayList<>(); lines.add(Component.literal(p.name()));
         lines.add(Component.literal("种类稀有度：" + rarity(p.rarity()) + " · 解锁等级 " + p.level()));
         if (mode==1) lines.add(Component.literal("本队今日剩余库存：" + model.stock(p)));
+        int purchaseLine=lines.size();
         lines.add(Component.literal("购买：" + Money.format(model.price(p,mode))));
         lines.add(Component.literal("行情：" + String.format(Locale.ROOT, "%+.2f%%", (model.bps(p) - 10000) / 100.0)));
         model.tooltip(p.stack(), lines);
         int tw = Math.min(360, width - 20);
         var wrapped = new ArrayList<net.minecraft.util.FormattedCharSequence>();
-        for (Component line : lines) wrapped.addAll(font.split(line, tw - 16));
+        var colors=new ArrayList<Integer>();
+        for(int index=0;index<lines.size();index++)for(var line:font.split(lines.get(index),tw-16)){
+            wrapped.add(line);colors.add(index==0?0xFFF4E7BA:index==purchaseLine?model.canBuy(p,mode,1)?0xFF9BE2C7:0xFFFFB0A0:0xFFCDD4D9);
+        }
         int th = wrapped.size() * 12 + 14, x = Math.clamp(mx + 10, 8, Math.max(8, width - tw - 8)), y = Math.clamp(my + 12, 8, Math.max(8, height - th - 8));
         g.fill(x, y, x + tw, y + th, 0xF20B1115); g.fill(x, y, x + 2, y + th, 0xFF70CEB8);
-        for (int i = 0; i < wrapped.size(); i++) g.text(font, wrapped.get(i), x + 8, y + 8 + i * 12, i == 0 ? 0xFFF4E7BA : 0xFFCDD4D9, false);
+        for (int i = 0; i < wrapped.size(); i++) g.text(font, wrapped.get(i), x + 8, y + 8 + i * 12, colors.get(i), false);
     }
     private void drawDetail(GuiGraphicsExtractor g, int mx, int my) {
         int w = Math.min(420, width - 24), h = Math.min(232, height - 20), x = (width - w) / 2, y = (height - h) / 2;
@@ -217,17 +227,13 @@ public final class ControlPanelScreen extends Screen {
             String balance=Money.format(model.wallet());int x=width-font.width(balance)-12,y=height-28;
             g.fill(x-6,y-4,width-6,y+13,0x98000000);g.text(font,balance,x,y,0xFFFFDD74,true);model.coinGains.render(g,y);
         }
-        if(confirmed==null)return;
-        int w=Math.min(420,width-24),h=Math.min(150,height-24),x=(width-w)/2,y=(height-h)/2;
-        g.fill(0,0,width,height,0xAA000000);g.fill(x,y,x+w,y+h,0xFF1C2930);
-        int yy=y+12;for(var line:font.split(Component.literal(confirmation),w-24)){g.text(font,line,x+12,yy,0xFFDDE6EA,false);yy+=12;}
-        actionButton(g,"确认",x+12,y+h-30,80,true);actionButton(g,"取消",x+w-92,y+h-30,80,true);
+        model.events.render(g);
+        confirmation.render(g,this);
     }
     private void send(String action, String product, int count) { if (ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request(action, product, count)); }
     @Override public boolean mouseClicked(MouseButtonEvent e, boolean doubleClick) {
         double x = e.x(), y = e.y();
-        if(confirmed!=null){int w=Math.min(420,width-24),h=Math.min(150,height-24),dx=(width-w)/2,dy=(height-h)/2;
-            if(inside(x,y,dx+12,dy+h-30,80,22)){Runnable run=confirmed;confirmed=null;confirmation="";run.run();}else if(inside(x,y,dx+w-92,dy+h-30,80,22)){confirmed=null;confirmation="";}return true;}
+        if(confirmation.click(this,x,y))return true;
         if(mode<2)layout();
         if (detail != null) {
             int w = Math.min(420, width - 24), h = Math.min(232, height - 20), dx = (width - w) / 2, dy = (height - h) / 2; int[] amounts = {1, 16, 64};
@@ -245,18 +251,17 @@ public final class ControlPanelScreen extends Screen {
         if (inside(x, y, sliderX() - 4, 47, SLIDER_WIDTH + 8, 18)) { dragSlider = true; slider(x); return true; }
         searchFocused = inside(x, y, sidebar() + 12, 72, width - sidebar() - 140, 24); if (searchFocused) return true;
         var categories = categories(); int ci = (int) ((y - 72) / 26) + categoryScroll;
-        if (inside(x, y, 10, 72, sidebar() - 8, Math.max(1, (height - 130) / 26) * 26) && ci >= 0 && ci < categories.size()) { category = categories.get(ci).id(); invalidate(); return true; }
-        if (inside(x, y, sidebar() + 12, height - 31, 86, 24)) { showSale(); send("sell_hand", "", 0); return true; }
-        if (inside(x, y, sidebar() + 102, height - 31, 120, 24)) { showSale(); send("sell_inventory", "", 0); return true; }
+        if (inside(x, y, 10, 72, sidebar() - 8, Math.max(1, (height - 160) / 26) * 26) && ci >= 0 && ci < categories.size()) { category = categories.get(ci).id(); invalidate(); return true; }
+        if (inside(x, y, sidebar() + 12, height - 31, 120, 24)) { showSale(); send("sell_inventory", "", 0); return true; }
         if (hovered != null) { if (e.button() == 1) model.purchase(hovered,mode,(e.modifiers() & GLFW.GLFW_MOD_SHIFT) != 0 ? 64 : 1); else { detail = hovered; quantity = 1; } return true; }
         return super.mouseClicked(e, doubleClick);
     }
     private void slider(double x) { model.cellSize = Math.clamp(ClientCatalog.MIN_CELL + (int) Math.round((x - sliderX()) * (ClientCatalog.MAX_CELL - ClientCatalog.MIN_CELL) / SLIDER_WIDTH), ClientCatalog.MIN_CELL, ClientCatalog.MAX_CELL); scroll = 0; }
     @Override public boolean mouseDragged(MouseButtonEvent e, double dx, double dy) { if (dragSlider) { slider(e.x()); return true; } return super.mouseDragged(e, dx, dy); }
     @Override public boolean mouseReleased(MouseButtonEvent e) { if (dragSlider) { dragSlider = false; model.save(); return true; } return super.mouseReleased(e); }
-    @Override public boolean mouseScrolled(double x, double y, double sx, double sy) { if(confirmed!=null)return true;if(mode==2)return tasks.scrolled(x,y,sy);if(mode==3)return tasks.bountyScrolled(sy);if(model.saleDesired&&salePanel!=null)return salePanel.mouseScrolled(x,y,sx,sy); if (detail != null) return true; if (x < sidebar() + 8) categoryScroll -= Math.signum(sy); else scroll -= Math.signum(sy) * 3; layout(); return true; }
+    @Override public boolean mouseScrolled(double x, double y, double sx, double sy) { if(confirmation.active())return true;if(mode==2)return tasks.scrolled(x,y,sy);if(mode==3)return tasks.bountyScrolled(sy);if(model.saleDesired&&salePanel!=null)return salePanel.mouseScrolled(x,y,sx,sy); if (detail != null) return true; if (x < sidebar() + 8) categoryScroll -= Math.signum(sy); else scroll -= Math.signum(sy) * 3; layout(); return true; }
     @Override public boolean keyPressed(KeyEvent e) {
-        if(confirmed!=null){if(e.key()==GLFW.GLFW_KEY_ESCAPE){confirmed=null;confirmation="";}return true;}
+        if(confirmation.key(e.key()))return true;
         if(mode==2&&tasks.keyPressed(e))return true;
         if (e.key() == GLFW.GLFW_KEY_ESCAPE) {if(model.saleDesired){cancelSale(true);return true;} if (detail != null) { detail = null; return true; } if (searchFocused) { searchFocused = false; return true; } onClose(); return true; }
         if (searchFocused) { if (e.key() == GLFW.GLFW_KEY_BACKSPACE && !search.isEmpty()) { search = search.substring(0, search.offsetByCodePoints(search.length(), -1)); invalidate(); } return true; }

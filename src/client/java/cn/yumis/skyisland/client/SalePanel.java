@@ -61,7 +61,8 @@ public final class SalePanel {
         for(int i=scroll;i<Math.min(lines.size(),scroll+available);i++){
             var row=lines.get(i).getAsJsonObject();
             String rarity=model.rarity(model.decode(model.sale.getAsJsonArray("inventory").get(row.get("slot").getAsInt()).getAsJsonObject().get("stack")));
-            text(g,row.get("name").getAsString()+" ×"+row.get("quantity").getAsInt()+"  单价"+ClientCatalog.decimal(Rational.parse(row.get("unit").getAsString()))+"  本行"+row.get("coins").getAsLong()+"金币",12,start+(i-scroll)*12,RarityColors.color(rarity),width-24);
+            String name=model.decode(model.sale.getAsJsonArray("inventory").get(row.get("slot").getAsInt()).getAsJsonObject().get("stack")).getHoverName().getString();
+            text(g,name+" ×"+row.get("quantity").getAsInt()+"  基础"+ClientCatalog.decimal(Rational.parse(row.get("unit").getAsString()))+"  本行"+Money.format(row.get("coins").getAsLong()),12,start+(i-scroll)*12,RarityColors.color(rarity),width-24);
         }
         boolean quoted=!dirty&&model.sale.has("selection")&&selection().equals(model.sale.get("selection").getAsString());
         long coins=quoted&&model.sale.has("coins")?model.sale.get("coins").getAsLong():0;

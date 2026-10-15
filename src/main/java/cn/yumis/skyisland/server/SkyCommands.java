@@ -45,7 +45,7 @@ public final class SkyCommands {
             if (rt == null) { c.getSource().sendFailure(Component.literal("当前不是 Yumi 空岛世界")); return 0; }
             try {
                 var party = rt.parties.requireMember(target);
-                rt.change(c.getSource().getPlayer(),s -> s.parties.get(party.id).coins = amount,() -> c.getSource().sendSuccess(() -> Component.literal("共享金币已设置为 " + Money.format(amount)),true));
+                rt.change(c.getSource().getPlayer(),s -> s.parties.get(party.id).coins = amount,() -> c.getSource().sendSuccess(() -> Component.literal("共享"+Money.currencyName()+"已设置为 " + Money.format(amount)),true));
                 return 1;
             } catch (IllegalArgumentException e) { c.getSource().sendFailure(Component.literal(e.getMessage())); return 0; }
         })))));

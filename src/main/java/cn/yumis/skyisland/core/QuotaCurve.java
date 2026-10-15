@@ -6,7 +6,8 @@ import java.util.List;
 public final class QuotaCurve {
     public record Tier(Rational upToUnits, int multiplierBps) {}
     public static final QuotaCurve DEFAULT = new QuotaCurve(List.of(
-            new Tier(Rational.of(1000), 10000), new Tier(Rational.of(10000), 5000), new Tier(null, 1000)));
+            new Tier(Rational.of(128), 1000), new Tier(Rational.of(320), 500),
+            new Tier(Rational.of(640), 100), new Tier(null, 50)));
     private final List<Tier> tiers;
 
     public QuotaCurve(List<Tier> tiers) {

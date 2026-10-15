@@ -13,11 +13,13 @@ public final class IncomeNotifications {
     private BigInteger pending=BigInteger.ZERO;
     public void clear(){active.clear();pending=BigInteger.ZERO;pendingStart=0;lastSequence=-1;}
     public void receive(long sequence,long amount,long now){
-        if(sequence<=lastSequence||amount<=0)return;lastSequence=sequence;flush(now);
+        if(sequence<=lastSequence||amount==0)return;lastSequence=sequence;flush(now);
+        if(pending.signum()!=0 && pending.signum()!=Long.signum(amount))publishPending(now);
         if(pending.signum()==0)pendingStart=now;pending=pending.add(BigInteger.valueOf(amount));
     }
+    private void publishPending(long now){if(pending.signum()!=0){active.add(new Gain(pendingStart+WINDOW,pending));pending=BigInteger.ZERO;}}
     private void flush(long now){
-        if(pending.signum()>0&&now-pendingStart>=WINDOW){active.add(new Gain(pendingStart+WINDOW,pending));pending=BigInteger.ZERO;}
+        if(pending.signum()!=0&&now-pendingStart>=WINDOW)publishPending(now);
         active.removeIf(g->now-g.start()>=LIFETIME);
     }
     public List<Gain> visible(long now){flush(now);return List.copyOf(active);}

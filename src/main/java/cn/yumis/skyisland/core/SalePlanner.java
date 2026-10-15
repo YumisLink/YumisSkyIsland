@@ -16,7 +16,6 @@ public final class SalePlanner {
     private final QuotaCurve curve;
     public SalePlanner(QuotaCurve curve) { this.curve = curve; }
     public Plan prepare(long wallet, Map<String, Rational> oldCounters, List<Input> inputs) {
-        Money.requireNonnegative(wallet);
         Map<String, Rational> counters = new LinkedHashMap<>(oldCounters);
         List<Input> ordered = inputs.stream().sorted(Comparator.comparingInt(Input::slot)).toList();
         List<Input> removals = new ArrayList<>();
