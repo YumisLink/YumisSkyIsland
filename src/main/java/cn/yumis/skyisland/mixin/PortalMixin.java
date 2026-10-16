@@ -13,6 +13,6 @@ public abstract class PortalMixin {
     @Inject(method="getPortalDestination", at=@At("HEAD"), cancellable=true)
     private void route(ServerLevel level, Entity entity, BlockPos pos, CallbackInfoReturnable<TeleportTransition> ci) {
         SkyServer runtime = SkyServer.get(level.getServer());
-        if (runtime != null) ci.setReturnValue(runtime.worlds.portal(level, entity, (Object)this instanceof NetherPortalBlock ? "nether" : (Object)this instanceof EndGatewayBlock ? "gateway" : "end"));
+        if (runtime != null) ci.setReturnValue(runtime.worlds.portal(level, entity, pos, (Object)this instanceof NetherPortalBlock ? "nether" : (Object)this instanceof EndGatewayBlock ? "gateway" : "end"));
     }
 }

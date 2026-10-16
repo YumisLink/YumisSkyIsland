@@ -25,7 +25,15 @@ public final class TaskPanel {
     private List<JsonObject> rows(){
         JsonArray source=data().has("quests")?data().getAsJsonArray("quests"):model.editorState.has("quests")?model.editorState.getAsJsonArray("quests"):new JsonArray();
         if(model.editorState.has("revision")&&model.editorState.get("revision").getAsLong()>model.taskRevision()&&model.editorState.has("quests"))source=model.editorState.getAsJsonArray("quests");
-        var result=new ArrayList<JsonObject>();for(var row:source)if(!deleted.contains(row.getAsJsonObject().get("id").getAsString()))result.add(row.getAsJsonObject());return result;
+        var result=new ArrayList<JsonObject>();
+        for(var row:source){
+            JsonObject quest=row.getAsJsonObject();
+            if(deleted.contains(quest.get("id").getAsString()))continue;
+            if(!model.editing() && quest.has("status") &&
+                    (quest.get("status").getAsString().equals("locked") || quest.get("status").getAsString().equals("completed")))continue;
+            result.add(quest);
+        }
+        return result;
     }
     public void tick(){
         var rows=rows();
@@ -48,13 +56,13 @@ public final class TaskPanel {
     public void render(GuiGraphicsExtractor g,int mx,int my,float delta){
         tick();
         int left=parent.contentLeft(),right=parent.contentWidth();
-        g.fill(6,64,parent.sidebar()+6,parent.height-8,0xA017191D);
+        g.fill(6,64,parent.sidebar()+6,parent.height-8,UiTheme.CARD);
         text(g,"成长任务",12,73,0xFFFFFFFF,parent.sidebar()-16);
         var rows=rows();int visible=Math.max(1,(parent.height-145)/37);
         listScroll=Math.clamp(listScroll,0,Math.max(0,rows.size()-visible));
         for(int i=listScroll;i<Math.min(rows.size(),listScroll+visible);i++){
             var row=rows.get(i);int y=95+(i-listScroll)*37;boolean active=row.get("id").getAsString().equals(selected);
-            g.fill(10,y,parent.sidebar()+2,y+34,active?0xCC354D51:0x66272D34);
+            g.fill(10,y,parent.sidebar()+2,y+34,active?UiTheme.SELECTED:0x66292929);
             String kind=row.get("kind").getAsString();String name=(kind.equals("profession")?"职 · ":kind.equals("side")?"支 · ":"主 · ")+row.get("name").getAsString();
             text(g,name,14,y+5,titleColor(kind),parent.sidebar()-18);
             text(g,statusLabel(row.get("status").getAsString()),14,y+20,row.get("status").getAsString().equals("completed")?0xFF82CAB3:0xFFADB9C3,parent.sidebar()-18);
@@ -91,6 +99,7 @@ public final class TaskPanel {
         for(var reward:quest.getAsJsonArray("rewardItems")){var stack=model.decode(reward);g.item(stack,left,y);text(g,"奖励："+stack.getHoverName().getString()+" ×"+stack.getCount(),left+23,y+5,RarityColors.color(model.rarity(stack)),right-23);y+=25;String properties=enchantments(stack,false);if(!properties.isEmpty()){text(g,properties,left,y,0xFFAFC3CE,right);y+=14;}int grade=cn.yumis.skyisland.shop.ItemEconomy.grade(stack);if(grade>0){text(g,"品质："+gradeName(grade),left,y,0xFFAFC3CE,right);y+=14;}}
         if(quest.get("rewardCoins").getAsLong()>0){text(g,"奖励："+Money.format(quest.get("rewardCoins").getAsLong()),left,y,0xFFFFDC78,right);y+=15;}
         if(quest.has("rewardExperiencePoints")&&quest.get("rewardExperiencePoints").getAsInt()>0){text(g,"奖励："+quest.get("rewardExperiencePoints").getAsInt()+"点原版经验",left,y,0xFF9DE5C7,right);y+=15;}
+        if(model.state.has("lottery")){var lottery=model.state.getAsJsonObject("lottery");if(lottery.has("taskTokenReward")){text(g,"奖励："+lottery.get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token()+(quest.has("kind")&&quest.get("kind").getAsString().equals("main")?"（全队每人）":""),left,y,0xFFB5B2FF,right);y+=15;}}
         for(var feature:quest.getAsJsonArray("unlockFeatures")){text(g,"永久解锁："+featureName(feature.getAsString()),left,y,0xFF9DE5C7,right);y+=15;}
         text(g,statusLabel(status()),left,y+5,0xFFADB9C3,right);
         g.disableScissor();
@@ -154,11 +163,12 @@ public final class TaskPanel {
 
     public void renderBounties(GuiGraphicsExtractor g,int mx,int my,float delta){
         var data=data();if(!data.has("offers")){text(g,"请先 /is 创建或加入空岛",12,78,0xFFBBC6CE,parent.width-24);return;}
-        text(g,"悬赏格 "+data.get("slots").getAsInt()+"/"+data.get("maximumSlots").getAsInt()+" · 全队共享",12,68,0xFF9DE5C7,parent.width-24);
+        String tokenReward=model.state.has("lottery")?" · 每次另得"+model.state.getAsJsonObject("lottery").get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token():"";
+        text(g,"悬赏格 "+data.get("slots").getAsInt()+"/"+data.get("maximumSlots").getAsInt()+" · 全队共享"+tokenReward,12,68,0xFF9DE5C7,parent.width-24);
         button(g,data.get("slots").getAsInt()>=data.get("maximumSlots").getAsInt()?"格数已满":"购格 "+Money.format(data.get("slotCost").getAsLong()),12,84,Math.min(230,parent.width-24),data.get("slots").getAsInt()<data.get("maximumSlots").getAsInt());
         var offers=data.getAsJsonArray("offers");int visible=Math.max(1,(parent.height-146)/55);bountyScroll=Math.clamp(bountyScroll,0,Math.max(0,offers.size()-visible));
         for(int i=bountyScroll;i<Math.min(offers.size(),bountyScroll+visible);i++){
-            var row=offers.get(i).getAsJsonObject();int y=112+(i-bountyScroll)*55;g.fill(10,y,parent.width-10,y+51,0xBB252B32);
+            var row=offers.get(i).getAsJsonObject();int y=112+(i-bountyScroll)*55;g.fill(10,y,parent.width-10,y+51,UiTheme.CARD);
             if(!row.has("material")||row.get("material").isJsonNull()){text(g,"格 "+(i+1)+" · 暂无合格悬赏；请先卖出普通材料",16,y+18,0xFFBBC6CE,parent.width-32);continue;}
             var reward=model.decode(row.get("rewardStack"));g.item(reward,16,y+5);
             text(g,reward.getHoverName().getString()+" ×1",39,y+7,RarityColors.color(model.rarity(reward)),parent.width-128);

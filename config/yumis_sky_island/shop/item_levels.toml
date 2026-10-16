@@ -1,3728 +1,2120 @@
 # Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
 # 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
 
-# 配置结构版本；资料字段，勿随意降低；当前默认：1
+# 配置结构版本；资料字段，勿随意降低
 schemaVersion = 1
-# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+# 配置审阅状态；资料字段，不改变运行规则
 status = "review_draft"
-# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+# 目标 Minecraft 版本；资料字段
 minecraftVersion = "26.2"
-# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证
 registryVerified = false
-# 说明字段 levelKind；资料用途，不单独改变运行行为；当前默认："current_party_island_level"
+# 配置字段 levelKind
 levelKind = "current_party_island_level"
-# 本区间起始等级；非负整数；当前默认：0
+# 本区间起始等级；非负整数
 minLevel = 0
-# 等级上限资料；岛／职业默认为100；当前默认：100
+# 等级上限资料；岛／职业默认为100
 maxLevel = 100
-# 说明字段 unlockPolicy；资料用途，不单独改变运行行为；当前默认："current_level_required_for_purchase"
+# 配置字段 unlockPolicy
 unlockPolicy = "current_level_required_for_purchase"
-# 说明字段 sellRequiresUnlock；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 sellRequiresUnlock
 sellRequiresUnlock = false
 # 商品购买等级门槛；0～100，出售不要求购买等级
 shopRevision = "q34-q48-material-shop-v2"
 
 [itemLevels]
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
+# 特殊弹药
+"yumis_sky_island:special_ammunition" = 0
+
+# 蓝图大炮
+"yumis_sky_island:blueprint_cannon" = 1
+
+# 注册 ID／组件参数；保持 ID 原样
 "minecraft:acacia_boat" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_button" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_chest_boat" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_door" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_fence" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_fence_gate" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:acacia_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_leaves" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_log" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_planks" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_pressure_plate" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_sapling" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_shelf" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_sign" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_slab" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_stairs" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_trapdoor" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:acacia_wood" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:activator_rail" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:air" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:allay_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:allium" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:amethyst_block" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:amethyst_cluster" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:amethyst_shard" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:ancient_debris" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:andesite" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:andesite_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:andesite_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:andesite_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:angler_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:anvil" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:apple" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:archer_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:armadillo_scute" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:armadillo_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:armor_stand" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:arms_up_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:arrow" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:axolotl_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:axolotl_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:azalea" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:azalea_leaves" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:azure_bluet" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:baked_potato" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_button" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_chest_raft" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_door" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_fence" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_fence_gate" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:bamboo_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_mosaic" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_mosaic_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_mosaic_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_planks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_pressure_plate" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_raft" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_shelf" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_sign" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bamboo_trapdoor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:barrel" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:barrier" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:basalt" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:bat_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：80
 "minecraft:beacon" = 80
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:bedrock" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:bee_nest" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:bee_spawn_egg" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:beef" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:beehive" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:beetroot" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:beetroot_seeds" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:beetroot_soup" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bell" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:big_dripleaf" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_boat" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_button" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:birch_chest_boat" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_door" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_fence" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_fence_gate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:birch_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_leaves" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_log" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_planks" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_pressure_plate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_sapling" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_shelf" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_sign" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_slab" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_stairs" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_trapdoor" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:birch_wood" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:black_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:black_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:black_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_dye" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:black_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:black_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_stained_glass" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_stained_glass_pane" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:black_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:black_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:blackstone" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:blackstone_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:blackstone_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:blackstone_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:blade_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:blast_furnace" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:blaze_powder" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:blaze_rod" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:blaze_spawn_egg" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:blue_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:blue_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:blue_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:blue_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:blue_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:blue_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:blue_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:blue_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:blue_egg" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:blue_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:blue_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:blue_ice" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:blue_orchid" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:blue_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:blue_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:blue_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:blue_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:blue_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:bogged_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:bolt_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bone_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bone_meal" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:book" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:bookshelf" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bordure_indented_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bow" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bowl" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:brain_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:brain_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:brain_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bread" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:breeze_rod" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:breeze_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:brewer_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:brewing_stand" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:brick" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:brick_slab" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:brick_stairs" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:brick_wall" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:bricks" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:brown_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:brown_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:brown_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_dye" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:brown_egg" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:brown_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_mushroom" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:brown_mushroom_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:brown_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_stained_glass" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_stained_glass_pane" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:brown_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:brown_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:brush" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bubble_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bubble_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bubble_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:budding_amethyst" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:burn_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:bush" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cactus" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cactus_flower" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:cake" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:calcite" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:calibrated_sculk_sensor" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:camel_husk_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:camel_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:campfire" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:carrot" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:carrot_on_a_stick" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cartography_table" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:carved_pumpkin" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:cat_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:cauldron" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:cave_spider_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:chain_command_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chainmail_boots" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chainmail_chestplate" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chainmail_helmet" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chainmail_leggings" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:charcoal" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_boat" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_button" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_chest_boat" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_fence" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_fence_gate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_leaves" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_log" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_planks" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_pressure_plate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_sapling" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_shelf" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cherry_wood" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chest" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:chest_minecart" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:chicken" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:chicken_spawn_egg" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chipped_anvil" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chiseled_bookshelf" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:chiseled_cinnabar" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:chiseled_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:chiseled_deepslate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:chiseled_nether_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:chiseled_polished_blackstone" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:chiseled_quartz_block" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:chiseled_red_sandstone" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chiseled_resin_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chiseled_sandstone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chiseled_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:chiseled_sulfur" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:chiseled_tuff" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:chiseled_tuff_bricks" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:chorus_flower" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:chorus_fruit" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:chorus_plant" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_brick_slab" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_brick_stairs" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_brick_wall" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_bricks" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_slab" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_stairs" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:cinnabar_wall" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:clay" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:clay_ball" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:clock" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:closed_eyeblossom" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:coal" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:coal_block" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:coal_ore" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:coarse_dirt" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:coast_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cobbled_deepslate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cobbled_deepslate_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cobbled_deepslate_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cobbled_deepslate_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:cobblestone" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cobblestone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cobblestone_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cobblestone_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cobweb" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cocoa_beans" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cod" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cod_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:cod_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:command_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:command_block_minecart" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:comparator" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:compass" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:composter" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:conduit" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_beef" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_chicken" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_cod" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_mutton" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_porkchop" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_rabbit" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cooked_salmon" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cookie" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_axe" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_bars" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_block" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_boots" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_chain" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_chest" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_chestplate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:copper_golem_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:copper_golem_statue" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_grate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_helmet" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_hoe" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:copper_horse_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_ingot" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_lantern" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_leggings" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:copper_nautilus_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_nugget" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_ore" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_pickaxe" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_shovel" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_spear" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_sword" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_torch" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:copper_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cornflower" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cow_spawn_egg" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cracked_deepslate_bricks" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cracked_deepslate_tiles" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:cracked_nether_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:cracked_polished_blackstone_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cracked_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:crafter" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:crafting_table" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:creaking_heart" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:creaking_spawn_egg" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:creeper_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:creeper_head" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:creeper_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_button" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_door" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_fence" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_fence_gate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_fungus" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_hanging_sign" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_hyphae" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_nylium" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_planks" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_pressure_plate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_roots" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_shelf" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_sign" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_slab" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_stairs" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_stem" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crimson_trapdoor" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:crossbow" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:crying_obsidian" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cut_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cut_copper_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cut_copper_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cut_red_sandstone" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:cut_red_sandstone_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cut_sandstone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cut_sandstone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cyan_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cyan_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cyan_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:cyan_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cyan_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cyan_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:cyan_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cyan_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:cyan_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cyan_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:cyan_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cyan_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:cyan_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:cyan_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:cyan_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:damaged_anvil" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dandelion" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:danger_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_boat" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_button" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_chest_boat" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_door" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_fence" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_fence_gate" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:dark_oak_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_leaves" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_log" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_planks" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_pressure_plate" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_sapling" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_shelf" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_sign" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_slab" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_stairs" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_trapdoor" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:dark_oak_wood" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:dark_prismarine" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:dark_prismarine_slab" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:dark_prismarine_stairs" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:daylight_detector" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_brain_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_brain_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_brain_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_bubble_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_bubble_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_bubble_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_bush" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_fire_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_fire_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_fire_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_horn_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_horn_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_horn_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_tube_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_tube_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dead_tube_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:debug_stick" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:decorated_pot" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_brick_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_brick_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_brick_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_bricks" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_coal_ore" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_copper_ore" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:deepslate_diamond_ore" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:deepslate_emerald_ore" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:deepslate_gold_ore" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:deepslate_iron_ore" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:deepslate_lapis_ore" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:deepslate_redstone_ore" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_tile_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_tile_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_tile_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:deepslate_tiles" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:detector_rail" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_axe" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_block" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_boots" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_chestplate" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_helmet" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_hoe" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_horse_armor" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_leggings" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_nautilus_armor" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:diamond_ore" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_pickaxe" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_shovel" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_spear" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diamond_sword" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diorite" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diorite_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diorite_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:diorite_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:dirt" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dirt_path" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:disc_fragment_5" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:dispenser" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:dolphin_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:donkey_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:dragon_breath" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：100
 "minecraft:dragon_egg" = 100
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:dragon_head" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:dried_ghast" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:dried_kelp" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:dried_kelp_block" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:dripstone_block" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:dropper" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:drowned_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:dune_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:echo_shard" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:egg" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:elder_guardian_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：95
 "minecraft:elytra" = 95
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:emerald" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:emerald_block" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:emerald_ore" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:enchanted_golden_apple" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanting_table" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:end_crystal" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_portal_frame" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_rod" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_stone" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_stone_brick_slab" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_stone_brick_stairs" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_stone_brick_wall" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:end_stone_bricks" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:ender_chest" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:ender_dragon_spawn_egg" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:ender_eye" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:ender_pearl" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enderman_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:endermite_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:evoker_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:experience_bottle" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:explorer_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_chiseled_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_bars" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:exposed_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_chain" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_chest" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:exposed_copper_golem_statue" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_grate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_lantern" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_copper_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_cut_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_cut_copper_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_cut_copper_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:exposed_lightning_rod" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:eye_armor_trim_smithing_template" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:farmland" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:feather" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:fermented_spider_eye" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:fern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:field_masoned_banner_pattern" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:filled_map" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:fire_charge" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:fire_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:fire_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:fire_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:firefly_bush" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:firework_rocket" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:firework_star" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:fishing_rod" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:fletching_table" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:flint" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:flint_and_steel" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:flow_armor_trim_smithing_template" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:flow_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:flow_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:flower_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:flower_pot" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:flowering_azalea" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:flowering_azalea_leaves" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:fox_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:friend_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:frog_spawn_egg" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:frogspawn" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:furnace" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:furnace_minecart" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:ghast_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:ghast_tear" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:gilded_blackstone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:glass_bottle" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:glistering_melon_slice" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:globe_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:glow_berries" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:glow_ink_sac" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:glow_item_frame" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:glow_lichen" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:glow_squid_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:glowstone" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:glowstone_dust" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:goat_horn" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:goat_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:gold_block" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:gold_ingot" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:gold_nugget" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:gold_ore" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:golden_apple" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_axe" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_boots" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_carrot" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_chestplate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_dandelion" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_helmet" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_hoe" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:golden_horse_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_leggings" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:golden_nautilus_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_pickaxe" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_shovel" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_spear" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:golden_sword" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:granite" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:granite_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:granite_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:granite_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:grass_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:gravel" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gray_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gray_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gray_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:gray_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gray_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:gray_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:gray_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:gray_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:gray_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gray_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:gray_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:gray_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:gray_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:gray_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gray_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:green_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:green_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:green_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_dye" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:green_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:green_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_stained_glass" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_stained_glass_pane" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:green_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:green_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:grindstone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:guardian_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:gunpowder" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:guster_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:guster_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:hanging_roots" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:happy_ghast_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:hay_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:heart_of_the_sea" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:heart_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:heartbreak_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：85
 "minecraft:heavy_core" = 85
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:heavy_weighted_pressure_plate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:hoglin_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:honey_block" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:honey_bottle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:honeycomb" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:honeycomb_block" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:hopper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:hopper_minecart" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:horn_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:horn_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:horn_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:horse_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:host_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:howl_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:husk_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:ice" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_chiseled_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_cobblestone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_cracked_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_deepslate" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_mossy_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_stone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:infested_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:ink_sac" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_axe" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_bars" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_block" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_boots" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_chain" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_chestplate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:iron_golem_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_helmet" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_hoe" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:iron_horse_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_ingot" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_leggings" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:iron_nautilus_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_nugget" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:iron_ore" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_pickaxe" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_shovel" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_spear" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_sword" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:iron_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:item_frame" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:jack_o_lantern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:jigsaw" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:jukebox" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_boat" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_button" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_chest_boat" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_door" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_fence" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_fence_gate" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:jungle_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_leaves" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_log" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_planks" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_pressure_plate" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_sapling" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_shelf" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_sign" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_slab" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_stairs" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_trapdoor" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:jungle_wood" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:kelp" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:knowledge_book" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:ladder" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lantern" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:lapis_block" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:lapis_lazuli" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lapis_ore" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:large_amethyst_bud" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:large_fern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:lava_bucket" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:lead" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:leaf_litter" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:leather" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:leather_boots" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:leather_chestplate" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:leather_helmet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:leather_horse_armor" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:leather_leggings" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lectern" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:lever" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:light" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_blue_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_blue_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_blue_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:light_blue_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_blue_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_blue_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:light_blue_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_blue_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:light_blue_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_blue_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:light_blue_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_blue_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_blue_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:light_blue_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_blue_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_gray_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_gray_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_gray_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:light_gray_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_gray_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_gray_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:light_gray_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_gray_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:light_gray_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_gray_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:light_gray_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_gray_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:light_gray_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:light_gray_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:light_gray_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:light_weighted_pressure_plate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lightning_rod" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:lilac" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:lily_of_the_valley" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:lily_pad" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:lime_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:lime_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lime_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_dye" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lime_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:lime_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_stained_glass" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_stained_glass_pane" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lime_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:lime_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:lingering_potion" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:llama_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lodestone" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:loom" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：85
 "minecraft:mace" = 85
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:magenta_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:magenta_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:magenta_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:magenta_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:magenta_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:magenta_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:magenta_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:magenta_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:magenta_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:magenta_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:magenta_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:magenta_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:magenta_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:magenta_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:magenta_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:magma_block" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:magma_cream" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:magma_cube_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_boat" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_button" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_chest_boat" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_fence" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_fence_gate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_leaves" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_log" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_planks" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_pressure_plate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_propagule" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_roots" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_shelf" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:mangrove_wood" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:map" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:medium_amethyst_bud" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:melon" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:melon_seeds" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:melon_slice" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:milk_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:minecart" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:miner_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:mojang_banner_pattern" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:mooshroom_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:moss_block" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:moss_carpet" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_cobblestone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_cobblestone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_cobblestone_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_cobblestone_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_stone_brick_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_stone_brick_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_stone_brick_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mossy_stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:mourner_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mud" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mud_brick_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mud_brick_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mud_brick_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mud_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:muddy_mangrove_roots" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:mule_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mushroom_stem" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:mushroom_stew" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_11" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_13" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_5" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_blocks" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_bounce" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_cat" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_chirp" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_creator" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_creator_music_box" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_far" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_lava_chicken" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_mall" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_mellohi" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_otherside" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_pigstep" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_precipice" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_relic" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_stal" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_strad" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_tears" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_wait" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:music_disc_ward" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:mutton" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:mycelium" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:name_tag" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:nautilus_shell" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:nautilus_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_brick" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_brick_fence" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_brick_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_brick_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_brick_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_gold_ore" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:nether_quartz_ore" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:nether_sprouts" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：80
 "minecraft:nether_star" = 80
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:nether_wart" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:nether_wart_block" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_axe" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_block" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_boots" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_chestplate" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_helmet" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_hoe" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_horse_armor" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_ingot" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_leggings" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_nautilus_armor" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_pickaxe" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:netherite_scrap" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_shovel" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_spear" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:netherite_sword" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:netherite_upgrade_smithing_template" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:netherrack" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:note_block" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_boat" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_button" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:oak_chest_boat" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_door" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_fence" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_fence_gate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oak_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_leaves" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_log" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_planks" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_pressure_plate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_sapling" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_shelf" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_sign" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_slab" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_stairs" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_trapdoor" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:oak_wood" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:observer" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:obsidian" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:ocelot_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:ochre_froglight" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:ominous_bottle" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:ominous_trial_key" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:open_eyeblossom" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:orange_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:orange_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:orange_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:orange_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:orange_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:orange_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:orange_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:orange_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:orange_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:orange_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:orange_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:orange_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:orange_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:orange_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:orange_tulip" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:orange_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:oxeye_daisy" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_chiseled_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_bars" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:oxidized_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_chain" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_chest" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:oxidized_copper_golem_statue" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_grate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_lantern" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_copper_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_cut_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_cut_copper_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_cut_copper_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:oxidized_lightning_rod" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:packed_ice" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:packed_mud" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:painting" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pale_hanging_moss" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pale_moss_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pale_moss_carpet" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_boat" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_button" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_chest_boat" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_door" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_fence" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_fence_gate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_hanging_sign" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_leaves" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_log" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_planks" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_pressure_plate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_sapling" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_shelf" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_sign" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_slab" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_stairs" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_trapdoor" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:pale_oak_wood" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:panda_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:paper" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:parched_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:parrot_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pearlescent_froglight" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:peony" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:petrified_oak_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:phantom_membrane" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:phantom_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pig_spawn_egg" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:piglin_banner_pattern" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:piglin_brute_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:piglin_head" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:piglin_spawn_egg" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:pillager_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pink_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pink_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pink_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:pink_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pink_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pink_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:pink_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pink_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:pink_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pink_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pink_petals" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:pink_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pink_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pink_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:pink_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pink_tulip" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:pink_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:piston" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pitcher_plant" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pitcher_pod" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:player_head" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:plenty_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:podzol" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:pointed_dripstone" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:poisonous_potato" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:polar_bear_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_andesite" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_andesite_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_andesite_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:polished_basalt" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_brick_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_brick_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_brick_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_button" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_pressure_plate" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_blackstone_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:polished_cinnabar" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:polished_cinnabar_slab" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:polished_cinnabar_stairs" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:polished_cinnabar_wall" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_deepslate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_deepslate_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_deepslate_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_deepslate_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_diorite" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_diorite_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_diorite_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_granite" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_granite_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:polished_granite_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:polished_sulfur" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:polished_sulfur_slab" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:polished_sulfur_stairs" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:polished_sulfur_wall" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_tuff" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_tuff_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_tuff_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:polished_tuff_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:popped_chorus_fruit" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:poppy" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:porkchop" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:potato" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:potent_sulfur" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:potion" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:powder_snow_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:powered_rail" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_brick_slab" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_brick_stairs" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_bricks" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_crystals" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_shard" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_slab" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_stairs" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:prismarine_wall" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:prize_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pufferfish" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pufferfish_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:pufferfish_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pumpkin" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:pumpkin_pie" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:pumpkin_seeds" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:purple_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:purple_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:purple_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:purple_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:purple_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:purple_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:purple_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:purple_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:purple_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:purple_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:purple_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:purple_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:purple_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:purple_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:purple_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:purpur_block" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:purpur_pillar" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:purpur_slab" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:purpur_stairs" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:quartz" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:quartz_block" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:quartz_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:quartz_pillar" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:quartz_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:quartz_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:rabbit" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:rabbit_foot" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:rabbit_hide" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:rabbit_spawn_egg" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:rabbit_stew" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:rail" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:raiser_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:ravager_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:raw_copper" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:raw_copper_block" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:raw_gold" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:raw_gold_block" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:raw_iron" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:raw_iron_block" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:recovery_compass" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:red_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:red_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:red_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:red_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:red_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_mushroom" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:red_mushroom_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:red_nether_brick_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:red_nether_brick_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:red_nether_brick_wall" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:red_nether_bricks" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:red_sand" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:red_sandstone" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:red_sandstone_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:red_sandstone_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:red_sandstone_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:red_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:red_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:red_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:red_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:red_tulip" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:red_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:redstone" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:redstone_block" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:redstone_lamp" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:redstone_ore" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:redstone_torch" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:reinforced_deepslate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:repeater" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:repeating_command_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_brick" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_brick_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_brick_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_brick_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:resin_clump" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:respawn_anchor" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:rib_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:rooted_dirt" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:rose_bush" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:rotten_flesh" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:saddle" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:salmon" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:salmon_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:salmon_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sand" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sandstone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sandstone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sandstone_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sandstone_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:scaffolding" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:scrape_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sculk" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sculk_catalyst" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sculk_sensor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sculk_shrieker" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sculk_vein" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:sea_lantern" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sea_pickle" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:seagrass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:sentry_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:shaper_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sheaf_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:shears" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:sheep_spawn_egg" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:shelter_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:shield" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:short_dry_grass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:short_grass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:shroomlight" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:shulker_shell" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:shulker_spawn_egg" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:silence_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:silverfish_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:skeleton_horse_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:skeleton_skull" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:skeleton_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:skull_banner_pattern" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:skull_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:slime_ball" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:slime_block" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:slime_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:small_amethyst_bud" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:small_dripleaf" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:smithing_table" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:smoker" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:smooth_basalt" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:smooth_quartz" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:smooth_quartz_slab" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:smooth_quartz_stairs" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:smooth_red_sandstone" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:smooth_red_sandstone_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:smooth_red_sandstone_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:smooth_sandstone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:smooth_sandstone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:smooth_sandstone_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:smooth_stone" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:smooth_stone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sniffer_egg" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:sniffer_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:snort_pottery_sherd" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:snout_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:snow" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:snow_block" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:snow_golem_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:snowball" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:soul_campfire" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:soul_lantern" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:soul_sand" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:soul_soil" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:soul_torch" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spawner" = 100
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:spectral_arrow" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spider_eye" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:spider_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:spire_armor_trim_smithing_template" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:splash_potion" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:sponge" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:spore_blossom" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_boat" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_button" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:spruce_chest_boat" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_door" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_fence" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_fence_gate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:spruce_hanging_sign" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_leaves" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_log" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_planks" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_pressure_plate" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_sapling" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_shelf" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_sign" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_slab" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_stairs" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_trapdoor" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:spruce_wood" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:spyglass" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:squid_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stick" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:sticky_piston" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stone" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_axe" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_brick_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_brick_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_brick_wall" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_bricks" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_button" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_hoe" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_pickaxe" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_pressure_plate" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_shovel" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_slab" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_spear" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_stairs" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stone_sword" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:stonecutter" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:stray_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:strider_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:string" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:stripped_acacia_log" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:stripped_acacia_wood" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:stripped_bamboo_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stripped_birch_log" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stripped_birch_wood" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:stripped_cherry_log" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:stripped_cherry_wood" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:stripped_crimson_hyphae" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:stripped_crimson_stem" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:stripped_dark_oak_log" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：8
 "minecraft:stripped_dark_oak_wood" = 8
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:stripped_jungle_log" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:stripped_jungle_wood" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:stripped_mangrove_log" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:stripped_mangrove_wood" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stripped_oak_log" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stripped_oak_wood" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:stripped_pale_oak_log" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:stripped_pale_oak_wood" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stripped_spruce_log" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:stripped_spruce_wood" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:stripped_warped_hyphae" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:stripped_warped_stem" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:structure_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:structure_void" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:sugar" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sugar_cane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_brick_slab" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_brick_stairs" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_brick_wall" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_bricks" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sulfur_cube_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:sulfur_cube_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_slab" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_spike" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_stairs" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:sulfur_wall" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sunflower" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:suspicious_gravel" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:suspicious_sand" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:suspicious_stew" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:sweet_berries" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:tadpole_bucket" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tadpole_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tall_dry_grass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tall_grass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:target" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:test_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:test_instance_block" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:tide_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：40
 "minecraft:tinted_glass" = 40
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:tipped_arrow" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:tnt" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tnt_minecart" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:torch" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:torchflower" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:torchflower_seeds" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:totem_of_undying" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:trader_llama_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:trapped_chest" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:trial_key" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:trial_spawner" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:trident" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tripwire_hook" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tropical_fish" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tropical_fish_bucket" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tropical_fish_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tube_coral" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tube_coral_block" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:tube_coral_fan" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_brick_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_brick_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_brick_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_bricks" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:tuff_wall" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:turtle_egg" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:turtle_helmet" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:turtle_scute" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:turtle_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:twisting_vines" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:vault" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:verdant_froglight" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:vex_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:vex_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:villager_spawn_egg" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:vindicator_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:vine" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:wandering_trader_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:ward_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:warden_spawn_egg" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_button" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_door" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_fence" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_fence_gate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_fungus" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_fungus_on_a_stick" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_hanging_sign" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_hyphae" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_nylium" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_planks" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_pressure_plate" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_roots" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_shelf" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_sign" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_slab" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_stairs" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_stem" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_trapdoor" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:warped_wart_block" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:water_bucket" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_chiseled_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_bars" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_block" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:waxed_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_chain" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_chest" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_door" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_golem_statue" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_grate" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_lantern" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_copper_trapdoor" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_cut_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_cut_copper_slab" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_cut_copper_stairs" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_chiseled_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_bars" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:waxed_exposed_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_chain" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_chest" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_door" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_golem_statue" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_grate" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_lantern" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_copper_trapdoor" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_cut_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_cut_copper_slab" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_cut_copper_stairs" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_exposed_lightning_rod" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_lightning_rod" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_chiseled_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_bars" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:waxed_oxidized_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_chain" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_chest" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_door" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_golem_statue" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_grate" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_lantern" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_copper_trapdoor" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_cut_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_cut_copper_slab" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_cut_copper_stairs" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_oxidized_lightning_rod" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_chiseled_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_bars" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:waxed_weathered_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_chain" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_chest" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_door" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_golem_statue" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_grate" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_lantern" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_copper_trapdoor" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_cut_copper" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_cut_copper_slab" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_cut_copper_stairs" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:waxed_weathered_lightning_rod" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:wayfinder_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_chiseled_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_bars" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:weathered_copper_bulb" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_chain" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_chest" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_door" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:weathered_copper_golem_statue" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_grate" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_lantern" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_copper_trapdoor" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_cut_copper" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_cut_copper_slab" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_cut_copper_stairs" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:weathered_lightning_rod" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:weeping_vines" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wet_sponge" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:wheat" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:wheat_seeds" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:white_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:white_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:white_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:white_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:white_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:white_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:white_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:white_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:white_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:white_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:white_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:white_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:white_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:white_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:white_tulip" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:white_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:wild_armor_trim_smithing_template" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wildflowers" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：55
 "minecraft:wind_charge" = 55
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:witch_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wither_rose" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:wither_skeleton_skull" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:wither_skeleton_spawn_egg" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "minecraft:wither_spawn_egg" = 0
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wolf_armor" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:wolf_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wooden_axe" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wooden_hoe" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wooden_pickaxe" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wooden_shovel" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wooden_spear" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:wooden_sword" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:writable_book" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:written_book" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:yellow_banner" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:yellow_bed" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:yellow_bundle" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:yellow_candle" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:yellow_carpet" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:yellow_concrete" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:yellow_concrete_powder" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:yellow_dye" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:yellow_glazed_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:yellow_harness" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：65
 "minecraft:yellow_shulker_box" = 65
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:yellow_stained_glass" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:yellow_stained_glass_pane" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:yellow_terracotta" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:yellow_wool" = 5
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:zoglin_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：3
 "minecraft:zombie_head" = 3
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:zombie_horse_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:zombie_nautilus_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:zombie_spawn_egg" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:zombie_villager_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:zombified_piglin_spawn_egg" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__aqua_affinity_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__bane_of_arthropods_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__bane_of_arthropods_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__bane_of_arthropods_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__bane_of_arthropods_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__bane_of_arthropods_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__binding_curse_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__blast_protection_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__blast_protection_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__blast_protection_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__blast_protection_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__breach_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__breach_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__breach_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__breach_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__channeling_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__density_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__density_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__density_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__density_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__density_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__depth_strider_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__depth_strider_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__depth_strider_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__efficiency_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__efficiency_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__efficiency_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__efficiency_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__efficiency_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__feather_falling_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__feather_falling_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__feather_falling_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__feather_falling_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__fire_aspect_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__fire_aspect_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__fire_protection_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__fire_protection_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__fire_protection_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__fire_protection_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__flame_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__fortune_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__fortune_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__fortune_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__frost_walker_1" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__frost_walker_2" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__impaling_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__impaling_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__impaling_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__impaling_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__impaling_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__infinity_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__knockback_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__knockback_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__looting_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__looting_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__looting_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__loyalty_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__loyalty_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__loyalty_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__luck_of_the_sea_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__luck_of_the_sea_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__luck_of_the_sea_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__lunge_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__lunge_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__lunge_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__lure_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__lure_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__lure_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__mending_1" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__multishot_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__piercing_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__piercing_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__piercing_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__piercing_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__power_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__power_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__power_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__power_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__power_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__projectile_protection_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__projectile_protection_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__projectile_protection_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__projectile_protection_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__protection_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__protection_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__protection_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__protection_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__punch_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__punch_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__quick_charge_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__quick_charge_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__quick_charge_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__respiration_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__respiration_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__respiration_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__riptide_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__riptide_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__riptide_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__sharpness_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__sharpness_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__sharpness_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__sharpness_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__sharpness_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__silk_touch_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__smite_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__smite_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__smite_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：30
 "minecraft:enchanted_book__smite_4" = 30
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:enchanted_book__smite_5" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__soul_speed_1" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__soul_speed_2" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__soul_speed_3" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__sweeping_edge_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__sweeping_edge_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__sweeping_edge_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__swift_sneak_1" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__swift_sneak_2" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：50
 "minecraft:enchanted_book__swift_sneak_3" = 50
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__thorns_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__thorns_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__thorns_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__unbreaking_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：20
 "minecraft:enchanted_book__unbreaking_2" = 20
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:enchanted_book__unbreaking_3" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：15
 "minecraft:enchanted_book__vanishing_curse_1" = 15
-# 注册 ID／组件参数；保持 ID 原样；当前默认：85
 "minecraft:enchanted_book__wind_burst_1" = 85
-# 注册 ID／组件参数；保持 ID 原样；当前默认：85
 "minecraft:enchanted_book__wind_burst_2" = 85
-# 注册 ID／组件参数；保持 ID 原样；当前默认：85
 "minecraft:enchanted_book__wind_burst_3" = 85
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:potion__awkward" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__fire_resistance" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__harming" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__healing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:potion__infested" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__invisibility" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__leaping" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_fire_resistance" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_invisibility" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_night_vision" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_slow_falling" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_water_breathing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__long_weakness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:potion__luck" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:potion__mundane" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__night_vision" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:potion__oozing" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__poison" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__regeneration" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__slow_falling" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__slowness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__strength" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_harming" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_healing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:potion__strong_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__swiftness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:potion__thick" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__turtle_master" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:potion__water" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__water_breathing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:potion__weakness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:potion__weaving" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:potion__wind_charged" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:splash_potion__awkward" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__fire_resistance" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__harming" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__healing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:splash_potion__infested" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__invisibility" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__leaping" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_fire_resistance" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_invisibility" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_night_vision" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_slow_falling" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_water_breathing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__long_weakness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:splash_potion__luck" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:splash_potion__mundane" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__night_vision" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:splash_potion__oozing" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__poison" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__regeneration" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__slow_falling" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__slowness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__strength" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_harming" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_healing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:splash_potion__strong_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__swiftness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:splash_potion__thick" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__turtle_master" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:splash_potion__water" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__water_breathing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:splash_potion__weakness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:splash_potion__weaving" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:splash_potion__wind_charged" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lingering_potion__awkward" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__fire_resistance" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__harming" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__healing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:lingering_potion__infested" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__invisibility" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__leaping" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_fire_resistance" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_invisibility" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_night_vision" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_slow_falling" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_water_breathing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__long_weakness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:lingering_potion__luck" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lingering_potion__mundane" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__night_vision" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:lingering_potion__oozing" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__poison" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__regeneration" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__slow_falling" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__slowness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__strength" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_harming" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_healing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:lingering_potion__strong_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__swiftness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lingering_potion__thick" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__turtle_master" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：10
 "minecraft:lingering_potion__water" = 10
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__water_breathing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:lingering_potion__weakness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:lingering_potion__weaving" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:lingering_potion__wind_charged" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__fire_resistance" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__harming" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__healing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:tipped_arrow__infested" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__invisibility" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__leaping" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_fire_resistance" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_invisibility" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_night_vision" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_slow_falling" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_water_breathing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__long_weakness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:tipped_arrow__luck" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__night_vision" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:tipped_arrow__oozing" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__poison" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__regeneration" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__slow_falling" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__slowness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__strength" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_harming" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_healing" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_leaping" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_poison" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_regeneration" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_slowness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_strength" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_swiftness" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：35
 "minecraft:tipped_arrow__strong_turtle_master" = 35
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__swiftness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__turtle_master" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__water_breathing" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：25
 "minecraft:tipped_arrow__weakness" = 25
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:tipped_arrow__weaving" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：75
 "minecraft:tipped_arrow__wind_charged" = 75
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:ominous_bottle__1" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:ominous_bottle__2" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:ominous_bottle__3" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:ominous_bottle__4" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：45
 "minecraft:ominous_bottle__5" = 45
-# 注册 ID／组件参数；保持 ID 原样；当前默认：0
 "yumis_sky_island:shipping_chest" = 0
-# 商品政策版本说明，不用于重复涨价；当前默认："q34-q48-material-shop-v2"
+# 商品政策版本说明，不用于重复涨价
+
+# 飞行券购买等级。
+"yumis_sky_island:flight_ticket" = 0
+
+# 恶地生态球购买等级。
+"yumis_sky_island:biome_ball_badlands" = 43
+
+# 竹林生态球购买等级。
+"yumis_sky_island:biome_ball_bamboo_jungle" = 44
+
+# 玄武岩三角洲生态球购买等级。
+"yumis_sky_island:biome_ball_basalt_deltas" = 61
+
+# 沙滩生态球购买等级。
+"yumis_sky_island:biome_ball_beach" = 1
+
+# 桦木森林生态球购买等级。
+"yumis_sky_island:biome_ball_birch_forest" = 2
+
+# 樱花树林生态球购买等级。
+"yumis_sky_island:biome_ball_cherry_grove" = 45
+
+# 冷水海洋生态球购买等级。
+"yumis_sky_island:biome_ball_cold_ocean" = 3
+
+# 绯红森林生态球购买等级。
+"yumis_sky_island:biome_ball_crimson_forest" = 75
+
+# 黑森林生态球购买等级。
+"yumis_sky_island:biome_ball_dark_forest" = 4
+
+# 冷水深海生态球购买等级。
+"yumis_sky_island:biome_ball_deep_cold_ocean" = 5
+
+# 深暗之域生态球购买等级。
+"yumis_sky_island:biome_ball_deep_dark" = 58
+
+# 冰冻深海生态球购买等级。
+"yumis_sky_island:biome_ball_deep_frozen_ocean" = 46
+
+# 温水深海生态球购买等级。
+"yumis_sky_island:biome_ball_deep_lukewarm_ocean" = 6
+
+# 深海生态球购买等级。
+"yumis_sky_island:biome_ball_deep_ocean" = 8
+
+# 沙漠生态球购买等级。
+"yumis_sky_island:biome_ball_desert" = 9
+
+# 溶洞生态球购买等级。
+"yumis_sky_island:biome_ball_dripstone_caves" = 10
+
+# 末地荒地生态球购买等级。
+"yumis_sky_island:biome_ball_end_barrens" = 81
+
+# 末地高地生态球购买等级。
+"yumis_sky_island:biome_ball_end_highlands" = 95
+
+# 末地内陆生态球购买等级。
+"yumis_sky_island:biome_ball_end_midlands" = 86
+
+# 风蚀恶地生态球购买等级。
+"yumis_sky_island:biome_ball_eroded_badlands" = 47
+
+# 繁花森林生态球购买等级。
+"yumis_sky_island:biome_ball_flower_forest" = 11
+
+# 森林生态球购买等级。
+"yumis_sky_island:biome_ball_forest" = 12
+
+# 冻洋生态球购买等级。
+"yumis_sky_island:biome_ball_frozen_ocean" = 13
+
+# 冰封山峰生态球购买等级。
+"yumis_sky_island:biome_ball_frozen_peaks" = 48
+
+# 冻河生态球购买等级。
+"yumis_sky_island:biome_ball_frozen_river" = 14
+
+# 雪林生态球购买等级。
+"yumis_sky_island:biome_ball_grove" = 15
+
+# 冰刺之地生态球购买等级。
+"yumis_sky_island:biome_ball_ice_spikes" = 49
+
+# 尖峭山峰生态球购买等级。
+"yumis_sky_island:biome_ball_jagged_peaks" = 50
+
+# 丛林生态球购买等级。
+"yumis_sky_island:biome_ball_jungle" = 16
+
+# 温水海洋生态球购买等级。
+"yumis_sky_island:biome_ball_lukewarm_ocean" = 17
+
+# 繁茂洞穴生态球购买等级。
+"yumis_sky_island:biome_ball_lush_caves" = 18
+
+# 红树林沼泽生态球购买等级。
+"yumis_sky_island:biome_ball_mangrove_swamp" = 51
+
+# 草甸生态球购买等级。
+"yumis_sky_island:biome_ball_meadow" = 20
+
+# 蘑菇岛生态球购买等级。
+"yumis_sky_island:biome_ball_mushroom_fields" = 59
+
+# 下界荒地生态球购买等级。
+"yumis_sky_island:biome_ball_nether_wastes" = 66
+
+# 海洋生态球购买等级。
+"yumis_sky_island:biome_ball_ocean" = 21
+
+# 原始桦木森林生态球购买等级。
+"yumis_sky_island:biome_ball_old_growth_birch_forest" = 52
+
+# 原始松木针叶林生态球购买等级。
+"yumis_sky_island:biome_ball_old_growth_pine_taiga" = 53
+
+# 原始云杉针叶林生态球购买等级。
+"yumis_sky_island:biome_ball_old_growth_spruce_taiga" = 55
+
+# 苍白之园生态球购买等级。
+"yumis_sky_island:biome_ball_pale_garden" = 60
+
+# 平原生态球购买等级。
+"yumis_sky_island:biome_ball_plains" = 22
+
+# 河流生态球购买等级。
+"yumis_sky_island:biome_ball_river" = 23
+
+# 热带草原生态球购买等级。
+"yumis_sky_island:biome_ball_savanna" = 24
+
+# 热带高原生态球购买等级。
+"yumis_sky_island:biome_ball_savanna_plateau" = 25
+
+# 末地小型岛屿生态球购买等级。
+"yumis_sky_island:biome_ball_small_end_islands" = 91
+
+# 积雪沙滩生态球购买等级。
+"yumis_sky_island:biome_ball_snowy_beach" = 26
+
+# 雪原生态球购买等级。
+"yumis_sky_island:biome_ball_snowy_plains" = 27
+
+# 积雪山坡生态球购买等级。
+"yumis_sky_island:biome_ball_snowy_slopes" = 28
+
+# 积雪针叶林生态球购买等级。
+"yumis_sky_island:biome_ball_snowy_taiga" = 29
+
+# 灵魂沙峡谷生态球购买等级。
+"yumis_sky_island:biome_ball_soul_sand_valley" = 71
+
+# 稀疏丛林生态球购买等级。
+"yumis_sky_island:biome_ball_sparse_jungle" = 31
+
+# 裸岩山峰生态球购买等级。
+"yumis_sky_island:biome_ball_stony_peaks" = 32
+
+# 石岸生态球购买等级。
+"yumis_sky_island:biome_ball_stony_shore" = 33
+
+# 硫磺洞穴生态球购买等级。
+"yumis_sky_island:biome_ball_sulfur_caves" = 56
+
+# 向日葵平原生态球购买等级。
+"yumis_sky_island:biome_ball_sunflower_plains" = 34
+
+# 沼泽生态球购买等级。
+"yumis_sky_island:biome_ball_swamp" = 35
+
+# 针叶林生态球购买等级。
+"yumis_sky_island:biome_ball_taiga" = 36
+
+# 末地生态球购买等级。
+"yumis_sky_island:biome_ball_the_end" = 100
+
+# 暖水海洋生态球购买等级。
+"yumis_sky_island:biome_ball_warm_ocean" = 37
+
+# 诡异森林生态球购买等级。
+"yumis_sky_island:biome_ball_warped_forest" = 80
+
+# 风袭森林生态球购买等级。
+"yumis_sky_island:biome_ball_windswept_forest" = 38
+
+# 风袭沙砾丘陵生态球购买等级。
+"yumis_sky_island:biome_ball_windswept_gravelly_hills" = 39
+
+# 风袭丘陵生态球购买等级。
+"yumis_sky_island:biome_ball_windswept_hills" = 40
+
+# 风袭热带草原生态球购买等级。
+"yumis_sky_island:biome_ball_windswept_savanna" = 41
+
+# 疏林恶地生态球购买等级。
+"yumis_sky_island:biome_ball_wooded_badlands" = 57
+
+# 空岛鲤鱼不设购买等级。
+"yumis_sky_island:sky_carp" = 0
+
+# 熔岩鳗鱼不设购买等级。
+"yumis_sky_island:lava_eel" = 0
+
+# 虚空鱼不设购买等级。
+"yumis_sky_island:void_fish" = 0
+
+# 霜鳟不设购买等级。
+"yumis_sky_island:frost_trout" = 0
+
+# 沙漠肺鱼不设购买等级。
+"yumis_sky_island:desert_lungfish" = 0
+
+# 蘑菇鱼不设购买等级。
+"yumis_sky_island:mushroom_fish" = 0
+
+# 荧光鳞片不设购买等级。
+"yumis_sky_island:glowing_scales" = 0
+
+# 余烬珍珠不设购买等级。
+"yumis_sky_island:ash_pearl" = 0
+
+# 虚空碎片不设购买等级。
+"yumis_sky_island:void_fragment" = 0
+
+# 珊瑚碎片不设购买等级。
+"yumis_sky_island:coral_fragment" = 0
+"yumis_sky_island:construction_wand_3" = 0
+"yumis_sky_island:wand_blueprint_9" = 5
+"yumis_sky_island:wand_blueprint_14" = 10
+"yumis_sky_island:wand_blueprint_18" = 20
+"yumis_sky_island:wand_blueprint_64" = 40
+"yumis_sky_island:wand_blueprint_256" = 60
+"yumis_sky_island:housing_permit" = 1
+"yumis_sky_island:lottery_ticket" = 0

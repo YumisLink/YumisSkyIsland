@@ -1,15 +1,15 @@
 # Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
 # 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
 
-# 配置结构版本；资料字段，勿随意降低；当前默认：2
+# 配置结构版本；资料字段，勿随意降低
 schemaVersion = 3
 # 全服成长任务定义；按数组顺序排列主线，支线独立
 revision = 1
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："first_cobblestone"
+# 固定 ID；已有任务不能改 ID，新增任务需唯一
 id = "first_cobblestone"
-# 界面显示名称；当前默认："第一桶圆石"
+# 界面显示名称
 name = "第一桶圆石"
 # 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 rewardCoins = 0
@@ -18,16 +18,15 @@ kind = "main"
 objective = "materials"
 
 [[quests.requirements]]
-# 所需物品数量；正整数；当前默认：64
+# 所需物品数量；正整数
 quantity = 64
-# 有效注册物品 ID，例如 minecraft:oak_log；当前默认："minecraft:cobblestone"
+# 有效注册物品 ID，例如 minecraft:oak_log
 itemId = "minecraft:cobblestone"
 # 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:golden_pickaxe"
 id = "minecraft:golden_pickaxe"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
+# 配置字段 count
 count = 1
 # 合法 Minecraft 物品组件；用于附魔／药水等条件或奖励
 
@@ -35,82 +34,59 @@ count = 1
 # 注册 ID／组件参数；保持 ID 原样
 
 [quests.rewardItems.components."minecraft:enchantments"]
-# 注册 ID／组件参数；保持 ID 原样；当前默认：4
 "minecraft:unbreaking" = 4
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:efficiency" = 5
-# 金币奖励；非负64位整数，0表示无金币；当前默认：0
+# 金币奖励；非负64位整数，0表示无金币
 # 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 任务类型：main 为顺序主线；side 为独立支线；当前默认："main"
-# 目标：materials 提交材料；place_shipping_chest 真实放置出货箱；当前默认："materials"
+# 任务类型：main 为顺序主线；side 为独立支线
+# 目标：materials 提交材料；place_shipping_chest 真实放置出货箱
 
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："place_shipping_chest"
 id = "place_shipping_chest"
-# 界面显示名称；当前默认："使用出货箱"
 name = "使用出货箱"
-# 任务类型：main 为顺序主线；side 为独立支线；当前默认："side"
 kind = "side"
-# 目标：materials 提交材料；place_shipping_chest 真实放置出货箱；当前默认："place_shipping_chest"
 objective = "place_shipping_chest"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 领奖物品列表；空间不足时材料与奖励均不改变
 rewardCoins = 0
 unlockFeatures = []
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:oak_log"
 id = "minecraft:oak_log"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：64
 count = 64
 
 
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_ingot"
 id = "minecraft:iron_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：3
 count = 3
 
 
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:golden_pickaxe"
 id = "minecraft:golden_pickaxe"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
-# 合法 Minecraft 物品组件；用于附魔／药水等条件或奖励
 
 [quests.rewardItems.components]
-# 注册 ID／组件参数；保持 ID 原样
 
 [quests.rewardItems.components."minecraft:enchantments"]
-# 注册 ID／组件参数；保持 ID 原样；当前默认：4
 "minecraft:unbreaking" = 4
-# 注册 ID／组件参数；保持 ID 原样；当前默认：5
 "minecraft:efficiency" = 5
-# 金币奖励；非负64位整数，0表示无金币；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 任务定义修订号；编辑器保存时递增，用于拒绝旧请求；当前默认：1
+# 任务定义修订号；编辑器保存时递增，用于拒绝旧请求
 # 独立的预设功能目录；权限不由任务数量决定
 
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_01"
 id = "fisherman_01"
-# 界面显示名称；当前默认："渔夫的最爱"
 name = "渔夫的最爱"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
+# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
+# 手工制造所属职业 ID
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
+# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
 # 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardItems = []
@@ -119,227 +95,134 @@ rewardExperiencePoints = 0
 unlockFeatures = []
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
+# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:fishing_rod"
+# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID
 targetId = "minecraft:fishing_rod"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
+# 原版经验点奖励；非负整数，按点数而非等级发放
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_02"
 id = "fisherman_02"
-# 界面显示名称；当前默认："初次丰收"
 name = "初次丰收"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_01"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cod"
 targetId = "minecraft:cod"
-# 所需物品数量；正整数；当前默认：10
 quantity = 10
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal"
 id = "minecraft:coal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_01"
+# 同任务线前置任务ID；前项领奖后解锁，省略为起点
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_03"
 id = "fisherman_03"
-# 界面显示名称；当前默认："炭火不愁"
 name = "炭火不愁"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_02"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cod"
 targetId = "minecraft:cod"
-# 所需物品数量；正整数；当前默认：25
 quantity = 25
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_ingot"
 id = "minecraft:iron_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_02"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_04"
 id = "fisherman_04"
-# 界面显示名称；当前默认："河豚的诱惑"
 name = "河豚的诱惑"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_03"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:pufferfish"
 targetId = "minecraft:pufferfish"
-# 所需物品数量；正整数；当前默认：3
 quantity = 3
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:oak_log"
 id = "minecraft:oak_log"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_03"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_05"
 id = "fisherman_05"
-# 界面显示名称；当前默认："深海之味"
 name = "深海之味"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_04"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:salmon"
 targetId = "minecraft:salmon"
-# 所需物品数量；正整数；当前默认：15
 quantity = 15
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_block"
 id = "minecraft:iron_block"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_04"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_06"
 id = "fisherman_06"
-# 界面显示名称；当前默认："渔夫的好运"
 name = "渔夫的好运"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 2000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_05"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:enchanted_book"
-targetId = "minecraft:enchanted_book"
-# 所需物品数量；正整数；当前默认：10
-quantity = 10
-# 领奖物品列表；空间不足时材料与奖励均不改变
+# 目标：本人在此任务解锁后真实钓获任意群系匣。
+targetId = "yumis_sky_island:biome_treasure_box"
+# 需要钓获的群系匣数量。
+quantity = 2
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:lapis_lazuli"
 id = "minecraft:lapis_lazuli"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：3
 count = 3
-# 金币奖励；非负64位整数，0表示无金币；当前默认：2000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_05"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_07"
 id = "fisherman_07"
-# 界面显示名称；当前默认："做记号"
 name = "做记号"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardItems = []
 rewardCoins = 3000
 rewardExperiencePoints = 500
@@ -347,2307 +230,868 @@ unlockFeatures = []
 previousQuestId = "fisherman_06"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:name_tag"
-targetId = "minecraft:name_tag"
-# 所需物品数量；正整数；当前默认：1
-quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：500
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_06"
+# 目标：本人在此任务解锁后真实钓获任意群系匣。
+targetId = "yumis_sky_island:biome_treasure_box"
+# 需要钓获的群系匣数量。
+quantity = 4
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_08"
 id = "fisherman_08"
-# 界面显示名称；当前默认："来历不明的弓"
 name = "来历不明的弓"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_07"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:bow"
-targetId = "minecraft:bow"
-# 所需物品数量；正整数；当前默认：1
-quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
+# 目标：本人在此任务解锁后真实钓获任意群系匣。
+targetId = "yumis_sky_island:biome_treasure_box"
+# 需要钓获的群系匣数量。
+quantity = 6
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:string"
 id = "minecraft:string"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_07"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_09"
 id = "fisherman_09"
-# 界面显示名称；当前默认："水下呼吸"
 name = "水下呼吸"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 5000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_08"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:tropical_fish"
 targetId = "minecraft:tropical_fish"
-# 所需物品数量；正整数；当前默认：20
 quantity = 20
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:potion"
 id = "minecraft:potion"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：3
 count = 3
-# 合法 Minecraft 物品组件；用于附魔／药水等条件或奖励
 
 [quests.rewardItems.components]
-# 注册 ID／组件参数；保持 ID 原样
 
 [quests.rewardItems.components."minecraft:potion_contents"]
-# 说明字段 potion；资料用途，不单独改变运行行为；当前默认："minecraft:long_water_breathing"
+# 配置字段 potion
 potion = "minecraft:long_water_breathing"
-# 金币奖励；非负64位整数，0表示无金币；当前默认：5000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_08"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："fisherman_10"
 id = "fisherman_10"
-# 界面显示名称；当前默认："海洋之心"
 name = "海洋之心"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："fisherman"
 profession = "fisherman"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 10000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "fisherman_09"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："fish"
 type = "fish"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:nautilus_shell"
-targetId = "minecraft:nautilus_shell"
-# 所需物品数量；正整数；当前默认：8
+# 目标：本人在此任务解锁后真实钓获任意群系匣。
+targetId = "yumis_sky_island:biome_treasure_box"
+# 需要钓获的群系匣数量。
 quantity = 8
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:prismarine_shard"
 id = "minecraft:prismarine_shard"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：10000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："fisherman_09"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："farmer_01"
 id = "farmer_01"
-# 界面显示名称；当前默认："锄头"
 name = "锄头"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："farmer"
 profession = "farmer"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 1000
 rewardExperiencePoints = 0
 unlockFeatures = []
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:stone_hoe"
 targetId = "minecraft:stone_hoe"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:wheat_seeds"
 id = "minecraft:wheat_seeds"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：10
 count = 10
-# 金币奖励；非负64位整数，0表示无金币；当前默认：1000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："farmer_02"
 id = "farmer_02"
-# 界面显示名称；当前默认："种树"
 name = "种树"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："farmer"
 profession = "farmer"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "farmer_01"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："harvest"
 type = "harvest"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:oak_log"
 targetId = "minecraft:oak_log"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 采集来源方块ID；省略为不限；当前默认："minecraft:oak_log"
+# 采集来源方块ID；省略为不限
 sourceBlockId = "minecraft:oak_log"
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:dirt"
 id = "minecraft:dirt"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："farmer_01"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："farmer_03"
 id = "farmer_03"
-# 界面显示名称；当前默认："生根发芽"
 name = "生根发芽"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："farmer"
 profession = "farmer"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 1000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "farmer_02"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："harvest"
 type = "harvest"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:oak_sapling"
 targetId = "minecraft:oak_sapling"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 采集来源方块ID；省略为不限；当前默认："minecraft:oak_leaves"
 sourceBlockId = "minecraft:oak_leaves"
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:shears"
 id = "minecraft:shears"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
 
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:bone_meal"
 id = "minecraft:bone_meal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：1000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："farmer_02"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："farmer_04"
 id = "farmer_04"
-# 界面显示名称；当前默认："修剪枝叶"
 name = "修剪枝叶"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："farmer"
 profession = "farmer"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 1000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "farmer_03"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："harvest"
 type = "harvest"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:oak_leaves"
 targetId = "minecraft:oak_leaves"
-# 所需物品数量；正整数；当前默认：64
 quantity = 64
-# 采集来源方块ID；省略为不限；当前默认："minecraft:oak_leaves"
 sourceBlockId = "minecraft:oak_leaves"
-# 采集工具ID；省略为不限；当前默认："minecraft:shears"
+# 采集工具ID；省略为不限
 toolId = "minecraft:shears"
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:birch_sapling"
 id = "minecraft:birch_sapling"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
 
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:spruce_sapling"
 id = "minecraft:spruce_sapling"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
-# 金币奖励；非负64位整数，0表示无金币；当前默认：1000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："farmer_03"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_01"
 id = "blacksmith_01"
-# 界面显示名称；当前默认："开炉准备"
 name = "开炉准备"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:stone_pickaxe"
 targetId = "minecraft:stone_pickaxe"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal"
 id = "minecraft:coal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_02"
 id = "blacksmith_02"
-# 界面显示名称；当前默认："第一炉铁"
 name = "第一炉铁"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_01"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："smelt"
 type = "smelt"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:iron_ingot"
 targetId = "minecraft:iron_ingot"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:copper_ingot"
 id = "minecraft:copper_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_01"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_03"
 id = "blacksmith_03"
-# 界面显示名称；当前默认："铁镐上手"
 name = "铁镐上手"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_02"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:iron_pickaxe"
 targetId = "minecraft:iron_pickaxe"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_ingot"
 id = "minecraft:iron_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_02"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_04"
 id = "blacksmith_04"
-# 界面显示名称；当前默认："伐木利器"
 name = "伐木利器"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_03"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:iron_axe"
 targetId = "minecraft:iron_axe"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:charcoal"
 id = "minecraft:charcoal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_03"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_05"
 id = "blacksmith_05"
-# 界面显示名称；当前默认："打造锋刃"
 name = "打造锋刃"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_04"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:iron_sword"
 targetId = "minecraft:iron_sword"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_block"
 id = "minecraft:iron_block"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_04"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_06"
 id = "blacksmith_06"
-# 界面显示名称；当前默认："举盾而立"
 name = "举盾而立"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 2000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_05"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:shield"
 targetId = "minecraft:shield"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:redstone"
 id = "minecraft:redstone"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：2000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_05"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_07"
 id = "blacksmith_07"
-# 界面显示名称；当前默认："护住头颅"
 name = "护住头颅"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_06"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:iron_helmet"
 targetId = "minecraft:iron_helmet"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:lapis_lazuli"
 id = "minecraft:lapis_lazuli"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_06"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_08"
 id = "blacksmith_08"
-# 界面显示名称；当前默认："铁甲成形"
 name = "铁甲成形"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_07"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:iron_chestplate"
 targetId = "minecraft:iron_chestplate"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:gold_ingot"
 id = "minecraft:gold_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_07"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_09"
 id = "blacksmith_09"
-# 界面显示名称；当前默认："钻石开矿"
 name = "钻石开矿"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 5000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_08"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:diamond_pickaxe"
 targetId = "minecraft:diamond_pickaxe"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:diamond"
 id = "minecraft:diamond"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：3
 count = 3
-# 金币奖励；非负64位整数，0表示无金币；当前默认：5000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_08"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："blacksmith_10"
 id = "blacksmith_10"
-# 界面显示名称；当前默认："钻石铠甲"
 name = "钻石铠甲"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："blacksmith"
 profession = "blacksmith"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 10000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "blacksmith_09"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:diamond_chestplate"
 targetId = "minecraft:diamond_chestplate"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:diamond"
 id = "minecraft:diamond"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：4
 count = 4
-# 金币奖励；非负64位整数，0表示无金币；当前默认：10000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："blacksmith_09"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_01"
-id = "stonemason_01"
-# 界面显示名称；当前默认："开山第一步"
-name = "开山第一步"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："harvest"
-type = "harvest"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cobblestone"
-targetId = "minecraft:cobblestone"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal"
-id = "minecraft:coal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_02"
-id = "stonemason_02"
-# 界面显示名称；当前默认："炉火锻石"
-name = "炉火锻石"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_01"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："smelt"
-type = "smelt"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:stone"
-targetId = "minecraft:stone"
-# 所需物品数量；正整数；当前默认：64
-quantity = 64
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:bone_meal"
-id = "minecraft:bone_meal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_01"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_03"
-id = "stonemason_03"
-# 界面显示名称；当前默认："铺平道路"
-name = "铺平道路"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_02"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:stone_slab"
-targetId = "minecraft:stone_slab"
-# 所需物品数量；正整数；当前默认：64
-quantity = 64
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:torch"
-id = "minecraft:torch"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：32
-count = 32
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_02"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_04"
-id = "stonemason_04"
-# 界面显示名称；当前默认："砖石之美"
-name = "砖石之美"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_03"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:stone_bricks"
-targetId = "minecraft:stone_bricks"
-# 所需物品数量；正整数；当前默认：64
-quantity = 64
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:oak_log"
-id = "minecraft:oak_log"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_03"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_05"
-id = "stonemason_05"
-# 界面显示名称；当前默认："层层台阶"
-name = "层层台阶"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_04"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:stone_brick_stairs"
-targetId = "minecraft:stone_brick_stairs"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_ingot"
-id = "minecraft:iron_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
-count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_04"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_06"
-id = "stonemason_06"
-# 界面显示名称；当前默认："三色岩石"
-name = "三色岩石"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 2000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_05"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:polished_granite"
-targetId = "minecraft:polished_granite"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:polished_andesite"
-targetId = "minecraft:polished_andesite"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:polished_diorite"
-targetId = "minecraft:polished_diorite"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal_block"
-id = "minecraft:coal_block"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：4
-count = 4
-# 金币奖励；非负64位整数，0表示无金币；当前默认：2000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_05"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_07"
-id = "stonemason_07"
-# 界面显示名称；当前默认："雕琢细节"
-name = "雕琢细节"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 3000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_06"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:chiseled_stone_bricks"
-targetId = "minecraft:chiseled_stone_bricks"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:lapis_lazuli"
-id = "minecraft:lapis_lazuli"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
-count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_06"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_08"
-id = "stonemason_08"
-# 界面显示名称；当前默认："深色基石"
-name = "深色基石"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 3000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_07"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:deepslate_bricks"
-targetId = "minecraft:deepslate_bricks"
-# 所需物品数量；正整数；当前默认：64
-quantity = 64
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:redstone"
-id = "minecraft:redstone"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_07"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_09"
-id = "stonemason_09"
-# 界面显示名称；当前默认："精磨成材"
-name = "精磨成材"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 5000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_08"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："smelt"
-type = "smelt"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:smooth_stone"
-targetId = "minecraft:smooth_stone"
-# 所需物品数量；正整数；当前默认：64
-quantity = 64
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:quartz"
-id = "minecraft:quartz"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：5000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_08"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："stonemason_10"
-id = "stonemason_10"
-# 界面显示名称；当前默认："白石之柱"
-name = "白石之柱"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："stonemason"
-profession = "stonemason"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 10000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "stonemason_09"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:quartz_pillar"
-targetId = "minecraft:quartz_pillar"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:amethyst_shard"
-id = "minecraft:amethyst_shard"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：10000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："stonemason_09"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_01"
-id = "artisan_01"
-# 界面显示名称；当前默认："收纳空间"
-name = "收纳空间"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:chest"
-targetId = "minecraft:chest"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:oak_log"
-id = "minecraft:oak_log"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_02"
-id = "artisan_02"
-# 界面显示名称；当前默认："桶中乾坤"
-name = "桶中乾坤"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_01"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:barrel"
-targetId = "minecraft:barrel"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal"
-id = "minecraft:coal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_01"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_03"
-id = "artisan_03"
-# 界面显示名称；当前默认："向上攀登"
-name = "向上攀登"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_02"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:ladder"
-targetId = "minecraft:ladder"
-# 所需物品数量；正整数；当前默认：32
-quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:string"
-id = "minecraft:string"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_02"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_04"
-id = "artisan_04"
-# 界面显示名称；当前默认："知识角落"
-name = "知识角落"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_03"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:bookshelf"
-targetId = "minecraft:bookshelf"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:leather"
-id = "minecraft:leather"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
-count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_03"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_05"
-id = "artisan_05"
-# 界面显示名称；当前默认："照亮工坊"
-name = "照亮工坊"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 500
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_04"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:lantern"
-targetId = "minecraft:lantern"
-# 所需物品数量；正整数；当前默认：16
-quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_ingot"
-id = "minecraft:iron_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
-count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_04"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_06"
-id = "artisan_06"
-# 界面显示名称；当前默认："物流之始"
-name = "物流之始"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 2000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_05"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:hopper"
-targetId = "minecraft:hopper"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_block"
-id = "minecraft:iron_block"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：2
-count = 2
-# 金币奖励；非负64位整数，0表示无金币；当前默认：2000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_05"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_07"
-id = "artisan_07"
-# 界面显示名称；当前默认："推动机械"
-name = "推动机械"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 3000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_06"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:piston"
-targetId = "minecraft:piston"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:redstone"
-id = "minecraft:redstone"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_06"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_08"
-id = "artisan_08"
-# 界面显示名称；当前默认："敏锐观察"
-name = "敏锐观察"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 3000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_07"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:observer"
-targetId = "minecraft:observer"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:quartz"
-id = "minecraft:quartz"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
-count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_07"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_09"
-id = "artisan_09"
-# 界面显示名称；当前默认："信号比较"
-name = "信号比较"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 5000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_08"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:comparator"
-targetId = "minecraft:comparator"
-# 所需物品数量；正整数；当前默认：4
-quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:redstone_block"
-id = "minecraft:redstone_block"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：2
-count = 2
-# 金币奖励；非负64位整数，0表示无金币；当前默认：5000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_08"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："artisan_10"
-id = "artisan_10"
-# 界面显示名称；当前默认："自动工坊"
-name = "自动工坊"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
-kind = "profession"
-# 手工制造所属职业 ID；当前默认："artisan"
-profession = "artisan"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
-objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
-requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
-rewardCoins = 10000
-rewardExperiencePoints = 0
-unlockFeatures = []
-previousQuestId = "artisan_09"
-
-[[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
-type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:crafter"
-targetId = "minecraft:crafter"
-# 所需物品数量；正整数；当前默认：1
-quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
-
-[[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："yumis_sky_island:shipping_chest"
-id = "yumis_sky_island:shipping_chest"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
-count = 1
-# 金币奖励；非负64位整数，0表示无金币；当前默认：10000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："artisan_09"
-
-
-[[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_01"
 id = "chef_01"
-# 界面显示名称；当前默认："第一炉面包"
 name = "第一炉面包"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:bread"
 targetId = "minecraft:bread"
-# 所需物品数量；正整数；当前默认：8
 quantity = 8
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:wheat"
 id = "minecraft:wheat"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_02"
 id = "chef_02"
-# 界面显示名称；当前默认："热乎土豆"
 name = "热乎土豆"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_01"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："smelt"
 type = "smelt"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:baked_potato"
 targetId = "minecraft:baked_potato"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:potato"
 id = "minecraft:potato"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_01"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_03"
 id = "chef_03"
-# 界面显示名称；当前默认："鳕鱼上桌"
 name = "鳕鱼上桌"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_02"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："smelt"
 type = "smelt"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cooked_cod"
 targetId = "minecraft:cooked_cod"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal"
 id = "minecraft:coal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_02"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_04"
 id = "chef_04"
-# 界面显示名称；当前默认："鲑鱼宴"
 name = "鲑鱼宴"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_03"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："smelt"
 type = "smelt"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cooked_salmon"
 targetId = "minecraft:cooked_salmon"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:coal"
 id = "minecraft:coal"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_03"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_05"
 id = "chef_05"
-# 界面显示名称；当前默认："林间鲜汤"
 name = "林间鲜汤"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_04"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:mushroom_stew"
 targetId = "minecraft:mushroom_stew"
-# 所需物品数量；正整数；当前默认：8
 quantity = 8
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:red_mushroom"
 id = "minecraft:red_mushroom"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
 
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:brown_mushroom"
 id = "minecraft:brown_mushroom"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_04"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_06"
 id = "chef_06"
-# 界面显示名称；当前默认："南瓜甜点"
 name = "南瓜甜点"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 2000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_05"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:pumpkin_pie"
 targetId = "minecraft:pumpkin_pie"
-# 所需物品数量；正整数；当前默认：8
 quantity = 8
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:egg"
 id = "minecraft:egg"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：2000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_05"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_07"
 id = "chef_07"
-# 界面显示名称；当前默认："曲奇时光"
 name = "曲奇时光"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_06"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cookie"
 targetId = "minecraft:cookie"
-# 所需物品数量；正整数；当前默认：32
 quantity = 32
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:cocoa_beans"
 id = "minecraft:cocoa_beans"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_06"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_08"
 id = "chef_08"
-# 界面显示名称；当前默认："炖锅飘香"
 name = "炖锅飘香"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_07"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:rabbit_stew"
 targetId = "minecraft:rabbit_stew"
-# 所需物品数量；正整数；当前默认：4
 quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:carrot"
 id = "minecraft:carrot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_07"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_09"
 id = "chef_09"
-# 界面显示名称；当前默认："庆祝蛋糕"
 name = "庆祝蛋糕"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 5000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_08"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:cake"
 targetId = "minecraft:cake"
-# 所需物品数量；正整数；当前默认：3
 quantity = 3
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:sugar"
 id = "minecraft:sugar"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：5000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_08"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："chef_10"
 id = "chef_10"
-# 界面显示名称；当前默认："金色佳肴"
 name = "金色佳肴"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："chef"
 profession = "chef"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 10000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "chef_09"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:golden_carrot"
 targetId = "minecraft:golden_carrot"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:gold_block"
 id = "minecraft:gold_block"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
-# 金币奖励；非负64位整数，0表示无金币；当前默认：10000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："chef_09"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_01"
 id = "hunter_01"
-# 界面显示名称；当前默认："备好猎弓"
 name = "备好猎弓"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:bow"
 targetId = "minecraft:bow"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:arrow"
 id = "minecraft:arrow"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：32
 count = 32
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_02"
 id = "hunter_02"
-# 界面显示名称；当前默认："箭袋充足"
 name = "箭袋充足"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_01"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:arrow"
 targetId = "minecraft:arrow"
-# 所需物品数量；正整数；当前默认：64
 quantity = 64
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:flint"
 id = "minecraft:flint"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_01"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_03"
 id = "hunter_03"
-# 界面显示名称；当前默认："扫清尸群"
 name = "扫清尸群"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_02"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:zombie"
 targetId = "minecraft:zombie"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:iron_ingot"
 id = "minecraft:iron_ingot"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_02"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_04"
 id = "hunter_04"
-# 界面显示名称；当前默认："迎战骷髅"
 name = "迎战骷髅"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_03"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:skeleton"
 targetId = "minecraft:skeleton"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:bone"
 id = "minecraft:bone"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_03"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_05"
 id = "hunter_05"
-# 界面显示名称；当前默认："蛛网之间"
 name = "蛛网之间"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 500
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_04"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:spider"
 targetId = "minecraft:spider"
-# 所需物品数量；正整数；当前默认：12
 quantity = 12
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:string"
 id = "minecraft:string"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：500
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_04"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_06"
 id = "hunter_06"
-# 界面显示名称；当前默认："火药猎手"
 name = "火药猎手"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 2000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_05"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:creeper"
 targetId = "minecraft:creeper"
-# 所需物品数量；正整数；当前默认：12
 quantity = 12
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:redstone"
 id = "minecraft:redstone"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：16
 count = 16
-# 金币奖励；非负64位整数，0表示无金币；当前默认：2000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_05"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_07"
 id = "hunter_07"
-# 界面显示名称；当前默认："精准狙击"
 name = "精准狙击"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_06"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："craft"
 type = "craft"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:crossbow"
 targetId = "minecraft:crossbow"
-# 所需物品数量；正整数；当前默认：1
 quantity = 1
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:arrow"
 id = "minecraft:arrow"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：64
 count = 64
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_06"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_08"
 id = "hunter_08"
-# 界面显示名称；当前默认："末影追踪"
 name = "末影追踪"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 3000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_07"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:enderman"
 targetId = "minecraft:enderman"
-# 所需物品数量；正整数；当前默认：8
 quantity = 8
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:lapis_lazuli"
 id = "minecraft:lapis_lazuli"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：8
 count = 8
-# 金币奖励；非负64位整数，0表示无金币；当前默认：3000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_07"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_09"
 id = "hunter_09"
-# 界面显示名称；当前默认："下界狩猎"
 name = "下界狩猎"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 5000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_08"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:zombified_piglin"
 targetId = "minecraft:zombified_piglin"
-# 所需物品数量；正整数；当前默认：16
 quantity = 16
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:obsidian"
 id = "minecraft:obsidian"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：4
 count = 4
-# 金币奖励；非负64位整数，0表示无金币；当前默认：5000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_08"
 
 
 [[quests]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："hunter_10"
 id = "hunter_10"
-# 界面显示名称；当前默认："地狱回声"
 name = "地狱回声"
-# 任务类型：main 队伍主线；side 个人支线；profession 个人职业任务；当前默认："profession"
 kind = "profession"
-# 手工制造所属职业 ID；当前默认："hunter"
 profession = "hunter"
-# 目标：materials 提交材料；place_shipping_chest 本人放置；tracked 追踪本人行动；当前默认："tracked"
 objective = "tracked"
-# 任务材料列表；只限制明确配置的属性，附魔／品质至少达到指定值
 requirements = []
-# 本人行动追踪条件列表；不扣物，只累计当前已解锁目标
 rewardCoins = 10000
 rewardExperiencePoints = 0
 unlockFeatures = []
 previousQuestId = "hunter_09"
 
 [[quests.goals]]
-# 行动：craft 制作加工；smelt 手动领取熔炼；fish 钓鱼；harvest 采集掉落；kill 本人击杀；当前默认："kill"
 type = "kill"
-# 目标物品或生物注册ID；kill 使用生物ID，其余使用物品ID；当前默认："minecraft:ghast"
 targetId = "minecraft:ghast"
-# 所需物品数量；正整数；当前默认：4
 quantity = 4
-# 领奖物品列表；空间不足时材料与奖励均不改变
 
 [[quests.rewardItems]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："minecraft:diamond"
 id = "minecraft:diamond"
-# 说明字段 count；资料用途，不单独改变运行行为；当前默认：1
 count = 1
-# 金币奖励；非负64位整数，0表示无金币；当前默认：10000
-# 原版经验点奖励；非负整数，按点数而非等级发放；当前默认：0
-# 任务完成时永久授予的预设功能 ID；删除／重置不撤销
-# 同任务线前置任务ID；前项领奖后解锁，省略为起点；当前默认："hunter_09"
 [[features]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："bounty.use"
 id = "bounty.use"
-# 界面显示名称；当前默认："悬赏"
 name = "悬赏"
-# 新队伍／重开初始化时是否默认开放；现有三功能true，未来默认false；当前默认：true
+# 新队伍／重开初始化时是否默认开放；现有三功能true，未来默认false
 defaultUnlocked = true
 
 
 
 [[features]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："shop.special"
 id = "shop.special"
-# 界面显示名称；当前默认："每日／隐藏商店"
 name = "每日／隐藏商店"
-# 新队伍／重开初始化时是否默认开放；现有三功能true，未来默认false；当前默认：true
 defaultUnlocked = true
 
 
 
 [[features]]
-# 固定 ID；已有任务不能改 ID，新增任务需唯一；当前默认："automation.shipping"
 id = "automation.shipping"
-# 界面显示名称；当前默认："出货箱"
 name = "出货箱"
-# 新队伍／重开初始化时是否默认开放；现有三功能true，未来默认false；当前默认：true
 defaultUnlocked = true

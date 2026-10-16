@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-16",
+  "minecraft": "26.2",
+  "fabricLoader": "0.19.3",
+  "java": "25",
+  "commands": [
+    {
+      "command": ".\\tools\\dev.ps1 -Task Check -Offline",
+      "result": "passed",
+      "log": "build/lottery-check.log"
+    },
+    {
+      "command": ".\\local-tests\\run.ps1 -Task All -Offline -ClientTestClass cn.yumis.skyisland.clienttest.LotteryScenario",
+      "result": "passed",
+      "log": "build/lottery-final-tests.log"
+    },
+    {
+      "command": ".\\local-tests\\run.ps1 -Task Client -Offline -ClientTestClass cn.yumis.skyisland.clienttest.LiveConfigScenario",
+      "result": "passed",
+      "log": "build/lottery-live-config-gametest.log"
+    },
+    {
+      "command": ".\\tools\\dev.ps1 -Task Export -Offline",
+      "result": "passed",
+      "log": "build/lottery-export.log"
+    }
+  ],
+  "unit": {
+    "tests": 115,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "client": {
+    "world": "new integrated-server saves",
+    "scenarios": [
+      "cn.yumis.skyisland.clienttest.LotteryScenario",
+      "cn.yumis.skyisland.clienttest.LiveConfigScenario"
+    ],
+    "result": "passed",
+    "coverage": [
+      "Both exchanges, full-inventory rejection and last-ticket slot release",
+      "Duplicate, stale rules and stale team/day/level context rejection",
+      "Paid deferred epic and hard legendary pity; inventory/experience receipt replay",
+      "Offline main/level rewards, personal side/profession/bounty rewards and legitimate repeated main claim",
+      "Unlimited listing, finite stock, market price and unlisted rejection",
+      "Native grid repair, anvil, grindstone, smithing upgrade and trim",
+      "Real 04:00 daily UP change; downgrade and restore retains daily ordering and personal pity",
+      "Actual O-page draw/exchange clicks; two sizes and both naming modes",
+      "Admin edit/version regression and actual server close/reopen level-reward deduplication"
+    ]
+  },
+  "packageAudit": {
+    "defaultTomlCount": 24,
+    "allDefaultsMatchSource": true,
+    "oldExperienceLotteryClassesAndConfigAbsent": true,
+    "testCodeExcluded": true,
+    "ticketAssetsIncluded": true,
+    "installedToExternalInstance": false
+  },
+  "configuration": {
+    "defaultDevelopmentAndClientTestPoolMatch": true,
+    "prizes": 32,
+    "unlockLevel": 75,
+    "ticketDailyStock": -1,
+    "ticketTradeMode": "buy_only"
+  },
+  "notes": [
+    "Test-only fixtures prepare island scores, ready quests, pity counters and an offline formal member; normal server settlement paths perform the operations.",
+    "Unit tests cover exact probability boundaries, independent personal state and journal reopen; runtime verifies exact inventory/experience recovery receipt replay.",
+    "Screenshots visually inspected at 1920x1080 and 1280x720; editable ticket art generated through Aseprite MCP.",
+    "No 50-player endurance test or arbitrary power-cut campaign was performed; no old-save migration was added."
+  ],
+  "hashes": {
+    "build/lottery-check.log": "5977bd73742bc6f8863521b59c75f699ea5ba4208ac73fc01c308db415f06652",
+    "build/lottery-final-tests.log": "6ce79636494fee370ac24894baa9b6457ef299abd87e94c2e6852584ce4fa99e",
+    "build/lottery-live-config-gametest.log": "ed48469fef2291bc55ea748262df54237df679bc8381189405334d49bb7621e8",
+    "build/lottery-export.log": "4de11b28512c48329536f1aedc73dc50881b4050cf5e45948e852e3f40085114",
+    "build/libs/YumisSkyIsland-0.1.0-dev.jar": "b40ac5b126e4af51feb1e15145517534157e9206e5200ff0cf2e6bbea7b68997",
+    "build/libs/YumisSkyIsland-0.1.0-dev-config.zip": "55b1d950fe7de95f0939a6504305a0da2885ce36e144ed442539da3c8dcc470a",
+    "config/yumis_sky_island/gameplay/lottery.toml": "e108d4f063444f6b82d0a32d89783a792d2a6def39fbdc7c015119ee8abd38f5",
+    "run/config/yumis_sky_island/gameplay/lottery.toml": "e108d4f063444f6b82d0a32d89783a792d2a6def39fbdc7c015119ee8abd38f5",
+    "config/yumis_sky_island/shop/products.toml": "cc23dcc6b3d37ee182d74b698522a1260ded30fcb491b3c8278a127dff071633",
+    "config/yumis_sky_island/shop/item_levels.toml": "0dffbbb62eac13743b539f80cc82418ecd6a0d66a19a17afb9b2ed1015d3459e",
+    "src/main/java/cn/yumis/skyisland/config/LotterySettings.java": "262cc62401a96658ad7972649938122919030af0c4d8d93718c28817d3056f6e",
+    "src/main/java/cn/yumis/skyisland/config/GameConfig.java": "d3cabb1a34fe2497e0ce303356295f68aa24faff12a92eb2fa21442b29f85ca6",
+    "src/main/java/cn/yumis/skyisland/core/LotterySelector.java": "c8e84d56061e2bd120a8ed0190a196655e5b0e00de70f2527cc07df11b964ec7",
+    "src/main/java/cn/yumis/skyisland/server/LotteryService.java": "41db9e22bbb01c1801fece4258cc483a7c3b8b54537aa5cd419cf0d725de6aa3",
+    "src/main/java/cn/yumis/skyisland/server/PersonalTokens.java": "494abbd62caa9a6dfc8295d2466a30f7a4c54b2db708c257a19c8d7cd240ef81",
+    "src/main/java/cn/yumis/skyisland/server/SkyServer.java": "dbf92f890ddb62a0c84f8e59b93dfa87f286b4da00daff8e8f19f8ad3aefc40b",
+    "src/main/java/cn/yumis/skyisland/server/ProgressionService.java": "b3965034a96113011114f5a51f6ccd827bd4530f5e8e014e5712914cc7eea944",
+    "src/main/java/cn/yumis/skyisland/data/IslandState.java": "9d68daac055a795da88555ec663a76fc7a41c11383902be1897b5a0a89ce7a4c",
+    "src/main/java/cn/yumis/skyisland/network/LotteryPayloads.java": "95504b473e9dd886475ffefc0cd7a2743eb277b3691f510bd40134ffc46679dd",
+    "src/main/java/cn/yumis/skyisland/shop/TradeService.java": "ecff471bf56fc976438693d0495b6723f93bfeb1fa731535603cd75570d0c548",
+    "src/main/java/cn/yumis/skyisland/shop/LotteryItemRarity.java": "faa723619b7a5f4217e9012480c8b7f20601caa76c76098426710117f8fe7844",
+    "src/main/java/cn/yumis/skyisland/mixin/LotteryRepairMixin.java": "f2e51f993a1f8806dd67d73b38ec79783c42ff3f99caa530b0040786e67937ca",
+    "src/main/java/cn/yumis/skyisland/mixin/LotteryGrindstoneMixin.java": "eb387fb5ecf17e9ffd9a6142c2d949245c1d7ccd67adce334b199208268ca97e",
+    "src/main/java/cn/yumis/skyisland/mixin/AnvilQualityMixin.java": "a7dac879aed20784618d1f8c621984172495bd82365381f203209f9b03db5d60",
+    "src/main/java/cn/yumis/skyisland/mixin/SmithingResultMixin.java": "00bcba59e7888c005a3ed21b8e177c25b764c004ee2b2a71cc3d6f7fdeddfb98",
+    "src/client/java/cn/yumis/skyisland/client/LotteryPanel.java": "e0970b4ad09d43f4f1aeaaec6f1208bcc7beb3e1b3f00e3055aaa3ef8fde68ed",
+    "src/main/resources/assets/yumis_sky_island/textures/item/lottery_ticket.png": "491c3c80dcfba87832cb38441379867259017d5694d685d520268989fb4545eb",
+    "art/lottery/lottery_ticket.aseprite": "7dbb83c6a703771931f0dbd2c995fa6f7ce35cb676f6e6c16e8c6d4075506f7f",
+    "tools/draw_lottery_ticket.lua": "fbd5c8df84aa8b202b718bca37322ec9c6d7cdf0d037414ccac5441d5351ce30",
+    "tools/apply_lottery_defaults.py": "2ef21804cc8a8b5a5ee910fac327768619fd56d4d9b5ffb023ef4eac03ac1c86",
+    "local-tests/junit/java/cn/yumis/skyisland/core/LotterySelectorTest.java": "3035f962fd92ecf789ecf2fcc633b7576458ae55d439c520be187fe4c4a606ce",
+    "local-tests/junit/java/cn/yumis/skyisland/config/LotterySettingsTest.java": "da7174779d552eddfc58140c50fb1d8b7b010d97d406fb24f992295c07e05095",
+    "local-tests/junit/java/cn/yumis/skyisland/server/PersonalTokensTest.java": "db78e65d279377dd141b0649179529fa5003858ac512bc094f27a6114f9485ed",
+    "local-tests/junit/java/cn/yumis/skyisland/data/LotteryReceiptPersistenceTest.java": "ed8085df2f9562372535a91b7a2871d0f16046afe57861659a7613438868a349",
+    "local-tests/gametest/java/cn/yumis/skyisland/clienttest/LotteryScenario.java": "7b52e1cb96d4e24ec33e337bf7b23c547149a1207e38a2c6b5679726ed530870",
+    "local-tests/gametest/java/cn/yumis/skyisland/clienttest/LiveConfigScenario.java": "7c36ad686c42f1b5ef7fc398bacebbe3e82021df308a5a94456ad22493b903f3",
+    "docs/screenshots/lottery/wide-genshin.png": "415053cf48dfcc37add21e09a20a36c14d81c684332d7478c5855bbb02d66cad",
+    "docs/screenshots/lottery/result.png": "105ab978260bce5edd46e138bf1dc0552007e9335ca6debf0de751bc5014aae7",
+    "docs/screenshots/lottery/small-exchanges.png": "54d2e6ed226bbe0c3d4a0b3d37350961cb5a4449130dad8095b7428d05b3e479",
+    "docs/screenshots/lottery/small-generic.png": "dd756b67d9befff22e4262b4e7b99d45866582f45a302131f1500bb4733ccb26"
+  }
+}

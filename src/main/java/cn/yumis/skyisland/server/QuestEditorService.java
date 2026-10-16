@@ -11,20 +11,13 @@ import net.minecraft.server.level.ServerPlayer;
 /** Per-player editor mode; all authority and revision checks remain on the server. */
 public final class QuestEditorService {
     private final SkyServer rt;
-    private final Set<UUID> editing = new HashSet<>();
     public QuestEditorService(SkyServer rt){this.rt=rt;}
     public boolean editing(ServerPlayer p) {
-        if (!Protection.admin(p)) editing.remove(p.getUUID());
-        return editing.contains(p.getUUID());
+        return rt.editors.enabled(p);
     }
-    public void forget(ServerPlayer p){editing.remove(p.getUUID());}
+    public void forget(ServerPlayer p){rt.editors.forget(p);}
     public void setMode(ServerPlayer player, boolean enabled) {
-        setMode(player,enabled,true);
-    }
-    private void setMode(ServerPlayer player, boolean enabled, boolean open) {
-        requireAdmin(player);
-        if(enabled)editing.add(player.getUUID());else editing.remove(player.getUUID());
-        sendEditor(player,open && enabled);rt.sendState(player);
+        rt.editors.set(player,enabled);
     }
     public void request(ServerPlayer player, TaskPayloads.Request request) {
         try {
@@ -52,7 +45,7 @@ public final class QuestEditorService {
     private void requireAdmin(ServerPlayer p){if(!Protection.admin(p))throw new IllegalArgumentException("仅管理员可以修改任务");}
     private void requireEditor(ServerPlayer p,long revision){
         requireAdmin(p);
-        if(!editing(p))throw new IllegalArgumentException("请先开启任务修改模式");
+        rt.editors.require(p);
         if(!rt.store.available())throw new IllegalStateException("数据正在保存，请稍后重试");
         if(revision!=rt.progression.catalog().revision)throw new IllegalArgumentException("另一位管理员已修改任务，请查看最新定义后重新编辑");
     }

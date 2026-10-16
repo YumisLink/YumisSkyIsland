@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "yumis_sky_island:item/construction_wand/wand_blueprint_14"
+  }
+}

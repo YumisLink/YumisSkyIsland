@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": "yumis_sky_island:construction_wand_3",
+  "addition": "yumis_sky_island:wand_blueprint_9",
+  "result": {
+    "id": "yumis_sky_island:construction_wand_9",
+    "count": 1
+  }
+}

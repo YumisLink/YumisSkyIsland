@@ -623,25 +623,25 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
                 "interpolation": "piecewise_linear", "below50ValueBps": 0,
                 "nonDamageableValueBps": 10000}))
         score_blocks = {}
-        zero = {"air", "cave_air", "void_air", "water", "lava", "nether_portal", "end_portal", "end_gateway", "fire", "soul_fire", "moving_piston", "piston_head"}
+        zero = {"air", "cave_air", "void_air", "water", "lava", "bubble_column"}
         weights = {"iron_block": 20, "gold_block": 40, "emerald_block": 60,
                    "diamond_block": 100, "netherite_block": 1000,
                    "beacon": 500, "ancient_debris": 150, "end_portal_frame": 0}
         for block in sorted(blocks):
             if block in {"item_frame", "glow_item_frame"}:
                 continue  # These have block-state rendering assets but are hanging entities, not registered blocks.
-            weight = 0 if block in zero or block in FORBIDDEN else weights.get(block, 5 if ("log" in block or block.endswith(("_stem", "_wood", "_hyphae"))) else 1)
-            score_blocks[ns(block)] = {"basePoints": weight, "tierProfile": "default", "scoreGroup": ns(block)}
-        score_blocks[shipping_id] = {"basePoints": 5, "tierProfile": "default", "scoreGroup": shipping_id}
+            weight = 0 if block in zero else max(1, weights.get(block, 5 if ("log" in block or block.endswith(("_stem", "_wood", "_hyphae"))) else 1))
+            score_blocks[ns(block)] = {"basePoints": weight}
+        score_blocks[shipping_id] = {"basePoints": 5}
         write_json(CFG / "islands" / "scoring.toml", config(
             dimension="minecraft:overworld", source="current_world_stock_not_lifetime_placements",
             pointScale=10000,
             tiers={"default": [
-                {"upToCount": 64, "multiplierBps": 10000},
-                {"upToCount": 320, "multiplierBps": 2500},
-                {"upToCount": 2048, "multiplierBps": 500},
+                {"upToCount": 256, "multiplierBps": 10000},
+                {"upToCount": 2048, "multiplierBps": 2500},
+                {"upToCount": 8192, "multiplierBps": 500},
                 {"upToCount": None, "multiplierBps": 100}]},
-            blocks=score_blocks,
+            notices={"enabled": True, "message": "本岛{block}已达{threshold}块；后续每块{nextPoints}分（倍率{nextMultiplier}%，最低1分）。"}, blocks=score_blocks,
             placementAliasHints={ns(i): ns(b) for i, b in ALIASES.items()},
             placementMappingAuthority="runtime_Item.BY_BLOCK_and_item_use_handlers"))
         write_json(CFG / "islands" / "levels.toml", config(
@@ -677,8 +677,6 @@ def seed(jar: Path, assets: Path, overwrite: bool) -> None:
         rules = make_rules(HEADER, products)
         for key, relative in {
             "sale_quotas": "shop/sale_quotas.toml", "server_rules": "server_rules.toml",
-            "unlocks": "automation/unlocks.toml", "production": "automation/production.toml",
-            "shipping": "automation/shipping_chest.toml",
         }.items():
             write_json(CFG / relative, rules[key])
         write_json(ROOT / "docs" / "SOURCE_MANIFEST.json", config(**provenance))
@@ -697,11 +695,17 @@ def read_configs() -> dict:
         "quality": CFG / "products" / "quality.toml",
         "sale_quotas": CFG / "shop" / "sale_quotas.toml",
         "server_rules": CFG / "server_rules.toml",
-        "unlocks": CFG / "automation" / "unlocks.toml",
-        "production": CFG / "automation" / "production.toml",
-        "shipping": CFG / "automation" / "shipping_chest.toml",
     }
-    return {k: read_toml(p) for k, p in paths.items()}
+    data = {k: read_toml(p) for k, p in paths.items()}
+    # Design tables are documentation data, never editable files advertised as live rules.
+    reference = make_rules({}, data["products"]["products"])
+    for key in ("unlocks", "production", "shipping"): data[key] = reference[key]
+    data["unlocks"]["corePurchaseLevels"] = {
+        key: data["levels"]["itemLevels"][key]
+        for key in data["unlocks"]["corePurchaseLevels"]
+        if data["products"]["products"][key]["tradeMode"] in {"buy_sell", "buy_only"}
+    }
+    return data
 
 
 def full_base_value(product: dict, entries: dict) -> Fraction:
@@ -730,18 +734,23 @@ def validate(data: dict) -> dict:
         require(key in rarities and rarities[key] in RANKS, "shop/rarities.toml.itemRarities." + key)
         require(key in levels and 0 <= levels[key] <= 100, "shop/item_levels.toml.itemLevels." + key)
         require(product["dailyStock"] > 0 and product["offerWeight"] > 0, location + ".stock/weight")
-    thresholds = data["island_levels"]["thresholds"]
-    require(len(thresholds) == 101 and thresholds[0]["requiredPoints"] == 0, "islands/levels.toml.thresholds")
-    require(all(row["level"] == i for i, row in enumerate(thresholds)), "islands/levels.toml.thresholds.level")
-    require(all(a["requiredPoints"] < b["requiredPoints"] for a, b in zip(thresholds, thresholds[1:])), "islands/levels.toml.thresholds.requiredPoints")
+    island_levels = data["island_levels"]
+    if "requirementBasePoints" in island_levels:
+        require(isinstance(island_levels["requirementBasePoints"], int) and island_levels["requirementBasePoints"] > 0,
+                "islands/levels.toml.requirementBasePoints")
+    else:
+        thresholds = island_levels["thresholds"]
+        require(len(thresholds) == 101 and thresholds[0]["requiredPoints"] == 0, "islands/levels.toml.thresholds")
+        require(all(row["level"] == i for i, row in enumerate(thresholds)), "islands/levels.toml.thresholds.level")
+        require(all(a["requiredPoints"] < b["requiredPoints"] for a, b in zip(thresholds, thresholds[1:])), "islands/levels.toml.thresholds.requiredPoints")
     quotas = data["sale_quotas"]
-    for item_id, entry in quotas["itemEquivalents"].items():
+    for item_id, entry in quotas.get("itemEquivalents", {}).items():
         require(item_id in rarities and entry["quotaGroup"] in quotas["groups"], "shop/sale_quotas.toml.itemEquivalents." + item_id)
         require(entry["numerator"] > 0 and entry["denominator"] > 0, "shop/sale_quotas.toml.itemEquivalents." + item_id + ".ratio")
-    for group in quotas["groups"].values():
+    for group in quotas.get("groups", {}).values():
         require(group["unitItemId"] in rarities, "shop/sale_quotas.toml.groups.unitItemId")
     for item_id, level in data["unlocks"]["corePurchaseLevels"].items():
-        require(item_id in products and products[item_id]["tradeMode"] == "buy_sell" and levels[item_id] == level, "automation/unlocks.toml.corePurchaseLevels." + item_id)
+        require(item_id in products and products[item_id]["tradeMode"] in {"buy_sell", "buy_only"} and levels[item_id] == level, "documented_core_purchase_level." + item_id)
     for mode in ("dailyWeight", "hiddenWeight"):
         values = [row[mode] for row in data["rarities"]["definitions"].values()]
         require(all(isinstance(v, int) and v >= 0 for v in values) and sum(values) > 0, "shop/rarities.toml.definitions." + mode)
@@ -755,7 +764,8 @@ def validate(data: dict) -> dict:
         "shopRevision": data["products"].get("shopRevision"), "saleDivisor": divisor,
         "ordinaryRows": len(ordinary), "dailyRows": len(special),
         "sellOnlyRows": sum(p["tradeMode"] == "sell_only" for p in products.values()),
-        "quotaGroups": len(quotas["groups"]), "quotaEquivalentRows": len(quotas["itemEquivalents"]),
+        "quotaGroups": len(quotas.get("groups", {})), "quotaEquivalentRows": len(quotas.get("itemEquivalents", {})),
+        "quotaCounterKey": quotas.get("counterKey", "quota_group"),
         "automationPurchaseGates": len(data["unlocks"]["corePurchaseLevels"]),
         "source": data["products"]["source"],
         "durabilityExamples": [{"remainingPercent": r, "valueMultiplier": str(durability_multiplier(r, 100))} for r in (100, 90, 80, 65, 50)],
@@ -827,13 +837,13 @@ def render(data: dict, report: dict) -> None:
         # Not an authoritative item -> block map: unverified mapping is labelled as a reference.
         score_text = str(score) + "（同ID参考）" if score else "—"
         cells = [
-            product["name"], key, product["categoryHint"], RANK_LABELS[rarities[key]], levels[key],
+            product["name"], key, product.get("categoryHint", product.get("shopCategory", "—")), RANK_LABELS[rarities[key]], levels[key],
             math.floor(value) if value is not None else "—",
             math.floor(full_base_value(dict(product, baseValueCoins=product.get("buyBaseValueCoins", product["baseValueCoins"])), enchants) * multiplier * (Fraction(data["shops"].get("regularBuyMultiplierBps", 25000), 10000) if rarities[key] == "common" else 1)) if can_buy else "—",
             (f"首获×{multiplier}，之后×1" if product.get("firstAcquisitionPremium") else f"×{multiplier}") if can_buy else "—",
             math.floor(value / divisor) if value is not None and product["tradeMode"] != "buy_only" else "—", channel,
             product["dailyStock"] if can_buy and rarities[key] != "common" else "—",
-            score_text, product["priceOrigin"], product.get("shopRule", "旧基线"), product["acquisitionNote"],
+            score_text, product.get("priceOrigin", "configured"), product.get("shopRule", "以tradeMode为准"), product.get("acquisitionNote", "—"),
         ]
         price_lines.append("| " + " | ".join(map(escape, cells)) + " |")
         rarity_lines.append("| " + " | ".join(map(escape, [

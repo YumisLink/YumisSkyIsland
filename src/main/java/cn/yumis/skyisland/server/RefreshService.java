@@ -205,14 +205,14 @@ public final class RefreshService implements AutoCloseable {
         if (full) section.getStates().count((state, count) -> add(work.counts, BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString(), count));
         else for (int x = 0; x < 16; x++) for (int z = 0; z < 16; z++) if (region.contains(pos.getMinBlockX() + x, pos.getMinBlockZ() + z)) for (int y = 0; y < 16; y++) add(work.counts, BuiltInRegistries.BLOCK.getKey(section.getBlockState(x,y,z).getBlock()).toString(), 1);
     }
-    private void add(Map<String, Long> counts, String block, long amount) { var b = runtime.config.blocks.get(block); if (b != null && b.points() > 0) counts.merge(b.group(), amount, Long::sum); }
+    private void add(Map<String, Long> counts, String block, long amount) { var b = runtime.config.blockValue(block); if (b != null && b.points() > 0) counts.merge(block, amount, Long::sum); }
     private List<Map<String, Long>> diskCounts(CompoundTag tag, ChunkPos pos, ClaimGrid.Region region) {
         List<Map<String, Long>> sections = new ArrayList<>();
         for (CompoundTag section : tag.getListOrEmpty("sections").compoundStream().toList()) {
             Map<String, Long> counts = new HashMap<>(); CompoundTag states = section.getCompoundOrEmpty("block_states"); ListTag palette = states.getListOrEmpty("palette");
             int size = palette.size(); if (size == 0) { sections.add(counts); continue; }
             String[] names = new String[size]; for (int i = 0; i < size; i++) names[i] = palette.getCompoundOrEmpty(i).getStringOr("Name", "minecraft:air");
-            if(Arrays.stream(names).noneMatch(name->{var b=runtime.config.blocks.get(name);return b!=null&&b.points()>0;})){sections.add(counts);continue;}
+            if(Arrays.stream(names).noneMatch(name->{var b=runtime.config.blockValue(name);return b!=null&&b.points()>0;})){sections.add(counts);continue;}
             if(size==1 && region.contains(pos.getMinBlockX(),pos.getMinBlockZ()) && region.contains(pos.getMinBlockX()+15,pos.getMinBlockZ()+15)){add(counts,names[0],4096);sections.add(counts);continue;}
             int bits = Math.max(4, 32 - Integer.numberOfLeadingZeros(size - 1)), perLong = 64 / bits; long mask = (1L << bits) - 1;
             long[] data = states.getLongArray("data").orElse(new long[0]);
@@ -240,7 +240,7 @@ public final class RefreshService implements AutoCloseable {
             job.delta.forEach((k,v) -> counts.merge(k,v,Long::sum)); counts.replaceAll((_,v) -> Math.max(0,v)); p.blockCounts = counts;
             if(p.refresh.initial)p.initialScanEpoch=p.overworldEpoch;
             p.scanChunksPerSecond=Math.max(0.001,(p.refresh.cursor-job.startCursor)/Math.max(0.001,(System.nanoTime()-job.started)/1_000_000_000.0));
-            p.refresh = null;runtime.updateScore(p);
+            p.refresh = null;runtime.updateScore(s,p);
         }, () -> { jobs.remove(job.id);paused.remove(job.id); for (var player : runtime.server.getPlayerList().getPlayers()) if (runtime.parties.active(player.getUUID()) != null && runtime.parties.active(player.getUUID()).id.equals(job.id)) SkyServer.tell(player, "刷新完成，空岛 " + runtime.level(runtime.state().parties.get(job.id)) + " 级"); });
     }
     public void checkpointDeltas() { jobs.forEach((id,job) -> { var p = runtime.state().parties.get(id); if (p != null && p.refresh != null) p.refresh.delta = new LinkedHashMap<>(job.delta); }); }

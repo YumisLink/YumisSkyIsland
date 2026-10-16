@@ -1,0 +1,14 @@
+{
+  "YumisSkyIsland-0.1.0-dev.jar": {
+    "bytes": 1305546,
+    "sha256": "167e1bd4f5338b291cc1c4a549cff90c2f4e264cdfb3ff0ea7379d6fac015b0e"
+  },
+  "YumisSkyIsland-0.1.0-dev-config.zip": {
+    "bytes": 161457,
+    "sha256": "074dfa0a9731c1771095ea1fcda237d063bec981261097b39534e08db8bb97ec"
+  },
+  "YumisSkyIsland-server-prefabs.zip": {
+    "bytes": 3327059,
+    "sha256": "7364c9b999f64898200dac98a48151d6bad86ee500b69d5f7607f3e4b8369121"
+  }
+}

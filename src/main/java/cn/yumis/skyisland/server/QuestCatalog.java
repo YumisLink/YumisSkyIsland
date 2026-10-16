@@ -10,7 +10,7 @@ import java.util.*;
 
 /** Validated immutable task definitions, separate from party progress and sale products. */
 public final class QuestCatalog {
-    public static final List<String> PROFESSIONS = List.of("fisherman","farmer","blacksmith","stonemason","artisan","chef","hunter");
+    public static final List<String> PROFESSIONS = List.of("fisherman","farmer","blacksmith","chef","hunter");
     public record Goal(String type, String targetId, int quantity, String sourceBlockId, String toolId) {
         public String key(){return type+"/"+targetId+"/"+sourceBlockId+"/"+toolId;}
         public boolean matches(String event,String target,String block,String tool){return type.equals(event)&&targetId.equals(target)&&(sourceBlockId.isEmpty()||sourceBlockId.equals(block))&&(toolId.isEmpty()||toolId.equals(tool));}

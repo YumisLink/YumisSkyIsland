@@ -94,7 +94,7 @@ def render_automation(cfg: Path, data: dict) -> None:
         "| 物品 | ID | 同组计数 | 每件原料等份 |",
         "|---|---|---|---:|",
     ]
-    for key, entry in sorted(quota["itemEquivalents"].items(), key=lambda pair: (pair[1]["quotaGroup"], pair[0])):
+    for key, entry in sorted(quota.get("itemEquivalents", {}).items(), key=lambda pair: (pair[1]["quotaGroup"], pair[0])):
         group = quota["groups"][entry["quotaGroup"]]
         quotas.append(table_row([products.get(key, {"name": key})["name"], key, group["unitName"],
                                  Fraction(entry["numerator"], entry["denominator"])]))
@@ -102,6 +102,20 @@ def render_automation(cfg: Path, data: dict) -> None:
         "", "以上表格由sale_quotas.toml生成；增补或改等份后必须保留稳定的计数组ID，避免热重载意外重置额度。",
         "配置重载不会抹去已售计数；影响计数单位的改动在下一轮生效，当前轮次保留原规则快照。",
     ]
+    if quota.get("counterKey") == "item_id":
+        quotas = [
+            "# 全队每日逐物品售出阶梯", "",
+            "每队按物品注册ID独立累计实际售出件数，所有品质与出售入口共用；04:00刷新。",
+            "阶梯百分比乘当天基础估值（含行情、品质、附魔、耐久），整笔交易最后取整一次。", "",
+            "| 实际售出件数 | 当天基础估值倍率 |", "|---|---:|",
+        ]
+        previous = 0
+        for tier in quota["tiers"]:
+            limit = tier.get("upToUnits")
+            interval = f"第{previous+1}～{limit}件" if limit is not None else f"第{previous+1}件起"
+            quotas.append(table_row([interval, f"{tier['saleMultiplierBps']/100:g}%"]))
+            if limit is not None: previous = limit
+        quotas += ["", "实际配置：sale_quotas.toml。修改文档不改变运行规则。"]
     (cfg / "shop" / "SALE_QUOTA_TABLE.md").write_text("\n".join(quotas) + "\n", encoding="utf-8")
 
     shipping = data["shipping"]
@@ -133,6 +147,6 @@ def render_automation(cfg: Path, data: dict) -> None:
         "不能只分别调用箱子setChanged和钱包保存来声称跨存档原子性。主线程内的事务与崩溃恢复是两层要求。",
         "全服出货任务共享每tick最多1000微秒计算预算；不会强制加载无人区块，也不在邻块更新里同步扫描大量箱子。",
         "已实现并通过真实客户端脉冲场景；大规模负载与完整崩溃矩阵仍待进一步验证。", "",
-        "配置：shipping_chest.toml；收购额度：../shop/sale_quotas.toml；价格：../shop/products.toml。",
+        "出货箱结构和合成由模组代码与配方资源定义；收购额度：../shop/sale_quotas.toml；价格：../shop/products.toml。",
     ]
     (cfg / "automation" / "SHIPPING_CHEST.md").write_text("\n".join(chest) + "\n", encoding="utf-8")

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "yumis_sky_island:item/biome_treasure_box/old_growth_pine_taiga_water_blood"
+  }
+}

@@ -2,6 +2,7 @@
   "required": true,
   "package": "cn.yumis.skyisland.client.mixin",
   "compatibilityLevel": "JAVA_25",
-  "client": ["ShopHudMixin", "ShopToastMixin", "RarityNameMixin"],
+  "plugin": "cn.yumis.skyisland.client.mixin.OptionalFishingMixinPlugin",
+  "client": ["ShopHudMixin", "ShopToastMixin", "RarityNameMixin", "InventoryIslandProgressMixin", "WandUseMixin", "WandScrollMixin", "BlueprintMouseMixin", "PersonalPanelDefaultKeysMixin", "AutoFishCompatMixin", "ConfigEditKeyMixin"],
   "injectors": {"defaultRequire": 1}
 }

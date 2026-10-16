@@ -43,7 +43,7 @@ LABELS = {
     "baseValueCoins": "基础全价，单位金币；商品必须为正整数，收购另除 saleDivisor",
     "buyMultiplierBps": "额外购入倍率，万分比；10000=1倍，必须为正，不抬高收购价",
     "tradeMode": "交易方式：buy_sell 可买可卖，buy_only 仅购买，sell_only 仅收购",
-    "dailyStock": "每日／隐藏每轮全队共享库存；正整数",
+    "dailyStock": "每日／隐藏每轮全队共享库存；正整数，-1表示不限量",
     "offerWeight": "同稀有度中的抽取权重；正整数，越大越容易抽到",
     "shopCategory": "创造分类注册 ID；决定控制面板左侧分类",
     "firstAcquisitionPremium": "是否首次整批购入加价；队伍首次获得后永久解除",
@@ -94,9 +94,12 @@ LABELS = {
     "unitItemId": "原料单位物品 ID；资料与分组参考",
     "unitName": "原料单位中文名称",
     "blocks": "独立方块计分目录；删除商品价格不删除方块计分",
-    "basePoints": "该方块基础计分权重；非负整数，0表示不计分",
-    "scoreGroup": "递减计分组 ID；同组方块共用数量",
-    "tierProfile": "递减档位说明；目前实际读取 default 档位",
+    "basePoints": "方块基础分；参与计分者须为正整数，条目或字段省略默认1；仅基础分>5递减，逐块取整最低1分",
+    "scoreGroup": "旧资料字段；计数固定按注册方块ID独立保存",
+    "tierProfile": "旧资料字段；不再控制计分，基础分>5自动递减",
+    "notices": "手动放置和建造杖跨档时，通知本队在线正式成员；跌破再到达会重发",
+    "message": "通告文案；{block}方块、{threshold}阈值、{nextPoints}后续每块分数、{nextMultiplier}后续倍率百分数",
+    "buyBaseValueOverrides": "动态建筑图纸的独立购入基价；不修改等级、稀有度、模板或成品费",
     "thresholds": "0～100级所需分数表；级数连续、门槛严格递增",
     "level": "岛屿等级；整数0～100",
     "requiredPoints": "达到该等级的累计分数门槛；非负整数",
@@ -174,7 +177,6 @@ def read(path):
             if path.name == "enchantments.toml" and "levelMultiplierBps" in node: node.setdefault("exclusiveSet", None)
             for child in node.values(): restore(child)
     restore(data)
-    if path.name == "shipping_chest.toml": data.setdefault("baseValueCoins", None)
     if path.name == "server_rules.toml": data.setdefault("globalMobGriefingOverride", None)
     return data
 
@@ -186,12 +188,35 @@ def _hint(key, value):
         elif str(key).isdigit():
             label = "等级／阶段 " + str(key) + " 对应值"
         else:
-            label = "说明字段 " + key + "；资料用途，不单独改变运行行为"
-    if not isinstance(value, (dict, list)):
-        label += "；当前默认：" + json.dumps(value, ensure_ascii=False)
+            label = "配置字段 " + key
+    if key in {"common", "rare", "epic", "legendary"}:
+        label = {"common": "普通", "rare": "稀有", "epic": "史诗", "legendary": "传说"}[key] + "档参数；用于所在表的实际权重或稀有度规则"
     return label
 
-def _merge(table, values):
+def compact_generated_comments(text):
+    """Compact recognized generated notes while preserving handwritten comments."""
+    seen, result = set(), []
+    labels = set(LABELS.values())
+    for line in text.splitlines():
+        if line.lstrip().startswith("#"):
+            comment = line.lstrip()[1:].strip()
+            generated = "；当前默认：" in comment or comment.startswith(("说明字段 ", "配置字段 ", "注册 ID／组件参数", "注册表键／组件值", "等级／阶段 ")) or comment in labels
+            if generated:
+                comment = comment.split("；当前默认：", 1)[0]
+                if comment.startswith("说明字段 "):
+                    comment = _hint(comment[len("说明字段 "):].split("；", 1)[0], None)
+                if comment in seen: continue
+                seen.add(comment)
+                line = "# " + comment
+        result.append(line)
+    return "\n".join(result).rstrip() + "\n"
+
+def _merge(table, values, seen=None):
+    if seen is None: seen = set()
+    def explain(key, value):
+        if key not in seen and ":" not in key and not str(key).isdigit():
+            table.add(tomlkit.comment(_hint(key, value)))
+            seen.add(key)
     for key in list(table):
         if key not in values or values[key] is None:
             del table[key]
@@ -201,8 +226,8 @@ def _merge(table, values):
         if isinstance(value, dict):
             existing = table.get(key)
             child = existing if hasattr(existing, "add") and not isinstance(existing, tomlkit.items.Array) else tomlkit.table()
-            _merge(child, value)
-            if key not in table: table.add(tomlkit.comment(_hint(key, value)))
+            _merge(child, value, seen)
+            if key not in table: explain(key, value)
             table[key] = child
         elif isinstance(value, list) and value and all(isinstance(x, dict) for x in value):
             old = list(table.get(key, []))
@@ -211,24 +236,34 @@ def _merge(table, values):
                 candidate = next((t for t in old if row.get("id") and t.get("id") == row["id"]), None)
                 if candidate is None and index < len(old): candidate = old[index]
                 child = candidate if isinstance(candidate, tomlkit.items.Table) else tomlkit.table()
-                _merge(child, row)
+                _merge(child, row, seen)
                 array.append(child)
-            if key not in table: table.add(tomlkit.comment(_hint(key, value)))
+            if key not in table: explain(key, value)
             table[key] = array
         else:
-            if key not in table: table.add(tomlkit.comment(_hint(key, value)))
+            if key not in table: explain(key, value)
             table[key] = value
 
 def write(path, data):
     path = pathlib.Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    doc = tomlkit.parse(path.read_text(encoding="utf-8-sig")) if path.exists() else tomlkit.document()
+    previous = path.read_text(encoding="utf-8-sig") if path.exists() else None
+    # Re-merging unchanged nested tables can move comments or add blank lines in tomlkit.
+    # A no-op edit must retain the existing layout, while still compacting old generated notes.
+    if previous is not None and read(path) == data:
+        text = compact_generated_comments(previous)
+        if text == previous:
+            return
+    else:
+        text = None
+    doc = tomlkit.parse(previous) if previous is not None else tomlkit.document()
     if not path.exists():
-        doc.add(tomlkit.comment("Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。"))
+        doc.add(tomlkit.comment("Yumi 空岛可编辑配置；UTF-8。手改后重启；管理员白名单字段通过编辑器保存立即生效。"))
         doc.add(tomlkit.comment("省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。"))
         doc.add(tomlkit.nl())
-    _merge(doc, data)
-    text = tomlkit.dumps(doc)
+    if text is None:
+        _merge(doc, data)
+        text = compact_generated_comments(tomlkit.dumps(doc))
     # Parse before replacing: no malformed generated TOML can replace the last valid file.
     tomllib.loads(text)
     temporary = None

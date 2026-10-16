@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BlockChangesMixin {
     @Inject(method="setBlockState",at=@At("RETURN"))
     private void changed(BlockPos pos,BlockState state,int flags,CallbackInfoReturnable<BlockState> ci) {
-        if (ci.getReturnValue() != null && ((LevelChunk)(Object)this).getLevel() instanceof ServerLevel world) { var rt = SkyServer.get(world.getServer()); if (rt != null) rt.blockChanged(world,pos,ci.getReturnValue(),state); }
+        if (ci.getReturnValue() != null && ((LevelChunk)(Object)this).getLevel() instanceof ServerLevel world) { cn.yumis.skyisland.wand.ConstructionWandService.changed(world,pos); var rt = SkyServer.get(world.getServer()); if (rt != null) rt.blockChanged(world,pos,ci.getReturnValue(),state); }
     }
 }

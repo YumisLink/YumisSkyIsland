@@ -11,19 +11,27 @@ import java.util.*;
 /** Commented TOML defaults are copied once; administrator values and comments are preserved. */
 public final class GameConfig {
     public static final Gson JSON = new GsonBuilder().disableHtmlEscaping().create();
+    /** A broken prize catalog must disable draws, never invent replacement prizes or levels. */
+    static JsonObject readLottery(Path file) {
+        try{return TomlConfigIO.read(file);}
+        catch(IOException invalid){org.slf4j.LoggerFactory.getLogger(GameConfig.class).error("抽奖配置读取失败，保留原文件并停用抽取："+file,invalid);return new JsonObject();}
+    }
     private static final String[] FILES = {
         "server_rules.toml", "shop/products.toml", "shop/item_levels.toml", "shop/rarities.toml",
         "shop/enchantments.toml", "shop/shops.toml", "shop/sale_quotas.toml", "shop/recipe_values.toml", "islands/scoring.toml",
-        "islands/levels.toml", "islands/refresh.toml", "products/quality.toml", "products/professions.toml", "products/goods.toml",
-        "automation/unlocks.toml", "automation/production.toml", "automation/shipping_chest.toml",
-        "tasks/bounties.toml", "tasks/quests.toml", "economy.toml"
+        "islands/levels.toml", "islands/refresh.toml", "products/quality.toml", "products/professions.toml", "products/goods.toml", "products/profession_shop.toml",
+        "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml",
+        "tasks/bounties.toml", "tasks/quests.toml", "economy.toml", "gameplay/construction_wand.toml", "gameplay/prefabs.toml"
     };
     private final Path configRoot = FabricLoader.getInstance().getConfigDir().resolve("yumis_sky_island");
     private final Map<String, JsonObject> files = new LinkedHashMap<>();
+    private final Map<String, String> loadedDigests = new HashMap<>();
+    private Set<String> registeredBlocks = Set.of();
+    public ScoringSettings scoring;
     public final Map<String, Product> products = new LinkedHashMap<>();
     public final Map<String, BlockValue> blocks = new HashMap<>();
     public final Map<String, QuotaUnit> quotaUnits = new HashMap<>();
-    public final List<BlockScorer.Tier> scoreTiers;
+    public List<BlockScorer.Tier> scoreTiers;
     public final QuotaCurve quotaCurve;
     public final long saleDivisor, minimumBaseCoins, regularBuyMultiplierBps;
 
@@ -37,24 +45,29 @@ public final class GameConfig {
         }
         for (String file : FILES) {
             Path target = configRoot.resolve(file);
+            String defaults;
+            try (InputStream in = GameConfig.class.getResourceAsStream("/defaults/yumis_sky_island/" + file)) {
+                if (in == null) throw new IOException("缺少默认配置 " + file);
+                defaults = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+            }
             if (!Files.exists(target)) {
                 Files.createDirectories(target.getParent());
-                try (InputStream in = GameConfig.class.getResourceAsStream("/defaults/yumis_sky_island/" + file)) {
-                    if (in == null) throw new IOException("缺少默认配置 " + file);
-                    Files.copy(in, target);
-                }
+                Files.writeString(target, defaults, StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW);
                 if (legacy.containsKey(file)) {
                     JsonObject imported = importLegacy(file, legacy.get(file).deepCopy(), TomlConfigIO.read(target), legacy);
                     TomlConfigIO.write(target, imported);
                 }
             }
-            files.put(file, TomlConfigIO.read(target));
+            files.put(file, file.equals("gameplay/lottery.toml")?readLottery(target):TomlConfigIO.readOrRepair(target, defaults));
+            loadedDigests.put(file, digest(target));
         }
         for (String file : legacy.keySet()) {
             Path old = configRoot.resolve(file.replace(".toml", ".json"));
             Path backup = old.resolveSibling(old.getFileName() + ".before-toml.bak");
             if (!Files.exists(backup)) Files.move(old, backup);
         }
+        constructionWandAcquisitionEnabled();
+        prefabAcquisitionEnabled();
         JsonObject shops = object("shop/shops.toml");
         BlockScorer.requirementBasePoints(object("islands/levels.toml").get("requirementBasePoints").getAsLong());
         Money.currencyName(object("economy.toml").get("genshinMode").getAsBoolean() ? "摩拉" : "金币");
@@ -90,20 +103,10 @@ public final class GameConfig {
                 p.get("tradeMode").getAsString(), rarity, level, p.get("dailyStock").getAsInt(),
                 p.get("offerWeight").getAsInt(), p.has("shopCategory") ? p.get("shopCategory").getAsString() : p.get("categoryHint").getAsString()));
             Product added = products.get(entry.getKey());
-            if (added.buyBaseCoins() < 1 || added.buyMultiplierBps() < 1 || added.level() < 0 || added.level() > 100 || added.stock() < 1 || added.weight() < 1 || !Set.of("common","rare","epic","legendary").contains(added.rarity()))
+            if (added.buyBaseCoins() < 1 || added.buyMultiplierBps() < 1 || added.level() < 0 || added.level() > 100 || (added.stock()!=-1&&added.stock()<1) || added.weight() < 1 || !Set.of("common","rare","epic","legendary").contains(added.rarity()))
                 throw new IOException("shop/products.toml：商品倍率、等级、库存、权重或稀有度无效：" + entry.getKey());
         }
-        JsonObject scoring = object("islands/scoring.toml");
-        for (var e : scoring.getAsJsonObject("blocks").entrySet()) {
-            JsonObject b = e.getValue().getAsJsonObject();
-            blocks.put(e.getKey(), new BlockValue(b.get("basePoints").getAsLong(), b.get("scoreGroup").getAsString()));
-        }
-        List<BlockScorer.Tier> tiers = new ArrayList<>();
-        for (JsonElement e : scoring.getAsJsonObject("tiers").getAsJsonArray("default")) {
-            JsonObject t = e.getAsJsonObject();
-            tiers.add(new BlockScorer.Tier(t.get("upToCount").isJsonNull() ? Long.MAX_VALUE : t.get("upToCount").getAsLong(), t.get("multiplierBps").getAsInt()));
-        }
-        scoreTiers = List.copyOf(tiers);
+        publishScoring(ScoringSettings.parse(object("islands/scoring.toml")));
         List<QuotaCurve.Tier> quotaTiers=new ArrayList<>();
         for(JsonElement e:object("shop/sale_quotas.toml").getAsJsonArray("tiers")){var t=e.getAsJsonObject();quotaTiers.add(new QuotaCurve.Tier(t.get("upToUnits").isJsonNull()?null:Rational.of(t.get("upToUnits").getAsLong()),t.get("saleMultiplierBps").getAsInt()));}
         quotaCurve=new QuotaCurve(quotaTiers);
@@ -140,6 +143,15 @@ public final class GameConfig {
         if(refresh<0||refresh>=24000)throw new IOException("每日刷新时间须在0～23999游戏刻之间");
     }
     public JsonObject object(String path) { return files.get(path); }
+    public boolean constructionWandAcquisitionEnabled() { return acquisitionEnabled("gameplay/construction_wand.toml"); }
+    public boolean prefabAcquisitionEnabled() { return acquisitionEnabled("gameplay/prefabs.toml"); }
+    private boolean acquisitionEnabled(String path) {
+        JsonElement value = object(path).get("acquisitionEnabled");
+        if (value == null) return true;
+        if (!value.isJsonPrimitive() || !value.getAsJsonPrimitive().isBoolean())
+            throw new IllegalArgumentException(path + "：acquisitionEnabled 必须为 true 或 false");
+        return value.getAsBoolean();
+    }
     private JsonObject importLegacy(String file, JsonObject value, JsonObject defaults, Map<String, JsonObject> legacy) throws IOException {
         if (file.equals("shop/products.toml")) {
             Set<String> excluded = new HashSet<>();
@@ -186,6 +198,33 @@ public final class GameConfig {
         if (!files.containsKey(path)) throw new IOException("不是可编辑配置文件：" + path);
         TomlConfigIO.write(configRoot.resolve(path),value);
         files.put(path,value.deepCopy());
+        loadedDigests.put(path,digest(configRoot.resolve(path)));
+    }
+    public static String digest(Path path) throws IOException {
+        try { return HexFormat.of().formatHex(java.security.MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(path))); }
+        catch (java.security.NoSuchAlgorithmException impossible) { throw new IllegalStateException(impossible); }
+    }
+    public String loadedDigest(String path) { return loadedDigests.get(path); }
+    public void saveChecked(String path, JsonObject value, String expected) throws IOException {
+        if (!files.containsKey(path) || !Objects.equals(expected,loadedDigests.get(path))) throw new IOException("配置已更新，请重新打开编辑器");
+        Path target=configRoot.resolve(path);
+        if (!expected.equals(digest(target))) throw new IOException("TOML已被人工修改，请先重启载入，再使用实时编辑器");
+        TomlConfigIO.writeChecked(target,value,expected);
+        files.put(path,value.deepCopy());loadedDigests.put(path,digest(target));
+    }
+    public void validateScoringRegistry() {
+        Set<String> ids=new HashSet<>();
+        for (var id:net.minecraft.core.registries.BuiltInRegistries.BLOCK.keySet()) ids.add(id.toString());
+        for(String id:scoring.points().keySet()) if(!ids.contains(id)) throw new IllegalArgumentException("islands/scoring.toml：方块ID未注册："+id);
+        registeredBlocks=Set.copyOf(ids);
+    }
+    public BlockValue blockValue(String id) {
+        if (!registeredBlocks.contains(id)) return null;
+        return new BlockValue(scoring.base(id),id);
+    }
+    public void publishScoring(ScoringSettings next) {
+        scoring=next;scoreTiers=next.tiers();blocks.clear();
+        next.points().forEach((id,points)->blocks.put(id,new BlockValue(next.base(id),id)));
     }
     public Map<String, JsonObject> all() { return Collections.unmodifiableMap(files); }
     public void useRuntimeQuality(JsonObject quality){files.put("products/quality.toml",quality.deepCopy());}
@@ -193,6 +232,7 @@ public final class GameConfig {
                           String rarity, int level, int stock, int weight, String category) {
         public boolean canBuy() { return tradeMode.equals("buy_sell") || tradeMode.equals("buy_only"); }
         public boolean canSell() { return tradeMode.equals("buy_sell") || tradeMode.equals("sell_only"); }
+        public Product withBuyBase(long value) { return new Product(id,name,canonical,baseCoins,value,buyMultiplierBps,tradeMode,rarity,level,stock,weight,category); }
     }
     public record BlockValue(long points, String group) {}
     public record QuotaUnit(String group, Rational units) {}

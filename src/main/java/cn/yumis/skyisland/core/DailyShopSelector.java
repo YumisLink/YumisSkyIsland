@@ -16,7 +16,7 @@ public final class DailyShopSelector {
         SplittableRandom random = new SplittableRandom(seed);
         boolean hidden = random.nextInt(10000) < hiddenChanceBps;
         int[] weights = hidden ? hiddenWeights : ordinaryWeights;
-        List<Candidate> candidates = new ArrayList<>(all.stream().filter(c -> c.rarity() > 0 && c.minimumLevel() <= level && c.weight() > 0 && c.stock() > 0).toList());
+        List<Candidate> candidates = new ArrayList<>(all.stream().filter(c -> c.rarity() > 0 && c.minimumLevel() <= level && c.weight() > 0 && (c.stock()==-1||c.stock()>0)).toList());
         List<Offer> offers = new ArrayList<>();
         int slots = hidden ? hiddenSlots : ordinarySlots;
         for (int slot = 0; slot < slots && !candidates.isEmpty(); slot++) {
@@ -60,7 +60,7 @@ public final class DailyShopSelector {
         SplittableRandom random = new SplittableRandom(seed);
         boolean hidden = random.nextInt(10000) < hiddenChanceBps;
         List<Candidate> candidates = new ArrayList<>(all.stream().filter(c ->
-            c.minimumLevel() <= level && c.weight() > 0 && c.stock() > 0 && (hidden || c.rarity() > 0)).toList());
+            c.minimumLevel() <= level && c.weight() > 0 && (c.stock()==-1||c.stock()>0) && (hidden || c.rarity() > 0)).toList());
         List<Offer> offers = new ArrayList<>();
         if (hidden) {
             for (int i = 0; i < legendaryGuarantees; i++) addFallback(candidates, offers, 3, random);

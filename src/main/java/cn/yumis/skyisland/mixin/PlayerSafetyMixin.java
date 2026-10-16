@@ -1,6 +1,7 @@
 package cn.yumis.skyisland.mixin;
 import cn.yumis.skyisland.server.*;
 import cn.yumis.skyisland.effect.ModEffects;
+import cn.yumis.skyisland.world.VoidWorlds;
 import net.minecraft.server.level.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -17,6 +18,10 @@ public abstract class PlayerSafetyMixin {
             return;
         }
         var rt = SkyServer.get(level.getServer());
+        if (rt != null && VoidWorlds.isSky(level) && source.is(DamageTypes.FELL_OUT_OF_WORLD) && p.getY() < -64) {
+            ci.setReturnValue(false);
+            return;
+        }
         if (rt != null && (rt.inventoryLocks.contains(p.getUUID()) || rt.worlds.waitingPlayers.contains(p.getUUID()))) ci.setReturnValue(false);
     }
 }

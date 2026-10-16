@@ -23,6 +23,8 @@ import java.util.function.Consumer;
 public abstract class HunterLootMixin {
     @Unique private ServerPlayer yumis$hunter;
     @Unique private boolean yumis$splitLoot;
+    @Unique private boolean yumis$hunterQuality;
+    @Unique private int yumis$lootCopies = 1;
 
     @Inject(method="dropAllDeathLoot",at=@At("HEAD"))
     private void beginLoot(ServerLevel level,DamageSource source,CallbackInfo ci){
@@ -30,11 +32,15 @@ public abstract class HunterLootMixin {
         if(source.getEntity() instanceof ServerPlayer player){
             SkyServer runtime=SkyServer.get(level.getServer());
             String id=BuiltInRegistries.ENTITY_TYPE.getKey(self.getType()).toString();
-            if(runtime!=null&&!player.isCreative()&&runtime.professions.hunterMob(id))yumis$hunter=player;
+            if(runtime!=null&&!player.isCreative()){
+                yumis$hunter=player;
+                yumis$hunterQuality=runtime.professions.hunterMob(id);
+                yumis$lootCopies=runtime.professions.hunterLootCopies(player);
+            }
         }
     }
     @Inject(method="dropAllDeathLoot",at=@At("RETURN"))
-    private void endLoot(ServerLevel level,DamageSource source,CallbackInfo ci){yumis$hunter=null;}
+    private void endLoot(ServerLevel level,DamageSource source,CallbackInfo ci){yumis$hunter=null;yumis$hunterQuality=false;yumis$lootCopies=1;}
 
     /** Vanilla sends mob loot-table output through a Consumer and spawnAtLocation,
      * not through LivingEntity.drop. Split it before any item entity is created. */
@@ -45,12 +51,18 @@ public abstract class HunterLootMixin {
         ServerPlayer hunter=yumis$hunter;
         SkyServer runtime=SkyServer.get(hunter.level().getServer());
         if(runtime==null)return original;
-        return stack->{for(ItemStack piece:runtime.professions.qualityParts(hunter,"hunter",stack))original.accept(piece);};
+        boolean quality=yumis$hunterQuality;
+        int copies=yumis$lootCopies;
+        return stack->{for(int copy=0;copy<copies;copy++){
+            ItemStack part=stack.copy();
+            if(quality)for(ItemStack piece:runtime.professions.qualityParts(hunter,"hunter",part))original.accept(piece);
+            else original.accept(part);
+        }};
     }
 
     @Inject(method="drop",at=@At("HEAD"),cancellable=true)
     private void splitLoot(ItemStack stack,boolean flag,boolean flag2,CallbackInfoReturnable<ItemEntity> ci){
-        if(yumis$hunter==null||yumis$splitLoot||stack.isEmpty())return;
+        if(yumis$hunter==null||!yumis$hunterQuality||yumis$splitLoot||stack.isEmpty())return;
         var runtime=SkyServer.get(yumis$hunter.level().getServer());if(runtime==null)return;
         var pieces=runtime.professions.qualityParts(yumis$hunter,"hunter",stack);
         if(pieces.size()==1&&ItemStack.matches(pieces.getFirst(),stack))return;

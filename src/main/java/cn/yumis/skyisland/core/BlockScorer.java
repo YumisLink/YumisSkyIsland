@@ -4,9 +4,9 @@ import java.math.BigInteger;
 import java.util.List;
 
 public final class BlockScorer {
-    private static volatile long requirementBasePoints = 100;
+    private static volatile long requirementBasePoints = 20;
     public record Tier(Long upToCount, int multiplierBps) {}
-    public static final List<Tier> DEFAULT = List.of(new Tier(64L, 10000), new Tier(320L, 2500), new Tier(2048L, 500), new Tier(null, 100));
+    public static final List<Tier> DEFAULT = List.of(new Tier(256L, 10000), new Tier(2048L, 2500), new Tier(8192L, 500), new Tier(null, 100));
     private BlockScorer() {}
     public static void requirementBasePoints(long points) {
         if(points<1)throw new IllegalArgumentException("岛屿升级基础分须为正数");
@@ -14,12 +14,13 @@ public final class BlockScorer {
     }
     public static BigInteger scaledPoints(long count, long basePoints, List<Tier> profile) {
         if (count < 0 || basePoints < 0) throw new IllegalArgumentException("Negative stock or score");
+        if (basePoints <= 5) return BigInteger.valueOf(count).multiply(BigInteger.valueOf(basePoints)).multiply(BigInteger.valueOf(10000));
         long lower = 0;
         BigInteger total = BigInteger.ZERO;
         for (Tier tier : profile) {
             long upper = tier.upToCount() == null ? count : Math.min(count, tier.upToCount());
             long span = Math.max(0, upper - lower);
-            total = total.add(BigInteger.valueOf(span).multiply(BigInteger.valueOf(basePoints)).multiply(BigInteger.valueOf(tier.multiplierBps())));
+            total = total.add(BigInteger.valueOf(span).multiply(BigInteger.valueOf(perBlock(basePoints, tier.multiplierBps()))).multiply(BigInteger.valueOf(10000)));
             if (tier.upToCount() == null || count <= tier.upToCount()) break;
             lower = tier.upToCount();
         }
@@ -27,6 +28,9 @@ public final class BlockScorer {
     }
     public static Rational marginal(long existing, long added, long basePoints, List<Tier> profile) {
         return new Rational(scaledPoints(Math.addExact(existing, added), basePoints, profile).subtract(scaledPoints(existing, basePoints, profile)), BigInteger.valueOf(10000));
+    }
+    public static long perBlock(long basePoints, int multiplierBps) {
+        return BigInteger.valueOf(basePoints).multiply(BigInteger.valueOf(multiplierBps)).divide(BigInteger.valueOf(10000)).max(BigInteger.ONE).longValueExact();
     }
     public static BigInteger required(int currentLevel) {
         if (currentLevel < 0) throw new IllegalArgumentException("Negative island level");

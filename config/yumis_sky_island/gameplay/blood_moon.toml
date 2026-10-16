@@ -1,0 +1,17 @@
+# 管理员编辑：/is admin edit on；本文件仅白名单字段支持游戏内保存后实时生效。
+# 血月仅在空岛主世界每夜判定一次；万分数100等于1%。
+initialChanceBps = 100
+# 连续一夜未触发，下一夜增加1个百分点；命中后回到初始概率。
+missIncrementBps = 100
+# 血月全部生物的伤害、移动速度与攻击速度各提高50%。
+attackBonusBps = 5000
+movementBonusBps = 5000
+attackSpeedBonusBps = 5000
+# 敌对怪物额外生命提高100%。
+hostileHealthBonusBps = 10000
+# 自然生成尝试和怪物容量倍率。
+hostileSpawnMultiplier = 5
+# 血月允许敌对怪物在光照12以下生成。
+hostileLightLimit = 12
+# 血月钓鱼的宝藏池中，地区刷怪蛋的概率为25%。
+treasureEggBps = 2500

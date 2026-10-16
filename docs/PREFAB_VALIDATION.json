@@ -1,0 +1,39 @@
+{
+  "minecraft": "26.2",
+  "fabricApi": "0.156.0+26.2",
+  "date": "2026-10-15",
+  "libraryCandidates": 40,
+  "availablePrefabs": 15,
+  "categories": {
+    "automation": 7,
+    "houses": 2,
+    "bases": 3,
+    "wonders": 3
+  },
+  "unitTests": 57,
+  "runtimeChecks": [
+    "position-preview-network-move-rotate-save",
+    "own-team-only-including-trusted-visitor-rejection",
+    "actual-spacing-at-least-5-ticks",
+    "adjacent-container-one-shulker-layer-materials",
+    "paid-fee-once",
+    "missing-ammo-auto-resume",
+    "service-restart-with-native-chunk-receipts",
+    "existing-container-preflight-no-charge",
+    "explicit-air-clear",
+    "identical-cell-skip",
+    "pause-terminate-no-refund",
+    "native-pickaxe-cannon-and-unused-credit-drops",
+    "write-ahead-preparation-and-placement-deadline"
+  ],
+  "sources": {
+    "nativeEvidenceSha256": "6b7d64249847f74ade90299f971b58f0ba62c5a7c39c928fad8e5872ff53de6e",
+    "clientLogSha256": "945657fc8c7337cd7034593bda9a564e3f89a2723176f73080915c009fdd1c13"
+  },
+  "limitations": [
+    "25 candidates not admitted",
+    "machines currently admit only 0 degree orientation",
+    "no 50-player stress or arbitrary whole-world crash proof",
+    "architecture has native grass/light and unsupported decorative updates"
+  ]
+}

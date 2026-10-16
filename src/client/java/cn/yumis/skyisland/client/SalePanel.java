@@ -32,7 +32,7 @@ public final class SalePanel {
     private int bottom(){return 39+4*cell();}
     private static boolean inside(double x,double y,int a,int b,int w,int h){return x>=a&&x<a+w&&y>=b&&y<b+h;}
     private void text(GuiGraphicsExtractor g,String s,int x,int y,int color,int max){g.text(font,font.plainSubstrByWidth(s,Math.max(0,max)),x,y,color,false);}
-    private void button(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?0xCC354D51:0xBB202326);text(g,label,x+5,y+7,active?0xFFFFFFFF:0xFF888888,w-10);}
+    private void button(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?UiTheme.BUTTON:UiTheme.DISABLED);text(g,label,x+5,y+7,active?0xFFFFFFFF:0xFF888888,w-10);}
     public void render(GuiGraphicsExtractor g,int mx,int my,float d){
         font=parent.uiFont();width=parent.contentWidth();height=parent.height-70;
         g.enableScissor(parent.contentLeft(),70,parent.width-8,parent.height-5);
@@ -41,13 +41,13 @@ public final class SalePanel {
         g.pose().popMatrix();g.disableScissor();
     }
     private void draw(GuiGraphicsExtractor g,int mx,int my,float d){
-        g.fill(0,0,width,height,0xFF101419);
+        g.fill(0,0,width,height,UiTheme.PANEL);
         text(g,model.sale.has("hand")&&model.sale.get("hand").getAsBoolean()?"出售手持 · 请先选择物品":"出售背包 · 请先选择物品",12,12,0xFFFFFFFF,width-24);
         ItemStack hovered=ItemStack.EMPTY;
         if(model.sale.has("inventory"))for(var e:model.sale.getAsJsonArray("inventory")){
             var row=e.getAsJsonObject();int slot=row.get("slot").getAsInt(),x=left()+slot%9*cell(),y=35+slot/9*cell();
             var stack=model.decode(row.get("stack"));boolean allowed=row.get("allowed").getAsBoolean();
-            g.fill(x,y,x+cell()-2,y+cell()-2,selected.containsKey(slot)?0xFF30584D:allowed?0xBB292D32:0xBB191A1D);
+            g.fill(x,y,x+cell()-2,y+cell()-2,selected.containsKey(slot)?UiTheme.SELECTED:allowed?UiTheme.CARD:0xBB191919);
             if(!stack.isEmpty()){g.item(stack,x+3,y+2);text(g,Integer.toString(selected.getOrDefault(slot,stack.getCount())),x+cell()-15,y+13,selected.containsKey(slot)?0xFF9DE5C7:0xFFFFFFFF,15);}
             if(inside(mx,my,x,y,cell()-2,cell()-2))hovered=stack;
         }
@@ -73,7 +73,7 @@ public final class SalePanel {
         if(!hovered.isEmpty()){
             String label=hovered.getHoverName().getString()+" · "+RarityColors.name(model.rarity(hovered));
             int w=Math.min(width-16,font.width(label)+12),x=Math.clamp(mx+8,8,width-w-8),y=Math.clamp(my+16,8,height-32);
-            g.fill(x,y,x+w,y+20,0xF0081118);text(g,label,x+5,y+6,RarityColors.color(model.rarity(hovered)),w-10);
+            g.fill(x,y,x+w,y+20,UiTheme.PANEL);text(g,label,x+5,y+6,RarityColors.color(model.rarity(hovered)),w-10);
         }
     }
     public boolean mouseClicked(MouseButtonEvent e,boolean twice){

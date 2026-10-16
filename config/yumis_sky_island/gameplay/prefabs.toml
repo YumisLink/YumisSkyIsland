@@ -1,0 +1,22 @@
+# 蓝图大炮：每次最多施工一个方块，修改后重启生效。
+# 获取开关，修改后重启生效；缺省开启。关闭后建筑图纸、大炮及特殊弹药不在商店或随机悬赏供给。
+# 已有图纸、大炮、弹药额度及施工继续使用；人工任务奖励、管理员命令及外部自定义来源保留。
+acquisitionEnabled = true
+# 施工间隔（游戏刻），必须为 1～100，默认 5。
+placementIntervalTicks = 5
+# 一份特殊弹药提供的施工次数。
+ammunitionCredits = 1000
+# 特殊弹药实际成交价，不叠加行情和常驻商店倍率。
+ammunitionPriceCoins = 1000
+# 单份模板最多非空气方块数，防止误导入超大文件。
+maximumBlocks = 300000
+# 单份模板最多体积（包含模板明确要求留空的空间）。
+maximumVolume = 16777216
+# 客户端每个预览数据包最多包含的方块数。
+previewBatchSize = 1024
+# 每刻检查的施工范围位置数，避免大建筑检查卡住服务端。
+validationBudget = 2048
+# 服务器实例内的建筑库目录；建筑数据不打入公共模组 JAR。
+libraryDirectory = "prefabs/yumis_sky_island"
+# 仅允许通过本模组实际运行验收的模板上架。
+requireVerifiedTemplates = true

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1240" viewBox="0 0 1600 1240" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1470" viewBox="0 0 1600 1470" role="img" aria-labelledby="title desc">
   <title id="title">Yumi’s Sky Island 模块结构图</title>
-  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。TOML、历史放置索引、单页控制面板、指令编辑、个人职业追踪、金币提示及本地测试隔离已实现，规则见 AGENTS.md。</desc>
+  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。TOML、历史放置索引、单页控制面板、指令编辑、个人职业追踪、金币提示及本地测试隔离、仅空岛六档建造杖及NPC住宅／双箱经营／玩家模型已实现，规则见 AGENTS.md。</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#526780"/>
@@ -25,9 +25,9 @@
     </style>
   </defs>
 
-  <rect width="1600" height="1240" fill="#f5f7fb"/>
+  <rect width="1600" height="1470" fill="#f5f7fb"/>
   <text x="40" y="65" class="title">Yumi’s Sky Island · 模块结构图</text>
-  <text x="40" y="96" class="subtitle">Minecraft 26.2 / Fabric / Java 25 · 当前源码职责与数据流 · 2026-10-14</text>
+  <text x="40" y="96" class="subtitle">Minecraft 26.2 / Fabric / Java 25 · 当前源码职责与数据流 · 2026-10-16</text>
   <path d="M 1170 58 H 1220" class="edge"/>
   <text x="1233" y="63" class="small">运行调用 / 数据流</text>
   <path d="M 1170 91 H 1220" class="dev-edge"/>
@@ -137,6 +137,13 @@
   <path d="M 1560 212 H 1580 V 817 H 1560" class="edge"/>
   <text x="1589" y="438" class="small" transform="rotate(90 1589 438)">C：只提交跳跃模式</text>
 
+  <!-- Construction wand remains sky-only; client submits intent, server selects all blocks. -->
+  <rect x="1154" y="945" width="406" height="87" rx="14" class="card client"/>
+  <text x="1175" y="973" class="heading">建造杖 · 六档／仅空岛</text>
+  <text x="1175" y="999" class="body">WandPayloads ↔ ConstructionWandService</text>
+  <text x="1175" y="1021" class="small">线框／设置 → 逐块保护、扣料、计分和撤销</text>
+  <path d="M 1123 817 V 987 H 1154" class="edge"/>
+
   <!-- Tooling -->
   <rect x="40" y="835" width="326" height="235" rx="14" class="card development"/>
   <text x="60" y="872" class="heading">开发工具 · tools / Gradle</text>
@@ -158,4 +165,25 @@
   <path d="M 366 1030 H 405 V 1120 H 442" class="dev-edge"/>
 
   <text x="40" y="1221" class="subtitle">当前规则：收藏位于左侧末尾，隐藏至少1传说＋2史诗，现有三功能默认开放，出货箱支线64原木＋3铁锭＋附魔金镐；详见AGENTS.md。</text>
+  <rect x="40" y="1250" width="480" height="172" rx="14" class="card server"/>
+  <text x="60" y="1282" class="heading">NPC居民 · SkyServer → ResidentService</text>
+  <text x="60" y="1312" class="body">ResidentSettings / ResidentRules：住宅与每日经营</text>
+  <text x="60" y="1338" class="body">HousingScanner：30～200空气、设施／围护索引</text>
+  <text x="60" y="1364" class="body">价格效果版本 → ItemEconomy / TradeService</text>
+  <text x="60" y="1390" class="small">行动经验 → ProfessionService；声望／轮次 → Party</text>
+  <rect x="558" y="1250" width="480" height="172" rx="14" class="card foundation"/>
+  <text x="578" y="1282" class="heading">双箱事务 · ResidentTransactions</text>
+  <text x="578" y="1312" class="body">ResidentSupply：整套供养／整批产出快照</text>
+  <text x="578" y="1338" class="body">resident_operations：独立强制日志 → 队伍状态</text>
+  <text x="578" y="1364" class="body">原生区块回执：分区恢复与防重复交付</text>
+  <text x="578" y="1390" class="small">容器锁覆盖玩家、漏斗、方块变更；不强加载</text>
+  <rect x="1076" y="1250" width="484" height="172" rx="14" class="card client"/>
+  <text x="1096" y="1282" class="heading">人形实体与I页同级居民Tab</text>
+  <text x="1096" y="1312" class="body">ResidentEntity：寻路／回床／队伍及世代身份</text>
+  <text x="1096" y="1338" class="body">ResidentRenderer：玩家宽／纤细模型与皮肤缓存</text>
+  <text x="1096" y="1364" class="body">ResidentPanel ↔ ResidentPayloads：操作意图</text>
+  <text x="1096" y="1390" class="small">服务端权限、账号解析、居民唯一ID及世代校验</text>
+  <path d="M 520 1322 H 558" class="edge"/>
+  <path d="M 1038 1322 H 1076" class="edge"/>
+  <text x="40" y="1450" class="subtitle">居民配置：gameplay/residents.toml，手改重启；首次免费许可证标记跨重开保留，探矿师增加铁匠行动经验。</text>
 </svg>

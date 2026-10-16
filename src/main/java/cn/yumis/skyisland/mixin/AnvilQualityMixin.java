@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class AnvilQualityMixin {
     @Inject(method="createResult",at=@At("RETURN"))
     private void preserveQuality(CallbackInfo ci){
+        AnvilMenu rarityMenu=(AnvilMenu)(Object)this;
+        cn.yumis.skyisland.shop.LotteryItemRarity.inherit(rarityMenu.getSlot(0).getItem(),rarityMenu.getSlot(2).getItem());
         if(YumisSkyIsland.CONFIG==null)return;
         AnvilMenu menu=(AnvilMenu)(Object)this;
         ItemStack input=menu.getSlot(0).getItem(),result=menu.getSlot(2).getItem();

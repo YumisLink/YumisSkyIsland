@@ -60,7 +60,8 @@ try {
                 foreach ($requiredEntry in @('fabric.mod.json', 'yumis_sky_island.mixins.json', 'yumis_sky_island.client.mixins.json')) {
                     if ($null -eq $archive.GetEntry($requiredEntry)) { throw "Missing JAR entry: $requiredEntry" }
                 }
-                if ($matched -ne 21) { throw "Expected 21 default TOML files; found $matched" }
+                $expectedConfigurationCount = @(Get-ChildItem -LiteralPath $configurationRoot -Recurse -File -Filter '*.toml').Count
+                if ($matched -ne $expectedConfigurationCount) { throw "Expected $expectedConfigurationCount default TOML files; found $matched" }
                 foreach ($entry in $archive.Entries) {
                     if ($entry.FullName -match '(^|/)(local-tests|clienttest|gametest|test)(/|$)|fabric\.mod\.json.*test') { throw "Test content in release: $($entry.FullName)" }
                 }

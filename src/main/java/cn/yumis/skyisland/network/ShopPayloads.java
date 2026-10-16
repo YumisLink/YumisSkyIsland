@@ -16,11 +16,18 @@ public final class ShopPayloads {
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
     public record Purchase(String product, int quantity, String shop, long marketEpoch,
-                           java.util.UUID party, long islandEpoch) implements CustomPacketPayload {
+                           java.util.UUID party, long islandEpoch,long priceRevision,long npcRevision) implements CustomPacketPayload {
+        public Purchase(String product,int quantity,String shop,long marketEpoch,java.util.UUID party,long islandEpoch){this(product,quantity,shop,marketEpoch,party,islandEpoch,0,0);}
+        public Purchase(String product,int quantity,String shop,long marketEpoch,java.util.UUID party,long islandEpoch,long priceRevision){this(product,quantity,shop,marketEpoch,party,islandEpoch,priceRevision,0);}
         public static final Type<Purchase> TYPE = new Type<>(Identifier.fromNamespaceAndPath("yumis_sky_island", "purchase"));
         public static final StreamCodec<RegistryFriendlyByteBuf, Purchase> CODEC = StreamCodec.of(
-            (b,p) -> { b.writeUtf(p.product,256); b.writeVarInt(p.quantity); b.writeUtf(p.shop,16); b.writeVarLong(p.marketEpoch); b.writeUUID(p.party); b.writeVarLong(p.islandEpoch); },
-            b -> new Purchase(b.readUtf(256),b.readVarInt(),b.readUtf(16),b.readVarLong(),b.readUUID(),b.readVarLong()));
+            (b,p) -> { b.writeUtf(p.product,256); b.writeVarInt(p.quantity); b.writeUtf(p.shop,16); b.writeVarLong(p.marketEpoch); b.writeUUID(p.party); b.writeVarLong(p.islandEpoch);b.writeVarLong(p.priceRevision);b.writeVarLong(p.npcRevision); },
+            b -> new Purchase(b.readUtf(256),b.readVarInt(),b.readUtf(16),b.readVarLong(),b.readUUID(),b.readVarLong(),b.readVarLong(),b.readVarLong()));
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
+    }
+    public record ProfessionPurchase(String product,int quantity,long rulesRevision) implements CustomPacketPayload {
+        public static final Type<ProfessionPurchase> TYPE=new Type<>(Identifier.fromNamespaceAndPath("yumis_sky_island","profession_purchase"));
+        public static final StreamCodec<RegistryFriendlyByteBuf,ProfessionPurchase> CODEC=StreamCodec.of((b,p)->{b.writeUtf(p.product,256);b.writeVarInt(p.quantity);b.writeVarLong(p.rulesRevision);},b->new ProfessionPurchase(b.readUtf(256),b.readVarInt(),b.readVarLong()));
+        public Type<? extends CustomPacketPayload> type(){return TYPE;}
     }
 }

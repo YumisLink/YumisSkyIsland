@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-16",
+  "minecraft": "26.2",
+  "fabricLoader": "0.19.3",
+  "fabricApi": "0.156.0+26.2",
+  "java": "25.0.4.1",
+  "gradle": "9.5.1",
+  "formalCheck": {
+    "command": ".\\tools\\dev.ps1 -Task Check -Offline",
+    "result": "passed"
+  },
+  "junit": {
+    "tests": 97,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "targetedNewCases": 12,
+    "reportDirectory": "build/test-results/test"
+  },
+  "client": {
+    "class": "cn.yumis.skyisland.clienttest.LiveConfigScenario",
+    "command": ".\\local-tests\\run.ps1 -Task Client -Offline -ClientTestClass cn.yumis.skyisland.clienttest.LiveConfigScenario",
+    "result": "passed",
+    "newTestSave": true,
+    "integratedServerStopAndReopen": true,
+    "clientProcessRestart": false,
+    "jei": "30.29.0.201",
+    "placementNotices": 9,
+    "defaultTierNotice": "256 gold blocks: native BlockItem, break/re-place, construction wand",
+    "allTierNotice": "Temporarily configured thresholds 2/4/6: iron blocks; each crossed then broken and crossed again",
+    "coverage": [
+      "shared edit command, non-admin request rejection, edit-off and deop close editors, disconnect clears session",
+      "actual left/right Ctrl keys, short taps, held-key debounce, primary-key rebind to I, other GUI ignored",
+      "actual form save, catalog-wide view, search, inline price form and two window layouts",
+      "buy baseline only, sale baseline and daily stock unchanged, readonly ammunition and sell-only products",
+      "dynamic blueprint override survives fresh load with level, rarity, canonical stack and sale base intact",
+      "real placement markers exclude player-associated automatic change; refresh and configuration recalculation never notify",
+      "raw per-ID fallback cannon, water/lava exclusions, waterlogged building, loaded/history refresh agreement",
+      "client Tooltip minimum per-piece score and unconfigured cannon fallback",
+      "stale shop purchase, profession price and lottery rules reject before spending",
+      "invalid range, forbidden base score live edit, stale revision and external TOML edit rejected",
+      "fresh configuration reload, real world server reopen and first milestone reward deduplication"
+    ],
+    "log": {
+      "path": "build/live-config-final-client.log",
+      "sha256": "0cf65b8ec5e62be4679ce8430f78dff140ef310dfa229cfe21f7c96a35f72323",
+      "marker": "LIVE_CONFIG_VALIDATION passed: real keys, forms, all catalog, price versions, raw scans, tooltip agreement, nine placement notices across all tiers and server-reopen first milestone rewards"
+    }
+  },
+  "configuration": {
+    "defaultTomlCount": 23,
+    "sourceDevelopmentSemanticMatch": true,
+    "formatOnlyDifferences": [
+      "shop/item_levels.toml",
+      "shop/products.toml",
+      "shop/rarities.toml"
+    ],
+    "repeatDefaultSyncByteIdentical": true,
+    "scoreTiers": [
+      {
+        "upToCount": 256,
+        "multiplierBps": 10000
+      },
+      {
+        "upToCount": 2048,
+        "multiplierBps": 2500
+      },
+      {
+        "upToCount": 8192,
+        "multiplierBps": 500
+      },
+      {
+        "multiplierBps": 100
+      }
+    ],
+    "zeroScoreIds": [
+      "minecraft:air",
+      "minecraft:bubble_column",
+      "minecraft:cave_air",
+      "minecraft:lava",
+      "minecraft:void_air",
+      "minecraft:water"
+    ],
+    "scoringSha256": "6931a3d05a051742a8d4e9d09f18ccffb857d4cc40a883824c365494de040883",
+    "noOldSaveMigrationAdded": true
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/live-config/config-wide.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 328992,
+      "sha256": "f51a311c7199f4ba5ee9a08d00a2285bd76f1aa054b9f79b147a93d36c259a4a"
+    },
+    {
+      "path": "docs/screenshots/live-config/config-small.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 202482,
+      "sha256": "6dc42ecccfb8e863ff67e12e5bea408684cf0d3a58b63441c3eb14b752d317b0"
+    },
+    {
+      "path": "docs/screenshots/live-config/config-scoring-scrolled.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 190835,
+      "sha256": "af66744788c1a6e6cb40f73478e73ccc8f5935d06bb180afb148196865017da5"
+    },
+    {
+      "path": "docs/screenshots/live-config/shop-all-small.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 148029,
+      "sha256": "d3f991b3452a370e26b541e6cdff2c0a43357bdf56802e82452d1770d820dac4"
+    },
+    {
+      "path": "docs/screenshots/live-config/shop-price-small.png",
+      "width": 1280,
+      "height": 720,
+      "bytes": 146058,
+      "sha256": "032a3f8b3c78ad94655bb9cb0cc7daba5d7912ac9ade404972cb0eaa4ae39cdb"
+    },
+    {
+      "path": "docs/screenshots/live-config/shop-price-wide.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 239703,
+      "sha256": "105ceb67e67965d3f3e97eb3d063d9b088370e76abfedb16bf2f640c857d8638"
+    }
+  ],
+  "exportPerformed": true,
+  "otherGameInstancesWritten": false,
+  "boundaries": [
+    "No standalone server process restart or 50-player load test",
+    "No arbitrary crash point or disk-full fault injection; checked save failures cover malformed input, stale revisions and external edits"
+  ],
+  "export": {
+    "requestedAfterImplementation": true,
+    "result": "passed",
+    "path": "build/libs/YumisSkyIsland-0.1.0-dev.jar",
+    "bytes": 1539651,
+    "sha256": "ce2cd310269331448fb5a04f86c7e362f3d78de4917ef7505ee5613ed43ae6e1",
+    "currentClassFilesMatched": 298,
+    "bundledDefaultTomlCount": 23,
+    "testsExcluded": true,
+    "exportedAt": "2026-10-16T15:10:44+08:00"
+  }
+}

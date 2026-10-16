@@ -68,3 +68,27 @@ Desktop.ini
 /src/test/
 /src/gametest/
 /tools/data/*.before-*.json
+# 本地构建与开发运行产物；这些内容不需要提交，也不会作为源码资源打进 JAR。
+/.gradle/
+/build/
+/run/
+
+# 本地运行日志与崩溃报告。
+/logs/
+/crash-reports/
+*.log
+
+# 美术源文件与 PNG 图片。
+*.ase
+*.aseprite
+*.png
+# Aseprite 临时备份。
+*.ase~
+*.aseprite~
+
+# 常见操作系统生成文件。
+.DS_Store
+Thumbs.db
+# 美术资源目录（含全部子目录）。
+art/
+

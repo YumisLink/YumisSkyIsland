@@ -15,8 +15,8 @@ import net.minecraft.world.phys.Vec3;
 public final class CloudLeapService {
     public static final int COOLDOWN_TICKS = 5;
     public static final int PROTECTION_TICKS = 200;
-    public static final double FORWARD_SPEED = 0.8;
-    public static final double UPWARD_SPEED = 0.7;
+    public static final double FORWARD_SPEED = 1.08;
+    public static final double UPWARD_SPEED = 0.49;
     public static final double VERTICAL_SPEED = 1.1;
     private static final AttachmentType<Integer> LAST_LEAP = AttachmentRegistry.create(
             YumisSkyIsland.id("last_cloud_leap"), builder -> builder.initializer(() -> -COOLDOWN_TICKS));

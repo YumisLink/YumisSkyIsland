@@ -27,7 +27,7 @@ public final class PartyService {
         ClaimGrid.Region region = ClaimGrid.region(party.slot);
         party.homeX = region.centerX(); party.homeZ = region.centerZ();
         state.parties.put(party.id, party);
-        IslandState.Person p = person(state, owner); p.activeParty = party.id; p.soloParty = party.id;
+        IslandState.Person p = person(state, owner); p.activeParty = party.id; p.soloParty = party.id; p.netherReturnPortal = null;
         return party;
     }
     public void home(ServerPlayer player) {
@@ -36,7 +36,7 @@ public final class PartyService {
         runtime.change(player, state -> {
             IslandState.Person p = person(state, player);
             IslandState.Party old = state.parties.get(p.soloParty);
-            if (old != null && old.owner.equals(player.getUUID())) { p.activeParty = old.id; old.members.add(player.getUUID()); }
+            if (old != null && old.owner.equals(player.getUUID())) { p.activeParty = old.id; p.netherReturnPortal = null; old.members.add(player.getUUID()); }
             else newParty(state, player);
         }, () -> runtime.worlds.home(player, active(player.getUUID())));
     }
@@ -56,7 +56,7 @@ public final class PartyService {
             throw new IllegalArgumentException("你是岛主，请先 /is transfer <队员> 手动移交再加入其他队伍");
         runtime.change(player, s -> {
             if (old != null) s.parties.get(old.id).members.remove(player.getUUID());
-            IslandState.Person p = person(s, player); p.activeParty = target.id; p.inviteParty = null;
+            IslandState.Person p = person(s, player); p.activeParty = target.id; p.inviteParty = null; p.netherReturnPortal = null;
             s.parties.get(target.id).members.add(player.getUUID());
         }, () -> { runtime.tell(player, "已加入空岛；原个人岛与钱包保留休眠"); runtime.worlds.home(player, active(player.getUUID())); });
     }
@@ -70,7 +70,7 @@ public final class PartyService {
     }
     private static void detach(IslandState s, ServerPlayer player, UUID fromId) {
         IslandState.Party old = s.parties.get(fromId); old.members.remove(player.getUUID());
-        IslandState.Person person = person(s, player); IslandState.Party solo = s.parties.get(person.soloParty);
+        IslandState.Person person = person(s, player); person.netherReturnPortal = null; IslandState.Party solo = s.parties.get(person.soloParty);
         if (solo == null || !solo.owner.equals(player.getUUID()) || solo.id.equals(fromId)) {
             solo = newParty(s, player);
         } else { solo.members.add(player.getUUID()); person.activeParty = solo.id; }

@@ -1,23 +1,23 @@
 # Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
 # 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
 
-# 配置结构版本；资料字段，勿随意降低；当前默认：1
+# 配置结构版本；资料字段，勿随意降低
 schemaVersion = 1
-# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+# 配置审阅状态；资料字段，不改变运行规则
 status = "review_draft"
-# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+# 目标 Minecraft 版本；资料字段
 minecraftVersion = "26.2"
-# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证
 registryVerified = false
-# 说明字段 unit；资料用途，不单独改变运行行为；当前默认："basis_points_10000_equals_1"
+# 配置字段 unit
 unit = "basis_points_10000_equals_1"
-# 说明字段 combineRule；资料用途，不单独改变运行行为；当前默认："multiply_all_then_round_once"
+# 配置字段 combineRule
 combineRule = "multiply_all_then_round_once"
-# 说明字段 unknownEnchantmentPolicy；资料用途，不单独改变运行行为；当前默认："refuse_automatic_sale"
+# 配置字段 unknownEnchantmentPolicy
 unknownEnchantmentPolicy = "refuse_automatic_sale"
-# 说明字段 rejectAboveVanillaMaxLevel；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 rejectAboveVanillaMaxLevel
 rejectAboveVanillaMaxLevel = true
-# 说明字段 rejectIncompatibleCombinations；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 rejectIncompatibleCombinations
 rejectIncompatibleCombinations = true
 # 附魔估值定义；任务奖励不受商店附魔上限限制
 
@@ -25,9 +25,9 @@ rejectIncompatibleCombinations = true
 # 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:aqua_affinity"]
-# 界面显示名称；当前默认："水下速掘"
+# 界面显示名称
 name = "水下速掘"
-# 等级上限资料；岛／职业默认为100；当前默认：1
+# 等级上限资料；岛／职业默认为100
 maxLevel = 1
 # 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
@@ -35,970 +35,536 @@ isTreasure = false
 supportedItems = "#minecraft:enchantable/head_armor"
 
 [entries."minecraft:aqua_affinity".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
+# 等级／阶段 1 对应值
 1 = 11000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/head_armor"
-# 注册 ID／组件参数；保持 ID 原样
+# 是否诅咒附魔；原版资料
+# 是否宝藏附魔；原版资料
+# 原版附魔适用物品标签；资料字段
 
 [entries."minecraft:bane_of_arthropods"]
-# 界面显示名称；当前默认："节肢杀手"
 name = "节肢杀手"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/weapon"
 exclusiveSet = "#minecraft:exclusive_set/damage"
 
 [entries."minecraft:bane_of_arthropods".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
+# 等级／阶段 2 对应值
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
+# 等级／阶段 3 对应值
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
+# 等级／阶段 4 对应值
 4 = 14000
-# 等级／阶段 5 对应值；当前默认：15000
+# 等级／阶段 5 对应值
 5 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/weapon"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/damage"
-# 注册 ID／组件参数；保持 ID 原样
+# 原版互斥附魔资料；省略表示没有互斥集合
 
 [entries."minecraft:binding_curse"]
-# 界面显示名称；当前默认："绑定诅咒"
 name = "绑定诅咒"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = true
 isTreasure = true
 supportedItems = "#minecraft:enchantable/equippable"
 
 [entries."minecraft:binding_curse".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：6000
 1 = 6000
-# 是否诅咒附魔；原版资料；当前默认：true
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/equippable"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:blast_protection"]
-# 界面显示名称；当前默认："爆炸保护"
 name = "爆炸保护"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/armor"
 exclusiveSet = "#minecraft:exclusive_set/armor"
 
 [entries."minecraft:blast_protection".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/armor"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:breach"]
-# 界面显示名称；当前默认："破甲"
 name = "破甲"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/mace"
 exclusiveSet = "#minecraft:exclusive_set/damage"
 
 [entries."minecraft:breach".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/mace"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/damage"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:channeling"]
-# 界面显示名称；当前默认："引雷"
 name = "引雷"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/trident"
 
 [entries."minecraft:channeling".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/trident"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:density"]
-# 界面显示名称；当前默认："致密"
 name = "致密"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/mace"
 exclusiveSet = "#minecraft:exclusive_set/damage"
 
 [entries."minecraft:density".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 等级／阶段 5 对应值；当前默认：15000
 5 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/mace"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/damage"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:depth_strider"]
-# 界面显示名称；当前默认："深海探索者"
 name = "深海探索者"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/foot_armor"
 exclusiveSet = "#minecraft:exclusive_set/boots"
 
 [entries."minecraft:depth_strider".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/foot_armor"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/boots"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:efficiency"]
-# 界面显示名称；当前默认："效率"
 name = "效率"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/mining"
 
 [entries."minecraft:efficiency".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13500
 3 = 13500
-# 等级／阶段 4 对应值；当前默认：14500
 4 = 14500
-# 等级／阶段 5 对应值；当前默认：16000
 5 = 16000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/mining"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:feather_falling"]
-# 界面显示名称；当前默认："摔落缓冲"
 name = "摔落缓冲"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/foot_armor"
 
 [entries."minecraft:feather_falling".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/foot_armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:fire_aspect"]
-# 界面显示名称；当前默认："火焰附加"
 name = "火焰附加"
-# 等级上限资料；岛／职业默认为100；当前默认：2
 maxLevel = 2
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/fire_aspect"
 
 [entries."minecraft:fire_aspect".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/fire_aspect"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:fire_protection"]
-# 界面显示名称；当前默认："火焰保护"
 name = "火焰保护"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/armor"
 exclusiveSet = "#minecraft:exclusive_set/armor"
 
 [entries."minecraft:fire_protection".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/armor"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:flame"]
-# 界面显示名称；当前默认："火矢"
 name = "火矢"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/bow"
 
 [entries."minecraft:flame".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/bow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:fortune"]
-# 界面显示名称；当前默认："时运"
 name = "时运"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/mining_loot"
 exclusiveSet = "#minecraft:exclusive_set/mining"
 
 [entries."minecraft:fortune".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：12000
 1 = 12000
-# 等级／阶段 2 对应值；当前默认：14500
 2 = 14500
-# 等级／阶段 3 对应值；当前默认：18000
 3 = 18000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/mining_loot"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/mining"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:frost_walker"]
-# 界面显示名称；当前默认："冰霜行者"
 name = "冰霜行者"
-# 等级上限资料；岛／职业默认为100；当前默认：2
 maxLevel = 2
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = true
 supportedItems = "#minecraft:enchantable/foot_armor"
 exclusiveSet = "#minecraft:exclusive_set/boots"
 
 [entries."minecraft:frost_walker".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/foot_armor"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/boots"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:impaling"]
-# 界面显示名称；当前默认："穿刺"
 name = "穿刺"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/trident"
 exclusiveSet = "#minecraft:exclusive_set/damage"
 
 [entries."minecraft:impaling".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 等级／阶段 5 对应值；当前默认：15000
 5 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/trident"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/damage"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:infinity"]
-# 界面显示名称；当前默认："无限"
 name = "无限"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/bow"
 exclusiveSet = "#minecraft:exclusive_set/bow"
 
 [entries."minecraft:infinity".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/bow"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/bow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:knockback"]
-# 界面显示名称；当前默认："击退"
 name = "击退"
-# 等级上限资料；岛／职业默认为100；当前默认：2
 maxLevel = 2
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/melee_weapon"
 
 [entries."minecraft:knockback".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/melee_weapon"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:looting"]
-# 界面显示名称；当前默认："抢夺"
 name = "抢夺"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/melee_weapon"
 
 [entries."minecraft:looting".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：12000
 1 = 12000
-# 等级／阶段 2 对应值；当前默认：14500
 2 = 14500
-# 等级／阶段 3 对应值；当前默认：18000
 3 = 18000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/melee_weapon"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:loyalty"]
-# 界面显示名称；当前默认："忠诚"
 name = "忠诚"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/trident"
 
 [entries."minecraft:loyalty".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/trident"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:luck_of_the_sea"]
-# 界面显示名称；当前默认："海之眷顾"
 name = "海之眷顾"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/fishing"
 
 [entries."minecraft:luck_of_the_sea".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/fishing"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:lunge"]
-# 界面显示名称；当前默认："突进"
 name = "突进"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/lunge"
 
 [entries."minecraft:lunge".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11500
 1 = 11500
-# 等级／阶段 2 对应值；当前默认：13500
 2 = 13500
-# 等级／阶段 3 对应值；当前默认：16000
 3 = 16000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/lunge"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:lure"]
-# 界面显示名称；当前默认："饵钓"
 name = "饵钓"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/fishing"
 
 [entries."minecraft:lure".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/fishing"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:mending"]
-# 界面显示名称；当前默认："经验修补"
 name = "经验修补"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = true
 supportedItems = "#minecraft:enchantable/durability"
 
 [entries."minecraft:mending".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：15000
 1 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/durability"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:multishot"]
-# 界面显示名称；当前默认："多重射击"
 name = "多重射击"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/crossbow"
 exclusiveSet = "#minecraft:exclusive_set/crossbow"
 
 [entries."minecraft:multishot".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/crossbow"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/crossbow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:piercing"]
-# 界面显示名称；当前默认："穿透"
 name = "穿透"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/crossbow"
 exclusiveSet = "#minecraft:exclusive_set/crossbow"
 
 [entries."minecraft:piercing".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/crossbow"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/crossbow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:power"]
-# 界面显示名称；当前默认："力量"
 name = "力量"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/bow"
 
 [entries."minecraft:power".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 等级／阶段 5 对应值；当前默认：15000
 5 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/bow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:projectile_protection"]
-# 界面显示名称；当前默认："弹射物保护"
 name = "弹射物保护"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/armor"
 exclusiveSet = "#minecraft:exclusive_set/armor"
 
 [entries."minecraft:projectile_protection".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/armor"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:protection"]
-# 界面显示名称；当前默认："保护"
 name = "保护"
-# 等级上限资料；岛／职业默认为100；当前默认：4
 maxLevel = 4
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/armor"
 exclusiveSet = "#minecraft:exclusive_set/armor"
 
 [entries."minecraft:protection".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13500
 3 = 13500
-# 等级／阶段 4 对应值；当前默认：15000
 4 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/armor"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:punch"]
-# 界面显示名称；当前默认："冲击"
 name = "冲击"
-# 等级上限资料；岛／职业默认为100；当前默认：2
 maxLevel = 2
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/bow"
 
 [entries."minecraft:punch".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/bow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:quick_charge"]
-# 界面显示名称；当前默认："快速装填"
 name = "快速装填"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/crossbow"
 
 [entries."minecraft:quick_charge".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/crossbow"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:respiration"]
-# 界面显示名称；当前默认："水下呼吸"
 name = "水下呼吸"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/head_armor"
 
 [entries."minecraft:respiration".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/head_armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:riptide"]
-# 界面显示名称；当前默认："激流"
 name = "激流"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/trident"
 exclusiveSet = "#minecraft:exclusive_set/riptide"
 
 [entries."minecraft:riptide".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/trident"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/riptide"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:sharpness"]
-# 界面显示名称；当前默认："锋利"
 name = "锋利"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/sharp_weapon"
 exclusiveSet = "#minecraft:exclusive_set/damage"
 
 [entries."minecraft:sharpness".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 等级／阶段 5 对应值；当前默认：15000
 5 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/sharp_weapon"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/damage"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:silk_touch"]
-# 界面显示名称；当前默认："精准采集"
 name = "精准采集"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/mining_loot"
 exclusiveSet = "#minecraft:exclusive_set/mining"
 
 [entries."minecraft:silk_touch".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：18000
 1 = 18000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/mining_loot"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/mining"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:smite"]
-# 界面显示名称；当前默认："亡灵杀手"
 name = "亡灵杀手"
-# 等级上限资料；岛／职业默认为100；当前默认：5
 maxLevel = 5
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/weapon"
 exclusiveSet = "#minecraft:exclusive_set/damage"
 
 [entries."minecraft:smite".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 等级／阶段 4 对应值；当前默认：14000
 4 = 14000
-# 等级／阶段 5 对应值；当前默认：15000
 5 = 15000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/weapon"
-# 原版互斥附魔资料；省略表示没有互斥集合；当前默认："#minecraft:exclusive_set/damage"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:soul_speed"]
-# 界面显示名称；当前默认："灵魂疾行"
 name = "灵魂疾行"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = true
 supportedItems = "#minecraft:enchantable/foot_armor"
 
 [entries."minecraft:soul_speed".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/foot_armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:sweeping_edge"]
-# 界面显示名称；当前默认："横扫之刃"
 name = "横扫之刃"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/sweeping"
 
 [entries."minecraft:sweeping_edge".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/sweeping"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:swift_sneak"]
-# 界面显示名称；当前默认："迅捷潜行"
 name = "迅捷潜行"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = true
 supportedItems = "#minecraft:enchantable/leg_armor"
 
 [entries."minecraft:swift_sneak".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：12500
 1 = 12500
-# 等级／阶段 2 对应值；当前默认：16000
 2 = 16000
-# 等级／阶段 3 对应值；当前默认：20000
 3 = 20000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/leg_armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:thorns"]
-# 界面显示名称；当前默认："荆棘"
 name = "荆棘"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/armor"
 
 [entries."minecraft:thorns".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/armor"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:unbreaking"]
-# 界面显示名称；当前默认："耐久"
 name = "耐久"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = false
 supportedItems = "#minecraft:enchantable/durability"
 
 [entries."minecraft:unbreaking".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：11000
 1 = 11000
-# 等级／阶段 2 对应值；当前默认：12000
 2 = 12000
-# 等级／阶段 3 对应值；当前默认：13000
 3 = 13000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：false
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/durability"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:vanishing_curse"]
-# 界面显示名称；当前默认："消失诅咒"
 name = "消失诅咒"
-# 等级上限资料；岛／职业默认为100；当前默认：1
 maxLevel = 1
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = true
 isTreasure = true
 supportedItems = "#minecraft:enchantable/vanishing"
 
 [entries."minecraft:vanishing_curse".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：6000
 1 = 6000
-# 是否诅咒附魔；原版资料；当前默认：true
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/vanishing"
-# 注册 ID／组件参数；保持 ID 原样
 
 [entries."minecraft:wind_burst"]
-# 界面显示名称；当前默认："风爆"
 name = "风爆"
-# 等级上限资料；岛／职业默认为100；当前默认：3
 maxLevel = 3
-# 按实际附魔等级配置的价值倍率；万分比，非负整数
 isCurse = false
 isTreasure = true
 supportedItems = "#minecraft:enchantable/mace"
 
 [entries."minecraft:wind_burst".levelMultiplierBps]
-# 等级／阶段 1 对应值；当前默认：15000
 1 = 15000
-# 等级／阶段 2 对应值；当前默认：22000
 2 = 22000
-# 等级／阶段 3 对应值；当前默认：30000
 3 = 30000
-# 是否诅咒附魔；原版资料；当前默认：false
-# 是否宝藏附魔；原版资料；当前默认：true
-# 原版附魔适用物品标签；资料字段；当前默认："#minecraft:enchantable/mace"

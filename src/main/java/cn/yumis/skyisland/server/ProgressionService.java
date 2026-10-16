@@ -55,8 +55,12 @@ public final class ProgressionService {
     }
     private String context(IslandState.Party p) { return rt.epoch() + "/" + p.highestIslandLevel + "/" + p.soldProductIds.hashCode() + "/" + p.acquiredStarterIds.hashCode() + "/" + p.unlockedFeatures.hashCode(); }
     private boolean invalid(IslandState.Bounty b) {
-        return b.material != null && (!rt.economy.entries.containsKey(b.material) || !rt.economy.entries.get(b.material).product().canSell() || !rt.economy.entries.get(b.material).product().rarity().equals("common") ||
-            !rt.economy.entries.containsKey(b.reward) || !rt.economy.entries.get(b.reward).product().canBuy() || rt.economy.entries.get(b.reward).product().rarity().equals("common"));
+        if (b.material == null) return false;
+        var material = rt.economy.entries.get(b.material);
+        var reward = rt.economy.entries.get(b.reward);
+        return material == null || !material.product().canSell() || !material.product().rarity().equals("common") ||
+            !rt.economy.canBuy(reward) || reward.product().rarity().equals("common") ||
+            b.rewardStack != null && !rt.economy.acquisitionAllowed(rt.economy.decode(b.rewardStack));
     }
     public void tick() {
         if (rt.tick % 20 != 0 || !rt.store.available()) return;
@@ -86,7 +90,7 @@ public final class ProgressionService {
         b.material = null; b.reward = null; b.rewardStack=null; b.quantity = 0; b.attemptContext = context(p);
         var materials = rt.economy.entries.values().stream().filter(e -> e.product().canSell() && e.product().rarity().equals("common") && p.soldProductIds.contains(e.product().id())).toList();
         if (materials.isEmpty() || !allows(p, "shop.special")) return;
-        var pool = rt.economy.entries.values().stream().filter(e -> e.product().canBuy() && !e.product().rarity().equals("common") && e.product().level() <= p.highestIslandLevel).map(e -> {
+        var pool = rt.economy.entries.values().stream().filter(e -> rt.economy.canBuy(e) && !e.product().id().equals("yumis_sky_island:flight_ticket") && !e.product().rarity().equals("common") && e.product().level() <= p.highestIslandLevel).map(e -> {
             int rarity = switch (e.product().rarity()) { case "rare" -> 1; case "epic" -> 2; default -> 3; };
             return new DailyShopSelector.Candidate(e.product().id(), rarity, e.product().level(), e.product().weight(), 1);
         }).toList();
@@ -131,6 +135,7 @@ public final class ProgressionService {
         JsonArray inventory = exchange(player, List.of(new Requirement(b.material, b.quantity)), List.of(b.rewardStack==null?reward.template():rt.economy.decode(b.rewardStack)));
         rt.trades.commitInventory(player, inventory, s -> {
             var current = s.parties.get(p.id); acquired(current, b.reward);
+            PersonalTokens.quest(s,current,player.getUUID(),false,rt.lottery.taskReward());
             fill(current, current.bounties.get(slot));
         }, () -> SkyServer.tell(player, net.minecraft.network.chat.Component.literal("悬赏兑换完成，获得 ").append(reward.template().getHoverName()).append(" ×1；新悬赏已生成")));
     }
@@ -157,6 +162,7 @@ public final class ProgressionService {
         JsonArray inventory = exchangeMaterials(player,quest.requirements(),quest.rewards());
         rt.trades.commitInventory(player,inventory,q.get("rewardExperiencePoints").getAsInt(),state -> {
             var current=state.parties.get(p.id); current.coins=balance;
+            PersonalTokens.quest(state,current,player.getUUID(),quest.kind().equals("main"),rt.lottery.taskReward());
             var progress=QuestCatalog.progress(current,state.players.get(player.getUUID()),quest);progress.completed().add(id);progress.ready().remove(id);
             for (var key : q.getAsJsonArray("unlockFeatures")) current.unlockedFeatures.add(key.getAsString());
             for (ItemStack reward : quest.rewards()) { var entry=rt.economy.match(reward); if(entry!=null)acquired(current,entry.product().id()); }

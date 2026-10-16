@@ -123,7 +123,7 @@ public final class QuestEditorPanel {
         for(int i=actual;i<Math.min(rows.size(),actual+3);i++){
             var row=rows.get(i).getAsJsonObject();int yy=y+22+(i-actual)*24-formScroll;
             String id=row.get(reward?"id":"itemId").getAsString();int index=i;
-            boolean selected=selectedRow==row;g.fill(x,yy,x+w,yy+22,selected?0xCC354D51:0x66303A42);
+            boolean selected=selectedRow==row;g.fill(x,yy,x+w,yy+22,selected?UiTheme.SELECTED:0x66303030);
             var template=template(row,reward);if(!template.isEmpty())g.item(template,x+2,yy+3);
             text(g,(template.isEmpty()?id:template.getHoverName().getString())+" ×"+row.get(reward?"count":"quantity").getAsString(),x+22,yy+7,0xFFE4E8EC,w-44);
             buttons.add(new Hit(x,yy,w-22,22,()->selectRow(row,reward,index)));
@@ -147,7 +147,7 @@ public final class QuestEditorPanel {
         button(g,"添加",x+w-48,y-4-formScroll,48,!model.taskBusy,()->{if(rows.size()>=32){model.lastError="追踪目标最多32条";return;}var row=new JsonObject();row.addProperty("type","craft");row.addProperty("targetId","minecraft:cobblestone");row.addProperty("quantity",1);rows.add(row);materialScroll=Math.max(0,rows.size()-3);selectGoal(row,rows.size()-1);});
         materialScroll=Math.clamp(materialScroll,0,Math.max(0,rows.size()-3));
         for(int i=materialScroll;i<Math.min(rows.size(),materialScroll+3);i++){
-            var row=rows.get(i).getAsJsonObject();int index=i,yy=y+22+(i-materialScroll)*24-formScroll;g.fill(x,yy,x+w,yy+22,selectedRow==row?0xCC354D51:0x66303A42);
+            var row=rows.get(i).getAsJsonObject();int index=i,yy=y+22+(i-materialScroll)*24-formScroll;g.fill(x,yy,x+w,yy+22,selectedRow==row?UiTheme.SELECTED:0x66303030);
             String type=row.get("type").getAsString(),id=row.get("targetId").getAsString();
             text(g,cn.yumis.skyisland.server.QuestCatalog.actionName(type)+" "+goalName(type,id)+" ×"+row.get("quantity").getAsString(),x+3,yy+7,0xFFE4E8EC,w-27);
             buttons.add(new Hit(x,yy,w-22,22,()->selectGoal(row,index)));button(g,"×",x+w-21,yy,21,!model.taskBusy,()->{rows.remove(index);selectedRow=null;});
@@ -235,13 +235,13 @@ public final class QuestEditorPanel {
         if(focused==itemSearch){
             if(selectedGoal&&selectedRow.get("type").getAsString().equals("kill")){
                 var types=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.stream().filter(t->ItemPickerCatalog.contains(itemSearch.getValue(),t.getDescription().getString(),net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(t).toString())).toList();
-                itemResultsScroll=Math.clamp(itemResultsScroll,0,Math.max(0,types.size()-max));int end=Math.min(types.size(),itemResultsScroll+max);g.fill(x,y,x+w,y+(end-itemResultsScroll)*25,0xF018242B);
+                itemResultsScroll=Math.clamp(itemResultsScroll,0,Math.max(0,types.size()-max));int end=Math.min(types.size(),itemResultsScroll+max);g.fill(x,y,x+w,y+(end-itemResultsScroll)*25,UiTheme.PANEL);
                 for(int i=itemResultsScroll;i<end;i++){var type=types.get(i);String id=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(type).toString();int yy=y+(i-itemResultsScroll)*25;text(g,type.getDescription().getString()+" · "+id,x+5,yy+8,0xFFE3EAEF,w-10);suggestions.add(new Hit(x,yy,w,25,()->{itemSearch.setValue(id);itemSearch.setFocused(false);}));}return;
             }
             var results=ItemPickerCatalog.items().stream().filter(p->ItemPickerCatalog.contains(itemSearch.getValue(),p.name(),p.id())).toList();
             itemResultsScroll=Math.clamp(itemResultsScroll,0,Math.max(0,results.size()-max));
             int end=Math.min(results.size(),itemResultsScroll+max);
-            g.fill(x,y,x+w,y+(end-itemResultsScroll)*25,0xF018242B);
+            g.fill(x,y,x+w,y+(end-itemResultsScroll)*25,UiTheme.PANEL);
             for(int i=itemResultsScroll;i<end;i++){
                 var item=results.get(i);int yy=y+(i-itemResultsScroll)*25;g.item(item.stack(),x+3,yy+4);
                 text(g,item.name(),x+24,yy+3,0xFFE3EAEF,w-30);text(g,item.id(),x+24,yy+14,0xFF9DADBA,w-30);
@@ -254,7 +254,7 @@ public final class QuestEditorPanel {
         }else{
             var values=focused==potion?ItemPickerCatalog.potions():ItemPickerCatalog.enchantments();
             var result=values.stream().filter(p->ItemPickerCatalog.contains(focused.getValue(),p.name(),p.id())).limit(max).toList();
-            g.fill(x,y,x+w,y+result.size()*25,0xF018242B);
+            g.fill(x,y,x+w,y+result.size()*25,UiTheme.PANEL);
             for(int i=0;i<result.size();i++){
                 var property=result.get(i);int yy=y+i*25;text(g,property.name()+" · "+property.id(),x+5,yy+8,0xFFE3EAEF,w-10);
                 suggestions.add(new Hit(x,yy,w,25,()->{

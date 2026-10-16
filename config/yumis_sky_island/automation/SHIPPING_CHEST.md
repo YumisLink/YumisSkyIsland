@@ -40,4 +40,4 @@ I=铁锭，R=红石粉，C=普通箱子。消耗4铁锭、4红石、1普通箱�
 全服出货任务共享每tick最多1000微秒计算预算；不会强制加载无人区块，也不在邻块更新里同步扫描大量箱子。
 已实现并通过真实客户端脉冲场景；大规模负载与完整崩溃矩阵仍待进一步验证。
 
-配置：shipping_chest.toml；收购额度：../shop/sale_quotas.toml；价格：../shop/products.toml。
+出货箱槽位与红石逻辑见源码ShippingChestBlock／ShippingChestEntity／TradeService，配方见原版资源recipe/shipping_chest.json；收购额度：../shop/sale_quotas.toml；价格：../shop/products.toml。

@@ -266,8 +266,7 @@ def make_rules(header: dict, products: dict) -> dict:
                 "key": {"I": "minecraft:iron_ingot", "R": "minecraft:redstone", "C": "minecraft:chest"},
                 "result": {"id": "yumis_sky_island:shipping_chest", "count": 1}},
         shopPurchaseEnabled=False, craftRequiresLevel=False,
-        baseValueCoins=sum(products["minecraft:" + item]["baseValueCoins"] * count
-                           for item, count in (("iron_ingot", 4), ("redstone", 4), ("chest", 1))),
+        baseValueCoins=None,
         trigger="redstone_rising_edge_only", scanOnContinuousPower=False,
         binding="party_of_actual_claim_at_server_placement",
         islandEpochScope="party_and_dimension", resetInvalidatesEpoch="overworld_only",

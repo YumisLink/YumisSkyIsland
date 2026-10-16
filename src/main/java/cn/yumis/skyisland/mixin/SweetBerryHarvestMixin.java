@@ -34,7 +34,8 @@ public abstract class SweetBerryHarvestMixin {
         SkyServer runtime=SkyServer.get(world.getServer());
         if(runtime==null)return original.call(world,table,state,entity,tool,actor,emitter);
         BiConsumer<ServerLevel,ItemStack> graded=(level,stack)->{
-            for(ItemStack part:runtime.professions.harvest(serverPlayer,List.of(stack)))emitter.accept(level,part);
+            if(!stack.isEmpty())runtime.progression.action(serverPlayer,"harvest",net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem()).toString(),stack.getCount(),"minecraft:sweet_berry_bush",net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(serverPlayer.getMainHandItem().getItem()).toString());
+            for(ItemStack part:runtime.professions.harvest(serverPlayer,cn.yumis.skyisland.server.ProfessionService.captureHarvest(state),List.of(stack)))emitter.accept(level,part);
         };
         return original.call(world,table,state,entity,tool,actor,graded);
     }

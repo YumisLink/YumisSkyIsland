@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-16",
+  "minecraft": "26.2",
+  "fabricLoader": "0.19.3",
+  "java": "25",
+  "unit": {
+    "failures": 0,
+    "errors": 0,
+    "tests": 106,
+    "skipped": 0
+  },
+  "client": {
+    "world": "new integrated-server save",
+    "result": "passed",
+    "assertions": 241,
+    "scenario": "cn.yumis.skyisland.clienttest.ResidentScenario",
+    "serverReopens": 2
+  },
+  "defaults": {
+    "targetBps": 2500,
+    "developmentSynced": true,
+    "arrivalBps": 500
+  },
+  "notes": [
+    "实机场景招募概率临时覆盖100%，结束恢复原测试配置；不修改默认和开发概率。",
+    "故障注入：跨区块部分原生回执缺失；WAL已强制落盘但主状态未提交时停止重开。",
+    "单客户端；区块卸载事件和无在线成员队伍映射驱动。",
+    "真实正版账号网络解析、50人长期压力和所有活塞／爆炸／建造杖／大炮组合未穷举。"
+  ],
+  "hashes": {
+    "build/run/clientGameTest/logs/latest.log": "5d8d4eaf9656191e5873b580243c57d0bc192c83eadb611b3b614317efa1bbc5",
+    "src/main/java/cn/yumis/skyisland/npc/ResidentService.java": "1693189d1eeae0daa96e553270c3f033b09044a7502ac889ca8785b4a00af56d",
+    "src/main/java/cn/yumis/skyisland/npc/ResidentTransactions.java": "bdf776edb0d04f5d3ea109ddc3139b0b5a71af7f9e83a85af60d8ab40b49ff1f",
+    "src/main/java/cn/yumis/skyisland/npc/HousingScanner.java": "d08766a527a4e05cc4b173c2f57660cddc95d70e2d69d04edcfdd41d79521d75",
+    "src/main/java/cn/yumis/skyisland/npc/ResidentEntity.java": "5674ae6ec74896e2bcb95435d2b771824be025a591c37f8859c66711129607d3",
+    "src/main/java/cn/yumis/skyisland/core/ResidentRules.java": "ca0d698b08830253482cf750637854fbf921bd64feceb90d816df3a0a7a22965",
+    "src/client/java/cn/yumis/skyisland/client/ResidentPanel.java": "cf0b573aeaa226fa6e9fc3c43d18c856d2fd377aef1e384fae25b6ac816e48b1",
+    "config/yumis_sky_island/gameplay/residents.toml": "76023465482ef9635dd85e36cf52c293d7a086db6fa85c471818309a6780b591",
+    "docs/screenshots/residents/panel-wide.png": "98aeb5f25341d466176c6e64fbdb3582dc5a02346602f3a85481a3e5d81acb8f",
+    "docs/screenshots/residents/panel-small.png": "c19e1bdddf5dcac56829b8bfb77bcce8b42692390d50e16a9d0ac5100f1d803e",
+    "docs/screenshots/residents/panel-small-scrolled.png": "ff51780f98ebb88bbf9f3c22925f56b846d4c6b304bf810d63a920eeda633e8a",
+    "docs/screenshots/residents/body-wide.png": "d0c0eabe3151a34f087825a1b7409f1d7dcef976ed2e72591b3bc9bcad092e62",
+    "docs/screenshots/residents/body-slim.png": "0ac5c886fa7902cc3f68d8f7b6d6f5e3a14e16b4e23cd5337cbddd466977cce6"
+  },
+  "formalCheck": "tools/dev.ps1 -Task Check -Offline: BUILD SUCCESSFUL"
+}

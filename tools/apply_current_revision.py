@@ -45,11 +45,6 @@ def apply(folder):
     data["products"] = {k: p for k, p in data["products"].items() if p["tradeMode"] in {"buy_sell", "buy_only", "sell_only"} and isinstance(p.get("baseValueCoins"), int) and p["baseValueCoins"] > 0}
     data["shopRevision"] = "control-panel-v4"
     write(path, data)
-    shipping_path = folder / "automation/shipping_chest.toml"
-    if shipping_path.exists():
-        shipping = read(shipping_path)
-        shipping["baseValueCoins"] = data["products"].get("yumis_sky_island:shipping_chest", {}).get("baseValueCoins")
-        write(shipping_path, shipping)
     print(f"{folder.relative_to(ROOT)}: removed {changed} building products; retained prices preserved")
 
 if __name__ == "__main__":

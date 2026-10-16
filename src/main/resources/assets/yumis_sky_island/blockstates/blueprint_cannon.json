@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "yumis_sky_island:block/blueprint_cannon"
+    },
+    "facing=east": {
+      "model": "yumis_sky_island:block/blueprint_cannon",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "yumis_sky_island:block/blueprint_cannon",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "yumis_sky_island:block/blueprint_cannon",
+      "y": 270
+    }
+  }
+}

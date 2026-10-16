@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-16",
+  "minecraft": "26.2",
+  "modVersion": "0.1.0-dev",
+  "junit": {
+    "tests": 85,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "defaultTomlCount": 23,
+  "defaultTomlByteMatch": true,
+  "compiledClassByteMatch": true,
+  "testsAndAutofishExcludedFromJar": true,
+  "configurationAudit": {
+    "developmentTomlCount": 23,
+    "discountedTechnicalPrefabCandidates": 32,
+    "pricesAndBuildFees": 0.25,
+    "cannonBase": 100000,
+    "cannonMinimumIslandLevel": 1,
+    "cannonShop": "permanent",
+    "repeatSync": "byte-identical",
+    "obsoletePureReferenceTomlRemoved": true
+  },
+  "clientScenarios": [
+    {
+      "class": "MobilityScenario",
+      "result": "passed",
+      "duration": "1m 40s"
+    },
+    {
+      "class": "ExperienceLotteryScenario, CloudLeapScenario",
+      "result": "passed",
+      "duration": "1m 39s",
+      "uiSizes": [
+        "1920x1080 GUI2",
+        "1280x720 GUI2"
+      ]
+    },
+    {
+      "class": "HarvestFishingScenario",
+      "result": "passed",
+      "duration": "2m 1s",
+      "autofish": "1.5.1-fabric-mc26.2",
+      "forceMPDetection": true,
+      "useSoundDetection": false,
+      "automaticLavaCatch": true,
+      "automaticVoidCatch": true
+    }
+  ],
+  "economyDocumentTool": "read/validate/render smoke passed in build/economy-render-smoke; no reference TOML generated",
+  "logs": {
+    "unit": {
+      "path": "build/gameplay-20261016-unit.log",
+      "sha256": "460e17edc70c9a1565b1b39d29ae0d41084462d55871aae1401c1a4874d43975"
+    },
+    "mobility": {
+      "path": "build/mobility-20261016-validation.log",
+      "sha256": "1d4380ef887d919b53545e6d7f2a31fb01425ff26cf5fa7661b5225e7c29eb85"
+    },
+    "lotteryAndCloudLeap": {
+      "path": "build/gameplay-20261016-final-client.log",
+      "sha256": "b42237b5e04925942e6df6905ff78583392dad67c6bf28d2e95938b64723567d"
+    },
+    "harvestFishingAndXplus": {
+      "path": "build/harvest-fishing-xplus-validation.log",
+      "sha256": "d88439c2115f00dda1802a41173eb8a398e56cf2f22286dcf7d5f0468156d359"
+    },
+    "export": {
+      "path": "build/gameplay-20261016-export.log",
+      "sha256": "2e4b1b78dad31ac6d6ef275566cb99ca0b1a43749493fdc1fd545361104bd397"
+    }
+  },
+  "artifacts": {
+    "YumisSkyIsland-0.1.0-dev.jar": {
+      "path": "build/libs/YumisSkyIsland-0.1.0-dev.jar",
+      "bytes": 1493090,
+      "sha256": "f5290f572fa5ba82aab982e048a431c3360dd4888a5b4712b030df4bd5afd564"
+    },
+    "YumisSkyIsland-0.1.0-dev-config.zip": {
+      "path": "build/libs/YumisSkyIsland-0.1.0-dev-config.zip",
+      "bytes": 96143,
+      "sha256": "1624eceede6b41a8fe512555d064a08be6b7bffdb61f01c531dc2f41ca9fed5f"
+    },
+    "YumisSkyIsland-server-prefabs.zip": {
+      "path": "build/libs/YumisSkyIsland-server-prefabs.zip",
+      "bytes": 3327149,
+      "sha256": "8f6e7425d561703040c40084f50cf694e736ac4bac9ea4885bb8f07a5bf77feb"
+    }
+  },
+  "boundaries": [
+    "Integrated client tests including forced multiplayer detector; full XPlus modpack and dedicated 50-player load not run",
+    "Third-party prefab assets are separate server-private bundle; production admission unchanged"
+  ]
+}

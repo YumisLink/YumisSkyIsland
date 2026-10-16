@@ -20,7 +20,7 @@ public abstract class HarvestQuestMixin {
         if(world.getGameRules().get(net.minecraft.world.level.gamerules.GameRules.BLOCK_DROPS)&&breaker instanceof ServerPlayer player){var rt=SkyServer.get(world.getServer());if(rt!=null){
             String block=BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString(),toolId=BuiltInRegistries.ITEM.getKey(tool.typeHolder().value()).toString();
             for(var stack:drops)if(!stack.isEmpty())rt.progression.action(player,"harvest",BuiltInRegistries.ITEM.getKey(stack.getItem()).toString(),stack.getCount(),block,toolId);
-            return rt.professions.harvest(player,drops);
+            return rt.professions.harvest(player,cn.yumis.skyisland.server.ProfessionService.captureHarvest(state),drops);
         }}return drops;
     }
 }

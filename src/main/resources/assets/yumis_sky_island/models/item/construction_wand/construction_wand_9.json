@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "yumis_sky_island:item/construction_wand/construction_wand_9"
+  }
+}

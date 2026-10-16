@@ -1,0 +1,104 @@
+# 居民经营：游戏内每日04:00与商店一起结算。修改后重启；不属于实时编辑白名单。
+# 空气范围；搜索预算包含可穿过的装饰格，超过上限或遇未加载区块不登记。
+minAir = 30
+maxAir = 200
+searchBudget = 4096
+# 概率使用万分比：每间空房5%；抽中后目标职业25%、普通居民75%。
+arrivalBps = 500
+targetBps = 2500
+graceDays = 3
+roamingRadius = 32
+baseCapacity = 10
+firstCapacity = 15
+lastCapacity = 20
+firstReputation = 100
+lastReputation = 300
+commissionLimit = 3
+commissionReward = 10
+# 同类专家不叠；普通居民按人数相加。经验加成只统计真实职业行动。
+ordinarySaleBps = 100
+expertSaleBps = 5000
+rawDiscountBps = 2000
+librarianXpBps = 1000
+# 园丁加农夫行动经验，探矿师加铁匠行动经验；本项目无可玩的矿工职业。
+specialXpBps = 2000
+# 厨师每四次成功供养为其他职业免一餐；所有厨师自身正常吃饭。
+chefEvery = 4
+foods = ["minecraft:bread", "minecraft:apple", "minecraft:carrot", "minecraft:baked_potato", "minecraft:cooked_beef", "minecraft:cooked_porkchop", "minecraft:cooked_chicken", "minecraft:cooked_mutton", "minecraft:cooked_rabbit", "minecraft:cooked_cod", "minecraft:cooked_salmon"]
+lights = ["minecraft:torch", "minecraft:wall_torch", "minecraft:glowstone", "minecraft:redstone_lamp"]
+# 列表内每项是一份交付委托，提交时扣物并加声望，不发金币或职业经验。
+commissions = [{item="minecraft:bread",count=4}, {item="minecraft:coal",count=2}, {item="minecraft:oak_log",count=8}, {item="minecraft:wheat",count=8}, {item="minecraft:leather",count=2}, {item="minecraft:paper",count=8}]
+# 每位居民每天另外消耗一件白名单食物。#planks 表示普通木板物品。
+# outputs为固定整批；randomOutput开启后按weight抽一项，省略weight为等权。
+[jobs.ordinary]
+station = ""
+minLevel = 0
+minReputation = 0
+supplies = [{item="#planks",count=1}]
+randomOutput = true
+outputs = [{item="minecraft:wheat",count=2}, {item="minecraft:apple",count=1}, {item="minecraft:egg",count=2}, {item="minecraft:string",count=2}, {item="minecraft:leather",count=1}, {item="minecraft:paper",count=2}]
+extraEvery = 0
+extraOutputs = []
+[jobs.smith]
+station = "minecraft:smithing_table"
+minLevel = 0
+minReputation = 0
+supplies = [{item="minecraft:coal",count=1}]
+randomOutput = false
+outputs = [{item="minecraft:iron_ingot",count=4}, {item="minecraft:gold_ingot",count=1}]
+extraEvery = 0
+extraOutputs = []
+[jobs.carpenter]
+station = "minecraft:crafting_table"
+minLevel = 0
+minReputation = 0
+supplies = [{item="minecraft:bone_meal",count=1}]
+randomOutput = false
+outputs = [{item="minecraft:oak_log",count=8}]
+extraEvery = 0
+extraOutputs = []
+[jobs.enchanter]
+station = "minecraft:enchanting_table"
+minLevel = 40
+minReputation = 100
+supplies = [{item="minecraft:lapis_lazuli",count=4}]
+randomOutput = false
+outputs = [{item="minecraft:emerald",count=2}]
+extraEvery = 5
+extraOutputs = [{item="minecraft:diamond",count=1}]
+[jobs.librarian]
+station = "minecraft:lectern"
+minLevel = 40
+minReputation = 300
+supplies = [{item="minecraft:paper",count=4}]
+randomOutput = false
+outputs = [{item="minecraft:book",count=1}]
+extraEvery = 0
+extraOutputs = []
+[jobs.cook]
+station = "minecraft:smoker"
+minLevel = 40
+minReputation = 300
+supplies = [{item="minecraft:coal",count=1}]
+randomOutput = false
+outputs = [{item="minecraft:baked_potato",count=4}, {item="minecraft:cooked_cod",count=2}]
+extraEvery = 0
+extraOutputs = []
+[jobs.gardener]
+station = "minecraft:composter"
+minLevel = 40
+minReputation = 300
+supplies = [{item="minecraft:bone_meal",count=1}]
+randomOutput = true
+outputs = [{item="minecraft:wheat_seeds",count=4}, {item="minecraft:carrot",count=2}, {item="minecraft:potato",count=2}, {item="minecraft:oak_sapling",count=1}, {item="minecraft:bone_meal",count=2}, {item="minecraft:wheat",count=2}]
+extraEvery = 0
+extraOutputs = []
+[jobs.prospector]
+station = "minecraft:blast_furnace"
+minLevel = 40
+minReputation = 300
+supplies = [{item="minecraft:torch",count=2}]
+randomOutput = false
+outputs = [{item="minecraft:coal",count=4}, {item="minecraft:redstone",count=4}, {item="minecraft:lapis_lazuli",count=2}]
+extraEvery = 0
+extraOutputs = []

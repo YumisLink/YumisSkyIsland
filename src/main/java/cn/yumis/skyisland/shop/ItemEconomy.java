@@ -2,6 +2,9 @@ package cn.yumis.skyisland.shop;
 
 import cn.yumis.skyisland.config.GameConfig;
 import cn.yumis.skyisland.core.*;
+import cn.yumis.skyisland.prefab.PrefabBlocks;
+import cn.yumis.skyisland.prefab.PrefabItems;
+import cn.yumis.skyisland.wand.ConstructionWands;
 import com.google.gson.*;
 import com.mojang.serialization.*;
 import net.minecraft.core.*;
@@ -25,6 +28,8 @@ public final class ItemEconomy {
     private final Map<Item, List<Entry>> byItem = new HashMap<>();
     private long epoch;
     private final long seed;
+    private java.util.function.ToIntBiFunction<cn.yumis.skyisland.data.IslandState.Party,String> residentSale=(party,item)->10000,residentBuy=(party,item)->10000;
+    public void residentModifiers(java.util.function.ToIntBiFunction<cn.yumis.skyisland.data.IslandState.Party,String> sale,java.util.function.ToIntBiFunction<cn.yumis.skyisland.data.IslandState.Party,String> buy){residentSale=sale;residentBuy=buy;}
     public ItemEconomy(GameConfig config, HolderLookup.Provider registries, long seed) {
         this.config = config; this.ops = registries.createSerializationContext(JsonOps.INSTANCE); this.seed = seed;
         for (GameConfig.Product p : config.products.values()) {
@@ -40,6 +45,17 @@ public final class ItemEconomy {
                 throw new IllegalArgumentException("shop/products.toml：商品 " + p.id() + " 无法加载：" + error.getMessage(),error);
             }
         }
+    }
+    /** Only controls automatic supply; existing items, recipes and valuation remain available. */
+    public boolean acquisitionAllowed(ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        if (ConstructionWands.specialTier(stack) >= 0) return config.constructionWandAcquisitionEnabled();
+        if (stack.is(PrefabItems.BLUEPRINT) || stack.is(PrefabItems.AMMUNITION) || stack.is(PrefabBlocks.CANNON.asItem()))
+            return config.prefabAcquisitionEnabled();
+        return true;
+    }
+    public boolean canBuy(Entry entry) {
+        return entry != null && entry.product().canBuy() && acquisitionAllowed(entry.template());
     }
     public DynamicOps<JsonElement> ops() { return ops; }
     public JsonElement encode(ItemStack stack) { return stack.isEmpty() ? JsonNull.INSTANCE : ItemStack.CODEC.encodeStart(ops, stack).getOrThrow(); }
@@ -60,13 +76,20 @@ public final class ItemEconomy {
         return new SplittableRandom(DailyShopSelector.mix(seed ^ product.hashCode() ^ DailyShopSelector.mix(epoch))).nextInt(min, max + 1);
     }
     public long buyPrice(Entry entry) {
+        if(entry.template().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION))return config.object("gameplay/prefabs.toml").get("ammunitionPriceCoins").getAsLong();
         long price = purchaseValue(entry).multiply(Rational.of(entry.product().buyMultiplierBps(), 10000)).floorLongExact();
         if (price < 1) throw new IllegalArgumentException("商品价格配置无效");
         return price;
     }
     public boolean starter(Entry entry) {
         JsonObject p = config.object("shop/products.toml").getAsJsonObject("products").getAsJsonObject(entry.product().id());
-        return p.has("firstAcquisitionPremium") && p.get("firstAcquisitionPremium").getAsBoolean();
+        return p!=null && p.has("firstAcquisitionPremium") && p.get("firstAcquisitionPremium").getAsBoolean();
+    }
+    public void replaceProduct(GameConfig.Product product) {
+        Entry old=entries.get(product.id());
+        if(old==null)throw new IllegalArgumentException("商品已移除");
+        Entry next=new Entry(product,old.template());entries.put(product.id(),next);
+        byItem.get(old.template().getItem()).replaceAll(e->e.product().id().equals(product.id())?next:e);
     }
     public long buyPrice(Entry entry, cn.yumis.skyisland.data.IslandState.Party party) {
         return starter(entry) && party.acquiredStarterIds.contains(entry.product().id())
@@ -76,9 +99,10 @@ public final class ItemEconomy {
         return fullValue(entry.product().buyBaseCoins(),marketBps(entry.product().id()),entry.template(),config.object("products/quality.toml"),config.object("shop/enchantments.toml"),config.minimumBaseCoins);
     }
     public long buyPrice(Entry entry, cn.yumis.skyisland.data.IslandState.Party party, boolean permanent) {
+        if(entry.template().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION))return config.object("gameplay/prefabs.toml").get("ammunitionPriceCoins").getAsLong();
         long premium = starter(entry) && party.acquiredStarterIds.contains(entry.product().id()) ? 10000 : entry.product().buyMultiplierBps();
         long price = purchaseValue(entry).multiply(Rational.of(premium,10000))
-            .multiply(Rational.of(permanent ? config.regularBuyMultiplierBps : 10000,10000)).floorLongExact();
+            .multiply(Rational.of(permanent ? config.regularBuyMultiplierBps : 10000,10000)).multiply(Rational.of(residentBuy.applyAsInt(party,BuiltInRegistries.ITEM.getKey(entry.template().getItem()).toString()),10000)).floorLongExact();
         if(price < 1)throw new IllegalArgumentException("商品购价配置无效");
         return price;
     }
@@ -141,23 +165,30 @@ public final class ItemEconomy {
         CustomData data = stack.get(DataComponents.CUSTOM_DATA);
         if (data != null) {
             CompoundTag tag = data.copyTag(); tag.remove("yumis_quality"); tag.remove("yumis_profession");
+            if(!LotteryItemRarity.get(stack).isEmpty())tag.remove(LotteryItemRarity.KEY);
             if (!tag.isEmpty()) return false;
         }
         return true;
     }
     public Quote quote(ItemStack stack) {
+        return quote(stack,null);
+    }
+    public Quote quote(ItemStack stack,cn.yumis.skyisland.data.IslandState.Party party) {
         Entry entry = match(stack); if (entry == null || !entry.product().canSell() || !safeToSell(stack)) return null;
         Rational full = full(entry, stack);
         Rational durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage() - stack.getDamageValue(), stack.getMaxDamage()) : Rational.ONE;
         String item = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
         var unit = new GameConfig.QuotaUnit(item, Rational.ONE);
-        return new Quote(entry, full, full.multiply(durability).divide(Rational.of(config.saleDivisor)), unit);
+        return new Quote(entry, full, full.multiply(durability).divide(Rational.of(config.saleDivisor)).multiply(Rational.of(party==null?10000:residentSale.applyAsInt(party,item),10000)), unit);
     }
     public List<SalePlanner.Input> saleInputs(Container container, int onlySlot) {
+        return saleInputs(container,onlySlot,null);
+    }
+    public List<SalePlanner.Input> saleInputs(Container container, int onlySlot,cn.yumis.skyisland.data.IslandState.Party party) {
         List<SalePlanner.Input> inputs = new ArrayList<>();
         for (int slot = 0; slot < container.getContainerSize(); slot++) {
             if (onlySlot >= 0 && slot != onlySlot) continue;
-            ItemStack stack = container.getItem(slot); Quote q = quote(stack);
+            ItemStack stack = container.getItem(slot); Quote q = quote(stack,party);
             if (q != null && q.normalSale().signum() > 0)
                 inputs.add(new SalePlanner.Input(slot, encode(stack).toString(), stack.getCount(), q.quota().group(), q.quota().units(), q.normalSale()));
         }

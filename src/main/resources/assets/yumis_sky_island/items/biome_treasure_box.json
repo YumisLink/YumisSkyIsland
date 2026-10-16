@@ -1,0 +1,923 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:custom_model_data",
+    "index": 0,
+    "cases": [
+      {
+        "when": "badlands_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/badlands_water"
+        }
+      },
+      {
+        "when": "badlands_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/badlands_water_blood"
+        }
+      },
+      {
+        "when": "bamboo_jungle_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/bamboo_jungle_water"
+        }
+      },
+      {
+        "when": "bamboo_jungle_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/bamboo_jungle_water_blood"
+        }
+      },
+      {
+        "when": "basalt_deltas_lava",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/basalt_deltas_lava"
+        }
+      },
+      {
+        "when": "basalt_deltas_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/basalt_deltas_water"
+        }
+      },
+      {
+        "when": "beach_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/beach_water"
+        }
+      },
+      {
+        "when": "beach_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/beach_water_blood"
+        }
+      },
+      {
+        "when": "birch_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/birch_forest_water"
+        }
+      },
+      {
+        "when": "birch_forest_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/birch_forest_water_blood"
+        }
+      },
+      {
+        "when": "cherry_grove_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/cherry_grove_water"
+        }
+      },
+      {
+        "when": "cherry_grove_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/cherry_grove_water_blood"
+        }
+      },
+      {
+        "when": "cold_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/cold_ocean_water"
+        }
+      },
+      {
+        "when": "cold_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/cold_ocean_water_blood"
+        }
+      },
+      {
+        "when": "crimson_forest_lava",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/crimson_forest_lava"
+        }
+      },
+      {
+        "when": "crimson_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/crimson_forest_water"
+        }
+      },
+      {
+        "when": "dark_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/dark_forest_water"
+        }
+      },
+      {
+        "when": "dark_forest_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/dark_forest_water_blood"
+        }
+      },
+      {
+        "when": "deep_cold_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_cold_ocean_water"
+        }
+      },
+      {
+        "when": "deep_cold_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_cold_ocean_water_blood"
+        }
+      },
+      {
+        "when": "deep_dark_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_dark_water"
+        }
+      },
+      {
+        "when": "deep_dark_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_dark_water_blood"
+        }
+      },
+      {
+        "when": "deep_frozen_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_frozen_ocean_water"
+        }
+      },
+      {
+        "when": "deep_frozen_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_frozen_ocean_water_blood"
+        }
+      },
+      {
+        "when": "deep_lukewarm_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_lukewarm_ocean_water"
+        }
+      },
+      {
+        "when": "deep_lukewarm_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_lukewarm_ocean_water_blood"
+        }
+      },
+      {
+        "when": "deep_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_ocean_water"
+        }
+      },
+      {
+        "when": "deep_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/deep_ocean_water_blood"
+        }
+      },
+      {
+        "when": "desert_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/desert_water"
+        }
+      },
+      {
+        "when": "desert_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/desert_water_blood"
+        }
+      },
+      {
+        "when": "dripstone_caves_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/dripstone_caves_water"
+        }
+      },
+      {
+        "when": "dripstone_caves_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/dripstone_caves_water_blood"
+        }
+      },
+      {
+        "when": "end_barrens_void",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/end_barrens_void"
+        }
+      },
+      {
+        "when": "end_barrens_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/end_barrens_water"
+        }
+      },
+      {
+        "when": "end_highlands_void",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/end_highlands_void"
+        }
+      },
+      {
+        "when": "end_highlands_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/end_highlands_water"
+        }
+      },
+      {
+        "when": "end_midlands_void",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/end_midlands_void"
+        }
+      },
+      {
+        "when": "end_midlands_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/end_midlands_water"
+        }
+      },
+      {
+        "when": "eroded_badlands_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/eroded_badlands_water"
+        }
+      },
+      {
+        "when": "eroded_badlands_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/eroded_badlands_water_blood"
+        }
+      },
+      {
+        "when": "flower_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/flower_forest_water"
+        }
+      },
+      {
+        "when": "flower_forest_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/flower_forest_water_blood"
+        }
+      },
+      {
+        "when": "forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/forest_water"
+        }
+      },
+      {
+        "when": "forest_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/forest_water_blood"
+        }
+      },
+      {
+        "when": "frozen_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/frozen_ocean_water"
+        }
+      },
+      {
+        "when": "frozen_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/frozen_ocean_water_blood"
+        }
+      },
+      {
+        "when": "frozen_peaks_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/frozen_peaks_water"
+        }
+      },
+      {
+        "when": "frozen_peaks_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/frozen_peaks_water_blood"
+        }
+      },
+      {
+        "when": "frozen_river_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/frozen_river_water"
+        }
+      },
+      {
+        "when": "frozen_river_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/frozen_river_water_blood"
+        }
+      },
+      {
+        "when": "grove_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/grove_water"
+        }
+      },
+      {
+        "when": "grove_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/grove_water_blood"
+        }
+      },
+      {
+        "when": "ice_spikes_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/ice_spikes_water"
+        }
+      },
+      {
+        "when": "ice_spikes_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/ice_spikes_water_blood"
+        }
+      },
+      {
+        "when": "jagged_peaks_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/jagged_peaks_water"
+        }
+      },
+      {
+        "when": "jagged_peaks_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/jagged_peaks_water_blood"
+        }
+      },
+      {
+        "when": "jungle_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/jungle_water"
+        }
+      },
+      {
+        "when": "jungle_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/jungle_water_blood"
+        }
+      },
+      {
+        "when": "lukewarm_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/lukewarm_ocean_water"
+        }
+      },
+      {
+        "when": "lukewarm_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/lukewarm_ocean_water_blood"
+        }
+      },
+      {
+        "when": "lush_caves_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/lush_caves_water"
+        }
+      },
+      {
+        "when": "lush_caves_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/lush_caves_water_blood"
+        }
+      },
+      {
+        "when": "mangrove_swamp_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/mangrove_swamp_water"
+        }
+      },
+      {
+        "when": "mangrove_swamp_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/mangrove_swamp_water_blood"
+        }
+      },
+      {
+        "when": "meadow_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/meadow_water"
+        }
+      },
+      {
+        "when": "meadow_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/meadow_water_blood"
+        }
+      },
+      {
+        "when": "mushroom_fields_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/mushroom_fields_water"
+        }
+      },
+      {
+        "when": "mushroom_fields_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/mushroom_fields_water_blood"
+        }
+      },
+      {
+        "when": "nether_wastes_lava",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/nether_wastes_lava"
+        }
+      },
+      {
+        "when": "nether_wastes_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/nether_wastes_water"
+        }
+      },
+      {
+        "when": "ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/ocean_water"
+        }
+      },
+      {
+        "when": "ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/ocean_water_blood"
+        }
+      },
+      {
+        "when": "old_growth_birch_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/old_growth_birch_forest_water"
+        }
+      },
+      {
+        "when": "old_growth_birch_forest_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/old_growth_birch_forest_water_blood"
+        }
+      },
+      {
+        "when": "old_growth_pine_taiga_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/old_growth_pine_taiga_water"
+        }
+      },
+      {
+        "when": "old_growth_pine_taiga_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/old_growth_pine_taiga_water_blood"
+        }
+      },
+      {
+        "when": "old_growth_spruce_taiga_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/old_growth_spruce_taiga_water"
+        }
+      },
+      {
+        "when": "old_growth_spruce_taiga_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/old_growth_spruce_taiga_water_blood"
+        }
+      },
+      {
+        "when": "pale_garden_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/pale_garden_water"
+        }
+      },
+      {
+        "when": "pale_garden_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/pale_garden_water_blood"
+        }
+      },
+      {
+        "when": "plains_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/plains_water"
+        }
+      },
+      {
+        "when": "plains_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/plains_water_blood"
+        }
+      },
+      {
+        "when": "river_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/river_water"
+        }
+      },
+      {
+        "when": "river_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/river_water_blood"
+        }
+      },
+      {
+        "when": "savanna_plateau_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/savanna_plateau_water"
+        }
+      },
+      {
+        "when": "savanna_plateau_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/savanna_plateau_water_blood"
+        }
+      },
+      {
+        "when": "savanna_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/savanna_water"
+        }
+      },
+      {
+        "when": "savanna_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/savanna_water_blood"
+        }
+      },
+      {
+        "when": "small_end_islands_void",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/small_end_islands_void"
+        }
+      },
+      {
+        "when": "small_end_islands_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/small_end_islands_water"
+        }
+      },
+      {
+        "when": "snowy_beach_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_beach_water"
+        }
+      },
+      {
+        "when": "snowy_beach_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_beach_water_blood"
+        }
+      },
+      {
+        "when": "snowy_plains_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_plains_water"
+        }
+      },
+      {
+        "when": "snowy_plains_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_plains_water_blood"
+        }
+      },
+      {
+        "when": "snowy_slopes_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_slopes_water"
+        }
+      },
+      {
+        "when": "snowy_slopes_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_slopes_water_blood"
+        }
+      },
+      {
+        "when": "snowy_taiga_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_taiga_water"
+        }
+      },
+      {
+        "when": "snowy_taiga_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/snowy_taiga_water_blood"
+        }
+      },
+      {
+        "when": "soul_sand_valley_lava",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/soul_sand_valley_lava"
+        }
+      },
+      {
+        "when": "soul_sand_valley_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/soul_sand_valley_water"
+        }
+      },
+      {
+        "when": "sparse_jungle_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/sparse_jungle_water"
+        }
+      },
+      {
+        "when": "sparse_jungle_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/sparse_jungle_water_blood"
+        }
+      },
+      {
+        "when": "stony_peaks_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/stony_peaks_water"
+        }
+      },
+      {
+        "when": "stony_peaks_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/stony_peaks_water_blood"
+        }
+      },
+      {
+        "when": "stony_shore_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/stony_shore_water"
+        }
+      },
+      {
+        "when": "stony_shore_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/stony_shore_water_blood"
+        }
+      },
+      {
+        "when": "sulfur_caves_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/sulfur_caves_water"
+        }
+      },
+      {
+        "when": "sulfur_caves_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/sulfur_caves_water_blood"
+        }
+      },
+      {
+        "when": "sunflower_plains_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/sunflower_plains_water"
+        }
+      },
+      {
+        "when": "sunflower_plains_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/sunflower_plains_water_blood"
+        }
+      },
+      {
+        "when": "swamp_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/swamp_water"
+        }
+      },
+      {
+        "when": "swamp_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/swamp_water_blood"
+        }
+      },
+      {
+        "when": "taiga_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/taiga_water"
+        }
+      },
+      {
+        "when": "taiga_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/taiga_water_blood"
+        }
+      },
+      {
+        "when": "the_end_void",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"
+        }
+      },
+      {
+        "when": "the_end_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/the_end_water"
+        }
+      },
+      {
+        "when": "warm_ocean_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/warm_ocean_water"
+        }
+      },
+      {
+        "when": "warm_ocean_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/warm_ocean_water_blood"
+        }
+      },
+      {
+        "when": "warped_forest_lava",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/warped_forest_lava"
+        }
+      },
+      {
+        "when": "warped_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/warped_forest_water"
+        }
+      },
+      {
+        "when": "windswept_forest_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_forest_water"
+        }
+      },
+      {
+        "when": "windswept_forest_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_forest_water_blood"
+        }
+      },
+      {
+        "when": "windswept_gravelly_hills_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_gravelly_hills_water"
+        }
+      },
+      {
+        "when": "windswept_gravelly_hills_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_gravelly_hills_water_blood"
+        }
+      },
+      {
+        "when": "windswept_hills_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_hills_water"
+        }
+      },
+      {
+        "when": "windswept_hills_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_hills_water_blood"
+        }
+      },
+      {
+        "when": "windswept_savanna_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_savanna_water"
+        }
+      },
+      {
+        "when": "windswept_savanna_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/windswept_savanna_water_blood"
+        }
+      },
+      {
+        "when": "wooded_badlands_water",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/wooded_badlands_water"
+        }
+      },
+      {
+        "when": "wooded_badlands_water_blood",
+        "model": {
+          "type": "minecraft:model",
+          "model": "yumis_sky_island:item/biome_treasure_box/wooded_badlands_water_blood"
+        }
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "yumis_sky_island:item/biome_treasure_box/plains_water"
+    }
+  }
+}

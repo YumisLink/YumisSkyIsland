@@ -5,6 +5,8 @@ import com.electronwill.nightconfig.core.UnmodifiableConfig;
 import com.electronwill.nightconfig.toml.TomlParser;
 import com.electronwill.nightconfig.toml.TomlWriter;
 import com.google.gson.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
@@ -15,6 +17,7 @@ import java.util.*;
 
 /** TOML is the editable boundary; Gson remains the wire and journal representation. */
 public final class TomlConfigIO {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TomlConfigIO.class);
     private TomlConfigIO() {}
 
     public static JsonObject read(Path file) throws IOException {
@@ -27,8 +30,45 @@ public final class TomlConfigIO {
         }
     }
 
+    /** Load editable configuration, recovering readable statements before replacing a broken file. */
+    public static JsonObject readOrRepair(Path file, String defaultsText) throws IOException {
+        CommentedConfig defaults;
+        try { defaults = parse(defaultsText); }
+        catch (RuntimeException error) { throw new IOException("模组默认 TOML 格式有误：" + file.getFileName(), error); }
+        byte[] original = Files.readAllBytes(file);
+        String text;
+        boolean damaged = false;
+        try { text = StandardCharsets.UTF_8.newDecoder().decode(ByteBuffer.wrap(original)).toString(); }
+        catch (java.nio.charset.CharacterCodingException error) { text = new String(original, StandardCharsets.UTF_8); damaged = true; }
+        CommentedConfig document;
+        try { document = parse(text); }
+        catch (RuntimeException error) { document = TomlRecovery.salvage(text); damaged = true; }
+        JsonObject source = json(document).getAsJsonObject(), fallback = json(defaults).getAsJsonObject();
+        normalizeNulls(file.getFileName().toString(), source);
+        normalizeNulls(file.getFileName().toString(), fallback);
+        JsonObject repaired = TomlRecovery.complete(source, fallback);
+        if (!damaged && source.equals(repaired)) return source;
+        merge(document, repaired);
+        StringWriter out = new StringWriter();
+        new TomlWriter().write(document, out);
+        // Validate the replacement before touching the previous configuration.
+        try { parse(out.toString()); }
+        catch (RuntimeException error) { throw new IOException("配置修复结果未通过 TOML 校验，保留原文件：" + file, error); }
+        if (!Arrays.equals(original, Files.readAllBytes(file))) throw new IOException("配置在修复期间被修改，请重试：" + file);
+        Path backup = file.resolveSibling(file.getFileName() + ".broken." + UUID.randomUUID() + ".bak");
+        Files.write(backup, original, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
+        atomicWrite(file, out.toString());
+        LOGGER.warn("已修复配置 {}：保留可读取项，其余字段按默认格式补齐；原文件备份 {}", file, backup);
+        return repaired;
+    }
+
+    static CommentedConfig parse(String text) { return new TomlParser().parse(new StringReader(text)); }
+
     /** Preserve existing comments, including comments on reordered task rows. */
     public static void write(Path file, JsonObject data) throws IOException {
+        writeChecked(file,data,null);
+    }
+    public static void writeChecked(Path file, JsonObject data, String expectedDigest) throws IOException {
         CommentedConfig document = CommentedConfig.inMemory();
         if (Files.exists(file)) {
             try (Reader reader = Files.newBufferedReader(file, StandardCharsets.UTF_8)) {
@@ -40,22 +80,48 @@ public final class TomlConfigIO {
         merge(document, data);
         StringWriter out = new StringWriter();
         new TomlWriter().write(document, out);
+        if(expectedDigest!=null&&!expectedDigest.equals(GameConfig.digest(file)))throw new IOException("TOML在编辑期间被修改，未覆盖原文件");
+        atomicWrite(file, out.toString(),expectedDigest);
+    }
+
+    private static void atomicWrite(Path file, String text) throws IOException {
+        atomicWrite(file,text,null);
+    }
+    private static void atomicWrite(Path file, String text, String expectedDigest) throws IOException {
         Files.createDirectories(file.getParent());
         Path temporary = file.resolveSibling(file.getFileName() + "." + UUID.randomUUID() + ".tmp");
         try {
-            byte[] bytes = out.toString().getBytes(StandardCharsets.UTF_8);
+            byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
             try (FileChannel channel = FileChannel.open(temporary, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
                 ByteBuffer buffer = ByteBuffer.wrap(bytes);
                 while (buffer.hasRemaining()) channel.write(buffer);
                 channel.force(true);
             }
-            Files.move(temporary, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            for (int attempt = 0; ; attempt++) {
+                try {
+                    if(expectedDigest!=null&&!expectedDigest.equals(GameConfig.digest(file)))throw new IOException("TOML在保存期间被修改，未覆盖原文件");
+                    Files.move(temporary, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+                    break;
+                } catch (AccessDeniedException error) {
+                    // Windows indexers can briefly hold the destination between
+                    // reading and replacement. Keep the original intact and retry.
+                    if (attempt == 4) throw error;
+                    try { Thread.sleep(25L * (attempt + 1)); }
+                    catch (InterruptedException interrupted) {
+                        Thread.currentThread().interrupt();
+                        throw new IOException("等待配置文件释放时被中断：" + file, interrupted);
+                    }
+                }
+            }
         } finally {
             Files.deleteIfExists(temporary);
         }
     }
 
     private static void merge(CommentedConfig target, JsonObject source) {
+        merge(target, source, new HashSet<>());
+    }
+    private static void merge(CommentedConfig target, JsonObject source, Set<String> explained) {
         for (String key : new ArrayList<>(target.valueMap().keySet())) {
             if (!source.has(key) || source.get(key).isJsonNull()) target.remove(List.of(key));
         }
@@ -63,15 +129,22 @@ public final class TomlConfigIO {
             String key = entry.getKey();
             if (entry.getValue().isJsonNull()) continue;
             Object existing = target.get(List.of(key));
-            target.set(List.of(key), value(entry.getValue(), existing));
-            if (target.getComment(List.of(key)) == null) target.setComment(List.of(key), hint(key, entry.getValue()));
+            target.set(List.of(key), value(entry.getValue(), existing, explained));
+            String comment=target.getComment(List.of(key));
+            boolean generated=comment!=null&&(comment.contains("；当前默认：")||comment.startsWith("配置字段 ")||comment.startsWith("说明字段 ")||comment.startsWith("注册表键／组件值"));
+            boolean dynamic=key.contains(":")||key.matches("[0-9]+");
+            if(generated){
+                if(dynamic||!explained.add(key))target.removeComment(List.of(key));
+                else target.setComment(List.of(key),hint(key,entry.getValue()));
+            }else if(comment!=null)explained.add(key);
+            else if(!dynamic&&explained.add(key))target.setComment(List.of(key),hint(key,entry.getValue()));
         }
     }
 
-    private static Object value(JsonElement element, Object existing) {
+    private static Object value(JsonElement element, Object existing, Set<String> explained) {
         if (element.isJsonObject()) {
             CommentedConfig config = existing instanceof CommentedConfig c ? c : CommentedConfig.inMemory();
-            merge(config, element.getAsJsonObject());
+            merge(config, element.getAsJsonObject(), explained);
             return config;
         }
         if (element.isJsonArray()) {
@@ -84,7 +157,7 @@ public final class TomlConfigIO {
                     String id = child.getAsJsonObject().get("id").getAsString();
                     old = previous.stream().filter(x -> x instanceof UnmodifiableConfig c && Objects.equals(c.get("id"), id)).findFirst().orElse(null);
                 }
-                result.add(value(child, old));
+                result.add(value(child, old, explained));
                 index++;
             }
             return result;
@@ -123,7 +196,6 @@ public final class TomlConfigIO {
         if (filename.equals("sale_quotas.toml") && object.has("saleMultiplierBps") && !object.has("upToUnits")) object.add("upToUnits", JsonNull.INSTANCE);
         if (filename.equals("server_rules.toml") && object.has("villagerTradingEnabled") && !object.has("globalMobGriefingOverride")) object.add("globalMobGriefingOverride", JsonNull.INSTANCE);
         if (filename.equals("enchantments.toml") && object.has("levelMultiplierBps") && !object.has("exclusiveSet")) object.add("exclusiveSet", JsonNull.INSTANCE);
-        if (filename.equals("shipping_chest.toml") && object.has("inventorySlots") && !object.has("baseValueCoins")) object.add("baseValueCoins", JsonNull.INSTANCE);
         for (JsonElement child : object.asMap().values()) normalizeNulls(filename, child);
     }
 
@@ -133,7 +205,7 @@ public final class TomlConfigIO {
             case "name" -> "界面显示名称";
             case "kind" -> "任务类型：main 队伍主线，side 个人支线，profession 个人职业任务";
             case "objective" -> "完成目标：materials 提交材料，place_shipping_chest 本人放置，tracked 追踪本人行动";
-            case "profession" -> "职业ID：fisherman、farmer、blacksmith、stonemason、artisan、chef、hunter";
+            case "profession" -> "职业ID：fisherman、farmer、blacksmith、chef、hunter";
             case "previousQuestId" -> "同任务线的前置任务ID；前项领奖后解锁，省略为起点";
             case "goals" -> "本人行动追踪条件列表；不扣物，只累计当前解锁任务";
             case "type" -> "行动类型：craft 制作／加工，smelt 手动领取熔炼，fish 钓鱼，harvest 采集掉落，kill 本人击杀";
@@ -142,7 +214,12 @@ public final class TomlConfigIO {
             case "toolId" -> "采集工具物品ID；省略表示不限";
             case "rewardExperiencePoints" -> "原版经验点奖励；非负整数，按点数而非等级发放";
             case "regularBuyMultiplierBps" -> "普通常驻商店额外购价倍率；25000=2.5倍，不影响收购或每日隐藏商店";
+            case "acquisitionEnabled" -> "获取开关；关闭仅停止商店和随机悬赏供给，已有物品、锻造升级及人工发放保留，重启生效";
             case "buyBaseValueCoins" -> "独立购入基价；正整数，省略沿用基础价值，不改变收购价";
+            case "buyBaseValueOverrides" -> "动态建筑图纸的购入基价覆盖；不修改等级、稀有度、模板或成品费";
+            case "basePoints" -> "方块基础分；条目、字段或整个blocks表省略默认1；参与计分者须为正整数，>5递减，每块取整后最低1分";
+            case "notices" -> "手动放置和建造杖跨档时通知本队在线成员；跌破再达到会重发";
+            case "message" -> "跨档文案；支持{block}、{threshold}、{nextPoints}、{nextMultiplier}";
             case "successfulFishingXp" -> "每次真实成功获钓的渔夫经验；默认12，空收杆与钩实体不计";
             case "requirements" -> "需求列表；附魔与品质至少达到指定值，未指定属性不限制";
             case "itemId" -> "有效注册物品 ID，例如 minecraft:oak_log";
@@ -162,7 +239,6 @@ public final class TomlConfigIO {
             case "specialFavorites" -> "每日／隐藏共用收藏；换日未抽到时库存为0";
             default -> key.contains(":") ? "注册表键／组件值，保持 ID 原样" : "配置字段 " + key;
         };
-        String sample = value.isJsonPrimitive() ? "；当前默认：" + value : "";
-        return label + sample;
+        return label;
     }
 }

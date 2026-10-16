@@ -1,0 +1,220 @@
+# 单池抽奖／祈愿；UTF-8。奖品目录和保底参数手改重启，中文注释可自行补充。
+# 原神模式仅改变称呼；普通玩家不会接收真实概率或完整奖池。
+enabled = true
+# 每兑换一张券消耗的附魔等级／个人代币；正整数，可实时编辑。
+experienceCost = 30
+tokenCost = 160
+# 每次成功领取任务（含悬赏）／每个首次经历的岛等级给予的个人代币；非负整数。
+taskTokenReward = 20
+levelTokenReward = 20
+# 传说内UP概率；万分数。歪后下一件传说必为当时UP，唯一传说直接作为UP。
+featuredBps = 5000
+
+# 基础概率万分数；普通取10000减去这三项，合计不得超过10000，可实时编辑。
+[rarityBps]
+rare = 3500
+epic = 200
+legendary = 60
+
+# 连续softStart抽未出传说后线性递增，legendaryAt抽必出；epicAt抽保底史诗。
+[pity]
+softStart = 40
+legendaryAt = 50
+epicAt = 10
+
+# 奖品固定ID必须唯一；每次只发1件，同档等概率，islandLevel为当前岛等级要求。
+# 稀有度与商店独立：common普通、rare稀有、epic史诗、legendary传说。
+# components为26.2物品组件，可选；例如在对应条目下增加[prizes.components]配置组件。
+# 启动取最低传说等级作为解锁门槛；该等级下须能兑现各概率档及史诗／传说保底。
+
+[[prizes]]
+id = "iron_axe"
+itemId = "minecraft:iron_axe"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_shovel"
+itemId = "minecraft:iron_shovel"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_sword"
+itemId = "minecraft:iron_sword"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_hoe"
+itemId = "minecraft:iron_hoe"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_helmet"
+itemId = "minecraft:iron_helmet"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_chestplate"
+itemId = "minecraft:iron_chestplate"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_leggings"
+itemId = "minecraft:iron_leggings"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "iron_boots"
+itemId = "minecraft:iron_boots"
+rarity = "common"
+islandLevel = 10
+
+[[prizes]]
+id = "golden_axe"
+itemId = "minecraft:golden_axe"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_shovel"
+itemId = "minecraft:golden_shovel"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_sword"
+itemId = "minecraft:golden_sword"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_hoe"
+itemId = "minecraft:golden_hoe"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_helmet"
+itemId = "minecraft:golden_helmet"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_chestplate"
+itemId = "minecraft:golden_chestplate"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_leggings"
+itemId = "minecraft:golden_leggings"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "golden_boots"
+itemId = "minecraft:golden_boots"
+rarity = "rare"
+islandLevel = 30
+
+[[prizes]]
+id = "diamond_axe"
+itemId = "minecraft:diamond_axe"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_shovel"
+itemId = "minecraft:diamond_shovel"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_sword"
+itemId = "minecraft:diamond_sword"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_hoe"
+itemId = "minecraft:diamond_hoe"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_helmet"
+itemId = "minecraft:diamond_helmet"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_chestplate"
+itemId = "minecraft:diamond_chestplate"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_leggings"
+itemId = "minecraft:diamond_leggings"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "diamond_boots"
+itemId = "minecraft:diamond_boots"
+rarity = "epic"
+islandLevel = 35
+
+[[prizes]]
+id = "netherite_axe"
+itemId = "minecraft:netherite_axe"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_shovel"
+itemId = "minecraft:netherite_shovel"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_sword"
+itemId = "minecraft:netherite_sword"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_hoe"
+itemId = "minecraft:netherite_hoe"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_helmet"
+itemId = "minecraft:netherite_helmet"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_chestplate"
+itemId = "minecraft:netherite_chestplate"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_leggings"
+itemId = "minecraft:netherite_leggings"
+rarity = "legendary"
+islandLevel = 75
+
+[[prizes]]
+id = "netherite_boots"
+itemId = "minecraft:netherite_boots"
+rarity = "legendary"
+islandLevel = 75

@@ -7,7 +7,8 @@
   "environment": "*",
   "entrypoints": {
     "main": ["cn.yumis.skyisland.YumisSkyIsland"],
-    "client": ["cn.yumis.skyisland.client.SkyIslandClient"]
+    "client": ["cn.yumis.skyisland.client.SkyIslandClient"],
+    "jei_mod_plugin": ["cn.yumis.skyisland.client.jei.SkyFishingJeiPlugin"]
   },
   "mixins": ["yumis_sky_island.mixins.json", {"config": "yumis_sky_island.client.mixins.json", "environment": "client"}],
   "depends": {

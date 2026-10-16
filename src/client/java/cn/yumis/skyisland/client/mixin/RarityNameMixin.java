@@ -16,7 +16,7 @@ public abstract class RarityNameMixin {
     private void rarity(CallbackInfoReturnable<Component> result){
         var mc=Minecraft.getInstance();if(mc==null||!mc.isSameThread())return;
         var model=SkyIslandClient.CATALOG;
-        if(model==null||model.products.isEmpty()&&model.itemRarities.isEmpty())return;
+        if(model==null||model.products.isEmpty()&&model.itemRarities.isEmpty()&&cn.yumis.skyisland.shop.LotteryItemRarity.get((ItemStack)(Object)this).isEmpty()&&cn.yumis.skyisland.wand.ConstructionWands.specialTier((ItemStack)(Object)this)<0)return;
         int color=RarityColors.color(model.rarity((ItemStack)(Object)this))&0xFFFFFF;
         result.setReturnValue(result.getReturnValue().copy().withStyle(style->style.withColor(color)));
     }

@@ -1,13 +1,13 @@
 # Yumi 空岛可编辑配置；UTF-8。服务端规则重启生效，任务编辑器保存立即生效。
 # 省略原空值字段保留无限／继承含义。带冒号或点号的注册 ID 必须保持引号。
 
-# 配置结构版本；资料字段，勿随意降低；当前默认：1
+# 配置结构版本；资料字段，勿随意降低
 schemaVersion = 1
-# 配置审阅状态；资料字段，不改变运行规则；当前默认："review_draft"
+# 配置审阅状态；资料字段，不改变运行规则
 status = "review_draft"
-# 目标 Minecraft 版本；资料字段；当前默认："26.2"
+# 目标 Minecraft 版本；资料字段
 minecraftVersion = "26.2"
-# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证；当前默认：false
+# 资料提取时的校验标记；启动时仍逐项进行真实注册表验证
 registryVerified = false
 # 全服市场行情与轮次参数
 stockSource = "products.dailyStock"
@@ -26,118 +26,113 @@ regularBuyMultiplierBps = 25000
 [market]
 # 每个主世界游戏日跨过04:00（绝对日时刻22000）刷新一次，睡眠和跳时均有效。
 refreshAtDayTick = 22000
-# 说明字段 anchorToBasePrice；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 anchorToBasePrice
 anchorToBasePrice = true
-# 行情最低万分比；9000表示基础价的90%；当前默认：9000
+# 行情最低万分比；9000表示基础价的90%
 minPriceBps = 9000
-# 行情最高万分比；11000表示基础价的110%，不得小于最低值；当前默认：11000
+# 行情最高万分比；11000表示基础价的110%，不得小于最低值
 maxPriceBps = 11000
-# 说明字段 sharedQuotesAcrossParties；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 sharedQuotesAcrossParties
 sharedQuotesAcrossParties = true
-# 行情后的基础全价下限，使用当前货币单位；正整数；当前默认：100
+# 行情后的基础全价下限，使用当前货币单位；正整数
 minimumCurrentBaseValueCoins = 100
 # 每日商店参数；默认12种，全队共享库存
 
 [daily]
-# 共享范围说明；目前按队伍共享，不通过此字段切换范围；当前默认："party"
+# 共享范围说明；目前按队伍共享，不通过此字段切换范围
 scope = "party"
-# 当轮最多商品种数；正整数，候选不足时只显示可抽数量；当前默认：12
+# 当轮最多商品种数；正整数，候选不足时只显示可抽数量
 slots = 12
-# 说明字段 onlyEligibleAtRollTime；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 onlyEligibleAtRollTime
 onlyEligibleAtRollTime = true
-# 说明字段 sampling；资料用途，不单独改变运行行为；当前默认："weighted_rarity_then_weighted_product_without_replacement"
+# 配置字段 sampling
 sampling = "weighted_rarity_then_weighted_product_without_replacement"
-# 说明字段 limitSharedAcrossParty；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 limitSharedAcrossParty
 limitSharedAcrossParty = true
-# 说明字段 unusedStockCarriesOver；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 unusedStockCarriesOver
 unusedStockCarriesOver = false
 # 隐藏商店参数；当轮替代每日商店
 
 [hidden]
-# 隐藏概率，万分比；500=5%，范围0～10000；当前默认：500
+# 隐藏概率，万分比；500=5%，范围0～10000
 chanceBps = 500
-# 说明字段 replacesDaily；资料用途，不单独改变运行行为；当前默认：true
+# 配置字段 replacesDaily
 replacesDaily = true
-# 当轮最多商品种数；正整数，候选不足时只显示可抽数量；当前默认：16
 slots = 16
-# 隐藏保底传说目标格数；默认1，非负整数，等级池不足逐级下降；当前默认：1
+# 隐藏保底传说目标格数；默认1，非负整数，等级池不足逐级下降
 guaranteedLegendary = 1
-# 隐藏保底史诗目标格数；默认2，非负整数，等级池不足逐级下降；当前默认：2
+# 隐藏保底史诗目标格数；默认2，非负整数，等级池不足逐级下降
 guaranteedEpic = 2
-# 保底回退策略说明：legendary→epic→rare→common，仍遵守等级；当前默认："legendary_epic_rare_common"
+# 保底回退策略说明：legendary→epic→rare→common，仍遵守等级
 guaranteeFallback = "legendary_epic_rare_common"
 # 库存资料；实际各商品库存以 dailyStock 为准
 
 [stockDefaults]
-# 说明字段 rare；资料用途，不单独改变运行行为；当前默认：64
+# 稀有档参数；用于所在表的实际权重或稀有度规则
 rare = 64
-# 说明字段 epic；资料用途，不单独改变运行行为；当前默认：16
+# 史诗档参数；用于所在表的实际权重或稀有度规则
 epic = 16
-# 说明字段 legendary；资料用途，不单独改变运行行为；当前默认：1
+# 传说档参数；用于所在表的实际权重或稀有度规则
 legendary = 1
-# 说明字段 stockSource；资料用途，不单独改变运行行为；当前默认："products.dailyStock"
-# 说明字段 purchaseQuality；资料用途，不单独改变运行行为；当前默认："ordinary"
-# 说明字段 dailyPriceMultiplierBps；资料用途，不单独改变运行行为；当前默认：10000
-# 说明字段 pity；资料用途，不单独改变运行行为
+# 配置字段 stockSource
+# 配置字段 purchaseQuality
+# 配置字段 dailyPriceMultiplierBps
+# 配置字段 pity
 
 [pity]
-# 说明字段 enabled；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 enabled
 enabled = false
-# 说明字段 stableStateKey；资料用途，不单独改变运行行为
-# 说明字段 rerollTriggers；资料用途，不单独改变运行行为
+# 配置字段 stableStateKey
+# 配置字段 rerollTriggers
 
 [rerollTriggers]
-# 说明字段 login；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 login
 login = false
-# 说明字段 reset；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 reset
 reset = false
-# 说明字段 levelChange；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 levelChange
 levelChange = false
-# 说明字段 membershipChange；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 membershipChange
 membershipChange = false
-# 说明字段 sleep；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 sleep
 sleep = false
-# 说明字段 timeCommand；资料用途，不单独改变运行行为；当前默认：false
+# 配置字段 timeCommand
 timeCommand = false
-# 说明字段 effectivePrice；资料用途，不单独改变运行行为；当前默认："max(100, floor(baseValue * marketMultiplier)) * qualityMultiplier * enchantmentMultipliers"
-# 说明字段 sellRule；资料用途，不单独改变运行行为；当前默认："floor(sum(effectiveFullValue * durabilityMultiplier / saleDivisor * quota_segment_weight))"
-# 说明字段 saleQuotaConfig；资料用途，不单独改变运行行为；当前默认："shop/sale_quotas.toml"
-# 说明字段 rounding；资料用途，不单独改变运行行为；当前默认："once_per_transaction_after_all_lines"
-# 说明字段 durability；资料用途，不单独改变运行行为
+# 配置字段 effectivePrice
+# 配置字段 sellRule
+# 配置字段 saleQuotaConfig
+# 配置字段 rounding
+# 配置字段 durability
 
 [durability]
-# 说明字段 unit；资料用途，不单独改变运行行为；当前默认："remaining_fraction"
+# 配置字段 unit
 unit = "remaining_fraction"
-# 说明字段 points；资料用途，不单独改变运行行为
+# 配置字段 points
 interpolation = "piecewise_linear"
 below50ValueBps = 0
 nonDamageableValueBps = 10000
 
 [[durability.points]]
-# 说明字段 remainingBps；资料用途，不单独改变运行行为；当前默认：10000
+# 配置字段 remainingBps
 remainingBps = 10000
-# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：10000
+# 品质价值倍率；万分比，10000=1倍，非负整数
 valueBps = 10000
 
 
 
 [[durability.points]]
-# 说明字段 remainingBps；资料用途，不单独改变运行行为；当前默认：8000
 remainingBps = 8000
-# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：5000
 valueBps = 5000
 
 
 
 [[durability.points]]
-# 说明字段 remainingBps；资料用途，不单独改变运行行为；当前默认：5000
 remainingBps = 5000
-# 品质价值倍率；万分比，10000=1倍，非负整数；当前默认：0
 valueBps = 0
-# 说明字段 interpolation；资料用途，不单独改变运行行为；当前默认："piecewise_linear"
-# 说明字段 below50ValueBps；资料用途，不单独改变运行行为；当前默认：0
-# 说明字段 nonDamageableValueBps；资料用途，不单独改变运行行为；当前默认：10000
-# 商品政策版本说明，不用于重复涨价；当前默认："control-panel-v4"
-# 基础全价到正常收购的除数；默认100，必须大于0；当前默认：100
-# 说明字段 buyRule；资料用途，不单独改变运行行为；当前默认："floor(effectiveFullValue * product.buyMultiplierBps / 10000)"
-# 普通常驻商店额外购价倍率；25000=2.5倍，不影响收购或每日隐藏商店；当前默认：25000
+# 配置字段 interpolation
+# 配置字段 below50ValueBps
+# 配置字段 nonDamageableValueBps
+# 商品政策版本说明，不用于重复涨价
+# 基础全价到正常收购的除数；默认100，必须大于0
+# 配置字段 buyRule
+# 普通常驻商店额外购价倍率；25000=2.5倍，不影响收购或每日隐藏商店

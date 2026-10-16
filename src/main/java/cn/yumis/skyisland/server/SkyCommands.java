@@ -17,6 +17,12 @@ public final class SkyCommands {
         try { task.accept(rt,player); return 1; } catch (IllegalArgumentException | IllegalStateException | ArithmeticException e) { SkyServer.tell(player,e.getMessage()); return 0; }
     }
     private static UUID target(SkyServer rt,String name) { UUID id = rt.parties.findPlayer(name); if (id == null) throw new IllegalArgumentException("没有找到已进入过服务器的玩家 " + name); return id; }
+    private static int admin(CommandContext<CommandSourceStack> c,java.util.function.BiConsumer<SkyServer,CommandSourceStack> action) {
+        var source=c.getSource();var runtime=SkyServer.get(source.getServer());
+        if(runtime==null){source.sendFailure(Component.literal("当前不是 Yumi 空岛世界"));return 0;}
+        try{action.accept(runtime,source);return 1;}
+        catch(IllegalArgumentException|IllegalStateException|ArithmeticException error){source.sendFailure(Component.literal(error.getMessage()));return 0;}
+    }
     public static void register(CommandDispatcher<CommandSourceStack> d) {
         var island = literal("is").executes(c -> run(c,(rt,p) -> rt.parties.home(p)))
             .then(literal("create").executes(c -> run(c,(rt,p) -> rt.parties.home(p))))
@@ -50,9 +56,22 @@ public final class SkyCommands {
             } catch (IllegalArgumentException e) { c.getSource().sendFailure(Component.literal(e.getMessage())); return 0; }
         })))));
         island.then(literal("admin").requires(hasPermission(LEVEL_GAMEMASTERS))
-            .then(literal("tasks").then(literal("edit")
+            .then(literal("edit")
                 .then(literal("on").executes(c -> run(c,(rt,p) -> rt.questEditor.setMode(p,true))))
-                .then(literal("off").executes(c -> run(c,(rt,p) -> rt.questEditor.setMode(p,false)))))));
+                .then(literal("off").executes(c -> run(c,(rt,p) -> rt.questEditor.setMode(p,false))))));
+        island.then(literal("admin").requires(hasPermission(LEVEL_GAMEMASTERS))
+            .then(literal("accessory").then(literal("draws").then(argument("player",EntityArgument.player()).then(argument("count",IntegerArgumentType.integer(1)).executes(c->{
+                ServerPlayer recipient=EntityArgument.getPlayer(c,"player");int count=IntegerArgumentType.getInteger(c,"count");
+                return admin(c,(rt,source)->{
+                    if(!rt.tryChange(source.getPlayer(),state->{
+                        var person=state.players.computeIfAbsent(recipient.getUUID(),id->new cn.yumis.skyisland.data.IslandState.Person());
+                        person.name=recipient.getGameProfile().name();person.pendingAccessoryDraws=Math.addExact(person.pendingAccessoryDraws,count);
+                    },()->source.sendSuccess(()->Component.literal("已为 "+recipient.getGameProfile().name()+" 增加 "+count+" 次饰品抽奖"),true),error->source.sendFailure(Component.literal("保存失败，次数未开放使用"))))
+                        throw new IllegalStateException("数据正在保存，请稍后重试");
+                });
+            })))))
+            .then(literal("nextday").executes(c->admin(c,(rt,source)->{AdminTimeService.nextDay(rt);source.sendSuccess(()->Component.literal("已快进到下一次每日刷新时刻；悬赏剩余时间保持"),true);})))
+            .then(literal("bloodmoon").then(literal("tonight").executes(c->admin(c,(rt,source)->rt.bloodMoon.forceTonight(source.getPlayer(),()->source.sendSuccess(()->Component.literal("今晚血月已开启"),true)))))));
         d.register(island);
         d.register(literal("refresh").executes(c -> run(c,(rt,p) -> rt.refresh.request(p))));
         d.register(literal("shop").executes(c -> run(c,(rt,p) -> rt.openShop(p))));

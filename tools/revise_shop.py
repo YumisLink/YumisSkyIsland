@@ -284,16 +284,6 @@ def apply(cfg: Path, jar: Path = JAR, rebuild: bool = False):
     data["products"]["effectivePrice"] = shops["effectivePrice"]
     for key, path in paths.items():
         write_json(path, data[key])
-    unlock_path = cfg / "automation" / "unlocks.toml"
-    unlocks = load(unlock_path)
-    unlocks.setdefault("legacyCorePurchaseLevels", unlocks["corePurchaseLevels"])
-    unlocks["corePurchaseLevels"] = {k: v for k, v in unlocks["legacyCorePurchaseLevels"].items() if k in products and products[k]["tradeMode"] in {"buy_sell", "buy_only"}}
-    unlocks["shopRevision"] = REVISION
-    write_json(unlock_path, unlocks)
-    shipping_path = cfg / "automation" / "shipping_chest.toml"
-    shipping = load(shipping_path)
-    shipping["baseValueCoins"] = products.get(shipping["itemId"], {}).get("baseValueCoins")
-    write_json(shipping_path, shipping)
     print(json.dumps({"configRoot": str(cfg), "shopRevision": REVISION, "modes": counts}, ensure_ascii=False))
 
 

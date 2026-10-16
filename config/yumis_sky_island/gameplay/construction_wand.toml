@@ -1,0 +1,12 @@
+# 建造杖仅在空岛世界生效；只使用普通无额外属性的单格、非方块实体建材。
+# 获取开关，修改后重启生效；缺省开启。关闭后六档杖及升级图纸不在商店或随机悬赏供给。
+# 已有手杖仍可使用，已有升级图纸仍可锻造；人工任务奖励、管理员命令及外部自定义来源保留。
+acquisitionEnabled = true
+# 六档物品依次对应3、9、14、18、64、256档；单次新增方块数量，范围1～256。
+placementLimits = [3, 9, 14, 18, 64, 256]
+# 单次最多检查的连通承托位置数，范围256～4096；只读取已加载区块。
+searchLimit = 4096
+# 每人保留的最近成功建造次数，范围1～3；断线清空，不写入世界存档。
+undoDepth = 3
+# 模糊匹配的方块ID组；精确模式忽略此表，任意承托模式允许不同种类的非空气承托。
+fuzzyGroups = [["minecraft:dirt", "minecraft:grass_block", "minecraft:coarse_dirt", "minecraft:rooted_dirt", "minecraft:podzol", "minecraft:mycelium"]]

@@ -9,5 +9,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Level.class)
 public abstract class LevelMutationMixin {
     @Inject(method="setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;II)Z",at=@At("HEAD"),cancellable=true)
-    private void guard(BlockPos pos,BlockState state,int flags,int recursion,CallbackInfoReturnable<Boolean> ci) { if (!Protection.contextAllowed((Level)(Object)this,pos)) ci.setReturnValue(false); }
+    private void guard(BlockPos pos,BlockState state,int flags,int recursion,CallbackInfoReturnable<Boolean> ci) { if (Protection.locked((Level)(Object)this,pos)||!Protection.contextAllowed((Level)(Object)this,pos)) ci.setReturnValue(false); }
 }
