@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.client;
 
+import cn.yumis.skyisland.core.FruitText;
 import cn.yumis.skyisland.item.ModItems;
 import cn.yumis.skyisland.network.ShopPayloads;
 import com.google.gson.JsonArray;
@@ -19,10 +20,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 
-/** Five personal profession stores and the server's effective experience catalog. */
+/** Personal profession stores and the server's effective experience catalog. */
 public final class ProfessionScreen extends Screen {
-    private static final List<String> IDS=List.of("blacksmith","chef","farmer","hunter","fisherman");
-    private static final List<String> NAMES=List.of("铁匠","厨师","农夫","猎人","渔夫");
+    private static final List<String> IDS=List.of("blacksmith","chef","farmer","hunter","miner","fisherman");
+    private static final List<String> NAMES=List.of("铁匠","厨师","农夫","猎人","矿工","渔夫");
     private final ClientCatalog model;
     private int tab;
     private int fishingScroll;
@@ -33,7 +34,7 @@ public final class ProfessionScreen extends Screen {
     @Override public boolean isPauseScreen(){return false;}
     @Override public void extractBackground(GuiGraphicsExtractor graphics,int x,int y,float delta){}
     private static boolean inside(double x,double y,int l,int t,int w,int h){return x>=l&&x<l+w&&y>=t&&y<t+h;}
-    private int tabWidth(){return Math.max(39,Math.min(100,(width-18)/5-4));}
+    private int tabWidth(){return Math.max(32,Math.min(100,(width-18)/IDS.size()-4));}
     private String selected(){return IDS.get(tab);}
     private BigInteger coins(){
         var all=model.state.getAsJsonObject("professionCoins");
@@ -58,7 +59,7 @@ public final class ProfessionScreen extends Screen {
         g.fill(6,6,width-6,36,UiTheme.CARD);
         g.text(font,"YUMIS · 职业",15,17,0xFFF3F5F7,false);
         int tw=tabWidth();
-        for(int i=0;i<5;i++)button(g,NAMES.get(i),8+i*(tw+4),46,tw,i==tab,inside(mx,my,8+i*(tw+4),46,tw,25));
+        for(int i=0;i<IDS.size();i++)button(g,NAMES.get(i),8+i*(tw+4),46,tw,i==tab,inside(mx,my,8+i*(tw+4),46,tw,25));
         g.fill(8,82,width-8,height-12,UiTheme.CARD);
         var progress=model.state.getAsJsonObject("professionProgress");
         var entry=progress==null?null:progress.getAsJsonObject(selected());
@@ -69,11 +70,12 @@ public final class ProfessionScreen extends Screen {
         button(g,"商店",20,137,72,!guideMode,inside(mx,my,20,137,72,25));
         button(g,"职业典籍",96,137,94,guideMode,inside(mx,my,96,137,94,25));
         if(guideMode)guide(g);
-        else if(tab<4){
+        else if(tab<IDS.size()-1){
             ItemStack fruit=new ItemStack(ModItems.FRUITS.get(selected()));
             g.fill(19,173,width-19,238,UiTheme.CARD);g.item(fruit,30,188);
-            g.text(font,NAMES.get(tab)+"果实",59,186,0xFFF0E8B0,false);
-            g.text(font,"永久属性提升 · 已使用 "+used()+"/"+Math.clamp(model.state.getAsJsonObject("professionShop").get("fruitUseCap").getAsInt(),1,100),59,205,0xFFC9D5DD,false);
+            g.text(font,NAMES.get(tab)+"果实",59,184,0xFFF0E8B0,false);
+            g.text(font,FruitText.line(selected(),used()),59,202,0xFFC9D5DD,false);
+            g.text(font,"已使用 "+used()+"/"+Math.clamp(model.state.getAsJsonObject("professionShop").get("fruitUseCap").getAsInt(),1,100),59,218,0xFFC9D5DD,false);
             button(g,"购买 · "+price("fruitPrice")+" 职业积分",Math.max(20,width-235),197,215,false,inside(mx,my,Math.max(20,width-235),197,215,25));
         } else {
             fishing(g,mx,my);
@@ -167,13 +169,13 @@ public final class ProfessionScreen extends Screen {
     }
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
         int tw=tabWidth();
-        for(int i=0;i<5;i++)if(inside(e.x(),e.y(),8+i*(tw+4),46,tw,25)){tab=i;fishingScroll=0;guideScroll=0;model.lastError="";return true;}
+        for(int i=0;i<IDS.size();i++)if(inside(e.x(),e.y(),8+i*(tw+4),46,tw,25)){tab=i;fishingScroll=0;guideScroll=0;model.lastError="";return true;}
         if(inside(e.x(),e.y(),20,137,72,25)){guideMode=false;return true;}
         if(inside(e.x(),e.y(),96,137,94,25)){guideMode=true;return true;}
         if(guideMode)return super.mouseClicked(e,doubleClick);
         int x=Math.max(20,width-235);
-        if(e.button()==0 && tab<4 && inside(e.x(),e.y(),x,197,215,25))purchase(selected()+":fruit",1);
-        else if(e.button()==0 && tab==4 && e.y()>=FISHING_TOP && e.y()<fishingBottom()){
+        if(e.button()==0 && tab<IDS.size()-1 && inside(e.x(),e.y(),x,197,215,25))purchase(selected()+":fruit",1);
+        else if(e.button()==0 && tab==IDS.size()-1 && e.y()>=FISHING_TOP && e.y()<fishingBottom()){
             fishingScroll=Math.clamp(fishingScroll,0,maximumFishingScroll());
             int baitY=firstBaitY(),w=baitButtonWidth();
             if(inside(e.x(),e.y(),baitButtonX(),baitButtonY(baitY),w,25) && !unlocked("lava_bait"))purchase("fisherman:lava_bait",1);
@@ -185,7 +187,7 @@ public final class ProfessionScreen extends Screen {
     }
     @Override public boolean mouseScrolled(double x,double y,double sx,double sy){
         if(guideMode&&inside(x,y,18,190,width-36,height-214)){guideScroll=Math.clamp(guideScroll-(int)Math.signum(sy)*50,0,guideMax());return true;}
-        if(tab!=4||guideMode||!inside(x,y,8,82,width-16,height-94))return super.mouseScrolled(x,y,sx,sy);
+        if(tab!=IDS.size()-1||guideMode||!inside(x,y,8,82,width-16,height-94))return super.mouseScrolled(x,y,sx,sy);
         fishingScroll=Math.clamp(fishingScroll-(int)Math.signum(sy)*27,0,maximumFishingScroll());
         return true;
     }

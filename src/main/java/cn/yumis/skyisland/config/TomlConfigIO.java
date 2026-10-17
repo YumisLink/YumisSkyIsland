@@ -32,17 +32,46 @@ public final class TomlConfigIO {
 
     /** Load editable configuration, recovering readable statements before replacing a broken file. */
     public static JsonObject readOrRepair(Path file, String defaultsText) throws IOException {
+        return readOrRepair(file, defaultsText, false);
+    }
+
+    /**
+     * When {@code resetWhenUnreadable} is set, a file that cannot be decoded or parsed is deleted
+     * and replaced by {@code defaultsText}. Readable files still keep valid fields and only fill gaps.
+     */
+    public static JsonObject readOrRepair(Path file, String defaultsText, boolean resetWhenUnreadable) throws IOException {
         CommentedConfig defaults;
         try { defaults = parse(defaultsText); }
         catch (RuntimeException error) { throw new IOException("模组默认 TOML 格式有误：" + file.getFileName(), error); }
-        byte[] original = Files.readAllBytes(file);
+        byte[] original;
+        try { original = Files.readAllBytes(file); }
+        catch (IOException error) {
+            if (!resetWhenUnreadable) throw error;
+            LOGGER.warn("无法读取配置 {}，已删除原文件并重新生成默认配置：{}", file, error.getMessage());
+            replaceWithDefault(file, defaultsText);
+            return read(file);
+        }
         String text;
         boolean damaged = false;
         try { text = StandardCharsets.UTF_8.newDecoder().decode(ByteBuffer.wrap(original)).toString(); }
-        catch (java.nio.charset.CharacterCodingException error) { text = new String(original, StandardCharsets.UTF_8); damaged = true; }
+        catch (java.nio.charset.CharacterCodingException error) {
+            if (resetWhenUnreadable) {
+                LOGGER.warn("配置 {} 不是有效 UTF-8，已删除原文件并重新生成默认配置", file);
+                replaceWithDefault(file, defaultsText);
+                return read(file);
+            }
+            text = new String(original, StandardCharsets.UTF_8); damaged = true;
+        }
         CommentedConfig document;
         try { document = parse(text); }
-        catch (RuntimeException error) { document = TomlRecovery.salvage(text); damaged = true; }
+        catch (RuntimeException error) {
+            if (resetWhenUnreadable) {
+                LOGGER.warn("配置 {} 无法解析，已删除原文件并重新生成默认配置：{}", file, error.getMessage());
+                replaceWithDefault(file, defaultsText);
+                return read(file);
+            }
+            document = TomlRecovery.salvage(text); damaged = true;
+        }
         JsonObject source = json(document).getAsJsonObject(), fallback = json(defaults).getAsJsonObject();
         normalizeNulls(file.getFileName().toString(), source);
         normalizeNulls(file.getFileName().toString(), fallback);
@@ -53,13 +82,27 @@ public final class TomlConfigIO {
         new TomlWriter().write(document, out);
         // Validate the replacement before touching the previous configuration.
         try { parse(out.toString()); }
-        catch (RuntimeException error) { throw new IOException("配置修复结果未通过 TOML 校验，保留原文件：" + file, error); }
+        catch (RuntimeException error) {
+            if (resetWhenUnreadable) {
+                LOGGER.warn("配置 {} 修复结果无法解析，已删除原文件并重新生成默认配置：{}", file, error.getMessage());
+                replaceWithDefault(file, defaultsText);
+                return read(file);
+            }
+            throw new IOException("配置修复结果未通过 TOML 校验，保留原文件：" + file, error);
+        }
         if (!Arrays.equals(original, Files.readAllBytes(file))) throw new IOException("配置在修复期间被修改，请重试：" + file);
         Path backup = file.resolveSibling(file.getFileName() + ".broken." + UUID.randomUUID() + ".bak");
         Files.write(backup, original, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
         atomicWrite(file, out.toString());
         LOGGER.warn("已修复配置 {}：保留可读取项，其余字段按默认格式补齐；原文件备份 {}", file, backup);
         return repaired;
+    }
+
+    /** Delete the current file and write the packaged default text in its place. */
+    public static void replaceWithDefault(Path file, String defaultsText) throws IOException {
+        try { Files.deleteIfExists(file); }
+        catch (IOException ignored) { /* A locked file is overwritten by the atomic replacement below. */ }
+        atomicWrite(file, defaultsText);
     }
 
     static CommentedConfig parse(String text) { return new TomlParser().parse(new StringReader(text)); }
@@ -205,7 +248,7 @@ public final class TomlConfigIO {
             case "name" -> "界面显示名称";
             case "kind" -> "任务类型：main 队伍主线，side 个人支线，profession 个人职业任务";
             case "objective" -> "完成目标：materials 提交材料，place_shipping_chest 本人放置，tracked 追踪本人行动";
-            case "profession" -> "职业ID：fisherman、farmer、blacksmith、chef、hunter";
+            case "profession" -> "职业ID：fisherman、farmer、blacksmith、chef、hunter、miner";
             case "previousQuestId" -> "同任务线的前置任务ID；前项领奖后解锁，省略为起点";
             case "goals" -> "本人行动追踪条件列表；不扣物，只累计当前解锁任务";
             case "type" -> "行动类型：craft 制作／加工，smelt 手动领取熔炼，fish 钓鱼，harvest 采集掉落，kill 本人击杀";
@@ -221,11 +264,13 @@ public final class TomlConfigIO {
             case "notices" -> "手动放置和建造杖跨档时通知本队在线成员；跌破再达到会重发";
             case "message" -> "跨档文案；支持{block}、{threshold}、{nextPoints}、{nextMultiplier}";
             case "successfulFishingXp" -> "每次真实成功获钓的渔夫经验；默认12，空收杆与钩实体不计";
+            case "lavaFishingXpMultiplier" -> "岩浆获钓经验倍率；非负整数，乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘";
+            case "voidFishingXpMultiplier" -> "虚空获钓经验倍率；非负整数，乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘";
             case "requirements" -> "需求列表；附魔与品质至少达到指定值，未指定属性不限制";
             case "itemId" -> "有效注册物品 ID，例如 minecraft:oak_log";
             case "quantity", "count" -> "物品数量；正整数";
             case "components" -> "Minecraft 物品组件；保留合法的附魔、药水及其它属性";
-            case "minimumQuality" -> "最低品质：0普通、1银星、2金星；省略表示不限";
+            case "minimumQuality" -> "最低品质：0普通、1铜星、2银星、3金星、4钻星、5七彩星；省略表示不限";
             case "rewardItems" -> "领取的物品奖励列表；背包不足时不扣材料";
             case "rewardCoins" -> "货币奖励；非负64位整数，0表示不发货币";
             case "unlockFeatures" -> "完成后永久授予的预设功能 ID；删除或重置任务不会撤销";

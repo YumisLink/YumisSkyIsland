@@ -3,6 +3,7 @@ import cn.yumis.skyisland.attribute.ModAttributes;
 import cn.yumis.skyisland.block.ModBlocks;
 import cn.yumis.skyisland.config.GameConfig;
 import cn.yumis.skyisland.effect.ModEffects;
+import cn.yumis.skyisland.item.Hammers;
 import cn.yumis.skyisland.item.ModItems;
 import cn.yumis.skyisland.network.ShopPayloads;
 import cn.yumis.skyisland.network.TaskPayloads;
@@ -32,7 +33,7 @@ public final class YumisSkyIsland implements ModInitializer {
     public static Identifier id(String path) { return Identifier.fromNamespaceAndPath(MOD_ID,path); }
     @Override public void onInitialize() {
         try { CONFIG = new GameConfig(); } catch (Exception e) { throw new IllegalStateException("空岛配置加载失败，请检查 config/yumis_sky_island",e); }
-        ModBlocks.register(); ModItems.register(); cn.yumis.skyisland.npc.ResidentContent.register(); cn.yumis.skyisland.wand.ConstructionWands.register(); VoidWorlds.register(); WorldService.registerTickets();
+        ModBlocks.register(); ModItems.register(); Hammers.register(); cn.yumis.skyisland.npc.ResidentContent.register(); cn.yumis.skyisland.wand.ConstructionWands.register(); VoidWorlds.register(); WorldService.registerTickets();
         cn.yumis.skyisland.prefab.PrefabItems.register(); cn.yumis.skyisland.prefab.PrefabBlocks.register(); cn.yumis.skyisland.item.SkyCreativeTabs.register(); cn.yumis.skyisland.prefab.PrefabService.register();
         cn.yumis.skyisland.wand.ConstructionWandService.register();
         ModAttributes.register(); ModEffects.register(); CloudLeapService.register();
@@ -112,6 +113,7 @@ public final class YumisSkyIsland implements ModInitializer {
             var rt=SkyServer.get(level.getServer());
             return rt!=null&&VoidWorlds.isSky(level)&&rt.veinMining.harvestCrop(serverPlayer,level,hit.getBlockPos())?InteractionResult.SUCCESS:InteractionResult.PASS;
         });
+        ObsidianBucket.register();
         AttackBlockCallback.EVENT.register((player,world,hand,pos,face) -> world instanceof ServerLevel level && !Protection.canBuild(level,player,pos) ? InteractionResult.FAIL : InteractionResult.PASS);
         UseEntityCallback.EVENT.register((player,world,hand,entity,hit) -> {
             if (entity instanceof Villager && !CONFIG.object("server_rules.toml").get("villagerTradingEnabled").getAsBoolean() || entity instanceof WanderingTrader && !CONFIG.object("server_rules.toml").get("wanderingTraderTradingEnabled").getAsBoolean()) return InteractionResult.FAIL;

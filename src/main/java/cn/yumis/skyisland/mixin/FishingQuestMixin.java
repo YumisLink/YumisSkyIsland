@@ -1,4 +1,5 @@
 package cn.yumis.skyisland.mixin;
+import cn.yumis.skyisland.server.FishingMediumAccess;
 import cn.yumis.skyisland.server.SkyServer;
 import net.minecraft.advancements.triggers.FishingRodHookedTrigger;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FishingQuestMixin {
     @Inject(method="trigger",at=@At("TAIL"))
     private void caught(ServerPlayer player,ItemStack rod,FishingHook hook,Collection<ItemStack> loot,CallbackInfo ci){
-        if(hook.getHookedIn()==null&&!loot.isEmpty()){var rt=SkyServer.get(player.level().getServer());if(rt!=null)rt.progression.fished(player,loot);}
+        if(hook.getHookedIn()==null&&!loot.isEmpty()){var rt=SkyServer.get(player.level().getServer());if(rt!=null)rt.progression.fished(player,loot,hook instanceof FishingMediumAccess access?access.yumis$medium():"water");}
     }
 }

@@ -3,7 +3,7 @@ package cn.yumis.skyisland.core;
 import java.math.BigInteger;
 import java.util.function.IntUnaryOperator;
 
-/** Exact, unbounded profession progression and the three production qualities. */
+/** Exact, unbounded profession progression and the six production qualities. */
 public final class ProfessionRules {
     private ProfessionRules() {}
 
@@ -51,15 +51,38 @@ public final class ProfessionRules {
         return levelDifference >= 30 ? 1 : levelDifference >= 10 ? Math.max(1, base / 2) : base;
     }
 
-    /** 0 ordinary, 1 silver, 2 gold; chance values are basis points. */
-    public static int roll(int levelDifference, int silverBps, int goldBps, IntUnaryOperator randomBounded) {
+    /** Level difference applies first. Treasure stays at its flat 12, then the medium multiplier. Water stays at 1. */
+    public static long fishingProfessionXp(long base, int levelDifference, boolean treasure, String medium, long lavaMultiplier, long voidMultiplier) {
+        if (lavaMultiplier < 0 || voidMultiplier < 0) throw new IllegalArgumentException("钓鱼经验倍率不能为负");
+        long amount = treasure ? 12L : experiencePerUnit(base, levelDifference);
+        long multiplier = switch (medium == null ? "water" : medium) {
+            case "lava" -> lavaMultiplier;
+            case "void" -> voidMultiplier;
+            default -> 1L;
+        };
+        return BigInteger.valueOf(amount).multiply(BigInteger.valueOf(multiplier)).longValueExact();
+    }
+
+    /** 0 ordinary, then copper, silver, gold, diamond, prismatic. Chances are basis points, highest tier first. */
+    public static int roll(int levelDifference, int[] chances, IntUnaryOperator randomBounded) {
         if (levelDifference < 0) return 0;
-        if (silverBps < 0 || goldBps < 0 || silverBps + goldBps > 10000) throw new IllegalArgumentException("Invalid quality chances");
+        if (chances == null || chances.length != 5) throw new IllegalArgumentException("Invalid quality chances");
+        int sum = 0;
+        for (int chance : chances) {
+            if (chance < 0) throw new IllegalArgumentException("Invalid quality chances");
+            sum += chance;
+        }
+        if (sum > 10000) throw new IllegalArgumentException("Invalid quality chances");
         int result = randomBounded.applyAsInt(10000);
-        return result < goldBps ? 2 : result < goldBps + silverBps ? 1 : 0;
+        int cursor = 0;
+        for (int grade = chances.length; grade >= 1; grade--) {
+            cursor += chances[grade - 1];
+            if (result < cursor) return grade;
+        }
+        return 0;
     }
     public static boolean unbreakable(int grade,int chanceBps,IntUnaryOperator randomBounded) {
         if(chanceBps<0||chanceBps>10000)throw new IllegalArgumentException("Invalid unbreakable chance");
-        return grade==2 && randomBounded.applyAsInt(10000)<chanceBps;
+        return grade>0 && chanceBps>0 && randomBounded.applyAsInt(10000)<chanceBps;
     }
 }

@@ -55,7 +55,7 @@ public final class ProfessionService {
     public int level(IslandState.Person person, String profession) {
         BigInteger xp = person == null ? BigInteger.ZERO : person.professionXp.getOrDefault(profession,BigInteger.ZERO);
         JsonObject config=runtime.config.object("products/professions.toml");
-        JsonObject curve = config.getAsJsonObject(profession.equals("blacksmith")?"blacksmithXpCurve":"xpCurve");
+        JsonObject curve = config.getAsJsonObject(profession.equals("blacksmith")||profession.equals("miner")?"blacksmithXpCurve":"xpCurve");
         return ProfessionRules.level(xp,curve.get("perLevelBase").getAsLong(),curve.get("perLevelGrowth").getAsLong(),curve.get("post100Growth").getAsLong());
     }
     public int itemLevel(String id) {
@@ -71,7 +71,10 @@ public final class ProfessionService {
         JsonArray bands=runtime.config.object("products/professions.toml").getAsJsonArray("qualityDifference");
         JsonObject selected=bands.get(0).getAsJsonObject();
         for(JsonElement value:bands)if(difference>=value.getAsJsonObject().get("minDifference").getAsInt())selected=value.getAsJsonObject();
-        return ProfessionRules.roll(difference,selected.get("silverBps").getAsInt(),selected.get("goldBps").getAsInt(),player.getRandom()::nextInt);
+        int[] chances=new int[5];
+        String[] keys={"copperBps","silverBps","goldBps","diamondBps","prismaticBps"};
+        for(int i=0;i<keys.length;i++)chances[i]=selected.get(keys[i]).getAsInt();
+        return ProfessionRules.roll(difference,chances,player.getRandom()::nextInt);
     }
     public void prepare(AbstractContainerMenu menu, int index, ServerPlayer player) {
         if (index < 0 || index >= menu.slots.size() || runtime.inventoryLocks.contains(player.getUUID())) return;
@@ -116,11 +119,10 @@ public final class ProfessionService {
     private void replaceGained(AbstractContainerMenu menu,Click click,Produced output,int difference){
         if(difference<0)return;
         List<ItemStack> premium=new ArrayList<>();
-        int unbreakableBps=runtime.config.object("products/quality.toml").get("goldUnbreakableChanceBps").getAsInt();
         for(int i=0;i<output.quantity();i++){
             int grade=roll(click.player,difference);if(grade==0)continue;
             ItemStack part=output.template().copyWithCount(1);
-            ItemQuality.apply(part,runtime.config.object("products/quality.toml"),grade,output.profession(),ProfessionRules.unbreakable(grade,unbreakableBps,click.player.getRandom()::nextInt));
+            ItemQuality.apply(part,runtime.config.object("products/quality.toml"),grade,output.profession(),ProfessionRules.unbreakable(grade,unbreakableBps(grade),click.player.getRandom()::nextInt));
             premium.add(part);
         }
         int remaining=premium.size(),removedFromCursor=0;
@@ -169,10 +171,11 @@ public final class ProfessionService {
             });
         });
     }
-    public void fished(ServerPlayer player,Collection<ItemStack> loot){
+    public void fished(ServerPlayer player,Collection<ItemStack> loot,String medium){
         if(player.isCreative()||loot.isEmpty())return;
+        long lava=fishingMultiplier("lavaFishingXpMultiplier"),voidMultiplier=fishingMultiplier("voidFishingXpMultiplier");
         if(loot.stream().anyMatch(stack->stack.is(ModItems.BIOME_TREASURE_BOX))){
-            award(player,"fisherman",BigInteger.valueOf(12));
+            award(player,"fisherman",BigInteger.valueOf(ProfessionRules.fishingProfessionXp(12,0,true,medium,lava,voidMultiplier)));
             return;
         }
         int itemLevel=0;List<ItemStack> parts=new ArrayList<>();
@@ -183,7 +186,12 @@ public final class ProfessionService {
         loot.clear();loot.addAll(parts);
         int difference=level(runtime.state().players.get(player.getUUID()),"fisherman")-itemLevel;
         long base=runtime.config.object("products/professions.toml").get("successfulFishingXp").getAsLong();
-        award(player,"fisherman",BigInteger.valueOf(ProfessionRules.experiencePerUnit(base,difference)));
+        award(player,"fisherman",BigInteger.valueOf(ProfessionRules.fishingProfessionXp(base,difference,false,medium,lava,voidMultiplier)));
+    }
+    private long fishingMultiplier(String key){
+        var element=runtime.config.object("products/professions.toml").get(key);
+        if(element==null||!element.isJsonPrimitive()||!element.getAsJsonPrimitive().isNumber()||element.getAsLong()<0)throw new IllegalStateException("钓鱼经验倍率无效："+key);
+        return element.getAsLong();
     }
     public static HarvestContext captureHarvest(BlockState original){
         int age = switch (original.getBlock()) {
@@ -216,10 +224,9 @@ public final class ProfessionService {
         int difference=level(runtime.state().players.get(player.getUUID()),profession)-itemLevel(BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());
         if(difference<0)return List.of(stack);
         List<ItemStack> result=new ArrayList<>();
-        int unbreakableBps=runtime.config.object("products/quality.toml").get("goldUnbreakableChanceBps").getAsInt();
         for(int i=0;i<stack.getCount();i++){
             ItemStack part=stack.copyWithCount(1);int grade=roll(player,difference);
-            if(grade>0)ItemQuality.apply(part,runtime.config.object("products/quality.toml"),grade,profession,ProfessionRules.unbreakable(grade,unbreakableBps,player.getRandom()::nextInt));
+            if(grade>0)ItemQuality.apply(part,runtime.config.object("products/quality.toml"),grade,profession,ProfessionRules.unbreakable(grade,unbreakableBps(grade),player.getRandom()::nextInt));
             result.add(part);
         }
         return result;
@@ -240,6 +247,28 @@ public final class ProfessionService {
         long base=runtime.config.object("products/professions.toml").get("successfulHunterKillXp").getAsLong();
         award(player,"hunter",BigInteger.valueOf(ProfessionRules.experiencePerUnit(base,difference)));
     }
-    public static String name(String profession) { return switch (profession) { case "fisherman" -> "渔夫"; case "blacksmith" -> "铁匠"; case "chef" -> "厨师"; case "farmer" -> "农夫"; case "hunter" -> "猎人"; default -> profession; }; }
+    public static String name(String profession) { return switch (profession) { case "fisherman" -> "渔夫"; case "blacksmith" -> "铁匠"; case "chef" -> "厨师"; case "farmer" -> "农夫"; case "hunter" -> "猎人"; case "miner" -> "矿工"; default -> profession; }; }
+    private int unbreakableBps(int grade){
+        var grades=runtime.config.object("products/quality.toml").getAsJsonArray("grades");
+        if(grade<0||grade>=grades.size())return 0;
+        var row=grades.get(grade).getAsJsonObject();
+        return row.has("unbreakableBps")?row.get("unbreakableBps").getAsInt():0;
+    }
+    /** Replaces hammer drops for cobble, gravel and dirt, and grants one miner experience. Null keeps vanilla drops. */
+    public List<ItemStack> hammerDrops(ServerPlayer player,net.minecraft.world.level.block.state.BlockState state,net.minecraft.world.item.Item tool){
+        if(!cn.yumis.skyisland.item.Hammers.isHammer(tool))return null;
+        String block=BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
+        String replacement=cn.yumis.skyisland.core.HammerRules.conversion(block);
+        if(replacement==null)return null;
+        List<ItemStack> drops=new ArrayList<>();
+        drops.add(new ItemStack(BuiltInRegistries.ITEM.getValue(net.minecraft.resources.Identifier.parse(replacement))));
+        if(block.equals("minecraft:cobblestone")){
+            int minerLevel=level(runtime.state().players.get(player.getUUID()),"miner");
+            for(var bonus:cn.yumis.skyisland.core.HammerRules.bonuses(minerLevel,player.getRandom()::nextInt))
+                drops.add(new ItemStack(BuiltInRegistries.ITEM.getValue(net.minecraft.resources.Identifier.parse(bonus.itemId())),bonus.count()));
+        }
+        if(!player.isCreative()&&!player.isSpectator())award(player,"miner",BigInteger.ONE);
+        return drops;
+    }
     public static double miningBonus(ItemStack stack, GameConfig config) { return stack.has(DataComponents.TOOL) ? config.object("products/quality.toml").getAsJsonArray("grades").get(ItemEconomy.grade(stack)).getAsJsonObject().get("attributeBonusBps").getAsInt()/10000.0 : 0; }
 }

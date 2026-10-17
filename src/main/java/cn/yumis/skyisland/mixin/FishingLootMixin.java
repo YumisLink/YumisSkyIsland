@@ -1,7 +1,9 @@
 package cn.yumis.skyisland.mixin;
 
+import cn.yumis.skyisland.server.AccessoryService;
 import cn.yumis.skyisland.server.FishingService;
 import cn.yumis.skyisland.server.FishingMediumAccess;
+import cn.yumis.skyisland.server.SkyServer;
 import java.util.Collection;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -35,6 +37,15 @@ public abstract class FishingLootMixin {
             item.setDeltaMovement(Vec3.ZERO);
         }
         return entity;
+    }
+    /** 26.2 assigns the bite window with the first nextInt(20, 40) in catchingFish. */
+    @Redirect(method="catchingFish",at=@At(value="INVOKE",target="Lnet/minecraft/util/Mth;nextInt(Lnet/minecraft/util/RandomSource;II)I",ordinal=0))
+    private int yumis$biteWindow(RandomSource random,int min,int max){
+        int vanilla=Mth.nextInt(random,min,max);
+        FishingHook hook=(FishingHook)(Object)this;
+        if(!(hook.getPlayerOwner() instanceof ServerPlayer player))return vanilla;
+        SkyServer runtime=SkyServer.get(player.level().getServer());
+        return runtime!=null&&AccessoryService.extendsBite(runtime,player)?vanilla*2:vanilla;
     }
     @Redirect(method="catchingFish",at=@At(value="INVOKE",target="Lnet/minecraft/util/Mth;nextInt(Lnet/minecraft/util/RandomSource;II)I",ordinal=2))
     private int yumis$powerWait(RandomSource random,int min,int max){

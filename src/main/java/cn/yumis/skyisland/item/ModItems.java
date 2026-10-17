@@ -41,7 +41,7 @@ public final class ModItems {
     public static final Map<String, Item> ACCESSORY_ICONS = new LinkedHashMap<>();
     public static final Map<String, Item> FISH = new LinkedHashMap<>();
     public static final Map<String, Item> FISHING_MATERIALS = new LinkedHashMap<>();
-    public static final List<String> PROFESSIONS = List.of("blacksmith", "chef", "farmer", "hunter");
+    public static final List<String> PROFESSIONS = List.of("blacksmith", "chef", "farmer", "hunter", "miner");
     private static final Set<UUID> FLIGHT_GRANTED = new HashSet<>();
     public static final Set<String> LEGENDARY_BIOMES = Set.of("mushroom_fields", "deep_dark", "pale_garden", "the_end");
     public static final Set<String> EPIC_BIOMES = Set.of("ice_spikes", "mangrove_swamp", "old_growth_birch_forest", "old_growth_pine_taiga", "old_growth_spruce_taiga", "bamboo_jungle", "badlands", "eroded_badlands", "wooded_badlands", "cherry_grove", "frozen_peaks", "jagged_peaks", "deep_frozen_ocean", "sulfur_caves", "warped_forest", "crimson_forest", "end_highlands");
@@ -194,6 +194,7 @@ public final class ModItems {
         apply(player, Attributes.ARMOR_TOUGHNESS, "fruit_stonemason", 0);
         apply(player, Attributes.ATTACK_DAMAGE, "fruit_artisan", 0);
         apply(player, Attributes.MAX_HEALTH, "fruit_farmer", counts.getOrDefault("farmer",0) * 0.1);
+        applyMultiplied(player, Attributes.BLOCK_BREAK_SPEED, "fruit_miner", counts.getOrDefault("miner",0) * 0.02);
     }
     private static void apply(ServerPlayer player, Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute, String name, double amount) {
         var instance = player.getAttribute(attribute);
@@ -203,6 +204,15 @@ public final class ModItems {
         if (amount <= 0) { if (previous != null) instance.removeModifier(id); return; }
         if (previous == null || previous.amount() != amount)
             instance.addOrUpdateTransientModifier(new AttributeModifier(id, amount, AttributeModifier.Operation.ADD_VALUE));
+    }
+    private static void applyMultiplied(ServerPlayer player, Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute, String name, double amount) {
+        var instance = player.getAttribute(attribute);
+        if (instance == null) return;
+        Identifier id = YumisSkyIsland.id(name);
+        AttributeModifier previous = instance.getModifier(id);
+        if (amount <= 0) { if (previous != null) instance.removeModifier(id); return; }
+        if (previous == null || previous.amount() != amount)
+            instance.addOrUpdateTransientModifier(new AttributeModifier(id, amount, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     }
     public static void refreshFlight(ServerPlayer player, IslandState.Person person) {
         UUID id = player.getUUID();

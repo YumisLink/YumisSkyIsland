@@ -79,6 +79,8 @@ public final class IslandState {
         public boolean epicOwed, featuredGuaranteed;
         public Set<Integer> rewardedTokenLevels = new LinkedHashSet<>();
         public int accessorySlots = 3;
+        /** Hundredths of an experience point still owed by the study pendant. */
+        public int studyXpRemainder;
         public NetherReturnPortal netherReturnPortal;
         public Set<Integer> rewardedAccessoryLevels = new LinkedHashSet<>();
         /** Real-world expiry, so logging out does not pause a flight ticket. */
@@ -140,6 +142,11 @@ public final class IslandState {
         public int level, total;
         public float progress;
     }
+    public static final class LotteryPrize {
+        public String productId, rarity;
+        public boolean pity;
+        public JsonElement rewardStack;
+    }
     public static final class LotteryDrawResult {
         public long sequence;
         public long operationSequence;
@@ -147,6 +154,7 @@ public final class IslandState {
         public int islandLevel;
         public String productId, rarity;
         public JsonElement rewardStack;
+        public List<LotteryPrize> prizes;
     }
     public static final class NetherReturnPortal {
         public UUID partyId, sourcePartyId;

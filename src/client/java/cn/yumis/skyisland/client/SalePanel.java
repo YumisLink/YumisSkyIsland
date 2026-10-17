@@ -23,6 +23,21 @@ public final class SalePanel {
     private boolean dirty, confirming;
     public SalePanel(ControlPanelScreen parent){this.parent=parent;this.model=parent.model();}
     private String selection(){var values=new ArrayList<String>();selected.forEach((s,n)->{if(n>0)values.add(s+":"+n);});return String.join(",",values);}
+    private boolean inventorySale(){return !(model.sale.has("hand")&&model.sale.get("hand").getAsBoolean());}
+    private boolean anyAllowed(){
+        if(!model.sale.has("inventory"))return false;
+        for(var entry:model.sale.getAsJsonArray("inventory"))if(entry.getAsJsonObject().get("allowed").getAsBoolean()&&model.decode(entry.getAsJsonObject().get("stack")).getCount()>0)return true;
+        return false;
+    }
+    private void selectAll(){
+        selected.clear();
+        if(model.sale.has("inventory"))for(var entry:model.sale.getAsJsonArray("inventory")){
+            var row=entry.getAsJsonObject();
+            int count=model.decode(row.get("stack")).getCount();
+            if(row.get("allowed").getAsBoolean()&&count>0)selected.put(row.get("slot").getAsInt(),count);
+        }
+        dirty=true;
+    }
     private void send(String action,String product){ClientPlayNetworking.send(new ShopPayloads.Request(action,product,0));}
     public void tick(){ticks++;if(dirty&&ticks-lastSent>=5){model.lastError="";send("sale_preview",selection());dirty=false;lastSent=ticks;}}
     public void updated(){confirming=false;if(model.sale.get("selection").getAsString().isEmpty()&&!selection().isEmpty()){selected.clear();focused=-1;dirty=false;}}
@@ -54,8 +69,11 @@ public final class SalePanel {
         int tools=bottom()+2;
         button(g,"-1",12,tools,35,focused>=0);button(g,"+1",51,tools,35,focused>=0);button(g,"整堆",90,tools,45,focused>=0);
         button(g,"清空",139,tools,45,!selected.isEmpty());
-        text(g,"点击选择/取消，选中后调数量",190,tools+7,0xFFACB8C2,width-200);
-        int start=tools+29,available=Math.max(1,(height-65-start)/12);
+        if(inventorySale())button(g,"全部可售",188,tools,84,anyAllowed());
+        int hintX=inventorySale()?278:190;
+        if(hintX+40<width)text(g,"点击选择/取消，选中后调数量",hintX,tools+7,0xFFACB8C2,width-hintX-8);
+        else text(g,"点击选择/取消，选中后调数量",12,tools+26,0xFFACB8C2,width-24);
+        int start=hintX+40<width?tools+29:tools+48,available=Math.max(1,(height-65-start)/12);
         var lines=model.sale.has("lines")?model.sale.getAsJsonArray("lines"):new JsonArray();
         scroll=Math.clamp(scroll,0,Math.max(0,lines.size()-available));
         for(int i=scroll;i<Math.min(lines.size(),scroll+available);i++){
@@ -87,6 +105,7 @@ public final class SalePanel {
         }
         if(inside(x,y,123,height-27,105,22)){onClose();return true;}
         if(inside(x,y,139,tools,45,22)){selected.clear();dirty=true;return true;}
+        if(inventorySale()&&inside(x,y,188,tools,84,22)){if(anyAllowed())selectAll();return true;}
         if(focused>=0&&model.sale.has("inventory")){
             var row=model.sale.getAsJsonArray("inventory").get(focused).getAsJsonObject();int max=model.decode(row.get("stack")).getCount(),count=selected.getOrDefault(focused,0);
             if(inside(x,y,12,tools,35,22))count=Math.max(0,count-1);

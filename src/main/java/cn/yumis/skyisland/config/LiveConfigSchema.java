@@ -20,15 +20,15 @@ public final class LiveConfigSchema {
             bool("genshinMode","原神模式称呼"),num("death/firstCost","首笔死亡费用",0,Long.MAX_VALUE,"货币"),num("death/additionalCostPerDeath","死亡费用递增",0,Long.MAX_VALUE,"货币"),num("death/respawnFoodLevel","复活饥饿值",0,20,"满值20"));
         add(groups,"trading","原版交易","server_rules.toml","下次交互和结果提取时生效。",
             bool("villagerTradingEnabled","村民交易"),bool("wanderingTraderTradingEnabled","流浪商人交易"));
-        List<Field> xp=new ArrayList<>();xp.add(num("successfulFishingXp","成功获钓经验",0,Long.MAX_VALUE,"职业经验；地区宝藏箱固定经验不受此项控制"));xp.add(num("successfulHunterKillXp","成功击杀经验",0,Long.MAX_VALUE,"职业经验"));
-        for(String job:List.of("blacksmith","chef","farmer","hunter"))xp.add(num("successfulCraftXp/"+job,switch(job){case "blacksmith"->"铁匠";case "chef"->"厨师";case "farmer"->"农夫";default->"猎人";}+"制造默认经验",0,Long.MAX_VALUE,"已有单品baseXp优先"));
+        List<Field> xp=new ArrayList<>();xp.add(num("successfulFishingXp","成功获钓经验",0,Long.MAX_VALUE,"职业经验；地区宝藏箱固定经验不受此项控制"));xp.add(num("lavaFishingXpMultiplier","岩浆获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("voidFishingXpMultiplier","虚空获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("successfulHunterKillXp","成功击杀经验",0,Long.MAX_VALUE,"职业经验"));
+        for(String job:List.of("blacksmith","chef","farmer","hunter","miner"))xp.add(num("successfulCraftXp/"+job,switch(job){case "blacksmith"->"铁匠";case "chef"->"厨师";case "farmer"->"农夫";case "miner"->"矿工";default->"猎人";}+"制造默认经验",0,Long.MAX_VALUE,"已有单品baseXp优先"));
         add(groups,"profession_xp","职业经验","products/professions.toml","只影响后续真实行动，不重算历史经验。",xp.toArray(Field[]::new));
         add(groups,"profession_shop","职业商店","products/profession_shop.toml","从下次购买、活动或使用起生效，已用果实计数保留。",
             num("fruitPrice","果实价格",1,Long.MAX_VALUE,"个人职业积分"),num("lavaBaitPrice","岩浆鱼饵价格",1,Long.MAX_VALUE,"个人职业积分"),num("voidBaitPrice","虚空鱼饵价格",1,Long.MAX_VALUE,"个人职业积分"),num("fruitDropBps","果实掉率",0,10000,"万分数，10=0.1%"),num("fruitUseCap","每种果实使用上限",1,100,"次"));
         add(groups,"blood_moon","血月","gameplay/blood_moon.toml","触发概率从下次夜间判定生效；刷怪和钓鱼从下次事件生效，不重抽今夜。",
             num("initialChanceBps","初始血月概率",0,10000,"万分数"),num("missIncrementBps","未触发后的概率增量",0,10000,"万分数"),num("hostileSpawnMultiplier","敌对刷怪倍率",0,20,"倍，0停止血月敌对刷怪尝试"),num("hostileLightLimit","敌对刷怪光照阈值",0,16,"仅允许光照小于此数"),num("treasureEggBps","宝藏池地区蛋概率",0,10000,"万分数"));
         add(groups,"lottery","抽奖／祈愿","gameplay/lottery.toml","仅影响后续操作；奖池及解锁等级手改重启，已提交奖励保留。",
-            bool("enabled","抽奖开启"),num("experienceCost","每张券消耗经验等级",1,Integer.MAX_VALUE,"附魔等级"),num("tokenCost","每张券消耗代币",1,Integer.MAX_VALUE,"个人代币／原石"),
+            bool("enabled","抽奖开启"),bool("allItems","全部物品奖池"),num("experienceCost","每张券消耗经验等级",1,Integer.MAX_VALUE,"附魔等级"),num("tokenCost","每张券消耗代币",1,Integer.MAX_VALUE,"个人代币／原石"),
             num("rarityBps/rare","稀有基础概率",0,10000,"万分数，普通取剩余"),num("rarityBps/epic","史诗基础概率",0,10000,"万分数"),num("rarityBps/legendary","传说基础概率",0,10000,"万分数，三项合计不得超过10000"));
         add(groups,"refresh","刷新预算","islands/refresh.toml","下一刻采用新预算；已有异步读取正常结束，不追加强加载。",
             num("globalComputeBudgetMicrosPerTick","全服每刻计算预算",1,5000,"微秒，默认1000"),num("maxSectionsPerTick","每刻区段数量",1,64,"区段"),num("maxNewChunkRequestsPerTick","每刻新读取数",1,16,"请求"),num("maxConcurrentChunkRequests","同时读取数量",1,32,"请求"));

@@ -13,11 +13,9 @@ registryVerified = false
 independentOfItemRarity = true
 # 配置字段 shopsOnlyOrdinary
 shopsOnlyOrdinary = true
-# 制造品质档位；顺序为普通、银星、金星。
-professions = ["blacksmith", "chef", "farmer", "hunter", "fisherman"]
+# 制造品质档位；顺序为普通、铜星、银星、金星、钻星、七彩星。
+professions = ["blacksmith", "chef", "farmer", "hunter", "fisherman", "miner"]
 allCanBeLearned = true
-# 金星装备另抽永久无限耐久，1000=10%。
-goldUnbreakableChanceBps = 1000
 automatedProductionQuality = "ordinary"
 automatedProfessionXp = 0
 zeroXpRecipeKinds = ["lossless_pack_unpack", "copy", "repair", "preview"]
@@ -34,30 +32,67 @@ valueBps = 10000
 durabilityBps = 10000
 # 品质攻击／护甲／挖掘加成；万分比，0表示无加成。
 attributeBonusBps = 0
+# 永久无限耐久概率；万分比，0表示不抽。
+unbreakableBps = 0
 
 [[grades]]
-# 银星固定 ID。
-id = "silver"
-# 界面显示名称。
-name = "银星"
-# 品质价值倍率；20000=售价×2。
+id = "copper"
+name = "铜星"
+# 售价×2。
 valueBps = 20000
-# 品质最大耐久倍率；12000=×1.2。
+# 耐久×1.2。
 durabilityBps = 12000
-# 适用基础属性加成；2000=+20%。
+# 属性+20%。
 attributeBonusBps = 2000
+unbreakableBps = 0
 
 [[grades]]
-# 金星固定 ID。
-id = "gold"
-# 界面显示名称。
-name = "金星"
-# 品质价值倍率；60000=售价×6。
+id = "silver"
+name = "银星"
+# 售价×6。
 valueBps = 60000
-# 品质最大耐久倍率；20000=×2。
+# 耐久×2。
 durabilityBps = 20000
-# 适用基础属性加成；10000=+100%。
+# 属性+100%。
 attributeBonusBps = 10000
+# 10%永久无限耐久。
+unbreakableBps = 1000
+
+[[grades]]
+id = "gold"
+name = "金星"
+# 售价×15。
+valueBps = 150000
+# 耐久×2.5。
+durabilityBps = 25000
+# 属性+150%。
+attributeBonusBps = 15000
+# 20%永久无限耐久。
+unbreakableBps = 2000
+
+[[grades]]
+id = "diamond"
+name = "钻星"
+# 售价×30。
+valueBps = 300000
+# 耐久×3。
+durabilityBps = 30000
+# 属性+200%。
+attributeBonusBps = 20000
+# 40%永久无限耐久。
+unbreakableBps = 4000
+
+[[grades]]
+id = "prismatic"
+name = "七彩星"
+# 售价×100。
+valueBps = 1000000
+# 耐久×4。
+durabilityBps = 40000
+# 属性+250%。
+attributeBonusBps = 25000
+# 必定永久无限耐久。
+unbreakableBps = 10000
 
 # 个人职业 ID 清单
 # 配置字段 allCanBeLearned

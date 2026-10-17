@@ -2,20 +2,29 @@ package cn.yumis.skyisland.server;
 
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.attribute.ModAttributes;
+import cn.yumis.skyisland.core.FishingRules;
 import cn.yumis.skyisland.item.ModItems;
 import cn.yumis.skyisland.item.BiomeTreasureBox;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.*;
-import net.minecraft.resources.Identifier;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.projectile.FishingHook;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.FluidTags;
@@ -30,7 +39,10 @@ public final class FishingService {
         new Drop("glowing_scales",ModItems.FISHING_MATERIALS.get("glowing_scales"),10,false),
         new Drop("nautilus_shell",Items.NAUTILUS_SHELL,6,false),
         new Drop("name_tag",Items.NAME_TAG,5,false),
-        new Drop("saddle",Items.SADDLE,3,false));
+        new Drop("saddle",Items.SADDLE,3,false),
+        new Drop("enchanted_book",Items.ENCHANTED_BOOK,8,false),
+        new Drop("fishing_rod",Items.FISHING_ROD,6,false),
+        new Drop("bow",Items.BOW,6,false));
     private static final Identifier LEVEL_BONUS=YumisSkyIsland.id("fisherman_level");
     private FishingService() {}
     /** Profession progress is derived from the durable personal state; command-set base values remain intact. */
@@ -72,7 +84,9 @@ public final class FishingService {
         if(id.equals(LEVEL_BONUS))return 0;
         if(id.equals(YumisSkyIsland.id("accessory_bobber")))return 1;
         if(id.equals(YumisSkyIsland.id("accessory_fisher_charm")))return 2;
-        return 3;
+        if(id.equals(YumisSkyIsland.id("accessory_fishing_line")))return 3;
+        if(id.equals(YumisSkyIsland.id("accessory_angler_bag")))return 4;
+        return 5;
     }
     private static String sourceName(Identifier id){
         if(id.equals(LEVEL_BONUS))return "渔夫等级";
@@ -83,18 +97,18 @@ public final class FishingService {
     public static double waitFactor(double power){return power<=100?1-power*0.0025:0.75-(power-100)*(0.5/900.0);}
     public static double treasureChance(SkyServer runtime,ServerPlayer player){
         double power=power(runtime,player);
-        return Math.min(1,0.05*(1+power/1000.0)*(AccessoryService.active(runtime,player,"treasure_compass")?1.1:1));
+        return Math.min(1,0.05*(1+power/1000.0)*FishingRules.treasureMultiplier(AccessoryService.treasureBonus(runtime,player)));
     }
     public static void caught(ServerPlayer player,FishingHook hook,Collection<ItemStack> loot){
         if(loot.isEmpty()||hook.getHookedIn()!=null||hook.tickCount<1||!(hook.level() instanceof ServerLevel level))return;
         SkyServer runtime=SkyServer.get(level.getServer());if(runtime==null)return;
         String biome=level.getBiome(hook.blockPosition()).unwrapKey().map(key->key.identifier().getPath()).orElse("plains");
         String medium=hook instanceof FishingMediumAccess access?access.yumis$medium():"water";
-        // Half of successful water catches use the regional pool; the other half keep vanilla loot.
-        if(medium.equals("water")&&!player.getRandom().nextBoolean())return;
+        // Half of successful water catches use the regional pool. Tackle rolls the vanilla half once more.
+        if(!FishingRules.regionalCatch(medium,AccessoryService.tackle(runtime,player),player.getRandom()::nextBoolean))return;
         ItemStack selected;
         if(player.getRandom().nextDouble()<treasureChance(runtime,player))
-            selected=BiomeTreasureBox.create(biome,medium,runtime.bloodMoon.active() && level.dimension().equals(Level.OVERWORLD));
+            selected=BiomeTreasureBox.create(stamp(level,biome,medium),medium,medium.equals("water")&&runtime.bloodMoon.active()&&level.dimension().equals(Level.OVERWORLD));
         else selected=ordinary(player,biome,medium);
         if(selected==null||selected.isEmpty())return;
         loot.clear();loot.add(selected);
@@ -108,12 +122,34 @@ public final class FishingService {
     }
     /** The box rolls at opening, using current server settings and the opener's current power. */
     public static ItemStack openBox(SkyServer runtime,ServerPlayer player,BiomeTreasureBox.Kind kind){
-        boolean end=Set.of("the_end","end_highlands","end_midlands","small_end_islands","end_barrens").contains(kind.biome());
+        boolean end=BiomeTreasureBox.END_BIOMES.contains(kind.biome());
         int eggBps=runtime.config.object("gameplay/blood_moon.toml").get("treasureEggBps").getAsInt();
         List<TreasureOutcome> outcomes=treasureOutcomes(kind.biome(),kind.medium(),power(runtime,player),kind.bloodMoon(),end,eggBps);
         double target=player.getRandom().nextDouble();
-        for(TreasureOutcome outcome:outcomes){target-=outcome.probability();if(target<0)return new ItemStack(outcome.item());}
-        return new ItemStack(outcomes.getLast().item());
+        Item item=outcomes.getLast().item();
+        for(TreasureOutcome outcome:outcomes){target-=outcome.probability();if(target<0){item=outcome.item();break;}}
+        return enchant(player,item);
+    }
+    private static final List<Identifier> ROD_ENCHANTS=List.of(id("lure"),id("luck_of_the_sea"),id("unbreaking"),id("mending"));
+    private static final List<Identifier> BOW_ENCHANTS=List.of(id("power"),id("punch"),id("flame"),id("unbreaking"),id("mending"),id("infinity"));
+    private static Identifier id(String path){return Identifier.fromNamespaceAndPath("minecraft",path);}
+    /** One enchantment, level 1 through its max. Books take any non-curse; rods and bows use a fixed set. */
+    private static ItemStack enchant(ServerPlayer player,Item item){
+        ItemStack stack=new ItemStack(item);
+        boolean book=stack.is(Items.ENCHANTED_BOOK);
+        List<Identifier> restricted=stack.is(Items.FISHING_ROD)?ROD_ENCHANTS:stack.is(Items.BOW)?BOW_ENCHANTS:null;
+        if(!book&&restricted==null)return stack;
+        Registry<Enchantment> registry=player.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+        List<Holder<Enchantment>> choices=new ArrayList<>();
+        if(book)registry.listElements().forEach(holder->{if(!holder.is(EnchantmentTags.CURSE))choices.add(holder);});
+        else for(Identifier enchantment:restricted)registry.get(ResourceKey.create(Registries.ENCHANTMENT,enchantment)).ifPresent(choices::add);
+        if(choices.isEmpty())return stack;
+        Holder<Enchantment> chosen=choices.get(player.getRandom().nextInt(choices.size()));
+        int level=1+player.getRandom().nextInt(Math.max(1,chosen.value().getMaxLevel()));
+        ItemEnchantments.Mutable stored=new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
+        stored.set(chosen,level);
+        stack.set(book?DataComponents.STORED_ENCHANTMENTS:DataComponents.ENCHANTMENTS,stored.toImmutable());
+        return stack;
     }
     public static List<TreasureOutcome> treasureOutcomes(String biome,String medium,double power,boolean bloodMoon,boolean end,int eggBps){
         List<TreasureOutcome> result=new ArrayList<>();
@@ -130,10 +166,35 @@ public final class FishingService {
         for(Drop drop:pool)result.add(new TreasureOutcome(drop.item(),(1-eggChance)*(1-elytraChance)*drop.weight()*(drop.common()?1:multiplier)/total));
         return result;
     }
+    private static String stamp(ServerLevel level,String biome,String medium){
+        if(medium.equals("water"))return ModItems.BIOME_BALLS.containsKey(biome)?biome:"plains";
+        if(level.dimension().equals(Level.NETHER))return BiomeTreasureBox.NETHER_BIOMES.contains(biome)?biome:"nether_wastes";
+        if(level.dimension().equals(Level.END))return "the_end";
+        return "overworld";
+    }
+    private static String family(String biome,String medium){
+        if(medium.equals("water"))return biome;
+        if(BiomeTreasureBox.NETHER_BIOMES.contains(biome))return biome;
+        if(BiomeTreasureBox.END_BIOMES.contains(biome))return "the_end";
+        return "overworld";
+    }
     private static List<Drop> treasurePool(String biome,String medium){
         List<Drop> pool=new ArrayList<>(BASE);
         if(medium.equals("lava")){pool.add(new Drop("lava_eel",ModItems.FISH.get("lava_eel"),32,false));pool.add(new Drop("ash_pearl",ModItems.FISHING_MATERIALS.get("ash_pearl"),17,false));pool.add(drop(Items.MAGMA_CREAM,15));}
         if(medium.equals("void")){pool.add(new Drop("void_fish",ModItems.FISH.get("void_fish"),32,false));pool.add(new Drop("void_fragment",ModItems.FISHING_MATERIALS.get("void_fragment"),16,false));pool.add(drop(Items.CHORUS_FLOWER,12));}
+        if(!medium.equals("water")){
+            switch(family(biome,medium)){
+                case "overworld" -> { if(medium.equals("lava")){pool.add(drop(Items.COAL,18));pool.add(drop(Items.COBBLESTONE,16));pool.add(drop(Items.MAGMA_BLOCK,14));pool.add(drop(Items.OBSIDIAN,8));} else {pool.add(drop(Items.FEATHER,18));pool.add(drop(Items.STRING,14));pool.add(drop(Items.PHANTOM_MEMBRANE,12));pool.add(drop(Items.LEATHER,10));} }
+                case "the_end" -> { if(medium.equals("lava")){pool.add(drop(Items.END_STONE,20));pool.add(drop(Items.CHORUS_FRUIT,16));pool.add(drop(Items.MAGMA_BLOCK,12));pool.add(drop(Items.OBSIDIAN,10));} else {pool.add(drop(Items.END_STONE,20));pool.add(drop(Items.CHORUS_FRUIT,18));pool.add(drop(Items.POPPED_CHORUS_FRUIT,12));pool.add(drop(Items.SHULKER_SHELL,4));} }
+                case "nether_wastes" -> {pool.add(drop(Items.NETHERRACK,22));pool.add(drop(Items.QUARTZ,16));pool.add(drop(Items.GOLD_NUGGET,14));pool.add(drop(Items.GLOWSTONE_DUST,10));}
+                case "soul_sand_valley" -> addSoul(pool);
+                case "crimson_forest" -> {pool.add(drop(Items.CRIMSON_FUNGUS,26));pool.add(drop(Items.CRIMSON_NYLIUM,18));pool.add(drop(Items.WEEPING_VINES,14));pool.add(drop(Items.NETHER_WART,12));}
+                case "warped_forest" -> {pool.add(drop(Items.WARPED_FUNGUS,26));pool.add(drop(Items.WARPED_NYLIUM,18));pool.add(drop(Items.TWISTING_VINES,14));pool.add(drop(Items.SHROOMLIGHT,8));}
+                case "basalt_deltas" -> {pool.add(drop(Items.BASALT,22));pool.add(drop(Items.BLACKSTONE,18));pool.add(drop(Items.SMOOTH_BASALT,14));pool.add(drop(Items.MAGMA_BLOCK,12));}
+                default -> {}
+            }
+            return pool;
+        }
         switch(biome){
             case "desert" -> {pool.add(drop(Items.CACTUS,30));pool.add(drop(Items.DEAD_BUSH,8));}
             case "forest", "flower_forest", "plains", "sunflower_plains", "swamp" -> pool.add(drop(Items.OAK_SAPLING,24));
@@ -154,7 +215,19 @@ public final class FishingService {
             case "warped_forest" -> pool.add(drop(Items.WARPED_FUNGUS,26));
             case "crimson_forest" -> pool.add(drop(Items.CRIMSON_FUNGUS,26));
             case "basalt_deltas", "nether_wastes" -> pool.add(new Drop("ash_pearl",ModItems.FISHING_MATERIALS.get("ash_pearl"),17,false));
+            case "soul_sand_valley" -> addSoul(pool);
             case "the_end", "end_highlands", "end_midlands", "small_end_islands", "end_barrens" -> {pool.add(drop(Items.CHORUS_FLOWER,20));pool.add(new Drop("void_fragment",ModItems.FISHING_MATERIALS.get("void_fragment"),10,false));}
+            case "beach" -> {pool.add(drop(Items.SAND,20));pool.add(drop(Items.KELP,16));pool.add(drop(Items.SEA_PICKLE,12));pool.add(drop(Items.TURTLE_SCUTE,8));}
+            case "deep_dark" -> {pool.add(drop(Items.SCULK,22));pool.add(drop(Items.COBBLED_DEEPSLATE,18));pool.add(drop(Items.SCULK_SENSOR,10));pool.add(drop(Items.ECHO_SHARD,6));}
+            case "dripstone_caves" -> {pool.add(drop(Items.POINTED_DRIPSTONE,22));pool.add(drop(Items.DRIPSTONE_BLOCK,16));pool.add(drop(Items.RAW_COPPER,14));pool.add(drop(Items.COPPER_INGOT,8));}
+            case "river" -> {pool.add(drop(Items.CLAY_BALL,20));pool.add(drop(Items.MUD,16));pool.add(drop(Items.LILY_PAD,14));pool.add(drop(Items.SUGAR_CANE,12));}
+            case "snowy_beach" -> {pool.add(drop(Items.SNOW_BLOCK,18));pool.add(drop(Items.SAND,16));pool.add(drop(Items.KELP,14));pool.add(drop(Items.PACKED_ICE,12));}
+            case "snowy_slopes" -> {pool.add(drop(Items.SNOW_BLOCK,20));pool.add(drop(Items.PACKED_ICE,16));pool.add(drop(Items.SPRUCE_SAPLING,12));pool.add(drop(Items.POWDER_SNOW_BUCKET,8));}
+            case "stony_peaks" -> {pool.add(drop(Items.CALCITE,22));pool.add(drop(Items.STONE,16));pool.add(drop(Items.RAW_IRON,12));pool.add(drop(Items.EMERALD,6));}
+            case "stony_shore" -> {pool.add(drop(Items.COBBLESTONE,20));pool.add(drop(Items.GRAVEL,16));pool.add(drop(Items.FLINT,14));pool.add(drop(Items.COAL,12));}
+            case "sulfur_caves" -> {pool.add(drop(Items.SULFUR,22));pool.add(drop(Items.SULFUR_SPIKE,16));pool.add(drop(Items.SULFUR_BRICKS,12));pool.add(drop(Items.POTENT_SULFUR,6));}
+            case "windswept_gravelly_hills" -> {pool.add(drop(Items.GRAVEL,22));pool.add(drop(Items.FLINT,16));pool.add(drop(Items.SPRUCE_SAPLING,12));pool.add(drop(Items.EMERALD,6));}
+            case "windswept_hills" -> {pool.add(drop(Items.STONE,20));pool.add(drop(Items.GRAVEL,14));pool.add(drop(Items.RAW_IRON,12));pool.add(drop(Items.EMERALD,6));}
             default -> {
                 if(biome.contains("ocean"))pool.add(drop(Items.PRISMARINE_SHARD,18));
                 else if(biome.contains("badlands"))pool.add(drop(Items.RED_SAND,25));
@@ -162,6 +235,7 @@ public final class FishingService {
         }
         return pool;
     }
+    private static void addSoul(List<Drop> pool){pool.add(drop(Items.SOUL_SAND,24));pool.add(drop(Items.SOUL_SOIL,20));pool.add(drop(Items.BONE,14));pool.add(drop(Items.GHAST_TEAR,6));}
     private static Drop drop(Item item,int weight){return new Drop(BuiltInRegistries.ITEM.getKey(item).toString(),item,weight,false);}
     public static boolean validLava(ServerLevel level,BlockPos pos){
         for(int dx=-2;dx<=2;dx++)for(int dz=-2;dz<=2;dz++){

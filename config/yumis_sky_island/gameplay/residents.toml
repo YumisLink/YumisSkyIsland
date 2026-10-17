@@ -20,7 +20,7 @@ ordinarySaleBps = 100
 expertSaleBps = 5000
 rawDiscountBps = 2000
 librarianXpBps = 1000
-# 园丁加农夫行动经验，探矿师加铁匠行动经验；本项目无可玩的矿工职业。
+# 园丁加农夫行动经验，探矿师加矿工行动经验。
 specialXpBps = 2000
 # 厨师每四次成功供养为其他职业免一餐；所有厨师自身正常吃饭。
 chefEvery = 4

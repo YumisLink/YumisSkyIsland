@@ -18,6 +18,15 @@ public abstract class BreakBlockMixin {
     private void yumis$chain(BlockPos pos,CallbackInfoReturnable<Boolean> ci){
         if(!ci.getReturnValue())return;
         var rt=SkyServer.get(level.getServer());
-        if(rt!=null&&!rt.veinMining.breaking(player)&&yumis$startingState!=null)rt.veinMining.broken(player,level,pos,yumis$startingState);
+        if(rt!=null&&!rt.veinMining.breaking(player)&&yumis$startingState!=null){
+            if(player.preventsBlockDrops()){
+                var drops=rt.professions.hammerDrops(player,yumis$startingState,player.getMainHandItem().getItem());
+                if(drops!=null){
+                    BlockPos at=rt.veinMining.held(player)?player.blockPosition():pos;
+                    for(var stack:drops)if(!stack.isEmpty())net.minecraft.world.level.block.Block.popResource(level,at,stack);
+                }
+            }
+            rt.veinMining.broken(player,level,pos,yumis$startingState);
+        }
     }
 }

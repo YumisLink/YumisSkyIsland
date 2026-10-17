@@ -232,12 +232,13 @@ public final class SkyServer implements AutoCloseable {
                 if (party.marketEpoch != epoch()) { trades.roll(party); break; }
             }
         }
-        if (tick % 200 == 0 && store.available()) { refresh.checkpointDeltas(); change(null, _ -> {}, () -> {}); }
+        if (tick % 200 == 0 && store.available()) { refresh.checkpointDeltas(); change(null, AccessoryService::flushStudyRemainder, () -> {}); }
         if (tick % 20 == 0) syncAll();
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             ModItems.refreshFlight(player, state().players.get(player.getUUID()));
             if (tick % 100 == 0) ModItems.applyFruitBonuses(player, state().players.get(player.getUUID()));
             if (tick % 100 == 0) AccessoryService.apply(player, state().players.get(player.getUUID()));
+            AccessoryService.tick(player);
             if (tick % 20 == 0) {
                 UUID chefId=player.getUUID();
                 float health=player.getHealth();
@@ -289,6 +290,7 @@ public final class SkyServer implements AutoCloseable {
                 case "accessory_open" -> { if(player.containerMenu!=player.inventoryMenu||!player.inventoryMenu.getCarried().isEmpty())player.closeContainer();sendState(player);send(player,"accessory_open",new JsonObject()); }
                 case "accessory_claim" -> accessories.claim(player);
                 case "accessory_toggle" -> accessories.toggle(player,request.product());
+                case "accessory_craft" -> accessories.craft(player,request.product());
                 case "vein" -> veinMining.setHeld(player,request.quantity()!=0);
                 case "buy" -> throw new IllegalArgumentException("请使用带商店和轮次校验的新版购买请求");
                 case "sell_hand" -> trades.sell(player, true, false);
@@ -343,7 +345,7 @@ public final class SkyServer implements AutoCloseable {
         Queue<String> pages = new ArrayDeque<>(); JsonArray entries = new JsonArray(); int page = 0;
         for (ItemEconomy.Entry e : economy.entries.values()) {
             var p = e.product(); JsonObject row = new JsonObject(); row.addProperty("id", p.id()); row.addProperty("name", p.name()); row.add("stack", economy.encode(e.template())); row.add("canonical",p.canonical());
-            row.addProperty("base", p.baseCoins());row.addProperty("buyBase",p.buyBaseCoins()); row.addProperty("buyMultiplierBps",p.buyMultiplierBps()); row.addProperty("rarity", p.rarity()); row.addProperty("level", p.level()); row.addProperty("buy", economy.canBuy(e)); row.addProperty("sell", p.canSell()); row.addProperty("category", p.category());
+            row.addProperty("base", p.baseCoins());row.addProperty("buyBase",p.buyBaseCoins()); row.addProperty("buyMultiplierBps",p.buyMultiplierBps()); row.addProperty("rarity", p.rarity()); row.addProperty("level", p.level()); row.addProperty("buy", economy.canBuy(e)); row.addProperty("sell", p.canSell()); row.addProperty("category", p.id().startsWith("yumis_sky_island:biome_ball_")?"biome_ball":p.category());
             row.addProperty("firstAcquisitionPremium",economy.starter(e));
             var unit = new GameConfig.QuotaUnit(p.canonical().get("itemId").getAsString(), Rational.ONE);
             row.addProperty("quotaGroup", unit.group()); row.addProperty("quotaUnits", unit.units().toString()); entries.add(row);
@@ -397,8 +399,8 @@ public final class SkyServer implements AutoCloseable {
         json.add("lottery",lottery.snapshot(player));
         json.addProperty("accessorySlots",person==null?3:Math.clamp(person.accessorySlots,3,AccessoryService.CATALOG.size()));
         JsonObject professionProgress=new JsonObject();
-        for(String profession:List.of("blacksmith","chef","farmer","hunter","fisherman")){
-            JsonObject xpCurve=config.object("products/professions.toml").getAsJsonObject(profession.equals("blacksmith")?"blacksmithXpCurve":"xpCurve");
+        for(String profession:List.of("blacksmith","chef","farmer","hunter","miner","fisherman")){
+            JsonObject xpCurve=config.object("products/professions.toml").getAsJsonObject(profession.equals("blacksmith")||profession.equals("miner")?"blacksmithXpCurve":"xpCurve");
             long xpBase=xpCurve.get("perLevelBase").getAsLong(), xpGrowth=xpCurve.get("perLevelGrowth").getAsLong(), xpLater=xpCurve.get("post100Growth").getAsLong();
             int professionLevel=professions.level(person,profession);
             BigInteger total=person==null?BigInteger.ZERO:person.professionXp.getOrDefault(profession,BigInteger.ZERO);
@@ -446,6 +448,11 @@ public final class SkyServer implements AutoCloseable {
         JsonArray fishingGuide=guide.has("fisherman")?guide.getAsJsonArray("fisherman"):new JsonArray();
         JsonObject fishingRow=new JsonObject();fishingRow.addProperty("id","yumis_sky_island:biome_treasure_box");fishingRow.addProperty("source","真实钓获（固定经验）");
         fishingRow.addProperty("itemLevel",0);fishingRow.addProperty("baseXp",12);fishingGuide.add(fishingRow);guide.add("fisherman",fishingGuide);
+        JsonArray minerGuide=new JsonArray();
+        for(String[] mined:new String[][]{{"minecraft:cobblestone","锤子挖掘圆石"},{"minecraft:gravel","锤子挖掘砂砾"},{"minecraft:dirt","锤子挖掘泥土"}}){
+            JsonObject row=new JsonObject();row.addProperty("id",mined[0]);row.addProperty("source",mined[1]);row.addProperty("itemLevel",0);row.addProperty("baseXp",1);minerGuide.add(row);
+        }
+        guide.add("miner",minerGuide);
         json.add("professionGuide",guide);
         json.add("professionShop",config.object("products/profession_shop.toml"));
         json.addProperty("bloodMoon",state().bloodMoonActive);

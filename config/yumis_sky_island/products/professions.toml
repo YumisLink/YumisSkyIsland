@@ -11,6 +11,10 @@ eligibleManualSources = ["crafting", "stonecutting", "furnace", "smithing"]
 minimumXpBatchSize = 1
 noXpItems = ["minecraft:iron_ingot", "minecraft:gold_ingot", "minecraft:copper_ingot", "minecraft:diamond", "minecraft:emerald", "minecraft:iron_nugget", "minecraft:gold_nugget", "minecraft:copper_nugget", "minecraft:bone_meal", "minecraft:dried_kelp_block", "minecraft:iron_block", "minecraft:gold_block", "minecraft:copper_block", "minecraft:diamond_block", "minecraft:emerald_block", "minecraft:coal_block", "minecraft:redstone_block", "minecraft:lapis_block", "minecraft:slime_block", "minecraft:honey_block"]
 successfulFishingXp = 12
+# 岩浆获钓经验倍率；非负整数。乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘。
+lavaFishingXpMultiplier = 5
+# 虚空获钓经验倍率；非负整数。乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘。
+voidFishingXpMultiplier = 25
 # 每次符合名单的猎物击杀经验。
 successfulHunterKillXp = 6
 
@@ -38,32 +42,49 @@ chef = 4
 farmer = 3
 # 配置字段 hunter
 hunter = 6
+# 锤子每敲掉一块圆石、砂砾或泥土固定给 1 点，不读这里
+miner = 1
 # 品质按职业等级减物品等级的差值抽取，万分比。
 
 [[qualityDifference]]
 minDifference = 0
-silverBps = 900
-goldBps = 100
+copperBps = 800
+silverBps = 120
+goldBps = 30
+diamondBps = 5
+prismaticBps = 1
 
 [[qualityDifference]]
 minDifference = 20
-silverBps = 2500
-goldBps = 500
+copperBps = 2000
+silverBps = 350
+goldBps = 60
+diamondBps = 10
+prismaticBps = 2
 
 [[qualityDifference]]
 minDifference = 100
-silverBps = 8500
-goldBps = 1500
+copperBps = 4500
+silverBps = 1000
+goldBps = 180
+diamondBps = 25
+prismaticBps = 5
 
 [[qualityDifference]]
 minDifference = 200
-silverBps = 5000
-goldBps = 5000
+copperBps = 3200
+silverBps = 2200
+goldBps = 400
+diamondBps = 60
+prismaticBps = 10
 
 [[qualityDifference]]
 minDifference = 500
-silverBps = 0
-goldBps = 10000
+copperBps = 2000
+silverBps = 3000
+goldBps = 800
+diamondBps = 120
+prismaticBps = 20
 # 配置字段 eligibleManualSources
 # 配置字段 minimumXpBatchSize
 # 无损压缩／还原等不提供制作经验的物品 ID 列表

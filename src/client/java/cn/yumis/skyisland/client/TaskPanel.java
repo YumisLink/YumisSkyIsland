@@ -100,6 +100,7 @@ public final class TaskPanel {
         if(quest.get("rewardCoins").getAsLong()>0){text(g,"奖励："+Money.format(quest.get("rewardCoins").getAsLong()),left,y,0xFFFFDC78,right);y+=15;}
         if(quest.has("rewardExperiencePoints")&&quest.get("rewardExperiencePoints").getAsInt()>0){text(g,"奖励："+quest.get("rewardExperiencePoints").getAsInt()+"点原版经验",left,y,0xFF9DE5C7,right);y+=15;}
         if(model.state.has("lottery")){var lottery=model.state.getAsJsonObject("lottery");if(lottery.has("taskTokenReward")){text(g,"奖励："+lottery.get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token()+(quest.has("kind")&&quest.get("kind").getAsString().equals("main")?"（全队每人）":""),left,y,0xFFB5B2FF,right);y+=15;}}
+        if(quest.has("rewardAccessoryDraws")&&quest.get("rewardAccessoryDraws").getAsInt()>0){text(g,"奖励：饰品抽奖 +"+quest.get("rewardAccessoryDraws").getAsInt(),left,y,0xFF7DDEA5,right);y+=15;}
         for(var feature:quest.getAsJsonArray("unlockFeatures")){text(g,"永久解锁："+featureName(feature.getAsString()),left,y,0xFF9DE5C7,right);y+=15;}
         text(g,statusLabel(status()),left,y+5,0xFFADB9C3,right);
         g.disableScissor();
@@ -110,7 +111,7 @@ public final class TaskPanel {
             button(g,"重置全服此任务",left+249,parent.height-32,125,!model.taskBusy);
         }
     }
-    private static String gradeName(int grade){return new String[]{"普通","银星","金星"}[Math.clamp(grade,0,2)];}
+    private static String gradeName(int grade){return new String[]{"普通","铜星","银星","金星","钻星","七彩星"}[Math.clamp(grade,0,5)];}
     private static int titleColor(String kind){return switch(kind){case "main"->0xFFFFD700;case "profession"->0xFF5599FF;default->0xFFFFFFFF;};}
     private static String enchantments(net.minecraft.world.item.ItemStack stack,boolean minimum){var labels=new ArrayList<String>();for(var entry:net.minecraft.world.item.enchantment.EnchantmentHelper.getEnchantmentsForCrafting(stack).entrySet())labels.add(entry.getKey().value().description().getString()+(minimum?" ≥":" ")+entry.getIntValue());return labels.isEmpty()?"":"附魔："+String.join("、",labels);}
     private TaskMaterialPlanner.Requirement compile(JsonObject row){return new TaskMaterialPlanner.Requirement(model.decode(row.get("stack")),row.has("components")?row.getAsJsonObject("components"):new JsonObject(),row.get("quantity").getAsInt(),row.has("minimumQuality")?row.get("minimumQuality").getAsInt():null);}

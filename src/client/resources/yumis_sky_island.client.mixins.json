@@ -3,6 +3,6 @@
   "package": "cn.yumis.skyisland.client.mixin",
   "compatibilityLevel": "JAVA_25",
   "plugin": "cn.yumis.skyisland.client.mixin.OptionalFishingMixinPlugin",
-  "client": ["ShopHudMixin", "ShopToastMixin", "RarityNameMixin", "InventoryIslandProgressMixin", "WandUseMixin", "WandScrollMixin", "BlueprintMouseMixin", "PersonalPanelDefaultKeysMixin", "AutoFishCompatMixin", "ConfigEditKeyMixin"],
+    "client": ["ShopHudMixin", "ShopToastMixin", "RarityNameMixin", "InventoryIslandProgressMixin", "WandUseMixin", "WandScrollMixin", "BlueprintMouseMixin", "PersonalPanelDefaultKeysMixin", "AutoFishCompatMixin", "ConfigEditKeyMixin", "HammerRefillMixin"],
   "injectors": {"defaultRequire": 1}
 }

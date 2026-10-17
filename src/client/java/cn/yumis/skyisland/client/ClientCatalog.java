@@ -10,6 +10,7 @@ import com.mojang.serialization.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -28,7 +29,7 @@ import java.util.*;
 public final class ClientCatalog {
     public static volatile int serverEggBps=2500;
     public record Product(String id,String name,ItemStack stack,JsonObject canonical,long base,long buyBase,long buyMultiplierBps,String rarity,int level,boolean buy,boolean sell,String category,String quotaGroup,Rational units,boolean starter) {
-        @Override public String name(){return stack.getHoverName().getString();}
+        @Override public String name(){return stack.is(Items.ENCHANTED_BOOK)&&name!=null&&!name.isBlank()?name:stack.getHoverName().getString();}
     }
     public record Category(String id,String name,ItemStack icon) {}
     public final Map<String,Product> products = new LinkedHashMap<>();
@@ -107,7 +108,8 @@ public final class ClientCatalog {
                 var ops = RegistryOps.create(JsonOps.INSTANCE,mc.getConnection().registryAccess());
                 for (JsonElement element : data.getAsJsonArray()) {
                     JsonObject row = element.getAsJsonObject(); ItemStack stack = ItemStack.CODEC.parse(ops,row.get("stack")).getOrThrow();
-                    Product p = new Product(row.get("id").getAsString(),stack.getHoverName().getString(),stack,row.getAsJsonObject("canonical"),row.get("base").getAsLong(),row.get("buyBase").getAsLong(),row.get("buyMultiplierBps").getAsLong(),row.get("rarity").getAsString(),row.get("level").getAsInt(),row.get("buy").getAsBoolean(),row.get("sell").getAsBoolean(),row.get("category").getAsString(),row.get("quotaGroup").getAsString(),Rational.parse(row.get("quotaUnits").getAsString()),row.has("firstAcquisitionPremium")&&row.get("firstAcquisitionPremium").getAsBoolean());
+                    String catalogName=row.has("name")?row.get("name").getAsString():"";
+                    Product p = new Product(row.get("id").getAsString(),catalogName,stack,row.getAsJsonObject("canonical"),row.get("base").getAsLong(),row.get("buyBase").getAsLong(),row.get("buyMultiplierBps").getAsLong(),row.get("rarity").getAsString(),row.get("level").getAsInt(),row.get("buy").getAsBoolean(),row.get("sell").getAsBoolean(),row.get("category").getAsString(),row.get("quotaGroup").getAsString(),Rational.parse(row.get("quotaUnits").getAsString()),row.has("firstAcquisitionPremium")&&row.get("firstAcquisitionPremium").getAsBoolean());
                     stagingProducts.put(p.id(),p);
                 }
                 nextCatalogPage++;
@@ -140,6 +142,7 @@ public final class ClientCatalog {
                 quality=rules.getAsJsonObject("quality");enchantments=rules.getAsJsonObject("enchantments");itemRarities=rules.getAsJsonObject("itemRarities");saleDivisor=rules.get("saleDivisor").getAsLong();minimumBaseCoins=rules.get("minimumBaseCoins").getAsLong();regularBuyMultiplierBps=rules.get("regularBuyMultiplierBps").getAsLong();
                 if(rules.has("prefabAmmunitionPrice"))prefabAmmunitionPrice=rules.get("prefabAmmunitionPrice").getAsLong();if(rules.has("prefabAmmunitionCredits"))prefabAmmunitionCredits=rules.get("prefabAmmunitionCredits").getAsInt();
                 Money.currencyName(rules.get("genshinMode").getAsBoolean()?"摩拉":"金币");if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);
+                var movedBalls=new ArrayList<String>();if(specialFavorites.removeIf(id->{if(!id.startsWith("yumis_sky_island:biome_ball_"))return false;movedBalls.add(id);return true;})){permanentFavorites.addAll(movedBalls);save();}
                 List<QuotaCurve.Tier> tiers=new ArrayList<>();for(JsonElement e:rules.getAsJsonArray("quotas")){var t=e.getAsJsonObject();tiers.add(new QuotaCurve.Tier(t.get("upToUnits").isJsonNull()?null:Rational.of(t.get("upToUnits").getAsLong()),t.get("saleMultiplierBps").getAsInt()));}quotaCurve=new QuotaCurve(tiers);updateCreativeBlueprints(rules);revision++;
             }
             case "sale_begin" -> {saleDesired=true;panel().showSale();}
@@ -148,7 +151,16 @@ public final class ClientCatalog {
             }
             case "sale_done" -> {sale=new JsonObject();if(saleDesired&&Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.cancelSale(false);saleDesired=false;revision++;}
             case "request_error" -> {lastError=data.getAsJsonObject().get("message").getAsString();lotteryBusy=false;if(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.saleFailed();revision++;}
-            case "lottery_result" -> {lastLotteryResult=data.getAsJsonObject().deepCopy();lotteryBusy=false;lastError="";revision++;}
+            case "lottery_result" -> {
+                lastLotteryResult=data.getAsJsonObject().deepCopy();lotteryBusy=false;lastError="";revision++;
+                String action=lastLotteryResult.has("action")?lastLotteryResult.get("action").getAsString():"";
+                if(action.equals("draw")||action.equals("draw_10")){
+                    var mc=Minecraft.getInstance();
+                    var current=mc.gui.screen();
+                    Screen parent=current instanceof LotteryResultScreen existing?existing.parent():current;
+                    mc.gui.setScreen(new LotteryResultScreen(parent,lastLotteryResult,this));
+                }
+            }
             case "coin_gain", "coin_change" -> {var gain=data.getAsJsonObject();if(gain.get("partyId").getAsString().equals(partyId(state)))coinGains.receive(gain.get("sequence").getAsLong(),gain.get("amount").getAsLong());}
             case "purchase_notice" -> {var row=data.getAsJsonObject();if(row.get("partyId").getAsString().equals(partyId(state))){Product product=products.get(row.get("itemId").getAsString());String item=product==null?new ItemStack(BuiltInRegistries.ITEM.getValue(Identifier.parse(row.get("itemId").getAsString()))).getHoverName().getString():product.stack().getHoverName().getString();events.receive(row.get("actor").getAsString()+"花了"+Money.format(row.get("cost").getAsLong())+"购买了"+item+" ×"+row.get("quantity").getAsInt(),0xFFE4CF91);}}
             case "death_notice" -> {var row=data.getAsJsonObject();if(row.get("partyId").getAsString().equals(partyId(state)))events.receive(row.get("actor").getAsString()+"死亡了，扣除"+Money.format(row.get("cost").getAsLong())+"作为医药费。",0xFFFFA6A6);}
@@ -181,9 +193,12 @@ public final class ClientCatalog {
             String id = BuiltInRegistries.CREATIVE_MODE_TAB.getKey(tab).toString(); tabs.add(new Category(id,tab.getDisplayName().getString(),tab.getIconItem()));
             for (ItemStack item : tab.getDisplayItems()) categories.putIfAbsent(item.getItem(),id);
         }
+        Item ball=cn.yumis.skyisland.item.ModItems.BIOME_BALLS.get("plains");
+        if(ball==null&&!cn.yumis.skyisland.item.ModItems.BIOME_BALLS.isEmpty())ball=cn.yumis.skyisland.item.ModItems.BIOME_BALLS.values().iterator().next();
+        tabs.add(new Category("biome_ball","【生态球】",ball==null?new ItemStack(Items.ENDER_PEARL):new ItemStack(ball)));
         tabs.add(new Category("other","其他商品",new ItemStack(Items.CHEST)));
     }
-    public String category(Product p) { return p.category().startsWith("minecraft:") || p.category().equals("other") ? p.category() : categories.getOrDefault(p.stack().getItem(),"other"); }
+    public String category(Product p) { if(p.id().startsWith("yumis_sky_island:biome_ball_")||p.category().equals("biome_ball"))return "biome_ball"; return p.category().startsWith("minecraft:") || p.category().equals("other") ? p.category() : categories.getOrDefault(p.stack().getItem(),"other"); }
     public List<Category> shopTabs() { return tabs.stream().filter(c->products.values().stream().anyMatch(p->p.buy()&&category(p).equals(c.id()))).toList(); }
     public int level() { return state.has("level") ? state.get("level").getAsInt() : 0; }
     public long wallet() { return state.has("wallet") ? state.get("wallet").getAsLong() : 0; }
@@ -194,7 +209,8 @@ public final class ClientCatalog {
         if(p.stack().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION))return prefabAmmunitionPrice;
         boolean acquired=false;if(state.has("acquiredStarters"))for(var e:state.getAsJsonArray("acquiredStarters"))if(e.getAsString().equals(p.id()))acquired=true;
         Rational purchase=quality.has("grades")&&enchantments.has("entries")?ItemEconomy.fullValue(p.buyBase(),bps(p),p.stack(),quality,enchantments,minimumBaseCoins):Rational.of(Math.max(minimumBaseCoins,Rational.of(p.buyBase()).multiply(Rational.of(bps(p),10000)).floorLongExact()));
-        return purchase.multiply(Rational.of(p.starter()&&acquired?10000:p.buyMultiplierBps(),10000)).multiply(Rational.of(shop==0?regularBuyMultiplierBps:10000,10000)).multiply(Rational.of(residentBuyBps(BuiltInRegistries.ITEM.getKey(p.stack().getItem()).toString()),10000)).floorLongExact();
+        boolean permanentPremium=shop==0&&!p.id().startsWith("yumis_sky_island:biome_ball_");
+        return purchase.multiply(Rational.of(p.starter()&&acquired?10000:p.buyMultiplierBps(),10000)).multiply(Rational.of(permanentPremium?regularBuyMultiplierBps:10000,10000)).multiply(Rational.of(residentBuyBps(BuiltInRegistries.ITEM.getKey(p.stack().getItem()).toString()),10000)).floorLongExact();
     }
     private static String partyId(JsonObject value){return value.has("partyId")?value.get("partyId").getAsString():"";}
     public ItemStack decode(JsonElement data) { var connection=Minecraft.getInstance().getConnection();return data==null||data.isJsonNull()||connection==null?ItemStack.EMPTY:ItemStack.CODEC.parse(RegistryOps.create(JsonOps.INSTANCE,connection.registryAccess()),data).getOrThrow(); }
@@ -211,7 +227,13 @@ public final class ClientCatalog {
         return null;
     }
     public String productName(String id){Product product=products.get(id);if(product!=null)return product.stack().getHoverName().getString();var key=Identifier.tryParse(id);if(key!=null&&BuiltInRegistries.ITEM.containsKey(key))return new ItemStack(BuiltInRegistries.ITEM.getValue(key)).getHoverName().getString();return id;}
+    private static String fruitProfession(ItemStack stack){for(var entry:cn.yumis.skyisland.item.ModItems.FRUITS.entrySet())if(stack.is(entry.getValue()))return entry.getKey();return null;}
     public void tooltip(ItemStack stack,List<Component> lines) {
+        String fruit=fruitProfession(stack);
+        if(fruit!=null){
+            int used=0;if(state.has("consumedFruits")&&state.getAsJsonObject("consumedFruits").has(fruit))used=state.getAsJsonObject("consumedFruits").get(fruit).getAsInt();
+            lines.add(Component.literal(FruitText.line(fruit,used)).withStyle(ChatFormatting.AQUA));
+        }
         if(products.isEmpty()&&itemRarities.isEmpty()&&cn.yumis.skyisland.shop.LotteryItemRarity.get(stack).isEmpty())return;
         String rarity=rarity(stack);int color=RarityColors.color(rarity)&0xFFFFFF;
         if(!lines.isEmpty())lines.set(0,lines.getFirst().copy().withStyle(s->s.withColor(color)));
@@ -245,7 +267,7 @@ public final class ClientCatalog {
     public void favorite(String product,int shop){var group=favorites(shop);if(!group.remove(product))group.add(product);revision++;save();}
     private void importFavorites(){
         if(importedFavorites.isEmpty())return;
-        for(String id:importedFavorites){var p=products.get(id);(p!=null&&!p.rarity().equals("common")?specialFavorites:permanentFavorites).add(id);}
+        for(String id:importedFavorites){var p=products.get(id);(p!=null&&!p.rarity().equals("common")&&!p.id().startsWith("yumis_sky_island:biome_ball_")?specialFavorites:permanentFavorites).add(id);}
         importedFavorites.clear();save();
     }
     public void save(){
@@ -259,7 +281,7 @@ public final class ClientCatalog {
     }
     public boolean canBuy(Product p,int shop,int quantity){
         if(!p.buy()||quantity<1||level()<p.level()||!state.has("partyId")||state.get("partyId").getAsString().isEmpty())return false;
-        if(shop==0&&!p.rarity().equals("common"))return false;
+        if(shop==0&&!p.rarity().equals("common")&&!p.id().startsWith("yumis_sky_island:biome_ball_"))return false;
         if(shop==1&&(!specialAllowed()||!state.has("stock")||!state.getAsJsonObject("stock").has(p.id())||(stock(p)!=-1&&stock(p)<quantity)))return false;
         try{return wallet()>=Math.multiplyExact(price(p,shop),quantity);}catch(ArithmeticException error){return false;}
     }

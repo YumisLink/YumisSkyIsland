@@ -913,6 +913,38 @@
           "type": "minecraft:model",
           "model": "yumis_sky_island:item/biome_treasure_box/wooded_badlands_water_blood"
         }
+      },
+      {
+        "when": "overworld_lava",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/nether_wastes_lava"}
+      },
+      {
+        "when": "overworld_void",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"}
+      },
+      {
+        "when": "the_end_lava",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/nether_wastes_lava"}
+      },
+      {
+        "when": "nether_wastes_void",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"}
+      },
+      {
+        "when": "soul_sand_valley_void",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"}
+      },
+      {
+        "when": "crimson_forest_void",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"}
+      },
+      {
+        "when": "warped_forest_void",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"}
+      },
+      {
+        "when": "basalt_deltas_void",
+        "model": {"type": "minecraft:model", "model": "yumis_sky_island:item/biome_treasure_box/the_end_void"}
       }
     ],
     "fallback": {

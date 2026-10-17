@@ -146,6 +146,40 @@ public final class QuestCatalog {
         if (quest == null) throw new IllegalArgumentException("任务已删除或不存在");
         return quest;
     }
+    /** One-based chain index. The midpoint uses integer division, so even lines reward index size/2 and the last quest. */
+    public static int accessoryDrawsForPosition(int index, int size) {
+        if (size < 1 || index < 1 || index > size) return 0;
+        return index == size || index == size / 2 ? 1 : 0;
+    }
+    public record ProfessionLink(String id, String kind, String profession, String previous) {}
+    public static int accessoryDraws(List<ProfessionLink> links, String id) {
+        ProfessionLink quest = null;
+        for (ProfessionLink link : links) if (link.id().equals(id)) { quest = link; break; }
+        if (quest == null || !"profession".equals(quest.kind())) return 0;
+        List<ProfessionLink> line = new ArrayList<>();
+        Map<String, ProfessionLink> next = new HashMap<>();
+        ProfessionLink root = null;
+        for (ProfessionLink link : links) {
+            if (!"profession".equals(link.kind()) || !link.profession().equals(quest.profession())) continue;
+            line.add(link);
+            if (link.previous() == null || link.previous().isEmpty()) {
+                if (root != null) return 0;
+                root = link;
+            } else next.put(link.previous(), link);
+        }
+        int seen = 0, position = 0;
+        for (ProfessionLink current = root; current != null && seen <= line.size(); current = next.get(current.id())) {
+            seen++;
+            if (current.id().equals(id)) position = seen;
+        }
+        if (position == 0 || seen != line.size()) return 0;
+        return accessoryDrawsForPosition(position, line.size());
+    }
+    public int accessoryDraws(Quest quest) {
+        List<ProfessionLink> links = new ArrayList<>();
+        for (Quest other : quests) links.add(new ProfessionLink(other.id(), other.kind(), other.profession(), other.previous()));
+        return accessoryDraws(links, quest.id());
+    }
     public Quest nextMain(IslandState.Party p) {
         return quests.stream().filter(q -> q.kind().equals("main") && !p.completedQuestIds.contains(q.id())).findFirst().orElse(null);
     }
@@ -194,6 +228,7 @@ public final class QuestCatalog {
         }
         JsonArray items = new JsonArray(); quest.rewards.forEach(stack -> items.add(economy.encode(stack)));
         data.add("rewardItems",items);
+        data.addProperty("rewardAccessoryDraws", accessoryDraws(quest));
         return data;
     }
     private JsonArray goalDetails(IslandState.Party party,IslandState.Person person,Quest quest){

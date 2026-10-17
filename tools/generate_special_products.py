@@ -56,8 +56,10 @@ for biome, name in sorted(BIOMES.items()):
 for path, name, rarity, price, stock, weight in items:
     item_id = "yumis_sky_island:" + path
     if f'[products."{item_id}"]' not in product_text:
+        shop_category = "biome_ball" if path.startswith("biome_ball_") else "other"
+        comment = "常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。" if path.startswith("biome_ball_") else "每日／隐藏商店，岛屿0级可购买。"
         product_text += f'''
-\n# {name}：每日／隐藏商店，岛屿0级可购买。
+\n# {name}：{comment}
 [products."{item_id}"]
 productId = "{item_id}"
 name = "{name}"
@@ -67,7 +69,7 @@ buyBaseValueCoins = {price}
 tradeMode = "buy_only"
 dailyStock = {stock}
 offerWeight = {weight}
-shopCategory = "other"
+shopCategory = "{shop_category}"
 
 [products."{item_id}".canonicalStack]
 itemId = "{item_id}"
@@ -84,12 +86,12 @@ itemId = "{item_id}"
     item_file.write_text(json.dumps({"model": {"type": "minecraft:model", "model": model}}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 FISHING_ITEMS = {
-    "sky_carp": ("空岛鲤鱼", 5000, "rare", "minecraft:item/cod"),
-    "lava_eel": ("熔岩鳗鱼", 12000, "epic", "minecraft:item/salmon"),
-    "void_fish": ("虚空鱼", 20000, "epic", "minecraft:item/tropical_fish"),
-    "frost_trout": ("霜鳟", 7000, "rare", "minecraft:item/salmon"),
-    "desert_lungfish": ("沙漠肺鱼", 7000, "rare", "minecraft:item/cod"),
-    "mushroom_fish": ("蘑菇鱼", 9000, "rare", "minecraft:item/pufferfish"),
+    "sky_carp": ("空岛鲤鱼", 1000, "rare", "minecraft:item/cod"),
+    "lava_eel": ("熔岩鳗鱼", 2400, "epic", "minecraft:item/salmon"),
+    "void_fish": ("虚空鱼", 4000, "epic", "minecraft:item/tropical_fish"),
+    "frost_trout": ("霜鳟", 1400, "rare", "minecraft:item/salmon"),
+    "desert_lungfish": ("沙漠肺鱼", 1400, "rare", "minecraft:item/cod"),
+    "mushroom_fish": ("蘑菇鱼", 1800, "rare", "minecraft:item/pufferfish"),
     "glowing_scales": ("荧光鳞片", 10000, "rare", "minecraft:item/prismarine_shard"),
     "ash_pearl": ("余烬珍珠", 15000, "epic", "minecraft:item/magma_cream"),
     "void_fragment": ("虚空碎片", 30000, "epic", "minecraft:item/ender_pearl"),

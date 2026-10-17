@@ -29,6 +29,7 @@ public final class SkyCreativeTabs {
             .icon(()->new ItemStack(ConstructionWands.WANDS.keySet().iterator().next()))
             .displayItems((parameters,output)->{
                 for(var item:ConstructionWands.WANDS.keySet())output.accept(item);
+                for(var item:cn.yumis.skyisland.item.Hammers.ITEMS.keySet())output.accept(item);
                 for(var item:ConstructionWands.BLUEPRINTS.keySet())output.accept(item);
                 output.accept(PrefabBlocks.CANNON);
                 output.accept(PrefabItems.AMMUNITION);
@@ -47,10 +48,13 @@ public final class SkyCreativeTabs {
             .icon(()->BiomeTreasureBox.create("plains","water",false))
             .displayItems((parameters,output)->{
                 for(String biome:ModItems.BIOME_BALLS.keySet())output.accept(BiomeTreasureBox.create(biome,"water",false));
-                for(String biome:List.of("basalt_deltas","crimson_forest","nether_wastes","soul_sand_valley","warped_forest"))output.accept(BiomeTreasureBox.create(biome,"lava",false));
-                for(String biome:List.of("end_barrens","end_highlands","end_midlands","small_end_islands","the_end"))output.accept(BiomeTreasureBox.create(biome,"void",false));
+                for(String biome:BiomeTreasureBox.NETHER_BIOMES){output.accept(BiomeTreasureBox.create(biome,"lava",false));output.accept(BiomeTreasureBox.create(biome,"void",false));}
+                output.accept(BiomeTreasureBox.create("overworld","lava",false));
+                output.accept(BiomeTreasureBox.create("overworld","void",false));
+                output.accept(BiomeTreasureBox.create("the_end","lava",false));
+                output.accept(BiomeTreasureBox.create("the_end","void",false));
                 for(String biome:ModItems.BIOME_BALLS.keySet())
-                    if(!List.of("basalt_deltas","crimson_forest","nether_wastes","soul_sand_valley","warped_forest","end_barrens","end_highlands","end_midlands","small_end_islands","the_end").contains(biome))
+                    if(!BiomeTreasureBox.NETHER_BIOMES.contains(biome)&&!BiomeTreasureBox.END_BIOMES.contains(biome))
                         output.accept(BiomeTreasureBox.create(biome,"water",true));
             }).build());
     }

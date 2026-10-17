@@ -31,22 +31,33 @@ public final class LotteryService {
     private String catalogKey="";
     private boolean initializing;
     public LotteryService(SkyServer runtime){this.runtime=runtime;load(true);}
-    public void reload(){load(false);}
+    public void reload(){load(true);}
     private void load(boolean catalog) {
         try {
             var parsed=new LotterySettings(runtime.config.object(FILE));
             if(catalog||templates.isEmpty()) {
                 Map<String,ItemStack> loaded=new LinkedHashMap<>();List<LotterySelector.Candidate> rows=new ArrayList<>();
+                Map<String,ItemStack> configuredStacks=new LinkedHashMap<>();List<LotterySelector.Candidate> configured=new ArrayList<>();
                 for(var prize:parsed.prizes) {
                     var key=Identifier.parse(prize.itemId());if(!BuiltInRegistries.ITEM.containsKey(key))throw new IllegalArgumentException("未注册奖品："+prize.itemId());
                     JsonObject encoded=new JsonObject();encoded.addProperty("id",prize.itemId());encoded.addProperty("count",1);encoded.add("components",prize.components());
                     ItemStack stack=runtime.economy.decode(encoded);if(stack.isEmpty())throw new IllegalArgumentException("奖品为空："+prize.id());
                     LotteryItemRarity.apply(stack,prize.rarity());
-                    if(loaded.values().stream().anyMatch(existing->ItemStack.isSameItemSameComponents(existing,stack)))throw new IllegalArgumentException("同档奖品模板重复："+prize.id());
-                    loaded.put(prize.id(),stack.copyWithCount(1));
-                    rows.add(new LotterySelector.Candidate(prize.id(),LotterySettings.RARITIES.indexOf(prize.rarity()),prize.islandLevel()));
+                    if(configuredStacks.values().stream().anyMatch(existing->ItemStack.isSameItemSameComponents(existing,stack)))throw new IllegalArgumentException("同档奖品模板重复："+prize.id());
+                    configuredStacks.put(prize.id(),stack.copyWithCount(1));
+                    configured.add(new LotterySelector.Candidate(prize.id(),LotterySettings.RARITIES.indexOf(prize.rarity()),prize.islandLevel()));
                 }
-                if(!LotterySelector.available(rows,parsed.unlockLevel,parsed.policy))throw new IllegalArgumentException("最低传说等级下缺少可兑现的奖品或史诗保底");
+                if(!LotterySelector.available(configured,parsed.unlockLevel,parsed.policy))throw new IllegalArgumentException("最低传说等级下缺少可兑现的奖品或史诗保底");
+                if(parsed.allItems){
+                    for(var entry:runtime.economy.entries.values()){
+                        var product=entry.product();
+                        int rarity=LotterySettings.RARITIES.indexOf(product.rarity());
+                        if(rarity<0||entry.template().isEmpty())continue;
+                        loaded.put(product.id(),entry.template().copyWithCount(1));
+                        rows.add(new LotterySelector.Candidate(product.id(),rarity,product.level()));
+                    }
+                }
+                if(rows.isEmpty()){loaded.putAll(configuredStacks);rows.addAll(configured);}
                 templates.clear();templates.putAll(loaded);candidates=List.copyOf(rows);unlockLevel=parsed.unlockLevel;
                 catalogKey=UUID.nameUUIDFromBytes(String.join("\n",rows.stream().filter(c->c.rarity()==3).map(LotterySelector.Candidate::id).sorted().toList()).getBytes(java.nio.charset.StandardCharsets.UTF_8)).toString();
             }
@@ -112,49 +123,71 @@ public final class LotteryService {
         if(settings==null)throw new IllegalArgumentException(problem);
         if(!settings.enabled)throw new IllegalArgumentException(LotteryNames.draw()+"当前关闭");
         if(request.rulesRevision()!=runtime.lotteryRulesRevision)throw new IllegalArgumentException("抽奖规则已更新，请重新确认");
-        if(!Set.of("draw","exchange_xp","exchange_tokens").contains(request.action()))throw new IllegalArgumentException("抽奖操作无效");
+        if(!Set.of("draw","draw_10","exchange_xp","exchange_tokens").contains(request.action()))throw new IllegalArgumentException("抽奖操作无效");
         var party=runtime.parties.requireMember(player);runtime.trades.requireInventoryReady(player);
         if(party.resetInProgress)throw new IllegalStateException("岛屿重开期间暂停操作");
         var person=runtime.state().players.get(player.getUUID());
         if(person==null||request.expectedSequence()<0||person.lotteryOperationSequence!=request.expectedSequence())throw new IllegalArgumentException("操作已完成或状态已变化，请等待同步");
         if(!context(party).equals(request.context()))throw new IllegalArgumentException("队伍、等级或每日UP已变化，请重新确认");
         if(runtime.state().lotterySeed==null)throw new IllegalStateException("正在准备奖池，请稍后重试");
-        boolean draw=request.action().equals("draw"),xp=request.action().equals("exchange_xp");
+        int count=request.action().equals("draw_10")?10:request.action().equals("draw")?1:0;
+        boolean draw=count>0,xp=request.action().equals("exchange_xp");
         if(xp&&player.experienceLevel<settings.experienceCost)throw new IllegalArgumentException("需要至少"+settings.experienceCost+"级附魔经验");
         if(!draw&&!xp&&person.tokens.compareTo(BigInteger.valueOf(settings.tokenCost))<0)throw new IllegalArgumentException(LotteryNames.token()+"不足");
-        LotterySelector.Result selection=null;String up=featured(party);
+        List<Rolled> rolled=new ArrayList<>();String up=featured(party);
+        LotterySelector.Pity pity=pity(person);
         if(draw) {
             if(runtime.level(party)<unlockLevel)throw new IllegalArgumentException("需要空岛"+unlockLevel+"级解锁"+LotteryNames.draw());
-            selection=LotterySelector.draw(runtime.state().lotterySeed,player.getUUID(),person.drawSequence,runtime.level(party),candidates,up,settings.policy,pity(person));
+            if(!LotterySelector.available(candidates,runtime.level(party),settings.policy)||up.isEmpty())throw new IllegalArgumentException("奖池尚未就绪");
+            for(int i=0;i<count;i++){
+                boolean marked=pity.epicOwed()||pity.withoutLegendary()+1>=settings.policy.legendaryAt();
+                var result=LotterySelector.draw(runtime.state().lotterySeed,player.getUUID(),Math.addExact(person.drawSequence,i),runtime.level(party),candidates,up,settings.policy,pity);
+                rolled.add(new Rolled(result,templates.get(result.prize().id()).copyWithCount(1),marked));
+                pity=result.next();
+            }
         }
-        ItemStack reward=draw?templates.get(selection.prize().id()).copyWithCount(1):new ItemStack(ModItems.LOTTERY_TICKET);
+        ItemStack reward=draw?rolled.getFirst().stack():new ItemStack(ModItems.LOTTERY_TICKET);
         player.stopUsingItem();if(player.containerMenu!=player.inventoryMenu||!player.inventoryMenu.getCarried().isEmpty())player.closeContainer();
         JsonArray inventory=runtime.economy.capture(player.getInventory());
-        if(draw) {
-            int ticket=-1;for(int slot=0;slot<36;slot++)if(runtime.economy.decode(inventory.get(slot)).is(ModItems.LOTTERY_TICKET)){ticket=slot;break;}
-            if(ticket<0&&player.getOffhandItem().is(ModItems.LOTTERY_TICKET))ticket=Inventory.SLOT_OFFHAND;
-            if(ticket<0)throw new IllegalArgumentException("需要1个"+LotteryNames.ticket());
-            ItemStack left=runtime.economy.decode(inventory.get(ticket));left.shrink(1);inventory.set(ticket,runtime.economy.encode(left));
-        }
+        if(draw&&takeTickets(inventory,count)>0)throw new IllegalArgumentException("需要"+count+"个"+LotteryNames.ticket());
         SimpleContainer copy=new SimpleContainer(36);for(int slot=0;slot<36;slot++)copy.setItem(slot,runtime.economy.decode(inventory.get(slot)));
-        if(!copy.addItem(reward.copy()).isEmpty())throw new IllegalArgumentException("普通背包空间不足，未扣除资源");
+        List<ItemStack> grants=draw?rolled.stream().map(Rolled::stack).toList():List.of(reward);
+        for(ItemStack grant:grants)if(!copy.addItem(grant.copy()).isEmpty())throw new IllegalArgumentException("普通背包空间不足，未扣除资源");
         for(int slot=0;slot<36;slot++)inventory.set(slot,runtime.economy.encode(copy.getItem(slot)));
-        long sequence=person.drawSequence,operation=Math.addExact(person.lotteryOperationSequence,1);var chosen=selection;var rules=settings;
+        long sequence=person.drawSequence,operation=Math.addExact(person.lotteryOperationSequence,1);var nextPity=pity;var rules=settings;
         UUID owner=player.getUUID(),partyId=party.id;long island=party.overworldEpoch;String actor=player.getGameProfile().name();
-        var receipt=new IslandState.LotteryDrawResult();receipt.sequence=draw?Math.addExact(sequence,1):sequence;receipt.operationSequence=operation;
-        receipt.action=request.action();receipt.islandLevel=runtime.level(party);receipt.productId=draw?selection.prize().id():"yumis_sky_island:lottery_ticket";
-        receipt.rarity=draw?LotterySettings.RARITIES.get(selection.prize().rarity()):"legendary";receipt.rewardStack=runtime.economy.encode(reward);
+        var receipt=new IslandState.LotteryDrawResult();receipt.sequence=draw?Math.addExact(sequence,count):sequence;receipt.operationSequence=operation;
+        receipt.action=request.action();receipt.islandLevel=runtime.level(party);
+        receipt.productId=draw?rolled.getFirst().result().prize().id():"yumis_sky_island:lottery_ticket";
+        receipt.rarity=draw?LotterySettings.RARITIES.get(rolled.getFirst().result().prize().rarity()):"legendary";
+        receipt.rewardStack=runtime.economy.encode(reward);receipt.prizes=new ArrayList<>();
+        if(draw)for(Rolled row:rolled){var prize=new IslandState.LotteryPrize();prize.productId=row.result().prize().id();prize.rarity=LotterySettings.RARITIES.get(row.result().prize().rarity());prize.pity=row.pity();prize.rewardStack=runtime.economy.encode(row.stack());receipt.prizes.add(prize);}
         var change=new TradeService.InventoryChange(inventory,xp?TradeService.ExperienceChange.levels(rules.experienceCost):TradeService.ExperienceChange.none(),receipt);
         if(!runtime.trades.commitInventory(player,change,state->{
             var current=state.players.get(owner);var currentParty=state.parties.get(partyId);
             if(current==null||current.lotteryOperationSequence!=request.expectedSequence()||!partyId.equals(current.activeParty)||currentParty==null||currentParty.overworldEpoch!=island||currentParty.resetInProgress)
                 throw new IllegalArgumentException("操作上下文已变化");
             current.lotteryOperationSequence=operation;
-            if(draw){current.drawSequence=receipt.sequence;current.drawsWithoutLegendary=chosen.next().withoutLegendary();current.drawsWithoutEpic=chosen.next().withoutEpic();current.epicOwed=chosen.next().epicOwed();current.featuredGuaranteed=chosen.next().featuredGuaranteed();runtime.progression.acquired(currentParty,BuiltInRegistries.ITEM.getKey(reward.getItem()).toString());}
+            if(draw){current.drawSequence=receipt.sequence;current.drawsWithoutLegendary=nextPity.withoutLegendary();current.drawsWithoutEpic=nextPity.withoutEpic();current.epicOwed=nextPity.epicOwed();current.featuredGuaranteed=nextPity.featuredGuaranteed();for(Rolled row:rolled)runtime.progression.acquired(currentParty,BuiltInRegistries.ITEM.getKey(row.stack().getItem()).toString());}
             else if(!xp){current.tokens=current.tokens.subtract(BigInteger.valueOf(rules.tokenCost));if(current.tokens.signum()<0)throw new IllegalArgumentException(LotteryNames.token()+"不足");}
         },()->{
-            if(draw&&(receipt.rarity.equals("epic")||receipt.rarity.equals("legendary")))runtime.server.getPlayerList().broadcastSystemMessage(
-                Component.literal("[空岛] "+actor+" 在"+LotteryNames.draw()+"中获得 ").append(reward.getHoverName()).append(" ×1"),false);
-        },current->SkyServer.tell(current,Component.literal(draw?LotteryNames.draw()+"获得 ":"兑换获得 ").append(reward.getHoverName()).append(" ×1"))))throw new IllegalStateException("数据正在保存，请稍后重试");
+            if(!draw)return;
+            for(Rolled row:rolled){String rarity=LotterySettings.RARITIES.get(row.result().prize().rarity());if(rarity.equals("epic")||rarity.equals("legendary"))runtime.server.getPlayerList().broadcastSystemMessage(
+                Component.literal("[空岛] "+actor+" 在"+LotteryNames.draw()+"中获得 ").append(row.stack().getHoverName()).append(" ×1"),false);}
+        },current->{
+            if(draw)for(Rolled row:rolled)SkyServer.tell(current,Component.literal(LotteryNames.draw()+"获得 ").append(row.stack().getHoverName()).append(" ×1"));
+            else SkyServer.tell(current,Component.literal("兑换获得 ").append(reward.getHoverName()).append(" ×1"));
+        }))throw new IllegalStateException("数据正在保存，请稍后重试");
     }
+    private int takeTickets(JsonArray inventory,int needed){
+        int left=needed;
+        for(int slot=0;slot<inventory.size()&&left>0;slot++){
+            if(slot>=36&&slot!=Inventory.SLOT_OFFHAND)continue;
+            ItemStack stack=runtime.economy.decode(inventory.get(slot));
+            if(!stack.is(ModItems.LOTTERY_TICKET)||stack.isEmpty())continue;
+            int take=Math.min(left,stack.getCount());stack.shrink(take);inventory.set(slot,runtime.economy.encode(stack));left-=take;
+        }
+        return left;
+    }
+    private record Rolled(LotterySelector.Result result,ItemStack stack,boolean pity) {}
 }

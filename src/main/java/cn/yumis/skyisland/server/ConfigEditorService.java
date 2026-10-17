@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.*;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Items;
 
 public final class ConfigEditorService {
     private final SkyServer rt;
@@ -51,7 +52,7 @@ public final class ConfigEditorService {
     private ItemEconomy.Entry product(String id){var entry=rt.economy.entries.get(id);if(entry==null)throw new IllegalArgumentException("商品已不存在");return entry;}
     public void sendPrice(ServerPlayer player,String id,boolean saved){
         rt.editors.require(player);var entry=product(id);var p=entry.product();JsonObject data=header("price","shop/products.toml");
-        data.addProperty("product",id);data.addProperty("name",entry.template().getHoverName().getString());data.addProperty("buyBase",p.buyBaseCoins());data.addProperty("saved",saved);
+        data.addProperty("product",id);data.addProperty("name",entry.template().is(Items.ENCHANTED_BOOK)?p.name():entry.template().getHoverName().getString());data.addProperty("buyBase",p.buyBaseCoins());data.addProperty("saved",saved);
         boolean fixed=entry.template().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION);
         data.addProperty("editable",p.canBuy()&&!fixed);data.addProperty("message",fixed?"特殊弹药为固定售价，本页不提供改价":!p.canBuy()?"此商品仅收购，不提供购入基价编辑":"仅修改全服购入基价；收购估值、库存、等级和成品费不变");send(player,data);
     }

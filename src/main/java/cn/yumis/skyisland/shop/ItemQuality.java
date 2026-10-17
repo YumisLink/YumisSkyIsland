@@ -19,7 +19,7 @@ public final class ItemQuality {
         apply(stack,rules,grade,profession,false);
     }
     public static void apply(ItemStack stack, JsonObject rules, int grade, String profession, boolean unbreakable) {
-        if (grade < 0 || grade >= rules.getAsJsonArray("grades").size()) throw new IllegalArgumentException("品质须为0～2");
+        if (grade < 0 || grade >= rules.getAsJsonArray("grades").size()) throw new IllegalArgumentException("品质超出档位范围");
         CompoundTag tags = stack.getOrDefault(DataComponents.CUSTOM_DATA,CustomData.EMPTY).copyTag();
         int previousGrade=tags.getIntOr("yumis_quality",0);
         tags.remove("yumis_quality"); tags.remove("yumis_profession");
@@ -28,6 +28,8 @@ public final class ItemQuality {
             if (profession != null && !profession.isBlank()) tags.putString("yumis_profession",profession);
         }
         if (tags.isEmpty()) stack.remove(DataComponents.CUSTOM_DATA); else stack.set(DataComponents.CUSTOM_DATA,CustomData.of(tags));
+        // Stackable goods keep only the quality tags. Copying attribute modifiers makes otherwise identical rolls refuse to stack.
+        if (tagsOnly(stack)) return;
         Integer baseDurability = stack.getItem().components().get(DataComponents.MAX_DAMAGE);
         if (baseDurability != null) stack.set(DataComponents.MAX_DAMAGE,baseDurability);
         ItemAttributeModifiers current = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
@@ -45,7 +47,7 @@ public final class ItemQuality {
             if (maximum < 1 || maximum > Integer.MAX_VALUE) throw new IllegalArgumentException("品质耐久超出范围");
             stack.set(DataComponents.MAX_DAMAGE,(int)maximum);
         }
-        if (unbreakable && grade == 2) stack.set(DataComponents.UNBREAKABLE,net.minecraft.util.Unit.INSTANCE);
+        if (unbreakable && baseDurability != null) stack.set(DataComponents.UNBREAKABLE,net.minecraft.util.Unit.INSTANCE);
         double bonus = attributes.get("attributeBonusBps").getAsInt() / 10000.0;
         String item = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
         boolean melee = item.endsWith("_sword") || item.endsWith("_axe") || item.endsWith("_spear") || stack.is(Items.MACE) || stack.is(Items.TRIDENT);
@@ -61,5 +63,15 @@ public final class ItemQuality {
             }
             stack.set(DataComponents.ATTRIBUTE_MODIFIERS,builder.build());
         }
+    }
+    /** No durability and no attack or armor bonus: quality must not add components that differ between rolls. */
+    private static boolean tagsOnly(ItemStack stack) {
+        if (stack.getItem().components().get(DataComponents.MAX_DAMAGE) != null) return false;
+        ItemAttributeModifiers modifiers = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
+        if (modifiers == null) return true;
+        for (var entry : modifiers.modifiers()) {
+            if (entry.attribute().equals(Attributes.ARMOR) || entry.attribute().equals(Attributes.ATTACK_DAMAGE)) return false;
+        }
+        return true;
     }
 }

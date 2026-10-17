@@ -72,9 +72,10 @@ public final class ControlPanelScreen extends Screen {
         return result;
     }
     private boolean shopEligible(ClientCatalog.Product p,boolean favoriteView){
+        if(p.id().startsWith("yumis_sky_island:biome_ball_")&&mode!=0)return false;
         if(mode==1&&model.editing()&&showAllConfigured)return true;
         if(!p.buy()||!model.showLockedItems&&p.level()>model.level())return false;
-        if(mode==0)return p.rarity().equals("common");
+        if(mode==0)return p.rarity().equals("common")||p.id().startsWith("yumis_sky_island:biome_ball_");
         return model.state.has("stock")&&model.state.getAsJsonObject("stock").has(p.id())||favoriteView&&model.specialFavorites.contains(p.id());
     }
     private void layout() {

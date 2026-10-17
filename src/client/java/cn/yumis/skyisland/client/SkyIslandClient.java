@@ -36,6 +36,8 @@ public final class SkyIslandClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client->{while(configuration.consumeClick()){} });
         ClientLifecycleEvents.CLIENT_STARTED.register(DefaultKeyConflictResolver::resolve);
         KeyMapping vein = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.vein",InputConstants.KEY_GRAVE,category));
+        KeyMapping holdAttack = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.hold_attack",InputConstants.KEY_EQUALS,category));
+        final boolean[] holdAttackEnabled={false};
         KeyMapping cloudLeap = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.cloud_leap",InputConstants.KEY_C,category));
         ClientPlayNetworking.registerGlobalReceiver(ShopPayloads.Snapshot.TYPE,(payload,context) -> CATALOG.receive(payload.json()));
         ClientPlayNetworking.registerGlobalReceiver(TaskPayloads.Snapshot.TYPE,(payload,context) -> CATALOG.receiveTasks(payload.json()));
@@ -48,6 +50,20 @@ public final class SkyIslandClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             boolean next=client.player!=null&&client.gui.screen()==null&&vein.isDown();
             if(next!=veinHeld[0]){veinHeld[0]=next;CATALOG.veinPreview=java.util.List.of();if(ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE))ClientPlayNetworking.send(new ShopPayloads.Request("vein","",next?1:0));}
+        });
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            var window=client.getWindow();
+            boolean modifiers=InputConstants.isKeyDown(window,InputConstants.KEY_LCONTROL)||InputConstants.isKeyDown(window,InputConstants.KEY_RCONTROL);
+            modifiers&=InputConstants.isKeyDown(window,InputConstants.KEY_LALT)||InputConstants.isKeyDown(window,InputConstants.KEY_RALT);
+            while(holdAttack.consumeClick()) if(modifiers && client.player!=null){
+                holdAttackEnabled[0]=!holdAttackEnabled[0];
+                client.player.sendOverlayMessage(net.minecraft.network.chat.Component.literal(holdAttackEnabled[0]?"自动挖掘：开":"自动挖掘：关"));
+            }
+            if(client.player==null){holdAttackEnabled[0]=false;return;}
+            HammerRefill.tick(client);
+            if(!holdAttackEnabled[0])return;
+            if(client.gui.screen()!=null){client.options.keyAttack.setDown(false);return;}
+            client.options.keyAttack.setDown(true);
         });
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (cloudLeap.consumeClick()) {

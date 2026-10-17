@@ -108,7 +108,7 @@ public final class ItemEconomy {
     }
     public static int grade(ItemStack stack) {
         CustomData data = stack.get(DataComponents.CUSTOM_DATA);
-        return data == null ? 0 : Math.clamp(data.copyTag().getIntOr("yumis_quality", 0), 0, 2);
+        return data == null ? 0 : Math.clamp(data.copyTag().getIntOr("yumis_quality", 0), 0, 5);
     }
     public Entry match(ItemStack stack) {
         if (stack.isEmpty()) return null;

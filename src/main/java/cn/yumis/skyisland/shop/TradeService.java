@@ -35,7 +35,7 @@ public final class TradeService {
     public record InventoryChange(JsonArray items, ExperienceChange experience, IslandState.LotteryDrawResult lotteryResult) {}
     public TradeService(SkyServer runtime) { this.runtime = runtime; planner = new SalePlanner(runtime.config.quotaCurve); }
     public void roll(IslandState.Party party) {
-        List<DailyShopSelector.Candidate> pool = runtime.economy.entries.values().stream().filter(runtime.economy::canBuy).map(e -> {
+        List<DailyShopSelector.Candidate> pool = runtime.economy.entries.values().stream().filter(runtime.economy::canBuy).filter(e -> !e.product().id().startsWith("yumis_sky_island:biome_ball_")).map(e -> {
             var p = e.product(); int rarity = switch (p.rarity()) { case "rare" -> 1; case "epic" -> 2; case "legendary" -> 3; default -> 0; };
             return new DailyShopSelector.Candidate(p.id(), rarity, p.level(), p.weight(), p.stock());
         }).toList();
@@ -62,7 +62,7 @@ public final class TradeService {
     public void buy(ServerPlayer player, String id, int quantity) {
         var party = available(player);
         var entry = runtime.economy.entries.get(id);
-        buy(player,id,quantity,entry != null && !entry.product().rarity().equals("common") ? "special" : "permanent",runtime.epoch(),party.id,party.overworldEpoch);
+        buy(player,id,quantity,entry != null && !entry.product().rarity().equals("common") && !id.startsWith("yumis_sky_island:biome_ball_") ? "special" : "permanent",runtime.epoch(),party.id,party.overworldEpoch);
     }
     public void buy(ServerPlayer player, String id, int quantity, String shop, long expectedMarket, UUID expectedParty, long expectedIsland) {
         if (quantity < 1 || quantity > 64) throw new IllegalArgumentException("每次购买数量须为1～64");
@@ -73,10 +73,12 @@ public final class TradeService {
         if (expectedMarket != runtime.epoch()) throw new IllegalArgumentException("市场已换日，请重新确认购买");
         if (!Set.of("permanent","special").contains(shop)) throw new IllegalArgumentException("商店类型无效");
         boolean special = shop.equals("special");
-        if (!special && !entry.product().rarity().equals("common")) throw new IllegalArgumentException("该商品仅在每日／隐藏商店供货");
+        boolean biomeBall = id.startsWith("yumis_sky_island:biome_ball_");
+        if (!special && !entry.product().rarity().equals("common") && !biomeBall) throw new IllegalArgumentException("该商品仅在每日／隐藏商店供货");
+        if (special && biomeBall) throw new IllegalArgumentException("生态球在常驻商店出售");
         if (special && !runtime.progression.allows(party, "shop.special")) throw new IllegalArgumentException("每日/隐藏商店尚未通过任务解锁");
         if (special && (!party.dailyStock.containsKey(id)||(party.dailyStock.get(id)!=-1&&party.dailyStock.get(id)<quantity))) throw new IllegalArgumentException("今日库存不足或今日未抽到该商品");
-        long cost = Math.multiplyExact(runtime.economy.buyPrice(entry, party, !special), quantity); long balance = Money.subtract(party.coins, cost);
+        long cost = Math.multiplyExact(runtime.economy.buyPrice(entry, party, !special && !biomeBall), quantity); long balance = Money.subtract(party.coins, cost);
         player.stopUsingItem();if(player.containerMenu!=player.inventoryMenu)player.closeContainer(); JsonArray inventory = runtime.economy.capture(player.getInventory());
         SimpleContainer copy = new SimpleContainer(36);
         for (int i = 0; i < 36; i++) copy.setItem(i, runtime.economy.decode(inventory.get(i)));

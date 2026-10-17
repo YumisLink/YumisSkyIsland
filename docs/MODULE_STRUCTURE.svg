@@ -185,5 +185,5 @@
   <text x="1096" y="1390" class="small">服务端权限、账号解析、居民唯一ID及世代校验</text>
   <path d="M 520 1322 H 558" class="edge"/>
   <path d="M 1038 1322 H 1076" class="edge"/>
-  <text x="40" y="1450" class="subtitle">居民配置：gameplay/residents.toml，手改重启；首次免费许可证标记跨重开保留，探矿师增加铁匠行动经验。</text>
+  <text x="40" y="1450" class="subtitle">居民配置：gameplay/residents.toml，手改重启；首次免费许可证标记跨重开保留，探矿师增加矿工行动经验。</text>
 </svg>

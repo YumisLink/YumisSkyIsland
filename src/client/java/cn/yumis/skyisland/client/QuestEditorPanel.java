@@ -203,9 +203,9 @@ public final class QuestEditorPanel {
         label(g,"物品名称／ID搜索（从候选选择）",left,top+21,w);field(g,itemSearch,0,top+34,w,mx,my,delta);
         label(g,"数量",left,top+60,65);field(g,quantity,0,top+73,65,mx,my,delta);
         int grade=selectedReward?selectedRow.has("quality")?selectedRow.get("quality").getAsInt():0:selectedRow.has("minimumQuality")?selectedRow.get("minimumQuality").getAsInt():-1;
-        String[] grades={"普通","银星","金星"};
-        button(g,selectedReward?"品质："+grades[Math.clamp(grade,0,2)]:grade<0?"品质：不限":"至少："+grades[Math.clamp(grade,0,2)],left+73,top+73-formScroll,Math.min(160,w-73),!model.taskBusy,()->{
-            int next=grade+1;if(next>2)next=selectedReward?0:-1;
+        String[] grades={"普通","铜星","银星","金星","钻星","七彩星"};
+        button(g,selectedReward?"品质："+grades[Math.clamp(grade,0,grades.length-1)]:grade<0?"品质：不限":"至少："+grades[Math.clamp(grade,0,grades.length-1)],left+73,top+73-formScroll,Math.min(160,w-73),!model.taskBusy,()->{
+            int next=grade+1;if(next>=grades.length)next=selectedReward?0:-1;
             if(next<0)selectedRow.remove("minimumQuality");else selectedRow.addProperty(selectedReward?"quality":"minimumQuality",next);
         });
         label(g,"药水类型（无条件可清除）",left,top+101,w);

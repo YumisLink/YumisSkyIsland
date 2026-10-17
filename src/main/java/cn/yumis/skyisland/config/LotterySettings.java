@@ -8,7 +8,7 @@ import java.util.*;
 public final class LotterySettings {
     public static final List<String> RARITIES=List.of("common","rare","epic","legendary");
     public record Prize(String id,String itemId,String rarity,int islandLevel,JsonObject components) {}
-    public final boolean enabled;
+    public final boolean enabled,allItems;
     public final int experienceCost,tokenCost,taskReward,levelReward,unlockLevel;
     public final LotterySelector.Policy policy;
     public final List<Prize> prizes;
@@ -17,6 +17,8 @@ public final class LotterySettings {
         if(!data.has("enabled")||!data.get("enabled").isJsonPrimitive()||!data.getAsJsonPrimitive("enabled").isBoolean())throw new IllegalArgumentException("抽奖开关必须为布尔值");
         if(!data.has("prizes")||!data.get("prizes").isJsonArray())throw new IllegalArgumentException("缺少抽奖奖品数组");
         enabled=data.get("enabled").getAsBoolean();
+        if(data.has("allItems")&&(!data.get("allItems").isJsonPrimitive()||!data.get("allItems").getAsJsonPrimitive().isBoolean()))throw new IllegalArgumentException("全部物品开关必须为布尔值");
+        allItems=!data.has("allItems")||data.get("allItems").getAsBoolean();
         experienceCost=number(data,"experienceCost",1,Integer.MAX_VALUE);tokenCost=number(data,"tokenCost",1,Integer.MAX_VALUE);
         taskReward=number(data,"taskTokenReward",0,Integer.MAX_VALUE);levelReward=number(data,"levelTokenReward",0,Integer.MAX_VALUE);
         JsonObject weights=data.getAsJsonObject("rarityBps"),pity=data.getAsJsonObject("pity");

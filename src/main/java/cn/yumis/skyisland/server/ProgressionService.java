@@ -59,7 +59,7 @@ public final class ProgressionService {
         var material = rt.economy.entries.get(b.material);
         var reward = rt.economy.entries.get(b.reward);
         return material == null || !material.product().canSell() || !material.product().rarity().equals("common") ||
-            !rt.economy.canBuy(reward) || reward.product().rarity().equals("common") ||
+            !rt.economy.canBuy(reward) || reward.product().rarity().equals("common") || reward.product().id().startsWith("yumis_sky_island:biome_ball_") ||
             b.rewardStack != null && !rt.economy.acquisitionAllowed(rt.economy.decode(b.rewardStack));
     }
     public void tick() {
@@ -90,7 +90,7 @@ public final class ProgressionService {
         b.material = null; b.reward = null; b.rewardStack=null; b.quantity = 0; b.attemptContext = context(p);
         var materials = rt.economy.entries.values().stream().filter(e -> e.product().canSell() && e.product().rarity().equals("common") && p.soldProductIds.contains(e.product().id())).toList();
         if (materials.isEmpty() || !allows(p, "shop.special")) return;
-        var pool = rt.economy.entries.values().stream().filter(e -> rt.economy.canBuy(e) && !e.product().id().equals("yumis_sky_island:flight_ticket") && !e.product().rarity().equals("common") && e.product().level() <= p.highestIslandLevel).map(e -> {
+        var pool = rt.economy.entries.values().stream().filter(e -> rt.economy.canBuy(e) && !e.product().id().equals("yumis_sky_island:flight_ticket") && !e.product().id().startsWith("yumis_sky_island:biome_ball_") && !e.product().rarity().equals("common") && e.product().level() <= p.highestIslandLevel).map(e -> {
             int rarity = switch (e.product().rarity()) { case "rare" -> 1; case "epic" -> 2; default -> 3; };
             return new DailyShopSelector.Candidate(e.product().id(), rarity, e.product().level(), e.product().weight(), 1);
         }).toList();
@@ -159,14 +159,19 @@ public final class ProgressionService {
         if (!catalog.available(p,person,quest)) throw new IllegalArgumentException("该任务尚未解锁或已经完成");
         if (!quest.objective().equals("materials")&&!catalog.status(p,person,quest).equals("ready")) throw new IllegalArgumentException("请先完成本人的任务目标");
         long balance = Money.add(p.coins,q.get("rewardCoins").getAsLong());
+        int accessoryDraws = catalog.accessoryDraws(quest);
         JsonArray inventory = exchangeMaterials(player,quest.requirements(),quest.rewards());
         rt.trades.commitInventory(player,inventory,q.get("rewardExperiencePoints").getAsInt(),state -> {
             var current=state.parties.get(p.id); current.coins=balance;
             PersonalTokens.quest(state,current,player.getUUID(),quest.kind().equals("main"),rt.lottery.taskReward());
+            if (accessoryDraws > 0) {
+                var owner = state.players.get(player.getUUID());
+                if (owner != null) owner.pendingAccessoryDraws = Math.addExact(owner.pendingAccessoryDraws, accessoryDraws);
+            }
             var progress=QuestCatalog.progress(current,state.players.get(player.getUUID()),quest);progress.completed().add(id);progress.ready().remove(id);
             for (var key : q.getAsJsonArray("unlockFeatures")) current.unlockedFeatures.add(key.getAsString());
             for (ItemStack reward : quest.rewards()) { var entry=rt.economy.match(reward); if(entry!=null)acquired(current,entry.product().id()); }
-        }, () -> {SkyServer.tell(player,"任务完成："+q.get("name").getAsString()+"，奖励已领取");rt.questEditor.sendDetail(player,id);});
+        }, () -> {SkyServer.tell(player,"任务完成："+q.get("name").getAsString()+"，奖励已领取"+(accessoryDraws>0?"，饰品抽奖 +1":""));rt.questEditor.sendDetail(player,id);});
     }
     public void shippingPlaced(ServerPlayer player, net.minecraft.server.level.ServerLevel world, net.minecraft.core.BlockPos position) {
         var p = rt.parties.active(player.getUUID()); var claim=rt.claim(position);
@@ -213,9 +218,9 @@ public final class ProgressionService {
     public void produced(ServerPlayer player,String source,ItemStack output,int amount){
         action(player,source,net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(output.getItem()).toString(),amount,"","");
     }
-    public void fished(ServerPlayer player,Collection<ItemStack> loot){
+    public void fished(ServerPlayer player,Collection<ItemStack> loot,String medium){
         for(var stack:loot)if(!stack.isEmpty())produced(player,"fish",stack,stack.getCount());
-        rt.professions.fished(player,loot);
+        rt.professions.fished(player,loot,medium==null?"water":medium);
     }
     private JsonArray exchangeMaterials(ServerPlayer player, List<cn.yumis.skyisland.shop.TaskMaterialPlanner.Requirement> requirements, List<ItemStack> rewards) {
         player.stopUsingItem(); if(player.containerMenu!=player.inventoryMenu)player.closeContainer();

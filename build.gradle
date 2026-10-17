@@ -31,6 +31,12 @@ dependencies {
     implementation 'com.electronwill.night-config:toml:3.8.3'
     include 'com.electronwill.night-config:core:3.8.3'
     include 'com.electronwill.night-config:toml:3.8.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.12.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
 
 java { toolchain { languageVersion = JavaLanguageVersion.of(25) } }

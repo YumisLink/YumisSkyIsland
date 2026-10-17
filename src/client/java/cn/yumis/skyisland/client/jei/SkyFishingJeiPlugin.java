@@ -10,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -35,8 +34,6 @@ import net.minecraft.world.item.Items;
 /** Optional JEI presentation of the server's regional treasure tables. */
 @JeiPlugin
 public final class SkyFishingJeiPlugin implements IModPlugin {
-    private static final Set<String> NETHER=Set.of("nether_wastes","soul_sand_valley","crimson_forest","warped_forest","basalt_deltas");
-    private static final Set<String> END=Set.of("the_end","end_highlands","end_midlands","small_end_islands","end_barrens");
     private static final IRecipeType<Catch> FISHING=IRecipeType.create(YumisSkyIsland.id("fishing"),Catch.class);
     private static final IRecipeType<Catch> BLOOD=IRecipeType.create(YumisSkyIsland.id("blood_moon_fishing"),Catch.class);
     private static final IRecipeType<Catch> CONTENTS=IRecipeType.create(YumisSkyIsland.id("treasure_box_contents"),Catch.class);
@@ -61,10 +58,11 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
         List<Catch> normal=new ArrayList<>(),bloodMoon=new ArrayList<>(),all=new ArrayList<>();
         for(String biome:ModItems.BIOME_BALLS.keySet()){
             add(normal,all,biome,"water",false);
-            if(NETHER.contains(biome))add(normal,all,biome,"lava",false);
-            if(END.contains(biome))add(normal,all,biome,"void",false);
-            if(!NETHER.contains(biome)&&!END.contains(biome))add(bloodMoon,all,biome,"water",true);
+            if(!BiomeTreasureBox.NETHER_BIOMES.contains(biome)&&!BiomeTreasureBox.END_BIOMES.contains(biome))add(bloodMoon,all,biome,"water",true);
         }
+        for(String biome:BiomeTreasureBox.NETHER_BIOMES){add(normal,all,biome,"lava",false);add(normal,all,biome,"void",false);}
+        add(normal,all,"overworld","lava",false);add(normal,all,"overworld","void",false);
+        add(normal,all,"the_end","lava",false);add(normal,all,"the_end","void",false);
         registration.addRecipes(FISHING,normal);
         registration.addRecipes(BLOOD,bloodMoon);
         registration.addRecipes(CONTENTS,all);
@@ -80,7 +78,7 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
         ItemStack box(){return BiomeTreasureBox.create(biome,medium,blood);}
         Map<Item,Double> probabilities(){
             Map<Item,Double> values=new LinkedHashMap<>();
-            for(var outcome:FishingService.treasureOutcomes(biome,medium,0,blood,END.contains(biome),ClientCatalog.serverEggBps))
+            for(var outcome:FishingService.treasureOutcomes(biome,medium,0,blood,BiomeTreasureBox.END_BIOMES.contains(biome),ClientCatalog.serverEggBps))
                 values.merge(outcome.item(),outcome.probability(),Double::sum);
             return values;
         }
@@ -98,8 +96,9 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
             builder.addOutputSlot(143,5).add(recipe.box()).setOutputSlotBackground();
         }
         @Override public void createRecipeExtras(IRecipeExtrasBuilder extras,Catch recipe,IFocusGroup focuses){
-            addText(extras,Component.literal("群系: ").append(Component.translatable("biome.minecraft."+recipe.biome())),28);
-            String medium=switch(recipe.medium()){case "lava"->"岩浆";case "void"->"虚空";default->"水";};
+            Component place=recipe.biome().equals("overworld")?Component.literal("主世界"):recipe.biome().equals("the_end")&&!recipe.medium().equals("water")?Component.literal("末地"):Component.translatable("biome.minecraft."+recipe.biome());
+            addText(extras,Component.literal("群系: ").append(place),28);
+            String medium=switch(recipe.medium()){case "lava"->"熔岩";case "void"->"虚空";default->"水";};
             addText(extras,Component.literal("钓鱼介质: "+medium),41);
             addText(extras,Component.literal("右键开匣，按开启时的渔力和等级抽取"),54);
         }

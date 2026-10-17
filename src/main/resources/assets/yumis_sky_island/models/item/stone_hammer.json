@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "yumis_sky_island:item/stone_hammer"
+  }
+}

@@ -22337,7 +22337,7 @@ itemId = "yumis_sky_island:flight_ticket"
 [products."yumis_sky_island:flight_ticket".canonicalStack.componentPatch]
 
 
-# 恶地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 恶地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22351,7 +22351,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_badlands".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_badlands"
@@ -22359,7 +22359,7 @@ itemId = "yumis_sky_island:biome_ball_badlands"
 [products."yumis_sky_island:biome_ball_badlands".canonicalStack.componentPatch]
 
 
-# 竹林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 竹林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22373,7 +22373,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_bamboo_jungle".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_bamboo_jungle"
@@ -22381,7 +22381,7 @@ itemId = "yumis_sky_island:biome_ball_bamboo_jungle"
 [products."yumis_sky_island:biome_ball_bamboo_jungle".canonicalStack.componentPatch]
 
 
-# 玄武岩三角洲生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 玄武岩三角洲生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22395,7 +22395,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_basalt_deltas".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_basalt_deltas"
@@ -22403,7 +22403,7 @@ itemId = "yumis_sky_island:biome_ball_basalt_deltas"
 [products."yumis_sky_island:biome_ball_basalt_deltas".canonicalStack.componentPatch]
 
 
-# 沙滩生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 沙滩生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22417,7 +22417,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_beach".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_beach"
@@ -22425,7 +22425,7 @@ itemId = "yumis_sky_island:biome_ball_beach"
 [products."yumis_sky_island:biome_ball_beach".canonicalStack.componentPatch]
 
 
-# 桦木森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 桦木森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22439,7 +22439,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_birch_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_birch_forest"
@@ -22447,7 +22447,7 @@ itemId = "yumis_sky_island:biome_ball_birch_forest"
 [products."yumis_sky_island:biome_ball_birch_forest".canonicalStack.componentPatch]
 
 
-# 樱花树林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 樱花树林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22461,7 +22461,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_cherry_grove".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_cherry_grove"
@@ -22469,7 +22469,7 @@ itemId = "yumis_sky_island:biome_ball_cherry_grove"
 [products."yumis_sky_island:biome_ball_cherry_grove".canonicalStack.componentPatch]
 
 
-# 冷水海洋生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冷水海洋生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22483,7 +22483,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_cold_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_cold_ocean"
@@ -22491,7 +22491,7 @@ itemId = "yumis_sky_island:biome_ball_cold_ocean"
 [products."yumis_sky_island:biome_ball_cold_ocean".canonicalStack.componentPatch]
 
 
-# 绯红森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 绯红森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22505,7 +22505,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_crimson_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_crimson_forest"
@@ -22513,7 +22513,7 @@ itemId = "yumis_sky_island:biome_ball_crimson_forest"
 [products."yumis_sky_island:biome_ball_crimson_forest".canonicalStack.componentPatch]
 
 
-# 黑森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 黑森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22527,7 +22527,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_dark_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_dark_forest"
@@ -22535,7 +22535,7 @@ itemId = "yumis_sky_island:biome_ball_dark_forest"
 [products."yumis_sky_island:biome_ball_dark_forest".canonicalStack.componentPatch]
 
 
-# 冷水深海生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冷水深海生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22549,7 +22549,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_deep_cold_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_deep_cold_ocean"
@@ -22557,7 +22557,7 @@ itemId = "yumis_sky_island:biome_ball_deep_cold_ocean"
 [products."yumis_sky_island:biome_ball_deep_cold_ocean".canonicalStack.componentPatch]
 
 
-# 深暗之域生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 深暗之域生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22571,7 +22571,7 @@ buyBaseValueCoins = 1000000
 tradeMode = "buy_only"
 dailyStock = 1
 offerWeight = 1
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_deep_dark".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_deep_dark"
@@ -22579,7 +22579,7 @@ itemId = "yumis_sky_island:biome_ball_deep_dark"
 [products."yumis_sky_island:biome_ball_deep_dark".canonicalStack.componentPatch]
 
 
-# 冰冻深海生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冰冻深海生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22593,7 +22593,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_deep_frozen_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_deep_frozen_ocean"
@@ -22601,7 +22601,7 @@ itemId = "yumis_sky_island:biome_ball_deep_frozen_ocean"
 [products."yumis_sky_island:biome_ball_deep_frozen_ocean".canonicalStack.componentPatch]
 
 
-# 温水深海生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 温水深海生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22615,7 +22615,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_deep_lukewarm_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_deep_lukewarm_ocean"
@@ -22623,7 +22623,7 @@ itemId = "yumis_sky_island:biome_ball_deep_lukewarm_ocean"
 [products."yumis_sky_island:biome_ball_deep_lukewarm_ocean".canonicalStack.componentPatch]
 
 
-# 深海生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 深海生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22637,7 +22637,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_deep_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_deep_ocean"
@@ -22645,7 +22645,7 @@ itemId = "yumis_sky_island:biome_ball_deep_ocean"
 [products."yumis_sky_island:biome_ball_deep_ocean".canonicalStack.componentPatch]
 
 
-# 沙漠生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 沙漠生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22659,7 +22659,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_desert".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_desert"
@@ -22667,7 +22667,7 @@ itemId = "yumis_sky_island:biome_ball_desert"
 [products."yumis_sky_island:biome_ball_desert".canonicalStack.componentPatch]
 
 
-# 溶洞生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 溶洞生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22681,7 +22681,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_dripstone_caves".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_dripstone_caves"
@@ -22689,7 +22689,7 @@ itemId = "yumis_sky_island:biome_ball_dripstone_caves"
 [products."yumis_sky_island:biome_ball_dripstone_caves".canonicalStack.componentPatch]
 
 
-# 末地荒地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 末地荒地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22703,7 +22703,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_end_barrens".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_end_barrens"
@@ -22711,7 +22711,7 @@ itemId = "yumis_sky_island:biome_ball_end_barrens"
 [products."yumis_sky_island:biome_ball_end_barrens".canonicalStack.componentPatch]
 
 
-# 末地高地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 末地高地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22725,7 +22725,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_end_highlands".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_end_highlands"
@@ -22733,7 +22733,7 @@ itemId = "yumis_sky_island:biome_ball_end_highlands"
 [products."yumis_sky_island:biome_ball_end_highlands".canonicalStack.componentPatch]
 
 
-# 末地内陆生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 末地内陆生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22747,7 +22747,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_end_midlands".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_end_midlands"
@@ -22755,7 +22755,7 @@ itemId = "yumis_sky_island:biome_ball_end_midlands"
 [products."yumis_sky_island:biome_ball_end_midlands".canonicalStack.componentPatch]
 
 
-# 风蚀恶地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 风蚀恶地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22769,7 +22769,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_eroded_badlands".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_eroded_badlands"
@@ -22777,7 +22777,7 @@ itemId = "yumis_sky_island:biome_ball_eroded_badlands"
 [products."yumis_sky_island:biome_ball_eroded_badlands".canonicalStack.componentPatch]
 
 
-# 繁花森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 繁花森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22791,7 +22791,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_flower_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_flower_forest"
@@ -22799,7 +22799,7 @@ itemId = "yumis_sky_island:biome_ball_flower_forest"
 [products."yumis_sky_island:biome_ball_flower_forest".canonicalStack.componentPatch]
 
 
-# 森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22813,7 +22813,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_forest"
@@ -22821,7 +22821,7 @@ itemId = "yumis_sky_island:biome_ball_forest"
 [products."yumis_sky_island:biome_ball_forest".canonicalStack.componentPatch]
 
 
-# 冻洋生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冻洋生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22835,7 +22835,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_frozen_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_frozen_ocean"
@@ -22843,7 +22843,7 @@ itemId = "yumis_sky_island:biome_ball_frozen_ocean"
 [products."yumis_sky_island:biome_ball_frozen_ocean".canonicalStack.componentPatch]
 
 
-# 冰封山峰生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冰封山峰生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22857,7 +22857,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_frozen_peaks".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_frozen_peaks"
@@ -22865,7 +22865,7 @@ itemId = "yumis_sky_island:biome_ball_frozen_peaks"
 [products."yumis_sky_island:biome_ball_frozen_peaks".canonicalStack.componentPatch]
 
 
-# 冻河生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冻河生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22879,7 +22879,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_frozen_river".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_frozen_river"
@@ -22887,7 +22887,7 @@ itemId = "yumis_sky_island:biome_ball_frozen_river"
 [products."yumis_sky_island:biome_ball_frozen_river".canonicalStack.componentPatch]
 
 
-# 雪林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 雪林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22901,7 +22901,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_grove".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_grove"
@@ -22909,7 +22909,7 @@ itemId = "yumis_sky_island:biome_ball_grove"
 [products."yumis_sky_island:biome_ball_grove".canonicalStack.componentPatch]
 
 
-# 冰刺之地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 冰刺之地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22923,7 +22923,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_ice_spikes".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_ice_spikes"
@@ -22931,7 +22931,7 @@ itemId = "yumis_sky_island:biome_ball_ice_spikes"
 [products."yumis_sky_island:biome_ball_ice_spikes".canonicalStack.componentPatch]
 
 
-# 尖峭山峰生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 尖峭山峰生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22945,7 +22945,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_jagged_peaks".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_jagged_peaks"
@@ -22953,7 +22953,7 @@ itemId = "yumis_sky_island:biome_ball_jagged_peaks"
 [products."yumis_sky_island:biome_ball_jagged_peaks".canonicalStack.componentPatch]
 
 
-# 丛林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 丛林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22967,7 +22967,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_jungle".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_jungle"
@@ -22975,7 +22975,7 @@ itemId = "yumis_sky_island:biome_ball_jungle"
 [products."yumis_sky_island:biome_ball_jungle".canonicalStack.componentPatch]
 
 
-# 温水海洋生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 温水海洋生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -22989,7 +22989,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_lukewarm_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_lukewarm_ocean"
@@ -22997,7 +22997,7 @@ itemId = "yumis_sky_island:biome_ball_lukewarm_ocean"
 [products."yumis_sky_island:biome_ball_lukewarm_ocean".canonicalStack.componentPatch]
 
 
-# 繁茂洞穴生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 繁茂洞穴生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23011,7 +23011,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_lush_caves".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_lush_caves"
@@ -23019,7 +23019,7 @@ itemId = "yumis_sky_island:biome_ball_lush_caves"
 [products."yumis_sky_island:biome_ball_lush_caves".canonicalStack.componentPatch]
 
 
-# 红树林沼泽生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 红树林沼泽生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23033,7 +23033,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_mangrove_swamp".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_mangrove_swamp"
@@ -23041,7 +23041,7 @@ itemId = "yumis_sky_island:biome_ball_mangrove_swamp"
 [products."yumis_sky_island:biome_ball_mangrove_swamp".canonicalStack.componentPatch]
 
 
-# 草甸生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 草甸生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23055,7 +23055,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_meadow".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_meadow"
@@ -23063,7 +23063,7 @@ itemId = "yumis_sky_island:biome_ball_meadow"
 [products."yumis_sky_island:biome_ball_meadow".canonicalStack.componentPatch]
 
 
-# 蘑菇岛生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 蘑菇岛生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23077,7 +23077,7 @@ buyBaseValueCoins = 1000000
 tradeMode = "buy_only"
 dailyStock = 1
 offerWeight = 1
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_mushroom_fields".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_mushroom_fields"
@@ -23085,7 +23085,7 @@ itemId = "yumis_sky_island:biome_ball_mushroom_fields"
 [products."yumis_sky_island:biome_ball_mushroom_fields".canonicalStack.componentPatch]
 
 
-# 下界荒地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 下界荒地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23099,7 +23099,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_nether_wastes".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_nether_wastes"
@@ -23107,7 +23107,7 @@ itemId = "yumis_sky_island:biome_ball_nether_wastes"
 [products."yumis_sky_island:biome_ball_nether_wastes".canonicalStack.componentPatch]
 
 
-# 海洋生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 海洋生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23121,7 +23121,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_ocean"
@@ -23129,7 +23129,7 @@ itemId = "yumis_sky_island:biome_ball_ocean"
 [products."yumis_sky_island:biome_ball_ocean".canonicalStack.componentPatch]
 
 
-# 原始桦木森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 原始桦木森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23143,7 +23143,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_old_growth_birch_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_old_growth_birch_forest"
@@ -23151,7 +23151,7 @@ itemId = "yumis_sky_island:biome_ball_old_growth_birch_forest"
 [products."yumis_sky_island:biome_ball_old_growth_birch_forest".canonicalStack.componentPatch]
 
 
-# 原始松木针叶林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 原始松木针叶林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23165,7 +23165,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_old_growth_pine_taiga".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_old_growth_pine_taiga"
@@ -23173,7 +23173,7 @@ itemId = "yumis_sky_island:biome_ball_old_growth_pine_taiga"
 [products."yumis_sky_island:biome_ball_old_growth_pine_taiga".canonicalStack.componentPatch]
 
 
-# 原始云杉针叶林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 原始云杉针叶林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23187,7 +23187,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_old_growth_spruce_taiga".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_old_growth_spruce_taiga"
@@ -23195,7 +23195,7 @@ itemId = "yumis_sky_island:biome_ball_old_growth_spruce_taiga"
 [products."yumis_sky_island:biome_ball_old_growth_spruce_taiga".canonicalStack.componentPatch]
 
 
-# 苍白之园生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 苍白之园生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23209,7 +23209,7 @@ buyBaseValueCoins = 1000000
 tradeMode = "buy_only"
 dailyStock = 1
 offerWeight = 1
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_pale_garden".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_pale_garden"
@@ -23217,7 +23217,7 @@ itemId = "yumis_sky_island:biome_ball_pale_garden"
 [products."yumis_sky_island:biome_ball_pale_garden".canonicalStack.componentPatch]
 
 
-# 平原生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 平原生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23231,7 +23231,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_plains".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_plains"
@@ -23239,7 +23239,7 @@ itemId = "yumis_sky_island:biome_ball_plains"
 [products."yumis_sky_island:biome_ball_plains".canonicalStack.componentPatch]
 
 
-# 河流生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 河流生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23253,7 +23253,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_river".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_river"
@@ -23261,7 +23261,7 @@ itemId = "yumis_sky_island:biome_ball_river"
 [products."yumis_sky_island:biome_ball_river".canonicalStack.componentPatch]
 
 
-# 热带草原生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 热带草原生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23275,7 +23275,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_savanna".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_savanna"
@@ -23283,7 +23283,7 @@ itemId = "yumis_sky_island:biome_ball_savanna"
 [products."yumis_sky_island:biome_ball_savanna".canonicalStack.componentPatch]
 
 
-# 热带高原生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 热带高原生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23297,7 +23297,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_savanna_plateau".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_savanna_plateau"
@@ -23305,7 +23305,7 @@ itemId = "yumis_sky_island:biome_ball_savanna_plateau"
 [products."yumis_sky_island:biome_ball_savanna_plateau".canonicalStack.componentPatch]
 
 
-# 末地小型岛屿生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 末地小型岛屿生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23319,7 +23319,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_small_end_islands".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_small_end_islands"
@@ -23327,7 +23327,7 @@ itemId = "yumis_sky_island:biome_ball_small_end_islands"
 [products."yumis_sky_island:biome_ball_small_end_islands".canonicalStack.componentPatch]
 
 
-# 积雪沙滩生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 积雪沙滩生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23341,7 +23341,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_snowy_beach".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_snowy_beach"
@@ -23349,7 +23349,7 @@ itemId = "yumis_sky_island:biome_ball_snowy_beach"
 [products."yumis_sky_island:biome_ball_snowy_beach".canonicalStack.componentPatch]
 
 
-# 雪原生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 雪原生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23363,7 +23363,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_snowy_plains".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_snowy_plains"
@@ -23371,7 +23371,7 @@ itemId = "yumis_sky_island:biome_ball_snowy_plains"
 [products."yumis_sky_island:biome_ball_snowy_plains".canonicalStack.componentPatch]
 
 
-# 积雪山坡生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 积雪山坡生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23385,7 +23385,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_snowy_slopes".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_snowy_slopes"
@@ -23393,7 +23393,7 @@ itemId = "yumis_sky_island:biome_ball_snowy_slopes"
 [products."yumis_sky_island:biome_ball_snowy_slopes".canonicalStack.componentPatch]
 
 
-# 积雪针叶林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 积雪针叶林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23407,7 +23407,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_snowy_taiga".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_snowy_taiga"
@@ -23415,7 +23415,7 @@ itemId = "yumis_sky_island:biome_ball_snowy_taiga"
 [products."yumis_sky_island:biome_ball_snowy_taiga".canonicalStack.componentPatch]
 
 
-# 灵魂沙峡谷生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 灵魂沙峡谷生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23429,7 +23429,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_soul_sand_valley".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_soul_sand_valley"
@@ -23437,7 +23437,7 @@ itemId = "yumis_sky_island:biome_ball_soul_sand_valley"
 [products."yumis_sky_island:biome_ball_soul_sand_valley".canonicalStack.componentPatch]
 
 
-# 稀疏丛林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 稀疏丛林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23451,7 +23451,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_sparse_jungle".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_sparse_jungle"
@@ -23459,7 +23459,7 @@ itemId = "yumis_sky_island:biome_ball_sparse_jungle"
 [products."yumis_sky_island:biome_ball_sparse_jungle".canonicalStack.componentPatch]
 
 
-# 裸岩山峰生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 裸岩山峰生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23473,7 +23473,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_stony_peaks".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_stony_peaks"
@@ -23481,7 +23481,7 @@ itemId = "yumis_sky_island:biome_ball_stony_peaks"
 [products."yumis_sky_island:biome_ball_stony_peaks".canonicalStack.componentPatch]
 
 
-# 石岸生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 石岸生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23495,7 +23495,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_stony_shore".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_stony_shore"
@@ -23503,7 +23503,7 @@ itemId = "yumis_sky_island:biome_ball_stony_shore"
 [products."yumis_sky_island:biome_ball_stony_shore".canonicalStack.componentPatch]
 
 
-# 硫磺洞穴生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 硫磺洞穴生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23517,7 +23517,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_sulfur_caves".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_sulfur_caves"
@@ -23525,7 +23525,7 @@ itemId = "yumis_sky_island:biome_ball_sulfur_caves"
 [products."yumis_sky_island:biome_ball_sulfur_caves".canonicalStack.componentPatch]
 
 
-# 向日葵平原生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 向日葵平原生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23539,7 +23539,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_sunflower_plains".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_sunflower_plains"
@@ -23547,7 +23547,7 @@ itemId = "yumis_sky_island:biome_ball_sunflower_plains"
 [products."yumis_sky_island:biome_ball_sunflower_plains".canonicalStack.componentPatch]
 
 
-# 沼泽生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 沼泽生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23561,7 +23561,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_swamp".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_swamp"
@@ -23569,7 +23569,7 @@ itemId = "yumis_sky_island:biome_ball_swamp"
 [products."yumis_sky_island:biome_ball_swamp".canonicalStack.componentPatch]
 
 
-# 针叶林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 针叶林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23583,7 +23583,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_taiga".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_taiga"
@@ -23591,7 +23591,7 @@ itemId = "yumis_sky_island:biome_ball_taiga"
 [products."yumis_sky_island:biome_ball_taiga".canonicalStack.componentPatch]
 
 
-# 末地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 末地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23605,7 +23605,7 @@ buyBaseValueCoins = 1000000
 tradeMode = "buy_only"
 dailyStock = 1
 offerWeight = 1
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_the_end".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_the_end"
@@ -23613,7 +23613,7 @@ itemId = "yumis_sky_island:biome_ball_the_end"
 [products."yumis_sky_island:biome_ball_the_end".canonicalStack.componentPatch]
 
 
-# 暖水海洋生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 暖水海洋生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23627,7 +23627,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_warm_ocean".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_warm_ocean"
@@ -23635,7 +23635,7 @@ itemId = "yumis_sky_island:biome_ball_warm_ocean"
 [products."yumis_sky_island:biome_ball_warm_ocean".canonicalStack.componentPatch]
 
 
-# 诡异森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 诡异森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23649,7 +23649,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_warped_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_warped_forest"
@@ -23657,7 +23657,7 @@ itemId = "yumis_sky_island:biome_ball_warped_forest"
 [products."yumis_sky_island:biome_ball_warped_forest".canonicalStack.componentPatch]
 
 
-# 风袭森林生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 风袭森林生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23671,7 +23671,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_windswept_forest".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_windswept_forest"
@@ -23679,7 +23679,7 @@ itemId = "yumis_sky_island:biome_ball_windswept_forest"
 [products."yumis_sky_island:biome_ball_windswept_forest".canonicalStack.componentPatch]
 
 
-# 风袭沙砾丘陵生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 风袭沙砾丘陵生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23693,7 +23693,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_windswept_gravelly_hills".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_windswept_gravelly_hills"
@@ -23701,7 +23701,7 @@ itemId = "yumis_sky_island:biome_ball_windswept_gravelly_hills"
 [products."yumis_sky_island:biome_ball_windswept_gravelly_hills".canonicalStack.componentPatch]
 
 
-# 风袭丘陵生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 风袭丘陵生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23715,7 +23715,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_windswept_hills".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_windswept_hills"
@@ -23723,7 +23723,7 @@ itemId = "yumis_sky_island:biome_ball_windswept_hills"
 [products."yumis_sky_island:biome_ball_windswept_hills".canonicalStack.componentPatch]
 
 
-# 风袭热带草原生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 风袭热带草原生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23737,7 +23737,7 @@ buyBaseValueCoins = 100000
 tradeMode = "buy_only"
 dailyStock = 8
 offerWeight = 4
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_windswept_savanna".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_windswept_savanna"
@@ -23745,7 +23745,7 @@ itemId = "yumis_sky_island:biome_ball_windswept_savanna"
 [products."yumis_sky_island:biome_ball_windswept_savanna".canonicalStack.componentPatch]
 
 
-# 疏林恶地生态球：每日／隐藏商店，岛屿按对应群系解锁等级购买。
+# 疏林恶地生态球：常驻商店【生态球】，按岛屿等级购买，不套常驻2.5倍。
 
 
 
@@ -23759,7 +23759,7 @@ buyBaseValueCoins = 250000
 tradeMode = "buy_only"
 dailyStock = 4
 offerWeight = 2
-shopCategory = "other"
+shopCategory = "biome_ball"
 
 [products."yumis_sky_island:biome_ball_wooded_badlands".canonicalStack]
 itemId = "yumis_sky_island:biome_ball_wooded_badlands"
@@ -23776,7 +23776,7 @@ itemId = "yumis_sky_island:biome_ball_wooded_badlands"
 productId = "yumis_sky_island:sky_carp"
 name = "空岛鲤鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 5000
+baseValueCoins = 1000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23797,7 +23797,7 @@ itemId = "yumis_sky_island:sky_carp"
 productId = "yumis_sky_island:lava_eel"
 name = "熔岩鳗鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 12000
+baseValueCoins = 2400
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23818,7 +23818,7 @@ itemId = "yumis_sky_island:lava_eel"
 productId = "yumis_sky_island:void_fish"
 name = "虚空鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 20000
+baseValueCoins = 4000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23839,7 +23839,7 @@ itemId = "yumis_sky_island:void_fish"
 productId = "yumis_sky_island:frost_trout"
 name = "霜鳟"
 categoryHint = "钓鱼产物"
-baseValueCoins = 7000
+baseValueCoins = 1400
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23860,7 +23860,7 @@ itemId = "yumis_sky_island:frost_trout"
 productId = "yumis_sky_island:desert_lungfish"
 name = "沙漠肺鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 7000
+baseValueCoins = 1400
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23881,7 +23881,7 @@ itemId = "yumis_sky_island:desert_lungfish"
 productId = "yumis_sky_island:mushroom_fish"
 name = "蘑菇鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 9000
+baseValueCoins = 1800
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
