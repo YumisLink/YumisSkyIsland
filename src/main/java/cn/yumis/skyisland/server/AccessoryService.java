@@ -87,16 +87,19 @@ public final class AccessoryService {
         special("first_aid","急救用具","进食后获得等同于该食物饱和度的伤害吸收，每级1点，持续60秒","glistering_melon_slice",false);
         special("dive_bomb","俯冲轰炸","死亡时对击杀者和2格内生物造成主手攻击力的伤害","tnt",false);
         special("collector","收集者","命中生命低于2%的敌人时立刻击杀，并获得等同于其最大生命的金币","gold_nugget",false);
-        int drawable=0,crafted=0,baits=0,shop=0;
+        bonus(BloodAccessories.ANKLET,"脚链","护甲增加2；血月专属","chain",Attributes.ARMOR,2,AttributeModifier.Operation.ADD_VALUE,"rare");
+        special(BloodAccessories.SHARK,"鲨鱼项链","近战、弓弩和三叉戟攻击无视5点护甲；血月专属","prismarine_shard",false,"rare");
+        int drawable=0,crafted=0,baits=0,shop=0,blood=0;
         for(Entry entry:CATALOG.values()){
-            if(AccessoryCraft.crafted(entry.id()))crafted++;
+            if(BloodAccessories.exclusive(entry.id()))blood++;
+            else if(AccessoryCraft.crafted(entry.id()))crafted++;
             else if(entry.id().equals("lava_bait")||entry.id().equals("void_bait"))baits++;
             else if(entry.id().equals("slaughter_aura"))shop++;
             else if(AccessoryCraft.canDraw(entry.id(),entry.rarity()))drawable++;
             else throw new IllegalStateException("饰品未归入可抽取、合成、鱼饵或商店："+entry.id());
         }
-        if(drawable!=AccessoryCraft.DRAWABLE_COUNT||crafted!=6||baits!=2||shop!=1||CATALOG.size()!=47)
-            throw new IllegalStateException("饰品目录必须为38件普通可抽取、6件合成、2件鱼饵和1件商店专属");
+        if(drawable!=AccessoryCraft.DRAWABLE_COUNT||crafted!=6||baits!=2||shop!=1||blood!=2||CATALOG.size()!=49)
+            throw new IllegalStateException("饰品目录必须为38件普通可抽取、6件合成、2件鱼饵、1件商店专属和2件血月专属");
     }
     private static void special(String id,String name,String effect,String icon,boolean passive){special(id,name,effect,icon,passive,"common");}
     private static void special(String id,String name,String effect,String icon,boolean passive,String rarity){CATALOG.put(id,new Entry(id,name,effect,icon,passive,rarity,null,0,null));}

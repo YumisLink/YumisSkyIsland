@@ -32,6 +32,7 @@ public final class SkyCreativeTabs {
                 for(var item:cn.yumis.skyisland.item.Hammers.ITEMS.keySet())output.accept(item);
                 for(var item:ConstructionWands.BLUEPRINTS.keySet())output.accept(item);
                 output.accept(PrefabBlocks.CANNON);
+                output.accept(cn.yumis.skyisland.sorting.SortingContent.BLOCK);
                 output.accept(PrefabItems.AMMUNITION);
                 output.accept(ModBlocks.SHIPPING_CHEST);
                 output.accept(ModItems.FLIGHT_TICKET);

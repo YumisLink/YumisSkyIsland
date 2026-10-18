@@ -74,7 +74,7 @@ public final class BiomeTreasureBox extends Item {
         if(reward.isEmpty())return InteractionResult.FAIL;
         Component boxName=held.getHoverName();
         if(!player.isCreative())held.shrink(1);
-        List<ItemStack> parts=runtime.professions.qualityParts(player,"fisherman",reward);
+        List<ItemStack> parts=ModItems.ACCESSORY_ICONS.containsValue(reward.getItem())?List.of(reward):runtime.professions.qualityParts(player,"fisherman",reward);
         // Inventory insertion zeroes the count. 26.2 then reports that stack as air, so name it first.
         Component announcement=opened(boxName,parts,runtime.config.object("products/quality.toml"));
         for(ItemStack part:parts)

@@ -185,13 +185,14 @@ public final class TradeService {
         UUID id=player.getUUID();
         JsonArray items=change.items().deepCopy();
         IslandState.ExperienceSnapshot experience=experienceSnapshot(player);
+        var quiver = QuiverService.state(player);
         IslandState.LotteryDrawResult draw=change.lotteryResult()==null?null:
             cn.yumis.skyisland.config.GameConfig.JSON.fromJson(cn.yumis.skyisland.config.GameConfig.JSON.toJson(change.lotteryResult()),IslandState.LotteryDrawResult.class);
         runtime.inventoryLocks.add(id);pendingInventoryCommits.add(id);
         try {
             boolean accepted=runtime.tryChange(player,state->{
                 edit.accept(state);
-                recovery(state,id,items,experience,change.experience(),draw);
+                recovery(state,id,items,experience,change.experience(),draw,quiver);
             },()->{
                 pendingInventoryCommits.remove(id);
                 ServerPlayer current=currentPlayer(id);
@@ -219,9 +220,10 @@ public final class TradeService {
         snapshot.progress=player.experienceProgress;snapshot.total=player.totalExperience;return snapshot;
     }
     private static void recovery(IslandState state, UUID player, JsonArray inventory,IslandState.ExperienceSnapshot before,
-                                 ExperienceChange experience,IslandState.LotteryDrawResult draw) {
+                                 ExperienceChange experience,IslandState.LotteryDrawResult draw,QuiverState quiver) {
         IslandState.InventoryRecovery r = new IslandState.InventoryRecovery(); r.sequence = Math.addExact(state.sequence,1); r.items = inventory;
         r.beforeExperience=before;r.experienceLevelCost=experience.levelCost();r.experiencePoints=experience.pointReward();r.lotteryResult=draw;
+        r.quiver=quiver;
         state.inventoryRecovery.put(player, r);
     }
     private ServerPlayer currentPlayer(UUID id) {
@@ -242,6 +244,7 @@ public final class TradeService {
         runtime.inventoryLocks.add(id);applyingRecovery.add(id);
         try {
             runtime.economy.restore(player.getInventory(),recovery.items);
+            if(recovery.quiver!=null)QuiverService.restore(player,recovery.quiver);
             if(recovery.beforeExperience!=null){
                 var before=recovery.beforeExperience;
                 player.setExperienceLevels(before.level);player.experienceProgress=before.progress;player.totalExperience=before.total;

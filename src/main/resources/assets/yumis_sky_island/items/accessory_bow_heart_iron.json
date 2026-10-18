@@ -1,3 +1,6 @@
 {
-  "model": { "type": "minecraft:model", "model": "minecraft:item/crossbow" }
+  "model": {
+    "type": "minecraft:model",
+    "model": "yumis_sky_island:item/accessory/bow_heart_iron"
+  }
 }

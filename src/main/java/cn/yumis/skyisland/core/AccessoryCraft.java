@@ -15,7 +15,7 @@ public final class AccessoryCraft {
     public static final String TACKLE_BOX = "tackle_box";
     public static final String ANGLER_BAG = "angler_bag";
     public static final int DRAWABLE_COUNT = 38;
-    private static final Set<String> UNDRAWABLE = Set.of("slaughter_aura", "lava_bait", "void_bait");
+    private static final Set<String> UNDRAWABLE = Set.of("slaughter_aura", "lava_bait", "void_bait", "anklet", "shark_necklace");
     private static final Map<String, List<String>> RECIPES = new LinkedHashMap<>();
     static {
         RECIPES.put(FISHING_LINE, List.of("bobber", "fisher_charm"));

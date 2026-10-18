@@ -139,7 +139,7 @@ public final class FishingService {
     public static ItemStack openBox(SkyServer runtime,ServerPlayer player,BiomeTreasureBox.Kind kind){
         boolean end=BiomeTreasureBox.END_BIOMES.contains(kind.biome());
         int eggBps=runtime.config.object("gameplay/blood_moon.toml").get("treasureEggBps").getAsInt();
-        List<TreasureOutcome> outcomes=treasureOutcomes(kind.biome(),kind.medium(),power(runtime,player),kind.bloodMoon(),end,eggBps);
+        List<TreasureOutcome> outcomes=treasureOutcomes(kind.biome(),kind.medium(),power(runtime,player),kind.bloodMoon(),end,eggBps,BloodAccessories.chance(runtime,"accessoryBoxBps",2000));
         double target=player.getRandom().nextDouble();
         Item item=outcomes.getLast().item();
         for(TreasureOutcome outcome:outcomes){target-=outcome.probability();if(target<0){item=outcome.item();break;}}
@@ -167,18 +167,27 @@ public final class FishingService {
         return stack;
     }
     public static List<TreasureOutcome> treasureOutcomes(String biome,String medium,double power,boolean bloodMoon,boolean end,int eggBps){
+        return treasureOutcomes(biome,medium,power,bloodMoon,end,eggBps,2000);
+    }
+    public static List<TreasureOutcome> treasureOutcomes(String biome,String medium,double power,boolean bloodMoon,boolean end,int eggBps,int accessoryBps){
         List<TreasureOutcome> result=new ArrayList<>();
+        double accessoryChance=bloodMoon?Math.clamp(accessoryBps/10000.0,0,1):0;
+        if(accessoryChance>0){
+            result.add(new TreasureOutcome(ModItems.ACCESSORY_ICONS.get(BloodAccessories.ANKLET),accessoryChance/2));
+            result.add(new TreasureOutcome(ModItems.ACCESSORY_ICONS.get(BloodAccessories.SHARK),accessoryChance/2));
+        }
+        double original=1-accessoryChance;
         List<Item> eggs=bloodMoon?bloodEggs(biome):List.of();
         double eggChance=eggs.isEmpty()?0:Math.clamp(eggBps/10000.0,0,1);
         if(eggChance>0){
-            for(Item egg:eggs)result.add(new TreasureOutcome(egg,eggChance/eggs.size()));
+            for(Item egg:eggs)result.add(new TreasureOutcome(egg,original*eggChance/eggs.size()));
         }
         double elytraChance=end?0.0001:0;
-        if(elytraChance>0)result.add(new TreasureOutcome(Items.ELYTRA,(1-eggChance)*elytraChance));
+        if(elytraChance>0)result.add(new TreasureOutcome(Items.ELYTRA,original*(1-eggChance)*elytraChance));
         List<Drop> pool=treasurePool(biome,medium);
         double total=0,multiplier=1+9*power/1000.0;
         for(Drop drop:pool)total+=drop.weight()*(drop.common()?1:multiplier);
-        for(Drop drop:pool)result.add(new TreasureOutcome(drop.item(),(1-eggChance)*(1-elytraChance)*drop.weight()*(drop.common()?1:multiplier)/total));
+        for(Drop drop:pool)result.add(new TreasureOutcome(drop.item(),original*(1-eggChance)*(1-elytraChance)*drop.weight()*(drop.common()?1:multiplier)/total));
         return result;
     }
     private static String stamp(ServerLevel level,String biome,String medium){

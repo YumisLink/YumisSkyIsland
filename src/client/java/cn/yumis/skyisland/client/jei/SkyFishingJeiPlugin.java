@@ -78,7 +78,7 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
         ItemStack box(){return BiomeTreasureBox.create(biome,medium,blood);}
         Map<Item,Double> probabilities(){
             Map<Item,Double> values=new LinkedHashMap<>();
-            for(var outcome:FishingService.treasureOutcomes(biome,medium,0,blood,BiomeTreasureBox.END_BIOMES.contains(biome),ClientCatalog.serverEggBps))
+            for(var outcome:FishingService.treasureOutcomes(biome,medium,0,blood,BiomeTreasureBox.END_BIOMES.contains(biome),ClientCatalog.serverEggBps,ClientCatalog.serverAccessoryBoxBps))
                 values.merge(outcome.item(),outcome.probability(),Double::sum);
             return values;
         }
@@ -131,7 +131,7 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
                     .addRichTooltipCallback((slot,tooltip)->{
                         double chance=recipe.probabilities().getOrDefault(item,0.0);
                         tooltip.add(Component.literal(String.format(Locale.ROOT,"单次开匣概率：%.4f%%",chance*100)));
-                        tooltip.add(Component.literal("实际概率会随开启者渔力变化"));
+                        tooltip.add(Component.literal(ModItems.ACCESSORY_ICONS.containsValue(item)?"血月专属饰品概率固定，不受渔力影响":"原奖池内实际概率会随开启者渔力变化"));
                     });
                 i++;
             }
@@ -147,7 +147,7 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
             var entries=new ArrayList<>(recipe.probabilities().entrySet());int index=row*9+column;
             if(index>=entries.size())return;
             tooltip.add(Component.literal(String.format(Locale.ROOT,"单次开匣概率：%.4f%%",entries.get(index).getValue()*100)));
-            tooltip.add(Component.literal("实际概率会随开启者渔力变化"));
+            tooltip.add(Component.literal(ModItems.ACCESSORY_ICONS.containsValue(entries.get(index).getKey())?"血月专属饰品概率固定，不受渔力影响":"原奖池内实际概率会随开启者渔力变化"));
         }
         @Override public Identifier getIdentifier(Catch recipe){return YumisSkyIsland.id("contents_"+(recipe.blood()?"blood_":"")+recipe.medium()+"_"+recipe.biome());}
     }

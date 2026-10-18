@@ -36,8 +36,9 @@ public final class YumisSkyIsland implements ModInitializer {
         try { CONFIG = new GameConfig(); } catch (Exception e) { throw new IllegalStateException("空岛配置加载失败，请检查 config/yumis_sky_island",e); }
         ModBlocks.register(); ModItems.register(); Hammers.register(); cn.yumis.skyisland.npc.ResidentContent.register(); cn.yumis.skyisland.wand.ConstructionWands.register(); VoidWorlds.register(); WorldService.registerTickets();
         cn.yumis.skyisland.prefab.PrefabItems.register(); cn.yumis.skyisland.prefab.PrefabBlocks.register(); cn.yumis.skyisland.item.SkyCreativeTabs.register(); cn.yumis.skyisland.prefab.PrefabService.register();
+        cn.yumis.skyisland.sorting.SortingContent.register();
         cn.yumis.skyisland.wand.ConstructionWandService.register();
-        ModAttributes.register(); ModEffects.register(); WardenBags.load(); CloudLeapService.register();
+        ModAttributes.register(); ModEffects.register(); WardenBags.load(); CloudLeapService.register(); QuiverService.register();
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Request.TYPE,ShopPayloads.Request.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Purchase.TYPE,ShopPayloads.Purchase.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.ProfessionPurchase.TYPE,ShopPayloads.ProfessionPurchase.CODEC);
@@ -63,7 +64,7 @@ public final class YumisSkyIsland implements ModInitializer {
         ServerTickEvents.END_SERVER_TICK.register(server -> { var rt = SkyServer.get(server); if (rt != null) rt.tick(); });
         ServerPlayConnectionEvents.JOIN.register((handler,sender,server) -> { var rt = SkyServer.get(server); if (rt != null) rt.joined(handler.player); });
         ServerPlayConnectionEvents.DISCONNECT.register((handler,server) -> { var rt = SkyServer.get(server); if (rt != null) {rt.residents.disconnected(handler.player);rt.prefabs.disconnected(handler.player.getUUID());rt.disconnected(handler.player);} });
-        ServerChunkEvents.CHUNK_LOAD.register((world,chunk,newlyGenerated) -> { var rt = SkyServer.get(world.getServer()); if (rt != null) { rt.residents.loaded(world,chunk);rt.prefabs.loaded(world,chunk); ModItems.applyBiomeOverride(rt,world,chunk); if(world.dimension().equals(Level.OVERWORLD))rt.refresh.loaded(chunk); } });
+        ServerChunkEvents.CHUNK_LOAD.register((world,chunk,newlyGenerated) -> { var rt = SkyServer.get(world.getServer()); if (rt != null) { rt.sorting.transactions.loaded(world,chunk);rt.residents.loaded(world,chunk);rt.prefabs.loaded(world,chunk); ModItems.applyBiomeOverride(rt,world,chunk); if(world.dimension().equals(Level.OVERWORLD))rt.refresh.loaded(chunk); } });
         ServerChunkEvents.CHUNK_UNLOAD.register((world,chunk)->{var rt=SkyServer.get(world.getServer());if(rt!=null)rt.residents.unloaded(world,chunk);});
         ServerEntityEvents.ENTITY_UNLOAD.register((entity,world)->{var rt=SkyServer.get(world.getServer());if(rt!=null&&entity instanceof cn.yumis.skyisland.npc.ResidentEntity resident)rt.residents.entityUnloaded(resident);});
         ServerEntityEvents.ENTITY_LOAD.register((entity,world) -> {
@@ -81,6 +82,7 @@ public final class YumisSkyIsland implements ModInitializer {
         PlayerBlockBreakEvents.BEFORE.register((world,player,pos,state,be) -> !(world instanceof ServerLevel level) || Protection.canBuild(level,player,pos));
         net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AFTER_DEATH.register((entity,source)->{
             if(entity instanceof cn.yumis.skyisland.npc.ResidentEntity)return;
+            BloodAccessories.defeated(entity,source);
             if(!AccessoryService.externalHit())AccessoryService.defeated(entity,source);
             if(entity instanceof net.minecraft.server.level.ServerPlayer dead){var rt=SkyServer.get(dead.level().getServer());if(rt!=null)rt.playerDied(dead);AccessoryService.diveBomb(dead,source);}
             if(!AccessoryService.externalHit()&&entity instanceof net.minecraft.world.entity.Mob&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player){var rt=SkyServer.get(player.level().getServer());if(rt!=null){String id=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString();rt.progression.action(player,"kill",id,1,"","");rt.professions.hunterKill(player,id);}}

@@ -17,6 +17,8 @@ public final class BowHits {
     private static final ThreadLocal<ServerPlayer> OWNER = new ThreadLocal<>();
     private BowHits() {}
 
+    public static boolean splashing() { return SKIP.get(); }
+
     public static void begin() { SCALED.remove(); OWNER.remove(); }
 
     public static float adjust(LivingEntity target, DamageSource source, float amount) {

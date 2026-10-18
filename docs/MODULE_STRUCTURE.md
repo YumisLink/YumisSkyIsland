@@ -1,6 +1,6 @@
 # Yumi’s Sky Island 模块结构图
 
-更新于 2026-10-16。开发必须遵守的最新要求见 [AGENTS.md](../AGENTS.md)；下方 Mermaid 和目录索引包含本轮玩法扩展，SVG 保留此前模块边界示意。
+更新于 2026-10-19。开发必须遵守的最新要求见 [AGENTS.md](../AGENTS.md)；下方 Mermaid 和SVG包含虚空箭袋、分类器、血月饰品及此前模块边界。
 
 ![Yumi’s Sky Island 模块结构图](MODULE_STRUCTURE.svg)
 
@@ -10,16 +10,23 @@
 
 以下 Mermaid 源图便于随源码修改。`CloudLeapService` 的网络接收器独立注册，普通生存世界也能使用；`SkyServer` 只在空岛世界启动。
 
+`QuiverService` 同样独立于空岛启动：原版空气右键及服务端tick → 主手存箭／第9格补给 → 原生玩家Attachment与背包同存。`QuiverClient`仅限制空气目标并同步选中槽；所有数量及状态由服务端决定。`TradeService`的背包恢复凭据包含箭库快照，重放时一起恢复。
+
 ```mermaid
 flowchart TB
     Defaults["仓库默认配置<br/>config/yumis_sky_island"] --> Pack["processResources<br/>JAR defaults/yumis_sky_island"]
     Pack --> Config["GameConfig + ScoringSettings<br/>NightConfig读取／保留注释、缺省计分、原子保存"]
-    RuntimeConfig["运行实例配置<br/>24份中文注释TOML"] --> Config
+    RuntimeConfig["运行实例配置<br/>26份中文注释TOML"] --> Config
     Config --> Main["YumisSkyIsland<br/>Fabric 通用入口与事件注册"]
     Main --> Void["world<br/>VoidWorlds / VoidMarker"]
     Main --> Blocks["block<br/>ModBlocks / ShippingChestBlock / Entity"]
     Main --> Runtime["SkyServer<br/>空岛服务协调、请求路由、tick、同步"]
     Main --> Leap["CloudLeapService + ModEffects<br/>技能验证与踏云护体；普通世界亦可用"]
+    Main --> Quiver["QuiverService + QuiverState<br/>所有世界：4096支个人箭库、第9格空时补64"]
+    Config --> Quiver
+    QuiverClient["QuiverClient<br/>空气目标与同帧切栏同步"] --> Quiver
+    Quiver --> QuiverSave["玩家Attachment + 原生背包<br/>死亡复制；交易恢复配对快照"]
+    Trade --> QuiverSave
     Main --> Attributes["ModAttributes<br/>渔力注册、玩家默认属性与原版同步"]
     Main --> Wands["ConstructionWands / ConstructionWandService<br/>仅空岛：六档建造、扣料、撤销、逐块保护"]
     Wands --> WandWire["WandPayloads<br/>客户端操作意图；服务端候选、设置和上限"]
@@ -29,6 +36,12 @@ flowchart TB
     Prefabs --> PrefabWire["PrefabPayloads<br/>仅操作意图；服务端检查、扣费与逐步日志"]
     PrefabWire --> PrefabUI["PrefabClient / BlueprintPositionScreen / BlueprintCannonScreen<br/>半透明投影、移动旋转、炮内物品栏"]
     Config --> Prefabs
+    Runtime --> Sorting["SortingService / SortingChest<br/>A→B动态物品ID匹配、三维100格、正式队员绑定"]
+    Sorting --> SortWire["SorterMenu / SorterPayloads / SorterScreen<br/>独立界面、真实玩家背包与只读B箱样本"]
+    Sorting --> SortWAL["SortingTransactions<br/>独立强制日志、按维度原生区块回执、容器锁及重开屏障"]
+    Config --> Sorting
+    Sorting --> Core
+    Survival --> BloodAccessories["BloodAccessories / SharkArmorMixin<br/>独立血月掉落、脚链护甲、当次攻击破甲"]
     Runtime --> Residents["ResidentService / ResidentRules / ResidentSettings<br/>房屋、每日居民、声望、队伍价格与行动经验"]
     Config --> Residents
     Residents --> Rooms["HousingScanner<br/>30～200空气、设施及围护反向索引、不强加载"]
@@ -115,7 +128,7 @@ flowchart TB
 YumisSkyIsland/
 ├─ AGENTS.md                         全仓库开发规则与最新要求
 ├─ build.gradle / gradle.properties   Loom、依赖、源集、默认配置打包
-├─ config/yumis_sky_island/           23份仓库默认业务 TOML
+├─ config/yumis_sky_island/           26份仓库默认业务 TOML
 │  ├─ server_rules.*                 原版交易限制
 │  ├─ shop/                          商品、价格、稀有度、等级、库存、售出额度
 │  ├─ islands/                       方块计分、等级阈值、刷新预算
@@ -137,6 +150,7 @@ YumisSkyIsland/
 │  ├─ attribute/                     渔力注册、玩家默认属性和原版同步
 │  ├─ wand/                          六档建造杖、服务端候选、供料、选项与撤销
 │  ├─ prefab/                        外置建筑库、蓝图大炮、逐块日志与区块恢复凭据
+│  ├─ sorting/                       分类器、箱体身份、绑定、菜单、调度及跨箱恢复事务
 │  ├─ item/                          飞行券、生态球、果实和饰品图标注册
 │  └─ mixin/                         原版行为拦截及必要存储访问
 ├─ src/main/resources/               Fabric、Mixin、配方、世界生成、语言与贴图
@@ -187,6 +201,7 @@ YumisSkyIsland/
 | 成长任务与悬赏 | QuestCatalog／QuestEditorService全服编辑、属性材料分配、本人行动计数、独立功能与个人放置支线、独立悬赏格、首获状态 | [ProgressionService.java](../src/main/java/cn/yumis/skyisland/server/ProgressionService.java)、[BountyRules.java](../src/main/java/cn/yumis/skyisland/core/BountyRules.java) |
 | 出货箱 | 方块/实体注册、归属和世代绑定、红石上升沿、与交易服务衔接 | [block](../src/main/java/cn/yumis/skyisland/block) |
 | 梯云纵 | 独立网络接收、服务器冷却/速度检查、踏云护体，借原版效果包同步 | [CloudLeapService.java](../src/main/java/cn/yumis/skyisland/server/CloudLeapService.java)、[ModEffects.java](../src/main/java/cn/yumis/skyisland/effect/ModEffects.java)、[PlayerSafetyMixin.java](../src/main/java/cn/yumis/skyisland/mixin/PlayerSafetyMixin.java) |
+| 虚空箭袋 | 全世界个人存箭、空气目标校验、第9格空时补64、命令开关与配对恢复 | [QuiverService.java](../src/main/java/cn/yumis/skyisland/server/QuiverService.java)、[QuiverState.java](../src/main/java/cn/yumis/skyisland/core/QuiverState.java)、[QuiverClient.java](../src/client/java/cn/yumis/skyisland/client/QuiverClient.java) |
 | 建造杖 | 仅空岛、六档数量、逐块保护、普通建材／随身容器供料、变化失效撤销、无模板逐级锻造 | [wand](../src/main/java/cn/yumis/skyisland/wand)、[WandPayloads.java](../src/main/java/cn/yumis/skyisland/network/WandPayloads.java)、[WandClient.java](../src/client/java/cn/yumis/skyisland/client/WandClient.java) |
 | 网络 | `ShopPayloads` 请求/JSON 快照；`CloudLeapPayload` 只发送跳跃模式 | [network](../src/main/java/cn/yumis/skyisland/network) |
 | 持久化 | `IslandState` 保存队伍/玩家/市场/刷新/重开/任务等状态；`DurableStore` 用 CRC 日志和检查点，落盘后发布 | [IslandState.java](../src/main/java/cn/yumis/skyisland/data/IslandState.java)、[DurableStore.java](../src/main/java/cn/yumis/skyisland/data/DurableStore.java) |

@@ -22,7 +22,7 @@ public final class GameConfig {
         "server_rules.toml", "shop/products.toml", "shop/item_levels.toml", "shop/rarities.toml",
         "shop/enchantments.toml", "shop/shops.toml", "shop/sale_quotas.toml", "shop/recipe_values.toml", "islands/scoring.toml",
         "islands/levels.toml", "islands/refresh.toml", "products/quality.toml", "products/professions.toml", "products/goods.toml", "products/profession_shop.toml",
-        "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml",
+        "gameplay/quiver.toml", "gameplay/sorting.toml", "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml",
         "tasks/bounties.toml", "tasks/quests.toml", "economy.toml", "gameplay/construction_wand.toml", "gameplay/prefabs.toml"
     };
     private final Path configRoot = FabricLoader.getInstance().getConfigDir().resolve("yumis_sky_island");
@@ -30,6 +30,7 @@ public final class GameConfig {
     private final Map<String, String> loadedDigests = new HashMap<>();
     private Set<String> registeredBlocks = Set.of();
     public ScoringSettings scoring;
+    public QuiverSettings quiver;
     public final Map<String, Product> products = new LinkedHashMap<>();
     public final Map<String, BlockValue> blocks = new HashMap<>();
     public final Map<String, QuotaUnit> quotaUnits = new HashMap<>();
@@ -70,6 +71,7 @@ public final class GameConfig {
         }
         once("gameplay/construction_wand.toml", this::constructionWandAcquisitionEnabled);
         once("gameplay/prefabs.toml", this::prefabAcquisitionEnabled);
+        once("gameplay/quiver.toml", () -> quiver = QuiverSettings.parse(object("gameplay/quiver.toml")));
         once("islands/levels.toml", () -> BlockScorer.requirementBasePoints(object("islands/levels.toml").get("requirementBasePoints").getAsLong()));
         once("shop/shops.toml", this::validateShops);
         once("economy.toml", this::validateEconomy);

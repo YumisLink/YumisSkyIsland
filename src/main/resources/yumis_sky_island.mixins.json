@@ -67,7 +67,8 @@
     "SmithingResultMixin",
     "StonecutResultMixin",
     "StonecutTransferMixin",
-    "WorldInteractionMixin"
+    "WorldInteractionMixin",
+    "SharkArmorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

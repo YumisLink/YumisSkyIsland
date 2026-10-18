@@ -51,6 +51,7 @@ public final class SkyServer implements AutoCloseable {
     public final BloodMoonService bloodMoon;
     public final VeinMiningService veinMining;
     public final cn.yumis.skyisland.prefab.PrefabService prefabs;
+    public final cn.yumis.skyisland.sorting.SortingService sorting;
     public final ResetService resets;
     public final ProgressionService progression;
     public final QuestEditorService questEditor;
@@ -83,6 +84,7 @@ public final class SkyServer implements AutoCloseable {
         economy.epoch(epoch());
         parties = new PartyService(this); worlds = new WorldService(this); trades = new TradeService(this);
         refresh = new RefreshService(this); professions = new ProfessionService(this); professionShop=new ProfessionShopService(this); accessories=new AccessoryService(this);bloodMoon=new BloodMoonService(this);veinMining=new VeinMiningService(this);
+        sorting = new cn.yumis.skyisland.sorting.SortingService(this);
         resets = new ResetService(this);
         progression = new ProgressionService(this);
         lottery = new LotteryService(this);
@@ -176,6 +178,7 @@ public final class SkyServer implements AutoCloseable {
         PersonalTokens.levels(state,party,before,party.highestIslandLevel,lottery.levelReward());
     }
     public void blockChanged(ServerLevel world, BlockPos pos, BlockState old, BlockState next) {
+        sorting.changed(world,pos,old,next);
         if (!world.dimension().equals(Level.OVERWORLD) || old.equals(next)) return;
         residents.changed(world,pos,old,next);
         IslandState.Party claim = claim(pos); if (claim == null || claim.resetInProgress) return;
@@ -236,7 +239,7 @@ public final class SkyServer implements AutoCloseable {
             for(ServerPlayer online:server.getPlayerList().getPlayers())tell(online,"早上了，每日刷新了。");
         });
         drain(); economy.epoch(epoch());
-        residents.tick(); trades.tick(); refresh.tick(); resets.tick(); worlds.tick(); progression.tick(); lottery.tick(); bloodMoon.tick(); veinMining.tick(); prefabs.tick(); Protection.clear();
+        residents.tick(); trades.tick(); refresh.tick(); resets.tick(); worlds.tick(); progression.tick(); lottery.tick(); bloodMoon.tick(); veinMining.tick(); prefabs.tick(); sorting.tick(); Protection.clear();
         if (store.available()) {
             for (IslandState.Party party : state().parties.values()) {
                 if (party.marketEpoch != epoch()) { trades.roll(party); break; }
@@ -298,7 +301,7 @@ public final class SkyServer implements AutoCloseable {
         FoodHealth.apply(player, person);
         ProfessionAttributes.apply(this, player, person);
     }
-    public void disconnected(ServerPlayer player) { worlds.disconnected(player.getUUID()); ModItems.disconnected(player.getUUID()); veinMining.disconnect(player); lastChefHealth.remove(player.getUUID());lastChefDamageTick.remove(player.getUUID()); trades.forget(player); questEditor.forget(player); catalogQueue.remove(player.getUUID()); catalogSent.remove(player.getUUID()); lastSnapshots.remove(player.getUUID()); priceEpochSent.remove(player.getUUID()); lastRequest.remove(player.getUUID()); }
+    public void disconnected(ServerPlayer player) { sorting.disconnected(player.getUUID()); worlds.disconnected(player.getUUID()); ModItems.disconnected(player.getUUID()); veinMining.disconnect(player); lastChefHealth.remove(player.getUUID());lastChefDamageTick.remove(player.getUUID()); trades.forget(player); questEditor.forget(player); catalogQueue.remove(player.getUUID()); catalogSent.remove(player.getUUID()); lastSnapshots.remove(player.getUUID()); priceEpochSent.remove(player.getUUID()); lastRequest.remove(player.getUUID()); }
     public void request(ServerPlayer player, ShopPayloads.Request request) {
         long now = state().effectiveTicks;
         if (now - lastRequest.getOrDefault(player.getUUID(), -100L) < 4 && !Set.of("sale_preview","sale_confirm","sale_cancel","quest_claim","bounty_claim","bounty_slot","vein").contains(request.action())) return;
@@ -433,6 +436,7 @@ public final class SkyServer implements AutoCloseable {
         }
         json.add("professionProgress",professionProgress);
         json.add("fishingPower",FishingService.snapshot(this,player));
+        json.addProperty("fishingAccessoryBoxBps",BloodAccessories.chance(this,"accessoryBoxBps",2000));
         json.addProperty("fishingTreasureEggBps",config.object("gameplay/blood_moon.toml").get("treasureEggBps").getAsInt());
         JsonObject guide=new JsonObject();
         JsonObject professionConfig=config.object("products/professions.toml");
@@ -486,7 +490,7 @@ public final class SkyServer implements AutoCloseable {
         send(player, "state", json);
     }
     @Override public void close() throws IOException {
-        residents.close();prefabs.close();
+        sorting.close();residents.close();prefabs.close();
         // Finish accepted resident deaths, unloads and forced operation callbacks before closing mutations.
         do {store.finishPending();if(store.failure()!=null)throw new IOException("关闭时无法保存队伍状态",store.failure());drain();}while(!deferred.isEmpty());
         store.finishPending();closing=true;refresh.checkpointDeltas();resets.close();refresh.close();worlds.close();store.close();instance=null;

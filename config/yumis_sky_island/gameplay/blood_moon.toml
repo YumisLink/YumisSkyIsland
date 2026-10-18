@@ -13,5 +13,10 @@ hostileHealthBonusBps = 10000
 hostileSpawnMultiplier = 5
 # 血月允许敌对怪物在光照12以下生成。
 hostileLightLimit = 12
-# 血月钓鱼的宝藏池中，地区刷怪蛋的概率为25%。
+# 血月匣未开出饰品时，原奖池中地区刷怪蛋的条件概率为25%。
 treasureEggBps = 2500
+
+# 玩家击杀血月敌人时，每件专属饰品分别独立判定；10为0.1%，不受抢夺和猎人加成影响。
+accessoryMobDropBps = 10
+# 血月匣先以此总概率开出一种专属饰品，两件等概率；其余概率进入原奖池。
+accessoryBoxBps = 2000

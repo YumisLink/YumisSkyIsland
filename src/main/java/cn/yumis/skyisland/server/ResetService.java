@@ -32,11 +32,13 @@ public final class ResetService implements AutoCloseable {
         var party = runtime.parties.requireOwner(owner); Confirmation token = confirmations.remove(owner.getUUID());
         if (token == null || token.expires < runtime.state().effectiveTicks || !token.code.equals(code)) throw new IllegalArgumentException("确认码无效或已过期，请重新 /is reset");
         if (party.resetInProgress) throw new IllegalArgumentException("已有重开任务");
+        if(runtime.sorting.transactions.busy()||runtime.sorting.transactions.recovering())throw new IllegalArgumentException("分类器事务正在保存或恢复，请稍后重开");
         if(runtime.residents.transactions.busy()||runtime.residents.transactions.recovering())throw new IllegalArgumentException("居民物资事务正在保存或恢复，请稍后重开");
         runtime.change(owner,s -> {
             var p = s.parties.get(party.id); p.resetInProgress = true; p.resetChunks = null; p.resetCursor = 0; p.overworldEpoch++; p.coins = 0; p.refresh = null; p.blockCounts.clear(); p.islandDeaths.clear(); p.starterReady = false;
             ProgressionService.reset(p);
             cn.yumis.skyisland.npc.ResidentService.reset(p);
+            s.sorters.values().removeIf(device->device.party.equals(p.id)&&device.dimension.equals("minecraft:overworld"));
             s.boxes.entrySet().removeIf(e -> e.getValue().party.equals(p.id) && e.getValue().dimension.equals("minecraft:overworld"));
         }, () -> {
             for (var player : runtime.server.getPlayerList().getPlayers()) if (player.level().dimension().equals(Level.OVERWORLD) && runtime.claim(player.blockPosition()) != null && runtime.claim(player.blockPosition()).id.equals(party.id)) runtime.worlds.lobby(player);

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "yumis_sky_island:block/sorter_side",
+    "front": "yumis_sky_island:block/sorter_front",
+    "top": "yumis_sky_island:block/sorter_top"
+  }
+}

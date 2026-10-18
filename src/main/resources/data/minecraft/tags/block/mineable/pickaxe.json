@@ -1,1 +1,7 @@
-{"replace":false,"values":["yumis_sky_island:blueprint_cannon"]}
+{
+  "replace": false,
+  "values": [
+    "yumis_sky_island:blueprint_cannon",
+    "yumis_sky_island:sorter"
+  ]
+}

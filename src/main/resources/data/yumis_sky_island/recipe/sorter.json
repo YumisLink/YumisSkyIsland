@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "GDG",
+    "RCR",
+    "HPH"
+  ],
+  "key": {
+    "G": "minecraft:gold_block",
+    "D": "minecraft:diamond",
+    "R": "minecraft:redstone",
+    "C": "minecraft:chest",
+    "H": "minecraft:hopper",
+    "P": "minecraft:comparator"
+  },
+  "result": {
+    "id": "yumis_sky_island:sorter",
+    "count": 1
+  }
+}

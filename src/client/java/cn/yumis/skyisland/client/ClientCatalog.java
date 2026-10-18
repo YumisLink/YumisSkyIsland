@@ -27,7 +27,7 @@ import java.math.*;
 import java.util.*;
 
 public final class ClientCatalog {
-    public static volatile int serverEggBps=2500;
+    public static volatile int serverEggBps=2500,serverAccessoryBoxBps=2000;
     public record Product(String id,String name,ItemStack stack,JsonObject canonical,long base,long buyBase,long buyMultiplierBps,String rarity,int level,boolean buy,boolean sell,String category,String quotaGroup,Rational units,boolean starter) {
         @Override public String name(){return stack.is(Items.ENCHANTED_BOOK)&&name!=null&&!name.isBlank()?name:stack.getHoverName().getString();}
     }
@@ -125,6 +125,7 @@ public final class ClientCatalog {
                 state=next; flightSnapshotClientTime=System.nanoTime();
                 if(!editing()){configWanted=false;configBusy=false;priceBusy=false;if(Minecraft.getInstance().gui.screen() instanceof LiveConfigScreen screen)screen.onClose();}
                 if(state.has("lottery")&&state.getAsJsonObject("lottery").get("sequence").getAsLong()>lotteryRequestSequence)lotteryBusy=false;
+                if(state.has("fishingAccessoryBoxBps"))serverAccessoryBoxBps=state.get("fishingAccessoryBoxBps").getAsInt();
                 if(state.has("fishingTreasureEggBps"))serverEggBps=state.get("fishingTreasureEggBps").getAsInt();
                 if(state.has("progression")&&state.getAsJsonObject("progression").has("quests"))for(var element:state.getAsJsonObject("progression").getAsJsonArray("quests")){
                     var row=element.getAsJsonObject();var cached=questDetails.get(row.get("id").getAsString());

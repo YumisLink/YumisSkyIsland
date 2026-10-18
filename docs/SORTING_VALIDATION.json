@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-18",
+  "minecraft": "26.2",
+  "fabricLoader": "0.19.3",
+  "result": "passed",
+  "coreClientAssertions": 65,
+  "dimensionScenarios": [
+    "minecraft:overworld",
+    "minecraft:the_nether",
+    "minecraft:the_end"
+  ],
+  "junitTests": 3,
+  "screenshots": [
+    "docs/screenshots/sorting/sorter-1280-scale2.png",
+    "docs/screenshots/sorting/sorter-1280-scale3.png",
+    "docs/screenshots/sorting/sorter-1920-scale2.png",
+    "docs/screenshots/sorting/sorter-clicked.png"
+  ],
+  "imageVerification": {
+    "accessoryIcons": 15,
+    "machineFaces": 3,
+    "editableAsepriteRoundTrips": 18,
+    "nativeDimensions": "16x16",
+    "hardAlphaAndTransparentIconPerimeter": true
+  },
+  "jar": {
+    "path": "build\\libs\\YumisSkyIsland-0.1.0-dev.jar",
+    "sha256": "0bdd196171ce71cfecf5a7fd712366c4134fff1044dd54735638924a5776284b",
+    "defaultTomlCount": 26,
+    "packagedPngMatchesSource": true,
+    "privateTestsExcluded": true
+  },
+  "configZip": {
+    "path": "build/libs/YumisSkyIsland-0.1.0-dev-config.zip",
+    "sha256": "2d902f8732bbb910e1ac969c7ebeac1ffac829e3e6979f429f8ad3ec3d4b77b3"
+  },
+  "logs": {
+    "build\\sorting-core-validation.log": "c0f98e58e3bef487942a99196d77e73b52448e615fa298b1171682c86480c228",
+    "build\\sorting-dimensions.log": "0920ad35e5ae2b1e3483e027d86511674aaf383fb7973ef883aa025202426c24",
+    "build\\sorting-unit-validation.log": "b5366626c8a8bb6472bd6dc69dda1ab347d1547153594707952b437a02ac45d9",
+    "build\\sorting-export.log": "55250f680609e548132933139fec2e9d59c9724092c81585e7763f344307d3d0"
+  },
+  "assets": {
+    "assets/yumis_sky_island/textures/item/accessory/bow_heart_stone.png": "5fb1095c528bdf234d95fecbb34b501bfbac178cbf2b9e64256ac9829c4828d1",
+    "assets/yumis_sky_island/textures/item/accessory/vulnerability_mark.png": "ebe6b1570fb00a14330dc299831fc1f42d260212efdc70c9135e729cb938e1cb",
+    "assets/yumis_sky_island/textures/item/accessory/arrow_saver.png": "416e3606f889bf1ca6751f772ce1117f106d436b6e45321c88003553dc9508c3",
+    "assets/yumis_sky_island/textures/item/accessory/arrow_splash.png": "24942eb60fb20be7cab60f47d0bc7be3b4f45412a6a424abe0256160b423ef66",
+    "assets/yumis_sky_island/textures/item/accessory/counterkill.png": "199d2613a958a9046608da9c831d22dae8980d3cb1487bdb2f064e45aba8271a",
+    "assets/yumis_sky_island/textures/item/accessory/bow_heart_iron.png": "4a3907abeef5c027baa7f351e13c53f19b3413ebe9753a03e348f7d06ebca4e7",
+    "assets/yumis_sky_island/textures/item/accessory/bow_heart_split.png": "108f3e80d6d66e9bdefc4171883d9c2cdcc07bd9cb5c98796e28762ab4cf84d7",
+    "assets/yumis_sky_island/textures/item/accessory/bow_heart_gold.png": "13fb74ebbd6469458300b258a52a9e6a20437036c84f40e3d889aa26ba881ae4",
+    "assets/yumis_sky_island/textures/item/accessory/slaughter_aura.png": "077eef1452c949a6e8bce90cdbfc83772460c2d541b0183e68fc42552c541f73",
+    "assets/yumis_sky_island/textures/item/accessory/shadow_rush.png": "97cbb774df928567e331b73e47f2fc59bbc949c5e88fc99fb7c8c873df78b01f",
+    "assets/yumis_sky_island/textures/item/accessory/first_aid.png": "24a3d909a649cee3d0e722cbc4c6fdf1292c6623741e0bf9c3a03f5a046b405e",
+    "assets/yumis_sky_island/textures/item/accessory/dive_bomb.png": "e86a8ee64605d00c746660bf7016cd3d1c13b071fcbdc6f7e80075a03e15d550",
+    "assets/yumis_sky_island/textures/item/accessory/collector.png": "591168b0846e3ddb73b9252e6f2fa6032251bd1d8f7e9f2857d3595e20cd4da4",
+    "assets/yumis_sky_island/textures/item/accessory/anklet.png": "9709a6baa8544b8876322d5249b2b27de75db6f7935de8472beb1e5515c14ed2",
+    "assets/yumis_sky_island/textures/item/accessory/shark_necklace.png": "1458b02455556cb8a360013a7dda7e5f5cdba46c8b92281f147d9ec68dfc8c81",
+    "assets/yumis_sky_island/textures/block/sorter_front.png": "22d8c44f0a1da32a366fc1f39b42f88de461197d2b93f4a1c336421c0639c49a",
+    "assets/yumis_sky_island/textures/block/sorter_side.png": "2d42e447f51459926cd09c0047d155346de7784f0fdb9eb8c7381b6169fcca96",
+    "assets/yumis_sky_island/textures/block/sorter_top.png": "29e20aa76305ac6df69e63401a34f6424db7d3125e8c0c46da02687b631b9d53"
+  },
+  "notValidated": [
+    "50-player sustained load",
+    "arbitrary physical power loss",
+    "all third-party inventory automation integrations"
+  ]
+}

@@ -17,6 +17,7 @@ public final class IslandState {
     public int failedBloodMoonNights;
     public boolean bloodMoonActive;
     public Map<UUID, Party> parties = new LinkedHashMap<>();
+    public Map<UUID, cn.yumis.skyisland.sorting.SorterData> sorters = new LinkedHashMap<>();
     public Map<UUID, Person> players = new LinkedHashMap<>();
     public Map<String, Box> boxes = new LinkedHashMap<>();
     public Map<UUID, InventoryRecovery> inventoryRecovery = new LinkedHashMap<>();
@@ -142,6 +143,8 @@ public final class IslandState {
         public ExperienceSnapshot beforeExperience;
         public int experienceLevelCost;
         public LotteryDrawResult lotteryResult;
+        /** Paired with items; absent only on receipts created before the quiver feature. */
+        public cn.yumis.skyisland.core.QuiverState quiver;
     }
     public static final class ExperienceSnapshot {
         public int level, total;

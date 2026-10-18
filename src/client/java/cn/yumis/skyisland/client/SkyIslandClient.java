@@ -28,6 +28,8 @@ public final class SkyIslandClient implements ClientModInitializer {
         var category = KeyMapping.Category.register(YumisSkyIsland.id("sky_island"));
         WandClient.register(category);
         PrefabClient.register(category);
+        SorterScreen.register();
+        QuiverClient.register();
         KeyMapping shop = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.shop",InputConstants.KEY_I,category));
         KeyMapping professions = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.professions",InputConstants.KEY_P,category));
         KeyMapping accessories = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.accessories",InputConstants.KEY_O,category));

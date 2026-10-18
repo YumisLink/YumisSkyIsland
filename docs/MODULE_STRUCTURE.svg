@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1470" viewBox="0 0 1600 1470" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1920" viewBox="0 0 1600 1920" role="img" aria-labelledby="title desc">
   <title id="title">Yumi’s Sky Island 模块结构图</title>
-  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。TOML、历史放置索引、单页控制面板、指令编辑、个人职业追踪、金币提示及本地测试隔离、仅空岛六档建造杖及NPC住宅／双箱经营／玩家模型已实现，规则见 AGENTS.md。</desc>
+  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。包含所有世界可用的个人虚空箭袋、TOML、历史放置索引、控制面板、个人职业、仅空岛建造杖、NPC居民、分类器和血月饰品。</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#526780"/>
@@ -25,9 +25,9 @@
     </style>
   </defs>
 
-  <rect width="1600" height="1470" fill="#f5f7fb"/>
+  <rect width="1600" height="1920" fill="#f5f7fb"/>
   <text x="40" y="65" class="title">Yumi’s Sky Island · 模块结构图</text>
-  <text x="40" y="96" class="subtitle">Minecraft 26.2 / Fabric / Java 25 · 当前源码职责与数据流 · 2026-10-16</text>
+  <text x="40" y="96" class="subtitle">Minecraft 26.2 / Fabric / Java 25 · 当前源码职责与数据流 · 2026-10-18</text>
   <path d="M 1170 58 H 1220" class="edge"/>
   <text x="1233" y="63" class="small">运行调用 / 数据流</text>
   <path d="M 1170 91 H 1220" class="dev-edge"/>
@@ -39,7 +39,7 @@
   <text x="60" y="210" class="name">GameConfig</text>
   <text x="60" y="239" class="body">config/yumis_sky_island</text>
   <text x="60" y="265" class="body">补齐缺失默认文件，读取运行配置</text>
-  <text x="60" y="297" class="note">NightConfig · 19份中文注释TOML</text>
+  <text x="60" y="297" class="note">NightConfig · 26份中文注释TOML</text>
 
   <!-- Common entry and sky-world runtime -->
   <rect x="442" y="142" width="650" height="100" rx="14" class="card server"/>
@@ -186,4 +186,43 @@
   <path d="M 520 1322 H 558" class="edge"/>
   <path d="M 1038 1322 H 1076" class="edge"/>
   <text x="40" y="1450" class="subtitle">居民配置：gameplay/residents.toml，手改重启；首次免费许可证标记跨重开保留，探矿师增加矿工行动经验。</text>
+  <rect x="40" y="1480" width="480" height="175" rx="14" class="card server"/>
+  <text x="60" y="1512" class="heading">自动分类器 · SortingService</text>
+  <text x="60" y="1542" class="body">SortingChest：普通箱身份／完整大箱及扩箱</text>
+  <text x="60" y="1568" class="body">A→B动态物品ID匹配，三维100格，三维度</text>
+  <text x="60" y="1594" class="body">正式队员绑定、每5tick最多一个槽／64件</text>
+  <text x="60" y="1620" class="small">SortingRules：组件保留、容量规划、轮询与部分搬运</text>
+  <rect x="558" y="1480" width="480" height="175" rx="14" class="card foundation"/>
+  <text x="578" y="1512" class="heading">跨箱事务 · SortingTransactions</text>
+  <text x="578" y="1542" class="body">sorting_operations：独立强制日志与分维度回执</text>
+  <text x="578" y="1568" class="body">Protection：容器锁／重开屏障／箱毁清连接</text>
+  <text x="578" y="1594" class="body">区块卸载只等待，不强加载、不补离线时间</text>
+  <text x="578" y="1620" class="small">世界状态保存设备／修订；原生区块保存身份与应用序号</text>
+  <rect x="1076" y="1480" width="484" height="175" rx="14" class="card client"/>
+  <text x="1096" y="1512" class="heading">分类器界面与血月饰品</text>
+  <text x="1096" y="1542" class="body">SorterScreen ↔ SorterPayloads：背包／只读样本</text>
+  <text x="1096" y="1568" class="body">BloodAccessories：每件独立0.1%血月击杀掉落</text>
+  <text x="1096" y="1594" class="body">FishingService：血月匣10%／10%／原池80%</text>
+  <text x="1096" y="1620" class="small">SharkArmorMixin当次破甲；脚链护甲；15张Aseprite图标</text>
+  <path d="M 520 1560 H 558" class="edge"/>
+  <path d="M 1038 1560 H 1076" class="edge"/>
+  <text x="40" y="1685" class="subtitle">2026-10-18：分类器单版本独立UI；现有I／O／P布局保留；详细确认规则与验证见 SORTING_BLOOD_ACCESSORIES.md。</text>
+  <rect x="40" y="1720" width="480" height="155" rx="14" class="card server"/>
+  <text x="60" y="1752" class="heading">虚空箭袋 · QuiverService</text>
+  <text x="60" y="1782" class="body">独立空气右键／tick，普通与空岛世界均可用</text>
+  <text x="60" y="1808" class="body">4096个人库存；第9格空时补最多64支普通箭</text>
+  <text x="60" y="1834" class="small">QuiverState / QuiverSettings；/quiver on|off</text>
+  <rect x="558" y="1720" width="480" height="155" rx="14" class="card foundation"/>
+  <text x="578" y="1752" class="heading">原生玩家保存与交易配对恢复</text>
+  <text x="578" y="1782" class="body">Attachment保存数量／开关，与背包同存</text>
+  <text x="578" y="1808" class="body">TradeService背包恢复凭据同时快照箭库</text>
+  <text x="578" y="1834" class="small">死亡复制；登录恢复及背包锁期间暂停搬运</text>
+  <rect x="1076" y="1720" width="484" height="155" rx="14" class="card client"/>
+  <text x="1096" y="1752" class="heading">QuiverClient · 原版使用请求</text>
+  <text x="1096" y="1782" class="body">仅主手普通箭Shift＋右键空气</text>
+  <text x="1096" y="1808" class="body">先同步当前选中槽，再发送原版物品使用请求</text>
+  <text x="1096" y="1834" class="small">服务端重新射线校验；I／O／P界面不变</text>
+  <path d="M 520 1790 H 558" class="edge"/>
+  <path d="M 1076 1790 H 1038" class="edge"/>
+  <text x="40" y="1905" class="subtitle">2026-10-19：虚空箭袋无实物，个人开关与库存跨维度／死亡保留；gameplay/quiver.toml手改重启。</text>
 </svg>

@@ -32,8 +32,8 @@ public final class Protection {
     public static void endPlacement(Level level){if(level instanceof ServerLevel&&!placements.get().isEmpty())placements.get().pop();}
     public static boolean playerPlacement(Level level,BlockPos pos,String id){var stack=placements.get();return !stack.isEmpty()&&stack.peek().level==level&&stack.peek().player instanceof ServerPlayer&&id.equals(stack.peek().expected.get(pos));}
     public static boolean admin(Player player) { return player instanceof ServerPlayer p && p.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER); }
-    public static boolean locked(Level level,BlockPos pos){if(cn.yumis.skyisland.prefab.PrefabService.locked(level,pos))return true;if(level instanceof ServerLevel world){var rt=SkyServer.get(world.getServer());return rt!=null&&rt.residents!=null&&rt.residents.locked(level,pos);}return false;}
-    public static boolean locked(Container container){if(cn.yumis.skyisland.prefab.PrefabService.locked(container))return true;for(var location:positions(container)){var rt=SkyServer.get(location.level.getServer());if(rt!=null&&rt.residents!=null&&rt.residents.locked(container))return true;}return false;}
+    public static boolean locked(Level level,BlockPos pos){if(cn.yumis.skyisland.prefab.PrefabService.locked(level,pos))return true;if(level instanceof ServerLevel world){var rt=SkyServer.get(world.getServer());return rt!=null&&((rt.residents!=null&&rt.residents.locked(level,pos))||(rt.sorting!=null&&rt.sorting.transactions.locked(level,pos)));}return false;}
+    public static boolean locked(Container container){if(cn.yumis.skyisland.prefab.PrefabService.locked(container))return true;for(var location:positions(container)){var rt=SkyServer.get(location.level.getServer());if(rt!=null&&((rt.residents!=null&&rt.residents.locked(container))||(rt.sorting!=null&&rt.sorting.transactions.locked(container))))return true;}return false;}
     public static boolean canBuild(ServerLevel level, Player player, BlockPos pos) {
         if(locked(level,pos))return false;
         SkyServer rt = SkyServer.get(level.getServer()); if (rt == null || admin(player)) return true;
@@ -41,6 +41,7 @@ public final class Protection {
         if(!rt.residents.boxAllowed(p,pos))return false;
         IslandState.Party claim = rt.claim(pos); if (claim == null || claim.resetInProgress) return false;
         if(!claim.members.contains(p.getUUID())&&!claim.trusted.contains(p.getUUID()))return false;
+        if(level.hasChunkAt(pos)&&level.getBlockEntity(pos) instanceof cn.yumis.skyisland.sorting.SorterEntity&&!rt.sorting.canOperate(p,pos))return false;
         if(level.hasChunkAt(pos)&&level.getBlockEntity(pos) instanceof cn.yumis.skyisland.prefab.BlueprintCannonEntity cannon&&!rt.prefabs.canOperate(p,cannon))return false;
         return !level.hasChunkAt(pos) || !(level.getBlockEntity(pos) instanceof ShippingChestEntity box && box.locked);
     }
