@@ -1,7 +1,9 @@
 package cn.yumis.skyisland.client.jei;
 
 import cn.yumis.skyisland.YumisSkyIsland;
+import cn.yumis.skyisland.core.HammerRules;
 import cn.yumis.skyisland.item.Hammers;
+import java.util.ArrayList;
 import java.util.List;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -23,11 +25,14 @@ import net.minecraft.world.item.Items;
 @JeiPlugin
 public final class HammerJeiPlugin implements IModPlugin {
     private static final IRecipeType<Page> TYPE = IRecipeType.create(YumisSkyIsland.id("hammer"), Page.class);
+    private static final IRecipeType<Page> DROPS = IRecipeType.create(YumisSkyIsland.id("miner_bonus"), Page.class);
 
     @Override public Identifier getPluginUid() { return YumisSkyIsland.id("jei_hammer"); }
 
     @Override public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new HammerCategory(registration.getJeiHelpers().getGuiHelper().createDrawableItemLike(Hammers.IRON)));
+        var helper = registration.getJeiHelpers().getGuiHelper();
+        registration.addRecipeCategories(new HammerCategory(TYPE, "大锤", helper.createDrawableItemLike(Hammers.IRON)));
+        registration.addRecipeCategories(new HammerCategory(DROPS, "矿工额外掉落", helper.createDrawableItemLike(Items.COBBLESTONE)));
     }
 
     @Override public void registerRecipes(IRecipeRegistration registration) {
@@ -39,15 +44,17 @@ public final class HammerJeiPlugin implements IModPlugin {
                 List.of("锻造台升级", "保留附魔和名字")),
             convert("cobble", new ItemStack(Items.COBBLESTONE), new ItemStack(Items.GRAVEL), "圆石 → 砂砾"),
             convert("gravel", new ItemStack(Items.GRAVEL), new ItemStack(Items.DIRT), "砂砾 → 泥土"),
-            convert("dirt", new ItemStack(Items.DIRT), new ItemStack(Items.SAND), "泥土 → 沙子"),
-            new Page("rates", List.of(new ItemStack(Items.COBBLESTONE)), ItemStack.EMPTY, List.of(
-                "出矿只在锤子敲圆石时判定，连锁每一块都掷",
-                "10级：1% 铁粒",
-                "30级：5% 铁粒，1% 金粒",
-                "50级：25% 铁粒，3% 金粒，1% 青金石或红石",
-                "75级：100% 铁粒，8% 金粒，3% 青金石或红石，1% 钻石",
-                "100级：20% 铁锭，50% 金粒，青金石15%，红石15%，3% 钻石，0.1% 远古残骸"))
+            convert("dirt", new ItemStack(Items.DIRT), new ItemStack(Items.SAND), "泥土 → 沙子")
         ));
+        List<Page> drops = new ArrayList<>();
+        int index = 0;
+        for (HammerRules.Row row : HammerRules.rows()) {
+            ItemStack output = new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.getValue(net.minecraft.resources.Identifier.parse(row.itemId())), row.count());
+            drops.add(new Page("drop_" + index++, List.of(new ItemStack(Items.COBBLESTONE)), output, List.of(
+                    row.band() + "级  " + row.chance() + "  ×" + row.count(),
+                    row.note())));
+        }
+        registration.addRecipes(DROPS, drops);
     }
 
     private static Page craft(String id, ItemStack material, ItemStack hammer) {
@@ -61,10 +68,12 @@ public final class HammerJeiPlugin implements IModPlugin {
     private record Page(String id, List<ItemStack> inputs, ItemStack output, List<String> lines) {}
 
     private static final class HammerCategory implements IRecipeCategory<Page> {
+        private final IRecipeType<Page> type;
+        private final Component title;
         private final IDrawable icon;
-        HammerCategory(IDrawable icon) { this.icon = icon; }
-        @Override public IRecipeType<Page> getRecipeType() { return TYPE; }
-        @Override public Component getTitle() { return Component.literal("大锤"); }
+        HammerCategory(IRecipeType<Page> type, String title, IDrawable icon) { this.type = type; this.title = Component.literal(title); this.icon = icon; }
+        @Override public IRecipeType<Page> getRecipeType() { return type; }
+        @Override public Component getTitle() { return title; }
         @Override public int getWidth() { return 170; }
         @Override public int getHeight() { return 96; }
         @Override public IDrawable getIcon() { return icon; }

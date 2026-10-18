@@ -42,6 +42,7 @@ public final class SkyCreativeTabs {
                 for(var item:ModItems.ACCESSORY_ICONS.values())output.accept(item);
                 for(var item:ModItems.FISH.values())output.accept(item);
                 for(var item:ModItems.FISHING_MATERIALS.values())output.accept(item);
+                for(var item:ModItems.CROP_MUTATIONS.values())output.accept(item);
             }).build());
         TREASURE_BOXES=Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,YumisSkyIsland.id("treasure_boxes"),FabricCreativeModeTab.builder()
             .title(Component.translatable("itemGroup.yumis_sky_island.treasure_boxes"))

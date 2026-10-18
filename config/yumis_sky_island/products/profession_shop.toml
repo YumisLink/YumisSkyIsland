@@ -9,3 +9,5 @@ voidBaitPrice = 30000
 fruitDropBps = 10
 # 每个玩家每一种果实可使用次数上限。
 fruitUseCap = 100
+# 战斗大师的杀戮光环只在职业商店解锁一次。价格固定，不随行情变化，也没有等级门槛。
+slaughterAuraPrice = 50000

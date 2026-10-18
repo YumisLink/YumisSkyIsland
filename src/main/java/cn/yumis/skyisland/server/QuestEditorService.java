@@ -91,6 +91,7 @@ public final class QuestEditorService {
         rt.change(player,state -> {
             if(quest.kind().equals("main"))for(IslandState.Party p:state.parties.values()){
                 p.completedQuestIds.remove(id);p.readyQuestIds.remove(id);
+                if(p.mainQuestProgress!=null)p.mainQuestProgress.remove(id);
                 p.questResetVersions.merge(id,1L,Math::addExact);
             }
             else for(IslandState.Person p:state.players.values()){

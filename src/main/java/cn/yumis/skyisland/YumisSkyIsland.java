@@ -30,13 +30,14 @@ public final class YumisSkyIsland implements ModInitializer {
     public static GameConfig CONFIG;
     public static final AttachmentType<Long> TRANSACTION_SEQUENCE = AttachmentRegistry.create(id("transaction_sequence"),b -> b.initializer(() -> 0L).persistent(Codec.LONG).copyOnDeath());
     public static final AttachmentType<String> ENTITY_PARTY = AttachmentRegistry.create(id("entity_party"),b -> b.initializer(() -> "").persistent(Codec.STRING));
+    public static final AttachmentType<Boolean> FISHED_WARDEN = AttachmentRegistry.create(id("fished_warden"),b -> b.initializer(() -> false).persistent(Codec.BOOL));
     public static Identifier id(String path) { return Identifier.fromNamespaceAndPath(MOD_ID,path); }
     @Override public void onInitialize() {
         try { CONFIG = new GameConfig(); } catch (Exception e) { throw new IllegalStateException("空岛配置加载失败，请检查 config/yumis_sky_island",e); }
         ModBlocks.register(); ModItems.register(); Hammers.register(); cn.yumis.skyisland.npc.ResidentContent.register(); cn.yumis.skyisland.wand.ConstructionWands.register(); VoidWorlds.register(); WorldService.registerTickets();
         cn.yumis.skyisland.prefab.PrefabItems.register(); cn.yumis.skyisland.prefab.PrefabBlocks.register(); cn.yumis.skyisland.item.SkyCreativeTabs.register(); cn.yumis.skyisland.prefab.PrefabService.register();
         cn.yumis.skyisland.wand.ConstructionWandService.register();
-        ModAttributes.register(); ModEffects.register(); CloudLeapService.register();
+        ModAttributes.register(); ModEffects.register(); WardenBags.load(); CloudLeapService.register();
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Request.TYPE,ShopPayloads.Request.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Purchase.TYPE,ShopPayloads.Purchase.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.ProfessionPurchase.TYPE,ShopPayloads.ProfessionPurchase.CODEC);
@@ -46,7 +47,10 @@ public final class YumisSkyIsland implements ModInitializer {
         PayloadTypeRegistry.serverboundPlay().register(TaskPayloads.Request.TYPE,TaskPayloads.Request.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(LotteryPayloads.Operation.TYPE,LotteryPayloads.Operation.CODEC);
         PayloadTypeRegistry.clientboundPlay().register(TaskPayloads.Snapshot.TYPE,TaskPayloads.Snapshot.CODEC);
-        ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Request.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.request(context.player(),payload); });
+        ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Request.TYPE,(payload,context) -> {
+            if("ender_chest".equals(payload.action())){SkyServer.openEnderChest(context.player());return;}
+            var rt = SkyServer.get(context.server()); if (rt != null) rt.request(context.player(),payload);
+        });
         ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Purchase.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.purchase(context.player(),payload); });
         ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.ProfessionPurchase.TYPE,(payload,context) -> { var rt=SkyServer.get(context.server());if(rt!=null)rt.purchaseProfession(context.player(),payload); });
         ServerPlayNetworking.registerGlobalReceiver(cn.yumis.skyisland.network.ConfigEditPayloads.Request.TYPE,(payload,context)->{var rt=SkyServer.get(context.server());if(rt!=null)rt.configEditor.request(context.player(),payload);});
@@ -54,6 +58,7 @@ public final class YumisSkyIsland implements ModInitializer {
         ServerPlayNetworking.registerGlobalReceiver(LotteryPayloads.Operation.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.operateLottery(context.player(),payload); });
         CommandRegistrationCallback.EVENT.register((dispatcher,access,environment) -> SkyCommands.register(dispatcher));
         ServerLifecycleEvents.SERVER_STARTED.register(server -> { try { SkyServer.start(server,CONFIG); } catch (Exception e) { throw new IllegalStateException("空岛存档加载失败",e); } });
+        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server,manager,success) -> WardenBags.load());
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> { var rt = SkyServer.get(server); if (rt != null) try { rt.close(); } catch (Exception e) { LOGGER.error("空岛关闭保存失败",e); } });
         ServerTickEvents.END_SERVER_TICK.register(server -> { var rt = SkyServer.get(server); if (rt != null) rt.tick(); });
         ServerPlayConnectionEvents.JOIN.register((handler,sender,server) -> { var rt = SkyServer.get(server); if (rt != null) rt.joined(handler.player); });
@@ -76,11 +81,25 @@ public final class YumisSkyIsland implements ModInitializer {
         PlayerBlockBreakEvents.BEFORE.register((world,player,pos,state,be) -> !(world instanceof ServerLevel level) || Protection.canBuild(level,player,pos));
         net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AFTER_DEATH.register((entity,source)->{
             if(entity instanceof cn.yumis.skyisland.npc.ResidentEntity)return;
-            AccessoryService.defeated(entity,source);
-            if(entity instanceof net.minecraft.server.level.ServerPlayer dead){var rt=SkyServer.get(dead.level().getServer());if(rt!=null)rt.playerDied(dead);}
-            if(entity instanceof net.minecraft.world.entity.Mob&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player){var rt=SkyServer.get(player.level().getServer());if(rt!=null){String id=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString();rt.progression.action(player,"kill",id,1,"","");rt.professions.hunterKill(player,id);}}
+            if(!AccessoryService.externalHit())AccessoryService.defeated(entity,source);
+            if(entity instanceof net.minecraft.server.level.ServerPlayer dead){var rt=SkyServer.get(dead.level().getServer());if(rt!=null)rt.playerDied(dead);AccessoryService.diveBomb(dead,source);}
+            if(!AccessoryService.externalHit()&&entity instanceof net.minecraft.world.entity.Mob&&source.getEntity() instanceof net.minecraft.server.level.ServerPlayer player){var rt=SkyServer.get(player.level().getServer());if(rt!=null){String id=net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).toString();rt.progression.action(player,"kill",id,1,"","");rt.professions.hunterKill(player,id);}}
         });
-        net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AFTER_DAMAGE.register((entity,source,base,finalDamage,blocked)->{if(!blocked&&finalDamage>0)AccessoryService.damaged(entity,source);});
+        net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents.AFTER_DAMAGE.register((entity,source,base,finalDamage,blocked)->{
+            if(AccessoryService.externalHit()||AccessoryService.finishing())return;
+            if(!blocked&&finalDamage>0)AccessoryService.damaged(entity,source);
+            if(blocked||!(finalDamage>0)||!(entity instanceof net.minecraft.world.entity.LivingEntity victim))return;
+            if(!(source.getEntity() instanceof net.minecraft.world.entity.LivingEntity attacker))return;
+            AccessoryService.collect(victim,source,finalDamage);
+            var steal=attacker.getAttribute(ModAttributes.LIFESTEAL);
+            if(steal!=null&&steal.getValue()>0)attacker.heal((float)(finalDamage*steal.getValue()*0.01));
+            var runtime=SkyServer.get(victim.level().getServer());
+            if(runtime==null)return;
+            boolean victimCounts=victim instanceof net.minecraft.server.level.ServerPlayer||victim instanceof net.minecraft.world.entity.monster.Enemy;
+            boolean attackerCounts=attacker instanceof net.minecraft.server.level.ServerPlayer||attacker instanceof net.minecraft.world.entity.monster.Enemy;
+            if(attacker instanceof net.minecraft.server.level.ServerPlayer dealer&&victimCounts)runtime.professions.combatExperience(dealer,finalDamage);
+            if(victim instanceof net.minecraft.server.level.ServerPlayer hurt&&attacker!=hurt&&attackerCounts)runtime.professions.combatExperience(hurt,finalDamage);
+        });
         net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer,newPlayer,alive)->{
             newPlayer.getFoodData().setFoodLevel(CONFIG.object("economy.toml").getAsJsonObject("death").get("respawnFoodLevel").getAsInt());
             var runtime=SkyServer.get(newPlayer.level().getServer());
@@ -88,7 +107,10 @@ public final class YumisSkyIsland implements ModInitializer {
                 var person=runtime.state().players.get(newPlayer.getUUID());
                 ModItems.applyFruitBonuses(newPlayer,person);
                 AccessoryService.apply(newPlayer,person);
+                FoodHealth.apply(newPlayer,person);
+                ProfessionAttributes.apply(runtime,newPlayer,person);
                 FishingService.applyLevel(runtime,newPlayer);
+                if(!alive)newPlayer.setHealth(newPlayer.getMaxHealth());
                 ModItems.disconnected(newPlayer.getUUID());
                 ModItems.refreshFlight(newPlayer,person);
             }

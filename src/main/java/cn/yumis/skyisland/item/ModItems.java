@@ -36,12 +36,14 @@ public final class ModItems {
     public static Item LOTTERY_TICKET;
     public static Item FLIGHT_TICKET;
     public static Item BIOME_TREASURE_BOX;
+    public static Item WARDEN_TREASURE_BAG;
     public static final Map<String, Item> BIOME_BALLS = new LinkedHashMap<>();
     public static final Map<String, Item> FRUITS = new LinkedHashMap<>();
     public static final Map<String, Item> ACCESSORY_ICONS = new LinkedHashMap<>();
     public static final Map<String, Item> FISH = new LinkedHashMap<>();
     public static final Map<String, Item> FISHING_MATERIALS = new LinkedHashMap<>();
-    public static final List<String> PROFESSIONS = List.of("blacksmith", "chef", "farmer", "hunter", "miner");
+    public static final Map<String, Item> CROP_MUTATIONS = new LinkedHashMap<>();
+    public static final List<String> PROFESSIONS = List.of("blacksmith", "chef", "farmer", "hunter", "miner", "battle_master");
     private static final Set<UUID> FLIGHT_GRANTED = new HashSet<>();
     public static final Set<String> LEGENDARY_BIOMES = Set.of("mushroom_fields", "deep_dark", "pale_garden", "the_end");
     public static final Set<String> EPIC_BIOMES = Set.of("ice_spikes", "mangrove_swamp", "old_growth_birch_forest", "old_growth_pine_taiga", "old_growth_spruce_taiga", "bamboo_jungle", "badlands", "eroded_badlands", "wooded_badlands", "cherry_grove", "frozen_peaks", "jagged_peaks", "deep_frozen_ocean", "sulfur_caves", "warped_forest", "crimson_forest", "end_highlands");
@@ -56,11 +58,14 @@ public final class ModItems {
         // Preserve legacy IDs in old inventories, but never offer or consume their fruit.
         for(String legacy:List.of("stonemason","artisan"))register("fruit_"+legacy,new Item(properties("fruit_"+legacy).stacksTo(64)));
         BIOME_TREASURE_BOX=register("biome_treasure_box",new BiomeTreasureBox(properties("biome_treasure_box").stacksTo(16)));
+        WARDEN_TREASURE_BAG=register("warden_treasure_bag",new WardenTreasureBag(properties("warden_treasure_bag").stacksTo(16)));
         for (String accessory : AccessoryService.CATALOG.keySet()) ACCESSORY_ICONS.put(accessory,register("accessory_"+accessory,new AccessoryItem(accessory,properties("accessory_"+accessory).stacksTo(1))));
         for(String fish:List.of("sky_carp","lava_eel","void_fish","frost_trout","desert_lungfish","mushroom_fish"))
             FISH.put(fish,register(fish,new Item(properties(fish).food(new FoodProperties(3,0.3f,false)))));
         for(String material:List.of("glowing_scales","ash_pearl","void_fragment","coral_fragment"))
             FISHING_MATERIALS.put(material,register(material,new Item(properties(material))));
+        for(String crop:List.of("barley","white_radish","purple_potato","golden_beet","crimson_wart","sky_fruit"))
+            CROP_MUTATIONS.put(crop,register(crop,new Item(properties(crop))));
         List<ResourceKey<Biome>> keys = new ArrayList<>();
         for (var field : Biomes.class.getFields()) {
             if (field.getType() != ResourceKey.class) continue;
@@ -194,6 +199,7 @@ public final class ModItems {
         apply(player, Attributes.ARMOR_TOUGHNESS, "fruit_stonemason", 0);
         apply(player, Attributes.ATTACK_DAMAGE, "fruit_artisan", 0);
         apply(player, Attributes.MAX_HEALTH, "fruit_farmer", counts.getOrDefault("farmer",0) * 0.1);
+        apply(player, Attributes.ARMOR_TOUGHNESS, "fruit_battle_master", counts.getOrDefault("battle_master",0) * 0.01);
         applyMultiplied(player, Attributes.BLOCK_BREAK_SPEED, "fruit_miner", counts.getOrDefault("miner",0) * 0.02);
     }
     private static void apply(ServerPlayer player, Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute, String name, double amount) {

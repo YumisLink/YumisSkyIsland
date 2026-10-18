@@ -3,7 +3,9 @@ package cn.yumis.skyisland.server;
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.attribute.ModAttributes;
 import cn.yumis.skyisland.core.AccessoryCraft;
+import cn.yumis.skyisland.core.Money;
 import cn.yumis.skyisland.data.IslandState;
+import cn.yumis.skyisland.effect.ModEffects;
 import cn.yumis.skyisland.item.ModItems;
 import cn.yumis.skyisland.shop.TradeService;
 import com.google.gson.JsonArray;
@@ -14,9 +16,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentTarget;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -31,7 +37,7 @@ import net.minecraft.world.item.component.ResolvableProfile;
 
 /** Personal unlocks and three active slots. Baits are owned passive unlocks. */
 public final class AccessoryService {
-    public record Entry(String id,String name,String effect,String icon,boolean passive,Holder<Attribute> attribute,double amount,AttributeModifier.Operation operation) {}
+    public record Entry(String id,String name,String effect,String icon,boolean passive,String rarity,Holder<Attribute> attribute,double amount,AttributeModifier.Operation operation) {}
     public static final Map<String,Entry> CATALOG=new LinkedHashMap<>();
     static {
         special("lava_core","熔岩核心","造成伤害点燃目标5秒","magma_cream",false);
@@ -65,16 +71,46 @@ public final class AccessoryService {
         special("study_pendant","学识坠","捡起经验球时额外获得20%经验","experience_bottle",false);
         bonus("jump_charm","跃起护符","跳跃力度提高10%","rabbit_foot",Attributes.JUMP_STRENGTH,0.10,AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
         bonus("fall_stone","缓落石","摔落伤害降低10%","smooth_stone",Attributes.FALL_DAMAGE_MULTIPLIER,-0.10,AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-        bonus(AccessoryCraft.FISHING_LINE,"鱼线","渔力 +35，咬钩后可收杆时间加倍","fishing_rod",ModAttributes.FISHING_POWER,35,AttributeModifier.Operation.ADD_VALUE);
-        special(AccessoryCraft.TACKLE_BOX,"钓具箱","宝藏概率提高10%，水中地区渔获再判一次","chest",false);
-        bonus(AccessoryCraft.ANGLER_BAG,"渔具袋","渔力 +35，收杆时间加倍，宝藏与地区渔获提升","bundle",ModAttributes.FISHING_POWER,35,AttributeModifier.Operation.ADD_VALUE);
-        if(AccessoryCraft.drawable(CATALOG.keySet()).size()!=AccessoryCraft.DRAWABLE_COUNT||CATALOG.size()!=AccessoryCraft.DRAWABLE_COUNT+3)
-            throw new IllegalStateException("饰品目录必须为31件可抽取和3件合成");
+        bonus(AccessoryCraft.FISHING_LINE,"鱼线","渔力 +35，咬钩后可收杆时间加倍","fishing_rod",ModAttributes.FISHING_POWER,35,AttributeModifier.Operation.ADD_VALUE,"rare");
+        special(AccessoryCraft.TACKLE_BOX,"钓具箱","宝藏概率提高10%，水中地区渔获再判一次","chest",false,"rare");
+        bonus(AccessoryCraft.ANGLER_BAG,"渔具袋","渔力 +35，收杆时间加倍，宝藏与地区渔获提升","bundle",ModAttributes.FISHING_POWER,35,AttributeModifier.Operation.ADD_VALUE,"epic");
+        special("bow_heart_stone","弓之心-石","弓和弩伤害提高5%","bow",false);
+        special("vulnerability_mark","弱点印记","弓和弩命中附加1级易伤","fermented_spider_eye",false);
+        special("arrow_saver","省箭","弓和弩有15%概率不消耗弹药","arrow",false);
+        special("arrow_splash","溅射","弓和弩命中对周围0.5格造成相同伤害","spectral_arrow",false);
+        special("counterkill","反杀","击杀敌对生物时，生命低于10%则回复其最大生命的一半","iron_sword",false);
+        special("bow_heart_iron","弓之心-铁","弓和弩伤害提高15%，并附加1级易伤","crossbow",false);
+        special("bow_heart_split","弓之心-裂","15%不消耗弹药，并对周围0.5格造成相同伤害","string",false);
+        special("bow_heart_gold","弓之心-金","弓和弩伤害提高35%，同时具有易伤、省箭和溅射","gold_ingot",false);
+        special("slaughter_aura","杀戮光环","每5秒对8格内一名随机敌对生物打出一次完整攻击","nether_star",false);
+        special("shadow_rush","暗影疾奔","向前梯云纵的水平距离提高35%","feather",false);
+        special("first_aid","急救用具","进食后获得等同于该食物饱和度的伤害吸收，每级1点，持续60秒","glistering_melon_slice",false);
+        special("dive_bomb","俯冲轰炸","死亡时对击杀者和2格内生物造成主手攻击力的伤害","tnt",false);
+        special("collector","收集者","命中生命低于2%的敌人时立刻击杀，并获得等同于其最大生命的金币","gold_nugget",false);
+        int drawable=0,crafted=0,baits=0,shop=0;
+        for(Entry entry:CATALOG.values()){
+            if(AccessoryCraft.crafted(entry.id()))crafted++;
+            else if(entry.id().equals("lava_bait")||entry.id().equals("void_bait"))baits++;
+            else if(entry.id().equals("slaughter_aura"))shop++;
+            else if(AccessoryCraft.canDraw(entry.id(),entry.rarity()))drawable++;
+            else throw new IllegalStateException("饰品未归入可抽取、合成、鱼饵或商店："+entry.id());
+        }
+        if(drawable!=AccessoryCraft.DRAWABLE_COUNT||crafted!=6||baits!=2||shop!=1||CATALOG.size()!=47)
+            throw new IllegalStateException("饰品目录必须为38件普通可抽取、6件合成、2件鱼饵和1件商店专属");
     }
-    private static void special(String id,String name,String effect,String icon,boolean passive){CATALOG.put(id,new Entry(id,name,effect,icon,passive,null,0,null));}
-    private static void bonus(String id,String name,String effect,String icon,Holder<Attribute> attr,double amount,AttributeModifier.Operation op){CATALOG.put(id,new Entry(id,name,effect,icon,false,attr,amount,op));}
+    private static void special(String id,String name,String effect,String icon,boolean passive){special(id,name,effect,icon,passive,"common");}
+    private static void special(String id,String name,String effect,String icon,boolean passive,String rarity){CATALOG.put(id,new Entry(id,name,effect,icon,passive,rarity,null,0,null));}
+    private static void bonus(String id,String name,String effect,String icon,Holder<Attribute> attr,double amount,AttributeModifier.Operation op){bonus(id,name,effect,icon,attr,amount,op,"common");}
+    private static void bonus(String id,String name,String effect,String icon,Holder<Attribute> attr,double amount,AttributeModifier.Operation op,String rarity){CATALOG.put(id,new Entry(id,name,effect,icon,false,rarity,attr,amount,op));}
     private final SkyServer runtime;
     private static final Map<UUID,Integer> studyRemainder=new HashMap<>();
+    private static final AttachmentType<Float> FOOD_GUARD = AttachmentRegistry.create(
+            YumisSkyIsland.id("food_guard_shield"), builder -> builder.initializer(() -> 0f));
+    private static final ThreadLocal<Boolean> DIVE = ThreadLocal.withInitial(() -> false);
+    private static final ThreadLocal<Boolean> FINISHING = ThreadLocal.withInitial(() -> false);
+    /** Dive-bomb damage must not grant professions, quests, beheading, or collector gold. */
+    public static boolean externalHit() { return DIVE.get(); }
+    public static boolean finishing() { return FINISHING.get(); }
     public AccessoryService(SkyServer runtime){this.runtime=runtime;}
     /** Consume the real held token together with the permanent personal unlock. */
     public void unlockFromItem(ServerPlayer player,InteractionHand hand,String id) {
@@ -123,7 +159,9 @@ public final class AccessoryService {
         runtime.parties.requireMember(player);
         IslandState.Person person=runtime.state().players.get(player.getUUID());
         if(person==null||person.pendingAccessoryDraws<=0)throw new IllegalArgumentException("没有待领取的饰品机会");
-        List<String> candidates=AccessoryCraft.drawable(CATALOG.keySet());candidates.removeAll(person.unlockedAccessories);
+        List<String> candidates=new ArrayList<>();
+        for(Entry entry:CATALOG.values())if(AccessoryCraft.canDraw(entry.id(),entry.rarity()))candidates.add(entry.id());
+        candidates.removeAll(person.unlockedAccessories);
         if(candidates.isEmpty())throw new IllegalArgumentException("所有饰品已解锁，抽取次数保留");
         String chosen=candidates.get(player.getRandom().nextInt(candidates.size()));
         runtime.change(player,state->{var p=state.players.get(player.getUUID());p.pendingAccessoryDraws--;p.unlockedAccessories.add(chosen);},()->SkyServer.tell(player,"获得饰品："+CATALOG.get(chosen).name()));
@@ -211,6 +249,15 @@ public final class AccessoryService {
         if(active(runtime,player,"regen_leaf")&&!player.isCreative()&&!player.isSpectator()&&player.getHealth()>0&&player.getHealth()<player.getMaxHealth()&&player.tickCount%160==0)
             player.heal(1f);
         if(active(runtime,player,"scrap_magnet"))pullItems(runtime,player);
+        releaseFoodGuard(player, runtime);
+        if(player.tickCount%100==0 && active(runtime,player,"slaughter_aura") && !player.isSpectator() && player.level() instanceof ServerLevel level){
+            var targets=level.getEntitiesOfClass(LivingEntity.class,player.getBoundingBox().inflate(8),entity->entity instanceof net.minecraft.world.entity.monster.Enemy && entity.isAlive() && player.distanceTo(entity)<=8);
+            if(!targets.isEmpty()){
+                LivingEntity target=targets.get(player.getRandom().nextInt(targets.size()));
+                player.resetAttackStrengthTicker();
+                player.attack(target);
+            }
+        }
     }
     /** Twenty percent of experience actually granted by an orb. The leftover hundredths wait for the next orb or checkpoint. */
     public static int studyBonus(ServerPlayer player,int granted){
@@ -247,7 +294,10 @@ public final class AccessoryService {
     public static void defeated(LivingEntity victim,DamageSource source){
         if(!(source.getEntity() instanceof ServerPlayer killer)||!(victim.level() instanceof ServerLevel level))return;
         SkyServer runtime=SkyServer.get(level.getServer());
-        if(runtime==null||!active(runtime,killer,"beheader"))return;
+        if(runtime==null)return;
+        if(victim instanceof net.minecraft.world.entity.monster.Enemy && active(runtime,killer,"counterkill") && killer.getHealth()<killer.getMaxHealth()*0.1f)
+            killer.heal(victim.getMaxHealth()*0.5f);
+        if(!active(runtime,killer,"beheader"))return;
         ItemStack head;
         if(victim instanceof ServerPlayer dead){head=new ItemStack(Items.PLAYER_HEAD);head.set(DataComponents.PROFILE,ResolvableProfile.createResolved(dead.getGameProfile()));}
         else {
@@ -257,5 +307,87 @@ public final class AccessoryService {
             if(item==null)return;head=new ItemStack(item);
         }
         victim.spawnAtLocation(level,head);
+    }
+    /** One absorption point per rounded saturation point. Vanilla gapples keep their own 4-point levels. */
+    public static void onFood(ServerPlayer player, ItemStack eaten) {
+        if (player == null || eaten == null || eaten.isEmpty()) return;
+        FoodProperties food = eaten.get(DataComponents.FOOD);
+        if (food == null) return;
+        SkyServer runtime = SkyServer.get(player.level().getServer());
+        if (runtime == null || !active(runtime, player, "first_aid")) return;
+        int points = (int) Math.round(food.saturation());
+        if (points < 1) return;
+        AttachmentTarget attachments = (AttachmentTarget) player;
+        float owned = attachments.getAttachedOrCreate(FOOD_GUARD);
+        float current = player.getAbsorptionAmount();
+        if (points < current) return;
+        float others = Math.max(0f, current - owned);
+        float nextOwned = Math.max(0f, points - others);
+        attachments.setAttached(FOOD_GUARD, nextOwned);
+        player.setAbsorptionAmount(others + nextOwned);
+        player.removeEffect(ModEffects.FOOD_GUARD);
+        player.addEffect(new MobEffectInstance(ModEffects.FOOD_GUARD, 1200, Math.min(255, Math.max(0, points - 1)), false, true, true));
+    }
+    private static void releaseFoodGuard(ServerPlayer player, SkyServer runtime) {
+        AttachmentTarget attachments = (AttachmentTarget) player;
+        float owned = attachments.getAttachedOrCreate(FOOD_GUARD);
+        if (owned <= 0f) return;
+        boolean equipped = active(runtime, player, "first_aid");
+        if (equipped && player.hasEffect(ModEffects.FOOD_GUARD)) return;
+        player.setAbsorptionAmount(Math.max(0f, player.getAbsorptionAmount() - owned));
+        attachments.setAttached(FOOD_GUARD, 0f);
+        if (player.hasEffect(ModEffects.FOOD_GUARD)) player.removeEffect(ModEffects.FOOD_GUARD);
+    }
+    public static void collect(LivingEntity victim, DamageSource source, float dealt) {
+        if (DIVE.get() || FINISHING.get() || dealt <= 0 || !(source.getEntity() instanceof ServerPlayer player) || !(victim.level() instanceof ServerLevel level)) return;
+        SkyServer runtime = SkyServer.get(level.getServer());
+        if (runtime == null || !active(runtime, player, "collector") || !enemy(runtime, player, victim)) return;
+        float before = victim.getHealth() + dealt;
+        if (!(before < victim.getMaxHealth() * 0.02f)) return;
+        long gold = (long) Math.floor(victim.getMaxHealth());
+        FINISHING.set(true);
+        try {
+            if (victim.getHealth() > 0f)
+                victim.hurtServer(level, level.damageSources().playerAttack(player), victim.getHealth() + 100f);
+        } finally { FINISHING.set(false); }
+        var party = runtime.parties.active(player.getUUID());
+        if (gold < 1 || party == null || party.resetInProgress) return;
+        UUID partyId = party.id;
+        runtime.change(player, state -> {
+            IslandState.Party current = state.parties.get(partyId);
+            if (current != null && !current.resetInProgress) current.coins = Money.add(current.coins, gold);
+        }, () -> {});
+    }
+    public static void diveBomb(ServerPlayer dead, DamageSource source) {
+        if (dead == null || !(dead.level() instanceof ServerLevel level)) return;
+        SkyServer runtime = SkyServer.get(level.getServer());
+        if (runtime == null || !active(runtime, dead, "dive_bomb")) return;
+        float damage = 1f;
+        var attack = dead.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attack != null) damage = (float) Math.max(1d, attack.getValue());
+        LivingEntity killer = source != null && source.getEntity() instanceof LivingEntity living && !(living instanceof cn.yumis.skyisland.npc.ResidentEntity) ? living : null;
+        Set<LivingEntity> targets = new LinkedHashSet<>();
+        if (killer != null && killer != dead && killer.isAlive()) targets.add(killer);
+        for (LivingEntity nearby : level.getEntitiesOfClass(LivingEntity.class, dead.getBoundingBox().inflate(2), entity -> entity.isAlive() && entity != dead))
+            targets.add(nearby);
+        boolean nested = DIVE.get();
+        DIVE.set(true);
+        try {
+            for (LivingEntity target : targets) {
+                if (!target.isAlive() || target instanceof cn.yumis.skyisland.npc.ResidentEntity) continue;
+                if (target instanceof ServerPlayer ally && sameParty(runtime, dead, ally) && target != killer) continue;
+                target.hurtServer(level, level.damageSources().playerAttack(dead), damage);
+            }
+        } finally { DIVE.set(nested); }
+    }
+    private static boolean enemy(SkyServer runtime, ServerPlayer player, LivingEntity victim) {
+        if (victim == player || victim instanceof cn.yumis.skyisland.npc.ResidentEntity) return false;
+        if (victim instanceof ServerPlayer other && sameParty(runtime, player, other)) return false;
+        return victim instanceof net.minecraft.world.entity.Mob || victim instanceof ServerPlayer;
+    }
+    private static boolean sameParty(SkyServer runtime, ServerPlayer a, ServerPlayer b) {
+        var left = runtime.parties.active(a.getUUID());
+        var right = runtime.parties.active(b.getUUID());
+        return left != null && right != null && left.id.equals(right.id);
     }
 }

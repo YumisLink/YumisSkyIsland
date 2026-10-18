@@ -209,7 +209,9 @@ public final class ProgressionService {
                 var saved=state.players.get(owner);var savedParty=state.parties.get(partyId);
                 for(var target:targets){var quest=catalog.get(target.quest());
                     if(!catalog.available(savedParty,saved,quest)||catalog.resetVersion(savedParty,saved,quest)!=target.reset())continue;
-                    var counters=saved.questProgress.computeIfAbsent(quest.id(),k->new LinkedHashMap<>());
+                    Map<String,Map<String,Integer>> store=quest.kind().equals("main")?savedParty.mainQuestProgress:saved.questProgress;
+                    if(store==null){store=new LinkedHashMap<>();if(quest.kind().equals("main"))savedParty.mainQuestProgress=store;else saved.questProgress=store;}
+                    var counters=store.computeIfAbsent(quest.id(),k->new LinkedHashMap<>());
                     counters.compute(target.goal().key(),(k,old)->(int)Math.min(target.goal().quantity(),(long)(old==null?0:old)+amount));
                 }
             },()->{});
@@ -284,7 +286,7 @@ public final class ProgressionService {
     }
     public static void reset(IslandState.Party p) {
         p.highestIslandLevel = 0; p.cachedPoints = "0"; p.paidBountySlots = 0; p.initialScanEpoch = -1;
-        p.placedChunks.clear(); p.readyQuestIds.clear(); p.questResetVersions.clear(); p.featureDefaultsInitialized=false;
+        p.placedChunks.clear(); p.readyQuestIds.clear(); p.questResetVersions.clear(); if(p.mainQuestProgress!=null)p.mainQuestProgress.clear(); p.featureDefaultsInitialized=false;
         p.soldProductIds.clear(); p.acquiredStarterIds.clear(); p.completedQuestIds.clear(); p.unlockedFeatures.clear(); p.bounties.clear(); p.research.clear();
     }
 }

@@ -5,6 +5,10 @@
 layoutVersion = 3
 # 商品格子大小，GUI像素；40～96，默认48
 cellSize = 48
+# 饰品页格子大小，GUI像素；40～96，默认64。与商店格子分开保存
+accessoryCellSize = 64
+# 控制面板、饰品页和职业页界面：small 缩小并居中，medium 当前大小，large 加大间距和格子
+uiSize = "medium"
 # 显示等级不足商品；默认false，显示不会解除购买限制
 showLockedItems = false
 # 常驻商店收藏 ID；在左侧最后的收藏分类查看

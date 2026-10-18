@@ -83,6 +83,7 @@ public final class ProfessionRules {
     }
     public static boolean unbreakable(int grade,int chanceBps,IntUnaryOperator randomBounded) {
         if(chanceBps<0||chanceBps>10000)throw new IllegalArgumentException("Invalid unbreakable chance");
+        if(grade>0 && chanceBps>=10000)return true;
         return grade>0 && chanceBps>0 && randomBounded.applyAsInt(10000)<chanceBps;
     }
 }

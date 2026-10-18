@@ -12,6 +12,7 @@
   "key.yumis_sky_island.hold_attack": "Auto Mine (Ctrl+Alt)",
   "key.yumis_sky_island.cloud_leap": "Cloud Leap (hold Jump to leap upward)",
   "effect.yumis_sky_island.cloud_step": "Cloud Step",
+  "effect.yumis_sky_island.food_guard": "Food Guard",
   "attribute.name.yumis_sky_island.fishing_power": "Fishing Power",
   "key.category.yumis_sky_island.sky_island": "Yumi Sky Island",
   "item.yumis_sky_island.flight_ticket": "Flight Ticket",
@@ -137,6 +138,12 @@
   "item.yumis_sky_island.ash_pearl": "Ash Pearl",
   "item.yumis_sky_island.void_fragment": "Void Fragment",
   "item.yumis_sky_island.coral_fragment": "Coral Fragment",
+  "item.yumis_sky_island.barley": "Barley",
+  "item.yumis_sky_island.white_radish": "White Radish",
+  "item.yumis_sky_island.purple_potato": "Purple Potato",
+  "item.yumis_sky_island.golden_beet": "Golden Beet",
+  "item.yumis_sky_island.crimson_wart": "Crimson Wart",
+  "item.yumis_sky_island.sky_fruit": "Sky Fruit",
   "item.yumis_sky_island.construction_wand_3": "Construction Wand · 3",
   "item.yumis_sky_island.construction_wand_9": "Construction Wand · 9",
   "item.yumis_sky_island.wand_blueprint_9": "Wand Upgrade Blueprint · 9",
@@ -154,5 +161,9 @@
   "item.yumis_sky_island.special_ammunition": "Special Ammunition",
   "key.yumis_sky_island.prefab_position": "Adjust Blueprint Position",
   "key.yumis_sky_island.configuration": "Live configuration (Ctrl + editor mode)",
-  "item.yumis_sky_island.lottery_ticket": "Lottery Ticket"
+  "item.yumis_sky_island.lottery_ticket": "Lottery Ticket",
+  "item.yumis_sky_island.accessory_shadow_rush": "Shadow Rush",
+  "item.yumis_sky_island.accessory_first_aid": "First Aid",
+  "item.yumis_sky_island.accessory_dive_bomb": "Dive Bomb",
+  "item.yumis_sky_island.accessory_collector": "Collector"
 }

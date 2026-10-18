@@ -189,6 +189,15 @@ public final class GameConfig {
             if(!profession.has(key)||!profession.get(key).isJsonPrimitive()||profession.get(key).getAsLong()<0)
                 throw new IOException("钓鱼经验倍率必须为非负整数："+key);
         }
+        for(String key:List.of("lavaFishingLevel","voidFishingLevel")){
+            if(!profession.has(key)||!profession.get(key).isJsonPrimitive()||profession.get(key).getAsInt()<0)
+                throw new IOException("特殊钓鱼等级门槛必须为非负整数："+key);
+        }
+        for(String key:List.of("cropMutationBps","cropFruitBps")){
+            if(!profession.has(key)||!profession.get(key).isJsonPrimitive())throw new IOException("收获突变概率无效："+key);
+            int chance=profession.get(key).getAsInt();
+            if(chance<0||chance>10000)throw new IOException("收获突变概率必须为0～10000："+key);
+        }
         int previous=-1;
         for(JsonElement entry:profession.getAsJsonArray("qualityDifference")){
             JsonObject band=entry.getAsJsonObject();int minimum=band.get("minDifference").getAsInt();

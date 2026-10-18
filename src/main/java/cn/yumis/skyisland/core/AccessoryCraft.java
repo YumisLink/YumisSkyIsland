@@ -14,12 +14,16 @@ public final class AccessoryCraft {
     public static final String FISHING_LINE = "fishing_line";
     public static final String TACKLE_BOX = "tackle_box";
     public static final String ANGLER_BAG = "angler_bag";
-    public static final int DRAWABLE_COUNT = 31;
+    public static final int DRAWABLE_COUNT = 38;
+    private static final Set<String> UNDRAWABLE = Set.of("slaughter_aura", "lava_bait", "void_bait");
     private static final Map<String, List<String>> RECIPES = new LinkedHashMap<>();
     static {
         RECIPES.put(FISHING_LINE, List.of("bobber", "fisher_charm"));
         RECIPES.put(TACKLE_BOX, List.of("treasure_compass"));
         RECIPES.put(ANGLER_BAG, List.of(FISHING_LINE, TACKLE_BOX));
+        RECIPES.put("bow_heart_iron", List.of("bow_heart_stone", "vulnerability_mark"));
+        RECIPES.put("bow_heart_split", List.of("arrow_saver", "arrow_splash"));
+        RECIPES.put("bow_heart_gold", List.of("bow_heart_iron", "bow_heart_split"));
     }
     private AccessoryCraft() {}
     public static boolean crafted(String id) { return RECIPES.containsKey(id); }
@@ -56,9 +60,14 @@ public final class AccessoryCraft {
         active.removeAll(displaced(id));
         active.add(id);
     }
+    public static boolean undrawable(String id) { return UNDRAWABLE.contains(id); }
+    /** Common, non-crafted accessories. Baits and the shop aura stay out of the random pool. */
+    public static boolean canDraw(String id, String rarity) {
+        return "common".equals(rarity) && !crafted(id) && !UNDRAWABLE.contains(id);
+    }
     public static List<String> drawable(Collection<String> catalog) {
         List<String> result = new ArrayList<>();
-        for (String id : catalog) if (!crafted(id)) result.add(id);
+        for (String id : catalog) if (!crafted(id) && !UNDRAWABLE.contains(id)) result.add(id);
         return result;
     }
 }

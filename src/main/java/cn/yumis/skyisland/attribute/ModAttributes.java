@@ -14,11 +14,20 @@ public final class ModAttributes {
     public static final Holder<Attribute> FISHING_POWER = Registry.registerForHolder(
             BuiltInRegistries.ATTRIBUTE, YumisSkyIsland.id("fishing_power"),
             new RangedAttribute("attribute.name.yumis_sky_island.fishing_power", 0, 0, MAX_FISHING_POWER).setSyncable(true));
+    public static final Holder<Attribute> FARM_DEGREE = Registry.registerForHolder(
+            BuiltInRegistries.ATTRIBUTE, YumisSkyIsland.id("farm_degree"),
+            new RangedAttribute("attribute.name.yumis_sky_island.farm_degree", 0, 0, 1000).setSyncable(true));
+    public static final Holder<Attribute> MINING_POWER = Registry.registerForHolder(
+            BuiltInRegistries.ATTRIBUTE, YumisSkyIsland.id("mining_power"),
+            new RangedAttribute("attribute.name.yumis_sky_island.mining_power", 0, 0, 1000).setSyncable(true));
+    public static final Holder<Attribute> LIFESTEAL = Registry.registerForHolder(
+            BuiltInRegistries.ATTRIBUTE, YumisSkyIsland.id("lifesteal"),
+            new RangedAttribute("attribute.name.yumis_sky_island.lifesteal", 0, 0, 10000).setSyncable(true));
 
     private ModAttributes() {}
 
     public static void register() {
         FabricDefaultAttributeRegistry.MODIFY.register(context ->
-                context.modify(EntityTypes.PLAYER, (type, builder) -> builder.add(FISHING_POWER)));
+                context.modify(EntityTypes.PLAYER, (type, builder) -> builder.add(FISHING_POWER).add(FARM_DEGREE).add(MINING_POWER)));
     }
 }

@@ -31,6 +31,7 @@ public final class SkyIslandClient implements ClientModInitializer {
         KeyMapping shop = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.shop",InputConstants.KEY_I,category));
         KeyMapping professions = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.professions",InputConstants.KEY_P,category));
         KeyMapping accessories = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.accessories",InputConstants.KEY_O,category));
+        KeyMapping enderChest = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.ender_chest",InputConstants.KEY_L,category));
         KeyMapping configuration=KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.configuration",org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT_BRACKET,category));
         ConfigurationHotkey.bind(configuration);
         ClientTickEvents.END_CLIENT_TICK.register(client->{while(configuration.consumeClick()){} });
@@ -45,7 +46,10 @@ public final class SkyIslandClient implements ClientModInitializer {
         ClientPlayConnectionEvents.DISCONNECT.register((handler,client) -> CATALOG.clearConnection());
         ClientTickEvents.END_CLIENT_TICK.register(client -> { while (shop.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("open","",0)); });
         ClientTickEvents.END_CLIENT_TICK.register(client -> { while (professions.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("profession_open","",0)); });
-        ClientTickEvents.END_CLIENT_TICK.register(client -> { while (accessories.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("accessory_open","",0)); });
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            while (accessories.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("accessory_open","",0));
+            while (enderChest.consumeClick()) if (client.player != null && client.gui.screen() == null && !client.player.isSpectator() && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("ender_chest","",0));
+        });
         final boolean[] veinHeld={false};
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             boolean next=client.player!=null&&client.gui.screen()==null&&vein.isDown();
@@ -75,7 +79,11 @@ public final class SkyIslandClient implements ClientModInitializer {
         });
         ItemTooltipCallback.EVENT.register((stack,context,flag,lines) -> CATALOG.tooltip(stack,lines));
         HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT,YumisSkyIsland.id("coins"),(graphics,delta) -> {
-            if (!CATALOG.state.has("wallet")) return; Minecraft mc = Minecraft.getInstance(); String text = Money.format(CATALOG.wallet());
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player != null && mc.player.level().dimension().equals(net.minecraft.world.level.Level.OVERWORLD)
+                    && CATALOG.state.has("bloodMoon") && CATALOG.state.get("bloodMoon").getAsBoolean())
+                graphics.fill(0, 0, graphics.guiWidth(), graphics.guiHeight(), 0x28FF2020);
+            if (!CATALOG.state.has("wallet")) return; String text = Money.format(CATALOG.wallet());
             int x = graphics.guiWidth()-mc.font.width(text)-12,y = graphics.guiHeight()-28;
             graphics.fill(x-6,y-4,graphics.guiWidth()-6,y+13,0x98000000); graphics.text(mc.font,text,x,y,0xFFFFDD74,true);
             if (CATALOG.state.has("partyId") && !CATALOG.state.get("partyId").getAsString().isEmpty()) {

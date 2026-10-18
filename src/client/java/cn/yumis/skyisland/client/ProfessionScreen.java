@@ -22,14 +22,15 @@ import net.minecraft.resources.Identifier;
 
 /** Personal profession stores and the server's effective experience catalog. */
 public final class ProfessionScreen extends Screen {
-    private static final List<String> IDS=List.of("blacksmith","chef","farmer","hunter","miner","fisherman");
-    private static final List<String> NAMES=List.of("铁匠","厨师","农夫","猎人","矿工","渔夫");
+    private static final List<String> IDS=List.of("blacksmith","chef","farmer","hunter","miner","battle_master","fisherman");
+    private static final List<String> NAMES=List.of("铁匠","厨师","农夫","猎人","矿工","战斗大师","渔夫");
     private final ClientCatalog model;
     private int tab;
     private int fishingScroll;
     private int guideScroll;
     private boolean guideMode;
     private static final int FISHING_TOP=169;
+    private int frameOuterW, frameOuterH;
     public ProfessionScreen(ClientCatalog model){super(Component.literal("职业商店"));this.model=model;}
     @Override public boolean isPauseScreen(){return false;}
     @Override public void extractBackground(GuiGraphicsExtractor graphics,int x,int y,float delta){}
@@ -56,6 +57,22 @@ public final class ProfessionScreen extends Screen {
     }
     @Override public void extractRenderState(GuiGraphicsExtractor g,int mx,int my,float delta){
         g.fill(0,0,width,height,0xB0000000);
+        UiFrame frame=openFrame(g);
+        try{draw(g,mx-frame.ox,my-frame.oy,delta);}
+        finally{closeFrame(g);}
+    }
+    private UiFrame openFrame(GuiGraphicsExtractor g){
+        UiFrame frame=UiFrame.of(width,height,model.uiSize);
+        frameOuterW=width;frameOuterH=height;width=frame.width;height=frame.height;
+        if(g!=null){g.pose().pushMatrix();g.pose().translate(frame.ox,frame.oy);}
+        return frame;
+    }
+    private void closeFrame(GuiGraphicsExtractor g){
+        width=frameOuterW;height=frameOuterH;
+        if(g!=null)g.pose().popMatrix();
+    }
+    private void draw(GuiGraphicsExtractor g,int mx,int my,float delta){
+        g.fill(0,0,width,height,0xB0000000);
         g.fill(6,6,width-6,36,UiTheme.CARD);
         g.text(font,"YUMIS · 职业",15,17,0xFFF3F5F7,false);
         int tw=tabWidth();
@@ -63,9 +80,9 @@ public final class ProfessionScreen extends Screen {
         g.fill(8,82,width-8,height-12,UiTheme.CARD);
         var progress=model.state.getAsJsonObject("professionProgress");
         var entry=progress==null?null:progress.getAsJsonObject(selected());
-        String level=entry==null?"0":""+entry.get("level").getAsInt();
+        int professionLevel=entry==null?0:entry.get("level").getAsInt();
         String xp=entry==null?"0/0":entry.get("xp").getAsString()+"/"+entry.get("next").getAsString();
-        g.text(font,NAMES.get(tab)+"等级 " +level+" · 经验 " +xp,20,97,0xFFE4F5FF,false);
+        g.text(font,NAMES.get(tab)+"等级 " +professionLevel+" · 经验 " +xp+trait(selected(),professionLevel),20,97,0xFFE4F5FF,false);
         g.text(font,"个人职业积分："+coins(),20,116,0xFFFFDD74,false);
         button(g,"商店",20,137,72,!guideMode,inside(mx,my,20,137,72,25));
         button(g,"职业典籍",96,137,94,guideMode,inside(mx,my,96,137,94,25));
@@ -77,6 +94,12 @@ public final class ProfessionScreen extends Screen {
             g.text(font,FruitText.line(selected(),used()),59,202,0xFFC9D5DD,false);
             g.text(font,"已使用 "+used()+"/"+Math.clamp(model.state.getAsJsonObject("professionShop").get("fruitUseCap").getAsInt(),1,100),59,218,0xFFC9D5DD,false);
             button(g,"购买 · "+price("fruitPrice")+" 职业积分",Math.max(20,width-235),197,215,false,inside(mx,my,Math.max(20,width-235),197,215,25));
+            if(selected().equals("battle_master")){
+                g.fill(19,246,width-19,298,UiTheme.CARD);
+                g.text(font,"杀戮光环",30,254,0xFFF0E8B0,false);
+                g.text(font,"每5秒对8格内随机敌对生物打出完整一击，需要装备",30,272,0xFFC9D5DD,false);
+                button(g,unlocked("slaughter_aura")?"已永久解锁":"解锁 · "+price("slaughterAuraPrice")+" 职业积分",Math.max(20,width-235),258,215,unlocked("slaughter_aura"),inside(mx,my,Math.max(20,width-235),258,215,25));
+            }
         } else {
             fishing(g,mx,my);
         }
@@ -106,6 +129,16 @@ public final class ProfessionScreen extends Screen {
         g.disableScissor();
     }
     private int used(){var all=model.state.getAsJsonObject("consumedFruits");return all==null||!all.has(selected())?0:all.get(selected()).getAsInt();}
+    /** Farmer and miner levels are also the visible profession attributes, capped at 1000. */
+    private String trait(String profession,int level){
+        int points=Math.min(1000,Math.max(0,level));
+        if(profession.equals("farmer")){
+            int extra=points/100,chance=points%100,copies=1+extra;
+            return chance==0?" · 农度 "+points+"/1000 · 收获固定 "+copies+" 倍":" · 农度 "+points+"/1000 · 收获 "+copies+" 倍，"+chance+"% 概率再多 1 倍";
+        }
+        if(profession.equals("miner"))return " · 挖掘力 "+points+"/1000 · 挖掘速度 +"+number(points/10.0)+"%";
+        return "";
+    }
     private static String number(double value){return BigDecimal.valueOf(value).stripTrailingZeros().toPlainString();}
     private static String signed(double value){return (value>=0?"+":"")+number(value);}
     private List<FormattedCharSequence> fishingLines(){
@@ -168,6 +201,11 @@ public final class ProfessionScreen extends Screen {
         button(g,unlocked(id)?"已永久解锁":"解锁 · "+price+" 职业积分",x,buttonY,w,unlocked(id),inside(mx,my,x,buttonY,w,25));
     }
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
+        UiFrame frame=openFrame(null);
+        try{return click(frame.move(e),doubleClick);}
+        finally{closeFrame(null);}
+    }
+    private boolean click(MouseButtonEvent e,boolean doubleClick){
         int tw=tabWidth();
         for(int i=0;i<IDS.size();i++)if(inside(e.x(),e.y(),8+i*(tw+4),46,tw,25)){tab=i;fishingScroll=0;guideScroll=0;model.lastError="";return true;}
         if(inside(e.x(),e.y(),20,137,72,25)){guideMode=false;return true;}
@@ -175,6 +213,7 @@ public final class ProfessionScreen extends Screen {
         if(guideMode)return super.mouseClicked(e,doubleClick);
         int x=Math.max(20,width-235);
         if(e.button()==0 && tab<IDS.size()-1 && inside(e.x(),e.y(),x,197,215,25))purchase(selected()+":fruit",1);
+        else if(e.button()==0 && selected().equals("battle_master") && !unlocked("slaughter_aura") && inside(e.x(),e.y(),x,258,215,25))purchase("battle_master:slaughter_aura",1);
         else if(e.button()==0 && tab==IDS.size()-1 && e.y()>=FISHING_TOP && e.y()<fishingBottom()){
             fishingScroll=Math.clamp(fishingScroll,0,maximumFishingScroll());
             int baitY=firstBaitY(),w=baitButtonWidth();
@@ -186,6 +225,11 @@ public final class ProfessionScreen extends Screen {
         return true;
     }
     @Override public boolean mouseScrolled(double x,double y,double sx,double sy){
+        UiFrame frame=openFrame(null);
+        try{return scrollAt(x-frame.ox,y-frame.oy,sx,sy);}
+        finally{closeFrame(null);}
+    }
+    private boolean scrollAt(double x,double y,double sx,double sy){
         if(guideMode&&inside(x,y,18,190,width-36,height-214)){guideScroll=Math.clamp(guideScroll-(int)Math.signum(sy)*50,0,guideMax());return true;}
         if(tab!=IDS.size()-1||guideMode||!inside(x,y,8,82,width-16,height-94))return super.mouseScrolled(x,y,sx,sy);
         fishingScroll=Math.clamp(fishingScroll-(int)Math.signum(sy)*27,0,maximumFishingScroll());

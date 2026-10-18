@@ -42,6 +42,8 @@ public final class ItemQuality {
         if(previousGrade>0)stack.remove(DataComponents.UNBREAKABLE);
         if (grade == 0) return;
         JsonObject attributes = rules.getAsJsonArray("grades").get(grade).getAsJsonObject();
+        int unbreakableChance = attributes.has("unbreakableBps") ? attributes.get("unbreakableBps").getAsInt() : 0;
+        if (unbreakableChance >= 10000) unbreakable = true;
         if (baseDurability != null) {
             long maximum = (long)baseDurability * attributes.get("durabilityBps").getAsInt() / 10000;
             if (maximum < 1 || maximum > Integer.MAX_VALUE) throw new IllegalArgumentException("品质耐久超出范围");

@@ -44,6 +44,64 @@ count = 1
 
 
 [[quests]]
+id = "craft_stone_hammer"
+name = "做出石锤"
+kind = "main"
+objective = "tracked"
+requirements = []
+rewardCoins = 200
+rewardExperiencePoints = 0
+unlockFeatures = []
+
+[[quests.rewardItems]]
+id = "minecraft:stick"
+count = 16
+
+[[quests.goals]]
+type = "craft"
+targetId = "yumis_sky_island:stone_hammer"
+quantity = 1
+
+[[quests]]
+id = "hammer_gravel"
+name = "敲出砾石"
+kind = "main"
+objective = "tracked"
+requirements = []
+rewardCoins = 300
+rewardExperiencePoints = 0
+unlockFeatures = []
+
+[[quests.rewardItems]]
+id = "minecraft:iron_ingot"
+count = 4
+
+[[quests.goals]]
+type = "harvest"
+targetId = "minecraft:gravel"
+quantity = 16
+sourceBlockId = "minecraft:cobblestone"
+
+[[quests]]
+id = "first_cloud_leap"
+name = "踏云一跃"
+kind = "main"
+objective = "tracked"
+requirements = []
+rewardCoins = 200
+rewardExperiencePoints = 0
+unlockFeatures = []
+
+[[quests.rewardItems]]
+id = "minecraft:feather"
+count = 8
+
+[[quests.goals]]
+type = "leap"
+targetId = "cloud_leap"
+quantity = 1
+
+[[quests]]
 id = "place_shipping_chest"
 name = "使用出货箱"
 kind = "side"

@@ -2,13 +2,14 @@ package cn.yumis.skyisland.server;
 
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.data.IslandState;
-import net.minecraft.core.Holder;
+import cn.yumis.skyisland.effect.ModEffects;
+import cn.yumis.skyisland.effect.Vulnerability;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
 
@@ -40,32 +41,48 @@ public final class BloodMoonService {
             });
         }
         if(dayTick<13000 && state.bloodMoonActive && runtime.store.available())runtime.change(null,next->next.bloodMoonActive=false,()->{});
-        if(runtime.tick%20==0)for(Entity entity:runtime.server.overworld().getAllEntities())if(entity instanceof LivingEntity living)apply(living);
-    }
-    public void apply(LivingEntity entity){
-        if(entity instanceof cn.yumis.skyisland.npc.ResidentEntity)return;
-        boolean active=active() && entity.level() instanceof ServerLevel level && level==runtime.server.overworld();
-        var cfg=runtime.config.object("gameplay/blood_moon.toml");
-        modifier(entity,Attributes.ATTACK_DAMAGE,"blood_moon_attack",active,cfg.get("attackBonusBps").getAsDouble()/10000);
-        modifier(entity,Attributes.MOVEMENT_SPEED,"blood_moon_speed",active,cfg.get("movementBonusBps").getAsDouble()/10000);
-        modifier(entity,Attributes.ATTACK_SPEED,"blood_moon_attack_speed",active,cfg.get("attackSpeedBonusBps").getAsDouble()/10000);
-        var health=entity.getAttribute(Attributes.MAX_HEALTH);
-        if(health!=null){
-            boolean had=health.hasModifier(YumisSkyIsland.id("blood_moon_health"));
-            boolean wanted=active&&entity instanceof Enemy;
-            if(had!=wanted){
-                float previousMaximum=entity.getMaxHealth();
-                float previousHealth=entity.getHealth();
-                modifier(entity,Attributes.MAX_HEALTH,"blood_moon_health",wanted,cfg.get("hostileHealthBonusBps").getAsDouble()/10000);
-                if(previousMaximum>0 && previousHealth>0)
-                    entity.setHealth(Math.min(entity.getMaxHealth(),previousHealth*entity.getMaxHealth()/previousMaximum));
-            }
+        if(runtime.tick%20==0){
+            for(Entity entity:runtime.server.overworld().getAllEntities())if(entity instanceof LivingEntity living)apply(living);
+            for(ServerPlayer player:runtime.server.getPlayerList().getPlayers())if(player.level()!=runtime.server.overworld())apply(player);
         }
     }
-    private static void modifier(LivingEntity entity,Holder<Attribute> attr,String name,boolean enabled,double amount){
-        var instance=entity.getAttribute(attr);if(instance==null)return;
+    public void apply(LivingEntity entity){
+        strip(entity);
+        boolean here=active() && entity.level() instanceof ServerLevel level && level==runtime.server.overworld();
+        if(!here || entity instanceof cn.yumis.skyisland.npc.ResidentEntity){clear(entity);return;}
+        if(entity instanceof ServerPlayer){
+            entity.removeEffect(ModEffects.BLOOD_MOON_FRENZY);
+            refresh(entity, ModEffects.BLOOD_MOON_RALLY);
+            return;
+        }
+        if(entity instanceof Enemy){
+            entity.removeEffect(ModEffects.BLOOD_MOON_RALLY);
+            refresh(entity, ModEffects.BLOOD_MOON_FRENZY);
+            Vulnerability.apply(entity, Vulnerability.BLOOD_MOON_LEVEL, 80);
+            return;
+        }
+        clear(entity);
+    }
+    private static void refresh(LivingEntity entity, net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> effect){
+        MobEffectInstance current=entity.getEffect(effect);
+        if(current==null || current.getAmplifier()!=0 || current.getDuration()<40)
+            entity.addEffect(new MobEffectInstance(effect, 80, 0, false, true, true));
+    }
+    private static void clear(LivingEntity entity){
+        entity.removeEffect(ModEffects.BLOOD_MOON_RALLY);
+        entity.removeEffect(ModEffects.BLOOD_MOON_FRENZY);
+        MobEffectInstance vulnerability=entity.getEffect(ModEffects.VULNERABILITY);
+        if(vulnerability!=null && vulnerability.getAmplifier()>=Vulnerability.BLOOD_MOON_LEVEL-1)entity.removeEffect(ModEffects.VULNERABILITY);
+    }
+    private static void strip(LivingEntity entity){
+        remove(entity, Attributes.ATTACK_DAMAGE, "blood_moon_attack");
+        remove(entity, Attributes.MOVEMENT_SPEED, "blood_moon_speed");
+        remove(entity, Attributes.ATTACK_SPEED, "blood_moon_attack_speed");
+        remove(entity, Attributes.MAX_HEALTH, "blood_moon_health");
+    }
+    private static void remove(LivingEntity entity, net.minecraft.core.Holder<net.minecraft.world.entity.ai.attributes.Attribute> attribute, String name){
+        var instance=entity.getAttribute(attribute);
         Identifier id=YumisSkyIsland.id(name);
-        if(enabled){if(!instance.hasModifier(id))instance.addOrUpdateTransientModifier(new AttributeModifier(id,amount,AttributeModifier.Operation.ADD_MULTIPLIED_BASE));}
-        else if(instance.hasModifier(id))instance.removeModifier(id);
+        if(instance!=null && instance.hasModifier(id))instance.removeModifier(id);
     }
 }

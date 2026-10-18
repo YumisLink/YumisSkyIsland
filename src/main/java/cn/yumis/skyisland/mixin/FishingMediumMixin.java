@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.mixin;
 
+import cn.yumis.skyisland.core.FishingRules;
 import cn.yumis.skyisland.server.AccessoryService;
 import cn.yumis.skyisland.server.FishingMediumAccess;
 import cn.yumis.skyisland.server.FishingService;
@@ -42,6 +43,7 @@ public abstract class FishingMediumMixin implements FishingMediumAccess {
     @Unique private static final EntityDataAccessor<Byte> yumis$MEDIUM=SynchedEntityData.defineId(FishingHook.class,EntityDataSerializers.BYTE);
     @Unique private static final EntityDataAccessor<Float> yumis$VOID_SURFACE=SynchedEntityData.defineId(FishingHook.class,EntityDataSerializers.FLOAT);
     @Unique private boolean yumis$voidTested;
+    @Unique private boolean yumis$levelTold;
     @Unique private boolean yumis$savedGravity;
     @Unique private boolean yumis$previousNoGravity;
 
@@ -65,24 +67,26 @@ public abstract class FishingMediumMixin implements FishingMediumAccess {
             return;
         }
         if(yumis$mode()==yumis$VOID){
-            if(!AccessoryService.owns(runtime,player,"void_bait"))yumis$clearMedium();
+            if(!AccessoryService.owns(runtime,player,"void_bait")||!yumis$levelAllows(runtime,player,"void"))yumis$clearMedium();
             return;
         }
         BlockPos pos=hook.blockPosition();
         FluidState fluid=level.getFluidState(pos);
-        boolean lavaAllowed=AccessoryService.owns(runtime,player,"lava_bait");
-        if(fluid.is(FluidTags.LAVA)&&lavaAllowed&&FishingService.validLava(level,pos)){
+        boolean ownsLava=AccessoryService.owns(runtime,player,"lava_bait");
+        if(fluid.is(FluidTags.LAVA)&&ownsLava&&FishingService.validLava(level,pos)){
+            if(!yumis$levelAllows(runtime,player,"lava"))return;
             hook.getEntityData().set(yumis$MEDIUM,yumis$LAVA);
             return;
         }
         if(yumis$mode()==yumis$LAVA){
             // Vanilla may briefly bob above a fluid block while preserving its bite window.
-            if(fluid.isEmpty()&&lavaAllowed&&FishingService.validLava(level,pos.below())&&hook.getY()<pos.getY()+0.35)return;
+            if(fluid.isEmpty()&&ownsLava&&yumis$levelAllows(runtime,player,"lava")&&FishingService.validLava(level,pos.below())&&hook.getY()<pos.getY()+0.35)return;
             yumis$clearMedium();
         }
         if(!yumis$voidTested&&fluid.isEmpty()&&AccessoryService.owns(runtime,player,"void_bait")&&hook.getY()<player.getY()-3){
             yumis$voidTested=true;
             if(FishingService.validVoid(level,pos)){
+                if(!yumis$levelAllows(runtime,player,"void"))return;
                 yumis$previousNoGravity=hook.isNoGravity();
                 yumis$savedGravity=true;
                 hook.setNoGravity(true);
@@ -112,6 +116,18 @@ public abstract class FishingMediumMixin implements FishingMediumAccess {
     @Inject(method="isOpenWaterFishing",at=@At("HEAD"),cancellable=true)
     private void yumis$openSpecialFishing(CallbackInfoReturnable<Boolean> cir){if(yumis$mode()!=yumis$WATER)cir.setReturnValue(true);}
 
+    @Unique private boolean yumis$levelAllows(SkyServer runtime,ServerPlayer player,String medium){
+        var config=runtime.config.object("products/professions.toml");
+        int level=runtime.professions.level(runtime.state().players.get(player.getUUID()),"fisherman");
+        int lava=config.get("lavaFishingLevel").getAsInt(),voidLevel=config.get("voidFishingLevel").getAsInt();
+        if(FishingRules.allowsMedium(medium,level,lava,voidLevel))return true;
+        if(!yumis$levelTold){
+            yumis$levelTold=true;
+            int required=medium.equals("lava")?lava:voidLevel;
+            SkyServer.tell(player,(medium.equals("lava")?"熔岩钓鱼":"虚空钓鱼")+"需要渔夫 "+required+" 级");
+        }
+        return false;
+    }
     @Unique private void yumis$clearMedium(){
         FishingHook hook=(FishingHook)(Object)this;
         if(yumis$savedGravity){hook.setNoGravity(yumis$previousNoGravity);yumis$savedGravity=false;}

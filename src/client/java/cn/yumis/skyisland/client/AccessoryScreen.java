@@ -1,6 +1,7 @@
 package cn.yumis.skyisland.client;
 
 import cn.yumis.skyisland.core.AccessoryCraft;
+import cn.yumis.skyisland.core.RarityColors;
 import cn.yumis.skyisland.item.ModItems;
 import cn.yumis.skyisland.network.ShopPayloads;
 import cn.yumis.skyisland.server.AccessoryService;
@@ -20,8 +21,14 @@ public final class AccessoryScreen extends Screen {
     private int tab;
     private String crafting;
     private final LotteryPanel lottery;
+    private final PermanentBuffPanel buffs;
     private String hovered;
-    public AccessoryScreen(ClientCatalog model){super(Component.literal("饰品与"+cn.yumis.skyisland.core.LotteryNames.draw()));this.model=model;this.lottery=new LotteryPanel(model);}
+    private int rarityFilter;
+    private boolean dragCell;
+    private int frameOuterW, frameOuterH;
+    private static final String[] RARITIES = {"", "common", "rare", "epic", "legendary"};
+    private static final String[] RARITY_NAMES = {"全部", "普通", "稀有", "史诗", "传说"};
+    public AccessoryScreen(ClientCatalog model){super(Component.literal("饰品与"+cn.yumis.skyisland.core.LotteryNames.draw()));this.model=model;this.lottery=new LotteryPanel(model);this.buffs=new PermanentBuffPanel(model);}
     @Override public boolean isPauseScreen(){return false;}
     @Override public void extractBackground(GuiGraphicsExtractor graphics,int x,int y,float delta){}
     private boolean contains(String field,String id){
@@ -30,29 +37,66 @@ public final class AccessoryScreen extends Screen {
         return false;
     }
     private int pending(){return model.state.has("pendingAccessoryDraws")?model.state.get("pendingAccessoryDraws").getAsInt():0;}
-    private int cell(){return Math.max(49,Math.min(82,(width-28)/5));}
-    private int left(){return (width-cell()*5)/2;}
-    private int viewportRows(){return Math.max(1,(height-178)/67);}
-    private int rows(){return (AccessoryService.CATALOG.size()+4)/5;}
+    private float metric(){return "large".equals(model.uiSize)?1.2f:"small".equals(model.uiSize)?0.8f:1f;}
+    private int cell(){return Math.max(32,Math.round(model.accessoryCellSize*metric()));}
+    private int columns(){return Math.max(1,(width-28)/cell());}
+    private int left(){int used=columns()*cell();return Math.max(14,(width-used)/2);}
+    private int viewportRows(){return Math.max(1,(height-210)/67);}
+    private List<String> shown(){
+        List<String> ids=new ArrayList<>();
+        String rarity=RARITIES[rarityFilter];
+        for(var entry:AccessoryService.CATALOG.values())if(rarity.isEmpty()||rarity.equals(entry.rarity()))ids.add(entry.id());
+        return ids;
+    }
+    private int rows(){int count=shown().size(),columns=columns();return count==0?0:(count+columns-1)/columns;}
     private int maxScroll(){return Math.max(0,rows()-viewportRows());}
+    private int sliderX(){return width-150;}
     private static boolean inside(double x,double y,int a,int b,int w,int h){return x>=a&&x<a+w&&y>=b&&y<b+h;}
     @Override public void extractRenderState(GuiGraphicsExtractor g,int mx,int my,float delta){
         g.fill(0,0,width,height,UiTheme.OVERLAY);
+        UiFrame frame=openFrame(g);
+        try{draw(g,mx-frame.ox,my-frame.oy,delta);}
+        finally{closeFrame(g);}
+    }
+    private UiFrame openFrame(GuiGraphicsExtractor g){
+        UiFrame frame=UiFrame.of(width,height,model.uiSize);
+        frameOuterW=width;frameOuterH=height;width=frame.width;height=frame.height;
+        if(g!=null){g.pose().pushMatrix();g.pose().translate(frame.ox,frame.oy);}
+        return frame;
+    }
+    private void closeFrame(GuiGraphicsExtractor g){
+        width=frameOuterW;height=frameOuterH;
+        if(g!=null)g.pose().popMatrix();
+    }
+    private void draw(GuiGraphicsExtractor g,int mx,int my,float delta){
+        g.fill(0,0,width,height,UiTheme.OVERLAY);
         g.fill(7,7,width-7,76,UiTheme.PANEL);
         g.text(font,"YUMIS · 饰品与"+cn.yumis.skyisland.core.LotteryNames.draw(),17,19,0xFFF5F8FA,false);
-        String[] names={"饰品",cn.yumis.skyisland.core.LotteryNames.draw()};
-        for(int t=0;t<2;t++){int x=17+t*100;g.fill(x,43,x+94,68,tab==t?UiTheme.SELECTED:UiTheme.BUTTON);if(tab==t)g.fill(x,66,x+94,68,0xFF79D5B9);g.text(font,names[t],x+10,51,0xFFEEEEEE,false);}
+        int tabW=Math.min(94,(width-34)/3);
+        String[] names={"饰品",cn.yumis.skyisland.core.LotteryNames.draw(),model.genshinMode?"心之钢":"永久增益"};
+        for(int t=0;t<3;t++){int x=17+t*(tabW+6);g.fill(x,43,x+tabW,68,tab==t?UiTheme.SELECTED:UiTheme.BUTTON);if(tab==t)g.fill(x,66,x+tabW,68,0xFF79D5B9);g.text(font,names[t],x+8,51,0xFFEEEEEE,false);}
         if(tab==1){lottery.render(g,font,width,height,mx,my);if(!model.lastError.isBlank())g.text(font,model.lastError,17,height-43,0xFFFFAAAA,false);return;}
+        if(tab==2){buffs.render(g,font,width,height);return;}
         g.text(font,"已激活 "+activeCount()+"/"+slots()+"    待领取 "+pending(),17,87,0xFFC9E8DB,false);
         g.fill(width-118,80,width-15,107,pending()>0?UiTheme.BUTTON:UiTheme.DISABLED);
         g.text(font,"随机领取",width-104,89,pending()>0?0xFFE2FFF4:0xFFADB2B7,false);
-        List<String> ids=new ArrayList<>(AccessoryService.CATALOG.keySet());
+        for(int i=0;i<RARITY_NAMES.length;i++){
+            int x=17+i*46;
+            int color=i==0?0xFFFFFFFF:RarityColors.color(RARITIES[i]);
+            g.fill(x,112,x+42,132,rarityFilter==i?UiTheme.SELECTED:UiTheme.BUTTON);
+            g.text(font,RARITY_NAMES[i],x+6,118,color,false);
+        }
+        g.text(font,"格子 "+model.accessoryCellSize,sliderX(),112,0xFFC4C7CD,false);
+        g.fill(sliderX(),128,sliderX()+120,131,UiTheme.PANEL);
+        int knob=sliderX()+(model.accessoryCellSize-ClientCatalog.MIN_CELL)*120/(ClientCatalog.MAX_CELL-ClientCatalog.MIN_CELL);
+        g.fill(knob-2,124,knob+3,136,0xFF79D9C2);
+        List<String> ids=shown();
         scroll=Math.clamp(scroll,0,maxScroll());
         hovered=null;
-        int x0=left(),size=cell();
+        int x0=left(),size=cell(),columns=columns();
         for(int i=0;i<ids.size();i++){
-            int row=i/5-scroll;if(row<0||row>=viewportRows())continue;
-            int x=x0+(i%5)*size,y=116+row*67;
+            int row=i/columns-scroll;if(row<0||row>=viewportRows())continue;
+            int x=x0+(i%columns)*size,y=140+row*67;
             String id=ids.get(i);var entry=AccessoryService.CATALOG.get(id);
             boolean owned=contains("unlockedAccessories",id),active=contains("activeAccessories",id);
             g.fill(x+2,y,x+size-3,y+62,active?UiTheme.SELECTED:owned?UiTheme.CARD:UiTheme.DISABLED);
@@ -60,7 +104,7 @@ public final class AccessoryScreen extends Screen {
             ItemStack icon=new ItemStack(ModItems.ACCESSORY_ICONS.get(id));
             g.pose().pushMatrix();g.pose().translate(x+(size-32)/2,y+5);g.item(icon,0,0);g.pose().popMatrix();
             String label=entry.name();if(font.width(label)>size-8)label=font.plainSubstrByWidth(label,size-15)+"…";
-            g.text(font,label,x+4,y+38,owned?0xFFE9F4EE:0xFF818A91,false);
+            g.text(font,label,x+4,y+38,owned?RarityColors.color(entry.rarity()):0xFF818A91,false);
             if(!owned&&AccessoryCraft.crafted(id))g.text(font,"合成",x+4,y+50,0xFF8FD0C4,false);
             if(inside(mx,my,x+2,y,size-5,62))hovered=id;
         }
@@ -78,17 +122,26 @@ public final class AccessoryScreen extends Screen {
     private int activeCount(){var entries=model.state.getAsJsonArray("activeAccessories");return entries==null?0:entries.size();}
     private int slots(){return model.state.has("accessorySlots")?model.state.get("accessorySlots").getAsInt():3;}
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
+        UiFrame frame=openFrame(null);
+        try{return click(frame.move(e),doubleClick);}
+        finally{closeFrame(null);}
+    }
+    private boolean click(MouseButtonEvent e,boolean doubleClick){
         if(e.button()!=0)return super.mouseClicked(e,doubleClick);
-        for(int t=0;t<2;t++)if(inside(e.x(),e.y(),17+t*100,43,94,25)){tab=t;crafting=null;model.lastError="";return true;}
+        int tabW=Math.min(94,(width-34)/3);
+        for(int t=0;t<3;t++)if(inside(e.x(),e.y(),17+t*(tabW+6),43,tabW,25)){tab=t;crafting=null;model.lastError="";return true;}
+        if(tab==2)return true;
         if(tab==1)return lottery.click(e.x(),e.y(),width,height)||super.mouseClicked(e,doubleClick);
         if(inside(e.x(),e.y(),width-118,80,103,27)){
             if(pending()>0)send("accessory_claim","");return true;
         }
+        for(int i=0;i<RARITY_NAMES.length;i++)if(inside(e.x(),e.y(),17+i*46,112,42,20)){rarityFilter=i;scroll=0;return true;}
+        if(inside(e.x(),e.y(),sliderX()-4,122,128,16)){dragCell=true;accessorySlider(e.x());return true;}
         if(crafting!=null&&craftClick(e.x(),e.y()))return true;
-        int size=cell(),x0=left();List<String> ids=new ArrayList<>(AccessoryService.CATALOG.keySet());
+        int size=cell(),x0=left(),columns=columns();List<String> ids=shown();
         for(int i=0;i<ids.size();i++){
-            int row=i/5-scroll;if(row<0||row>=viewportRows())continue;
-            int x=x0+(i%5)*size,y=116+row*67;
+            int row=i/columns-scroll;if(row<0||row>=viewportRows())continue;
+            int x=x0+(i%columns)*size,y=140+row*67;
             if(inside(e.x(),e.y(),x+2,y,size-5,62)){
                 String id=ids.get(i);
                 if(!contains("unlockedAccessories",id)&&AccessoryCraft.crafted(id)){crafting=id;model.lastError="";return true;}
@@ -137,6 +190,17 @@ public final class AccessoryScreen extends Screen {
         if(entries!=null)for(var entry:entries)owned.add(entry.getAsString());
         return owned;
     }
-    @Override public boolean mouseScrolled(double x,double y,double sx,double sy){if(tab==1)lottery.scroll(sy,height);else scroll=Math.clamp(scroll-(int)Math.signum(sy),0,maxScroll());return true;}
+    private void accessorySlider(double x){model.accessoryCellSize=Math.clamp(ClientCatalog.MIN_CELL+(int)Math.round((x-sliderX())*(ClientCatalog.MAX_CELL-ClientCatalog.MIN_CELL)/120.0),ClientCatalog.MIN_CELL,ClientCatalog.MAX_CELL);scroll=0;}
+    @Override public boolean mouseDragged(MouseButtonEvent e,double dx,double dy){
+        UiFrame frame=openFrame(null);
+        try{if(dragCell){accessorySlider(frame.move(e).x());return true;}return super.mouseDragged(frame.move(e),dx,dy);}
+        finally{closeFrame(null);}
+    }
+    @Override public boolean mouseReleased(MouseButtonEvent e){if(dragCell){dragCell=false;model.save();return true;}return super.mouseReleased(e);}
+    @Override public boolean mouseScrolled(double x,double y,double sx,double sy){
+        UiFrame frame=openFrame(null);
+        try{if(tab==1)lottery.scroll(sy,height);else if(tab==2)buffs.scroll(sy,height);else scroll=Math.clamp(scroll-(int)Math.signum(sy),0,maxScroll());return true;}
+        finally{closeFrame(null);}
+    }
     private void send(String action,String product){model.lastError="";if(ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE))ClientPlayNetworking.send(new ShopPayloads.Request(action,product,0));}
 }

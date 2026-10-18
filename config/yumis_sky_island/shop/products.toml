@@ -11248,6 +11248,36 @@ itemId = "minecraft:trial_key"
 
 
 
+[products."minecraft:tripwire_hook"]
+productId = "minecraft:tripwire_hook"
+name = "绊线钩"
+categoryHint = "红石方块"
+baseValueCoins = 525
+tradeMode = "buy_sell"
+acquisitionNote = "绊线钩加入商店；沿用配方估值"
+dailyStock = 64
+offerWeight = 1
+priceOrigin = "administrator"
+legacyBaseValueCoins = 525
+legacyTradeMode = "buy_sell"
+legacyRarity = "common"
+buyMultiplierBps = 10000
+shopCategory = "minecraft:redstone_blocks"
+shopRule = "管理员加入的常驻商品"
+firstAcquisitionPremium = false
+buyBaseValueCoins = 525
+
+[products."minecraft:tripwire_hook".canonicalStack]
+itemId = "minecraft:tripwire_hook"
+
+[products."minecraft:tripwire_hook".canonicalStack.componentPatch]
+
+
+
+
+
+
+
 [products."minecraft:tropical_fish"]
 productId = "minecraft:tropical_fish"
 name = "热带鱼"
@@ -23776,7 +23806,7 @@ itemId = "yumis_sky_island:biome_ball_wooded_badlands"
 productId = "yumis_sky_island:sky_carp"
 name = "空岛鲤鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 1000
+baseValueCoins = 600
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23797,7 +23827,7 @@ itemId = "yumis_sky_island:sky_carp"
 productId = "yumis_sky_island:lava_eel"
 name = "熔岩鳗鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 2400
+baseValueCoins = 3000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23818,7 +23848,7 @@ itemId = "yumis_sky_island:lava_eel"
 productId = "yumis_sky_island:void_fish"
 name = "虚空鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 4000
+baseValueCoins = 12000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23839,7 +23869,7 @@ itemId = "yumis_sky_island:void_fish"
 productId = "yumis_sky_island:frost_trout"
 name = "霜鳟"
 categoryHint = "钓鱼产物"
-baseValueCoins = 1400
+baseValueCoins = 800
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23860,7 +23890,7 @@ itemId = "yumis_sky_island:frost_trout"
 productId = "yumis_sky_island:desert_lungfish"
 name = "沙漠肺鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 1400
+baseValueCoins = 800
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23881,7 +23911,7 @@ itemId = "yumis_sky_island:desert_lungfish"
 productId = "yumis_sky_island:mushroom_fish"
 name = "蘑菇鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 1800
+baseValueCoins = 1100
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -24258,3 +24288,95 @@ offerWeight = 1
 itemId = "yumis_sky_island:lottery_ticket"
 
 [products."yumis_sky_island:lottery_ticket".canonicalStack.componentPatch]
+
+# 农夫收获突变。仅收购，不进入制造目录，因此不抽星、不给职业经验。
+
+[products."yumis_sky_island:barley"]
+productId = "yumis_sky_island:barley"
+name = "大麦"
+categoryHint = "种植突变"
+baseValueCoins = 250000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+shopCategory = "other"
+
+[products."yumis_sky_island:barley".canonicalStack]
+itemId = "yumis_sky_island:barley"
+
+[products."yumis_sky_island:barley".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:white_radish"]
+productId = "yumis_sky_island:white_radish"
+name = "白萝卜"
+categoryHint = "种植突变"
+baseValueCoins = 250000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+shopCategory = "other"
+
+[products."yumis_sky_island:white_radish".canonicalStack]
+itemId = "yumis_sky_island:white_radish"
+
+[products."yumis_sky_island:white_radish".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:purple_potato"]
+productId = "yumis_sky_island:purple_potato"
+name = "紫薯"
+categoryHint = "种植突变"
+baseValueCoins = 250000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+shopCategory = "other"
+
+[products."yumis_sky_island:purple_potato".canonicalStack]
+itemId = "yumis_sky_island:purple_potato"
+
+[products."yumis_sky_island:purple_potato".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:golden_beet"]
+productId = "yumis_sky_island:golden_beet"
+name = "金甜菜"
+categoryHint = "种植突变"
+baseValueCoins = 250000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+shopCategory = "other"
+
+[products."yumis_sky_island:golden_beet".canonicalStack]
+itemId = "yumis_sky_island:golden_beet"
+
+[products."yumis_sky_island:golden_beet".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:crimson_wart"]
+productId = "yumis_sky_island:crimson_wart"
+name = "赤疣"
+categoryHint = "种植突变"
+baseValueCoins = 250000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+shopCategory = "other"
+
+[products."yumis_sky_island:crimson_wart".canonicalStack]
+itemId = "yumis_sky_island:crimson_wart"
+
+[products."yumis_sky_island:crimson_wart".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:sky_fruit"]
+productId = "yumis_sky_island:sky_fruit"
+name = "空岛果"
+categoryHint = "种植突变"
+baseValueCoins = 1000000
+tradeMode = "sell_only"
+dailyStock = 1
+offerWeight = 1
+shopCategory = "other"
+
+[products."yumis_sky_island:sky_fruit".canonicalStack]
+itemId = "yumis_sky_island:sky_fruit"
+
+[products."yumis_sky_island:sky_fruit".canonicalStack.componentPatch]

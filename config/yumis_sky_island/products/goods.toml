@@ -727,3 +727,35 @@ qualityAllowed = true
 itemLevel = 0
 # 每件成功手工制造的基础铁匠经验；品质参考等级不限制获经验。
 baseXp = 6
+
+[items."yumis_sky_island:stone_hammer"]
+profession = "blacksmith"
+qualityAllowed = true
+# 独立职业物品等级；只影响品质与经验，管理员可单独修改。
+itemLevel = 10
+# 每件成功手工制造的基础铁匠经验；品质参考等级不限制获经验。
+baseXp = 12
+
+[items."yumis_sky_island:iron_hammer"]
+profession = "blacksmith"
+qualityAllowed = true
+# 独立职业物品等级；只影响品质与经验，管理员可单独修改。
+itemLevel = 30
+# 每件成功手工制造的基础铁匠经验；品质参考等级不限制获经验。
+baseXp = 48
+
+[items."yumis_sky_island:diamond_hammer"]
+profession = "blacksmith"
+qualityAllowed = true
+# 独立职业物品等级；只影响品质与经验，管理员可单独修改。
+itemLevel = 60
+# 每件成功手工制造的基础铁匠经验；品质参考等级不限制获经验。
+baseXp = 160
+
+[items."yumis_sky_island:netherite_hammer"]
+profession = "blacksmith"
+qualityAllowed = true
+# 独立职业物品等级；只影响品质与经验，管理员可单独修改。
+itemLevel = 100
+# 每件成功手工制造的基础铁匠经验；品质参考等级不限制获经验。
+baseXp = 400

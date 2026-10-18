@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.server;
 import cn.yumis.skyisland.config.GameConfig;
+import cn.yumis.skyisland.core.CropMutation;
 import cn.yumis.skyisland.core.ProfessionRules;
 import cn.yumis.skyisland.core.HarvestContext;
 import cn.yumis.skyisland.core.HarvestRules;
@@ -9,6 +10,7 @@ import cn.yumis.skyisland.shop.ItemQuality;
 import cn.yumis.skyisland.item.ModItems;
 import com.google.gson.*;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.Identifier;
@@ -55,8 +57,19 @@ public final class ProfessionService {
     public int level(IslandState.Person person, String profession) {
         BigInteger xp = person == null ? BigInteger.ZERO : person.professionXp.getOrDefault(profession,BigInteger.ZERO);
         JsonObject config=runtime.config.object("products/professions.toml");
-        JsonObject curve = config.getAsJsonObject(profession.equals("blacksmith")||profession.equals("miner")?"blacksmithXpCurve":"xpCurve");
-        return ProfessionRules.level(xp,curve.get("perLevelBase").getAsLong(),curve.get("perLevelGrowth").getAsLong(),curve.get("post100Growth").getAsLong());
+        long[] curve=curve(config,profession);
+        return ProfessionRules.level(xp,curve[0],curve[1],curve[2]);
+    }
+    /** Battle master uses the shared curve with every term multiplied by five. */
+    public static long[] curve(JsonObject config,String profession){
+        JsonObject curve=config.getAsJsonObject(profession.equals("blacksmith")||profession.equals("miner")?"blacksmithXpCurve":"xpCurve");
+        long base=curve.get("perLevelBase").getAsLong(),growth=curve.get("perLevelGrowth").getAsLong(),later=curve.get("post100Growth").getAsLong();
+        if(profession.equals("battle_master")){base=Math.multiplyExact(base,5);growth=Math.multiplyExact(growth,5);later=Math.multiplyExact(later,5);}
+        return new long[]{base,growth,later};
+    }
+    public void combatExperience(ServerPlayer player,float damage){
+        if(player.isCreative()||player.isSpectator()||!(damage>0))return;
+        award(player,"battle_master",BigInteger.valueOf(Math.max(1,(int)Math.floor(damage))));
     }
     public int itemLevel(String id) {
         JsonObject source=runtime.config.object("products/professions.toml").getAsJsonObject("sourceItems");
@@ -144,6 +157,7 @@ public final class ProfessionService {
         if(backed<premium.size())cn.yumis.skyisland.YumisSkyIsland.LOGGER.warn("品质替换仅找到 {}/{} 件已交付的物品",backed,premium.size());
         for(int i=0;i<backed;i++){
             ItemStack part=premium.get(i);
+            announcePrismatic(click.player,part);
             if(removedFromCursor>0 && menu.getCarried().isEmpty()) {menu.setCarried(part);removedFromCursor--;continue;}
             if(!click.player.getInventory().add(part))click.player.drop(part,false);
         }
@@ -166,6 +180,7 @@ public final class ProfessionService {
                 runtime.send(player,"profession_xp",event);
                 int after=level(runtime.state().players.get(id),profession);
                 if(profession.equals("fisherman"))FishingService.applyLevel(runtime,player);
+                if(profession.equals("farmer")||profession.equals("miner"))ProfessionAttributes.apply(runtime,player,runtime.state().players.get(id));
                 if(after>before[0])SkyServer.tell(player,name(profession)+"升至 "+after+" 级");
                 if(fruit){ItemStack prize=new ItemStack(ModItems.FRUITS.get(profession));if(!player.getInventory().add(prize))player.drop(prize,false);SkyServer.tell(player,"获得"+name(profession)+"果实");}
             });
@@ -207,17 +222,31 @@ public final class ProfessionService {
         if(player.isCreative())return drops;
         JsonObject source=runtime.config.object("products/professions.toml").getAsJsonObject("sourceItems");
         List<ItemStack> result=new ArrayList<>();
+        boolean rolled=false;
+        int copies=1;
         for(ItemStack stack:drops){
             String id=BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
             JsonObject entry=source==null?null:source.getAsJsonObject(id);
             if(entry==null||!entry.get("profession").getAsString().equals("farmer")){result.add(stack);continue;}
-            result.addAll(qualityParts(player,"farmer",stack));
+            if(!rolled){copies=farmCopies(player);rolled=true;}
+            List<ItemStack> parts=qualityParts(player,"farmer",stack);
+            for(int copy=0;copy<copies;copy++)for(ItemStack part:parts)result.add(part.copy());
             if(!HarvestRules.canAwardFarmerXp(sourceBlock,id))continue;
             int difference=level(runtime.state().players.get(player.getUUID()),"farmer")-entry.get("itemLevel").getAsInt();
             long base=runtime.config.object("products/professions.toml").getAsJsonObject("successfulCraftXp").get("farmer").getAsLong();
             award(player,"farmer",BigInteger.valueOf(ProfessionRules.experiencePerUnit(base,difference)).multiply(BigInteger.valueOf(stack.getCount())));
         }
+        appendMutations(player,sourceBlock,result);
         return result;
+    }
+    /** One extra roll per ripe crop. Copies and per-seed counts do not roll again. */
+    private void appendMutations(ServerPlayer player,HarvestContext source,List<ItemStack> result){
+        JsonObject config=runtime.config.object("products/professions.toml");
+        int farmerLevel=level(runtime.state().players.get(player.getUUID()),"farmer");
+        for(String id:CropMutation.extras(farmerLevel,source.sourceBlockId(),source.age(),config.get("cropMutationBps").getAsInt(),config.get("cropFruitBps").getAsInt(),player.getRandom()::nextInt)){
+            Item item=BuiltInRegistries.ITEM.getValue(Identifier.parse(id));
+            if(item!=null&&item!=Items.AIR)result.add(new ItemStack(item));
+        }
     }
     public List<ItemStack> qualityParts(ServerPlayer player,String profession,ItemStack stack){
         if(stack.isEmpty()||ItemEconomy.grade(stack)>0)return List.of(stack);
@@ -227,6 +256,7 @@ public final class ProfessionService {
         for(int i=0;i<stack.getCount();i++){
             ItemStack part=stack.copyWithCount(1);int grade=roll(player,difference);
             if(grade>0)ItemQuality.apply(part,runtime.config.object("products/quality.toml"),grade,profession,ProfessionRules.unbreakable(grade,unbreakableBps(grade),player.getRandom()::nextInt));
+            announcePrismatic(player,part);
             result.add(part);
         }
         return result;
@@ -236,9 +266,12 @@ public final class ProfessionService {
     public int hunterLootCopies(ServerPlayer player) {
         IslandState.Person person=runtime.state().players.get(player.getUUID());
         int fruits=person==null?0:Math.clamp(person.consumedFruits.getOrDefault("hunter",0),0,100);
-        double bonus=fruits*0.01;
-        int whole=(int)Math.floor(bonus);
-        return 1+whole+(player.getRandom().nextDouble()<bonus-whole?1:0);
+        return cn.yumis.skyisland.core.LootBonus.copies(fruits*0.01,player.getRandom()::nextDouble);
+    }
+    private int farmCopies(ServerPlayer player){
+        IslandState.Person person=runtime.state().players.get(player.getUUID());
+        int points=Math.min(1000,level(person,"farmer"));
+        return cn.yumis.skyisland.core.LootBonus.copies(points*0.01,player.getRandom()::nextDouble);
     }
     public void hunterKill(ServerPlayer player,String entityId){
         if(player.isCreative()||!hunterMob(entityId))return;
@@ -247,14 +280,27 @@ public final class ProfessionService {
         long base=runtime.config.object("products/professions.toml").get("successfulHunterKillXp").getAsLong();
         award(player,"hunter",BigInteger.valueOf(ProfessionRules.experiencePerUnit(base,difference)));
     }
-    public static String name(String profession) { return switch (profession) { case "fisherman" -> "渔夫"; case "blacksmith" -> "铁匠"; case "chef" -> "厨师"; case "farmer" -> "农夫"; case "hunter" -> "猎人"; case "miner" -> "矿工"; default -> profession; }; }
+    public static String name(String profession) { return switch (profession) { case "fisherman" -> "渔夫"; case "blacksmith" -> "铁匠"; case "chef" -> "厨师"; case "farmer" -> "农夫"; case "hunter" -> "猎人"; case "miner" -> "矿工"; case "battle_master" -> "战斗大师"; default -> profession; }; }
+    /** Grade 5 is prismatic. The stack must still have a count, because an emptied stack is named air. */
+    private void announcePrismatic(ServerPlayer player,ItemStack stack){
+        if(ItemEconomy.grade(stack)!=5)return;
+        runtime.server.getPlayerList().broadcastSystemMessage(Component.literal("[空岛] "+player.getGameProfile().name()+" 获得了七彩星 ").append(stack.getHoverName()),false);
+    }
     private int unbreakableBps(int grade){
         var grades=runtime.config.object("products/quality.toml").getAsJsonArray("grades");
         if(grade<0||grade>=grades.size())return 0;
         var row=grades.get(grade).getAsJsonObject();
         return row.has("unbreakableBps")?row.get("unbreakableBps").getAsInt():0;
     }
-    /** Replaces hammer drops for cobble, gravel and dirt, and grants one miner experience. Null keeps vanilla drops. */
+    /** One miner experience for each block actually removed with a pickaxe or any hammer. */
+    public void mined(ServerPlayer player,net.minecraft.world.item.Item tool){
+        if(player.isCreative()||player.isSpectator()||!miningTool(tool))return;
+        award(player,"miner",BigInteger.ONE);
+    }
+    public static boolean miningTool(net.minecraft.world.item.Item tool){
+        return tool!=null&&(cn.yumis.skyisland.item.Hammers.isHammer(tool)||tool.builtInRegistryHolder().is(net.minecraft.tags.ItemTags.PICKAXES));
+    }
+    /** Replaces hammer drops for cobble, gravel and dirt. Null keeps vanilla drops. Experience is awarded by the break itself. */
     public List<ItemStack> hammerDrops(ServerPlayer player,net.minecraft.world.level.block.state.BlockState state,net.minecraft.world.item.Item tool){
         if(!cn.yumis.skyisland.item.Hammers.isHammer(tool))return null;
         String block=BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
@@ -267,7 +313,6 @@ public final class ProfessionService {
             for(var bonus:cn.yumis.skyisland.core.HammerRules.bonuses(minerLevel,player.getRandom()::nextInt))
                 drops.add(new ItemStack(BuiltInRegistries.ITEM.getValue(net.minecraft.resources.Identifier.parse(bonus.itemId())),bonus.count()));
         }
-        if(!player.isCreative()&&!player.isSpectator())award(player,"miner",BigInteger.ONE);
         return drops;
     }
     public static double miningBonus(ItemStack stack, GameConfig config) { return stack.has(DataComponents.TOOL) ? config.object("products/quality.toml").getAsJsonArray("grades").get(ItemEconomy.grade(stack)).getAsJsonObject().get("attributeBonusBps").getAsInt()/10000.0 : 0; }

@@ -25,7 +25,11 @@ public final class QuestCatalog {
     }
     public record Progress(Set<String> completed,Set<String> ready,Map<String,Long> resetVersions,Map<String,Map<String,Integer>> counters) {}
     public static Progress progress(IslandState.Party party,IslandState.Person person,Quest quest){
-        if(quest.kind().equals("main"))return party==null?null:new Progress(party.completedQuestIds,party.readyQuestIds,party.questResetVersions,Map.of());
+        if(quest.kind().equals("main")){
+            if(party==null)return null;
+            if(party.mainQuestProgress==null)party.mainQuestProgress=new LinkedHashMap<>();
+            return new Progress(party.completedQuestIds,party.readyQuestIds,party.questResetVersions,party.mainQuestProgress);
+        }
         return person==null?null:new Progress(person.completedQuestIds,person.readyQuestIds,person.questResetVersions,person.questProgress);
     }
     public final long revision;
@@ -61,7 +65,6 @@ public final class QuestCatalog {
                 if (!Set.of("main","side","profession").contains(q.get("kind").getAsString())) throw new IllegalArgumentException("任务类型必须为 main、side 或 profession");
                 if (!Set.of("materials","place_shipping_chest","tracked").contains(q.get("objective").getAsString())) throw new IllegalArgumentException("未知任务目标");
                 if(q.get("kind").getAsString().equals("profession")&&(!q.has("profession")||!PROFESSIONS.contains(q.get("profession").getAsString())||!q.get("objective").getAsString().equals("tracked")))throw new IllegalArgumentException("职业任务必须指定有效职业并使用 tracked 目标");
-                if(q.get("kind").getAsString().equals("main")&&q.get("objective").getAsString().equals("tracked"))throw new IllegalArgumentException("追踪目标用于个人任务");
                 if (q.get("rewardCoins").getAsLong() < 0) throw new IllegalArgumentException("货币奖励不能为负");
                 if(!q.has("rewardExperiencePoints"))q.addProperty("rewardExperiencePoints",0);
                 if(q.get("rewardExperiencePoints").getAsLong()<0||q.get("rewardExperiencePoints").getAsLong()>Integer.MAX_VALUE)throw new IllegalArgumentException("经验点奖励必须为非负整数");
@@ -72,8 +75,9 @@ public final class QuestCatalog {
                 if(q.getAsJsonArray("goals").size()>32)throw new IllegalArgumentException("追踪目标最多32条");
                 for(var elementGoal:q.getAsJsonArray("goals")){
                     var g=elementGoal.getAsJsonObject();String type=text(g,"type",32),target=text(g,"targetId",256);
-                    if(!Set.of("craft","smelt","fish","harvest","kill").contains(type))throw new IllegalArgumentException("未知追踪行动");
-                    if(!(type.equals("kill")?BuiltInRegistries.ENTITY_TYPE.containsKey(Identifier.parse(target)):BuiltInRegistries.ITEM.containsKey(Identifier.parse(target))))throw new IllegalArgumentException("追踪目标未注册："+target);
+                    if(!Set.of("craft","smelt","fish","harvest","kill","leap").contains(type))throw new IllegalArgumentException("未知追踪行动");
+                    if(type.equals("leap")){if(!target.equals("cloud_leap"))throw new IllegalArgumentException("踏云目标必须是 cloud_leap");}
+                    else if(!(type.equals("kill")?BuiltInRegistries.ENTITY_TYPE.containsKey(Identifier.parse(target)):BuiltInRegistries.ITEM.containsKey(Identifier.parse(target))))throw new IllegalArgumentException("追踪目标未注册："+target);
                     long amount=g.get("quantity").getAsLong();if(amount<1||amount>Integer.MAX_VALUE)throw new IllegalArgumentException("追踪数量必须为正整数");
                     String block=g.has("sourceBlockId")?g.get("sourceBlockId").getAsString():"",tool=g.has("toolId")?g.get("toolId").getAsString():"";
                     if(!block.isEmpty()&&!BuiltInRegistries.BLOCK.containsKey(Identifier.parse(block)))throw new IllegalArgumentException("采集来源方块未注册");
@@ -240,7 +244,7 @@ public final class QuestCatalog {
             rows.add(row);
         }return rows;
     }
-    public static String actionName(String type){return switch(type){case "craft"->"制作／加工";case "smelt"->"手动领取熔炼";case "fish"->"钓获";case "harvest"->"亲自采集";case "kill"->"亲自击杀";default->type;};}
+    public static String actionName(String type){return switch(type){case "craft"->"制作／加工";case "smelt"->"手动领取熔炼";case "fish"->"钓获";case "harvest"->"亲自采集";case "kill"->"亲自击杀";case "leap"->"梯云纵";default->type;};}
     public JsonArray featureList() {
         JsonArray array = new JsonArray();
         features.values().forEach(f -> {JsonObject o = new JsonObject(); o.addProperty("id",f.id);o.addProperty("name",f.name);o.addProperty("defaultUnlocked",f.defaultUnlocked);array.add(o);});

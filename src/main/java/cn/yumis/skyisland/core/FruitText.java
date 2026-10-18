@@ -12,6 +12,7 @@ public final class FruitText {
             case "chef" -> "0.01 生命再生";
             case "hunter" -> "1%掠夺";
             case "miner" -> "每个挖掘速度 +2%";
+            case "battle_master" -> "每个护甲韧性 +0.01";
             default -> "";
         };
     }
@@ -23,6 +24,7 @@ public final class FruitText {
             case "chef" -> "当前 " + number(count * 0.01) + " 生命再生";
             case "hunter" -> "当前 " + count + "%掠夺";
             case "miner" -> "当前挖掘速度 +" + number(count * 2) + "%";
+            case "battle_master" -> "当前护甲韧性 +" + number(count * 0.01);
             default -> "";
         };
     }

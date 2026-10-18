@@ -10,6 +10,7 @@ public final class DefaultKeyConflictResolver {
     public static void resolve(Minecraft client) {
         boolean changed=unbind(client.options.keyFriends,KeyMapping.get("key.yumis_sky_island.accessories"),InputConstants.KEY_O);
         changed|=unbind(client.options.keySocialInteractions,KeyMapping.get("key.yumis_sky_island.professions"),InputConstants.KEY_P);
+        changed|=unbind(client.options.keyAdvancements,KeyMapping.get("key.yumis_sky_island.ender_chest"),InputConstants.KEY_L);
         if(changed){KeyMapping.resetMapping();client.options.save();}
     }
     private static boolean unbind(KeyMapping vanilla,KeyMapping panel,int code) {

@@ -13,6 +13,6 @@ public abstract class PersonalPanelDefaultKeysMixin {
     @ModifyArgs(method="<init>",at=@At(value="INVOKE",target="Lnet/minecraft/client/KeyMapping;<init>(Ljava/lang/String;ILnet/minecraft/client/KeyMapping$Category;)V"))
     private void yumis$panelDefaults(Args args) {
         String name=args.get(0);
-        if(name.equals("key.friends")||name.equals("key.socialInteractions"))args.set(1,InputConstants.UNKNOWN.getValue());
+        if(name.equals("key.friends")||name.equals("key.socialInteractions")||name.equals("key.advancements"))args.set(1,InputConstants.UNKNOWN.getValue());
     }
 }

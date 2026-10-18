@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.server;
 
+import cn.yumis.skyisland.core.AccessoryCraft;
 import cn.yumis.skyisland.data.IslandState;
 import cn.yumis.skyisland.item.ModItems;
 import com.google.gson.JsonArray;
@@ -21,17 +22,36 @@ public final class ProfessionShopService {
         String profession=parts[0], kind=parts[1];
         boolean fruit=kind.equals("fruit") && ModItems.FRUITS.containsKey(profession);
         boolean bait=profession.equals("fisherman") && (kind.equals("lava_bait") || kind.equals("void_bait"));
-        if (!fruit && !bait) throw new IllegalArgumentException("职业商品不存在");
-        if (bait && quantity!=1) throw new IllegalArgumentException("鱼饵只需解锁一次");
+        boolean aura=profession.equals("battle_master") && kind.equals("slaughter_aura");
+        if (!fruit && !bait && !aura) throw new IllegalArgumentException("职业商品不存在");
+        if ((bait || aura) && quantity!=1) throw new IllegalArgumentException("该解锁只需购买一次");
         var prices=runtime.config.object("products/profession_shop.toml");
-        long unit=fruit?prices.get("fruitPrice").getAsLong():kind.equals("lava_bait")?prices.get("lavaBaitPrice").getAsLong():prices.get("voidBaitPrice").getAsLong();
+        long unit=fruit?prices.get("fruitPrice").getAsLong():aura?prices.get("slaughterAuraPrice").getAsLong():kind.equals("lava_bait")?prices.get("lavaBaitPrice").getAsLong():prices.get("voidBaitPrice").getAsLong();
         if(unit<1)throw new IllegalStateException("职业商店价格配置无效");
         BigInteger cost=BigInteger.valueOf(unit).multiply(BigInteger.valueOf(quantity));
         IslandState.Person person=runtime.state().players.get(player.getUUID());
+        if(bait){
+            var professions=runtime.config.object("products/professions.toml");
+            int required=kind.equals("lava_bait")?professions.get("lavaFishingLevel").getAsInt():professions.get("voidFishingLevel").getAsInt();
+            int level=runtime.professions.level(person,"fisherman");
+            if(level<required)throw new IllegalArgumentException((kind.equals("lava_bait")?"熔岩钓鱼":"虚空钓鱼")+"需要渔夫 "+required+" 级");
+        }
         if(person==null||person.professionCoins.getOrDefault(profession,BigInteger.ZERO).compareTo(cost)<0)throw new IllegalArgumentException("个人职业积分不足");
         if(bait && person.unlockedAccessories.contains(kind))throw new IllegalArgumentException("该鱼饵已解锁");
+        if(aura && person.unlockedAccessories.contains("slaughter_aura"))throw new IllegalArgumentException("杀戮光环已解锁");
         if (bait) {
             runtime.change(player,state->{var p=state.players.get(player.getUUID());p.professionCoins.merge(profession,cost.negate(),BigInteger::add);p.unlockedAccessories.add(kind);},()->SkyServer.tell(player,"已永久解锁"+(kind.equals("lava_bait")?"熔岩鱼饵":"虚空鱼饵")));
+            return;
+        }
+        if (aura) {
+            boolean[] enabled={false};
+            runtime.change(player,state->{
+                var current=state.players.get(player.getUUID());
+                current.professionCoins.merge(profession,cost.negate(),BigInteger::add);
+                current.unlockedAccessories.add("slaughter_aura");
+                int slots=Math.clamp(current.accessorySlots,3,AccessoryService.CATALOG.size());
+                if(AccessoryCraft.fits(current.activeAccessories,"slaughter_aura",slots)){AccessoryCraft.enable(current.activeAccessories,"slaughter_aura");enabled[0]=true;}
+            },()->{AccessoryService.apply(player,runtime.state().players.get(player.getUUID()));SkyServer.tell(player,"已永久解锁杀戮光环"+(enabled[0]?"，已自动启用":"，激活栏位已满，可在饰品面板启用"));});
             return;
         }
         Item item=ModItems.FRUITS.get(profession);

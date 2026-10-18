@@ -13,6 +13,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.*;
 import net.minecraft.world.level.Level;
@@ -129,6 +131,14 @@ public final class SkyServer implements AutoCloseable {
         if(player.level()!=server.overworld()||!VoidWorlds.isSky(server.overworld()))return;
         IslandState.Party location=claim(player.blockPosition());
         if(location==null||location.resetInProgress)return;
+        if(bloodMoon.active()){
+            String text=player.getGameProfile().name()+"在血月期间死亡，不扣除"+Money.currencyName()+"，之后的死亡费用也不提高。";
+            for(var online:server.getPlayerList().getPlayers()){
+                var person=state().players.get(online.getUUID());
+                if(location.members.contains(online.getUUID())&&person!=null&&location.id.equals(person.activeParty))tell(online,text);
+            }
+            return;
+        }
         JsonObject death=new JsonObject();
         change(null,s->{
             IslandState.Party party=s.parties.get(location.id);
@@ -236,8 +246,7 @@ public final class SkyServer implements AutoCloseable {
         if (tick % 20 == 0) syncAll();
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             ModItems.refreshFlight(player, state().players.get(player.getUUID()));
-            if (tick % 100 == 0) ModItems.applyFruitBonuses(player, state().players.get(player.getUUID()));
-            if (tick % 100 == 0) AccessoryService.apply(player, state().players.get(player.getUUID()));
+            if (tick % 100 == 0) refreshAttributes(player);
             AccessoryService.tick(player);
             if (tick % 20 == 0) {
                 UUID chefId=player.getUUID();
@@ -271,12 +280,23 @@ public final class SkyServer implements AutoCloseable {
     public void joined(ServerPlayer player) {
         trades.recover(player);
         ModItems.refreshFlight(player, state().players.get(player.getUUID()));
-        ModItems.applyFruitBonuses(player, state().players.get(player.getUUID()));
-        AccessoryService.apply(player, state().players.get(player.getUUID()));
+        refreshAttributes(player);
         lastChefHealth.put(player.getUUID(),player.getHealth());lastChefDamageTick.put(player.getUUID(),tick);
         if (parties.active(player.getUUID()) == null) worlds.lobby(player);
         sendCatalog(player); sendState(player);
         questEditor.sendEditor(player);
+    }
+    public static void openEnderChest(ServerPlayer player) {
+        if (player.isSpectator() || player.containerMenu != player.inventoryMenu) return;
+        player.openMenu(new SimpleMenuProvider((id, inventory, user) -> ChestMenu.threeRows(id, inventory, player.getEnderChestInventory()), Component.translatable("container.enderchest")));
+    }
+    private void refreshAttributes(ServerPlayer player) {
+        IslandState.Person person = state().players.get(player.getUUID());
+        ModItems.applyFruitBonuses(player, person);
+        AccessoryService.apply(player, person);
+        FoodHealth.correctInflated(this, player);
+        FoodHealth.apply(player, person);
+        ProfessionAttributes.apply(this, player, person);
     }
     public void disconnected(ServerPlayer player) { worlds.disconnected(player.getUUID()); ModItems.disconnected(player.getUUID()); veinMining.disconnect(player); lastChefHealth.remove(player.getUUID());lastChefDamageTick.remove(player.getUUID()); trades.forget(player); questEditor.forget(player); catalogQueue.remove(player.getUUID()); catalogSent.remove(player.getUUID()); lastSnapshots.remove(player.getUUID()); priceEpochSent.remove(player.getUUID()); lastRequest.remove(player.getUUID()); }
     public void request(ServerPlayer player, ShopPayloads.Request request) {
@@ -393,15 +413,17 @@ public final class SkyServer implements AutoCloseable {
         IslandState.Person person = state().players.get(player.getUUID()); json.add("professions", GameConfig.JSON.toJsonTree(person == null ? Map.of() : person.professionXp));
         json.add("professionCoins", GameConfig.JSON.toJsonTree(person == null ? Map.of() : person.professionCoins));
         json.add("consumedFruits",GameConfig.JSON.toJsonTree(person==null?Map.of():person.consumedFruits));
+        json.add("foodEaten",GameConfig.JSON.toJsonTree(person==null||person.foodEaten==null?Map.of():person.foodEaten));
+        json.add("foodHealth",GameConfig.JSON.toJsonTree(person==null||person.foodHealth==null?Map.of():person.foodHealth));
         json.add("unlockedAccessories",GameConfig.JSON.toJsonTree(person==null?Set.of():person.unlockedAccessories));
         json.add("activeAccessories",GameConfig.JSON.toJsonTree(person==null?Set.of():person.activeAccessories));
         json.addProperty("pendingAccessoryDraws",person==null?0:person.pendingAccessoryDraws);
         json.add("lottery",lottery.snapshot(player));
         json.addProperty("accessorySlots",person==null?3:Math.clamp(person.accessorySlots,3,AccessoryService.CATALOG.size()));
         JsonObject professionProgress=new JsonObject();
-        for(String profession:List.of("blacksmith","chef","farmer","hunter","miner","fisherman")){
-            JsonObject xpCurve=config.object("products/professions.toml").getAsJsonObject(profession.equals("blacksmith")||profession.equals("miner")?"blacksmithXpCurve":"xpCurve");
-            long xpBase=xpCurve.get("perLevelBase").getAsLong(), xpGrowth=xpCurve.get("perLevelGrowth").getAsLong(), xpLater=xpCurve.get("post100Growth").getAsLong();
+        for(String profession:List.of("blacksmith","chef","farmer","hunter","miner","battle_master","fisherman")){
+            long[] xpCurve=ProfessionService.curve(config.object("products/professions.toml"),profession);
+            long xpBase=xpCurve[0], xpGrowth=xpCurve[1], xpLater=xpCurve[2];
             int professionLevel=professions.level(person,profession);
             BigInteger total=person==null?BigInteger.ZERO:person.professionXp.getOrDefault(profession,BigInteger.ZERO);
             JsonObject row=new JsonObject();row.addProperty("level",professionLevel);
@@ -449,10 +471,13 @@ public final class SkyServer implements AutoCloseable {
         JsonObject fishingRow=new JsonObject();fishingRow.addProperty("id","yumis_sky_island:biome_treasure_box");fishingRow.addProperty("source","真实钓获（固定经验）");
         fishingRow.addProperty("itemLevel",0);fishingRow.addProperty("baseXp",12);fishingGuide.add(fishingRow);guide.add("fisherman",fishingGuide);
         JsonArray minerGuide=new JsonArray();
-        for(String[] mined:new String[][]{{"minecraft:cobblestone","锤子挖掘圆石"},{"minecraft:gravel","锤子挖掘砂砾"},{"minecraft:dirt","锤子挖掘泥土"}}){
+        for(String[] mined:new String[][]{{"minecraft:iron_pickaxe","稿子挖掘任意方块"},{"yumis_sky_island:iron_hammer","锤子挖掘任意方块"}}){
             JsonObject row=new JsonObject();row.addProperty("id",mined[0]);row.addProperty("source",mined[1]);row.addProperty("itemLevel",0);row.addProperty("baseXp",1);minerGuide.add(row);
         }
         guide.add("miner",minerGuide);
+        JsonArray battleGuide=new JsonArray();
+        JsonObject battleRow=new JsonObject();battleRow.addProperty("id","minecraft:iron_sword");battleRow.addProperty("source","对玩家或敌对生物造成或受到的最终伤害");
+        battleRow.addProperty("itemLevel",0);battleRow.addProperty("baseXp",1);battleGuide.add(battleRow);guide.add("battle_master",battleGuide);
         json.add("professionGuide",guide);
         json.add("professionShop",config.object("products/profession_shop.toml"));
         json.addProperty("bloodMoon",state().bloodMoonActive);

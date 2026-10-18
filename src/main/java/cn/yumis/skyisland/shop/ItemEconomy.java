@@ -85,6 +85,14 @@ public final class ItemEconomy {
         JsonObject p = config.object("shop/products.toml").getAsJsonObject("products").getAsJsonObject(entry.product().id());
         return p!=null && p.has("firstAcquisitionPremium") && p.get("firstAcquisitionPremium").getAsBoolean();
     }
+    public void addProduct(GameConfig.Product product, ItemStack template) {
+        if(entries.containsKey(product.id()))throw new IllegalArgumentException("这个物品已经在商店里");
+        ItemStack roundtrip=decode(encode(template));
+        if(template.isEmpty()||!matchesCanonical(roundtrip,template,product.canonical().getAsJsonObject("componentPatch")))throw new IllegalArgumentException("标准栈回编码后不匹配");
+        Entry entry=new Entry(product,template.copy());
+        entries.put(product.id(),entry);
+        byItem.computeIfAbsent(template.getItem(),_->new ArrayList<>()).add(entry);
+    }
     public void replaceProduct(GameConfig.Product product) {
         Entry old=entries.get(product.id());
         if(old==null)throw new IllegalArgumentException("商品已移除");

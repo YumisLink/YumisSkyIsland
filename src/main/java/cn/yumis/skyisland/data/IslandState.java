@@ -51,6 +51,8 @@ public final class IslandState {
         /** Historical non-air mutations in this overworldEpoch, including zero-score blocks. */
         public Set<Long> placedChunks = new LinkedHashSet<>();
         public Set<String> readyQuestIds = new LinkedHashSet<>();
+        /** Team counters for tracked main quests. Missing on older saves until the next write. */
+        public Map<String, Map<String, Integer>> mainQuestProgress = new LinkedHashMap<>();
         public Map<String, Long> questResetVersions = new LinkedHashMap<>();
         public boolean featureDefaultsInitialized;
         public double scanChunksPerSecond;
@@ -69,6 +71,9 @@ public final class IslandState {
         public Map<String, Integer> residentXpRemainders = new LinkedHashMap<>();
         /** Number of permanently consumed profession fruits, capped independently at 100. */
         public Map<String, Integer> consumedFruits = new LinkedHashMap<>();
+        /** Foods actually eaten, and the max-health points locked in when each group of 64 completed. */
+        public Map<String, Integer> foodEaten = new LinkedHashMap<>();
+        public Map<String, Double> foodHealth = new LinkedHashMap<>();
         public Set<String> unlockedAccessories = new LinkedHashSet<>();
         public Set<String> activeAccessories = new LinkedHashSet<>();
         public int pendingAccessoryDraws;

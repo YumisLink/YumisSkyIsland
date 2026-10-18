@@ -85,12 +85,12 @@ unbreakableBps = 4000
 [[grades]]
 id = "prismatic"
 name = "七彩星"
-# 售价×100。
-valueBps = 1000000
+# 售价×1000。
+valueBps = 10000000
 # 耐久×4。
 durabilityBps = 40000
-# 属性+250%。
-attributeBonusBps = 25000
+# 属性+500%。
+attributeBonusBps = 50000
 # 必定永久无限耐久。
 unbreakableBps = 10000
 

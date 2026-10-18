@@ -11,4 +11,12 @@ public final class FishingRules {
         return secondChance && roll.getAsBoolean();
     }
     public static double treasureMultiplier(boolean bonus) { return bonus ? 1.1 : 1; }
+    public static boolean allowsMedium(String medium, int fishermanLevel, int lavaLevel, int voidLevel) {
+        if (fishermanLevel < 0 || lavaLevel < 0 || voidLevel < 0) throw new IllegalArgumentException("钓鱼等级门槛不能为负");
+        return switch (medium == null ? "water" : medium) {
+            case "lava" -> fishermanLevel >= lavaLevel;
+            case "void" -> fishermanLevel >= voidLevel;
+            default -> true;
+        };
+    }
 }

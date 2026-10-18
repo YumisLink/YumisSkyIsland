@@ -14,14 +14,21 @@ import java.util.*;
 public final class ControlPanelScreen extends Screen {
     private static final int TOP = 106, FOOTER = 40, SLIDER_WIDTH = 120;
     private final ClientCatalog model;
+    private int frameOuterW, frameOuterH;
+    private float uiMetric = 1f;
+    private int drawnCell = ClientCatalog.DEFAULT_CELL;
     private final TaskPanel tasks;
     private final ResidentPanel residents;
     public void showResident(String id){selectSection(4);residents.select(id);}
     private SalePanel salePanel;
     private PriceEditorPanel priceEditor;
+    private ProductAddPanel productEditor;
     private boolean showAllConfigured;
     public void priceUpdated(com.google.gson.JsonObject data){if(priceEditor!=null)priceEditor.updated(data);}
     public void closePriceEditor(){priceEditor=null;model.priceBusy=false;model.configMessage="";}
+    public void closeProductEditor(){productEditor=null;model.priceBusy=false;model.configMessage="";}
+    public void productForm(com.google.gson.JsonObject data){if(productEditor!=null)productEditor.opened(data);}
+    public void productPreview(com.google.gson.JsonObject data){if(productEditor!=null)productEditor.preview(data);}
     private final StoreView[] stores={new StoreView(),new StoreView()};
     private static final class StoreView {String category="all",search="";int scroll,categoryScroll;}
     private final ConfirmDialog confirmation=new ConfirmDialog();
@@ -34,7 +41,7 @@ public final class ControlPanelScreen extends Screen {
         if(next<0||next>4||next==mode)return;
         if(mode<2){var saved=stores[mode];saved.category=category;saved.search=search;saved.scroll=scroll;saved.categoryScroll=categoryScroll;}
         if(model.saleDesired)cancelSale(true);
-        mode=next;detail=null;searchFocused=false;closePriceEditor();
+        mode=next;detail=null;searchFocused=false;closePriceEditor();closeProductEditor();
         if(next<2){var saved=stores[next];category=saved.category;search=saved.search;scroll=saved.scroll;categoryScroll=saved.categoryScroll;}
         lastRevision=-1;
     }
@@ -48,7 +55,7 @@ public final class ControlPanelScreen extends Screen {
     public int wrappedText(GuiGraphicsExtractor g,String label,int x,int y,int color,int maximum){var lines=font.split(Component.literal(label),Math.max(30,maximum));for(int i=0;i<lines.size();i++)g.text(font,lines.get(i),x,y+i*12,color,false);return lines.size()*12;}
     public void actionButton(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?UiTheme.BUTTON:UiTheme.DISABLED);text(g,label,x+5,y+7,active?0xFFE9EBEE:0xFF777F88,w-10);}
     public static boolean hit(double x,double y,int a,int b,int w,int h){return inside(x,y,a,b,w,h);}
-    @Override public void tick(){if(!model.editing()&&(showAllConfigured||priceEditor!=null)){showAllConfigured=false;closePriceEditor();invalidate();}if(model.saleDesired&&salePanel!=null)salePanel.tick();if(mode==2)tasks.tick();}
+    @Override public void tick(){if(!model.editing()&&(showAllConfigured||priceEditor!=null||productEditor!=null)){showAllConfigured=false;closePriceEditor();closeProductEditor();invalidate();}if(model.saleDesired&&salePanel!=null)salePanel.tick();if(mode==2)tasks.tick();}
 
     private List<ClientCatalog.Product> visible = List.of();
     private int mode, scroll, categoryScroll, lastRevision = -1, columns, left, rowHeight;
@@ -60,10 +67,10 @@ public final class ControlPanelScreen extends Screen {
     public ControlPanelScreen(ClientCatalog model) { super(Component.literal("控制面板")); this.model = model; this.tasks=new TaskPanel(this);this.residents=new ResidentPanel(this); }
     @Override public boolean isPauseScreen() { return false; }
     @Override public void extractBackground(GuiGraphicsExtractor graphics, int x, int y, float delta) { }
-    int sidebar() { return width < 500 ? 106 : 132; }
+    int sidebar() { return Math.max(72, Math.round((width < 500 ? 106 : 132) * uiMetric)); }
     private int sliderX() { return width - 137; }
     private int tabWidth(){return Math.max(30,Math.min(86,((width<500?width-20:sliderX()-20)/5)-4));}
-    private int iconSize() { return Math.min(48, Math.max(16, (model.cellSize - 8) / 16 * 16)); }
+    private int iconSize() { return Math.min(48, Math.max(16, (drawnCell - 8) / 16 * 16)); }
     private List<ClientCatalog.Category> categories() {
         var result = new ArrayList<ClientCatalog.Category>();
         result.add(new ClientCatalog.Category("all", "全部分类", net.minecraft.world.item.ItemStack.EMPTY));
@@ -80,9 +87,10 @@ public final class ControlPanelScreen extends Screen {
     }
     private void layout() {
         model.cellSize = Math.clamp(model.cellSize, ClientCatalog.MIN_CELL, ClientCatalog.MAX_CELL);
+        drawnCell = Math.max(32, Math.round(model.cellSize * uiMetric));
         int start = sidebar() + 12;
-        columns = Math.max(1, Math.min(30, (width - start - 12) / model.cellSize));
-        left = start + Math.max(0, (width - start - 12 - columns * model.cellSize) / 2);
+        columns = Math.max(1, Math.min(30, (width - start - 12) / drawnCell));
+        left = start + Math.max(0, (width - start - 12 - columns * drawnCell) / 2);
         rowHeight = iconSize() + 4 * font.lineHeight + 30;
         if (lastRevision != model.revision) {
             var items = new ArrayList<ClientCatalog.Product>();
@@ -115,6 +123,23 @@ public final class ControlPanelScreen extends Screen {
         text(g, label, x + 6, y + (h - font.lineHeight) / 2, 0xFFE9EBEE, w - 12);
     }
     @Override public void extractRenderState(GuiGraphicsExtractor g, int mx, int my, float delta) {
+        g.fill(0, 0, width, height, 0xB0000000);
+        UiFrame frame = openFrame(g);
+        try { drawPanel(g, mx - frame.ox, my - frame.oy, delta); }
+        finally { closeFrame(g); }
+    }
+    private UiFrame openFrame(GuiGraphicsExtractor g) {
+        UiFrame frame = UiFrame.of(width, height, model.uiSize);
+        frameOuterW = width; frameOuterH = height; uiMetric = frame.metric;
+        width = frame.width; height = frame.height;
+        if (g != null) { g.pose().pushMatrix(); g.pose().translate(frame.ox, frame.oy); }
+        return frame;
+    }
+    private void closeFrame(GuiGraphicsExtractor g) {
+        width = frameOuterW; height = frameOuterH; uiMetric = 1f;
+        if (g != null) g.pose().popMatrix();
+    }
+    private void drawPanel(GuiGraphicsExtractor g, int mx, int my, float delta) {
         if(mode<2)layout(); hovered = null;
         g.fill(0, 0, width, height, 0xB0000000); g.fill(6, 6, width - 6, 32, UiTheme.CARD);
         text(g, "YUMIS · 控制面板", 14, 14, 0xFFF3F5F7, width / 2 - 16);
@@ -133,9 +158,10 @@ public final class ControlPanelScreen extends Screen {
         g.fill(sliderX(), 53, sliderX() + SLIDER_WIDTH, 56, UiTheme.PANEL);
         int knob = sliderX() + (model.cellSize - ClientCatalog.MIN_CELL) * SLIDER_WIDTH / (ClientCatalog.MAX_CELL - ClientCatalog.MIN_CELL);
         g.fill(knob - 2, 49, knob + 3, 61, 0xFF79D9C2);}
-        if(mode>=2){if(mode==2)tasks.render(g,mx,my,delta);else if(mode==3)tasks.renderBounties(g,mx,my,delta);else residents.render(g,mx,my);drawMessages(g);drawConfirmation(g,mx,my);return;}
+        if(mode>=2){if(mode==2)tasks.render(g,mx,my,delta);else if(mode==3)tasks.renderBounties(g,mx,my,delta);else residents.render(g,mx,my);drawUiSize(g,mx,my);drawMessages(g);drawConfirmation(g,mx,my);return;}
         if(model.saleDesired){if(salePanel==null)salePanel=new SalePanel(this);salePanel.render(g,mx,my,delta);drawConfirmation(g,mx,my);return;}
         if(priceEditor!=null){priceEditor.render(g,mx,my,delta);drawConfirmation(g,mx,my);return;}
+        if(productEditor!=null){productEditor.render(g,mx,my,delta);drawConfirmation(g,mx,my);return;}
         int sx = sidebar() + 12;
         g.fill(sx, 72, width - 128, 96, searchFocused ? UiTheme.CARD : UiTheme.CARD);
         text(g, search.isEmpty() && !searchFocused ? "搜索物品名 / ID" : search + (searchFocused ? "_" : ""), sx + 6, 79, 0xFFDDDEE0, width - sx - 140);
@@ -157,7 +183,7 @@ public final class ControlPanelScreen extends Screen {
         g.enableScissor(left, TOP, width - 8, height - FOOTER);
         for (int index = first; index < last; index++) {
             var p = visible.get(index); int local = index - first;
-            int x = left + local % columns * model.cellSize, y = TOP + local / columns * rowHeight, w = model.cellSize - 2, h = rowHeight - 4;
+            int x = left + local % columns * drawnCell, y = TOP + local / columns * rowHeight, w = drawnCell - 2, h = rowHeight - 4;
             boolean hot = inside(mx, my, x, y, w, h), locked = !model.canBuy(p,mode,1);
             g.fill(x, y, x + w, y + h, hot ? UiTheme.HOVER : 0x731E1E1E);
             if (model.favorites(mode).contains(p.id())) g.fill(x, y, x + w, y + 2, 0xFFEBC36C);
@@ -175,10 +201,17 @@ public final class ControlPanelScreen extends Screen {
         g.disableScissor();
         if (visible.isEmpty()) text(g, model.products.isEmpty() ? "正在同步商品资料…" : "此分类暂无商品；每日物资按队伍等级随机抽取", left + 8, TOP + 18, 0xFFA0A7AC, width - left - 24);
         g.fill(6, height - 35, width - 6, height - 5, UiTheme.CARD);
-        button(g, "卖出背包材料", sidebar() + 12, height - 31, 120, 24, false, inside(mx, my, sidebar() + 12, height - 31, 120, 24));
-        text(g, model.editing()?"编辑模式 · 点击商品修改购入基价":"A 收藏 · 左键详情 · 右键买1 · 滚轮翻页", sidebar() + 144, height - 23, 0xFFADB4BA, width - sidebar() - 162);
+        drawUiSize(g, mx, my);
+        button(g, "卖出背包材料", sellX(), height - 31, 120, 24, false, inside(mx, my, sellX(), height - 31, 120, 24));
+        if(model.editing())button(g,"新增物品",sidebar()+140,height-31,88,24,false,inside(mx,my,sidebar()+140,height-31,88,24));
+        text(g, model.editing()?"点击商品修改购入基价":"A 收藏 · 左键详情 · 右键买1 · 滚轮翻页", sidebar()+(model.editing()?236:144), height - 23, 0xFFADB4BA, width - sidebar() - (model.editing()?248:162));
         if (detail != null) drawDetail(g, mx, my); else if (hovered != null) drawTooltip(g, mx, my, hovered);
         drawMessages(g);drawConfirmation(g,mx,my);
+    }
+    private int sellX() { return Math.max(sidebar() + 12, 86); }
+    private void drawUiSize(GuiGraphicsExtractor g, int mx, int my) {
+        String[] sizeLabels = {"小", "中", "大"}, sizeValues = {"small", "medium", "large"};
+        for (int i = 0; i < 3; i++) button(g, sizeLabels[i], 8 + i * 24, height - 31, 22, 16, model.uiSize.equals(sizeValues[i]), inside(mx, my, 8 + i * 24, height - 31, 22, 16));
     }
     private String compact(long value, int maxWidth) {
         long unit = value >= 100_000_000 ? 100_000_000 : value >= 10_000 ? 10_000 : 1;
@@ -243,8 +276,14 @@ public final class ControlPanelScreen extends Screen {
     }
     private void send(String action, String product, int count) { if (ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request(action, product, count)); }
     @Override public boolean mouseClicked(MouseButtonEvent e, boolean doubleClick) {
+        UiFrame frame = openFrame(null);
+        try { return click(frame.move(e), doubleClick); }
+        finally { closeFrame(null); }
+    }
+    private boolean click(MouseButtonEvent e, boolean doubleClick) {
         double x = e.x(), y = e.y();
         if(confirmation.click(this,x,y))return true;
+        if(uiSizeClick(x,y))return true;
         if(mode<2)layout();
         if (detail != null) {
             int w = Math.min(420, width - 24), h = Math.min(232, height - 20), dx = (width - w) / 2, dy = (height - h) / 2; int[] amounts = {1, 16, 64};
@@ -260,31 +299,48 @@ public final class ControlPanelScreen extends Screen {
         if(mode==3)return tasks.bountyClicked(e);
         if(model.saleDesired&&salePanel!=null)return salePanel.mouseClicked(e,doubleClick);
         if(priceEditor!=null)return priceEditor.click(e,doubleClick);
+        if(productEditor!=null)return productEditor.click(e,doubleClick);
         if(inside(x,y,width-120,72,108,24)){if(model.editing()&&mode==1)showAllConfigured=!showAllConfigured;else{model.showLockedItems=!model.showLockedItems;model.save();}invalidate();return true;}
         if (width>=500&&inside(x, y, sliderX() - 4, 47, SLIDER_WIDTH + 8, 18)) { dragSlider = true; slider(x); return true; }
         searchFocused = inside(x, y, sidebar() + 12, 72, width - sidebar() - 140, 24); if (searchFocused) return true;
         var categories = categories(); int ci = (int) ((y - 72) / 26) + categoryScroll;
         if (inside(x, y, 10, 72, sidebar() - 8, Math.max(1, (height - 160) / 26) * 26) && ci >= 0 && ci < categories.size()) { category = categories.get(ci).id(); invalidate(); return true; }
-        if (inside(x, y, sidebar() + 12, height - 31, 120, 24)) { showSale(); send("sell_inventory", "", 0); return true; }
+        if (inside(x, y, sellX(), height - 31, 120, 24)) { showSale(); send("sell_inventory", "", 0); return true; }
+        if(model.editing()&&inside(x,y,sidebar()+140,height-31,88,24)){productEditor=new ProductAddPanel(this);searchFocused=false;return true;}
         if (hovered != null) { if(model.editing()){priceEditor=new PriceEditorPanel(this,hovered.id());searchFocused=false;}else if (e.button() == 1) model.purchase(hovered,mode,(e.modifiers() & GLFW.GLFW_MOD_SHIFT) != 0 ? 64 : 1); else { detail = hovered; quantity = 1; } return true; }
         return super.mouseClicked(e, doubleClick);
     }
     private void slider(double x) { model.cellSize = Math.clamp(ClientCatalog.MIN_CELL + (int) Math.round((x - sliderX()) * (ClientCatalog.MAX_CELL - ClientCatalog.MIN_CELL) / SLIDER_WIDTH), ClientCatalog.MIN_CELL, ClientCatalog.MAX_CELL); scroll = 0; }
-    @Override public boolean mouseDragged(MouseButtonEvent e, double dx, double dy) { if (dragSlider) { slider(e.x()); return true; } return super.mouseDragged(e, dx, dy); }
+    private boolean uiSizeClick(double x, double y) {
+        String[] values = {"small", "medium", "large"};
+        for (int i = 0; i < 3; i++) if (inside(x, y, 8 + i * 24, height - 31, 22, 16)) { model.uiSize = values[i]; model.save(); return true; }
+        return false;
+    }
+    @Override public boolean mouseDragged(MouseButtonEvent e, double dx, double dy) {
+        UiFrame frame = openFrame(null);
+        try { MouseButtonEvent local = frame.move(e); if (dragSlider) { slider(local.x()); return true; } return super.mouseDragged(local, dx, dy); }
+        finally { closeFrame(null); }
+    }
     @Override public boolean mouseReleased(MouseButtonEvent e) { if (dragSlider) { dragSlider = false; model.save(); return true; } return super.mouseReleased(e); }
-    @Override public boolean mouseScrolled(double x, double y, double sx, double sy) { if(confirmation.active())return true;if(mode==4)return residents.scrolled(sy);if(mode==2)return tasks.scrolled(x,y,sy);if(mode==3)return tasks.bountyScrolled(sy);if(model.saleDesired&&salePanel!=null)return salePanel.mouseScrolled(x,y,sx,sy);if(priceEditor!=null){priceEditor.scroll(sy);return true;} if (detail != null) return true; if (x < sidebar() + 8) categoryScroll -= Math.signum(sy); else scroll -= Math.signum(sy) * 3; layout(); return true; }
+    @Override public boolean mouseScrolled(double x, double y, double sx, double sy) {
+        UiFrame frame = openFrame(null);
+        try { return scrollAt(x - frame.ox, y - frame.oy, sx, sy); }
+        finally { closeFrame(null); }
+    }
+    private boolean scrollAt(double x, double y, double sx, double sy) { if(confirmation.active())return true;if(mode==4)return residents.scrolled(sy);if(mode==2)return tasks.scrolled(x,y,sy);if(mode==3)return tasks.bountyScrolled(sy);if(model.saleDesired&&salePanel!=null)return salePanel.mouseScrolled(x,y,sx,sy);if(priceEditor!=null){priceEditor.scroll(sy);return true;}if(productEditor!=null){productEditor.scroll(sy);return true;} if (detail != null) return true; if (x < sidebar() + 8) categoryScroll -= Math.signum(sy); else scroll -= Math.signum(sy) * 3; layout(); return true; }
     @Override public boolean keyPressed(KeyEvent e) {
         if(confirmation.key(e.key()))return true;
         if(mode==4&&residents.key(e))return true;
         if(mode==2&&tasks.keyPressed(e))return true;
         if(priceEditor!=null){if(e.key()==GLFW.GLFW_KEY_ESCAPE)closePriceEditor();else priceEditor.key(e);return true;}
+        if(productEditor!=null){if(e.key()==GLFW.GLFW_KEY_ESCAPE)closeProductEditor();else productEditor.key(e);return true;}
         if (e.key() == GLFW.GLFW_KEY_ESCAPE) {if(model.saleDesired){cancelSale(true);return true;} if (detail != null) { detail = null; return true; } if (searchFocused) { searchFocused = false; return true; } onClose(); return true; }
         if (searchFocused) { if (e.key() == GLFW.GLFW_KEY_BACKSPACE && !search.isEmpty()) { search = search.substring(0, search.offsetByCodePoints(search.length(), -1)); invalidate(); } return true; }
         if (e.key() == GLFW.GLFW_KEY_A && hovered != null) { model.favorite(hovered.id(),mode); invalidate(); return true; }
         return super.keyPressed(e);
     }
-    @Override public boolean charTyped(CharacterEvent e) {if(mode==4&&residents.typed(e))return true;if(priceEditor!=null)return priceEditor.typed(e);if(mode==2&&tasks.charTyped(e))return true; if (searchFocused && e.isAllowedChatCharacter() && search.length() < 80) { search += e.codepointAsString(); invalidate(); return true; } return super.charTyped(e); }
-    @Override public boolean preeditUpdated(PreeditEvent e){if(priceEditor!=null)return priceEditor.preedit(e);if(mode==2&&tasks.preedit(e))return true;return super.preeditUpdated(e);}
+    @Override public boolean charTyped(CharacterEvent e) {if(mode==4&&residents.typed(e))return true;if(priceEditor!=null)return priceEditor.typed(e);if(productEditor!=null)return productEditor.typed(e);if(mode==2&&tasks.charTyped(e))return true; if (searchFocused && e.isAllowedChatCharacter() && search.length() < 80) { search += e.codepointAsString(); invalidate(); return true; } return super.charTyped(e); }
+    @Override public boolean preeditUpdated(PreeditEvent e){if(priceEditor!=null)return priceEditor.preedit(e);if(productEditor!=null)return productEditor.preedit(e);if(mode==2&&tasks.preedit(e))return true;return super.preeditUpdated(e);}
     @Override public void onClose(){
         if(tasks.hasDraft()){confirm("关闭控制面板将放弃未保存的任务编辑。",()->{tasks.discard();closeNow();});return;}
         closeNow();

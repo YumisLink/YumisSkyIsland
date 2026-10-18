@@ -38,7 +38,7 @@ public final class ClientCatalog {
     public final List<Category> tabs = new ArrayList<>();
     public final Set<String> permanentFavorites = new LinkedHashSet<>(), specialFavorites = new LinkedHashSet<>();
     private final Set<String> importedFavorites = new LinkedHashSet<>();
-    public boolean showLockedItems, saleDesired, taskBusy;
+    public boolean showLockedItems, saleDesired, taskBusy, genshinMode;
     public boolean lotteryBusy;
     public JsonObject lastLotteryResult=new JsonObject();
     public long lotteryRequestSequence=-1;
@@ -59,8 +59,9 @@ public final class ClientCatalog {
     public List<BlockPos> veinPreview=List.of();
     public JsonObject itemRarities=new JsonObject(),sale=new JsonObject();
     public String lastError="";
-    public static final int MIN_CELL = 40, MAX_CELL = 96, DEFAULT_CELL = 48;
-    public int cellSize = DEFAULT_CELL, revision;
+    public static final int MIN_CELL = 40, MAX_CELL = 96, DEFAULT_CELL = 48, DEFAULT_ACCESSORY_CELL = 64;
+    public int cellSize = DEFAULT_CELL, accessoryCellSize = DEFAULT_ACCESSORY_CELL, revision;
+    public String uiSize = "medium";
     private long saleDivisor = 100, minimumBaseCoins = 100, regularBuyMultiplierBps=25000;
     public long prefabAmmunitionPrice=1000;
     public int prefabAmmunitionCredits=1000;
@@ -84,6 +85,8 @@ public final class ClientCatalog {
             }
             JsonObject data=loadPreferences();
             cellSize=Math.clamp(data.get("cellSize").getAsInt(),MIN_CELL,MAX_CELL);
+            accessoryCellSize=data.has("accessoryCellSize")?Math.clamp(data.get("accessoryCellSize").getAsInt(),MIN_CELL,MAX_CELL):DEFAULT_ACCESSORY_CELL;
+            uiSize=data.has("uiSize")&&("small".equals(data.get("uiSize").getAsString())||"large".equals(data.get("uiSize").getAsString()))?data.get("uiSize").getAsString():"medium";
             showLockedItems=data.has("showLockedItems")&&data.get("showLockedItems").getAsBoolean();
             if(data.has("permanentFavorites"))for(var id:data.getAsJsonArray("permanentFavorites"))permanentFavorites.add(id.getAsString());
             if(data.has("specialFavorites"))for(var id:data.getAsJsonArray("specialFavorites"))specialFavorites.add(id.getAsString());
@@ -141,7 +144,8 @@ public final class ClientCatalog {
                 if(tabs.isEmpty())buildTabs();importFavorites();scoring=rules.getAsJsonObject("scoring");scoringSettings=score;
                 quality=rules.getAsJsonObject("quality");enchantments=rules.getAsJsonObject("enchantments");itemRarities=rules.getAsJsonObject("itemRarities");saleDivisor=rules.get("saleDivisor").getAsLong();minimumBaseCoins=rules.get("minimumBaseCoins").getAsLong();regularBuyMultiplierBps=rules.get("regularBuyMultiplierBps").getAsLong();
                 if(rules.has("prefabAmmunitionPrice"))prefabAmmunitionPrice=rules.get("prefabAmmunitionPrice").getAsLong();if(rules.has("prefabAmmunitionCredits"))prefabAmmunitionCredits=rules.get("prefabAmmunitionCredits").getAsInt();
-                Money.currencyName(rules.get("genshinMode").getAsBoolean()?"摩拉":"金币");if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);
+                genshinMode=rules.has("genshinMode")&&rules.get("genshinMode").getAsBoolean();
+                Money.currencyName(genshinMode?"摩拉":"金币");if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);
                 var movedBalls=new ArrayList<String>();if(specialFavorites.removeIf(id->{if(!id.startsWith("yumis_sky_island:biome_ball_"))return false;movedBalls.add(id);return true;})){permanentFavorites.addAll(movedBalls);save();}
                 List<QuotaCurve.Tier> tiers=new ArrayList<>();for(JsonElement e:rules.getAsJsonArray("quotas")){var t=e.getAsJsonObject();tiers.add(new QuotaCurve.Tier(t.get("upToUnits").isJsonNull()?null:Rational.of(t.get("upToUnits").getAsLong()),t.get("saleMultiplierBps").getAsInt()));}quotaCurve=new QuotaCurve(tiers);updateCreativeBlueprints(rules);revision++;
             }
@@ -273,7 +277,7 @@ public final class ClientCatalog {
     public void save(){
         try{
             JsonObject data=Files.exists(preferences)?loadPreferences():new JsonObject();
-            data.addProperty("layoutVersion",3);data.addProperty("cellSize",cellSize);data.addProperty("showLockedItems",showLockedItems);
+            data.addProperty("layoutVersion",3);data.addProperty("cellSize",cellSize);data.addProperty("accessoryCellSize",accessoryCellSize);data.addProperty("uiSize",uiSize);data.addProperty("showLockedItems",showLockedItems);
             JsonArray regular=new JsonArray(),special=new JsonArray();permanentFavorites.forEach(regular::add);specialFavorites.forEach(special::add);
             data.add("permanentFavorites",regular);data.add("specialFavorites",special);
             cn.yumis.skyisland.config.TomlConfigIO.write(preferences,data);
@@ -310,9 +314,15 @@ public final class ClientCatalog {
         JsonObject data=JsonParser.parseString(json).getAsJsonObject();configBusy=false;priceBusy=false;
         if(data.get("kind").getAsString().equals("error")){configMessage=data.get("message").getAsString();lastError=configMessage;return;}
         if(!editing())return;
-        configMessage=data.has("saved")&&data.get("saved").getAsBoolean()?"已保存并立即生效":"";
-        if(data.get("kind").getAsString().equals("group")&&configWanted){configState=data;var mc=Minecraft.getInstance();if(mc.gui.screen() instanceof LiveConfigScreen screen)screen.updated();else mc.gui.setScreen(new LiveConfigScreen(this));}
-        if(data.get("kind").getAsString().equals("price")&&Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.priceUpdated(data);
+        boolean saved=data.has("saved")&&data.get("saved").getAsBoolean();
+        if(saved)lastError="";
+        configMessage=saved?"已保存并立即生效":"";
+        String kind=data.get("kind").getAsString();
+        if(kind.equals("group")&&configWanted){configState=data;var mc=Minecraft.getInstance();if(mc.gui.screen() instanceof LiveConfigScreen screen)screen.updated();else mc.gui.setScreen(new LiveConfigScreen(this));}
+        if(!(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel))return;
+        if(kind.equals("price"))panel.priceUpdated(data);
+        if(kind.equals("product"))panel.productForm(data);
+        if(kind.equals("product_preview"))panel.productPreview(data);
     }
     public void task(String action,JsonObject data){
         if(net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(cn.yumis.skyisland.network.TaskPayloads.Request.TYPE))

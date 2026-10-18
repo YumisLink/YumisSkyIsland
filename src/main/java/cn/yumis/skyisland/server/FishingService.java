@@ -104,6 +104,7 @@ public final class FishingService {
         SkyServer runtime=SkyServer.get(level.getServer());if(runtime==null)return;
         String biome=level.getBiome(hook.blockPosition()).unwrapKey().map(key->key.identifier().getPath()).orElse("plains");
         String medium=hook instanceof FishingMediumAccess access?access.yumis$medium():"water";
+        if(medium.equals("water")&&biome.equals("deep_dark")&&player.getRandom().nextDouble()<0.001){loot.clear();summonWarden(level,hook,player);return;}
         // Half of successful water catches use the regional pool. Tackle rolls the vanilla half once more.
         if(!FishingRules.regionalCatch(medium,AccessoryService.tackle(runtime,player),player.getRandom()::nextBoolean))return;
         ItemStack selected;
@@ -114,11 +115,25 @@ public final class FishingService {
         loot.clear();loot.add(selected);
     }
     private static ItemStack ordinary(ServerPlayer player,String biome,String medium){
-        Item fish=medium.equals("lava")?ModItems.FISH.get("lava_eel"):medium.equals("void")?ModItems.FISH.get("void_fish"):
-            biome.contains("desert")?ModItems.FISH.get("desert_lungfish"):
+        if(medium.equals("lava"))return new ItemStack(ModItems.FISH.get("lava_eel"));
+        if(medium.equals("void"))return new ItemStack(ModItems.FISH.get("void_fish"));
+        if((biome.equals("jungle")||biome.equals("sparse_jungle")||biome.equals("bamboo_jungle"))){
+            if(player.getRandom().nextDouble()<0.08)return new ItemStack(Items.BAMBOO);
+            if(player.getRandom().nextDouble()<0.05)return new ItemStack(Items.COCOA_BEANS);
+        }
+        Item fish=biome.contains("desert")?ModItems.FISH.get("desert_lungfish"):
             biome.contains("frozen")||biome.contains("snowy")||biome.contains("ice")?ModItems.FISH.get("frost_trout"):
             biome.equals("mushroom_fields")?ModItems.FISH.get("mushroom_fish"):ModItems.FISH.get("sky_carp");
         return new ItemStack(fish);
+    }
+    private static void summonWarden(ServerLevel level,FishingHook hook,ServerPlayer player){
+        var warden=net.minecraft.world.entity.EntityTypes.WARDEN.create(level,net.minecraft.world.entity.EntitySpawnReason.TRIGGERED);
+        if(warden==null)return;
+        warden.snapTo(hook.getX(),hook.getY(),hook.getZ(),player.getYRot(),0);
+        warden.finalizeSpawn(level,level.getCurrentDifficultyAt(warden.blockPosition()),net.minecraft.world.entity.EntitySpawnReason.TRIGGERED,null);
+        ((net.fabricmc.fabric.api.attachment.v1.AttachmentTarget)warden).setAttached(YumisSkyIsland.FISHED_WARDEN,true);
+        warden.increaseAngerAt(player,150,true);
+        level.addFreshEntity(warden);
     }
     /** The box rolls at opening, using current server settings and the opener's current power. */
     public static ItemStack openBox(SkyServer runtime,ServerPlayer player,BiomeTreasureBox.Kind kind){
@@ -209,9 +224,10 @@ public final class FishingService {
             case "meadow", "wooded_badlands" -> pool.add(drop(Items.OAK_SAPLING,20));
             case "windswept_forest" -> {pool.add(drop(Items.OAK_SAPLING,14));pool.add(drop(Items.SPRUCE_SAPLING,14));}
             case "lush_caves" -> {pool.add(drop(Items.AZALEA,18));pool.add(drop(Items.FLOWERING_AZALEA,8));}
-            case "snowy_plains", "ice_spikes", "frozen_ocean", "deep_frozen_ocean", "frozen_river", "frozen_peaks", "jagged_peaks" -> {pool.add(drop(Items.BLUE_ICE,9));pool.add(drop(Items.PACKED_ICE,20));pool.add(drop(Items.SPRUCE_SAPLING,12));}
+            case "frozen_ocean", "deep_frozen_ocean" -> {pool.add(drop(Items.BLUE_ICE,9));pool.add(drop(Items.PACKED_ICE,20));pool.add(drop(Items.SPRUCE_SAPLING,12));oceanRares(pool);}
+            case "snowy_plains", "ice_spikes", "frozen_river", "frozen_peaks", "jagged_peaks" -> {pool.add(drop(Items.BLUE_ICE,9));pool.add(drop(Items.PACKED_ICE,20));pool.add(drop(Items.SPRUCE_SAPLING,12));}
             case "mushroom_fields" -> {pool.add(drop(Items.RED_MUSHROOM,16));pool.add(drop(Items.BROWN_MUSHROOM,16));pool.add(new Drop("mushroom_fish",ModItems.FISH.get("mushroom_fish"),15,false));}
-            case "warm_ocean", "lukewarm_ocean", "deep_lukewarm_ocean" -> {pool.add(drop(Items.TUBE_CORAL,10));pool.add(new Drop("coral_fragment",ModItems.FISHING_MATERIALS.get("coral_fragment"),18,false));}
+            case "warm_ocean", "lukewarm_ocean", "deep_lukewarm_ocean" -> {pool.add(drop(Items.TUBE_CORAL,10));pool.add(new Drop("coral_fragment",ModItems.FISHING_MATERIALS.get("coral_fragment"),18,false));oceanRares(pool);}
             case "warped_forest" -> pool.add(drop(Items.WARPED_FUNGUS,26));
             case "crimson_forest" -> pool.add(drop(Items.CRIMSON_FUNGUS,26));
             case "basalt_deltas", "nether_wastes" -> pool.add(new Drop("ash_pearl",ModItems.FISHING_MATERIALS.get("ash_pearl"),17,false));
@@ -229,12 +245,13 @@ public final class FishingService {
             case "windswept_gravelly_hills" -> {pool.add(drop(Items.GRAVEL,22));pool.add(drop(Items.FLINT,16));pool.add(drop(Items.SPRUCE_SAPLING,12));pool.add(drop(Items.EMERALD,6));}
             case "windswept_hills" -> {pool.add(drop(Items.STONE,20));pool.add(drop(Items.GRAVEL,14));pool.add(drop(Items.RAW_IRON,12));pool.add(drop(Items.EMERALD,6));}
             default -> {
-                if(biome.contains("ocean"))pool.add(drop(Items.PRISMARINE_SHARD,18));
+                if(biome.contains("ocean")){pool.add(drop(Items.PRISMARINE_SHARD,18));oceanRares(pool);}
                 else if(biome.contains("badlands"))pool.add(drop(Items.RED_SAND,25));
             }
         }
         return pool;
     }
+    private static void oceanRares(List<Drop> pool){pool.add(drop(Items.HEART_OF_THE_SEA,1));pool.add(drop(Items.DOLPHIN_SPAWN_EGG,1));}
     private static void addSoul(List<Drop> pool){pool.add(drop(Items.SOUL_SAND,24));pool.add(drop(Items.SOUL_SOIL,20));pool.add(drop(Items.BONE,14));pool.add(drop(Items.GHAST_TEAR,6));}
     private static Drop drop(Item item,int weight){return new Drop(BuiltInRegistries.ITEM.getKey(item).toString(),item,weight,false);}
     public static boolean validLava(ServerLevel level,BlockPos pos){

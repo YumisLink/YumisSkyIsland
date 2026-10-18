@@ -75,9 +75,11 @@ public final class BiomeTreasureBox extends Item {
         Component boxName=held.getHoverName();
         if(!player.isCreative())held.shrink(1);
         List<ItemStack> parts=runtime.professions.qualityParts(player,"fisherman",reward);
+        // Inventory insertion zeroes the count. 26.2 then reports that stack as air, so name it first.
+        Component announcement=opened(boxName,parts,runtime.config.object("products/quality.toml"));
         for(ItemStack part:parts)
             if(!player.getInventory().add(part))player.drop(part,false);
-        SkyServer.tell(player,opened(boxName,parts,runtime.config.object("products/quality.toml")));
+        SkyServer.tell(player,announcement);
         return InteractionResult.SUCCESS;
     }
     /** Chat body without the shared prefix. Quality is named only above ordinary; enchantments are written out. */

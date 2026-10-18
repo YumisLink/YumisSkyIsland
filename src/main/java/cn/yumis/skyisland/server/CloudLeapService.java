@@ -44,8 +44,10 @@ public final class CloudLeapService {
 
         // Use yaw only, so looking down or straight up never reverses the leap.
         double yaw = Math.toRadians(player.getYRot());
+        double forward = FORWARD_SPEED;
+        if (!vertical && runtime != null && AccessoryService.active(runtime, player, "shadow_rush")) forward *= 1.35;
         Vec3 velocity = vertical ? new Vec3(0, VERTICAL_SPEED, 0)
-                : new Vec3(-Math.sin(yaw) * FORWARD_SPEED, UPWARD_SPEED, Math.cos(yaw) * FORWARD_SPEED);
+                : new Vec3(-Math.sin(yaw) * forward, UPWARD_SPEED, Math.cos(yaw) * forward);
         player.stopFallFlying();
         player.setDeltaMovement(velocity);
         player.setOnGround(false);
@@ -54,6 +56,7 @@ public final class CloudLeapService {
         player.hurtMarked = true;
         player.connection.resetFlyingTicks();
         player.addEffect(new MobEffectInstance(ModEffects.CLOUD_STEP, PROTECTION_TICKS, 0, false, false, true));
+        if (runtime != null) runtime.progression.action(player, "leap", "cloud_leap", 1, "", "");
         return true;
     }
 }
