@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.server;
 import cn.yumis.skyisland.config.GameConfig;
+import cn.yumis.skyisland.config.ProfessionExperienceSettings;
 import cn.yumis.skyisland.core.CropMutation;
 import cn.yumis.skyisland.core.ProfessionRules;
 import cn.yumis.skyisland.core.HarvestContext;
@@ -164,6 +165,8 @@ public final class ProfessionService {
     }
     private void award(ServerPlayer player,String profession,BigInteger amount){
         if(amount.signum()<=0)return;
+        int efficiency=ProfessionExperienceSettings.multiplierBps(runtime.config.object("products/professions.toml"),profession);
+        if(efficiency==0)return;
         boolean fruit = ModItems.FRUITS.containsKey(profession) && player.getRandom().nextInt(10000) < runtime.config.object("products/profession_shop.toml").get("fruitDropBps").getAsInt();
         UUID id=player.getUUID();
         int multiplier=runtime.residents.xpBps(runtime.parties.active(player.getUUID()),profession);
@@ -172,12 +175,15 @@ public final class ProfessionService {
             BigInteger[] awarded={amount};
             runtime.change(null,state->{
                 IslandState.Person person=PartyService.person(state,player);before[0]=level(person,profession);
-                BigInteger scaled=amount.multiply(BigInteger.valueOf(multiplier)).add(BigInteger.valueOf(person.residentXpRemainders.getOrDefault(profession,0)));BigInteger[] parts=scaled.divideAndRemainder(BigInteger.valueOf(10000));awarded[0]=parts[0];person.residentXpRemainders.put(profession,parts[1].intValueExact());
+                int remainder=person.residentXpRemainders.getOrDefault(profession,0)*ProfessionRules.EXPERIENCE_SCALE+person.professionXpSubRemainders.getOrDefault(profession,0);
+                var result=ProfessionRules.scaleExperience(amount,efficiency,multiplier,remainder);awarded[0]=result.amount();
+                person.residentXpRemainders.put(profession,result.remainder()/ProfessionRules.EXPERIENCE_SCALE);
+                person.professionXpSubRemainders.put(profession,result.remainder()%ProfessionRules.EXPERIENCE_SCALE);
                 person.professionXp.merge(profession,awarded[0],BigInteger::add);
                 person.professionCoins.merge(profession,awarded[0],BigInteger::add);
             },()->{
                 JsonObject event=new JsonObject();event.addProperty("profession",profession);event.addProperty("amount",awarded[0].toString());
-                runtime.send(player,"profession_xp",event);
+                if(awarded[0].signum()>0)runtime.send(player,"profession_xp",event);
                 int after=level(runtime.state().players.get(id),profession);
                 if(profession.equals("fisherman"))FishingService.applyLevel(runtime,player);
                 if(profession.equals("farmer")||profession.equals("miner"))ProfessionAttributes.apply(runtime,player,runtime.state().players.get(id));

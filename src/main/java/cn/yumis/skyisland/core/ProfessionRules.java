@@ -7,6 +7,20 @@ import java.util.function.IntUnaryOperator;
 public final class ProfessionRules {
     private ProfessionRules() {}
 
+    public static final int EXPERIENCE_SCALE = 10000;
+    public static final int EXPERIENCE_REMAINDER_SCALE = EXPERIENCE_SCALE * EXPERIENCE_SCALE;
+    public record ExperienceAward(BigInteger amount, int remainder) {}
+
+    /** Multiply efficiency and resident effects before rounding; retain the exact fractional experience. */
+    public static ExperienceAward scaleExperience(BigInteger amount, int efficiencyBps, int residentBps, int remainder) {
+        if (amount.signum() < 0 || efficiencyBps < 0 || residentBps < 0 || remainder < 0 || remainder >= EXPERIENCE_REMAINDER_SCALE)
+            throw new IllegalArgumentException("Invalid profession experience multiplier or remainder");
+        BigInteger scaled = amount.multiply(BigInteger.valueOf(efficiencyBps)).multiply(BigInteger.valueOf(residentBps))
+            .add(BigInteger.valueOf(remainder));
+        BigInteger[] parts = scaled.divideAndRemainder(BigInteger.valueOf(EXPERIENCE_REMAINDER_SCALE));
+        return new ExperienceAward(parts[0], parts[1].intValueExact());
+    }
+
     public static BigInteger required(int level, long base, long growth, long laterGrowth) {
         if (level < 0 || base < 1 || growth < 0 || laterGrowth < 0) throw new IllegalArgumentException("Invalid profession curve");
         BigInteger n = BigInteger.valueOf(level), g = BigInteger.valueOf(growth), b = BigInteger.valueOf(base);

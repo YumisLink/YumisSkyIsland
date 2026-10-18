@@ -185,6 +185,7 @@ public final class GameConfig {
     }
     private void validateProfessions() throws IOException {
         JsonObject profession=object("products/professions.toml"),curve=profession.getAsJsonObject("xpCurve");
+        ProfessionExperienceSettings.validate(profession);
         if(curve.get("perLevelBase").getAsLong()<1||curve.get("perLevelGrowth").getAsLong()<0||curve.get("post100Growth").getAsLong()<0)
             throw new IOException("职业经验曲线必须为非负增长且首级至少需要1点经验");
         for(String key:List.of("lavaFishingXpMultiplier","voidFishingXpMultiplier")){

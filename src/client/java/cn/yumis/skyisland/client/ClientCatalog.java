@@ -155,7 +155,7 @@ public final class ClientCatalog {
                 if(saleDesired){sale=data.getAsJsonObject();lastError="";if(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.saleUpdated();revision++;}
             }
             case "sale_done" -> {sale=new JsonObject();if(saleDesired&&Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.cancelSale(false);saleDesired=false;revision++;}
-            case "request_error" -> {lastError=data.getAsJsonObject().get("message").getAsString();lotteryBusy=false;if(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.saleFailed();revision++;}
+            case "request_error" -> {lastError=data.getAsJsonObject().get("message").getAsString();lotteryBusy=false;if(Minecraft.getInstance().gui.screen() instanceof ControlPanelScreen panel)panel.saleFailed();if(data.getAsJsonObject().has("action")&&data.getAsJsonObject().get("action").getAsString().equals("vein_limit")&&Minecraft.getInstance().gui.screen() instanceof PlayerSettingsScreen settings)settings.failed(lastError);revision++;}
             case "lottery_result" -> {
                 lastLotteryResult=data.getAsJsonObject().deepCopy();lotteryBusy=false;lastError="";revision++;
                 String action=lastLotteryResult.has("action")?lastLotteryResult.get("action").getAsString():"";
@@ -175,6 +175,7 @@ public final class ClientCatalog {
             case "resident_notice" -> events.receive(data.getAsJsonObject().get("text").getAsString(),0xFF9ADBD1);
             case "profession_open" -> Minecraft.getInstance().gui.setScreen(new ProfessionScreen(this));
             case "accessory_open" -> Minecraft.getInstance().gui.setScreen(new AccessoryScreen(this));
+            case "vein_settings_saved" -> {JsonObject settings=data.getAsJsonObject();state.add("veinMining",settings.deepCopy());lastError="";if(Minecraft.getInstance().gui.screen() instanceof PlayerSettingsScreen screen)screen.saved(settings);revision++;}
             case "vein_preview" -> {var positions=new ArrayList<BlockPos>();for(var value:data.getAsJsonObject().getAsJsonArray("blocks")){var point=value.getAsJsonArray();positions.add(new BlockPos(point.get(0).getAsInt(),point.get(1).getAsInt(),point.get(2).getAsInt()));}veinPreview=List.copyOf(positions);}
             default -> { }
         }

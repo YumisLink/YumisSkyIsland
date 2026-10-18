@@ -26,6 +26,25 @@ cropFruitBps = 2
 # 每次符合名单的猎物击杀经验。
 successfulHunterKillXp = 6
 
+# 各职业经验获取效率倍率：1=原速，2=双倍，0.5=一半，0=停止该职业经验与积分获取。
+# 范围0～1000，最多4位小数。作用于后续真实行动，含单品baseXp；与等级折减、钓鱼地区及居民效果相乘。
+# 不足1点的余数按个人、职业持久保存；职业积分仍与实际职业经验等量增加。管理员Ctrl＋】→职业经验保存后立即生效。
+[experienceMultipliers]
+# 铁匠
+blacksmith = 1.0
+# 厨师
+chef = 1.0
+# 农夫
+farmer = 1.0
+# 猎人
+hunter = 1.0
+# 渔夫
+fisherman = 1.0
+# 矿工
+miner = 1.0
+# 战斗大师
+battle_master = 1.0
+
 [xpCurve]
 # 每级基础经验要求；非负整数
 perLevelBase = 100

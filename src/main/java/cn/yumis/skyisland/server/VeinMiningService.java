@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.server;
 
+import cn.yumis.skyisland.core.VeinMiningRules;
 import cn.yumis.skyisland.world.VoidWorlds;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -29,7 +30,21 @@ public final class VeinMiningService {
     public void setHeld(ServerPlayer player,boolean value){if(value)held.add(player.getUUID());else held.remove(player.getUUID());sendPreview(player,List.of());}
     public boolean held(ServerPlayer player){return held.contains(player.getUUID());}
     public boolean breaking(ServerPlayer player){return breaking.contains(player.getUUID());}
-    public int cap(ServerPlayer player){return AccessoryService.active(runtime,player,"chain_hammer")?16:8;}
+    private int minerLevel(ServerPlayer player){return runtime.professions.level(runtime.state().players.get(player.getUUID()),"miner");}
+    private int requestedLimit(ServerPlayer player){var person=runtime.state().players.get(player.getUUID());return person==null?VeinMiningRules.MAX_LIMIT:person.veinMiningLimit;}
+    public int cap(ServerPlayer player){return VeinMiningRules.effectiveLimit(minerLevel(player),AccessoryService.active(runtime,player,"chain_hammer"),requestedLimit(player));}
+    public JsonObject settings(ServerPlayer player){
+        int level=minerLevel(player);boolean hammer=AccessoryService.active(runtime,player,"chain_hammer");int requested=requestedLimit(player);
+        JsonObject data=new JsonObject();data.addProperty("minerLevel",level);data.addProperty("chainHammer",hammer);data.addProperty("limit",requested);
+        data.addProperty("unlocked",VeinMiningRules.unlockedLimit(level,hammer));data.addProperty("effective",VeinMiningRules.effectiveLimit(level,hammer,requested));return data;
+    }
+    public void setLimit(ServerPlayer player,int requested){
+        VeinMiningRules.checkedLimit(requested);
+        if(!runtime.store.available())throw new IllegalStateException("数据正在保存，请稍后重试");
+        runtime.tryChange(player,state->PartyService.person(state,player).veinMiningLimit=requested,()->{
+            lastPreview.remove(player.getUUID());sendPreview(player,List.of());runtime.send(player,"vein_settings_saved",settings(player));
+        },error->{JsonObject data=new JsonObject();data.addProperty("action","vein_limit");data.addProperty("message","连锁设置保存失败，请稍后重试");runtime.send(player,"request_error",data);});
+    }
     public void tick(){
         if(runtime.tick%4!=0)return;
         for(ServerPlayer player:runtime.server.getPlayerList().getPlayers()){

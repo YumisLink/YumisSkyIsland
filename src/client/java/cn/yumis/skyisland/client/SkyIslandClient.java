@@ -41,31 +41,45 @@ public final class SkyIslandClient implements ClientModInitializer {
         KeyMapping vein = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.vein",InputConstants.KEY_GRAVE,category));
         KeyMapping holdAttack = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.hold_attack",InputConstants.KEY_EQUALS,category));
         final boolean[] holdAttackEnabled={false};
+        final boolean[] holdAttackVeinEnabled={false};
+        final boolean[] veinHeld={false};
         KeyMapping cloudLeap = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.cloud_leap",InputConstants.KEY_C,category));
         ClientPlayNetworking.registerGlobalReceiver(ShopPayloads.Snapshot.TYPE,(payload,context) -> CATALOG.receive(payload.json()));
         ClientPlayNetworking.registerGlobalReceiver(TaskPayloads.Snapshot.TYPE,(payload,context) -> CATALOG.receiveTasks(payload.json()));
         ClientPlayNetworking.registerGlobalReceiver(cn.yumis.skyisland.network.ConfigEditPayloads.Snapshot.TYPE,(payload,context)->CATALOG.receiveConfig(payload.json()));
-        ClientPlayConnectionEvents.DISCONNECT.register((handler,client) -> CATALOG.clearConnection());
+        ClientPlayConnectionEvents.DISCONNECT.register((handler,client) -> {
+            if(holdAttackEnabled[0])client.options.keyAttack.setDown(false);
+            holdAttackEnabled[0]=false;
+            holdAttackVeinEnabled[0]=false;
+            veinHeld[0]=false;
+            CATALOG.clearConnection();
+        });
         ClientTickEvents.END_CLIENT_TICK.register(client -> { while (shop.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("open","",0)); });
         ClientTickEvents.END_CLIENT_TICK.register(client -> { while (professions.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("profession_open","",0)); });
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (accessories.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("accessory_open","",0));
             while (enderChest.consumeClick()) if (client.player != null && client.gui.screen() == null && !client.player.isSpectator() && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("ender_chest","",0));
         });
-        final boolean[] veinHeld={false};
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            boolean next=client.player!=null&&client.gui.screen()==null&&vein.isDown();
-            if(next!=veinHeld[0]){veinHeld[0]=next;CATALOG.veinPreview=java.util.List.of();if(ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE))ClientPlayNetworking.send(new ShopPayloads.Request("vein","",next?1:0));}
-        });
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             var window=client.getWindow();
+            boolean playing=client.player!=null&&client.gui.screen()==null;
+            boolean veinKeyHeld=playing&&vein.isDown();
             boolean modifiers=InputConstants.isKeyDown(window,InputConstants.KEY_LCONTROL)||InputConstants.isKeyDown(window,InputConstants.KEY_RCONTROL);
             modifiers&=InputConstants.isKeyDown(window,InputConstants.KEY_LALT)||InputConstants.isKeyDown(window,InputConstants.KEY_RALT);
-            while(holdAttack.consumeClick()) if(modifiers && client.player!=null){
+            while(holdAttack.consumeClick()) if(modifiers && playing){
                 holdAttackEnabled[0]=!holdAttackEnabled[0];
-                client.player.sendOverlayMessage(net.minecraft.network.chat.Component.literal(holdAttackEnabled[0]?"自动挖掘：开":"自动挖掘：关"));
+                holdAttackVeinEnabled[0]=holdAttackEnabled[0]&&veinKeyHeld;
+                if(!holdAttackEnabled[0])client.options.keyAttack.setDown(false);
+                client.player.sendOverlayMessage(net.minecraft.network.chat.Component.literal(holdAttackEnabled[0]?(holdAttackVeinEnabled[0]?"自动挖掘：开（连锁采集）":"自动挖掘：开"):"自动挖掘：关"));
             }
-            if(client.player==null){holdAttackEnabled[0]=false;return;}
+            // Keep a chain-key press for this auto-mining session, even after it is released.
+            if(holdAttackEnabled[0]&&veinKeyHeld&&!holdAttackVeinEnabled[0]){
+                holdAttackVeinEnabled[0]=true;
+                client.player.sendOverlayMessage(net.minecraft.network.chat.Component.literal("自动挖掘：开（连锁采集）"));
+            }
+            boolean next=playing&&(veinKeyHeld||holdAttackEnabled[0]&&holdAttackVeinEnabled[0]);
+            if(next!=veinHeld[0]){veinHeld[0]=next;CATALOG.veinPreview=java.util.List.of();if(ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE))ClientPlayNetworking.send(new ShopPayloads.Request("vein","",next?1:0));}
+            if(client.player==null){holdAttackEnabled[0]=false;holdAttackVeinEnabled[0]=false;return;}
             HammerRefill.tick(client);
             if(!holdAttackEnabled[0])return;
             if(client.gui.screen()!=null){client.options.keyAttack.setDown(false);return;}

@@ -158,7 +158,7 @@ public final class ControlPanelScreen extends Screen {
         g.fill(sliderX(), 53, sliderX() + SLIDER_WIDTH, 56, UiTheme.PANEL);
         int knob = sliderX() + (model.cellSize - ClientCatalog.MIN_CELL) * SLIDER_WIDTH / (ClientCatalog.MAX_CELL - ClientCatalog.MIN_CELL);
         g.fill(knob - 2, 49, knob + 3, 61, 0xFF79D9C2);}
-        if(mode>=2){if(mode==2)tasks.render(g,mx,my,delta);else if(mode==3)tasks.renderBounties(g,mx,my,delta);else residents.render(g,mx,my);drawUiSize(g,mx,my);drawMessages(g);drawConfirmation(g,mx,my);return;}
+        if(mode>=2){if(mode==2)tasks.render(g,mx,my,delta);else if(mode==3)tasks.renderBounties(g,mx,my,delta);else residents.render(g,mx,my);drawSettings(g,mx,my);drawMessages(g);drawConfirmation(g,mx,my);return;}
         if(model.saleDesired){if(salePanel==null)salePanel=new SalePanel(this);salePanel.render(g,mx,my,delta);drawConfirmation(g,mx,my);return;}
         if(priceEditor!=null){priceEditor.render(g,mx,my,delta);drawConfirmation(g,mx,my);return;}
         if(productEditor!=null){productEditor.render(g,mx,my,delta);drawConfirmation(g,mx,my);return;}
@@ -201,7 +201,7 @@ public final class ControlPanelScreen extends Screen {
         g.disableScissor();
         if (visible.isEmpty()) text(g, model.products.isEmpty() ? "正在同步商品资料…" : "此分类暂无商品；每日物资按队伍等级随机抽取", left + 8, TOP + 18, 0xFFA0A7AC, width - left - 24);
         g.fill(6, height - 35, width - 6, height - 5, UiTheme.CARD);
-        drawUiSize(g, mx, my);
+        drawSettings(g, mx, my);
         button(g, "卖出背包材料", sellX(), height - 31, 120, 24, false, inside(mx, my, sellX(), height - 31, 120, 24));
         if(model.editing())button(g,"新增物品",sidebar()+140,height-31,88,24,false,inside(mx,my,sidebar()+140,height-31,88,24));
         text(g, model.editing()?"点击商品修改购入基价":"A 收藏 · 左键详情 · 右键买1 · 滚轮翻页", sidebar()+(model.editing()?236:144), height - 23, 0xFFADB4BA, width - sidebar() - (model.editing()?248:162));
@@ -209,9 +209,8 @@ public final class ControlPanelScreen extends Screen {
         drawMessages(g);drawConfirmation(g,mx,my);
     }
     private int sellX() { return Math.max(sidebar() + 12, 86); }
-    private void drawUiSize(GuiGraphicsExtractor g, int mx, int my) {
-        String[] sizeLabels = {"小", "中", "大"}, sizeValues = {"small", "medium", "large"};
-        for (int i = 0; i < 3; i++) button(g, sizeLabels[i], 8 + i * 24, height - 31, 22, 16, model.uiSize.equals(sizeValues[i]), inside(mx, my, 8 + i * 24, height - 31, 22, 16));
+    private void drawSettings(GuiGraphicsExtractor g, int mx, int my) {
+        button(g,"设置",8,height-31,70,24,false,inside(mx,my,8,height-31,70,24));
     }
     private String compact(long value, int maxWidth) {
         long unit = value >= 100_000_000 ? 100_000_000 : value >= 10_000 ? 10_000 : 1;
@@ -283,7 +282,7 @@ public final class ControlPanelScreen extends Screen {
     private boolean click(MouseButtonEvent e, boolean doubleClick) {
         double x = e.x(), y = e.y();
         if(confirmation.click(this,x,y))return true;
-        if(uiSizeClick(x,y))return true;
+        if(settingsClick(x,y))return true;
         if(mode<2)layout();
         if (detail != null) {
             int w = Math.min(420, width - 24), h = Math.min(232, height - 20), dx = (width - w) / 2, dy = (height - h) / 2; int[] amounts = {1, 16, 64};
@@ -311,9 +310,10 @@ public final class ControlPanelScreen extends Screen {
         return super.mouseClicked(e, doubleClick);
     }
     private void slider(double x) { model.cellSize = Math.clamp(ClientCatalog.MIN_CELL + (int) Math.round((x - sliderX()) * (ClientCatalog.MAX_CELL - ClientCatalog.MIN_CELL) / SLIDER_WIDTH), ClientCatalog.MIN_CELL, ClientCatalog.MAX_CELL); scroll = 0; }
-    private boolean uiSizeClick(double x, double y) {
-        String[] values = {"small", "medium", "large"};
-        for (int i = 0; i < 3; i++) if (inside(x, y, 8 + i * 24, height - 31, 22, 16)) { model.uiSize = values[i]; model.save(); return true; }
+    private boolean settingsClick(double x, double y) {
+        if(detail==null&&!model.saleDesired&&priceEditor==null&&productEditor==null&&inside(x,y,8,height-31,70,24)){
+            searchFocused=false;minecraft.gui.setScreen(new PlayerSettingsScreen(this,model));return true;
+        }
         return false;
     }
     @Override public boolean mouseDragged(MouseButtonEvent e, double dx, double dy) {

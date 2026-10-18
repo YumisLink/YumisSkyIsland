@@ -264,6 +264,7 @@ public final class TomlConfigIO {
             case "notices" -> "手动放置和建造杖跨档时通知本队在线成员；跌破再达到会重发";
             case "message" -> "跨档文案；支持{block}、{threshold}、{nextPoints}、{nextMultiplier}";
             case "successfulFishingXp" -> "每次真实成功获钓的渔夫经验；默认12，空收杆与钩实体不计";
+            case "experienceMultipliers" -> "各职业经验效率倍率；0～1000，最多4位小数，1保持原速，0停止经验与积分；与地区及居民效果相乘，小数余数持久保存";
             case "lavaFishingXpMultiplier" -> "岩浆获钓经验倍率；非负整数，乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘";
             case "voidFishingXpMultiplier" -> "虚空获钓经验倍率；非负整数，乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘";
             case "requirements" -> "需求列表；附魔与品质至少达到指定值，未指定属性不限制";

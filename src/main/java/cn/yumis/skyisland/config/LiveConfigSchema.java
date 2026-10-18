@@ -9,6 +9,7 @@ public final class LiveConfigSchema {
         public void validate(JsonElement value) {
             if(kind.equals("boolean")) { if(!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isBoolean())throw new IllegalArgumentException(label+"必须为开关"); }
             else if(kind.equals("text")) { if(!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isString()||value.getAsString().isBlank()||value.getAsString().length()>maximum)throw new IllegalArgumentException(label+"长度无效"); }
+            else if(kind.equals("decimal")) ProfessionExperienceSettings.multiplierBps(value);
             else ScoringSettings.integer(value,minimum,maximum);
         }
     }
@@ -20,7 +21,9 @@ public final class LiveConfigSchema {
             bool("genshinMode","原神模式称呼"),num("death/firstCost","首笔死亡费用",0,Long.MAX_VALUE,"货币"),num("death/additionalCostPerDeath","死亡费用递增",0,Long.MAX_VALUE,"货币"),num("death/respawnFoodLevel","复活饥饿值",0,20,"满值20"));
         add(groups,"trading","原版交易","server_rules.toml","下次交互和结果提取时生效。",
             bool("villagerTradingEnabled","村民交易"),bool("wanderingTraderTradingEnabled","流浪商人交易"));
-        List<Field> xp=new ArrayList<>();xp.add(num("successfulFishingXp","成功获钓经验",0,Long.MAX_VALUE,"职业经验；地区宝藏箱固定经验不受此项控制"));xp.add(num("lavaFishingXpMultiplier","岩浆获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("voidFishingXpMultiplier","虚空获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("successfulHunterKillXp","成功击杀经验",0,Long.MAX_VALUE,"职业经验"));
+        List<Field> xp=new ArrayList<>();
+        for(String job:ProfessionExperienceSettings.PROFESSIONS)xp.add(new Field("experienceMultipliers/"+job,switch(job){case "blacksmith"->"铁匠";case "chef"->"厨师";case "farmer"->"农夫";case "hunter"->"猎人";case "fisherman"->"渔夫";case "miner"->"矿工";default->"战斗大师";}+"经验获取倍率","decimal",0,ProfessionExperienceSettings.MAX_MULTIPLIER,"倍；1保持原速，0停止经验与积分；最多4位小数，叠加地区和居民加成"));
+        xp.add(num("successfulFishingXp","成功获钓经验",0,Long.MAX_VALUE,"职业经验；地区宝藏箱固定经验不受此项控制"));xp.add(num("lavaFishingXpMultiplier","岩浆获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("voidFishingXpMultiplier","虚空获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("successfulHunterKillXp","成功击杀经验",0,Long.MAX_VALUE,"职业经验"));
         for(String job:List.of("blacksmith","chef","farmer","hunter","miner"))xp.add(num("successfulCraftXp/"+job,switch(job){case "blacksmith"->"铁匠";case "chef"->"厨师";case "farmer"->"农夫";case "miner"->"矿工";default->"猎人";}+"制造默认经验",0,Long.MAX_VALUE,"已有单品baseXp优先"));
         add(groups,"profession_xp","职业经验","products/professions.toml","只影响后续真实行动，不重算历史经验。",xp.toArray(Field[]::new));
         add(groups,"profession_shop","职业商店","products/profession_shop.toml","从下次购买、活动或使用起生效，已用果实计数保留。",
@@ -48,6 +51,7 @@ public final class LiveConfigSchema {
         for(var entry:changes.entrySet()){Field field=allowed.get(entry.getKey());if(field==null)throw new IllegalArgumentException("此字段不支持实时编辑："+entry.getKey());field.validate(entry.getValue());set(next,field.key,entry.getValue());}
         if(group.id.equals("scoring"))ScoringSettings.parse(next);
         if(group.id.equals("lottery"))new LotterySettings(next);
+        if(group.id.equals("profession_xp"))ProfessionExperienceSettings.validate(next);
         return next;
     }
     private LiveConfigSchema() {}

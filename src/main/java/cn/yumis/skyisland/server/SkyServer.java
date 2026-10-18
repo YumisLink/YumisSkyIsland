@@ -304,7 +304,7 @@ public final class SkyServer implements AutoCloseable {
     public void disconnected(ServerPlayer player) { sorting.disconnected(player.getUUID()); worlds.disconnected(player.getUUID()); ModItems.disconnected(player.getUUID()); veinMining.disconnect(player); lastChefHealth.remove(player.getUUID());lastChefDamageTick.remove(player.getUUID()); trades.forget(player); questEditor.forget(player); catalogQueue.remove(player.getUUID()); catalogSent.remove(player.getUUID()); lastSnapshots.remove(player.getUUID()); priceEpochSent.remove(player.getUUID()); lastRequest.remove(player.getUUID()); }
     public void request(ServerPlayer player, ShopPayloads.Request request) {
         long now = state().effectiveTicks;
-        if (now - lastRequest.getOrDefault(player.getUUID(), -100L) < 4 && !Set.of("sale_preview","sale_confirm","sale_cancel","quest_claim","bounty_claim","bounty_slot","vein").contains(request.action())) return;
+        if (now - lastRequest.getOrDefault(player.getUUID(), -100L) < 4 && !Set.of("sale_preview","sale_confirm","sale_cancel","quest_claim","bounty_claim","bounty_slot","vein","vein_limit").contains(request.action())) return;
         lastRequest.put(player.getUUID(), now);
         try {
             switch (request.action()) {
@@ -315,6 +315,7 @@ public final class SkyServer implements AutoCloseable {
                 case "accessory_toggle" -> accessories.toggle(player,request.product());
                 case "accessory_craft" -> accessories.craft(player,request.product());
                 case "vein" -> veinMining.setHeld(player,request.quantity()!=0);
+                case "vein_limit" -> veinMining.setLimit(player,request.quantity());
                 case "buy" -> throw new IllegalArgumentException("请使用带商店和轮次校验的新版购买请求");
                 case "sell_hand" -> trades.sell(player, true, false);
                 case "sell_inventory" -> trades.sell(player, false, false);
@@ -435,6 +436,7 @@ public final class SkyServer implements AutoCloseable {
             professionProgress.add(profession,row);
         }
         json.add("professionProgress",professionProgress);
+        json.add("veinMining",veinMining.settings(player));
         json.add("fishingPower",FishingService.snapshot(this,player));
         json.addProperty("fishingAccessoryBoxBps",BloodAccessories.chance(this,"accessoryBoxBps",2000));
         json.addProperty("fishingTreasureEggBps",config.object("gameplay/blood_moon.toml").get("treasureEggBps").getAsInt());

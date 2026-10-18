@@ -61,7 +61,7 @@ public final class LiveConfigScreen extends Screen {
         try{
             for(var input:inputs)if(input.box!=null){String text=input.box.getValue();draft.add(input.spec.get("key").getAsString(),input.spec.get("kind").getAsString().equals("text")?new JsonPrimitive(text):new JsonPrimitive(new java.math.BigDecimal(text)));}
             JsonObject body=new JsonObject();body.add("group",model.configState.get("group"));body.add("revision",model.configState.get("revision"));body.add("digest",model.configState.get("digest"));body.add("changes",draft.deepCopy());model.configBusy=true;model.configMessage="";model.editConfig("save",body);
-        }catch(RuntimeException error){model.configMessage="请填写有效整数，开关和文案按对应格式填写";}
+        }catch(RuntimeException error){model.configMessage="请填写有效数字；经验倍率可用小数，其余数值须为整数";}
     }
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
         if(ControlPanelScreen.hit(e.x(),e.y(),LEFT+114,height-30,56,22)){onClose();return true;}

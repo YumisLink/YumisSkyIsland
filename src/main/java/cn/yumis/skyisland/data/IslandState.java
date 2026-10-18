@@ -70,6 +70,10 @@ public final class IslandState {
         /** Personal currency earned at the same rate as real profession experience. */
         public Map<String, BigInteger> professionCoins = new LinkedHashMap<>();
         public Map<String, Integer> residentXpRemainders = new LinkedHashMap<>();
+        /** Fractional experience below 1/10000; combines with residentXpRemainders at a scale of 100000000. */
+        public Map<String, Integer> professionXpSubRemainders = new LinkedHashMap<>();
+        /** Personal requested maximum; the effective chain is also capped by miner level and accessories. */
+        public int veinMiningLimit = cn.yumis.skyisland.core.VeinMiningRules.MAX_LIMIT;
         /** Number of permanently consumed profession fruits, capped independently at 100. */
         public Map<String, Integer> consumedFruits = new LinkedHashMap<>();
         /** Foods actually eaten, and the max-health points locked in when each group of 64 completed. */
