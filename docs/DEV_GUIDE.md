@@ -56,7 +56,17 @@ I页同级“居民”Tab可领取本队首张免费许可证。手持许可证�
 
 铜／银／金／钻沿用星标颜色，七彩沿整个方框顺时针每4秒流动一圈。原版容器18×18、快捷栏与副手20×20、拖拽图标18×18；模组商品卡片和出售格使用自身完整边界，线宽均为1 GUI像素。物品数量、耐久和原版选中效果保留；不为手持模型、世界掉落或展示框加框。
 
+出售页面中，带职业来源和星级的产品明细整行及悬停文字使用对应品质外框颜色，七彩文字与外框共用4秒动画时钟；关闭彩框后仍保留文字品质配色。
+
 在 **I控制面板左下角→设置→副职业品质彩框** 可立即开关，仅影响本机。偏好保存至客户端 `config/yumis_sky_island/client.toml` 的 `professionQualityFrames`，默认 `true`，不发送服务器请求。手改TOML重启读取。复用原版容器槽的第三方界面会一并生效，自行绘制的第三方界面需另行适配。
+
+## 贴图引用与 Git 管理（2026-10-19）
+
+正式资源位于 `src/main/resources/assets/yumis_sky_island/`。物品通过 `items/*.json` 指定模型，模型 `models/**/*.json` 再引用 `textures/**/*.png`；方块由 `blockstates/*.json` 选择模型。群系匣在物品定义中按 `custom_model_data` 选择130种模型；踏云效果按效果ID读取 `textures/mob_effect/cloud_step.png`。没有独立的全局贴图索引表，引用定义使用JSON并纳入Git。
+
+`.gitignore` 保留全局 `*.png`，通过 `!/src/main/resources/assets/**/*.png` 仅放行正式游戏贴图。`art/` 整个目录以及 `.ase`／`.aseprite`、其它未跟踪PNG继续忽略；美术源与预览留在本机。原已跟踪的 `art/mob_effect/cloud_step.aseprite` 已解除跟踪，本地文件保留。新增正式PNG可以直接加入Git，无需 `git add -f`。
+
+本轮核对后共有238张正式PNG：方块34、普通物品7、饰品55、群系匣130、建造杖与图纸11、状态效果1。桌面旧JAR补回13张缺失PNG，另按 `tools/draw_accessory_expansion.lua` 经Aseprite恢复15张饰品和3张分类器贴图及对应分层源。全部自定义模型／贴图引用均有目标文件；本地逐文件哈希清单位于 `.tools/asset-audit/current-texture-audit.json`。
 
 ## 本地检查
 

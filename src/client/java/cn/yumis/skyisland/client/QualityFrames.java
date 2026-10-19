@@ -4,6 +4,7 @@ import cn.yumis.skyisland.shop.QualityNames;
 import java.awt.Color;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 /** Client-only frames. Reading quality never changes an item or its stacking components. */
@@ -27,6 +28,19 @@ public final class QualityFrames {
         var tag = data.copyTag();
         int grade = tag.getIntOr("yumis_quality", 0);
         return grade >= 1 && grade <= 5 && !tag.getStringOr("yumis_profession", "").isBlank() ? grade : 0;
+    }
+
+    /** Product text shares the frame palette and clock, even when local frames are hidden. */
+    public static Component text(ItemStack stack, String text, int fallbackColor) {
+        int grade = grade(stack);
+        if (grade < 5) return Component.literal(text).withColor(grade > 0 ? QualityNames.color(grade) : fallbackColor & 0xFFFFFF);
+        var line = Component.empty();
+        int[] characters = text.codePoints().toArray();
+        for (int i = 0; i < characters.length; i++) {
+            line.append(Component.literal(Character.toString(characters[i]))
+                .withColor(rainbow(i / (double) characters.length) & 0xFFFFFF));
+        }
+        return line;
     }
 
     /** Bounds are the real slot/card bounds, in the caller's current GUI pose and scissor. */

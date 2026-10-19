@@ -78,10 +78,12 @@ Desktop.ini
 /crash-reports/
 *.log
 
-# 美术源文件与 PNG 图片。
+# 美术源文件与非正式 PNG 图片。
 *.ase
 *.aseprite
 *.png
+# 正式游戏贴图纳入 Git；art/、截图与运行产物仍按各自规则忽略。
+!/src/main/resources/assets/**/*.png
 # Aseprite 临时备份。
 *.ase~
 *.aseprite~

@@ -67,6 +67,7 @@ public final class SalePanel {
     private int bottom(){return 39+4*cell();}
     private static boolean inside(double x,double y,int a,int b,int w,int h){return x>=a&&x<a+w&&y>=b&&y<b+h;}
     private void text(GuiGraphicsExtractor g,String s,int x,int y,int color,int max){g.text(font,font.plainSubstrByWidth(s,Math.max(0,max)),x,y,color,false);}
+    private void productText(GuiGraphicsExtractor g,ItemStack stack,String s,int x,int y,int color,int max){g.text(font,QualityFrames.text(stack,font.plainSubstrByWidth(s,Math.max(0,max)),color),x,y,0xFFFFFFFF,false);}
     private void button(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?UiTheme.BUTTON:UiTheme.DISABLED);text(g,label,x+5,y+7,active?0xFFFFFFFF:0xFF888888,w-10);}
     public void render(GuiGraphicsExtractor g,int mx,int my,float d){
         font=parent.uiFont();width=parent.contentWidth();height=parent.height-70;
@@ -93,9 +94,9 @@ public final class SalePanel {
         var lines=model.sale.has("lines")?model.sale.getAsJsonArray("lines"):new JsonArray();
         for(int i=0;i<lines.size();i++){
             var row=lines.get(i).getAsJsonObject();
-            String rarity=model.rarity(model.decode(model.sale.getAsJsonArray("inventory").get(row.get("slot").getAsInt()).getAsJsonObject().get("stack")));
-            String name=model.decode(model.sale.getAsJsonArray("inventory").get(row.get("slot").getAsInt()).getAsJsonObject().get("stack")).getHoverName().getString();
-            text(g,name+" ×"+row.get("quantity").getAsInt()+"  基础"+ClientCatalog.decimal(Rational.parse(row.get("unit").getAsString()))+"  本行"+Money.format(row.get("coins").getAsLong()),12,start+i*12,RarityColors.color(rarity),width-24);
+            var stack=model.decode(model.sale.getAsJsonArray("inventory").get(row.get("slot").getAsInt()).getAsJsonObject().get("stack"));
+            String name=stack.getHoverName().getString();
+            productText(g,stack,name+" ×"+row.get("quantity").getAsInt()+"  基础"+ClientCatalog.decimal(Rational.parse(row.get("unit").getAsString()))+"  本行"+Money.format(row.get("coins").getAsLong()),12,start+i*12,RarityColors.color(model.rarity(stack)),width-24);
         }
         maxScroll=Math.max(0,start+lines.size()*12+5-(height-65));scroll=Math.clamp(scroll,0,maxScroll);
         g.pose().popMatrix();g.disableScissor();
@@ -109,7 +110,7 @@ public final class SalePanel {
         if(!hovered.isEmpty()){
             String label=hovered.getHoverName().getString()+" · "+RarityColors.name(model.rarity(hovered));
             int w=Math.min(width-16,font.width(label)+12),x=Math.clamp(mx+8,8,width-w-8),y=Math.clamp(my+16,8,height-32);
-            g.fill(x,y,x+w,y+20,UiTheme.PANEL);text(g,label,x+5,y+6,RarityColors.color(model.rarity(hovered)),w-10);
+            g.fill(x,y,x+w,y+20,UiTheme.PANEL);productText(g,hovered,label,x+5,y+6,RarityColors.color(model.rarity(hovered)),w-10);
             if(!hoveredReason.isEmpty()){g.fill(8,height-80,width-8,height-60,UiTheme.PANEL);text(g,hoveredReason,12,height-74,0xFFFFAD9F,width-24);}
         }
     }
