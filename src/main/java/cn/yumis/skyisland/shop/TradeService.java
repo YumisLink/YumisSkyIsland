@@ -131,6 +131,7 @@ public final class TradeService {
         JsonArray inventory = new JsonArray(), lines = new JsonArray(); Rational sum = Rational.ZERO; var used = counters(party);
         for (int slot=0;slot<36;slot++) {
             var stack=player.getInventory().getItem(slot); JsonObject row=new JsonObject(); row.addProperty("slot",slot); row.add("stack",runtime.economy.encode(stack));
+            if(stack.is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION)&&stack.has(net.minecraft.core.component.DataComponents.CUSTOM_DATA))row.addProperty("reason","余量弹药不可收购，仅支持完整一份弹药");
             var quote=runtime.economy.quote(stack,party); row.addProperty("allowed",quote!=null && quote.normalSale().signum()>0 && (!saleModes.get(player.getUUID()) || slot==player.getInventory().getSelectedSlot())); inventory.add(row);
         }
         for (var input : inputs) {

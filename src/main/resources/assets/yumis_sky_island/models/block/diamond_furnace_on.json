@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "yumis_sky_island:block/diamond_furnace_side",
+    "top": "yumis_sky_island:block/diamond_furnace_top",
+    "front": "yumis_sky_island:block/diamond_furnace_front_on"
+  }
+}

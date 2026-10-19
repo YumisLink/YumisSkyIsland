@@ -1,0 +1,140 @@
+{
+  "validatedAt": "2026-10-19T11:41:29.467008+08:00",
+  "platform": "Windows / Java25 / Minecraft26.2 / Fabric Loader0.19.3 / Fabric API0.156.0+26.2",
+  "formalCheck": {
+    "command": ".\\tools\\dev.ps1 -Task Check -Offline",
+    "status": "passed"
+  },
+  "junit": {
+    "command": ".\\local-tests\\run.ps1 -Task All -Offline -ClientTestClass cn.yumis.skyisland.clienttest.ItemManagementScenario",
+    "status": "passed",
+    "tests": 132,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "client": {
+    "status": "passed",
+    "scenario": "cn.yumis.skyisland.clienttest.ItemManagementScenario",
+    "freshTestWorld": true,
+    "actualServerRestart": true,
+    "resolutions": [
+      "1920x1080 gui2",
+      "640x480 gui2"
+    ],
+    "coverage": [
+      "native keyboard price edit and save",
+      "46 defaults,empty list,unknown IDs and local reload",
+      "ordinary and five quality grades batch selection",
+      "equipment,named crops and offhand preservation",
+      "independent buy and sale bases",
+      "disable and restore",
+      "stale edit and purchase/sale/construction quotes rejected",
+      "invalid stock and external disk edits rejected without publication",
+      "registered unpriced item addition and component variant identity/deduplication",
+      "exact multienchantment matching before partial templates",
+      "fixed ammunition prices and partial ammunition rejected",
+      "verified blueprint economic fields and original committed construction fee",
+      "lottery candidate updates preserve pity and valid UP",
+      "configuration,variant,special-price and pity restoration after actual restart",
+      "permission revocation and reconnect session clearing"
+    ],
+    "log": "docs/validation/item-management-client.log",
+    "logSha256": "e3d8c409ccfd94295c9850be903656eab3979a32c91f306adbef54fe271a2596"
+  },
+  "screenshots": [
+    {
+      "path": "docs/screenshots/item-management/catalog-wide.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "6437a2c963d350ca9e34fddc1137ea5f09ebd7512210d1f815ebaf9964167916"
+    },
+    {
+      "path": "docs/screenshots/item-management/editor-wide.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "8d24f50e04597aaa76adc3e9b03312d454a3dbac525010d827fb3718d5e6a3c5"
+    },
+    {
+      "path": "docs/screenshots/item-management/editor-small.png",
+      "width": 640,
+      "height": 480,
+      "sha256": "8137d1a1bc9916527e7bb99ffd7e8c471b0f1aa96c1ebc092e982e9c09eb70d2"
+    },
+    {
+      "path": "docs/screenshots/item-management/editor-small-scrolled.png",
+      "width": 640,
+      "height": 480,
+      "sha256": "b11e33b73dd76a2c8f1e09df43ef0db61c0c86c7e071c2c2b5555f9d104c8107"
+    },
+    {
+      "path": "docs/screenshots/item-management/settings-small.png",
+      "width": 640,
+      "height": 480,
+      "sha256": "a35f34e9c488cae7914c32ee4f852a9a8e297a8cba814be23ac7b05b83cfa33f"
+    },
+    {
+      "path": "docs/screenshots/item-management/settings-small-scrolled.png",
+      "width": 640,
+      "height": 480,
+      "sha256": "ad77b204864f8475067f8e544e9569dee166416557a83172d6118b537864b859"
+    },
+    {
+      "path": "docs/screenshots/item-management/sale-wide.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "43fffeed43823cf607beab5748fcad8017d47c0616d907f7f7352ec8fb7880bc"
+    },
+    {
+      "path": "docs/screenshots/item-management/sale-small.png",
+      "width": 640,
+      "height": 480,
+      "sha256": "fa069b8cc35bf3512fcd0e47a9bde698ca54c23104c6328e9d6f23ffbf396b42"
+    },
+    {
+      "path": "docs/screenshots/item-management/sale-small-scrolled.png",
+      "width": 640,
+      "height": 480,
+      "sha256": "b4a8de4ed3a921f2c859f10d2df746155d3ee185099d0d212a46f75a25f18d4f"
+    }
+  ],
+  "sourceSha256": {
+    "src/main/java/cn/yumis/skyisland/core/ProfessionSaleItems.java": "8c7e2f043d7a4b9f52a6196cc23b673b298db25368feac11a21da168616baf20",
+    "src/main/java/cn/yumis/skyisland/config/ProductOverrides.java": "f4466dcbf6df732bb7a177c95ac27f0d131e0886a0ff0046d7ac8b51e905fbf1",
+    "src/main/java/cn/yumis/skyisland/config/GameConfig.java": "357dae75edfaf755446b46145ef0866e4b00cf5ee6590f0676e84cad35cd07b8",
+    "src/main/java/cn/yumis/skyisland/config/TomlRecovery.java": "7d1e355c8121e5a8e8464de334bc5a0c662b511d726ae35afe68d1f0e0cf66ad",
+    "src/main/java/cn/yumis/skyisland/server/ItemManagementService.java": "900c9cf7af1a5b272935a633301a467ef0c26595ce2b9c4cadbcd92fa457c3ef",
+    "src/main/java/cn/yumis/skyisland/server/ConfigEditorService.java": "d5111eab5e3a8415afe2c101700ce9bfb9ee8a85a6c70912b1dc3b7a27700890",
+    "src/main/java/cn/yumis/skyisland/server/LotteryService.java": "994a02bed25eb8f6baf2afd2bdbc5c83e7566984bf45bab4376654a98e657d8f",
+    "src/main/java/cn/yumis/skyisland/server/SkyServer.java": "2b510e38a5c10e68de0e421b13e19a14802a8fcee0850fc0d2a64d1bee1c8ab9",
+    "src/main/java/cn/yumis/skyisland/shop/ItemEconomy.java": "75622cf0badb9b6d69e2c7f7e9ba9cc0206fb84f3a951c994a854775efc370f3",
+    "src/main/java/cn/yumis/skyisland/shop/TradeService.java": "3bec08c4badbffbcdfc83797fdaad72365ee46e4470981daa16c166f26bc01c3",
+    "src/main/java/cn/yumis/skyisland/prefab/PrefabCatalog.java": "b40ac9069d8d7a56df436dd117697ee798e59d787aaeb8207521e684144f1ae8",
+    "src/main/java/cn/yumis/skyisland/prefab/PrefabService.java": "c45a6b09879fd908ac493e656e650baeece055afecd4e4ae87b30144e59fc7a0",
+    "src/client/java/cn/yumis/skyisland/client/ClientCatalog.java": "a9c19b40e1dd71e673a9ff82c25c60e4bcbe509b0d20d7e28fd223f9db96851b",
+    "src/client/java/cn/yumis/skyisland/client/PlayerSettingsScreen.java": "3cf255bafa225811c4b24a9fb8f1d9832581a3e63e71958a9924b49686b45be9",
+    "src/client/java/cn/yumis/skyisland/client/ProductAddPanel.java": "8bf276717a9183bda5bd0ba34bf866a8d2ffff4c2ab65845ac8601dd33228e33",
+    "src/client/java/cn/yumis/skyisland/client/SalePanel.java": "4da2ce8a351cdc5eb88c62b28e4e976cc14c49a93ef1b35448ebebe592a1cdb4",
+    "src/client/java/cn/yumis/skyisland/client/ControlPanelScreen.java": "16c7a1a0d8574504b79401091107451702d517761d79075d369b2e8707ae9caa",
+    "src/client/java/cn/yumis/skyisland/client/PrefabClient.java": "c87d3f529a901084bd59eea233ba893d3130a73db94a359393abd7111e2a5746",
+    "src/client/java/cn/yumis/skyisland/client/BlueprintCannonScreen.java": "bd5bcc151f9aa4130a79818b35c72a248e99209241d6f47d3be4c74f39fef722",
+    "config/yumis_sky_island/client.toml": "8008b3dcf786570f68b858f827a0ef852720239e67c8fac041be28762aff903d",
+    "config/yumis_sky_island/shop/products.toml": "68b949843d5f69b85396078dda8cede6a2a99c7afac7175053a24c28bd313c05",
+    "local-tests/junit/java/cn/yumis/skyisland/config/ProductManagementTest.java": "56f56fcf8754913014a242a998e64ba847dafb84e3c47337ddbc64a5bf15bfa9",
+    "local-tests/gametest/java/cn/yumis/skyisland/clienttest/ItemManagementScenario.java": "a1b4403e29fb9efa405650281fcf1d47b3f6202d51a1ed648c5daf75a4576fe2"
+  },
+  "developmentConfigSync": {
+    "directory": "run/config/yumis_sky_island",
+    "addedFields": [
+      "client.toml:professionSaleItems",
+      "shop/products.toml:productOverrides"
+    ],
+    "preservedExistingValues": true
+  },
+  "boundaries": [
+    "No50-player load test",
+    "No full crash-point fault injection",
+    "No standalone dedicated-server world-start test in this change",
+    "Local private tests remain excluded from the production JAR"
+  ]
+}

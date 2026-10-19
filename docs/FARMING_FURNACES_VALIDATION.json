@@ -1,0 +1,405 @@
+{
+  "date": "2026-10-19",
+  "minecraft": "26.2",
+  "formal_check_passed": true,
+  "client_scenario": "FarmingFurnaceScenario",
+  "client_assertions": 3088,
+  "junit_tests": 14,
+  "junit_suites": [
+    {
+      "suite": "cn.yumis.skyisland.config.FurnaceSettingsTest",
+      "tests": 2,
+      "path": "build/test-results/test/TEST-cn.yumis.skyisland.config.FurnaceSettingsTest.xml",
+      "sha256": "f063298f83a532ddf7c5e17a48287ad8069389364768139d688c8754ea69ea39"
+    },
+    {
+      "suite": "cn.yumis.skyisland.core.BuildingAccessoryRulesTest",
+      "tests": 3,
+      "path": "build/test-results/test/TEST-cn.yumis.skyisland.core.BuildingAccessoryRulesTest.xml",
+      "sha256": "61ee27adf1801b351e48b0e4f5742642fac881a0ccb8ad1b0e950f292a8122a1"
+    },
+    {
+      "suite": "cn.yumis.skyisland.core.CropSaleRulesTest",
+      "tests": 6,
+      "path": "build/test-results/test/TEST-cn.yumis.skyisland.core.CropSaleRulesTest.xml",
+      "sha256": "7a4d6c647bffe76f5e536628db5a2b676983f59983c28c772c075ee7dcf807b1"
+    },
+    {
+      "suite": "cn.yumis.skyisland.core.ProfessionRulesTest",
+      "tests": 3,
+      "path": "build/test-results/test/TEST-cn.yumis.skyisland.core.ProfessionRulesTest.xml",
+      "sha256": "8d1853538c65ff8451fe2f493a72ced975b4a2e467310d6560a04df1ba8587c2"
+    }
+  ],
+  "coverage": [
+    "seven speeds; 64 continuous items; slots, four native data fields and saved recipe awards equal vanilla ticks",
+    "fuel exhaustion, cooling, blocked output, component mismatch, one-tick and multi-output datapack recipes",
+    "native wet-sponge bucket; hopper output; no personal task or profession XP for automation",
+    "six native crafting upgrades, native netherite smithing consumption/name and two glass-bottle remainders",
+    "pickaxe drops exactly one furnace and preserves custom name, remaining input/output/fuel and native XP",
+    "normal/shift iron and food extraction count seven, seven food outputs award 28 chef XP",
+    "eleven crops in six grades; client rule snapshot/tooltip; actual manual and redstone-shipping transactions cross 128-item quota boundary at same quote",
+    "chain wheat/berry drops at feet; ordinary source drops; actual replant states and cleared break context",
+    "five base accessories, permanent-unlock backpack crafting, ingredient suppression, two attributes, chain hammer and personal cap",
+    "actual save/quit/reopen restores odd cooking remainder, conserved items, active accessories and both attributes",
+    "ordinary survival world overworld/nether/end all run machines without SkyServer; inventory lock and outside-claim checks"
+  ],
+  "config_files": 28,
+  "synchronized": [
+    "cropSales",
+    "furnaces.toml",
+    "quality.toml",
+    "new backpack rarity"
+  ],
+  "aseprite_sources": [
+    {
+      "path": "art/furnaces/copper_furnace_side.aseprite",
+      "sha256": "e4535eabf6dba0609e4e9e21a21bace2bc3d93b24b881e5040315ff643be4ad4"
+    },
+    {
+      "path": "art/furnaces/copper_furnace_top.aseprite",
+      "sha256": "42e9f7d963e9f4ba3f27aa273be89c9b827eaed406918a73c562c9e748d2e83c"
+    },
+    {
+      "path": "art/furnaces/copper_furnace_front.aseprite",
+      "sha256": "f5be8f6a14ab08dcca8ac27806208a9694e40ba81d7bbe8e222c00447534013d"
+    },
+    {
+      "path": "art/furnaces/copper_furnace_front_on.aseprite",
+      "sha256": "9d43b4cde9b6678a1709667b335cc3bbf20c26ed5bad016d6384de761f198a13"
+    },
+    {
+      "path": "art/furnaces/iron_furnace_side.aseprite",
+      "sha256": "74df7bc241b074515e7e5f771672fbd205b335cbbdc874a7fb674e57e32c4166"
+    },
+    {
+      "path": "art/furnaces/iron_furnace_top.aseprite",
+      "sha256": "a795b8f8c5d1de713b17be8bdd13c7398a711c9fac2bd1839bda0369f155f71e"
+    },
+    {
+      "path": "art/furnaces/iron_furnace_front.aseprite",
+      "sha256": "2f8899d884026571129a93aab15ecb19157d4accd1123296e7ecbc30dcf43cc8"
+    },
+    {
+      "path": "art/furnaces/iron_furnace_front_on.aseprite",
+      "sha256": "855616b3fb18e17133bf0ea879dc7bcf3497011e876350b9278c2937d63c5f1f"
+    },
+    {
+      "path": "art/furnaces/gold_furnace_side.aseprite",
+      "sha256": "9c7a664768a43384d7dd558410fc3aa11897c60449a71a6b722cbd7141c9a2aa"
+    },
+    {
+      "path": "art/furnaces/gold_furnace_top.aseprite",
+      "sha256": "35258309218826e6db17703c33307f314dffc17039754526f296dd43d1e625a4"
+    },
+    {
+      "path": "art/furnaces/gold_furnace_front.aseprite",
+      "sha256": "3daf556841c2319035edd494f256d85c31940fc89a0484503bf714fc35abc32e"
+    },
+    {
+      "path": "art/furnaces/gold_furnace_front_on.aseprite",
+      "sha256": "5fa6be54bd71d4555271c2e4fd70b3067b983b3256c289289f0c4325e0b64abe"
+    },
+    {
+      "path": "art/furnaces/emerald_furnace_side.aseprite",
+      "sha256": "e6b0c792f9d67f8ba97684a887a764ae5b4ab55a43a005de5cbbca2ed0479f34"
+    },
+    {
+      "path": "art/furnaces/emerald_furnace_top.aseprite",
+      "sha256": "428f0c1a7df91ef6cea4f8f9ea878b9974f560aed86414b8abfe06232e2da38c"
+    },
+    {
+      "path": "art/furnaces/emerald_furnace_front.aseprite",
+      "sha256": "6cc409ff37510b1373c4f2746932c45e7c364f486448eed0c93caa0dbb34ae24"
+    },
+    {
+      "path": "art/furnaces/emerald_furnace_front_on.aseprite",
+      "sha256": "db9af4d8d145c8bb48d30b3f3371d2c1459f4a110e046298a7cb39523bf36aeb"
+    },
+    {
+      "path": "art/furnaces/diamond_furnace_side.aseprite",
+      "sha256": "f9a2c8955cd5a88d0edfc786f793f3a68725c816c4be5f2e76a10cb0a59a924c"
+    },
+    {
+      "path": "art/furnaces/diamond_furnace_top.aseprite",
+      "sha256": "26580b137cb848edb3dda7d24c6d8430f8d6f42c67ba8ab4f57c9a7b1ef2ba5a"
+    },
+    {
+      "path": "art/furnaces/diamond_furnace_front.aseprite",
+      "sha256": "c312ed4c0ef4ef1fa0d8ea9545af61e16b221fe65ef3d218f5009dab0ecd6604"
+    },
+    {
+      "path": "art/furnaces/diamond_furnace_front_on.aseprite",
+      "sha256": "7973d0903bc04f91ba7eff7bc535f0c08fcd054a716b7aae29cb9c400c41acd9"
+    },
+    {
+      "path": "art/furnaces/netherite_furnace_side.aseprite",
+      "sha256": "a28748b5fe5397d0dc09f343ecdd9898c78125543646416cea9ef279e74f9c2b"
+    },
+    {
+      "path": "art/furnaces/netherite_furnace_top.aseprite",
+      "sha256": "b3b8e38874f057c2d963429ee44c6a90298f0d05384521b9057a7a78e811fe3d"
+    },
+    {
+      "path": "art/furnaces/netherite_furnace_front.aseprite",
+      "sha256": "8ee2e517828b3a2cbebf63cb9f998f5ab825d9f82f4401bf9e65d3bffea6cafd"
+    },
+    {
+      "path": "art/furnaces/netherite_furnace_front_on.aseprite",
+      "sha256": "c566e3f3c2f3f2f647b2d1f9fe418b8b7af43a2b76e7a5fcfeb2c6133213d3ed"
+    },
+    {
+      "path": "art/furnaces/ender_furnace_side.aseprite",
+      "sha256": "eb5175e63faa808d46f4c64f999edbac1cca4a3c28a0a90c611b9d7bd14d3ed2"
+    },
+    {
+      "path": "art/furnaces/ender_furnace_top.aseprite",
+      "sha256": "0d72c3f6d9e77fc043577b259f1c39ad2b234f4f6a01fa588f4d1b1630dc7ee7"
+    },
+    {
+      "path": "art/furnaces/ender_furnace_front.aseprite",
+      "sha256": "f3bacababc989944dbd964f6f387a4d41a5bb86b9aadfc55bc5e71aabaaaf878"
+    },
+    {
+      "path": "art/furnaces/ender_furnace_front_on.aseprite",
+      "sha256": "6a1a5c8427c8caa16c0fc38e787a98bd55c8a75e975f50fb99f387337c0f0cae"
+    },
+    {
+      "path": "art/icons/building/tool_belt.aseprite",
+      "sha256": "4dd1adac29bd70b626fcf71fb31d46c2bffc87ee6989828a2a2aa7736c7eab77"
+    },
+    {
+      "path": "art/icons/building/toolbox.aseprite",
+      "sha256": "80bd4dda5067d3ef3296a5b3e5a481f2d235d18f72f829b6398f8410228661ba"
+    },
+    {
+      "path": "art/icons/building/extender_grip.aseprite",
+      "sha256": "484ef40d70a4ccf91bbfce81d6f7388c3c29a5e4f1b5ec3732dba15bebf1571d"
+    },
+    {
+      "path": "art/icons/building/excavator.aseprite",
+      "sha256": "ac85dfe53311102846a5bb5b7ed4654f99b012ed1d3685bb8492b094d044588d"
+    },
+    {
+      "path": "art/icons/building/portable_cement_mixer.aseprite",
+      "sha256": "0952d7be80ed0d116e71342a8d9fae34b3ac9d27cc376bc5cc3c4507b350c9b6"
+    },
+    {
+      "path": "art/icons/building/architect_backpack.aseprite",
+      "sha256": "705473e38e928d89e3aeb0bad89a33f9f7514f3cd910fcbaa5dd89bdf9e693ff"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/screenshots/farming-furnaces/ender-menu.png",
+      "sha256": "ea1563cfe8c641893e0e15b92b08e390b61143e1e46ea84b2d99b705014cff4b"
+    },
+    {
+      "path": "docs/screenshots/farming-furnaces/building-accessories.png",
+      "sha256": "78839c1ed1bd9b6fd31452b3a6e2562e4e36dd0ebce6e9cb1e2cb95c21c3e412"
+    }
+  ],
+  "logs": [
+    {
+      "path": "build/farming-furnaces-final-check.log",
+      "sha256": "9303973c12fa8352bfab835d6b8a84cf3597034b360cf12a7503baaf53018b35"
+    },
+    {
+      "path": "build/farming-furnaces-formal-check.log",
+      "sha256": "5977bd73742bc6f8863521b59c75f699ea5ba4208ac73fc01c308db415f06652"
+    },
+    {
+      "path": "build/run/clientGameTest/logs/latest.log",
+      "sha256": "4b895516636ddfc25989ca48a24e04eba4a17c8cf624916a9d6cf131017b5330"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "src/main/java/cn/yumis/skyisland/core/CropSaleRules.java",
+      "sha256": "29ea4e306945451a05524ef05797e62cd6981012ab1c5e11ac0bf6a234f10de1"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/config/FurnaceSettings.java",
+      "sha256": "8bc65d25f136ff3a64b561bac8e49e17d380ca3756d586f428e6c64e8cbb24a4"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/config/GameConfig.java",
+      "sha256": "da1ea9eb2e76e1ecaa87d16644129d6f376776fe9af2981967f4159dbefe5452"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/shop/ItemEconomy.java",
+      "sha256": "05ab4174ac1190ea5fc89b926e98bcb30cf235ebd5bd449eccfdd3bdde254cb4"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/server/SkyServer.java",
+      "sha256": "03021b8079e68c238e87f8d69afca1089f94b86c2bb58b8caac3bd6b8334ae51"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/server/AccessoryService.java",
+      "sha256": "cb2b31303924e0a934cd4a45da1a109bb366b8bb14ea3410884d8fddedc8b4c2"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/server/VeinMiningService.java",
+      "sha256": "48b951ffe1dd9c69e4edfc67012437cf5b4c9dc1dddb88ee94d736a39dd700fe"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/core/AccessoryCraft.java",
+      "sha256": "fffb89a0a7ba31e81a9c35a301a08fa6eaf1f973967a539bd8b7252800ae0b17"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/core/VeinMiningRules.java",
+      "sha256": "1d810dfffba5270569a6b57e1cb736c9756a34c05b542e6c36fbb406e4ac8177"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/mixin/HarvestQuestMixin.java",
+      "sha256": "55e757de224ccc066026f9c2ab07a5d63bae3e42d28f1377b1399ef6e2101d19"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/mixin/SweetBerryHarvestMixin.java",
+      "sha256": "9afc06659c52d5103a6b2c3206e3795a4c6814944fb25093a429f5dd40ba02e4"
+    },
+    {
+      "path": "src/client/java/cn/yumis/skyisland/client/ClientCatalog.java",
+      "sha256": "da01232bbcc2d8a91d2c8a548327c2a151326f4f883c5b0c4b82205431ec8d3b"
+    },
+    {
+      "path": "src/client/java/cn/yumis/skyisland/client/PlayerSettingsScreen.java",
+      "sha256": "40983566edbe13028da8b5c8973eabdda7840d779b2d7baf8b4497153a086a8a"
+    },
+    {
+      "path": "src/client/java/cn/yumis/skyisland/client/jei/SkyFishingJeiPlugin.java",
+      "sha256": "25a73a7e4ea3e152e7007e49499373b0d16a5fdba99e1454892a8c3e2ffa4323"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/furnace/FurnaceContent.java",
+      "sha256": "76a6f9160f0e0094e7677c93dab371aa037f8c8d66c42d4d25e73d582ace1838"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/furnace/UpgradedFurnaceBlock.java",
+      "sha256": "0a54d24d501829eb88c795f2179e343e897f970aa3164e84f6f504e262190079"
+    },
+    {
+      "path": "src/main/java/cn/yumis/skyisland/furnace/UpgradedFurnaceEntity.java",
+      "sha256": "da9fccd62bbdb13f25c496247e88ac71ea25d2c69a32f346fc443a802298c8c5"
+    }
+  ],
+  "default_configs": [
+    {
+      "path": "config/yumis_sky_island/client.toml",
+      "sha256": "14622d40ec37377cd043a03a60d90e10e47499e6c94c929e8b0fb10d32187607"
+    },
+    {
+      "path": "config/yumis_sky_island/economy.toml",
+      "sha256": "568949d2343ce32c73241fa96c43fd9ec439c2ebe806e0c2bf47600f167a503e"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/blood_moon.toml",
+      "sha256": "6e40559f6c853584edcf204c06981e0e0be8980543ca45f6d2e365a8919fdfb1"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/construction_wand.toml",
+      "sha256": "fed0d4c361b9529e13de2ecf23677aaa7cbb0cf1ac56253ed0e067e0488e744a"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/furnaces.toml",
+      "sha256": "4d2635267268542edf75156ad6847537b3b7656891483b6d30ad585c7a12d2e9"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/lottery.toml",
+      "sha256": "fff9b6a17afa58bd6407502e08be44a3d3b5102ff957f5c30b4d32e51b685e1f"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/prefabs.toml",
+      "sha256": "6d90f6a785c88388e0ae964e67484eb11844f0a8c4d3e83b89286a6c48755750"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/quiver.toml",
+      "sha256": "bfc197649462346dca8401d616b015250e414d90b1586f0372fa63a23018e54e"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/residents.toml",
+      "sha256": "4fde9d8518c9ed0fa945c558249d60e118b45c6aa35c56a9bb65e895e2c157d6"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/sorting.toml",
+      "sha256": "82690b1a2baa8572feb27095b4b6f9b4db4a567b6c30b02528ddfe11d20c6a63"
+    },
+    {
+      "path": "config/yumis_sky_island/gameplay/warden_bag.toml",
+      "sha256": "f277ffe252380fed9f204e21c32603aaf32f835d028e545a966b67f48c1905b2"
+    },
+    {
+      "path": "config/yumis_sky_island/islands/levels.toml",
+      "sha256": "1bb33f45ae72fabc93691ccb47c47b6bb472c3bcd38f3d8a7af6b873c4c44876"
+    },
+    {
+      "path": "config/yumis_sky_island/islands/refresh.toml",
+      "sha256": "26abd94adc68538fa85cd69b4018b45e8ba651f0de5e678b123323bdd9412503"
+    },
+    {
+      "path": "config/yumis_sky_island/islands/scoring.toml",
+      "sha256": "6931a3d05a051742a8d4e9d09f18ccffb857d4cc40a883824c365494de040883"
+    },
+    {
+      "path": "config/yumis_sky_island/products/goods.toml",
+      "sha256": "4fed3cff1df9eb3bf5aebc6fc002ec70dcba0a9b22432899bc9380b3e1b16298"
+    },
+    {
+      "path": "config/yumis_sky_island/products/profession_shop.toml",
+      "sha256": "1b43350dd06752836c4206a3edf14ccb3cff9f2e0c5a54a89f7c83b52c8b9851"
+    },
+    {
+      "path": "config/yumis_sky_island/products/professions.toml",
+      "sha256": "91a3a290e59ca36ace51e42fed0ce319df6d02e36bc667a28b4479ddbdae74df"
+    },
+    {
+      "path": "config/yumis_sky_island/products/quality.toml",
+      "sha256": "77fd9f7d844c426f64e58f4b6fcb169afd72a104fd866fdfbb87ff7116cb32e6"
+    },
+    {
+      "path": "config/yumis_sky_island/server_rules.toml",
+      "sha256": "ca6a4a2cf74d748ff96ef23b9736f3b2bebecf69a49bee133bdb0c027c6e65e0"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/enchantments.toml",
+      "sha256": "3498fa9f972ef3ffdb687ca6daec0b65d9576eebc16ce08ce5725290c3d33249"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/item_levels.toml",
+      "sha256": "0dffbbb62eac13743b539f80cc82418ecd6a0d66a19a17afb9b2ed1015d3459e"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/products.toml",
+      "sha256": "d45d29ff891b6411c6d0770c173cd585ec18ff75584eb621d9da1a271bc676d9"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/rarities.toml",
+      "sha256": "0d614c75551d4a46f0e5ab73cc627c7f08e34d6542f88e25dda449198501eb9c"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/recipe_values.toml",
+      "sha256": "82bd3131a92d6cc577d06868b589c8a20b3d4c4b1ed725acf633e32d7b204f55"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/sale_quotas.toml",
+      "sha256": "5d1b590bf78b030a30fa807edfa419668d4f4e74082ff0d9a5b8e568592733ea"
+    },
+    {
+      "path": "config/yumis_sky_island/shop/shops.toml",
+      "sha256": "92a5a8886fc18da8085bfad022016631b40bd2bc90a908a560615be5859745be"
+    },
+    {
+      "path": "config/yumis_sky_island/tasks/bounties.toml",
+      "sha256": "973b6aca24822ca9982fd758822568cac5c63ad36fe037c354f143e20f1e1959"
+    },
+    {
+      "path": "config/yumis_sky_island/tasks/quests.toml",
+      "sha256": "875c125d69043534c251f059f450384913e94d5385be44636865778176422347"
+    }
+  ],
+  "boundaries": [
+    "single-client integration tests; no 50-player sustained load or physical power-cut claim",
+    "only the six new building accessory icons and new furnace assets are in this art scope; existing missing old icons were not regenerated",
+    "no old-save migration, release JAR export or PCL installation"
+  ]
+}

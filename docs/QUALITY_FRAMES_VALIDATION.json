@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-19",
+  "minecraft": "26.2",
+  "fabricLoader": "0.19.3",
+  "clientAssertions": 44,
+  "clientResult": "BUILD SUCCESSFUL",
+  "clientLog": "build/quality-frames-client-validation.log",
+  "jar": "build/libs/YumisSkyIsland-0.1.0-dev.jar",
+  "jarSHA256": "1A83B4D496408F16BEB03418DBD0AC37477226BAD9A4ABCC197835CED2214DB8",
+  "defaultTomlsVerified": 28,
+  "productionTestsExcluded": true,
+  "server": {
+    "initializationExitCode": 0,
+    "projectClientClassesLoaded": 0,
+    "fullStartupVerified": false,
+    "pending": "Further validation stopped at user request; full server startup not executed",
+    "log": "build/quality-frames-dedicated-server/console.log"
+  },
+  "screenshots": [
+    "cards-scale3.png",
+    "cards.png",
+    "chest-controls.png",
+    "hotbar-offhand.png",
+    "inventory-scale3.png",
+    "inventory.png",
+    "quick-craft-drag.png",
+    "sale.png",
+    "settings.png"
+  ],
+  "limits": [
+    "Third-party custom item renderers require separate validation",
+    "No hand, dropped-entity or item-frame rendering changes",
+    "No 50-player or long-term frame-rate benchmark"
+  ]
+}

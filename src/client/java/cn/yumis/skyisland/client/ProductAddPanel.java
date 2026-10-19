@@ -1,192 +1,146 @@
 package cn.yumis.skyisland.client;
 
-import com.google.gson.JsonObject;
-import java.util.ArrayList;
-import java.util.List;
+import cn.yumis.skyisland.core.Money;
+import com.google.gson.*;
+import java.util.*;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.input.CharacterEvent;
-import net.minecraft.client.input.KeyEvent;
-import net.minecraft.client.input.MouseButtonEvent;
-import net.minecraft.client.input.PreeditEvent;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.client.input.*;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import org.lwjgl.glfw.GLFW;
 
-/** Embedded shop form for adding one registered item. It does not open another screen. */
+/** One embedded, scrollable registry catalog and inline economic editor. */
 public final class ProductAddPanel {
-    private record Hit(int x,int y,int w,int h,Runnable action) {}
+    private record Hit(int x,int y,int w,int h,Runnable action,boolean footer){}
+    private record Row(String product,String id,String name,ItemStack stack,ItemPickerCatalog.Item item){}
     private final ControlPanelScreen parent;
     private final ClientCatalog model;
-    private final EditBox search,price,level,stock;
+    private final EditBox search;
+    private final LinkedHashMap<String,EditBox> fields=new LinkedHashMap<>();
     private final List<Hit> hits=new ArrayList<>();
+    private List<Row> rows=List.of();
     private JsonObject snapshot;
-    private ItemPickerCatalog.Item selected;
+    private int filter,scroll,maxScroll,catalogRevision=-1,bodyTop,bodyBottom,formHeight,ticks,lastPreview;
+    private boolean applying,pendingPreview;
     private String mode="buy_sell",rarity="common";
-    private int scroll,maxScroll;
-    private boolean applying,priceTouched,levelTouched,rarityTouched;
+    private boolean enabled=true;
     public ProductAddPanel(ControlPanelScreen parent){
-        this.parent=parent;model=parent.model();
-        search=box("物品",80);
-        price=box("基价",19);price.setValue("100");
-        level=box("解锁等级",3);level.setValue("0");
-        stock=box("每日库存",11);stock.setValue("64");
-        search.setResponder(this::searchChanged);
-        price.setResponder(value->{if(!applying&&price.isFocused())priceTouched=true;});
-        level.setResponder(value->{if(!applying&&level.isFocused())levelTouched=true;});
-        model.priceBusy=true;model.configMessage="";
-        model.editConfig("product_open",new JsonObject());
+        this.parent=parent;model=parent.model();search=box("搜索物品名 / ID",120);search.setHint(Component.literal("搜索物品名 / ID"));
+        for(String key:List.of("buyBaseValueCoins","baseValueCoins","unlockLevel","dailyStock","buildFee"))fields.put(key,box(key,19));
+        search.setResponder(v->{if(!applying)scroll=snapshot!=null&&snapshot.has("product")?formHeight:0;});
+        for(var box:fields.values())box.setResponder(v->{if(!applying)pendingPreview=true;});
+        model.priceBusy=true;model.configMessage="";model.editConfig("item_open",new JsonObject());
     }
-    private EditBox box(String label,int maximum){
-        EditBox result=new EditBox(parent.uiFont(),0,0,120,20,Component.literal(label));
-        result.setMaxLength(maximum);result.setCursorPosition(0);result.setHighlightPos(0);return result;
+    private EditBox box(String label,int length){var box=new EditBox(parent.uiFont(),0,0,120,20,Component.literal(label));box.setMaxLength(length);return box;}
+    public void opened(JsonObject data){
+        snapshot=data;model.priceBusy=false;applying=true;
+        if(data.has("fields")){
+            var values=data.getAsJsonObject("fields");
+            fields.forEach((key,box)->box.setValue(values.has(key)?values.get(key).getAsString():""));
+            mode=values.get("tradeMode").getAsString();rarity=values.get("rarity").getAsString();enabled=values.get("tradeEnabled").getAsBoolean();
+        }
+        applying=false;pendingPreview=false;
     }
-    public void opened(JsonObject value){
-        if(value.has("saved")&&value.get("saved").getAsBoolean()){parent.closeProductEditor();return;}
-        snapshot=value;
+    public void preview(JsonObject data){opened(data);}
+    public void tick(){ticks++;if(pendingPreview&&!model.priceBusy&&snapshot!=null&&snapshot.has("product")&&ticks-lastPreview>=8){
+        try{JsonObject body=body();pendingPreview=false;lastPreview=ticks;model.priceBusy=true;model.editConfig("item_preview",body);}catch(IllegalArgumentException incomplete){/* Keep incomplete numeric drafts editable. */}
+    }}
+    public void scroll(double amount){scroll=Math.clamp(scroll-(int)Math.round(amount*32),0,maxScroll);}
+    private void rebuild(){
+        if(catalogRevision==model.revision)return;catalogRevision=model.revision;
+        var result=new ArrayList<Row>();Map<net.minecraft.world.item.Item,List<ClientCatalog.Product>> byItem=new HashMap<>();
+        for(var p:model.products.values()){result.add(new Row(p.id(),p.canonical().get("itemId").getAsString(),p.name(),p.stack(),null));byItem.computeIfAbsent(p.stack().getItem(),k->new ArrayList<>()).add(p);}
+        for(var item:ItemPickerCatalog.items()){
+            boolean defined=false;for(var p:byItem.getOrDefault(item.stack().getItem(),List.of()))if(ItemStack.isSameItemSameComponents(p.stack(),item.stack())){defined=true;break;}
+            if(!defined)result.add(new Row(null,item.id(),item.name(),item.stack(),item));
+        }
+        result.sort(Comparator.comparing(Row::name).thenComparing(Row::id).thenComparing(r->r.product()==null?"":r.product()));rows=List.copyOf(result);
     }
-    public void preview(JsonObject value){
-        if(selected==null||!selected.id().equals(value.get("itemId").getAsString()))return;
-        if(value.get("exists").getAsBoolean()){model.configMessage="这个物品已经在商店里";return;}
-        applying=true;
-        if(!priceTouched)price.setValue(value.get("suggestedBase").getAsString());
-        if(!levelTouched)level.setValue(value.get("level").getAsString());
-        if(!rarityTouched)rarity=value.get("rarity").getAsString();
-        applying=false;
-        model.configMessage="";
+    private void text(GuiGraphicsExtractor g,String s,int x,int y,int color,int max){parent.textLine(g,s,x,y,color,max);}
+    private void button(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active,Runnable action,boolean footer){
+        parent.actionButton(g,label,x,y,w,active);if(active)hits.add(new Hit(x,y,w,22,action,footer));
     }
-    public void scroll(double amount){scroll=Math.clamp(scroll-(int)Math.signum(amount)*35,0,maxScroll);}
     public void render(GuiGraphicsExtractor g,int mx,int my,float delta){
-        int x=parent.contentLeft(),w=parent.contentWidth(),y=112-scroll;
-        hits.clear();
-        g.enableScissor(x,104,parent.width-8,parent.height-62);
-        parent.textLine(g,"新增商店物品",x,y,0xFF9DE5C7,w);
-        if(snapshot==null){
-            parent.textLine(g,model.configMessage.isEmpty()?"正在读取商店配置…":model.configMessage,x,y+24,0xFFB9C3CC,w);
-            g.disableScissor();
-            parent.actionButton(g,"返回商品",x,parent.height-31,90,true);
-            hits.add(new Hit(x,parent.height-31,90,22,parent::closeProductEditor));
-            return;
+        rebuild();hits.clear();int x=parent.contentLeft(),w=parent.contentWidth();
+        text(g,"物品管理 · "+rows.size()+"项",x,76,0xFF9DE5C7,w);
+        search.setX(x);search.setY(92);search.setWidth(w);search.active=!model.priceBusy;search.extractRenderState(g,mx,my,delta);
+        String[] filters={"全部","已定价","未定价","已停用"};int bx=x,by=116;
+        for(int i=0;i<4;i++){final int value=i;int bw=Math.min(72,(w-12)/4);button(g,(filter==i?"● ":"")+filters[i],bx,by,bw,!model.priceBusy,()->{filter=value;scroll=snapshot!=null&&snapshot.has("product")?formHeight:0;},true);bx+=bw+4;}
+        bodyTop=142;bodyBottom=parent.height-62;int y=bodyTop-scroll;
+        g.enableScissor(x,bodyTop,parent.width-8,bodyBottom);
+        if(snapshot!=null&&snapshot.has("product")){int start=y;y=drawForm(g,x,y,w,mx,my,delta);formHeight=y-start;}else formHeight=0;
+        int count=0;
+        for(var row:rows){
+            boolean defined=row.product()!=null,disabled=defined&&model.disabledProducts.contains(row.product());
+            if(filter==1&&!defined||filter==2&&defined||filter==3&&!disabled)continue;
+            if(!ItemPickerCatalog.contains(search.getValue(),row.name(),row.id())&&(row.product()==null||!row.product().contains(search.getValue())))continue;
+            count++;if(y+34>bodyTop&&y<bodyBottom){
+                g.fill(x,y,x+w,y+34,UiTheme.CARD);QualityFrames.draw(g,row.stack(),x,y,w,34);g.item(row.stack(),x+3,y+8);
+                text(g,row.name(),x+24,y+4,disabled?0xFF889299:0xFFE7EBEF,w-28);
+                text(g,row.product()==null?row.id():row.product(),x+24,y+15,0xFF94A5AF,w-28);
+                var p=defined?model.products.get(row.product()):null;
+                text(g,!defined?"未定价":disabled?"已停用 · 原配置保留":(row.stack().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION)?"固定购 "+Money.format(model.prefabAmmunitionPrice):"购基 "+Money.format(p.buyBase()))+" · 收估 "+Money.format(p.base()),x+24,y+25,0xFFB8C6C7,w-28);
+                final Row chosen=row;hits.add(new Hit(x,y,w,34,()->choose(chosen),false));
+            }y+=38;
         }
-        int yy=y+20;
-        for(var line:parent.uiFont().split(Component.literal(snapshot.get("message").getAsString()),w)){g.text(parent.uiFont(),line,x,yy,0xFFB5C1C9,false);yy+=11;}
-        parent.textLine(g,"搜索物品名 / ID",x,yy+6,0xFFADB9C3,w);
-        field(g,search,x,yy+20,Math.min(280,w),mx,my,delta);
-        if(selected!=null){
-            g.item(selected.stack(),x,yy+46);
-            parent.textLine(g,selected.name()+" · "+selected.id(),x+20,yy+50,0xFFE7EBEF,w-20);
+        if(count==0){text(g,"没有匹配物品",x,y+5,0xFFB5C1C9,w);y+=24;}
+        maxScroll=Math.max(0,y+scroll-bodyBottom+8);scroll=Math.clamp(scroll,0,maxScroll);g.disableScissor();
+        if(maxScroll>0){int rail=Math.max(8,bodyBottom-bodyTop),thumb=Math.max(8,rail*rail/(rail+maxScroll)),yy=bodyTop+(rail-thumb)*scroll/maxScroll;g.fill(x+w-3,bodyTop,x+w,bodyBottom,UiTheme.CARD);g.fill(x+w-3,yy,x+w,yy+thumb,0xFF8FA9AD);}
+        text(g,model.configMessage,x,parent.height-51,model.configMessage.startsWith("已")?0xFF8BE0B2:0xFFFFAD9F,w);
+        boolean selected=snapshot!=null&&snapshot.has("product");
+        button(g,model.priceBusy?"正在处理…":selected&&snapshot.get("exists").getAsBoolean()?"保存修改":"加入物品配置",x,parent.height-31,112,selected&&!model.priceBusy,this::save,true);
+        button(g,"返回",x+118,parent.height-31,Math.min(76,w-118),!model.priceBusy,parent::closeProductEditor,true);
+    }
+    private int drawForm(GuiGraphicsExtractor g,int x,int y,int w,int mx,int my,float delta){
+        text(g,"当前："+model.decode(snapshot.get("stack")).getHoverName().getString(),x,y+2,0xFF9DE5C7,w);y+=17;
+        text(g,snapshot.get("source").getAsString(),x,y,0xFF99ADB7,w);y+=17;
+        boolean blueprint=snapshot.get("blueprint").getAsBoolean(),fixed=snapshot.get("fixedPurchase").getAsBoolean();
+        Map<String,String> labels=new LinkedHashMap<>();labels.put("buyBaseValueCoins",fixed?"购买实际金额（固定）":"购入基价");labels.put("baseValueCoins","收购估值基准");labels.put("unlockLevel","解锁岛等级 0～100");labels.put("dailyStock","每日库存（-1不限）");if(blueprint)labels.put("buildFee","成品费（后续开工）");
+        int columns=w>=390?2:1,fieldWidth=(w-(columns-1)*12)/columns,index=0,start=y;
+        for(var value:labels.entrySet()){
+            int xx=x+(index%columns)*(fieldWidth+12),yy=start+(index/columns)*42;
+            text(g,value.getValue(),xx,yy,0xFFADB9C3,fieldWidth);
+            var box=fields.get(value.getKey());box.setX(xx);box.setY(yy+13);box.setWidth(fieldWidth);box.active=!model.priceBusy;box.extractRenderState(g,mx,my,delta);index++;
+        }y=start+((index+columns-1)/columns)*42;
+        String modeLabel=switch(mode){case "buy_only"->"仅购买";case "sell_only"->"仅收购";default->"可买可卖";};
+        int xx=x;String[] names={modeLabel,cn.yumis.skyisland.core.RarityColors.name(rarity),enabled?"交易：开启":"交易：停用"};
+        for(int i=0;i<3;i++){
+            int bw=Math.min(105,w);if(xx+bw>x+w){xx=x;y+=25;}final int button=i;
+            button(g,names[i],xx,y,bw,!model.priceBusy,()->{if(button==0)mode=switch(mode){case "buy_sell"->"buy_only";case "buy_only"->"sell_only";default->"buy_sell";};else if(button==1)rarity=switch(rarity){case "common"->"rare";case "rare"->"epic";case "epic"->"legendary";default->"common";};else enabled=!enabled;pendingPreview=true;},false);xx+=bw+5;
+        }y+=30;
+        text(g,snapshot.get("previewContext").getAsString(),x,y,0xFF99ADB7,w);y+=13;
+        text(g,"常驻 "+Money.format(snapshot.get("permanentPrice").getAsLong())+" · 每日/隐藏 "+Money.format(snapshot.get("specialPrice").getAsLong()),x,y,0xFFFFDC78,w);y+=13;
+        text(g,"普通单件收购预估："+Money.format(snapshot.get("currentSale").getAsLong()),x,y,0xFF9DE5C7,w);y+=13;
+        if(fixed){text(g,"每份 "+snapshot.get("ammunitionCredits").getAsInt()+" 次；仅完整弹药可回收",x,y,0xFF99ADB7,w);y+=13;}
+        text(g,"每日库存改动下次04:00采用；今日不补货。",x,y,0xFF99ADB7,w);y+=21;
+        return y;
+    }
+    private void choose(Row row){
+        if(model.priceBusy)return;JsonObject body=new JsonObject();if(row.product()!=null)body.addProperty("product",row.product());else body.add("stack",encode(row.item()));
+        search.setFocused(false);fields.values().forEach(box->box.setFocused(false));scroll=0;model.priceBusy=true;model.configMessage="";model.editConfig("item_open",body);
+    }
+    private JsonElement encode(ItemPickerCatalog.Item item){
+        JsonObject stack=new JsonObject();stack.addProperty("id",item.id());stack.addProperty("count",1);stack.add("components",item.components().deepCopy());return stack;
+    }
+    private JsonObject body(){
+        JsonObject body=new JsonObject();if(snapshot.get("exists").getAsBoolean())body.addProperty("product",snapshot.get("product").getAsString());else body.add("stack",snapshot.get("stack").deepCopy());
+        for(String key:List.of("revision","digest","sourceDigests","prefabDigest"))body.add(key,snapshot.get(key).deepCopy());
+        JsonObject changes=new JsonObject();
+        for(var value:fields.entrySet()){
+            if(value.getKey().equals("buildFee")&&!snapshot.get("blueprint").getAsBoolean())continue;
+            try{long n=Long.parseLong(value.getValue().getValue());if(value.getKey().equals("unlockLevel")?n<0||n>100:value.getKey().equals("dailyStock")?n==0||n< -1||n>Integer.MAX_VALUE:n<1)throw new NumberFormatException();changes.addProperty(value.getKey(),n);}
+            catch(NumberFormatException invalid){throw new IllegalArgumentException("金额须为正整数，等级0～100，库存正数或-1");}
         }
-        int form=yy+(selected==null?48:72);
-        parent.textLine(g,"基价（购入与收购）",x,form,0xFFADB9C3,w);
-        field(g,price,x,form+14,Math.min(180,w),mx,my,delta);
-        cycle(g,tradeLabel(),x,form+40,Math.min(150,w),()->mode=switch(mode){case "buy_sell"->"buy_only";case "buy_only"->"sell_only";default->"buy_sell";});
-        cycle(g,rarityLabel(),x+Math.min(158,w/2),form+40,Math.min(110,Math.max(70,w/2-8)),()->{rarityTouched=true;rarity=switch(rarity){case "common"->"rare";case "rare"->"epic";case "epic"->"legendary";default->"common";};});
-        parent.textLine(g,"解锁等级 0～100",x,form+70,0xFFADB9C3,140);
-        field(g,level,x,form+84,90,mx,my,delta);
-        parent.textLine(g,"每日库存，-1 为不限",x+110,form+70,0xFFADB9C3,w-110);
-        field(g,stock,x+110,form+84,90,mx,my,delta);
-        maxScroll=Math.max(0,form+scroll+130-(parent.height-62));
-        scroll=Math.clamp(scroll,0,maxScroll);
-        g.disableScissor();
-        if(search.isFocused())drawSuggestions(g,mx,my,search.getX(),search.getY()+22,search.getWidth());
-        parent.textLine(g,model.configMessage,x,parent.height-51,model.configMessage.startsWith("已")?0xFF8BE0B2:0xFFFFAD9F,w);
-        parent.actionButton(g,model.priceBusy?"正在保存…":"加入商店",x,parent.height-31,108,snapshot!=null&&!model.priceBusy);
-        hits.add(new Hit(x,parent.height-31,108,22,this::save));
-        parent.actionButton(g,"返回",x+114,parent.height-31,Math.min(80,w-114),!model.priceBusy);
-        hits.add(new Hit(x+114,parent.height-31,80,22,parent::closeProductEditor));
+        changes.addProperty("tradeMode",mode);changes.addProperty("rarity",rarity);changes.addProperty("tradeEnabled",enabled);body.add("changes",changes);return body;
     }
-    private void field(GuiGraphicsExtractor g,EditBox box,int x,int y,int w,int mx,int my,float delta){
-        box.setX(x);box.setY(y);box.setWidth(Math.max(60,w));box.active=!model.priceBusy;
-        box.extractRenderState(g,mx,my,delta);
+    private void save(){if(model.priceBusy||snapshot==null||!snapshot.has("product"))return;try{var body=body();model.priceBusy=true;model.configMessage="";pendingPreview=false;model.editConfig("item_save",body);}catch(IllegalArgumentException invalid){model.configMessage=invalid.getMessage();}}
+    public boolean click(MouseButtonEvent e,boolean twice){
+        for(int i=hits.size()-1;i>=0;i--){var hit=hits.get(i);if((hit.footer()||e.y()>=bodyTop&&e.y()<bodyBottom)&&ControlPanelScreen.hit(e.x(),e.y(),hit.x(),hit.y(),hit.w(),hit.h())){hit.action().run();return true;}}
+        search.setFocused(ControlPanelScreen.hit(e.x(),e.y(),search.getX(),search.getY(),search.getWidth(),20));if(search.isFocused())search.mouseClicked(e,twice);
+        for(var box:fields.values()){box.setFocused(e.y()>=bodyTop&&e.y()<bodyBottom&&box.active&&ControlPanelScreen.hit(e.x(),e.y(),box.getX(),box.getY(),box.getWidth(),20));if(box.isFocused())box.mouseClicked(e,twice);}return true;
     }
-    private void cycle(GuiGraphicsExtractor g,String label,int x,int y,int w,Runnable action){
-        parent.actionButton(g,label,x,y,w,!model.priceBusy);
-        if(!model.priceBusy)hits.add(new Hit(x,y,w,22,action));
-    }
-    private void drawSuggestions(GuiGraphicsExtractor g,int mx,int my,int x,int y,int w){
-        var results=ItemPickerCatalog.items().stream().filter(item->!model.products.containsKey(item.id())&&plain(item)&&ItemPickerCatalog.contains(search.getValue(),item.name(),item.id())).limit(6).toList();
-        int row=0;
-        for(var item:results){
-            int sy=y+row*22;
-            if(sy>parent.height-70)break;
-            boolean hot=ControlPanelScreen.hit(mx,my,x,sy,w,22);
-            g.fill(x,sy,x+w,sy+22,hot?0xF02A3338:0xF0181C20);
-            g.item(item.stack(),x+2,sy+3);
-            parent.textLine(g,item.name(),x+22,sy+6,0xFFE7EBEF,w-26);
-            hits.add(new Hit(x,sy,w,22,()->choose(item)));
-            row++;
-        }
-    }
-    private void choose(ItemPickerCatalog.Item item){
-        selected=item;priceTouched=false;levelTouched=false;rarityTouched=false;applying=true;
-        search.setValue(item.name());search.setFocused(false);applying=false;
-        JsonObject body=new JsonObject();body.addProperty("itemId",item.id());
-        model.configMessage="";model.editConfig("product_preview",body);
-    }
-    private void searchChanged(String value){
-        if(applying)return;
-        if(selected!=null&&!value.equals(selected.name())&&!value.equals(selected.id()))selected=null;
-    }
-    private String tradeLabel(){return switch(mode){case "buy_only"->"仅购买";case "sell_only"->"仅收购";default->"可买可卖";};}
-    private String rarityLabel(){return switch(rarity){case "rare"->"稀有";case "epic"->"史诗";case "legendary"->"传说";default->"普通";};}
-    private void save(){
-        if(snapshot==null||model.priceBusy)return;
-        String itemId=selected!=null?selected.id():search.getValue().trim();
-        if(itemId.isBlank()){model.configMessage="请先选择物品";return;}
-        if(model.products.containsKey(itemId)){model.configMessage="这个物品已经在商店里";return;}
-        long base;int unlock;long inventory;
-        try{
-            base=Long.parseLong(price.getValue());unlock=Integer.parseInt(level.getValue());inventory=Long.parseLong(stock.getValue());
-            if(base<1||unlock<0||unlock>100||inventory==0||inventory<-1)throw new NumberFormatException();
-        }catch(NumberFormatException error){model.configMessage="基价为正整数，等级 0～100，库存为正整数或 -1";return;}
-        JsonObject body=new JsonObject();
-        body.addProperty("itemId",itemId);
-        body.addProperty("name",selected!=null?selected.name():itemId);
-        body.addProperty("shopCategory",selected==null?"other":category(selected));
-        body.addProperty("buyBase",base);
-        body.addProperty("tradeMode",mode);
-        body.addProperty("rarity",rarity);
-        body.addProperty("level",unlock);
-        body.addProperty("dailyStock",inventory);
-        body.add("revision",snapshot.get("revision"));
-        body.add("digest",snapshot.get("digest"));
-        body.add("levelsDigest",snapshot.get("levelsDigest"));
-        body.add("raritiesDigest",snapshot.get("raritiesDigest"));
-        body.add("levelsRevision",snapshot.get("levelsRevision"));
-        body.add("raritiesRevision",snapshot.get("raritiesRevision"));
-        model.priceBusy=true;model.configMessage="";model.editConfig("product_add",body);
-    }
-    private static boolean plain(ItemPickerCatalog.Item item){
-        var registered=BuiltInRegistries.ITEM.getValue(Identifier.parse(item.id()));
-        return ItemStack.isSameItemSameComponents(item.stack(),registered.getDefaultInstance());
-    }
-    private static String category(ItemPickerCatalog.Item item){
-        for(CreativeModeTab tab:CreativeModeTabs.tabs()){
-            if(tab.getType()!=CreativeModeTab.Type.CATEGORY)continue;
-            for(var stack:tab.getDisplayItems())if(stack.is(BuiltInRegistries.ITEM.getValue(net.minecraft.resources.Identifier.parse(item.id()))))
-                return BuiltInRegistries.CREATIVE_MODE_TAB.getKey(tab).toString();
-        }
-        return "other";
-    }
-    public boolean click(MouseButtonEvent event,boolean doubleClick){
-        for(int i=hits.size()-1;i>=0;i--){
-            Hit hit=hits.get(i);
-            if(ControlPanelScreen.hit(event.x(),event.y(),hit.x,hit.y,hit.w,hit.h)){hit.action.run();return true;}
-        }
-        if(snapshot==null)return true;
-        boolean field=false;
-        for(EditBox box:List.of(search,price,level,stock)){
-            boolean inside=ControlPanelScreen.hit(event.x(),event.y(),box.getX(),box.getY(),box.getWidth(),20);
-            box.setFocused(inside);
-            if(inside){box.mouseClicked(event,doubleClick);field=true;}
-        }
-        return field||event.y()>=104;
-    }
-    public boolean key(KeyEvent event){return focused()!=null&&focused().keyPressed(event);}
-    public boolean typed(CharacterEvent event){return focused()!=null&&focused().charTyped(event);}
-    public boolean preedit(PreeditEvent event){return focused()!=null&&focused().preeditUpdated(event);}
-    private EditBox focused(){for(EditBox box:List.of(search,price,level,stock))if(box.isFocused())return box;return null;}
+    public boolean key(KeyEvent e){if(e.key()==GLFW.GLFW_KEY_ENTER&&!search.isFocused()){save();return true;}if(search.isFocused())return search.keyPressed(e);for(var box:fields.values())if(box.isFocused())return box.keyPressed(e);return true;}
+    public boolean typed(CharacterEvent e){if(search.isFocused())return search.charTyped(e);for(var box:fields.values())if(box.isFocused())return box.charTyped(e);return true;}
+    public boolean preedit(PreeditEvent e){if(search.isFocused())return search.preeditUpdated(e);for(var box:fields.values())if(box.isFocused())return box.preeditUpdated(e);return true;}
 }

@@ -35,6 +35,7 @@ public final class SkyCreativeTabs {
                 output.accept(cn.yumis.skyisland.sorting.SortingContent.BLOCK);
                 output.accept(PrefabItems.AMMUNITION);
                 output.accept(ModBlocks.SHIPPING_CHEST);
+                for(var block:cn.yumis.skyisland.furnace.FurnaceContent.BLOCKS.values())output.accept(block);
                 output.accept(ModItems.FLIGHT_TICKET);
                 output.accept(ModItems.LOTTERY_TICKET);
                 output.accept(cn.yumis.skyisland.npc.ResidentContent.PERMIT);

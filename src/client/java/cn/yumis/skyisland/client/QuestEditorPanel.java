@@ -124,7 +124,7 @@ public final class QuestEditorPanel {
             var row=rows.get(i).getAsJsonObject();int yy=y+22+(i-actual)*24-formScroll;
             String id=row.get(reward?"id":"itemId").getAsString();int index=i;
             boolean selected=selectedRow==row;g.fill(x,yy,x+w,yy+22,selected?UiTheme.SELECTED:0x66303030);
-            var template=template(row,reward);if(!template.isEmpty())g.item(template,x+2,yy+3);
+            var template=template(row,reward);QualityFrames.draw(g,template,x,yy,w,22);if(!template.isEmpty())g.item(template,x+2,yy+3);
             text(g,(template.isEmpty()?id:template.getHoverName().getString())+" ×"+row.get(reward?"count":"quantity").getAsString(),x+22,yy+7,0xFFE4E8EC,w-44);
             buttons.add(new Hit(x,yy,w-22,22,()->selectRow(row,reward,index)));
             button(g,"×",x+w-21,yy,21,!model.taskBusy,()->{rows.remove(index);selectedRow=null;selectedIndex=-1;});
@@ -243,7 +243,7 @@ public final class QuestEditorPanel {
             int end=Math.min(results.size(),itemResultsScroll+max);
             g.fill(x,y,x+w,y+(end-itemResultsScroll)*25,UiTheme.PANEL);
             for(int i=itemResultsScroll;i<end;i++){
-                var item=results.get(i);int yy=y+(i-itemResultsScroll)*25;g.item(item.stack(),x+3,yy+4);
+                var item=results.get(i);int yy=y+(i-itemResultsScroll)*25;QualityFrames.draw(g,item.stack(),x,yy,w,25);g.item(item.stack(),x+3,yy+4);
                 text(g,item.name(),x+24,yy+3,0xFFE3EAEF,w-30);text(g,item.id(),x+24,yy+14,0xFF9DADBA,w-30);
                 suggestions.add(new Hit(x,yy,w,25,()->{
                     if(selectedGoal){itemSearch.setValue(item.id());itemSearch.setFocused(false);return;}

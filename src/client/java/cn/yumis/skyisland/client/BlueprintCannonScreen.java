@@ -13,6 +13,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 public final class BlueprintCannonScreen extends AbstractContainerScreen<BlueprintCannonMenu> {
+    private long confirmationRevision=-1;
     private String confirmation="";
     private int materialScroll;
     public BlueprintCannonScreen(BlueprintCannonMenu menu,Inventory inventory,Component title){super(menu,inventory,title,364,232);inventoryLabelY=128;}
@@ -51,10 +52,10 @@ public final class BlueprintCannonScreen extends AbstractContainerScreen<Bluepri
     private void button(GuiGraphicsExtractor g,String label,int x,int y,int w){g.fill(x,y,x+w,y+20,UiTheme.PANEL);g.text(font,label,x+5,y+6,0xFFE4F3FD,false);}
     @Override public boolean mouseClicked(MouseButtonEvent event,boolean doubleClick){
         if(event.button()==0&&event.x()>=leftPos+178&&event.x()<leftPos+346){double y=event.y()-topPos;
-            if(!confirmation.isBlank()&&y>=130&&y<150){if(event.x()<leftPos+258)PrefabClient.cannon(confirmation,menu.pos);confirmation="";return true;}
+            if(!confirmation.isBlank()&&y>=130&&y<150){if(event.x()<leftPos+258)PrefabClient.cannon(confirmation,menu.pos,confirmationRevision);confirmation="";return true;}
             String status=PrefabClient.cannon.has("status")?PrefabClient.cannon.get("status").getAsString():"idle";
-            if(y>=80&&y<100){if(status.equals("idle"))confirmation="start_material";else PrefabClient.cannon("pause",menu.pos);return true;}
-            if(y>=105&&y<125){if(status.equals("idle"))confirmation="start_paid";else PrefabClient.cannon("resume",menu.pos);return true;}
+            if(y>=80&&y<100){if(status.equals("idle")){confirmation="start_material";confirmationRevision=PrefabClient.cannon.has("priceRevision")?PrefabClient.cannon.get("priceRevision").getAsLong():-1;}else PrefabClient.cannon("pause",menu.pos);return true;}
+            if(y>=105&&y<125){if(status.equals("idle")){confirmation="start_paid";confirmationRevision=PrefabClient.cannon.has("priceRevision")?PrefabClient.cannon.get("priceRevision").getAsLong():-1;}else PrefabClient.cannon("resume",menu.pos);return true;}
             if(y>=130&&y<150){confirmation="terminate";return true;}
         }return super.mouseClicked(event,doubleClick);
     }

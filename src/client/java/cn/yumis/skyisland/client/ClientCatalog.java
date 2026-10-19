@@ -37,8 +37,11 @@ public final class ClientCatalog {
     public final Map<Item,String> categories = new HashMap<>();
     public final List<Category> tabs = new ArrayList<>();
     public final Set<String> permanentFavorites = new LinkedHashSet<>(), specialFavorites = new LinkedHashSet<>();
+    public final Set<String> professionSaleItems=new LinkedHashSet<>(ProfessionSaleItems.DEFAULTS);
+    public final Set<String> disabledProducts=new HashSet<>();
     private final Set<String> importedFavorites = new LinkedHashSet<>();
     public boolean showLockedItems, saleDesired, taskBusy, genshinMode;
+    public boolean professionQualityFrames = true;
     public boolean lotteryBusy;
     public JsonObject lastLotteryResult=new JsonObject();
     public long lotteryRequestSequence=-1;
@@ -46,6 +49,7 @@ public final class ClientCatalog {
     private long stagingRevision=-1;
     private int nextCatalogPage;
     private final Map<String,Product> stagingProducts=new LinkedHashMap<>();
+    private final Set<String> stagingDisabled=new HashSet<>();
     public JsonObject configState=new JsonObject();
     public boolean configWanted,configBusy,priceBusy;
     public String configMessage="";
@@ -66,6 +70,7 @@ public final class ClientCatalog {
     public long prefabAmmunitionPrice=1000;
     public int prefabAmmunitionCredits=1000;
     private QuotaCurve quotaCurve=QuotaCurve.DEFAULT;
+    private cn.yumis.skyisland.core.CropSaleRules cropSales=cn.yumis.skyisland.core.CropSaleRules.NONE;
     private final Path preferences = FabricLoader.getInstance().getConfigDir().resolve("yumis_sky_island/client.toml");
     public ClientCatalog() {
         try {
@@ -88,6 +93,8 @@ public final class ClientCatalog {
             accessoryCellSize=data.has("accessoryCellSize")?Math.clamp(data.get("accessoryCellSize").getAsInt(),MIN_CELL,MAX_CELL):DEFAULT_ACCESSORY_CELL;
             uiSize=data.has("uiSize")&&("small".equals(data.get("uiSize").getAsString())||"large".equals(data.get("uiSize").getAsString()))?data.get("uiSize").getAsString():"medium";
             showLockedItems=data.has("showLockedItems")&&data.get("showLockedItems").getAsBoolean();
+            professionQualityFrames=!data.has("professionQualityFrames")||data.get("professionQualityFrames").getAsBoolean();
+            if(data.has("professionSaleItems")){var ids=new ArrayList<String>();for(var id:data.getAsJsonArray("professionSaleItems"))ids.add(id.getAsString());professionSaleItems.clear();professionSaleItems.addAll(ProfessionSaleItems.normalize(ids));}
             if(data.has("permanentFavorites"))for(var id:data.getAsJsonArray("permanentFavorites"))permanentFavorites.add(id.getAsString());
             if(data.has("specialFavorites"))for(var id:data.getAsJsonArray("specialFavorites"))specialFavorites.add(id.getAsString());
         }catch(Exception error){YumisSkyIsland.LOGGER.warn("无法读取控制面板偏好："+preferences,error);}
@@ -98,14 +105,14 @@ public final class ClientCatalog {
             return cn.yumis.skyisland.config.TomlConfigIO.readOrRepair(preferences,new String(defaults.readAllBytes(),StandardCharsets.UTF_8));
         }
     }
-    public void clearConnection() { priceRevision=0;catalogRevision=-1;stagingRevision=-1;nextCatalogPage=0;stagingProducts.clear();scoringSettings=null;configState=new JsonObject();configWanted=false;configBusy=false;priceBusy=false;configMessage="";lotteryBusy=false;lotteryRequestSequence=-1;SkyCreativeTabs.blueprints(List.of()); coinGains.clear(); events.clear(); products.clear(); byItem.clear(); tabs.clear(); categories.clear(); state = new JsonObject(); prices = new JsonObject(); scoring = new JsonObject(); quality = new JsonObject(); enchantments = new JsonObject();itemRarities=new JsonObject();sale=new JsonObject();veinPreview=List.of();lastError="";questDetails.clear();ItemPickerCatalog.clear();editorState=new JsonObject();saleDesired=false;taskBusy=false; revision++; }
+    public void clearConnection() { disabledProducts.clear();stagingDisabled.clear();priceRevision=0;catalogRevision=-1;stagingRevision=-1;nextCatalogPage=0;stagingProducts.clear();scoringSettings=null;cropSales=cn.yumis.skyisland.core.CropSaleRules.NONE;configState=new JsonObject();configWanted=false;configBusy=false;priceBusy=false;configMessage="";lotteryBusy=false;lotteryRequestSequence=-1;SkyCreativeTabs.blueprints(List.of()); coinGains.clear(); events.clear(); products.clear(); byItem.clear(); tabs.clear(); categories.clear(); state = new JsonObject(); prices = new JsonObject(); scoring = new JsonObject(); quality = new JsonObject(); enchantments = new JsonObject();itemRarities=new JsonObject();sale=new JsonObject();veinPreview=List.of();lastError="";questDetails.clear();ItemPickerCatalog.clear();editorState=new JsonObject();saleDesired=false;taskBusy=false; revision++; }
     public void receive(String json) {
         JsonObject packet = JsonParser.parseString(json).getAsJsonObject(); String kind = packet.get("kind").getAsString(); JsonElement data = packet.get("data");
         switch (kind) {
             case "catalog" -> {
                 long incoming=packet.has("revision")?packet.get("revision").getAsLong():0;int page=packet.get("page").getAsInt();
                 if(incoming<catalogRevision)return;
-                if(page==0){stagingProducts.clear();stagingRevision=incoming;nextCatalogPage=0;}
+                if(page==0){stagingProducts.clear();stagingDisabled.clear();stagingRevision=incoming;nextCatalogPage=0;}
                 if(incoming!=stagingRevision||page!=nextCatalogPage)return;
                 Minecraft mc = Minecraft.getInstance(); if (mc.getConnection() == null) return;
                 var ops = RegistryOps.create(JsonOps.INSTANCE,mc.getConnection().registryAccess());
@@ -114,6 +121,7 @@ public final class ClientCatalog {
                     String catalogName=row.has("name")?row.get("name").getAsString():"";
                     Product p = new Product(row.get("id").getAsString(),catalogName,stack,row.getAsJsonObject("canonical"),row.get("base").getAsLong(),row.get("buyBase").getAsLong(),row.get("buyMultiplierBps").getAsLong(),row.get("rarity").getAsString(),row.get("level").getAsInt(),row.get("buy").getAsBoolean(),row.get("sell").getAsBoolean(),row.get("category").getAsString(),row.get("quotaGroup").getAsString(),Rational.parse(row.get("quotaUnits").getAsString()),row.has("firstAcquisitionPremium")&&row.get("firstAcquisitionPremium").getAsBoolean());
                     stagingProducts.put(p.id(),p);
+                    if(row.has("tradeEnabled")&&!row.get("tradeEnabled").getAsBoolean())stagingDisabled.add(p.id());
                 }
                 nextCatalogPage++;
             }
@@ -140,10 +148,12 @@ public final class ClientCatalog {
                 long incoming=packet.has("revision")?packet.get("revision").getAsLong():0;if(incoming!=stagingRevision||incoming<catalogRevision)return;
                 JsonObject rules=data.getAsJsonObject();
                 var score=cn.yumis.skyisland.config.ScoringSettings.parse(rules.getAsJsonObject("scoring"));
+                var crop=cn.yumis.skyisland.core.CropSaleRules.parse(rules.has("cropSales")&&!rules.get("cropSales").isJsonNull()?rules.getAsJsonObject("cropSales"):null);
                 products.clear();products.putAll(stagingProducts);byItem.clear();for(var p:products.values())byItem.computeIfAbsent(p.stack().getItem(),_->new ArrayList<>()).add(p);
-                catalogRevision=incoming;priceRevision=rules.has("priceRevision")?rules.get("priceRevision").getAsLong():0;stagingProducts.clear();stagingRevision=-1;
+                disabledProducts.clear();disabledProducts.addAll(stagingDisabled);catalogRevision=incoming;priceRevision=rules.has("priceRevision")?rules.get("priceRevision").getAsLong():0;stagingProducts.clear();stagingDisabled.clear();stagingRevision=-1;
                 if(tabs.isEmpty())buildTabs();importFavorites();scoring=rules.getAsJsonObject("scoring");scoringSettings=score;
                 quality=rules.getAsJsonObject("quality");enchantments=rules.getAsJsonObject("enchantments");itemRarities=rules.getAsJsonObject("itemRarities");saleDivisor=rules.get("saleDivisor").getAsLong();minimumBaseCoins=rules.get("minimumBaseCoins").getAsLong();regularBuyMultiplierBps=rules.get("regularBuyMultiplierBps").getAsLong();
+                cropSales=crop;
                 if(rules.has("prefabAmmunitionPrice"))prefabAmmunitionPrice=rules.get("prefabAmmunitionPrice").getAsLong();if(rules.has("prefabAmmunitionCredits"))prefabAmmunitionCredits=rules.get("prefabAmmunitionCredits").getAsInt();
                 genshinMode=rules.has("genshinMode")&&rules.get("genshinMode").getAsBoolean();
                 Money.currencyName(genshinMode?"摩拉":"金币");if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);
@@ -227,10 +237,13 @@ public final class ClientCatalog {
     public boolean specialAllowed(){return state.has("progression")&&state.getAsJsonObject("progression").has("specialAllowed")&&state.getAsJsonObject("progression").get("specialAllowed").getAsBoolean();}
     public Product match(ItemStack stack) {
         List<Product> candidates = byItem.get(stack.getItem()); if (candidates == null) return null;
+        Product best=null;int score=-1;
         for (Product product : candidates) {
-            if(ItemEconomy.matchesCanonical(stack,product.stack(),product.canonical().getAsJsonObject("componentPatch")))return product;
+            if(ItemStack.isSameItemSameComponents(stack,product.stack()))return product;
+            var patch=product.canonical().getAsJsonObject("componentPatch");
+            if(ItemEconomy.matchesCanonical(stack,product.stack(),patch)){int value=ItemEconomy.specificity(product.stack(),patch);if(value>score){best=product;score=value;}}
         }
-        return null;
+        return best;
     }
     public String productName(String id){Product product=products.get(id);if(product!=null)return product.stack().getHoverName().getString();var key=Identifier.tryParse(id);if(key!=null&&BuiltInRegistries.ITEM.containsKey(key))return new ItemStack(BuiltInRegistries.ITEM.getValue(key)).getHoverName().getString();return id;}
     private static String fruitProfession(ItemStack stack){for(var entry:cn.yumis.skyisland.item.ModItems.FRUITS.entrySet())if(stack.is(entry.getValue()))return entry.getKey();return null;}
@@ -251,7 +264,8 @@ public final class ClientCatalog {
             Rational full = value(p,stack), durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()) : Rational.ONE;
             lines.add(Component.literal("价值：" + Money.format(full.multiply(durability).floorLongExact()) + " / 件").withStyle(ChatFormatting.YELLOW));
             if (p.sell() && ItemEconomy.safeToSell(stack)) {
-                Rational normal = full.multiply(durability).divide(Rational.of(saleDivisor)).multiply(Rational.of(residentSaleBps(BuiltInRegistries.ITEM.getKey(stack.getItem()).toString()),10000)), used = Rational.ZERO;
+                String itemId=BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
+                Rational normal = full.multiply(durability).divide(Rational.of(saleDivisor)).multiply(cropSales.multiplier(itemId,grade)).multiply(Rational.of(residentSaleBps(itemId),10000)), used = Rational.ZERO;
                 if (state.has("quotas") && state.getAsJsonObject("quotas").has(p.quotaGroup())) used = Rational.parse(state.getAsJsonObject("quotas").get(p.quotaGroup()).getAsString());
                 long quote = quotaCurve.quote(used,stack.getCount(),p.units(),normal).floorLongExact();
                 lines.add(Component.literal("行情后基础价值：" + decimal(normal) + Money.currencyName() + " / 件").withStyle(ChatFormatting.GRAY));
@@ -279,9 +293,10 @@ public final class ClientCatalog {
     public void save(){
         try{
             JsonObject data=Files.exists(preferences)?loadPreferences():new JsonObject();
-            data.addProperty("layoutVersion",3);data.addProperty("cellSize",cellSize);data.addProperty("accessoryCellSize",accessoryCellSize);data.addProperty("uiSize",uiSize);data.addProperty("showLockedItems",showLockedItems);
+            data.addProperty("layoutVersion",3);data.addProperty("cellSize",cellSize);data.addProperty("accessoryCellSize",accessoryCellSize);data.addProperty("uiSize",uiSize);data.addProperty("showLockedItems",showLockedItems);data.addProperty("professionQualityFrames",professionQualityFrames);
             JsonArray regular=new JsonArray(),special=new JsonArray();permanentFavorites.forEach(regular::add);specialFavorites.forEach(special::add);
             data.add("permanentFavorites",regular);data.add("specialFavorites",special);
+            JsonArray saleItems=new JsonArray();professionSaleItems.forEach(saleItems::add);data.add("professionSaleItems",saleItems);
             cn.yumis.skyisland.config.TomlConfigIO.write(preferences,data);
         }catch(IOException error){YumisSkyIsland.LOGGER.warn("无法保存控制面板偏好",error);lastError="偏好保存失败，请检查 client.toml";}
     }
@@ -325,6 +340,7 @@ public final class ClientCatalog {
         if(kind.equals("price"))panel.priceUpdated(data);
         if(kind.equals("product"))panel.productForm(data);
         if(kind.equals("product_preview"))panel.productPreview(data);
+        if(kind.equals("item"))panel.productForm(data);
     }
     public void task(String action,JsonObject data){
         if(net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(cn.yumis.skyisland.network.TaskPayloads.Request.TYPE))

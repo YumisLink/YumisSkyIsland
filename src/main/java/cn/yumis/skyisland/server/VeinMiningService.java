@@ -32,11 +32,12 @@ public final class VeinMiningService {
     public boolean breaking(ServerPlayer player){return breaking.contains(player.getUUID());}
     private int minerLevel(ServerPlayer player){return runtime.professions.level(runtime.state().players.get(player.getUUID()),"miner");}
     private int requestedLimit(ServerPlayer player){var person=runtime.state().players.get(player.getUUID());return person==null?VeinMiningRules.MAX_LIMIT:person.veinMiningLimit;}
-    public int cap(ServerPlayer player){return VeinMiningRules.effectiveLimit(minerLevel(player),AccessoryService.active(runtime,player,"chain_hammer"),requestedLimit(player));}
+    public int cap(ServerPlayer player){return VeinMiningRules.effectiveLimit(minerLevel(player),AccessoryService.active(runtime,player,"chain_hammer"),requestedLimit(player),AccessoryService.buildingChainBonus(runtime,player));}
     public JsonObject settings(ServerPlayer player){
         int level=minerLevel(player);boolean hammer=AccessoryService.active(runtime,player,"chain_hammer");int requested=requestedLimit(player);
         JsonObject data=new JsonObject();data.addProperty("minerLevel",level);data.addProperty("chainHammer",hammer);data.addProperty("limit",requested);
-        data.addProperty("unlocked",VeinMiningRules.unlockedLimit(level,hammer));data.addProperty("effective",VeinMiningRules.effectiveLimit(level,hammer,requested));return data;
+        int building=AccessoryService.buildingChainBonus(runtime,player);data.addProperty("buildingAccessoryBonus",building);
+        data.addProperty("unlocked",VeinMiningRules.unlockedLimit(level,hammer,building));data.addProperty("effective",VeinMiningRules.effectiveLimit(level,hammer,requested,building));return data;
     }
     public void setLimit(ServerPlayer player,int requested){
         VeinMiningRules.checkedLimit(requested);
@@ -50,7 +51,7 @@ public final class VeinMiningService {
         for(ServerPlayer player:runtime.server.getPlayerList().getPlayers()){
             if(!held(player)){sendPreview(player,List.of());continue;}
             if(!(player.level() instanceof ServerLevel level)||!VoidWorlds.isSky(level)||player.isSpectator()){sendPreview(player,List.of());continue;}
-            if(player.pick(6,1,false) instanceof BlockHitResult hit){
+            if(player.pick(player.blockInteractionRange(),1,false) instanceof BlockHitResult hit){
                 BlockPos origin=hit.getBlockPos();
                 BlockState state=level.getBlockState(origin);IntegerProperty age=ageProperty(state);
                 sendPreview(player,age!=null&&mature(state,age)?selectCrops(level,player,origin,state,cap(player)):select(level,player,origin,state,cap(player)));
@@ -106,7 +107,8 @@ public final class VeinMiningService {
             String blockId=BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
             String toolId=BuiltInRegistries.ITEM.getKey(player.getMainHandItem().getItem()).toString();
             for(ItemStack drop:drops)if(!drop.isEmpty())runtime.progression.action(player,"harvest",BuiltInRegistries.ITEM.getKey(drop.getItem()).toString(),drop.getCount(),blockId,toolId);
-            for(ItemStack drop:runtime.professions.harvest(player,ProfessionService.captureHarvest(state),drops))if(!drop.isEmpty())Block.popResource(level,pos,drop);
+            for(ItemStack drop:runtime.professions.harvest(player,ProfessionService.captureHarvest(state),drops))if(!drop.isEmpty())
+                Block.popResource(level,held(player)?player.blockPosition():pos,drop);
         }
         sendPreview(player,List.of());
         return harvested;

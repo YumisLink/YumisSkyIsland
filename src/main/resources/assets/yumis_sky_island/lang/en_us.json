@@ -165,5 +165,18 @@
   "item.yumis_sky_island.accessory_shadow_rush": "Shadow Rush",
   "item.yumis_sky_island.accessory_first_aid": "First Aid",
   "item.yumis_sky_island.accessory_dive_bomb": "Dive Bomb",
-  "item.yumis_sky_island.accessory_collector": "Collector"
+  "item.yumis_sky_island.accessory_collector": "Collector",
+  "block.yumis_sky_island.copper_furnace": "Copper Furnace",
+  "block.yumis_sky_island.iron_furnace": "Iron Furnace",
+  "block.yumis_sky_island.gold_furnace": "Gold Furnace",
+  "block.yumis_sky_island.emerald_furnace": "Emerald Furnace",
+  "block.yumis_sky_island.diamond_furnace": "Diamond Furnace",
+  "block.yumis_sky_island.netherite_furnace": "Netherite Furnace",
+  "block.yumis_sky_island.ender_furnace": "Ender Furnace",
+  "item.yumis_sky_island.accessory_tool_belt": "Tool Belt",
+  "item.yumis_sky_island.accessory_toolbox": "Toolbox",
+  "item.yumis_sky_island.accessory_extender_grip": "Extender Grip",
+  "item.yumis_sky_island.accessory_excavator": "Excavator",
+  "item.yumis_sky_island.accessory_portable_cement_mixer": "Portable Cement Mixer",
+  "item.yumis_sky_island.accessory_architect_backpack": "Architect Backpack"
 }

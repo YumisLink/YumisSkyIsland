@@ -260,7 +260,7 @@ public final class TomlConfigIO {
             case "acquisitionEnabled" -> "获取开关；关闭仅停止商店和随机悬赏供给，已有物品、锻造升级及人工发放保留，重启生效";
             case "buyBaseValueCoins" -> "独立购入基价；正整数，省略沿用基础价值，不改变收购价";
             case "buyBaseValueOverrides" -> "动态建筑图纸的购入基价覆盖；不修改等级、稀有度、模板或成品费";
-            case "basePoints" -> "方块基础分；条目、字段或整个blocks表省略默认1；参与计分者须为正整数，>5递减，每块取整后最低1分";
+            case "basePoints" -> "方块基础分；非负整数，0不参与计分；条目、字段或整个blocks表省略默认1；仅>5递减并逐块取整最低1分";
             case "notices" -> "手动放置和建造杖跨档时通知本队在线成员；跌破再达到会重发";
             case "message" -> "跨档文案；支持{block}、{threshold}、{nextPoints}、{nextMultiplier}";
             case "successfulFishingXp" -> "每次真实成功获钓的渔夫经验；默认12，空收杆与钩实体不计";

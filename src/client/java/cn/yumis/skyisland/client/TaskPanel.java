@@ -92,11 +92,11 @@ public final class TaskPanel {
             var requirement=row.getAsJsonObject();var template=model.decode(requirement.get("stack"));
             var compiled=compile(requirement);
             int have=0;if(Minecraft.getInstance().player!=null)for(int i=0;i<36;i++){var actual=Minecraft.getInstance().player.getInventory().getItem(i);if(TaskMaterialPlanner.matches(actual,compiled))have+=actual.getCount();}
-            g.item(template,left,y);text(g,"提交 "+template.getHoverName().getString()+" ×"+compiled.quantity()+"（背包 "+have+"）",left+23,y+5,RarityColors.color(model.rarity(template)),right-23);y+=24;
+            QualityFrames.item(g,template,left,y);text(g,"提交 "+template.getHoverName().getString()+" ×"+compiled.quantity()+"（背包 "+have+"）",left+23,y+5,RarityColors.color(model.rarity(template)),right-23);y+=24;
             if(requirement.has("minimumQuality")){text(g,"品质至少 "+gradeName(requirement.get("minimumQuality").getAsInt()),left,y,0xFFAFC3CE,right);y+=14;}
             String properties=enchantments(template,true);if(!properties.isEmpty()){text(g,properties,left,y,0xFFAFC3CE,right);y+=14;}
         }
-        for(var reward:quest.getAsJsonArray("rewardItems")){var stack=model.decode(reward);g.item(stack,left,y);text(g,"奖励："+stack.getHoverName().getString()+" ×"+stack.getCount(),left+23,y+5,RarityColors.color(model.rarity(stack)),right-23);y+=25;String properties=enchantments(stack,false);if(!properties.isEmpty()){text(g,properties,left,y,0xFFAFC3CE,right);y+=14;}int grade=cn.yumis.skyisland.shop.ItemEconomy.grade(stack);if(grade>0){text(g,"品质："+gradeName(grade),left,y,0xFFAFC3CE,right);y+=14;}}
+        for(var reward:quest.getAsJsonArray("rewardItems")){var stack=model.decode(reward);QualityFrames.item(g,stack,left,y);text(g,"奖励："+stack.getHoverName().getString()+" ×"+stack.getCount(),left+23,y+5,RarityColors.color(model.rarity(stack)),right-23);y+=25;String properties=enchantments(stack,false);if(!properties.isEmpty()){text(g,properties,left,y,0xFFAFC3CE,right);y+=14;}int grade=cn.yumis.skyisland.shop.ItemEconomy.grade(stack);if(grade>0){text(g,"品质："+gradeName(grade),left,y,0xFFAFC3CE,right);y+=14;}}
         if(quest.get("rewardCoins").getAsLong()>0){text(g,"奖励："+Money.format(quest.get("rewardCoins").getAsLong()),left,y,0xFFFFDC78,right);y+=15;}
         if(quest.has("rewardExperiencePoints")&&quest.get("rewardExperiencePoints").getAsInt()>0){text(g,"奖励："+quest.get("rewardExperiencePoints").getAsInt()+"点原版经验",left,y,0xFF9DE5C7,right);y+=15;}
         if(model.state.has("lottery")){var lottery=model.state.getAsJsonObject("lottery");if(lottery.has("taskTokenReward")){text(g,"奖励："+lottery.get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token()+(quest.has("kind")&&quest.get("kind").getAsString().equals("main")?"（全队每人）":""),left,y,0xFFB5B2FF,right);y+=15;}}
@@ -171,7 +171,7 @@ public final class TaskPanel {
         for(int i=bountyScroll;i<Math.min(offers.size(),bountyScroll+visible);i++){
             var row=offers.get(i).getAsJsonObject();int y=112+(i-bountyScroll)*55;g.fill(10,y,parent.width-10,y+51,UiTheme.CARD);
             if(!row.has("material")||row.get("material").isJsonNull()){text(g,"格 "+(i+1)+" · 暂无合格悬赏；请先卖出普通材料",16,y+18,0xFFBBC6CE,parent.width-32);continue;}
-            var reward=model.decode(row.get("rewardStack"));g.item(reward,16,y+5);
+            var reward=model.decode(row.get("rewardStack"));QualityFrames.draw(g,reward,10,y,parent.width-20,51);g.item(reward,16,y+5);
             text(g,reward.getHoverName().getString()+" ×1",39,y+7,RarityColors.color(model.rarity(reward)),parent.width-128);
             text(g,"提交 "+model.productName(row.get("material").getAsString())+" ×"+row.get("quantity").getAsInt(),16,y+24,0xFFDDE6EA,parent.width-130);
             long ticks=Math.max(0,row.get("expiresAt").getAsLong()-model.state.get("effectiveTicks").getAsLong());

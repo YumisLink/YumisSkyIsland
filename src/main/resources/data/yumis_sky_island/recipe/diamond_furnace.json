@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MMM",
+    "FMF",
+    "MMM"
+  ],
+  "key": {
+    "M": "minecraft:diamond",
+    "F": "yumis_sky_island:emerald_furnace"
+  },
+  "result": {
+    "id": "yumis_sky_island:diamond_furnace",
+    "count": 1
+  }
+}

@@ -7,7 +7,7 @@ import java.util.*;
 
 /** Best-effort syntax recovery. Each statement is parsed by NightConfig, never guessed as a value. */
 final class TomlRecovery {
-    private static final Set<String> MAPS = Set.of("products", "itemLevels", "itemRarities", "blocks", "items", "ingredientValues", "templates");
+    private static final Set<String> MAPS = Set.of("products", "productOverrides", "itemLevels", "itemRarities", "blocks", "items", "ingredientValues", "templates");
     private static final Set<String> OPTIONAL = Set.of("blocks", "basePoints", "acquisitionEnabled", "buyBaseValueCoins", "buyMultiplierBps", "firstAcquisitionPremium", "categoryHint", "shopCategory", "recipeMaterials");
     private TomlRecovery() {}
 

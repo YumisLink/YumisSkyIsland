@@ -15,7 +15,6 @@ public record ScoringSettings(Map<String, Long> points, List<BlockScorer.Tier> t
         if (document.has("blocks")) for (var row : document.getAsJsonObject("blocks").entrySet()) {
             JsonObject value = row.getValue().getAsJsonObject();
             long base = value.has("basePoints") ? integer(value.get("basePoints"), 0, Long.MAX_VALUE) : 1;
-            if (!EXCLUDED.contains(row.getKey()) && base < 1) throw new IllegalArgumentException("方块基础分必须至少为1：" + row.getKey());
             values.put(row.getKey(), base);
         }
         List<BlockScorer.Tier> tiers = new ArrayList<>();

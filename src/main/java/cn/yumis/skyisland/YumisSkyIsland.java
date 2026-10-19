@@ -37,6 +37,7 @@ public final class YumisSkyIsland implements ModInitializer {
         ModBlocks.register(); ModItems.register(); Hammers.register(); cn.yumis.skyisland.npc.ResidentContent.register(); cn.yumis.skyisland.wand.ConstructionWands.register(); VoidWorlds.register(); WorldService.registerTickets();
         cn.yumis.skyisland.prefab.PrefabItems.register(); cn.yumis.skyisland.prefab.PrefabBlocks.register(); cn.yumis.skyisland.item.SkyCreativeTabs.register(); cn.yumis.skyisland.prefab.PrefabService.register();
         cn.yumis.skyisland.sorting.SortingContent.register();
+        cn.yumis.skyisland.furnace.FurnaceContent.register();
         cn.yumis.skyisland.wand.ConstructionWandService.register();
         ModAttributes.register(); ModEffects.register(); WardenBags.load(); CloudLeapService.register(); QuiverService.register();
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Request.TYPE,ShopPayloads.Request.CODEC);

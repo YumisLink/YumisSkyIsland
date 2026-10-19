@@ -54,7 +54,7 @@ message = "本岛{block}已达{threshold}块；后续每块{nextPoints}分（倍
 # 注册 ID／组件参数；保持 ID 原样
 
 [blocks."minecraft:acacia_button"]
-# 方块基础分；条目、字段或整个blocks表省略默认1。空气、水、岩浆、气泡柱固定不计分，其余须≥1。
+# 方块基础分；非负整数，0不参与计分；条目、字段或整个blocks表省略默认1；仅>5递减并逐块取整最低1分
 basePoints = 1
 
 [blocks."minecraft:acacia_door"]

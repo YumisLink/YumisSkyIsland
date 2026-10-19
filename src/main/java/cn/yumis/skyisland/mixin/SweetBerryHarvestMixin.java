@@ -35,7 +35,10 @@ public abstract class SweetBerryHarvestMixin {
         if(runtime==null)return original.call(world,table,state,entity,tool,actor,emitter);
         BiConsumer<ServerLevel,ItemStack> graded=(level,stack)->{
             if(!stack.isEmpty())runtime.progression.action(serverPlayer,"harvest",net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem()).toString(),stack.getCount(),"minecraft:sweet_berry_bush",net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(serverPlayer.getMainHandItem().getItem()).toString());
-            for(ItemStack part:runtime.professions.harvest(serverPlayer,cn.yumis.skyisland.server.ProfessionService.captureHarvest(state),List.of(stack)))emitter.accept(level,part);
+            for(ItemStack part:runtime.professions.harvest(serverPlayer,cn.yumis.skyisland.server.ProfessionService.captureHarvest(state),List.of(stack))){
+                if(runtime.veinMining.held(serverPlayer))net.minecraft.world.level.block.Block.popResource(level,serverPlayer.blockPosition(),part);
+                else emitter.accept(level,part);
+            }
         };
         return original.call(world,table,state,entity,tool,actor,graded);
     }

@@ -10,11 +10,19 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Block.class)
 public abstract class HarvestQuestMixin {
+    @WrapMethod(method="dropResources(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)V")
+    private static void scopedFeet(BlockState state,net.minecraft.world.level.Level level,BlockPos pos,BlockEntity entity,Entity breaker,ItemStack tool,Operation<Void> original){
+        ServerPlayer previous=HammerBreaks.feet();
+        HammerBreaks.feet(null);
+        try{original.call(state,level,pos,entity,breaker,tool);}finally{HammerBreaks.feet(previous);}
+    }
     @Redirect(method="dropResources(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)V",
         at=@At(value="INVOKE",target="Lnet/minecraft/world/level/block/Block;getDrops(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemInstance;)Ljava/util/List;"))
     private static List<ItemStack> harvest(BlockState state,ServerLevel world,BlockPos pos,BlockEntity entity,Entity breaker,ItemInstance tool){
@@ -29,14 +37,11 @@ public abstract class HarvestQuestMixin {
             return rt.professions.harvest(player,cn.yumis.skyisland.server.ProfessionService.captureHarvest(state),drops);
         }}return drops;
     }
-    @Inject(method="dropResources(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)V",at=@At("RETURN"))
-    private static void clearFeet(CallbackInfo ci){HammerBreaks.feet(null);}
     @Inject(method="popResource(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/item/ItemStack;)V",at=@At("HEAD"),cancellable=true)
     private static void atFeet(net.minecraft.world.level.Level level,BlockPos pos,ItemStack stack,CallbackInfo ci){
         ServerPlayer player=HammerBreaks.feet();if(player==null)return;
         HammerBreaks.feet(null);
-        Block.popResource(level,player.blockPosition(),stack);
-        HammerBreaks.feet(player);
+        try{Block.popResource(level,player.blockPosition(),stack);}finally{HammerBreaks.feet(player);}
         ci.cancel();
     }
 }

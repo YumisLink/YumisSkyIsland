@@ -55,7 +55,7 @@ public final class ControlPanelScreen extends Screen {
     public int wrappedText(GuiGraphicsExtractor g,String label,int x,int y,int color,int maximum){var lines=font.split(Component.literal(label),Math.max(30,maximum));for(int i=0;i<lines.size();i++)g.text(font,lines.get(i),x,y+i*12,color,false);return lines.size()*12;}
     public void actionButton(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?UiTheme.BUTTON:UiTheme.DISABLED);text(g,label,x+5,y+7,active?0xFFE9EBEE:0xFF777F88,w-10);}
     public static boolean hit(double x,double y,int a,int b,int w,int h){return inside(x,y,a,b,w,h);}
-    @Override public void tick(){if(!model.editing()&&(showAllConfigured||priceEditor!=null||productEditor!=null)){showAllConfigured=false;closePriceEditor();closeProductEditor();invalidate();}if(model.saleDesired&&salePanel!=null)salePanel.tick();if(mode==2)tasks.tick();}
+    @Override public void tick(){if(!model.editing()&&(showAllConfigured||priceEditor!=null||productEditor!=null)){showAllConfigured=false;closePriceEditor();closeProductEditor();invalidate();}if(model.saleDesired&&salePanel!=null)salePanel.tick();if(productEditor!=null)productEditor.tick();if(mode==2)tasks.tick();}
 
     private List<ClientCatalog.Product> visible = List.of();
     private int mode, scroll, categoryScroll, lastRevision = -1, columns, left, rowHeight;
@@ -174,7 +174,7 @@ public final class ControlPanelScreen extends Screen {
             var c = categories.get(i); int y = 72 + (i - categoryScroll) * 26;
             boolean active = category.equals(c.id());
             g.fill(10, y, sidebar() + 2, y + 24, active ? UiTheme.CARD : inside(mx, my, 10, y, sidebar() - 8, 24) ? UiTheme.CARD : 0x45181818);
-            if (!c.icon().isEmpty()) g.item(c.icon(), 13, y + 4);
+            if (!c.icon().isEmpty()) QualityFrames.item(g,c.icon(), 13, y + 4);
             text(g, c.name(), c.icon().isEmpty() ? 16 : 34, y + 8, active ? 0xFFB3F2E5 : 0xFFD3D5D7, sidebar() - (c.icon().isEmpty() ? 20 : 38));
         }
         text(g, "岛等级 " + model.level(), 14, height - 71, 0xFF8DDAC8, sidebar() - 20);
@@ -187,6 +187,7 @@ public final class ControlPanelScreen extends Screen {
             boolean hot = inside(mx, my, x, y, w, h), locked = !model.canBuy(p,mode,1);
             g.fill(x, y, x + w, y + h, hot ? UiTheme.HOVER : 0x731E1E1E);
             if (model.favorites(mode).contains(p.id())) g.fill(x, y, x + w, y + 2, 0xFFEBC36C);
+            QualityFrames.draw(g,p.stack(),x,y,w,h);
             if (hot) hovered = p;
             int icon = iconSize();
             g.pose().pushMatrix(); g.pose().translate(x + (w - icon) / 2f, y + 5); g.pose().scale(icon / 16f, icon / 16f); g.item(p.stack(), 0, 0); g.pose().popMatrix();
@@ -203,7 +204,7 @@ public final class ControlPanelScreen extends Screen {
         g.fill(6, height - 35, width - 6, height - 5, UiTheme.CARD);
         drawSettings(g, mx, my);
         button(g, "卖出背包材料", sellX(), height - 31, 120, 24, false, inside(mx, my, sellX(), height - 31, 120, 24));
-        if(model.editing())button(g,"新增物品",sidebar()+140,height-31,88,24,false,inside(mx,my,sidebar()+140,height-31,88,24));
+        if(model.editing())button(g,"物品管理",sidebar()+140,height-31,88,24,false,inside(mx,my,sidebar()+140,height-31,88,24));
         text(g, model.editing()?"点击商品修改购入基价":"A 收藏 · 左键详情 · 右键买1 · 滚轮翻页", sidebar()+(model.editing()?236:144), height - 23, 0xFFADB4BA, width - sidebar() - (model.editing()?248:162));
         if (detail != null) drawDetail(g, mx, my); else if (hovered != null) drawTooltip(g, mx, my, hovered);
         drawMessages(g);drawConfirmation(g,mx,my);
@@ -251,6 +252,7 @@ public final class ControlPanelScreen extends Screen {
     private void drawDetail(GuiGraphicsExtractor g, int mx, int my) {
         int w = Math.min(420, width - 24), h = Math.min(232, height - 20), x = (width - w) / 2, y = (height - h) / 2;
         g.fill(0, 0, width, height, 0x95000000); g.fill(x, y, x + w, y + h, UiTheme.PANEL); g.fill(x, y, x + w, y + 2, 0xFF77D6BF);
+        QualityFrames.draw(g,detail.stack(),x,y,w,h);
         g.pose().pushMatrix(); g.pose().translate(x + 14, y + 18); g.pose().scale(3f, 3f); g.item(detail.stack(), 0, 0); g.pose().popMatrix();
         text(g, detail.name(), x + 76, y + 20, cn.yumis.skyisland.core.RarityColors.color(detail.rarity()), w - 90);
         text(g, rarity(detail.rarity()) + " · 岛等级 " + detail.level(), x + 76, y + 40, 0xFFB2BBC7, w - 90);
@@ -306,7 +308,7 @@ public final class ControlPanelScreen extends Screen {
         if (inside(x, y, 10, 72, sidebar() - 8, Math.max(1, (height - 160) / 26) * 26) && ci >= 0 && ci < categories.size()) { category = categories.get(ci).id(); invalidate(); return true; }
         if (inside(x, y, sellX(), height - 31, 120, 24)) { showSale(); send("sell_inventory", "", 0); return true; }
         if(model.editing()&&inside(x,y,sidebar()+140,height-31,88,24)){productEditor=new ProductAddPanel(this);searchFocused=false;return true;}
-        if (hovered != null) { if(model.editing()){priceEditor=new PriceEditorPanel(this,hovered.id());searchFocused=false;}else if (e.button() == 1) model.purchase(hovered,mode,(e.modifiers() & GLFW.GLFW_MOD_SHIFT) != 0 ? 64 : 1); else { detail = hovered; quantity = 1; } return true; }
+        if (hovered != null) { if (e.button() == 1) model.purchase(hovered,mode,(e.modifiers() & GLFW.GLFW_MOD_SHIFT) != 0 ? 64 : 1); else { detail = hovered; quantity = 1; } return true; }
         return super.mouseClicked(e, doubleClick);
     }
     private void slider(double x) { model.cellSize = Math.clamp(ClientCatalog.MIN_CELL + (int) Math.round((x - sliderX()) * (ClientCatalog.MAX_CELL - ClientCatalog.MIN_CELL) / SLIDER_WIDTH), ClientCatalog.MIN_CELL, ClientCatalog.MAX_CELL); scroll = 0; }

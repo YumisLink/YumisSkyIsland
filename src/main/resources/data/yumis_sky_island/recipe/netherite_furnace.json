@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": "minecraft:netherite_upgrade_smithing_template",
+  "base": "yumis_sky_island:diamond_furnace",
+  "addition": "minecraft:netherite_ingot",
+  "result": {
+    "id": "yumis_sky_island:netherite_furnace"
+  }
+}

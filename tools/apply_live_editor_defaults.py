@@ -20,15 +20,18 @@ def apply(directory):
     ]}
     data["notices"] = {"enabled": True, "message": MESSAGE}
     for block_id, row in data.get("blocks", {}).items():
-        row["basePoints"] = 0 if block_id in EXCLUDED else max(1, row.get("basePoints", 1))
+        if block_id in EXCLUDED:
+            row["basePoints"] = 0
         row.pop("scoreGroup", None)
         row.pop("tierProfile", None)
     write(path, data)
     text = path.read_text(encoding="utf-8")
     text = text.replace("服务端规则重启生效，任务编辑器保存立即生效。", "基础分手改后重启；高分递减档位和通告可在管理员实时编辑器保存生效。")
-    text = text.replace("# 非负整数，0表示不计分", "# 仅空气、水、岩浆、气泡柱不计分，其余至少1分")
+    text = text.replace("# 仅空气、水、岩浆、气泡柱不计分，其余至少1分", "# 非负整数，0表示不计分；省略默认1")
     text = text.replace("# 递减阶梯；数量上限须递增，最后省略上限表示无限", "# 仅基础分>5应用本阶梯；≤5不递减。每档逐块向下取整且最低1分。阈值须递增，最后无限。")
-    text = text.replace("# 该方块基础计分权重；非负整数，0表示不计分", "# 方块基础分；条目、字段或整个blocks表省略默认1。空气、水、岩浆、气泡柱固定不计分，其余须≥1。")
+    score_note = "# 方块基础分；非负整数，0不参与计分；条目、字段或整个blocks表省略默认1；仅>5递减并逐块取整最低1分"
+    text = text.replace("# 该方块基础计分权重；非负整数，0表示不计分", score_note)
+    text = text.replace("# 方块基础分；条目、字段或整个blocks表省略默认1。空气、水、岩浆、气泡柱固定不计分，其余须≥1。", score_note)
     text = text.replace("# 递减档位说明；目前实际读取 default 档位\n", "").replace("# 递减计分组 ID；同组方块共用数量\n", "")
     notice_note = "# 手动放置和建造杖跨档时，通知本队在线正式成员；跌破再到达会重发"
     if "\n[blocks]\n" in text:

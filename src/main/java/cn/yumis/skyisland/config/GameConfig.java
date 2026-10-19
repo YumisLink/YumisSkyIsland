@@ -22,7 +22,7 @@ public final class GameConfig {
         "server_rules.toml", "shop/products.toml", "shop/item_levels.toml", "shop/rarities.toml",
         "shop/enchantments.toml", "shop/shops.toml", "shop/sale_quotas.toml", "shop/recipe_values.toml", "islands/scoring.toml",
         "islands/levels.toml", "islands/refresh.toml", "products/quality.toml", "products/professions.toml", "products/goods.toml", "products/profession_shop.toml",
-        "gameplay/quiver.toml", "gameplay/sorting.toml", "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml",
+        "gameplay/quiver.toml", "gameplay/furnaces.toml", "gameplay/sorting.toml", "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml",
         "tasks/bounties.toml", "tasks/quests.toml", "economy.toml", "gameplay/construction_wand.toml", "gameplay/prefabs.toml"
     };
     private final Path configRoot = FabricLoader.getInstance().getConfigDir().resolve("yumis_sky_island");
@@ -31,6 +31,8 @@ public final class GameConfig {
     private Set<String> registeredBlocks = Set.of();
     public ScoringSettings scoring;
     public QuiverSettings quiver;
+    public FurnaceSettings furnaces;
+    public final CropSaleRules cropSales;
     public final Map<String, Product> products = new LinkedHashMap<>();
     public final Map<String, BlockValue> blocks = new HashMap<>();
     public final Map<String, QuotaUnit> quotaUnits = new HashMap<>();
@@ -72,6 +74,7 @@ public final class GameConfig {
         once("gameplay/construction_wand.toml", this::constructionWandAcquisitionEnabled);
         once("gameplay/prefabs.toml", this::prefabAcquisitionEnabled);
         once("gameplay/quiver.toml", () -> quiver = QuiverSettings.parse(object("gameplay/quiver.toml")));
+        once("gameplay/furnaces.toml", () -> furnaces = FurnaceSettings.parse(object("gameplay/furnaces.toml")));
         once("islands/levels.toml", () -> BlockScorer.requirementBasePoints(object("islands/levels.toml").get("requirementBasePoints").getAsLong()));
         once("shop/shops.toml", this::validateShops);
         once("economy.toml", this::validateEconomy);
@@ -85,6 +88,7 @@ public final class GameConfig {
         once("products/goods.toml", this::validateGoods);
         JsonObject shops = object("shop/shops.toml");
         JsonObject market = shops.getAsJsonObject("market");
+        cropSales = CropSaleRules.parse(shops.getAsJsonObject("cropSales"));
         Money.currencyName(object("economy.toml").get("genshinMode").getAsBoolean() ? "摩拉" : "金币");
         saleDivisor = shops.has("saleDivisor") ? shops.get("saleDivisor").getAsLong() : 100;
         regularBuyMultiplierBps = shops.has("regularBuyMultiplierBps") ? shops.get("regularBuyMultiplierBps").getAsLong() : 25000;
@@ -112,6 +116,7 @@ public final class GameConfig {
     }
     private void validateShops() throws IOException {
         JsonObject shops = object("shop/shops.toml");
+        CropSaleRules.parse(shops.getAsJsonObject("cropSales"));
         long sale = shops.has("saleDivisor") ? shops.get("saleDivisor").getAsLong() : 100;
         long multiplier = shops.has("regularBuyMultiplierBps") ? shops.get("regularBuyMultiplierBps").getAsLong() : 25000;
         JsonObject market = shops.getAsJsonObject("market");
@@ -172,10 +177,11 @@ public final class GameConfig {
                 p.has("buyBaseValueCoins") ? p.get("buyBaseValueCoins").getAsLong() : p.get("baseValueCoins").getAsLong(),
                 p.has("buyMultiplierBps") ? p.get("buyMultiplierBps").getAsLong() : 10000L,
                 p.get("tradeMode").getAsString(), rarity, level, p.get("dailyStock").getAsInt(),
-                p.get("offerWeight").getAsInt(), p.has("shopCategory") ? p.get("shopCategory").getAsString() : p.get("categoryHint").getAsString()));
+                p.get("offerWeight").getAsInt(), p.has("shopCategory") ? p.get("shopCategory").getAsString() : p.get("categoryHint").getAsString(),ProductOverrides.flag(p,"tradeEnabled",true)));
             Product added = products.get(entry.getKey());
             if (added.buyBaseCoins() < 1 || added.buyMultiplierBps() < 1 || added.level() < 0 || added.level() > 100 || (added.stock()!=-1&&added.stock()<1) || added.weight() < 1 || !Set.of("common","rare","epic","legendary").contains(added.rarity()))
                 throw new IOException("shop/products.toml：商品倍率、等级、库存、权重或稀有度无效：" + entry.getKey());
+            products.put(entry.getKey(),ProductOverrides.apply(added,object("shop/products.toml")));
         }
     }
     private QuotaCurve quotaCurve(JsonObject quotas) {
@@ -293,6 +299,9 @@ public final class GameConfig {
         catch (java.security.NoSuchAlgorithmException impossible) { throw new IllegalStateException(impossible); }
     }
     public String loadedDigest(String path) { return loadedDigests.get(path); }
+    public void requireDiskCurrent(String path,String expected)throws IOException{
+        if(!files.containsKey(path)||!Objects.equals(expected,loadedDigests.get(path))||!Objects.equals(expected,digest(configRoot.resolve(path))))throw new IOException("配置已被修改，请重新载入后编辑："+path);
+    }
     public void saveChecked(String path, JsonObject value, String expected) throws IOException {
         if (!files.containsKey(path) || !Objects.equals(expected,loadedDigests.get(path))) throw new IOException("配置已更新，请重新打开编辑器");
         Path target=configRoot.resolve(path);
@@ -317,10 +326,11 @@ public final class GameConfig {
     public Map<String, JsonObject> all() { return Collections.unmodifiableMap(files); }
     public void useRuntimeQuality(JsonObject quality){files.put("products/quality.toml",quality.deepCopy());}
     public record Product(String id, String name, JsonObject canonical, long baseCoins, long buyBaseCoins, long buyMultiplierBps, String tradeMode,
-                          String rarity, int level, int stock, int weight, String category) {
-        public boolean canBuy() { return tradeMode.equals("buy_sell") || tradeMode.equals("buy_only"); }
-        public boolean canSell() { return tradeMode.equals("buy_sell") || tradeMode.equals("sell_only"); }
-        public Product withBuyBase(long value) { return new Product(id,name,canonical,baseCoins,value,buyMultiplierBps,tradeMode,rarity,level,stock,weight,category); }
+                          String rarity, int level, int stock, int weight, String category,boolean tradeEnabled) {
+        public Product(String id,String name,JsonObject canonical,long baseCoins,long buyBaseCoins,long buyMultiplierBps,String tradeMode,String rarity,int level,int stock,int weight,String category){this(id,name,canonical,baseCoins,buyBaseCoins,buyMultiplierBps,tradeMode,rarity,level,stock,weight,category,true);}
+        public boolean canBuy() { return tradeEnabled&&(tradeMode.equals("buy_sell") || tradeMode.equals("buy_only")); }
+        public boolean canSell() { return tradeEnabled&&(tradeMode.equals("buy_sell") || tradeMode.equals("sell_only")); }
+        public Product withBuyBase(long value) { return new Product(id,name,canonical,baseCoins,value,buyMultiplierBps,tradeMode,rarity,level,stock,weight,category,tradeEnabled); }
     }
     public record BlockValue(long points, String group) {}
     public record QuotaUnit(String group, Rational units) {}

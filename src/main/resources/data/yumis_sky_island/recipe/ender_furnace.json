@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "EDE",
+    "FEF",
+    "EDE"
+  ],
+  "key": {
+    "E": "minecraft:ender_eye",
+    "D": "minecraft:dragon_breath",
+    "F": "yumis_sky_island:netherite_furnace"
+  },
+  "result": {
+    "id": "yumis_sky_island:ender_furnace",
+    "count": 1
+  }
+}

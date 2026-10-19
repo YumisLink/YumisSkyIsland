@@ -14,7 +14,9 @@ public final class AccessoryCraft {
     public static final String FISHING_LINE = "fishing_line";
     public static final String TACKLE_BOX = "tackle_box";
     public static final String ANGLER_BAG = "angler_bag";
-    public static final int DRAWABLE_COUNT = 38;
+    public static final String ARCHITECT_BACKPACK = "architect_backpack";
+    public static final List<String> BUILDING_MATERIALS = List.of("tool_belt", "toolbox", "extender_grip", "excavator", "portable_cement_mixer");
+    public static final int DRAWABLE_COUNT = 43;
     private static final Set<String> UNDRAWABLE = Set.of("slaughter_aura", "lava_bait", "void_bait", "anklet", "shark_necklace");
     private static final Map<String, List<String>> RECIPES = new LinkedHashMap<>();
     static {
@@ -24,6 +26,7 @@ public final class AccessoryCraft {
         RECIPES.put("bow_heart_iron", List.of("bow_heart_stone", "vulnerability_mark"));
         RECIPES.put("bow_heart_split", List.of("arrow_saver", "arrow_splash"));
         RECIPES.put("bow_heart_gold", List.of("bow_heart_iron", "bow_heart_split"));
+        RECIPES.put(ARCHITECT_BACKPACK, BUILDING_MATERIALS);
     }
     private AccessoryCraft() {}
     public static boolean crafted(String id) { return RECIPES.containsKey(id); }

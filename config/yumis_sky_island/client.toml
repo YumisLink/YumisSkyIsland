@@ -11,6 +11,21 @@ accessoryCellSize = 64
 uiSize = "medium"
 # 显示等级不足商品；默认false，显示不会解除购买限制
 showLockedItems = false
+# 副职业品质彩框，仅本机显示；铜／银／金／钻为固定色，七彩沿整格每4秒流动一圈
+professionQualityFrames = true
+# 副职业产品批量出售的本机物品ID名单；所有服务器共用，包含普通及全部品质，仍须满足服务端可售规则。
+# 空数组表示主动清空；未注册ID保留但跳过。玩家增删即时保存，恢复默认仅重置本名单。
+professionSaleItems = [
+  "minecraft:wheat", "minecraft:sweet_berries", "minecraft:carrot", "minecraft:potato", "minecraft:beetroot",
+  "minecraft:pumpkin", "minecraft:melon_slice", "minecraft:sugar_cane", "minecraft:cocoa_beans", "minecraft:nether_wart", "minecraft:chorus_fruit",
+  "minecraft:cod", "minecraft:salmon", "minecraft:pufferfish", "minecraft:tropical_fish",
+  "minecraft:baked_potato", "minecraft:beetroot_soup", "minecraft:bread", "minecraft:cake", "minecraft:cooked_beef",
+  "minecraft:cooked_chicken", "minecraft:cooked_cod", "minecraft:cooked_mutton", "minecraft:cooked_porkchop", "minecraft:cooked_rabbit",
+  "minecraft:cooked_salmon", "minecraft:cookie", "minecraft:golden_carrot", "minecraft:mushroom_stew", "minecraft:pumpkin_pie",
+  "minecraft:rabbit_stew", "minecraft:suspicious_stew", "minecraft:hay_block", "minecraft:sugar",
+  "yumis_sky_island:sky_carp", "yumis_sky_island:lava_eel", "yumis_sky_island:void_fish", "yumis_sky_island:frost_trout", "yumis_sky_island:desert_lungfish", "yumis_sky_island:mushroom_fish",
+  "yumis_sky_island:barley", "yumis_sky_island:white_radish", "yumis_sky_island:purple_potato", "yumis_sky_island:golden_beet", "yumis_sky_island:crimson_wart", "yumis_sky_island:sky_fruit",
+]
 # 常驻商店收藏 ID；在左侧最后的收藏分类查看
 permanentFavorites = []
 # 每日／隐藏共用收藏 ID；未抽到时保留并显示库存0

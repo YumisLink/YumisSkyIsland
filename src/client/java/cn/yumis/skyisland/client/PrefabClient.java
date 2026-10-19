@@ -94,5 +94,6 @@ public final class PrefabClient {
     }
     static void send(String action){JsonObject data=new JsonObject();data.addProperty("action",action);send(data);}
     static void send(JsonObject data){if(ClientPlayNetworking.canSend(PrefabPayloads.Request.TYPE))ClientPlayNetworking.send(new PrefabPayloads.Request(data.toString()));}
-    static void cannon(String action,BlockPos pos){JsonObject request=new JsonObject();request.addProperty("action",action);request.add("pos",PrefabService.xyz(pos));send(request);}
+    static void cannon(String action,BlockPos pos){cannon(action,pos,cannon.has("priceRevision")?cannon.get("priceRevision").getAsLong():-1);}
+    static void cannon(String action,BlockPos pos,long revision){JsonObject request=new JsonObject();request.addProperty("action",action);request.addProperty("priceRevision",revision);request.add("pos",PrefabService.xyz(pos));send(request);}
 }

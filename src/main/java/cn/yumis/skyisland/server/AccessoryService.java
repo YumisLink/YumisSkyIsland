@@ -89,6 +89,12 @@ public final class AccessoryService {
         special("collector","收集者","命中生命低于2%的敌人时立刻击杀，并获得等同于其最大生命的金币","gold_nugget",false);
         bonus(BloodAccessories.ANKLET,"脚链","护甲增加2；血月专属","chain",Attributes.ARMOR,2,AttributeModifier.Operation.ADD_VALUE,"rare");
         special(BloodAccessories.SHARK,"鲨鱼项链","近战、弓弩和三叉戟攻击无视5点护甲；血月专属","prismarine_shard",false,"rare");
+        bonus("tool_belt","工具腰带","方块触及距离增加0.25格","leather",Attributes.BLOCK_INTERACTION_RANGE,0.25,AttributeModifier.Operation.ADD_VALUE);
+        bonus("toolbox","工具盒","方块触及距离增加0.25格","chest",Attributes.BLOCK_INTERACTION_RANGE,0.25,AttributeModifier.Operation.ADD_VALUE);
+        bonus("extender_grip","延长抓钩","方块触及距离增加0.75格","tripwire_hook",Attributes.BLOCK_INTERACTION_RANGE,0.75,AttributeModifier.Operation.ADD_VALUE);
+        bonus("excavator","挖掘器","挖掘速度提高25%","iron_shovel",Attributes.BLOCK_BREAK_SPEED,0.25,AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        special("portable_cement_mixer","便携式水泥搅拌器","连锁采集上限增加4","cauldron",false);
+        bonus(AccessoryCraft.ARCHITECT_BACKPACK,"建筑师发明背包","方块触及距离增加2格，挖掘速度提高50%，连锁采集上限增加8","bundle",Attributes.BLOCK_INTERACTION_RANGE,2,AttributeModifier.Operation.ADD_VALUE,"epic");
         int drawable=0,crafted=0,baits=0,shop=0,blood=0;
         for(Entry entry:CATALOG.values()){
             if(BloodAccessories.exclusive(entry.id()))blood++;
@@ -98,8 +104,8 @@ public final class AccessoryService {
             else if(AccessoryCraft.canDraw(entry.id(),entry.rarity()))drawable++;
             else throw new IllegalStateException("饰品未归入可抽取、合成、鱼饵或商店："+entry.id());
         }
-        if(drawable!=AccessoryCraft.DRAWABLE_COUNT||crafted!=6||baits!=2||shop!=1||blood!=2||CATALOG.size()!=49)
-            throw new IllegalStateException("饰品目录必须为38件普通可抽取、6件合成、2件鱼饵、1件商店专属和2件血月专属");
+        if(drawable!=AccessoryCraft.DRAWABLE_COUNT||crafted!=7||baits!=2||shop!=1||blood!=2||CATALOG.size()!=55)
+            throw new IllegalStateException("饰品目录必须为43件普通可抽取、7件合成、2件鱼饵、1件商店专属和2件血月专属");
     }
     private static void special(String id,String name,String effect,String icon,boolean passive){special(id,name,effect,icon,passive,"common");}
     private static void special(String id,String name,String effect,String icon,boolean passive,String rarity){CATALOG.put(id,new Entry(id,name,effect,icon,passive,rarity,null,0,null));}
@@ -228,6 +234,9 @@ public final class AccessoryService {
         IslandState.Person person=runtime.state().players.get(player.getUUID());
         return person!=null&&person.unlockedAccessories.contains(id);
     }
+    public static int buildingChainBonus(SkyServer runtime,ServerPlayer player){
+        return active(runtime,player,AccessoryCraft.ARCHITECT_BACKPACK)?8:active(runtime,player,"portable_cement_mixer")?4:0;
+    }
     public static void apply(ServerPlayer player,IslandState.Person person){
         for(Entry entry:CATALOG.values()){
             if(entry.attribute()==null)continue;
@@ -237,6 +246,12 @@ public final class AccessoryService {
             if(enabled){
                 if(!instance.hasModifier(id))instance.addOrUpdateTransientModifier(new AttributeModifier(id,entry.amount(),entry.operation()));
             }else if(instance.hasModifier(id))instance.removeModifier(id);
+        }
+        var mining=player.getAttribute(Attributes.BLOCK_BREAK_SPEED);
+        var backpackMining=YumisSkyIsland.id("accessory_architect_backpack_mining");
+        if(mining!=null){
+            if(equipped(person,AccessoryCraft.ARCHITECT_BACKPACK))mining.addOrUpdateTransientModifier(new AttributeModifier(backpackMining,0.50,AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+            else mining.removeModifier(backpackMining);
         }
     }
     /** Night vision, slow healing and item pull. Attribute accessories stay on the existing apply path. */

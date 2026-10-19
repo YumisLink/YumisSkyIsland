@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "MMM",
+    "FMF",
+    "MMM"
+  ],
+  "key": {
+    "M": "minecraft:iron_ingot",
+    "F": "yumis_sky_island:copper_furnace"
+  },
+  "result": {
+    "id": "yumis_sky_island:iron_furnace",
+    "count": 1
+  }
+}

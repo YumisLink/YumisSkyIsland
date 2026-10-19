@@ -23,6 +23,21 @@ saleDivisor = 1
 buyRule = "floor(purchaseBaseAfterMarket * quality * enchantments * productBuyMultiplier * regularShopMultiplier)"
 regularBuyMultiplierBps = 25000
 
+# 仅增加指定物品的收购收入；不改变购买、品质概率或售出额度计件。
+[cropSales]
+items = ["minecraft:wheat", "minecraft:sweet_berries", "minecraft:carrot", "minecraft:potato", "minecraft:beetroot", "minecraft:pumpkin", "minecraft:melon_slice", "minecraft:sugar_cane", "minecraft:cocoa_beans", "minecraft:nether_wart", "minecraft:chorus_fruit"]
+# 收购基础倍率，万分比；20000表示当前收入的2倍。
+baseMultiplierBps = 20000
+# 在既有品质价值倍率上再乘以下系数；10000=1倍。
+# 默认翻倍后的作物星级相对普通为4／18／60／150／6000。
+[cropSales.gradeMultiplierBps]
+ordinary = 10000
+copper = 20000
+silver = 30000
+gold = 40000
+diamond = 50000
+prismatic = 60000
+
 [market]
 # 每个主世界游戏日跨过04:00（绝对日时刻22000）刷新一次，睡眠和跳时均有效。
 refreshAtDayTick = 22000

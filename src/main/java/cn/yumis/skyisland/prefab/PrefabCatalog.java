@@ -20,11 +20,12 @@ public final class PrefabCatalog {
     private final Set<String> registeredBlueprints=new LinkedHashSet<>();
     public final Path directory;
     private final PrefabRules rules;
+    private String manifestDigest="missing";
     public PrefabCatalog(GameConfig config,PrefabRules rules) throws IOException {
         this.rules=rules;Path game=FabricLoader.getInstance().getGameDir().toAbsolutePath().normalize();directory=game.resolve(rules.directory()).normalize();
         if(!directory.startsWith(game))throw new IOException("建筑库目录越出运行实例");Files.createDirectories(directory);
         Path manifest=directory.resolve("catalog.toml");if(!Files.exists(manifest))return;
-        JsonObject data=TomlConfigIO.readOrRepair(manifest,"# 外置建筑目录；仅保留实际安装的模板。\n[templates]\n");if(!data.has("templates"))return;
+        JsonObject data=TomlConfigIO.readOrRepair(manifest,"# 外置建筑目录；仅保留实际安装的模板。\n[templates]\n");manifestDigest=GameConfig.digest(manifest);if(!data.has("templates"))return;
         for(var entry:data.getAsJsonObject("templates").entrySet()) {
             String id=entry.getKey();if(!id.matches("[a-z0-9_]{1,80}"))throw new IOException("建筑ID无效："+id);
             JsonObject o=entry.getValue().getAsJsonObject();Set<Integer> rotations=new LinkedHashSet<>();
@@ -34,10 +35,26 @@ public final class PrefabCatalog {
                 l(o,"blueprintPrice",1000000),l(o,"buildFee",20000000),Set.copyOf(rotations),s(o,"dimension",""),s(o,"biome",""),i(o,"alignX",1),i(o,"alignZ",1),s(o,"notes",""),s(o,"sha256",""));
             if(rotations.isEmpty()||d.level<0||d.level>100||d.blueprintPrice<1||d.buildFee<1||d.alignX<1||d.alignZ<1||!Set.of("common","rare","epic","legendary").contains(d.rarity))throw new IOException("建筑价格、等级或方向无效："+id);
             definitions.put(id,d);
-            if(available(d))try{load(id);addProduct(config,d);registeredBlueprints.add(id);}catch(Exception e){YumisSkyIsland.LOGGER.error("预制建筑 {} 未上架：{}",id,e.getMessage());}
+            if(available(d))try{load(id);addProduct(config,d);registeredBlueprints.add(id);var p=config.products.get("yumis_sky_island:prefab/"+id);replaceEconomics(p,ProductOverrides.number(ProductOverrides.row(config.object("shop/products.toml"),p.id()),"buildFee",d.buildFee(),1,Long.MAX_VALUE));}catch(Exception e){YumisSkyIsland.LOGGER.error("预制建筑 {} 未上架：{}",id,e.getMessage());}
         }
     }
     public Set<String> registeredBlueprints(){return Collections.unmodifiableSet(registeredBlueprints);}
+    public String sourceDigest(){return manifestDigest;}
+    public void requireSourceCurrent(String expected)throws IOException{
+        Path file=directory.resolve("catalog.toml");String actual=Files.exists(file)?GameConfig.digest(file):"missing";
+        if(!Objects.equals(expected,manifestDigest)||!Objects.equals(actual,manifestDigest))throw new IOException("外置建筑目录已修改，请重新载入后编辑");
+    }
+    public void replaceEconomics(GameConfig.Product p,long fee){
+        prepareEconomics(p,fee).run();
+    }
+    /** Validate the existing asset before persistence; the returned publication performs no fallible file I/O. */
+    public Runnable prepareEconomics(GameConfig.Product p,long fee){
+        String id=p.id().substring("yumis_sky_island:prefab/".length());Definition d=definitions.get(id);
+        if(d==null||!available(d))throw new IllegalArgumentException("建筑模板尚未通过验收");
+        if(fee<1)throw new IllegalArgumentException("成品费必须为正整数");
+        Definition next=new Definition(d.id,d.name,d.category,d.author,d.source,d.license,d.file,d.status,p.level(),p.rarity(),p.buyBaseCoins(),fee,d.rotations,d.dimension,d.biome,d.alignX,d.alignZ,d.notes,d.sha256);
+        return ()->definitions.put(id,next);
+    }
     private static String s(JsonObject o,String key,String fallback){return o.has(key)?o.get(key).getAsString():fallback;}
     private static int i(JsonObject o,String key,int fallback){return o.has(key)?o.get(key).getAsInt():fallback;}
     private static long l(JsonObject o,String key,long fallback){return o.has(key)?o.get(key).getAsLong():fallback;}
@@ -81,7 +98,7 @@ public final class PrefabCatalog {
         if(config.products.containsKey(id))return;
         JsonObject overrides=config.object("shop/products.toml").getAsJsonObject("buyBaseValueOverrides");
         long buy=overrides!=null&&overrides.has(id)?ScoringSettings.integer(overrides.get(id),1,Long.MAX_VALUE):d.blueprintPrice;
-        config.products.put(id,new GameConfig.Product(id,d.name+"图纸",canonical,d.blueprintPrice,buy,10000,"buy_only",d.rarity,d.level,1,1,"minecraft:tools_and_utilities"));
+        config.products.put(id,ProductOverrides.apply(new GameConfig.Product(id,d.name+"图纸",canonical,d.blueprintPrice,buy,10000,"buy_only",d.rarity,d.level,1,1,"minecraft:tools_and_utilities"),config.object("shop/products.toml")));
     }
     public JsonArray describe() {
         JsonArray array=new JsonArray();for(var d:definitions.values()){

@@ -186,5 +186,18 @@
   "item.yumis_sky_island.accessory_collector": "收集者",
   "item.yumis_sky_island.accessory_anklet": "脚链",
   "item.yumis_sky_island.accessory_shark_necklace": "鲨鱼项链",
-  "block.yumis_sky_island.sorter": "物品分类器"
+  "block.yumis_sky_island.sorter": "物品分类器",
+  "block.yumis_sky_island.copper_furnace": "铜熔炉",
+  "block.yumis_sky_island.iron_furnace": "铁熔炉",
+  "block.yumis_sky_island.gold_furnace": "金熔炉",
+  "block.yumis_sky_island.emerald_furnace": "绿宝石熔炉",
+  "block.yumis_sky_island.diamond_furnace": "钻石熔炉",
+  "block.yumis_sky_island.netherite_furnace": "下界合金熔炉",
+  "block.yumis_sky_island.ender_furnace": "末影熔炉",
+  "item.yumis_sky_island.accessory_tool_belt": "工具腰带",
+  "item.yumis_sky_island.accessory_toolbox": "工具盒",
+  "item.yumis_sky_island.accessory_extender_grip": "延长抓钩",
+  "item.yumis_sky_island.accessory_excavator": "挖掘器",
+  "item.yumis_sky_island.accessory_portable_cement_mixer": "便携式水泥搅拌器",
+  "item.yumis_sky_island.accessory_architect_backpack": "建筑师发明背包"
 }

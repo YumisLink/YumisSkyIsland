@@ -59,7 +59,7 @@ public final class LotteryService {
                 }
                 if(rows.isEmpty()){loaded.putAll(configuredStacks);rows.addAll(configured);}
                 templates.clear();templates.putAll(loaded);candidates=List.copyOf(rows);unlockLevel=parsed.unlockLevel;
-                catalogKey=UUID.nameUUIDFromBytes(String.join("\n",rows.stream().filter(c->c.rarity()==3).map(LotterySelector.Candidate::id).sorted().toList()).getBytes(java.nio.charset.StandardCharsets.UTF_8)).toString();
+                catalogKey=UUID.nameUUIDFromBytes(String.join("\n",rows.stream().filter(c->c.rarity()==3).map(c->c.id()+":"+c.minimumLevel()).sorted().toList()).getBytes(java.nio.charset.StandardCharsets.UTF_8)).toString();
             }
             settings=parsed;problem="";
         }catch(RuntimeException failure){problem="奖池暂不可用，请联系管理员";settings=null;YumisSkyIsland.LOGGER.error("奖池配置错误："+FILE,failure);}
@@ -83,10 +83,16 @@ public final class LotteryService {
         }
     }
     private void updateUp(IslandState state,IslandState.Party party) {
-        if(party.lotteryUpEpoch!=state.marketRound||!catalogKey.equals(party.lotteryUpCatalog)) {
+        if(party.lotteryUpEpoch!=state.marketRound) {
             party.lotteryUpOrder=new ArrayList<>(LotterySelector.dailyOrder(state.lotterySeed,party.id,state.marketRound,candidates,party.lotteryUpId));
             party.lotteryUpEpoch=state.marketRound;
             party.lotteryUpCatalog=catalogKey;
+        }else if(!catalogKey.equals(party.lotteryUpCatalog)){
+            // Keep today's order (including temporarily ineligible IDs), deterministically append new entries.
+            var order=new ArrayList<>(party.lotteryUpOrder);
+            for(String id:LotterySelector.dailyOrder(state.lotterySeed,party.id,state.marketRound,candidates,""))if(!order.contains(id))order.add(id);
+            if(candidates.stream().anyMatch(c->c.rarity()==3&&c.id().equals(party.lotteryUpId)&&c.minimumLevel()<=runtime.level(party))){order.remove(party.lotteryUpId);order.addFirst(party.lotteryUpId);}
+            party.lotteryUpOrder=order;party.lotteryUpCatalog=catalogKey;
         }
         String selected=LotterySelector.featured(party.lotteryUpOrder,candidates,party.highestIslandLevel);
         if(!selected.isEmpty())party.lotteryUpId=selected;

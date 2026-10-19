@@ -40,7 +40,7 @@ public final class LotteryPanel {
         g.enableScissor(x,111,width-x,height-46);
         g.fill(x,y,x+w,y+78,UiTheme.CARD);
         if(data().has("upStack")){
-            var stack=model.decode(data().get("upStack"));g.item(stack,x+10,y+13);
+            var stack=model.decode(data().get("upStack"));QualityFrames.draw(g,stack,x,y,w,78);g.item(stack,x+10,y+13);
             g.text(font,"今日UP",x+38,y+10,0xFFFFD789,false);
             g.text(font,font.plainSubstrByWidth(stack.getHoverName().getString(),w-48),x+38,y+29,0xFFFFC16F,false);
         }else g.text(font,"今日UP · 达到解锁等级后显示",x+10,y+17,0xFFCCCCCC,false);

@@ -38,6 +38,7 @@ public final class LotteryResultScreen extends Screen {
     private void drawSingle(GuiGraphicsExtractor g){
         Prize prize=prizes.getFirst();int panelW=220,panelH=168,x=(width-panelW)/2,y=(height-panelH)/2;
         g.fill(x,y,x+panelW,y+panelH,UiTheme.PANEL);
+        QualityFrames.draw(g,prize.stack,x,y,panelW,panelH);
         g.pose().pushMatrix();g.pose().translate(x+86,y+28);g.pose().scale(3f,3f);g.item(prize.stack,0,0);g.pose().popMatrix();
         String name=font.plainSubstrByWidth(prize.stack.getHoverName().getString(),panelW-24);
         g.text(font,name,x+(panelW-font.width(name))/2,y+92,RarityColors.color(prize.rarity),false);
@@ -50,6 +51,7 @@ public final class LotteryResultScreen extends Screen {
         g.fill(x,y,x+panelW,y+panelH,UiTheme.PANEL);
         for(int i=0;i<prizes.size();i++){
             Prize prize=prizes.get(i);int cx=x+12+(i%columns)*cell,cy=y+12+(i/columns)*cell;
+            QualityFrames.draw(g,prize.stack,cx,cy,cell-2,cell-2);
             g.pose().pushMatrix();g.pose().translate(cx+(cell-32)/2f,cy+4);g.pose().scale(2f,2f);g.item(prize.stack,0,0);g.pose().popMatrix();
             String name=font.plainSubstrByWidth(prize.stack.getHoverName().getString(),cell-8);
             g.text(font,name,cx+(cell-font.width(name))/2,cy+42,RarityColors.color(prize.rarity),false);

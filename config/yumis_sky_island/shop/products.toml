@@ -24380,3 +24380,10 @@ shopCategory = "other"
 itemId = "yumis_sky_island:sky_fruit"
 
 [products."yumis_sky_island:sky_fruit".canonicalStack.componentPatch]
+
+# 物品管理的最终经济定义，表键为商品ID；优先于原商品、等级、稀有度和旧购价覆盖。
+# 每条记录保存 baseValueCoins（收购估值）、buyBaseValueCoins（购入基价，特殊弹药为固定金额）、
+# tradeMode（buy_sell/buy_only/sell_only）、tradeEnabled（交易启停）、rarity、unlockLevel、dailyStock（-1不限）；
+# 已验收外置建筑图纸另存 buildFee（后续开工成品费）。停用不移除估值或奖池定义，库存下轮04:00采用。
+# 原始商品与资产作为底值；手改已管理商品请修改本表，缺省 tradeEnabled 为 true。
+[productOverrides]

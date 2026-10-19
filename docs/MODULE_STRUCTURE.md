@@ -16,13 +16,15 @@
 flowchart TB
     Defaults["仓库默认配置<br/>config/yumis_sky_island"] --> Pack["processResources<br/>JAR defaults/yumis_sky_island"]
     Pack --> Config["GameConfig + ScoringSettings<br/>NightConfig读取／保留注释、缺省计分、原子保存"]
-    RuntimeConfig["运行实例配置<br/>26份中文注释TOML"] --> Config
+    RuntimeConfig["运行实例配置<br/>28份中文注释TOML"] --> Config
     Config --> Main["YumisSkyIsland<br/>Fabric 通用入口与事件注册"]
     Main --> Void["world<br/>VoidWorlds / VoidMarker"]
     Main --> Blocks["block<br/>ModBlocks / ShippingChestBlock / Entity"]
     Main --> Runtime["SkyServer<br/>空岛服务协调、请求路由、tick、同步"]
     Main --> Leap["CloudLeapService + ModEffects<br/>技能验证与踏云护体；普通世界亦可用"]
     Main --> Quiver["QuiverService + QuiverState<br/>所有世界：4096支个人箭库、第9格空时补64"]
+    Main --> Furnaces["FurnaceContent / UpgradedFurnaceEntity<br/>所有世界：七档2～128倍、原生燃料与进度余量、普通熔炉菜单"]
+    Config --> Furnaces
     Config --> Quiver
     QuiverClient["QuiverClient<br/>空气目标与同帧切栏同步"] --> Quiver
     Quiver --> QuiverSave["玩家Attachment + 原生背包<br/>死亡复制；交易恢复配对快照"]
@@ -55,8 +57,12 @@ flowchart TB
         ClientMain["SkyIslandClient<br/>I / O / P / ~ / C 按键、HUD、Tooltip、网络接收"]
         Catalog["ClientCatalog<br/>商品/规则/队伍快照、收藏与布局偏好"]
         Screens["ControlPanelScreen / AccessoryScreen + LotteryPanel / ProfessionScreen<br/>任务、饰品／抽奖（祈愿）同页Tab、职业商店／金币浮字"]
-        LiveEditor["LiveConfigScreen / PriceEditorPanel<br/>Ctrl＋】独立表单／商店内嵌改购入基价"]
+        LiveEditor["LiveConfigScreen / ProductAddPanel<br/>Ctrl＋】独立表单／I页内嵌物品管理"]
         Catalog --> LiveEditor
+        Frames["QualityFrames<br/>仅客户端：职业来源／品质识别、整格1像素彩框、4秒七彩流动"]
+        Catalog --> Frames
+        Screens --> Frames
+        FrameHooks["客户端槽位／热栏／拖拽Mixin<br/>沿用实际渲染栈、矩阵与裁剪"] --> Frames
         FishingJei["SkyFishingJeiPlugin<br/>普通／血月地区钓鱼分类"]
         VeinPreview["VeinPreviewRenderer<br/>连锁方块虚线预览"]
         ClientMain --> Catalog --> Screens
@@ -66,7 +72,7 @@ flowchart TB
     Screens --> Requests["ShopPayloads + TaskPayloads + LotteryPayloads.Operation<br/>交易上下文／市场轮次；任务修订；个人操作序号及UP上下文"]
     Requests --> Runtime
     LiveEditor --> ConfigWire["ConfigEditPayloads<br/>服务端白名单、共享编辑模式、修订号与文件摘要"] --> Runtime
-    Runtime --> ConfigEditor["AdminEditSession / ConfigEditorService<br/>/is admin edit on|off、先保存后发布、版本化目录"]
+    Runtime --> ConfigEditor["AdminEditSession / ConfigEditorService / ItemManagementService<br/>唯一编辑开关、单文件原子保存、版本化目录"]
     ConfigEditor --> Config
     Runtime --> Snapshots["ShopPayloads.Snapshot + TaskPayloads.Snapshot<br/>目录、规则、行情、队伍、个人任务、报价／入账事件"]
     Snapshots --> Catalog
@@ -111,6 +117,8 @@ flowchart TB
     Hooks --> Leap
     Config --> Economy
     Core["core<br/>ClaimGrid / BlockScorer / Money / IncomeNotifications / Rational<br/>QuotaCurve / SalePlanner / BountyRules 等"] --> Services
+    CropSales["CropSaleRules<br/>十一类作物出售专用倍率；服务端／客户端共用"] --> Economy
+    CropSales --> Catalog
     Runtime --> Store["data<br/>DurableStore + IslandState"]
     Store --> Disk["世界/yumis_sky_island<br/>state.journal + state.checkpoint"]
 
@@ -128,7 +136,7 @@ flowchart TB
 YumisSkyIsland/
 ├─ AGENTS.md                         全仓库开发规则与最新要求
 ├─ build.gradle / gradle.properties   Loom、依赖、源集、默认配置打包
-├─ config/yumis_sky_island/           26份仓库默认业务 TOML
+├─ config/yumis_sky_island/           28份仓库默认TOML（含客户端偏好）
 │  ├─ server_rules.*                 原版交易限制
 │  ├─ shop/                          商品、价格、稀有度、等级、库存、售出额度
 │  ├─ islands/                       方块计分、等级阈值、刷新预算
@@ -151,6 +159,7 @@ YumisSkyIsland/
 │  ├─ wand/                          六档建造杖、服务端候选、供料、选项与撤销
 │  ├─ prefab/                        外置建筑库、蓝图大炮、逐块日志与区块恢复凭据
 │  ├─ sorting/                       分类器、箱体身份、绑定、菜单、调度及跨箱恢复事务
+│  ├─ furnace/                       七档普通熔炉、原生容器／菜单及按边界加速
 │  ├─ item/                          飞行券、生态球、果实和饰品图标注册
 │  └─ mixin/                         原版行为拦截及必要存储访问
 ├─ src/main/resources/               Fabric、Mixin、配方、世界生成、语言与贴图
@@ -256,6 +265,10 @@ flowchart LR
 | 隐藏保底与库存 | DailyShopSelector.rollShop、TradeService、ShopPayloads.Purchase | 至少1传说＋2史诗，向下回退、不重复、上下文及轮次校验 |
 | 出货箱支线 | ShippingChestBlock.setPlacedBy、ProgressionService.shippingPlaced | 本人于本队实际成功放置；64原木＋3铁锭＋附魔金镐 |
 | 本地测试隔离 | local-tests、build.gradle、dev.ps1、.gitignore | 已集中取消跟踪；用户已接手后续实机验收 |
+
+`QualityFrames` 位于客户端源集，原版槽位／热栏／拖拽Mixin与模组自绘卡片共用绘制算法；仅读取既有品质与职业来源组件。个人设置开关落在本机 `client.toml`，不新增服务端请求、持久化字段或公共协议。
+
+`ProfessionSaleItems` 提供固定46项默认名单，`ClientCatalog` 在本机TOML保存个人名单，`SalePanel` 仅按ID快捷选择既有服务端可售槽位。`ProductAddPanel` 现为唯一内嵌物品管理列表／表单，`ItemManagementService` 经 `ConfigEditPayloads` 按物品请求详情和提交；`ProductOverrides` 将原配置与管理记录合成为有效商品，交易、外置图纸经营参数和当前奖池共同读取。管理记录在单个商品TOML原子保存后发布，`tradeEnabled` 统一控制买卖，报价版本覆盖大炮检查与开工。操作与生效规则见[物品管理](ITEM_MANAGEMENT.md)。
 
 模块或数据流改变时，同时维护本文 Mermaid、SVG 和 [AGENTS.md](../AGENTS.md) 的对应规则/状态，避免结构图与代码脱节。
 

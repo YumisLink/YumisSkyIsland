@@ -42,6 +42,11 @@ public final class SkyFishingJeiPlugin implements IModPlugin {
     private int normalCount,bloodCount;
 
     @Override public Identifier getPluginUid(){return YumisSkyIsland.id("jei_fishing");}
+    @Override public void registerRecipeCatalysts(mezz.jei.api.registration.IRecipeCatalystRegistration registration){
+        var furnaces=cn.yumis.skyisland.furnace.FurnaceContent.BLOCKS.values().toArray(net.minecraft.world.level.ItemLike[]::new);
+        registration.addCraftingStation(mezz.jei.api.constants.RecipeTypes.SMELTING,furnaces);
+        registration.addCraftingStation(mezz.jei.api.constants.RecipeTypes.SMELTING_FUEL,furnaces);
+    }
     @Override public void registerItemSubtypes(ISubtypeRegistration registration){
         registration.registerSubtypeInterpreter(ModItems.BIOME_TREASURE_BOX,(stack,context)->{
             BiomeTreasureBox.Kind kind=BiomeTreasureBox.kind(stack);

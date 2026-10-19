@@ -16,12 +16,14 @@ import net.minecraft.world.item.Items;
 public final class ConfigEditorService {
     private final SkyServer rt;
     private final Map<String,Long> revisions=new HashMap<>();
-    public ConfigEditorService(SkyServer rt){this.rt=rt;}
+    private final ItemManagementService items;
+    public ConfigEditorService(SkyServer rt){this.rt=rt;items=new ItemManagementService(rt);}
     public void request(ServerPlayer player,ConfigEditPayloads.Request request){
         try {
             rt.editors.require(player);
             JsonObject body=JsonParser.parseString(request.json()).getAsJsonObject();
             switch(request.action()){
+                case "item_open","item_preview","item_save" -> items.request(player,request.action(),body);
                 case "open" -> sendGroup(player,body.has("group")?body.get("group").getAsString():"economy",false);
                 case "save" -> saveGroup(player,body);
                 case "price_open" -> sendPrice(player,body.get("product").getAsString(),false);
@@ -71,7 +73,8 @@ public final class ConfigEditorService {
         cn.yumis.skyisland.data.IslandState.Party preview=new cn.yumis.skyisland.data.IslandState.Party();
         rt.economy.buyPrice(candidate,preview,true);rt.economy.buyPrice(candidate,preview,false);
         JsonObject next=rt.config.object(file).deepCopy(),rows=next.getAsJsonObject("products");
-        if(rows.has(replacement.id()))rows.getAsJsonObject(replacement.id()).addProperty("buyBaseValueCoins",price);
+        if(next.has("productOverrides")&&next.getAsJsonObject("productOverrides").has(replacement.id()))next.getAsJsonObject("productOverrides").getAsJsonObject(replacement.id()).addProperty("buyBaseValueCoins",price);
+        else if(rows.has(replacement.id()))rows.getAsJsonObject(replacement.id()).addProperty("buyBaseValueCoins",price);
         else{if(!next.has("buyBaseValueOverrides"))next.add("buyBaseValueOverrides",new JsonObject());next.getAsJsonObject("buyBaseValueOverrides").addProperty(replacement.id(),price);}
         rt.config.saveChecked(file,next,body.get("digest").getAsString());
         rt.config.products.put(replacement.id(),replacement);rt.economy.replaceProduct(replacement);revisions.merge(file,1L,Math::addExact);

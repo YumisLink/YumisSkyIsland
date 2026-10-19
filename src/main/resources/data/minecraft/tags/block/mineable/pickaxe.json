@@ -2,6 +2,13 @@
   "replace": false,
   "values": [
     "yumis_sky_island:blueprint_cannon",
-    "yumis_sky_island:sorter"
+    "yumis_sky_island:sorter",
+    "yumis_sky_island:copper_furnace",
+    "yumis_sky_island:iron_furnace",
+    "yumis_sky_island:gold_furnace",
+    "yumis_sky_island:emerald_furnace",
+    "yumis_sky_island:diamond_furnace",
+    "yumis_sky_island:netherite_furnace",
+    "yumis_sky_island:ender_furnace"
   ]
 }

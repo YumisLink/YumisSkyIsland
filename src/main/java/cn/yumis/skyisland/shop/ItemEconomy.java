@@ -76,7 +76,7 @@ public final class ItemEconomy {
         return new SplittableRandom(DailyShopSelector.mix(seed ^ product.hashCode() ^ DailyShopSelector.mix(epoch))).nextInt(min, max + 1);
     }
     public long buyPrice(Entry entry) {
-        if(entry.template().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION))return config.object("gameplay/prefabs.toml").get("ammunitionPriceCoins").getAsLong();
+        if(entry.template().is(PrefabItems.AMMUNITION))return ammunitionPrice();
         long price = purchaseValue(entry).multiply(Rational.of(entry.product().buyMultiplierBps(), 10000)).floorLongExact();
         if (price < 1) throw new IllegalArgumentException("商品价格配置无效");
         return price;
@@ -99,6 +99,10 @@ public final class ItemEconomy {
         Entry next=new Entry(product,old.template());entries.put(product.id(),next);
         byItem.get(old.template().getItem()).replaceAll(e->e.product().id().equals(product.id())?next:e);
     }
+    public long ammunitionPrice(){
+        JsonObject row=cn.yumis.skyisland.config.ProductOverrides.row(config.object("shop/products.toml"),"yumis_sky_island:special_ammunition");
+        return cn.yumis.skyisland.config.ProductOverrides.number(row,"buyBaseValueCoins",config.object("gameplay/prefabs.toml").get("ammunitionPriceCoins").getAsLong(),1,Long.MAX_VALUE);
+    }
     public long buyPrice(Entry entry, cn.yumis.skyisland.data.IslandState.Party party) {
         return starter(entry) && party.acquiredStarterIds.contains(entry.product().id())
             ? purchaseValue(entry).floorLongExact() : buyPrice(entry);
@@ -107,7 +111,7 @@ public final class ItemEconomy {
         return fullValue(entry.product().buyBaseCoins(),marketBps(entry.product().id()),entry.template(),config.object("products/quality.toml"),config.object("shop/enchantments.toml"),config.minimumBaseCoins);
     }
     public long buyPrice(Entry entry, cn.yumis.skyisland.data.IslandState.Party party, boolean permanent) {
-        if(entry.template().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION))return config.object("gameplay/prefabs.toml").get("ammunitionPriceCoins").getAsLong();
+        if(entry.template().is(PrefabItems.AMMUNITION))return ammunitionPrice();
         long premium = starter(entry) && party.acquiredStarterIds.contains(entry.product().id()) ? 10000 : entry.product().buyMultiplierBps();
         long price = purchaseValue(entry).multiply(Rational.of(premium,10000))
             .multiply(Rational.of(permanent ? config.regularBuyMultiplierBps : 10000,10000)).multiply(Rational.of(residentBuy.applyAsInt(party,BuiltInRegistries.ITEM.getKey(entry.template().getItem()).toString()),10000)).floorLongExact();
@@ -121,11 +125,18 @@ public final class ItemEconomy {
     public Entry match(ItemStack stack) {
         if (stack.isEmpty()) return null;
         List<Entry> candidates = byItem.get(stack.getItem()); if (candidates == null) return null;
+        Entry best=null;int score=-1;
         for (Entry entry : candidates) {
-            if (matchesCanonical(stack,entry.template(),entry.product().canonical().getAsJsonObject("componentPatch"))) return entry;
+            if(ItemStack.isSameItemSameComponents(stack,entry.template()))return entry;
+            JsonObject patch=entry.product().canonical().getAsJsonObject("componentPatch");
+            if(matchesCanonical(stack,entry.template(),patch)){
+                int specificity=specificity(entry.template(),patch);
+                if(specificity>score){best=entry;score=specificity;}
+            }
         }
-        return null;
+        return best;
     }
+    public static int specificity(ItemStack template,JsonObject patch){return patch.size()*1000+template.getOrDefault(DataComponents.STORED_ENCHANTMENTS,ItemEnchantments.EMPTY).entrySet().size();}
     /** Compare decoded values, since equivalent component codecs may encode a shorthand form. */
     public static boolean matchesCanonical(ItemStack actual,ItemStack template,JsonObject components) {
         if (!ItemStack.isSameItem(actual,template)) return false;
@@ -173,6 +184,7 @@ public final class ItemEconomy {
         CustomData data = stack.get(DataComponents.CUSTOM_DATA);
         if (data != null) {
             CompoundTag tag = data.copyTag(); tag.remove("yumis_quality"); tag.remove("yumis_profession");
+            if(stack.is(PrefabItems.BLUEPRINT)&&PrefabItems.templateId(stack).matches("[a-z0-9_]{1,80}"))tag.remove("yumis_prefab");
             if(!LotteryItemRarity.get(stack).isEmpty())tag.remove(LotteryItemRarity.KEY);
             if (!tag.isEmpty()) return false;
         }
@@ -183,11 +195,14 @@ public final class ItemEconomy {
     }
     public Quote quote(ItemStack stack,cn.yumis.skyisland.data.IslandState.Party party) {
         Entry entry = match(stack); if (entry == null || !entry.product().canSell() || !safeToSell(stack)) return null;
+        if(stack.is(PrefabItems.BLUEPRINT)&&!entry.product().id().equals("yumis_sky_island:prefab/"+PrefabItems.templateId(stack)))return null;
         Rational full = full(entry, stack);
         Rational durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage() - stack.getDamageValue(), stack.getMaxDamage()) : Rational.ONE;
         String item = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
         var unit = new GameConfig.QuotaUnit(item, Rational.ONE);
-        return new Quote(entry, full, full.multiply(durability).divide(Rational.of(config.saleDivisor)).multiply(Rational.of(party==null?10000:residentSale.applyAsInt(party,item),10000)), unit);
+        return new Quote(entry, full, full.multiply(durability).divide(Rational.of(config.saleDivisor))
+            .multiply(config.cropSales.multiplier(item,grade(stack)))
+            .multiply(Rational.of(party==null?10000:residentSale.applyAsInt(party,item),10000)), unit);
     }
     public List<SalePlanner.Input> saleInputs(Container container, int onlySlot) {
         return saleInputs(container,onlySlot,null);

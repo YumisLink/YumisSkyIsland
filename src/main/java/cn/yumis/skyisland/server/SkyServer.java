@@ -218,7 +218,7 @@ public final class SkyServer implements AutoCloseable {
     public void configurationChanged(String file,Runnable acknowledged){
         rulesRevision++;
         if(file.equals("products/profession_shop.toml"))professionShopRevision++;
-        if(file.equals(LotteryService.FILE)){lotteryRulesRevision++;lottery.reload();}
+        if(file.equals(LotteryService.FILE)||file.equals("shop/products.toml")){lotteryRulesRevision++;lottery.reload();}
         if(file.equals("economy.toml"))Money.currencyName(config.object(file).get("genshinMode").getAsBoolean()?"摩拉":"金币");
         Runnable published=()->{invalidateCatalogs();syncAll();acknowledged.run();};
         if(file.equals("islands/scoring.toml")){
@@ -371,16 +371,20 @@ public final class SkyServer implements AutoCloseable {
             var p = e.product(); JsonObject row = new JsonObject(); row.addProperty("id", p.id()); row.addProperty("name", p.name()); row.add("stack", economy.encode(e.template())); row.add("canonical",p.canonical());
             row.addProperty("base", p.baseCoins());row.addProperty("buyBase",p.buyBaseCoins()); row.addProperty("buyMultiplierBps",p.buyMultiplierBps()); row.addProperty("rarity", p.rarity()); row.addProperty("level", p.level()); row.addProperty("buy", economy.canBuy(e)); row.addProperty("sell", p.canSell()); row.addProperty("category", p.id().startsWith("yumis_sky_island:biome_ball_")?"biome_ball":p.category());
             row.addProperty("firstAcquisitionPremium",economy.starter(e));
+            row.addProperty("tradeEnabled",p.tradeEnabled());
             var unit = new GameConfig.QuotaUnit(p.canonical().get("itemId").getAsString(), Rational.ONE);
-            row.addProperty("quotaGroup", unit.group()); row.addProperty("quotaUnits", unit.units().toString()); entries.add(row);
+            row.addProperty("quotaGroup", unit.group()); row.addProperty("quotaUnits", unit.units().toString());
+            if(!entries.isEmpty()&&entries.toString().length()+row.toString().length()>180000){pages.add(catalogPage(entries,page++));entries=new JsonArray();}
+            entries.add(row);
             if (entries.size() == 64) { pages.add(catalogPage(entries, page++)); entries = new JsonArray(); }
         }
         if (!entries.isEmpty()||pages.isEmpty()) pages.add(catalogPage(entries, page));
         JsonObject rules = new JsonObject(); rules.add("scoring", config.object("islands/scoring.toml")); rules.add("enchantments", config.object("shop/enchantments.toml")); rules.add("quality", config.object("products/quality.toml")); rules.add("quotas",config.object("shop/sale_quotas.toml").get("tiers"));
         rules.addProperty("saleDivisor",config.saleDivisor);rules.addProperty("minimumBaseCoins",config.minimumBaseCoins);
+        rules.add("cropSales",config.object("shop/shops.toml").get("cropSales"));
         rules.addProperty("genshinMode",config.object("economy.toml").get("genshinMode").getAsBoolean());
         rules.addProperty("regularBuyMultiplierBps",config.regularBuyMultiplierBps);
-        rules.addProperty("prefabAmmunitionPrice",prefabs.rules.ammunitionPrice());
+        rules.addProperty("prefabAmmunitionPrice",economy.ammunitionPrice());
         rules.addProperty("prefabAmmunitionCredits",prefabs.rules.ammunitionCredits());
         JsonArray creativeBlueprints=new JsonArray();for(String id:prefabs.catalog.registeredBlueprints())creativeBlueprints.add(id);
         rules.add("creativeBlueprints",creativeBlueprints);
