@@ -40,12 +40,12 @@ public final class ProfessionShopService {
         if(bait && person.unlockedAccessories.contains(kind))throw new IllegalArgumentException("该鱼饵已解锁");
         if(aura && person.unlockedAccessories.contains("slaughter_aura"))throw new IllegalArgumentException("杀戮光环已解锁");
         if (bait) {
-            runtime.change(player,state->{var p=state.players.get(player.getUUID());p.professionCoins.merge(profession,cost.negate(),BigInteger::add);p.unlockedAccessories.add(kind);},()->SkyServer.tell(player,"已永久解锁"+(kind.equals("lava_bait")?"熔岩鱼饵":"虚空鱼饵")));
+            runtime.change(player, SyncImpact.person(player.getUUID(),"profession","accessories"),state->{var p=state.players.get(player.getUUID());p.professionCoins.merge(profession,cost.negate(),BigInteger::add);p.unlockedAccessories.add(kind);},()->SkyServer.tell(player,"已永久解锁"+(kind.equals("lava_bait")?"熔岩鱼饵":"虚空鱼饵")));
             return;
         }
         if (aura) {
             boolean[] enabled={false};
-            runtime.change(player,state->{
+            runtime.change(player, SyncImpact.person(player.getUUID(),"profession","accessories"),state->{
                 var current=state.players.get(player.getUUID());
                 current.professionCoins.merge(profession,cost.negate(),BigInteger::add);
                 current.unlockedAccessories.add("slaughter_aura");
@@ -69,6 +69,6 @@ public final class ProfessionShopService {
             inventory.set(slot,runtime.economy.encode(new ItemStack(item,add)));
         }
         if(left>0)throw new IllegalArgumentException("背包空间不足");
-        runtime.trades.commitInventory(player,inventory,state->state.players.get(player.getUUID()).professionCoins.merge(profession,cost.negate(),BigInteger::add),()->SkyServer.tell(player,"购买"+ProfessionService.name(profession)+"果实 ×"+quantity));
+        runtime.trades.commitInventory(player, SyncImpact.person(player.getUUID(),"profession"),inventory,state->state.players.get(player.getUUID()).professionCoins.merge(profession,cost.negate(),BigInteger::add),()->SkyServer.tell(player,"购买"+ProfessionService.name(profession)+"果实 ×"+quantity));
     }
 }

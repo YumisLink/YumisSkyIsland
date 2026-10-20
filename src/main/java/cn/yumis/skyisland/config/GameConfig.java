@@ -22,7 +22,7 @@ public final class GameConfig {
         "server_rules.toml", "shop/products.toml", "shop/item_levels.toml", "shop/rarities.toml",
         "shop/enchantments.toml", "shop/shops.toml", "shop/sale_quotas.toml", "shop/recipe_values.toml", "islands/scoring.toml",
         "islands/levels.toml", "islands/refresh.toml", "products/quality.toml", "products/professions.toml", "products/goods.toml", "products/profession_shop.toml",
-        "gameplay/quiver.toml", "gameplay/furnaces.toml", "gameplay/sorting.toml", "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml",
+        "gameplay/quiver.toml", "gameplay/furnaces.toml", "gameplay/sorting.toml", "gameplay/blood_moon.toml", "gameplay/lottery.toml", "gameplay/residents.toml", "gameplay/spawn_balls.toml",
         "tasks/bounties.toml", "tasks/quests.toml", "economy.toml", "gameplay/construction_wand.toml", "gameplay/prefabs.toml"
     };
     private final Path configRoot = FabricLoader.getInstance().getConfigDir().resolve("yumis_sky_island");
@@ -32,7 +32,7 @@ public final class GameConfig {
     public ScoringSettings scoring;
     public QuiverSettings quiver;
     public FurnaceSettings furnaces;
-    public final CropSaleRules cropSales;
+    public ProfessionSaleSettings professionSales;
     public final Map<String, Product> products = new LinkedHashMap<>();
     public final Map<String, BlockValue> blocks = new HashMap<>();
     public final Map<String, QuotaUnit> quotaUnits = new HashMap<>();
@@ -74,6 +74,10 @@ public final class GameConfig {
         once("gameplay/construction_wand.toml", this::constructionWandAcquisitionEnabled);
         once("gameplay/prefabs.toml", this::prefabAcquisitionEnabled);
         once("gameplay/quiver.toml", () -> quiver = QuiverSettings.parse(object("gameplay/quiver.toml")));
+        once("gameplay/spawn_balls.toml", () -> {
+            var value = object("gameplay/spawn_balls.toml").get("enabled");
+            if (value == null || !value.isJsonPrimitive() || !value.getAsJsonPrimitive().isBoolean()) throw new IOException("刷怪球 enabled 须为 true 或 false");
+        });
         once("gameplay/furnaces.toml", () -> furnaces = FurnaceSettings.parse(object("gameplay/furnaces.toml")));
         once("islands/levels.toml", () -> BlockScorer.requirementBasePoints(object("islands/levels.toml").get("requirementBasePoints").getAsLong()));
         once("shop/shops.toml", this::validateShops);
@@ -86,9 +90,9 @@ public final class GameConfig {
         once("products/professions.toml", this::validateProfessions);
         once("products/quality.toml", this::validateQuality);
         once("products/goods.toml", this::validateGoods);
+        once("products/professions.toml", () -> professionSales=ProfessionSaleSettings.parse(object("products/professions.toml"),object("products/goods.toml")));
         JsonObject shops = object("shop/shops.toml");
         JsonObject market = shops.getAsJsonObject("market");
-        cropSales = CropSaleRules.parse(shops.getAsJsonObject("cropSales"));
         Money.currencyName(object("economy.toml").get("genshinMode").getAsBoolean() ? "摩拉" : "金币");
         saleDivisor = shops.has("saleDivisor") ? shops.get("saleDivisor").getAsLong() : 100;
         regularBuyMultiplierBps = shops.has("regularBuyMultiplierBps") ? shops.get("regularBuyMultiplierBps").getAsLong() : 25000;
@@ -116,7 +120,6 @@ public final class GameConfig {
     }
     private void validateShops() throws IOException {
         JsonObject shops = object("shop/shops.toml");
-        CropSaleRules.parse(shops.getAsJsonObject("cropSales"));
         long sale = shops.has("saleDivisor") ? shops.get("saleDivisor").getAsLong() : 100;
         long multiplier = shops.has("regularBuyMultiplierBps") ? shops.get("regularBuyMultiplierBps").getAsLong() : 25000;
         JsonObject market = shops.getAsJsonObject("market");
@@ -306,8 +309,10 @@ public final class GameConfig {
         if (!files.containsKey(path) || !Objects.equals(expected,loadedDigests.get(path))) throw new IOException("配置已更新，请重新打开编辑器");
         Path target=configRoot.resolve(path);
         if (!expected.equals(digest(target))) throw new IOException("TOML已被人工修改，请先重启载入，再使用实时编辑器");
+        ProfessionSaleSettings nextSales=path.equals("products/professions.toml")?ProfessionSaleSettings.parse(value,object("products/goods.toml")):null;
         TomlConfigIO.writeChecked(target,value,expected);
         files.put(path,value.deepCopy());loadedDigests.put(path,digest(target));
+        if(nextSales!=null)professionSales=nextSales;
     }
     public void validateScoringRegistry() {
         Set<String> ids=new HashSet<>();

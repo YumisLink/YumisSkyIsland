@@ -154,11 +154,14 @@ public final class ItemEconomy {
         return fullValue(entry.product().baseCoins(),marketBps(entry.product().id()),stack,config.object("products/quality.toml"),config.object("shop/enchantments.toml"),config.minimumBaseCoins);
     }
     public static Rational fullValue(long base,int marketBps,ItemStack stack,JsonObject quality,JsonObject enchantments,long minimumBaseCoins) {
+        return saleBaseValue(base,marketBps,stack,enchantments,minimumBaseCoins)
+            .multiply(Rational.of(quality.getAsJsonArray("grades").get(grade(stack)).getAsJsonObject().get("valueBps").getAsLong(),10000));
+    }
+    /** Market and enchantments only. Sale quality is applied once from the live sale settings. */
+    public static Rational saleBaseValue(long base,int marketBps,ItemStack stack,JsonObject enchantments,long minimumBaseCoins) {
         // Purchase premiums are applied separately and never enter the buyback value.
         Rational value = Rational.of(base).multiply(Rational.of(marketBps, 10000))
             .max(Rational.of(minimumBaseCoins));
-        JsonArray grades = quality.getAsJsonArray("grades");
-        value = value.multiply(Rational.of(grades.get(grade(stack)).getAsJsonObject().get("valueBps").getAsLong(), 10000));
         ItemEnchantments enchants = stack.getOrDefault(stack.is(Items.ENCHANTED_BOOK) ? DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
         List<Holder<Enchantment>> seen = new ArrayList<>();
         JsonObject table = enchantments.getAsJsonObject("entries");
@@ -196,12 +199,13 @@ public final class ItemEconomy {
     public Quote quote(ItemStack stack,cn.yumis.skyisland.data.IslandState.Party party) {
         Entry entry = match(stack); if (entry == null || !entry.product().canSell() || !safeToSell(stack)) return null;
         if(stack.is(PrefabItems.BLUEPRINT)&&!entry.product().id().equals("yumis_sky_island:prefab/"+PrefabItems.templateId(stack)))return null;
-        Rational full = full(entry, stack);
+        Rational full = saleBaseValue(entry.product().baseCoins(),marketBps(entry.product().id()),stack,config.object("shop/enchantments.toml"),config.minimumBaseCoins)
+            .multiply(config.professionSales.qualityMultiplier(grade(stack)));
         Rational durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage() - stack.getDamageValue(), stack.getMaxDamage()) : Rational.ONE;
         String item = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
         var unit = new GameConfig.QuotaUnit(item, Rational.ONE);
         return new Quote(entry, full, full.multiply(durability).divide(Rational.of(config.saleDivisor))
-            .multiply(config.cropSales.multiplier(item,grade(stack)))
+            .multiply(config.professionSales.multiplier(item))
             .multiply(Rational.of(party==null?10000:residentSale.applyAsInt(party,item),10000)), unit);
     }
     public List<SalePlanner.Input> saleInputs(Container container, int onlySlot) {

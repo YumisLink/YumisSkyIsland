@@ -23,20 +23,31 @@ public final class FoodHealth {
         FoodProperties food = before.get(DataComponents.FOOD);
         if (food == null) return;
         double saturation = restored(food);
-        if (!(saturation > 0)) return;
         SkyServer runtime = SkyServer.get(player.level().getServer());
         if (runtime == null) return;
         String id = BuiltInRegistries.ITEM.getKey(before.getItem()).toString();
-        runtime.change(player, state -> {
+        int[] eaten = {0};
+        double[] gain = {0};
+        var name = new ItemStack(before.getItem()).getHoverName();
+        runtime.deferred(() -> runtime.change(player, SyncImpact.person(player.getUUID(),"buffs"), state -> {
             IslandState.Person person = state.players.get(player.getUUID());
             if (person == null) return;
             ensure(person);
             int previous = person.foodEaten.getOrDefault(id, 0);
-            int count = previous + 1;
+            int count = Math.addExact(previous, 1);
+            eaten[0] = count;
             person.foodEaten.put(id, count);
+            person.perMealFoodHealth.add(id);
             double added = FoodHealthRules.added(saturation, previous, count);
+            gain[0] = added;
             if (added > 0) person.foodHealth.merge(id, added, Double::sum);
-        }, () -> apply(player, runtime.state().players.get(player.getUUID())));
+        }, () -> {
+            var current = runtime.server.getPlayerList().getPlayer(player.getUUID());
+            if (current == null || eaten[0] == 0) return;
+            apply(current, runtime.state().players.get(player.getUUID()));
+            current.sendOverlayMessage(net.minecraft.network.chat.Component.literal("已吃").append(name)
+                .append(eaten[0] + "个｜本次生命上限＋" + FoodHealthRules.number(gain[0])));
+        }));
     }
 
     /** 26.2 already stores nutrition × modifier × 2 in {@link FoodProperties#saturation()}. */
@@ -48,11 +59,12 @@ public final class FoodHealth {
     public static void correctInflated(SkyServer runtime, ServerPlayer player) {
         IslandState.Person person = runtime.state().players.get(player.getUUID());
         if (!inflated(person)) return;
-        runtime.change(player, state -> {
+        runtime.change(player, SyncImpact.person(player.getUUID(),"buffs"), state -> {
             IslandState.Person current = state.players.get(player.getUUID());
             if (current == null) return;
             ensure(current);
             for (var entry : current.foodEaten.entrySet()) {
+                if (current.perMealFoodHealth.contains(entry.getKey())) continue;
                 double correct = reward(entry.getKey(), entry.getValue());
                 if (correct < 0) continue;
                 double stored = current.foodHealth.getOrDefault(entry.getKey(), 0.0);
@@ -77,12 +89,14 @@ public final class FoodHealth {
     public static void ensure(IslandState.Person person) {
         if (person.foodEaten == null) person.foodEaten = new LinkedHashMap<>();
         if (person.foodHealth == null) person.foodHealth = new LinkedHashMap<>();
+        if (person.perMealFoodHealth == null) person.perMealFoodHealth = new java.util.LinkedHashSet<>();
     }
 
     private static boolean inflated(IslandState.Person person) {
         if (person == null || person.foodEaten == null || person.foodEaten.isEmpty()) return false;
         ensure(person);
         for (var entry : person.foodEaten.entrySet()) {
+            if (person.perMealFoodHealth.contains(entry.getKey())) continue;
             double correct = reward(entry.getKey(), entry.getValue());
             if (correct >= 0 && person.foodHealth.getOrDefault(entry.getKey(), 0.0) > correct + 0.0001) return true;
         }
@@ -90,7 +104,7 @@ public final class FoodHealth {
     }
 
     private static double reward(String id, int count) {
-        int stacks = FoodHealthRules.stacks(count);
+        double stacks = FoodHealthRules.stacks(count);
         if (stacks <= 0) return 0;
         Identifier key;
         try { key = Identifier.parse(id); }

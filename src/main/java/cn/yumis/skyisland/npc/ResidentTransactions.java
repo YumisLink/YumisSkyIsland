@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.npc;
 
+import cn.yumis.skyisland.server.SyncImpact;
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.data.IslandState;
 import cn.yumis.skyisland.prefab.PrefabJournal;
@@ -54,21 +55,21 @@ public final class ResidentTransactions implements AutoCloseable {
         if(busy()||!runtime.store.available())throw new IllegalStateException("居民物资事务正在保存");
         try{index(party.id);}catch(IOException error){throw new IllegalStateException("居民生产日志无法打开",error);}
         long seq=indexes.get(party.id).offsets().size()+1L;JsonObject frame=new JsonObject();frame.addProperty("seq",seq);frame.addProperty("party",party.id.toString());frame.addProperty("islandEpoch",party.overworldEpoch);frame.addProperty("resident",next.id.toString());frame.addProperty("round",runtime.epoch());frame.addProperty("chefDays",chefDays);frame.add("next",cn.yumis.skyisland.config.GameConfig.JSON.toJsonTree(next));frame.add("groups",supply.groups());
-        reserved.addAll(house.supply);reserved.addAll(house.output);pending=frame;pendingParty=party.id;writing=true;
+        reserved.addAll(house.supply);reserved.addAll(house.output);pending=frame;pendingParty=party.id;writing=true;runtime.views.impact(SyncImpact.party(party.id,"npc","npcEffects"));
         journal.append(party.id.toString(),frame,()->{writing=false;try{indexes.put(party.id,journal.index(party.id.toString()));advance(frame,()->applyPending());}catch(Exception error){fail(error);}},this::fail);
     }
     private void advance(JsonObject frame,Runnable after){
         UUID id=UUID.fromString(frame.get("party").getAsString());long seq=frame.get("seq").getAsLong();var party=runtime.state().parties.get(id);
         if(party==null||party.resetInProgress||party.overworldEpoch!=frame.get("islandEpoch").getAsLong()){clearPending();return;}
         if(party.settlement.journalSequence>=seq){after.run();return;}
-        runtime.deferred(()->runtime.change(null,state->{var p=state.parties.get(id);if(p==null||p.resetInProgress||p.overworldEpoch!=frame.get("islandEpoch").getAsLong())return;
+        runtime.deferred(()->runtime.change(null, SyncImpact.party(id,"npc","npcEffects"),state->{var p=state.parties.get(id);if(p==null||p.resetInProgress||p.overworldEpoch!=frame.get("islandEpoch").getAsLong())return;
             p.settlement.journalSequence=seq;p.settlement.chefDays=Math.max(p.settlement.chefDays,frame.get("chefDays").getAsLong());
             IslandState.Resident current=p.settlement.residents.get(UUID.fromString(frame.get("resident").getAsString()));
             if(current!=null){var next=cn.yumis.skyisland.config.GameConfig.JSON.fromJson(frame.get("next"),IslandState.Resident.class);current.processedRound=next.processedRound;current.suppliedRound=next.suppliedRound;current.producedBatches=next.producedBatches;current.missedDays=next.missedDays;current.status=next.status;current.message=next.message;}
             p.settlement.effectRevision++;
         },after));
     }
-    private void clearPending(){pending=null;pendingParty=null;reserved.clear();writing=false;}
+    private void clearPending(){if(runtime.views!=null)runtime.views.impact(SyncImpact.party(pendingParty,"npc","npcEffects"));pending=null;pendingParty=null;reserved.clear();writing=false;}
     private void applyPending(){if(pending==null)return;try{var party=runtime.state().parties.get(pendingParty);if(party==null||party.overworldEpoch!=pending.get("islandEpoch").getAsLong()||party.resetInProgress){clearPending();return;}
         for(var value:pending.getAsJsonArray("groups")){long key=value.getAsJsonObject().get("chunk").getAsLong();ChunkPos chunk=ChunkPos.unpack(key);if(!runtime.server.overworld().hasChunk(chunk.x(),chunk.z()))return;}
         apply(party,pending,null);clearPending();runtime.syncAll();
@@ -90,7 +91,7 @@ public final class ResidentTransactions implements AutoCloseable {
                 if(party.resetInProgress){cursors.get(party.id).clear();continue;}
                 if(party.settlement.journalSequence<index.offsets().size()){
                     var frame=journal.at(party.id.toString(),index.offsets().get((int)party.settlement.journalSequence));
-                    if(frame.get("islandEpoch").getAsLong()!=party.overworldEpoch){runtime.change(null,state->state.parties.get(party.id).settlement.journalSequence=frame.get("seq").getAsLong(),()->{});return;}
+                    if(frame.get("islandEpoch").getAsLong()!=party.overworldEpoch){runtime.change(null, SyncImpact.none(),state->state.parties.get(party.id).settlement.journalSequence=frame.get("seq").getAsLong(),()->{});return;}
                     pending=frame;pendingParty=party.id;for(var value:frame.getAsJsonArray("groups")){var group=value.getAsJsonObject();for(var edit:group.getAsJsonArray("slots"))reserved.add(edit.getAsJsonObject().get("position").getAsLong());}
                     advance(frame,this::applyPending);return;
                 }

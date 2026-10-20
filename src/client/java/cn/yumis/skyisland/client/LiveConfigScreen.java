@@ -37,6 +37,7 @@ public final class LiveConfigScreen extends Screen {
     @Override public void extractBackground(GuiGraphicsExtractor g,int x,int y,float delta){}
     @Override public void extractRenderState(GuiGraphicsExtractor g,int mx,int my,float delta){
         g.fill(0,0,width,height,UiTheme.OVERLAY);text(g,"管理员 · 实时配置",12,14,0xFFE4EEE9,width-24);
+        model.sync.status(g,width);
         if(!model.configState.has("fields"))return;
         int index=0;for(var value:model.configState.getAsJsonArray("groups")){var group=value.getAsJsonObject();button(g,group.get("name").getAsString(),8,38+index++*22,116,group.get("id").equals(model.configState.get("group")),!model.configBusy);}
         int w=width-LEFT-12;
@@ -58,12 +59,14 @@ public final class LiveConfigScreen extends Screen {
         button(g,model.configBusy?"正在保存…":"保存并生效",LEFT,height-30,108,false,!model.configBusy);button(g,"返回",LEFT+114,height-30,56,false,true);
     }
     private void save(){
+        if(!model.sync.ready())return;
         try{
             for(var input:inputs)if(input.box!=null){String text=input.box.getValue();draft.add(input.spec.get("key").getAsString(),input.spec.get("kind").getAsString().equals("text")?new JsonPrimitive(text):new JsonPrimitive(new java.math.BigDecimal(text)));}
             JsonObject body=new JsonObject();body.add("group",model.configState.get("group"));body.add("revision",model.configState.get("revision"));body.add("digest",model.configState.get("digest"));body.add("changes",draft.deepCopy());model.configBusy=true;model.configMessage="";model.editConfig("save",body);
-        }catch(RuntimeException error){model.configMessage="请填写有效数字；经验倍率可用小数，其余数值须为整数";}
+        }catch(RuntimeException error){model.configMessage="请填写有效数字；经验和出售倍率可用小数，其余数值须为整数";}
     }
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
+        if(model.sync.retryClick(e.y()))return true;
         if(ControlPanelScreen.hit(e.x(),e.y(),LEFT+114,height-30,56,22)){onClose();return true;}
         if(model.configBusy)return true;
         if(ControlPanelScreen.hit(e.x(),e.y(),LEFT,height-30,108,22)){save();return true;}
@@ -80,5 +83,5 @@ public final class LiveConfigScreen extends Screen {
     @Override public boolean charTyped(CharacterEvent event){for(var input:inputs)if(input.box!=null&&input.box.isFocused())return input.box.charTyped(event);return super.charTyped(event);}
     @Override public boolean preeditUpdated(PreeditEvent event){for(var input:inputs)if(input.box!=null&&input.box.isFocused())return input.box.preeditUpdated(event);return super.preeditUpdated(event);}
     @Override public boolean mouseScrolled(double x,double y,double sx,double sy){scroll=Math.max(0,scroll-(int)Math.signum(sy)*ROW);return true;}
-    @Override public void onClose(){model.configWanted=false;super.onClose();}
+    @Override public void onClose(){model.configWanted=false;model.sync.closeEditor();super.onClose();}
 }

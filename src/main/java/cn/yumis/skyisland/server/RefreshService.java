@@ -70,7 +70,7 @@ public final class RefreshService implements AutoCloseable {
         runtime.deferred(() -> {
             var current = runtime.state().parties.get(party.id);
             if (current == null || current.resetInProgress || current.overworldEpoch != epoch) { pending.chunks.remove(key); return; }
-            runtime.change(null, state -> state.parties.get(party.id).placedChunks.add(key), () -> pending.chunks.remove(key));
+            runtime.change(null, SyncImpact.none(), state -> state.parties.get(party.id).placedChunks.add(key), () -> pending.chunks.remove(key));
         });
     }
     public List<Long> knownChunks() { return new ArrayList<>(known); }
@@ -111,7 +111,7 @@ public final class RefreshService implements AutoCloseable {
                     var current = runtime.state().parties.get(party.id);
                     if (runtime.closing || current == null || current.resetInProgress || current.overworldEpoch != epoch) { enumerating.remove(party.id); return; }
                     List<Long> chunks = new ArrayList<>(historyChunks(current));
-                    runtime.change(player, s -> { var p = s.parties.get(party.id); p.refresh = new IslandState.Refresh(); p.refresh.chunks = chunks; p.refresh.initial=firstScan; }, () -> { enumerating.remove(party.id);paused.remove(party.id);var job=new Job(runtime.state().parties.get(party.id));job.requester=player;jobs.put(party.id,job);notifyStart(job); });
+                    runtime.change(player, SyncImpact.none(), s -> { var p = s.parties.get(party.id); p.refresh = new IslandState.Refresh(); p.refresh.chunks = chunks; p.refresh.initial=firstScan; }, () -> { enumerating.remove(party.id);paused.remove(party.id);var job=new Job(runtime.state().parties.get(party.id));job.requester=player;jobs.put(party.id,job);notifyStart(job); });
         });
     }
     /** Read-only location headers. Boundary chunks are included and cropped during counting. */
@@ -191,7 +191,7 @@ public final class RefreshService implements AutoCloseable {
         Work w = job.work; w.loading = true; w.touched = false; inflight++;
         runtime.server.overworld().getChunkSource().chunkMap.read(ChunkPos.unpack(w.key)).thenApplyAsync(tag -> tag.map(t -> diskCounts(t, ChunkPos.unpack(w.key), region)).orElse(List.of()), io).whenComplete((counts, error) -> runtime.server.execute(() -> {
             inflight--; if (job.work != w || jobs.get(job.id) != job || runtime.closing) return;
-            if (error != null) { jobs.remove(job.id); runtime.deferred(() -> runtime.change(null, s -> s.parties.get(job.id).refresh = null, () -> {})); return; }
+            if (error != null) { jobs.remove(job.id); runtime.deferred(() -> runtime.change(null, SyncImpact.none(), s -> s.parties.get(job.id).refresh = null, () -> {})); return; }
             w.live = runtime.server.overworld().getChunkSource().getChunkNow(ChunkPos.getX(w.key), ChunkPos.getZ(w.key));
             if(w.live!=null)runtime.server.overworld().getChunkSource().addTicketWithRadius(WorldService.REFRESH_LOAD,w.live.getPos(),0);
             if (w.live == null && w.touched) { w.loading = false; read(job, region); return; }
@@ -228,14 +228,14 @@ public final class RefreshService implements AutoCloseable {
     private void checkpoint(Job job) {
         Work w = job.work; w.completed = true; job.scanned.add(w.key);
         w.changes.forEach((k,v) -> w.counts.merge(k,v,Long::sum));
-        runtime.change(null, s -> {
+        runtime.change(null, SyncImpact.none(), s -> {
             var refresh = s.parties.get(job.id).refresh; w.counts.forEach((k,v) -> refresh.counts.merge(k,v,Long::sum));
             refresh.cursor++; refresh.scanned.add(w.key); refresh.delta = new LinkedHashMap<>(job.delta);
         }, () -> {release(job.work);job.work = null;notifyStart(job);});
     }
     private void finish(Job job) {
         notifyStart(job);
-        runtime.change(null, s -> {
+        runtime.change(null, SyncImpact.party(job.id,"block").and(SyncImpact.score(runtime,job.id)), s -> {
             var p = s.parties.get(job.id); Map<String,Long> counts = new LinkedHashMap<>(p.refresh.counts);
             job.delta.forEach((k,v) -> counts.merge(k,v,Long::sum)); counts.replaceAll((_,v) -> Math.max(0,v)); p.blockCounts = counts;
             if(p.refresh.initial)p.initialScanEpoch=p.overworldEpoch;

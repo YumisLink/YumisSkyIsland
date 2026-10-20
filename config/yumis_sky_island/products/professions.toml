@@ -10,7 +10,7 @@ allCanBeLearned = true
 eligibleManualSources = ["crafting", "stonecutting", "furnace", "smithing"]
 minimumXpBatchSize = 1
 noXpItems = ["minecraft:iron_ingot", "minecraft:gold_ingot", "minecraft:copper_ingot", "minecraft:diamond", "minecraft:emerald", "minecraft:iron_nugget", "minecraft:gold_nugget", "minecraft:copper_nugget", "minecraft:bone_meal", "minecraft:dried_kelp_block", "minecraft:iron_block", "minecraft:gold_block", "minecraft:copper_block", "minecraft:diamond_block", "minecraft:emerald_block", "minecraft:coal_block", "minecraft:redstone_block", "minecraft:lapis_block", "minecraft:slime_block", "minecraft:honey_block"]
-successfulFishingXp = 12
+successfulFishingXp = 24
 # 岩浆获钓经验倍率；非负整数。乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘。
 lavaFishingXpMultiplier = 5
 # 虚空获钓经验倍率；非负整数。乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘。
@@ -24,7 +24,7 @@ cropMutationBps = 20
 # 同一株另一次独立判定变成空岛果的万分比。2=0.02%。50～99级取一半。可以和上面的突变同时出现。
 cropFruitBps = 2
 # 每次符合名单的猎物击杀经验。
-successfulHunterKillXp = 6
+successfulHunterKillXp = 24
 
 # 各职业经验获取效率倍率：1=原速，2=双倍，0.5=一半，0=停止该职业经验与积分获取。
 # 范围0～1000，最多4位小数。作用于后续真实行动，含单品baseXp；与等级折减、钓鱼地区及居民效果相乘。
@@ -63,16 +63,16 @@ post100Growth = 100
 
 [successfulCraftXp]
 # 配置字段 blacksmith
-blacksmith = 12
+blacksmith = 60
 # 配置字段 chef
-chef = 4
+chef = 8
 # 配置字段 farmer
-farmer = 3
+farmer = 24
 # 配置字段 hunter
-hunter = 6
+hunter = 12
 # 稿子或任意锤子每挖掉一块方块固定给 1 点矿工经验，不读这里
-miner = 1
-# 品质按职业等级减物品等级的差值抽取，万分比。七彩星各档固定 1，即 0.01%。
+miner = 5
+# 品质按职业等级减物品等级的差值抽取，万分比。七彩星各档为1／2／5／10／20，即0.01%～0.2%。
 
 [[qualityDifference]]
 minDifference = 0
@@ -88,7 +88,7 @@ copperBps = 2000
 silverBps = 350
 goldBps = 60
 diamondBps = 10
-prismaticBps = 1
+prismaticBps = 2
 
 [[qualityDifference]]
 minDifference = 100
@@ -96,7 +96,7 @@ copperBps = 4500
 silverBps = 1000
 goldBps = 180
 diamondBps = 25
-prismaticBps = 1
+prismaticBps = 5
 
 [[qualityDifference]]
 minDifference = 200
@@ -104,7 +104,7 @@ copperBps = 3200
 silverBps = 2200
 goldBps = 400
 diamondBps = 60
-prismaticBps = 1
+prismaticBps = 10
 
 [[qualityDifference]]
 minDifference = 500
@@ -112,7 +112,7 @@ copperBps = 2000
 silverBps = 3000
 goldBps = 800
 diamondBps = 120
-prismaticBps = 1
+prismaticBps = 20
 # 配置字段 eligibleManualSources
 # 配置字段 minimumXpBatchSize
 # 无损压缩／还原等不提供制作经验的物品 ID 列表
@@ -186,3 +186,104 @@ itemLevel = 40
 itemLevel = 50
 [hunterMobs."minecraft:goat"]
 itemLevel = 60
+
+[saleMultipliers]
+# 只调整出售收入，默认1倍；允许0～1000，最多4位小数。0使收入为0，零金币交易不扣物。
+# 与统一出售星级、行情、附魔、耐久、居民和售出阶梯叠加；管理员Ctrl＋】→副职业出售保存后立即生效。
+# 铁匠
+blacksmith = 1.0
+# 厨师
+chef = 1.0
+# 农夫
+farmer = 1.0
+# 猎人
+hunter = 1.0
+# 渔夫
+fisherman = 1.0
+# 矿工
+miner = 1.0
+# 战斗大师；目前无专属产物目录，需在下表登记归属
+battle_master = 1.0
+
+[saleItemProfessions]
+# 以下补充普通物品归属；普通与全部品质均匹配，不受本机副职业出售勾选名单限制。
+# 优先级：本表＞采集目录sourceItems＞制造目录goods；只按产物ID匹配，不读取职业来源标记。
+# 本表手改重启；不新增交易资格，未定价或禁售物品继续不可出售。
+# 农夫补充产物
+"yumis_sky_island:barley" = "farmer"
+"yumis_sky_island:white_radish" = "farmer"
+"yumis_sky_island:purple_potato" = "farmer"
+"yumis_sky_island:golden_beet" = "farmer"
+"yumis_sky_island:crimson_wart" = "farmer"
+"yumis_sky_island:sky_fruit" = "farmer"
+# 渔夫补充产物
+"yumis_sky_island:sky_carp" = "fisherman"
+"yumis_sky_island:lava_eel" = "fisherman"
+"yumis_sky_island:void_fish" = "fisherman"
+"yumis_sky_island:frost_trout" = "fisherman"
+"yumis_sky_island:desert_lungfish" = "fisherman"
+"yumis_sky_island:mushroom_fish" = "fisherman"
+"yumis_sky_island:glowing_scales" = "fisherman"
+"yumis_sky_island:ash_pearl" = "fisherman"
+"yumis_sky_island:void_fragment" = "fisherman"
+"yumis_sky_island:coral_fragment" = "fisherman"
+# 猎人补充产物
+"minecraft:beef" = "hunter"
+"minecraft:porkchop" = "hunter"
+"minecraft:chicken" = "hunter"
+"minecraft:mutton" = "hunter"
+"minecraft:rabbit" = "hunter"
+"minecraft:leather" = "hunter"
+"minecraft:rabbit_hide" = "hunter"
+"minecraft:rabbit_foot" = "hunter"
+"minecraft:feather" = "hunter"
+"minecraft:bone" = "hunter"
+"minecraft:rotten_flesh" = "hunter"
+"minecraft:string" = "hunter"
+"minecraft:spider_eye" = "hunter"
+"minecraft:gunpowder" = "hunter"
+"minecraft:ender_pearl" = "hunter"
+"minecraft:slime_ball" = "hunter"
+"minecraft:blaze_rod" = "hunter"
+"minecraft:ghast_tear" = "hunter"
+"minecraft:magma_cream" = "hunter"
+"minecraft:phantom_membrane" = "hunter"
+"minecraft:ink_sac" = "hunter"
+"minecraft:glow_ink_sac" = "hunter"
+# 矿工补充产物
+"minecraft:coal" = "miner"
+"minecraft:raw_iron" = "miner"
+"minecraft:raw_gold" = "miner"
+"minecraft:raw_copper" = "miner"
+"minecraft:iron_ingot" = "miner"
+"minecraft:gold_ingot" = "miner"
+"minecraft:copper_ingot" = "miner"
+"minecraft:iron_nugget" = "miner"
+"minecraft:gold_nugget" = "miner"
+"minecraft:copper_nugget" = "miner"
+"minecraft:diamond" = "miner"
+"minecraft:emerald" = "miner"
+"minecraft:redstone" = "miner"
+"minecraft:lapis_lazuli" = "miner"
+"minecraft:quartz" = "miner"
+"minecraft:amethyst_shard" = "miner"
+"minecraft:ancient_debris" = "miner"
+"minecraft:netherite_scrap" = "miner"
+"minecraft:netherite_ingot" = "miner"
+"minecraft:flint" = "miner"
+
+[saleQualityMultipliers]
+# 所有职业共用的出售星级倍率，直接相对无星估值；不再叠加quality.toml的价值倍率或旧作物专用倍率。
+# 允许0～10000，最多4位小数；Ctrl＋】→副职业出售保存立即生效。仅出售，购买及品质属性保留。
+# 普通
+ordinary = 1.0
+# 铜星
+copper = 2.0
+# 银星
+silver = 6.0
+# 金星
+gold = 15.0
+# 钻星
+diamond = 30.0
+# 七彩星
+prismatic = 100.0

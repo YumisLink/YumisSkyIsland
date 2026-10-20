@@ -178,5 +178,20 @@
   "item.yumis_sky_island.accessory_extender_grip": "Extender Grip",
   "item.yumis_sky_island.accessory_excavator": "Excavator",
   "item.yumis_sky_island.accessory_portable_cement_mixer": "Portable Cement Mixer",
-  "item.yumis_sky_island.accessory_architect_backpack": "Architect Backpack"
+  "item.yumis_sky_island.accessory_architect_backpack": "Architect Backpack",
+  "item.yumis_sky_island.spawn_ball_zombie": "Zombie Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_skeleton": "Skeleton Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_spider": "Spider Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_creeper": "Creeper Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_cave_spider": "Cave Spider Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_slime": "Slime Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_drowned": "Drowned Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_magma_cube": "Magma Cube Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_zombified_piglin": "Zombified Piglin Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_enderman": "Enderman Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_blaze": "Blaze Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_witch": "Witch Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_guardian": "Guardian Spawn Ball",
+  "item.yumis_sky_island.spawn_ball_wither_skeleton": "Wither Skeleton Spawn Ball",
+  "key.yumis_sky_island.auto_trash": "Auto Trash (Ctrl + key)"
 }

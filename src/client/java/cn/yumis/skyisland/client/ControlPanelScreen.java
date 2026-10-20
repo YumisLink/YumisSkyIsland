@@ -25,8 +25,8 @@ public final class ControlPanelScreen extends Screen {
     private ProductAddPanel productEditor;
     private boolean showAllConfigured;
     public void priceUpdated(com.google.gson.JsonObject data){if(priceEditor!=null)priceEditor.updated(data);}
-    public void closePriceEditor(){priceEditor=null;model.priceBusy=false;model.configMessage="";}
-    public void closeProductEditor(){productEditor=null;model.priceBusy=false;model.configMessage="";}
+    public void closePriceEditor(){model.sync.closeEditor();priceEditor=null;model.priceBusy=false;model.configMessage="";}
+    public void closeProductEditor(){model.sync.closeEditor();productEditor=null;model.priceBusy=false;model.configMessage="";}
     public void productForm(com.google.gson.JsonObject data){if(productEditor!=null)productEditor.opened(data);}
     public void productPreview(com.google.gson.JsonObject data){if(productEditor!=null)productEditor.preview(data);}
     private final StoreView[] stores={new StoreView(),new StoreView()};
@@ -53,7 +53,7 @@ public final class ControlPanelScreen extends Screen {
     void confirm(String label,Runnable action){confirmation.open(label,action);}
     public void textLine(GuiGraphicsExtractor g,String label,int x,int y,int color,int maximum){text(g,label,x,y,color,maximum);}
     public int wrappedText(GuiGraphicsExtractor g,String label,int x,int y,int color,int maximum){var lines=font.split(Component.literal(label),Math.max(30,maximum));for(int i=0;i<lines.size();i++)g.text(font,lines.get(i),x,y+i*12,color,false);return lines.size()*12;}
-    public void actionButton(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){g.fill(x,y,x+w,y+22,active?UiTheme.BUTTON:UiTheme.DISABLED);text(g,label,x+5,y+7,active?0xFFE9EBEE:0xFF777F88,w-10);}
+    public void actionButton(GuiGraphicsExtractor g,String label,int x,int y,int w,boolean active){active&=model.sync.ready();g.fill(x,y,x+w,y+22,active?UiTheme.BUTTON:UiTheme.DISABLED);text(g,label,x+5,y+7,active?0xFFE9EBEE:0xFF777F88,w-10);}
     public static boolean hit(double x,double y,int a,int b,int w,int h){return inside(x,y,a,b,w,h);}
     @Override public void tick(){if(!model.editing()&&(showAllConfigured||priceEditor!=null||productEditor!=null)){showAllConfigured=false;closePriceEditor();closeProductEditor();invalidate();}if(model.saleDesired&&salePanel!=null)salePanel.tick();if(productEditor!=null)productEditor.tick();if(mode==2)tasks.tick();}
 
@@ -127,6 +127,7 @@ public final class ControlPanelScreen extends Screen {
         UiFrame frame = openFrame(g);
         try { drawPanel(g, mx - frame.ox, my - frame.oy, delta); }
         finally { closeFrame(g); }
+        model.sync.status(g,width);
     }
     private UiFrame openFrame(GuiGraphicsExtractor g) {
         UiFrame frame = UiFrame.of(width, height, model.uiSize);
@@ -275,8 +276,9 @@ public final class ControlPanelScreen extends Screen {
         model.events.render(g);
         confirmation.render(g,this);
     }
-    private void send(String action, String product, int count) { if (ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request(action, product, count)); }
+    private void send(String action, String product, int count) { if(!Set.of("sale_cancel","sale_preview","sell_inventory","sell_hand").contains(action)&&!model.sync.ready()){model.lastError="资料更新中，请稍后操作";return;} if (ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request(action, product, count)); }
     @Override public boolean mouseClicked(MouseButtonEvent e, boolean doubleClick) {
+        if(model.sync.retryClick(e.y()))return true;
         UiFrame frame = openFrame(null);
         try { return click(frame.move(e), doubleClick); }
         finally { closeFrame(null); }

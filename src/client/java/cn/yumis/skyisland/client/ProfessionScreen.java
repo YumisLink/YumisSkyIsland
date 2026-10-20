@@ -26,6 +26,7 @@ public final class ProfessionScreen extends Screen {
     private static final List<String> NAMES=List.of("铁匠","厨师","农夫","猎人","矿工","战斗大师","渔夫");
     private final ClientCatalog model;
     private int tab;
+    public int syncTab(){return tab;}
     private int fishingScroll;
     private int guideScroll;
     private boolean guideMode;
@@ -60,6 +61,7 @@ public final class ProfessionScreen extends Screen {
         UiFrame frame=openFrame(g);
         try{draw(g,mx-frame.ox,my-frame.oy,delta);}
         finally{closeFrame(g);}
+        model.sync.status(g,width);
     }
     private UiFrame openFrame(GuiGraphicsExtractor g){
         UiFrame frame=UiFrame.of(width,height,model.uiSize);
@@ -78,6 +80,7 @@ public final class ProfessionScreen extends Screen {
         int tw=tabWidth();
         for(int i=0;i<IDS.size();i++)button(g,NAMES.get(i),8+i*(tw+4),46,tw,i==tab,inside(mx,my,8+i*(tw+4),46,tw,25));
         g.fill(8,82,width-8,height-12,UiTheme.CARD);
+        if(!model.sync.loaded()){g.text(font,"正在加载职业资料…",20,97,0xFFC9D5DD,false);return;}
         var progress=model.state.getAsJsonObject("professionProgress");
         var entry=progress==null?null:progress.getAsJsonObject(selected());
         int professionLevel=entry==null?0:entry.get("level").getAsInt();
@@ -201,6 +204,7 @@ public final class ProfessionScreen extends Screen {
         button(g,unlocked(id)?"已永久解锁":"解锁 · "+price+" 职业积分",x,buttonY,w,unlocked(id),inside(mx,my,x,buttonY,w,25));
     }
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
+        if(model.sync.retryClick(e.y()))return true;
         UiFrame frame=openFrame(null);
         try{return click(frame.move(e),doubleClick);}
         finally{closeFrame(null);}
@@ -237,6 +241,6 @@ public final class ProfessionScreen extends Screen {
     }
     private void purchase(String product,int quantity){
         model.lastError="";
-        if(ClientPlayNetworking.canSend(ShopPayloads.ProfessionPurchase.TYPE))ClientPlayNetworking.send(new ShopPayloads.ProfessionPurchase(product,quantity,model.state.get("professionShopRevision").getAsLong()));
+        if(model.sync.ready()&&ClientPlayNetworking.canSend(ShopPayloads.ProfessionPurchase.TYPE))ClientPlayNetworking.send(new ShopPayloads.ProfessionPurchase(product,quantity,model.state.get("professionShopRevision").getAsLong()));
     }
 }

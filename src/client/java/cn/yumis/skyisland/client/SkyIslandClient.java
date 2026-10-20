@@ -29,6 +29,7 @@ public final class SkyIslandClient implements ClientModInitializer {
         WandClient.register(category);
         PrefabClient.register(category);
         SorterScreen.register();
+        TrashScreen.register();
         QuiverClient.register();
         KeyMapping shop = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.shop",InputConstants.KEY_I,category));
         KeyMapping professions = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.professions",InputConstants.KEY_P,category));
@@ -40,10 +41,14 @@ public final class SkyIslandClient implements ClientModInitializer {
         ClientLifecycleEvents.CLIENT_STARTED.register(DefaultKeyConflictResolver::resolve);
         KeyMapping vein = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.vein",InputConstants.KEY_GRAVE,category));
         KeyMapping holdAttack = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.hold_attack",InputConstants.KEY_EQUALS,category));
+        KeyMapping autoTrash = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.auto_trash",InputConstants.KEY_EQUALS,category));
+        UtilityHotkeys.bind(autoTrash,holdAttack);
         final boolean[] holdAttackEnabled={false};
         final boolean[] holdAttackVeinEnabled={false};
         final boolean[] veinHeld={false};
         KeyMapping cloudLeap = KeyMappingHelper.registerKeyMapping(new KeyMapping("key.yumis_sky_island.cloud_leap",InputConstants.KEY_C,category));
+        ClientPlayNetworking.registerGlobalReceiver(cn.yumis.skyisland.network.ViewSyncPayloads.Reply.TYPE,(payload,context)->CATALOG.sync.receive(payload.json()));
+        ClientTickEvents.END_CLIENT_TICK.register(client->CATALOG.sync.tick());
         ClientPlayNetworking.registerGlobalReceiver(ShopPayloads.Snapshot.TYPE,(payload,context) -> CATALOG.receive(payload.json()));
         ClientPlayNetworking.registerGlobalReceiver(TaskPayloads.Snapshot.TYPE,(payload,context) -> CATALOG.receiveTasks(payload.json()));
         ClientPlayNetworking.registerGlobalReceiver(cn.yumis.skyisland.network.ConfigEditPayloads.Snapshot.TYPE,(payload,context)->CATALOG.receiveConfig(payload.json()));
@@ -52,6 +57,7 @@ public final class SkyIslandClient implements ClientModInitializer {
             holdAttackEnabled[0]=false;
             holdAttackVeinEnabled[0]=false;
             veinHeld[0]=false;
+            UtilityHotkeys.reset();
             CATALOG.clearConnection();
         });
         ClientTickEvents.END_CLIENT_TICK.register(client -> { while (shop.consumeClick()) if (client.player != null && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("open","",0)); });
@@ -61,12 +67,11 @@ public final class SkyIslandClient implements ClientModInitializer {
             while (enderChest.consumeClick()) if (client.player != null && client.gui.screen() == null && !client.player.isSpectator() && ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)) ClientPlayNetworking.send(new ShopPayloads.Request("ender_chest","",0));
         });
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            var window=client.getWindow();
             boolean playing=client.player!=null&&client.gui.screen()==null;
             boolean veinKeyHeld=playing&&vein.isDown();
-            boolean modifiers=InputConstants.isKeyDown(window,InputConstants.KEY_LCONTROL)||InputConstants.isKeyDown(window,InputConstants.KEY_RCONTROL);
-            modifiers&=InputConstants.isKeyDown(window,InputConstants.KEY_LALT)||InputConstants.isKeyDown(window,InputConstants.KEY_RALT);
-            while(holdAttack.consumeClick()) if(modifiers && playing){
+            while(holdAttack.consumeClick()){}
+            while(autoTrash.consumeClick()){}
+            while(UtilityHotkeys.consumeAttackToggle()) if(playing){
                 holdAttackEnabled[0]=!holdAttackEnabled[0];
                 holdAttackVeinEnabled[0]=holdAttackEnabled[0]&&veinKeyHeld;
                 if(!holdAttackEnabled[0])client.options.keyAttack.setDown(false);

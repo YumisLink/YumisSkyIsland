@@ -38,6 +38,7 @@ public final class SkyServer implements AutoCloseable {
     public final MinecraftServer server;
     public final GameConfig config;
     public final DurableStore store;
+    public final ViewSyncService views;
     public final PartyService parties;
     public final WorldService worlds;
     public final ItemEconomy economy;
@@ -49,6 +50,7 @@ public final class SkyServer implements AutoCloseable {
     public final AccessoryService accessories;
     public final LotteryService lottery;
     public final BloodMoonService bloodMoon;
+    public final SpawnBallService spawnBalls;
     public final VeinMiningService veinMining;
     public final cn.yumis.skyisland.prefab.PrefabService prefabs;
     public final cn.yumis.skyisland.sorting.SortingService sorting;
@@ -60,10 +62,6 @@ public final class SkyServer implements AutoCloseable {
     public long rulesRevision, priceRevision, professionShopRevision, lotteryRulesRevision, scoringRevision;
     private final Queue<Runnable> deferred = new ArrayDeque<>();
     private final Map<UUID, Long> lastRequest = new HashMap<>();
-    private final Map<UUID, String> lastSnapshots = new HashMap<>();
-    private final Map<UUID, Queue<String>> catalogQueue = new HashMap<>();
-    private final Set<UUID> catalogSent = new HashSet<>();
-    private final Map<UUID,Long> priceEpochSent = new HashMap<>();
     private final Map<UUID,Float> lastChefHealth = new HashMap<>();
     private final Map<UUID,Integer> lastChefDamageTick = new HashMap<>();
     public final Set<UUID> inventoryLocks = new HashSet<>();
@@ -85,11 +83,13 @@ public final class SkyServer implements AutoCloseable {
         parties = new PartyService(this); worlds = new WorldService(this); trades = new TradeService(this);
         refresh = new RefreshService(this); professions = new ProfessionService(this); professionShop=new ProfessionShopService(this); accessories=new AccessoryService(this);bloodMoon=new BloodMoonService(this);veinMining=new VeinMiningService(this);
         sorting = new cn.yumis.skyisland.sorting.SortingService(this);
+        spawnBalls = new SpawnBallService(this);
         resets = new ResetService(this);
         progression = new ProgressionService(this);
         lottery = new LotteryService(this);
         editors = new AdminEditSession(this);questEditor = new QuestEditorService(this);configEditor=new ConfigEditorService(this);
-        if(!state().parties.isEmpty())change(null,s->{for(var p:s.parties.values()){
+        views=new ViewSyncService(this);
+        if(!state().parties.isEmpty())change(null, SyncImpact.none(),s->{for(var p:s.parties.values()){
             updateScore(s,p);
             if(!p.resetInProgress)progression.initialize(p);
         }},()->{});
@@ -105,10 +105,10 @@ public final class SkyServer implements AutoCloseable {
     }
     public static void tell(ServerPlayer player, String message) { player.sendSystemMessage(Component.literal("[空岛] " + message)); }
     public static void tell(ServerPlayer player, Component message) { player.sendSystemMessage(Component.literal("[空岛] ").append(message)); }
-    public void change(ServerPlayer actor, Consumer<IslandState> edit, Runnable after) {
-        tryChange(actor, edit, after, error -> {});
+    public void change(ServerPlayer actor, SyncImpact impact, Consumer<IslandState> edit, Runnable after) {
+        tryChange(actor, impact, edit, after, error -> {});
     }
-    public boolean tryChange(ServerPlayer actor, Consumer<IslandState> edit, Runnable after, Consumer<Throwable> failed) {
+    public boolean tryChange(ServerPlayer actor, SyncImpact impact, Consumer<IslandState> edit, Runnable after, Consumer<Throwable> failed) {
         if (closing) return false;
         if (!store.available()) { if (actor != null) tell(actor, store.failure() == null ? "数据正在保存，请稍后重试" : "数据写入失败，交易已停止，请联系管理员"); return false; }
         Map<UUID,JsonObject> changes=new LinkedHashMap<>();
@@ -117,7 +117,7 @@ public final class SkyServer implements AutoCloseable {
             next.parties.forEach((id,p)->{long old=before.getOrDefault(id,p.coins);if(p.coins!=old){JsonObject data=new JsonObject();data.addProperty("partyId",id.toString());data.addProperty("sequence",next.sequence+1);data.addProperty("amount",Math.subtractExact(p.coins,old));changes.put(id,data);}});
         }, () -> {
             changes.forEach((id,data)->partyEvent(id,"coin_change",data));
-            drain();after.run();syncAll();
+            economy.epoch(epoch());impact.publish(views);drain();after.run();
         }, e -> { YumisSkyIsland.LOGGER.error("空岛持久化失败", e); if (actor != null && server.getPlayerList().getPlayer(actor.getUUID()) == actor) tell(actor, "保存失败，操作未开放继续执行"); failed.accept(e); });
         return true;
     }
@@ -142,7 +142,7 @@ public final class SkyServer implements AutoCloseable {
             return;
         }
         JsonObject death=new JsonObject();
-        change(null,s->{
+        change(null, SyncImpact.none(),s->{
             IslandState.Party party=s.parties.get(location.id);
             long count=Math.addExact(party.islandDeaths.getOrDefault(player.getUUID(),0L),1);
             JsonObject rules=config.object("economy.toml").getAsJsonObject("death");
@@ -197,10 +197,11 @@ public final class SkyServer implements AutoCloseable {
         deferred(() -> {
             IslandState.Party p=state().parties.get(id);if(p==null||p.resetInProgress||p.overworldEpoch!=islandEpoch)return;
             long prior=b==null?0:p.blockCounts.getOrDefault(b.group(),0L);adjust(p,a,-1);adjust(p,b,1);
+            views.impact(SyncImpact.party(id,"block:"+before,"block:"+after));
             p.cachedPoints=calculatePoints(p).toString();long count=p.blockCounts.getOrDefault(after,0L);
             Runnable notice=()->{var current=state().parties.get(id);if(playerPlacement&&scoringRevision==this.scoringRevision&&current!=null&&current.overworldEpoch==islandEpoch)notifyScoreTier(current,after,prior,count);};
             if(BlockScorer.level(points(p))!=p.highestIslandLevel){
-                refresh.checkpointDeltas();change(null,s->updateScore(s,s.parties.get(id)),notice);
+                refresh.checkpointDeltas();change(null, SyncImpact.score(this,id),s->updateScore(s,s.parties.get(id)),notice);
             }else notice.run();
         });
     }
@@ -217,17 +218,33 @@ public final class SkyServer implements AutoCloseable {
     }
     public void configurationChanged(String file,Runnable acknowledged){
         rulesRevision++;
+        views.impact(SyncImpact.global("editorProducts","editorFile:"+file));
+        if(file.equals("products/professions.toml"))views.impact(SyncImpact.global("guide","profession","settings"));
+        if(file.equals("products/profession_shop.toml"))views.impact(SyncImpact.global("professionShop"));
+        if(file.equals(LotteryService.FILE)||file.equals("shop/products.toml"))views.impact(SyncImpact.global("lottery"));
+        if(file.equals("islands/scoring.toml"))views.impact(SyncImpact.global("scoring","block"));
+        if(file.equals("products/professions.toml"))priceRevision++;
         if(file.equals("products/profession_shop.toml"))professionShopRevision++;
         if(file.equals(LotteryService.FILE)||file.equals("shop/products.toml")){lotteryRulesRevision++;lottery.reload();}
         if(file.equals("economy.toml"))Money.currencyName(config.object(file).get("genshinMode").getAsBoolean()?"摩拉":"金币");
-        Runnable published=()->{invalidateCatalogs();syncAll();acknowledged.run();};
+        Runnable published=()->{
+            switch(file){
+                case "shop/products.toml","shop/item_levels.toml","shop/rarities.toml" -> invalidateCatalogs();
+                case "economy.toml" -> views.impact(SyncImpact.global("display","economy"));
+                case "products/professions.toml" -> views.impact(SyncImpact.global("economy","guide","profession","settings"));
+                case "products/quality.toml" -> views.impact(SyncImpact.global("display","economy"));
+                case "shop/enchantments.toml","shop/sale_quotas.toml","shop/shops.toml" -> views.impact(SyncImpact.global("economy"));
+                case "gameplay/blood_moon.toml" -> views.impact(SyncImpact.global("display"));
+                default -> {}
+            }syncAll();acknowledged.run();
+        };
         if(file.equals("islands/scoring.toml")){
             scoringRevision++;
             config.publishScoring(cn.yumis.skyisland.config.ScoringSettings.parse(config.object(file)));
-            change(null,s->{for(var party:s.parties.values())updateScore(s,party);},published);
+            change(null, SyncImpact.global("block","scoring","lottery","accessories","npc"),s->{for(var party:s.parties.values())updateScore(s,party);},published);
         }else published.run();
     }
-    public void invalidateCatalogs(){catalogQueue.clear();catalogSent.clear();priceEpochSent.clear();for(var online:server.getPlayerList().getPlayers())sendCatalog(online);}
+    public void invalidateCatalogs(){views.impact(SyncImpact.global("catalog","display","economy","market","blueprints"));}
     private void adjust(IslandState.Party p, GameConfig.BlockValue b, long amount) {
         if (b == null) return;
         p.blockCounts.compute(b.group(), (_, n) -> Math.max(0, (n == null ? 0 : n) + amount));
@@ -235,7 +252,7 @@ public final class SkyServer implements AutoCloseable {
     public void tick() {
         tick++;long worldTime=server.overworld().getGameTime();if(worldTime>lastWorldTime)deferred(()->state().effectiveTicks++);lastWorldTime=worldTime;
         long today=marketDay();
-        if(today>state().lastMarketDay && store.available())change(null,s->{s.lastMarketDay=today;s.marketRound++;residents.captureOnline(s,s.marketRound);},()->{
+        if(today>state().lastMarketDay && store.available())change(null, SyncImpact.global("market","lottery","npcEffects","npc"),s->{s.lastMarketDay=today;s.marketRound++;residents.captureOnline(s,s.marketRound);},()->{
             for(ServerPlayer online:server.getPlayerList().getPlayers())tell(online,"早上了，每日刷新了。");
         });
         drain(); economy.epoch(epoch());
@@ -245,8 +262,8 @@ public final class SkyServer implements AutoCloseable {
                 if (party.marketEpoch != epoch()) { trades.roll(party); break; }
             }
         }
-        if (tick % 200 == 0 && store.available()) { refresh.checkpointDeltas(); change(null, AccessoryService::flushStudyRemainder, () -> {}); }
-        if (tick % 20 == 0) syncAll();
+        if (tick % 200 == 0 && store.available()) { refresh.checkpointDeltas(); change(null, SyncImpact.none(), AccessoryService::flushStudyRemainder, () -> {}); }
+
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             ModItems.refreshFlight(player, state().players.get(player.getUUID()));
             if (tick % 100 == 0) refreshAttributes(player);
@@ -273,12 +290,9 @@ public final class SkyServer implements AutoCloseable {
                 player.resetFallDistance();
                 player.addEffect(new MobEffectInstance(ModEffects.CLOUD_STEP, 300, 0, false, false, true));
             }
-            Queue<String> pages = catalogQueue.get(player.getUUID());
-            if (pages != null && ServerPlayNetworking.canSend(player, ShopPayloads.Snapshot.TYPE)) {
-                for (int i = 0; i < 2 && !pages.isEmpty(); i++) ServerPlayNetworking.send(player, new ShopPayloads.Snapshot(pages.remove()));
-                if (pages.isEmpty()) { catalogQueue.remove(player.getUUID()); catalogSent.add(player.getUUID()); }
-            }
+
         }
+        views.tick();
     }
     public void joined(ServerPlayer player) {
         trades.recover(player);
@@ -286,8 +300,7 @@ public final class SkyServer implements AutoCloseable {
         refreshAttributes(player);
         lastChefHealth.put(player.getUUID(),player.getHealth());lastChefDamageTick.put(player.getUUID(),tick);
         if (parties.active(player.getUUID()) == null) worlds.lobby(player);
-        sendCatalog(player); sendState(player);
-        questEditor.sendEditor(player);
+        views.joined(player);
     }
     public static void openEnderChest(ServerPlayer player) {
         if (player.isSpectator() || player.containerMenu != player.inventoryMenu) return;
@@ -301,7 +314,7 @@ public final class SkyServer implements AutoCloseable {
         FoodHealth.apply(player, person);
         ProfessionAttributes.apply(this, player, person);
     }
-    public void disconnected(ServerPlayer player) { sorting.disconnected(player.getUUID()); worlds.disconnected(player.getUUID()); ModItems.disconnected(player.getUUID()); veinMining.disconnect(player); lastChefHealth.remove(player.getUUID());lastChefDamageTick.remove(player.getUUID()); trades.forget(player); questEditor.forget(player); catalogQueue.remove(player.getUUID()); catalogSent.remove(player.getUUID()); lastSnapshots.remove(player.getUUID()); priceEpochSent.remove(player.getUUID()); lastRequest.remove(player.getUUID()); }
+    public void disconnected(ServerPlayer player) { sorting.disconnected(player.getUUID()); worlds.disconnected(player.getUUID()); ModItems.disconnected(player.getUUID()); veinMining.disconnect(player); lastChefHealth.remove(player.getUUID());lastChefDamageTick.remove(player.getUUID()); trades.forget(player); questEditor.forget(player); views.disconnected(player.getUUID()); lastRequest.remove(player.getUUID()); }
     public void request(ServerPlayer player, ShopPayloads.Request request) {
         long now = state().effectiveTicks;
         if (now - lastRequest.getOrDefault(player.getUUID(), -100L) < 4 && !Set.of("sale_preview","sale_confirm","sale_cancel","quest_claim","bounty_claim","bounty_slot","vein","vein_limit").contains(request.action())) return;
@@ -364,70 +377,67 @@ public final class SkyServer implements AutoCloseable {
         ServerPlayNetworking.send(p, new ShopPayloads.Snapshot(root.toString()));
     }
     public void openShop(ServerPlayer player) { if(player.containerMenu!=player.inventoryMenu||!player.inventoryMenu.getCarried().isEmpty())player.closeContainer();sendState(player); send(player, "open", new JsonObject()); }
-    public void sendCatalog(ServerPlayer player) {
-        if (catalogQueue.containsKey(player.getUUID()) || catalogSent.contains(player.getUUID())) return;
-        Queue<String> pages = new ArrayDeque<>(); JsonArray entries = new JsonArray(); int page = 0;
+    /** Compatibility notification for operation handlers: never sends a page or invalidates unrelated data. */
+    public void sendCatalog(ServerPlayer player) { views.hud(player); }
+    public void syncAll() { for (ServerPlayer p : server.getPlayerList().getPlayers()) views.hud(p); }
+    public void sendState(ServerPlayer player) { views.hud(player); }
+    public JsonObject hudSnapshot(ServerPlayer player) {
+        var party=parties.active(player.getUUID());var person=state().players.get(player.getUUID());
+        JsonObject json=new JsonObject();json.addProperty("wallet",party==null?0:party.coins);json.addProperty("level",party==null?0:level(party));json.addProperty("party",party==null?"尚未加入空岛":party.name);
+        int level=party==null?0:level(party);BigInteger scaled=party==null?BigInteger.ZERO:points(party);
+        json.addProperty("currentLevelScoreScaled",scaled.subtract(BlockScorer.threshold(level).multiply(BigInteger.valueOf(10000))).toString());
+        json.addProperty("nextLevelScoreScaled",BlockScorer.required(level).multiply(BigInteger.valueOf(10000)).toString());
+        json.addProperty("partyId",party==null?"":party.id.toString());json.addProperty("islandEpoch",party==null?0:party.overworldEpoch);
+        json.addProperty("admin",Protection.admin(player));json.addProperty("adminEditing",editors.enabled(player));json.addProperty("taskEditing",editors.enabled(player));
+        json.addProperty("bloodMoon",state().bloodMoonActive);json.addProperty("flightRemainingMs",person==null?0:Math.max(0,person.flightExpiryEpochMs-System.currentTimeMillis()));return json;
+    }
+    private JsonArray catalogRows(String itemFilter){
+        JsonArray entries=new JsonArray();
         for (ItemEconomy.Entry e : economy.entries.values()) {
+            if(itemFilter!=null&&!BuiltInRegistries.ITEM.getKey(e.template().getItem()).toString().equals(itemFilter))continue;
             var p = e.product(); JsonObject row = new JsonObject(); row.addProperty("id", p.id()); row.addProperty("name", p.name()); row.add("stack", economy.encode(e.template())); row.add("canonical",p.canonical());
             row.addProperty("base", p.baseCoins());row.addProperty("buyBase",p.buyBaseCoins()); row.addProperty("buyMultiplierBps",p.buyMultiplierBps()); row.addProperty("rarity", p.rarity()); row.addProperty("level", p.level()); row.addProperty("buy", economy.canBuy(e)); row.addProperty("sell", p.canSell()); row.addProperty("category", p.id().startsWith("yumis_sky_island:biome_ball_")?"biome_ball":p.category());
             row.addProperty("firstAcquisitionPremium",economy.starter(e));
             row.addProperty("tradeEnabled",p.tradeEnabled());
             var unit = new GameConfig.QuotaUnit(p.canonical().get("itemId").getAsString(), Rational.ONE);
             row.addProperty("quotaGroup", unit.group()); row.addProperty("quotaUnits", unit.units().toString());
-            if(!entries.isEmpty()&&entries.toString().length()+row.toString().length()>180000){pages.add(catalogPage(entries,page++));entries=new JsonArray();}
             entries.add(row);
-            if (entries.size() == 64) { pages.add(catalogPage(entries, page++)); entries = new JsonArray(); }
         }
-        if (!entries.isEmpty()||pages.isEmpty()) pages.add(catalogPage(entries, page));
-        JsonObject rules = new JsonObject(); rules.add("scoring", config.object("islands/scoring.toml")); rules.add("enchantments", config.object("shop/enchantments.toml")); rules.add("quality", config.object("products/quality.toml")); rules.add("quotas",config.object("shop/sale_quotas.toml").get("tiers"));
-        rules.addProperty("saleDivisor",config.saleDivisor);rules.addProperty("minimumBaseCoins",config.minimumBaseCoins);
-        rules.add("cropSales",config.object("shop/shops.toml").get("cropSales"));
-        rules.addProperty("genshinMode",config.object("economy.toml").get("genshinMode").getAsBoolean());
-        rules.addProperty("regularBuyMultiplierBps",config.regularBuyMultiplierBps);
-        rules.addProperty("prefabAmmunitionPrice",economy.ammunitionPrice());
-        rules.addProperty("prefabAmmunitionCredits",prefabs.rules.ammunitionCredits());
-        JsonArray creativeBlueprints=new JsonArray();for(String id:prefabs.catalog.registeredBlueprints())creativeBlueprints.add(id);
-        rules.add("creativeBlueprints",creativeBlueprints);
-        rules.add("itemRarities",config.object("shop/rarities.toml").get("itemRarities"));
-        rules.addProperty("priceRevision",priceRevision);
-        JsonObject packet = new JsonObject(); packet.addProperty("kind", "rules");packet.addProperty("revision",rulesRevision); packet.add("data", rules); pages.add(packet.toString()); catalogQueue.put(player.getUUID(), pages);
+        return entries;
     }
-    private String catalogPage(JsonArray rows, int page) {
-        JsonObject packet = new JsonObject(); packet.addProperty("kind", "catalog");packet.addProperty("revision",rulesRevision); packet.addProperty("page", page); packet.add("data", rows); return packet.toString();
-    }
-    public void syncAll() { for (ServerPlayer p : server.getPlayerList().getPlayers()) sendState(p); }
-    public void sendState(ServerPlayer player) {
-        IslandState.Party party = parties.active(player.getUUID());
-        JsonObject json = new JsonObject(); long period=24000,anchor=config.object("shop/shops.toml").getAsJsonObject("market").get("refreshAtDayTick").getAsLong();long left=Math.floorMod(anchor-server.overworld().getOverworldClockTime(),period);json.addProperty("epoch", epoch()); json.addProperty("ticksLeft", left==0?period:left);json.addProperty("effectiveTicks",state().effectiveTicks);
-        json.addProperty("wallet", party == null ? 0 : party.coins); json.addProperty("level", party == null ? 0 : level(party)); json.addProperty("party", party == null ? "尚未加入空岛" : party.name);
-        int islandLevel=party==null?0:level(party);
-        BigInteger scaled=party==null?BigInteger.ZERO:points(party);
-        json.addProperty("currentLevelScoreScaled",scaled.subtract(BlockScorer.threshold(islandLevel).multiply(BigInteger.valueOf(10000))).toString());
-        json.addProperty("nextLevelScoreScaled",BlockScorer.required(islandLevel).multiply(BigInteger.valueOf(10000)).toString());
-        json.addProperty("islandEpoch",party==null?0:party.overworldEpoch);
-        json.addProperty("partyId",party==null?"":party.id.toString());
-        json.add("residents",residents.snapshot(player,party));
-        json.addProperty("admin",Protection.admin(player));
-        json.addProperty("taskEditing",questEditor.editing(player));
-        json.addProperty("adminEditing",editors.enabled(player));json.addProperty("professionShopRevision",professionShopRevision);
-        json.addProperty("hidden", party != null && party.hidden); json.add("stock", GameConfig.JSON.toJsonTree(party == null ? Map.of() : party.dailyStock));
-        json.add("quotas", GameConfig.JSON.toJsonTree(party == null ? Map.of() : party.quota)); json.add("counts", GameConfig.JSON.toJsonTree(party == null ? Map.of() : party.blockCounts));
-        json.add("acquiredStarters",GameConfig.JSON.toJsonTree(party == null ? Set.of() : party.acquiredStarterIds));
-        if(party!=null)json.add("progression",progression.snapshot(party,state().players.get(player.getUUID())));
-        else if(Protection.admin(player))json.add("progression",progression.preview());
-        if (!Objects.equals(priceEpochSent.get(player.getUUID()),epoch())) {
-            JsonObject market = new JsonObject(); for (var e : economy.entries.keySet()) market.addProperty(e, economy.marketBps(e)); send(player,"prices",market); priceEpochSent.put(player.getUUID(),epoch());
-        }
-        IslandState.Person person = state().players.get(player.getUUID()); json.add("professions", GameConfig.JSON.toJsonTree(person == null ? Map.of() : person.professionXp));
-        json.add("professionCoins", GameConfig.JSON.toJsonTree(person == null ? Map.of() : person.professionCoins));
-        json.add("consumedFruits",GameConfig.JSON.toJsonTree(person==null?Map.of():person.consumedFruits));
-        json.add("foodEaten",GameConfig.JSON.toJsonTree(person==null||person.foodEaten==null?Map.of():person.foodEaten));
-        json.add("foodHealth",GameConfig.JSON.toJsonTree(person==null||person.foodHealth==null?Map.of():person.foodHealth));
-        json.add("unlockedAccessories",GameConfig.JSON.toJsonTree(person==null?Set.of():person.unlockedAccessories));
-        json.add("activeAccessories",GameConfig.JSON.toJsonTree(person==null?Set.of():person.activeAccessories));
-        json.addProperty("pendingAccessoryDraws",person==null?0:person.pendingAccessoryDraws);
-        json.add("lottery",lottery.snapshot(player));
-        json.addProperty("accessorySlots",person==null?3:Math.clamp(person.accessorySlots,3,AccessoryService.CATALOG.size()));
+    public JsonObject viewSnapshot(ServerPlayer player,String key){
+        var party=parties.active(player.getUUID());var person=state().players.get(player.getUUID());JsonObject json=new JsonObject();
+        switch(key){
+            case "catalog" -> {json.add("products",catalogRows(null));json.addProperty("priceRevision",priceRevision);}
+            case "display" -> {
+                JsonObject rarities=config.object("shop/rarities.toml").getAsJsonObject("itemRarities").deepCopy();
+                JsonArray variants=new JsonArray();
+                for(var e:economy.entries.values()){
+                    String id=BuiltInRegistries.ITEM.getKey(e.template().getItem()).toString();JsonObject patch=e.product().canonical().getAsJsonObject("componentPatch");
+                    if(patch==null||patch.isEmpty())rarities.addProperty(id,e.product().rarity());
+                    else{JsonObject row=new JsonObject();row.add("stack",economy.encode(e.template()));row.add("patch",patch);row.addProperty("rarity",e.product().rarity());variants.add(row);}
+                }
+                json.add("rarityVariants",variants);json.add("itemRarities",rarities);json.add("quality",config.object("products/quality.toml"));json.addProperty("genshinMode",config.object("economy.toml").get("genshinMode").getAsBoolean());
+                json.addProperty("fishingAccessoryBoxBps",BloodAccessories.chance(this,"accessoryBoxBps",2000));json.addProperty("fishingTreasureEggBps",config.object("gameplay/blood_moon.toml").get("treasureEggBps").getAsInt());
+            }
+            case "economy" -> {
+                json.add("quality",config.object("products/quality.toml"));json.add("enchantments",config.object("shop/enchantments.toml"));json.add("quotaTiers",config.object("shop/sale_quotas.toml").get("tiers"));
+                json.add("professionSales",config.professionSales.snapshot());json.addProperty("saleDivisor",config.saleDivisor);json.addProperty("minimumBaseCoins",config.minimumBaseCoins);json.addProperty("regularBuyMultiplierBps",config.regularBuyMultiplierBps);
+                json.addProperty("prefabAmmunitionPrice",economy.ammunitionPrice());json.addProperty("prefabAmmunitionCredits",prefabs.rules.ammunitionCredits());json.addProperty("priceRevision",priceRevision);
+            }
+            case "scoring" -> json.add("scoring",config.object("islands/scoring.toml"));
+            case "market" -> {JsonObject prices=new JsonObject();for(String id:economy.entries.keySet())prices.addProperty(id,economy.marketBps(id));json.add("prices",prices);json.addProperty("epoch",epoch());}
+            case "stock" -> {json.add("stock",GameConfig.JSON.toJsonTree(party==null?Map.of():party.dailyStock));json.addProperty("hidden",party!=null&&party.hidden);}
+            case "quotas" -> json.add("quotas",GameConfig.JSON.toJsonTree(party==null?Map.of():party.quota));
+            case "trade" -> json.add("acquiredStarters",GameConfig.JSON.toJsonTree(party==null?Set.of():party.acquiredStarterIds));
+            case "features" -> {JsonObject data=new JsonObject();for(String feature:List.of("shop.special","bounty.use","automation.shipping"))data.addProperty(feature.equals("shop.special")?"specialAllowed":feature.equals("bounty.use")?"bountyAllowed":"shippingAllowed",party!=null&&progression.allows(party,feature));json.add("progression",data);}
+            case "tasks" -> {json.add("progression",progression.taskSnapshot(party,person));json.addProperty("taskTokenReward",lottery.taskReward());}
+            case "bounties" -> {json.addProperty("taskTokenReward",lottery.taskReward());JsonObject data=party==null?new JsonObject():progression.snapshot(party,person);for(String field:List.of("quests","quest","completed","ready","resetVersions"))data.remove(field);json.add("progression",data);}
+            case "accessories" -> {json.add("unlockedAccessories",GameConfig.JSON.toJsonTree(person==null?Set.of():person.unlockedAccessories));json.add("activeAccessories",GameConfig.JSON.toJsonTree(person==null?Set.of():person.activeAccessories));json.addProperty("pendingAccessoryDraws",person==null?0:person.pendingAccessoryDraws);json.addProperty("accessorySlots",person==null?3:Math.clamp(person.accessorySlots,3,AccessoryService.CATALOG.size()));}
+            case "buffs" -> {json.add("consumedFruits",GameConfig.JSON.toJsonTree(person==null?Map.of():person.consumedFruits));json.add("foodEaten",GameConfig.JSON.toJsonTree(person==null?Map.of():person.foodEaten));json.add("foodHealth",GameConfig.JSON.toJsonTree(person==null?Map.of():person.foodHealth));}
+            case "lottery" -> json.add("lottery",lottery.snapshot(player));
+            case "profession" -> {
+                json.add("professions",GameConfig.JSON.toJsonTree(person==null?Map.of():person.professionXp));json.add("professionCoins",GameConfig.JSON.toJsonTree(person==null?Map.of():person.professionCoins));
         JsonObject professionProgress=new JsonObject();
         for(String profession:List.of("blacksmith","chef","farmer","hunter","miner","battle_master","fisherman")){
             long[] xpCurve=ProfessionService.curve(config.object("products/professions.toml"),profession);
@@ -442,8 +452,9 @@ public final class SkyServer implements AutoCloseable {
         json.add("professionProgress",professionProgress);
         json.add("veinMining",veinMining.settings(player));
         json.add("fishingPower",FishingService.snapshot(this,player));
-        json.addProperty("fishingAccessoryBoxBps",BloodAccessories.chance(this,"accessoryBoxBps",2000));
-        json.addProperty("fishingTreasureEggBps",config.object("gameplay/blood_moon.toml").get("treasureEggBps").getAsInt());
+            }
+            case "settings" -> json.add("veinMining",veinMining.settings(player));
+            case "guide" -> {
         JsonObject guide=new JsonObject();
         JsonObject professionConfig=config.object("products/professions.toml");
         JsonObject craftXp=professionConfig.getAsJsonObject("successfulCraftXp");
@@ -489,11 +500,25 @@ public final class SkyServer implements AutoCloseable {
         JsonObject battleRow=new JsonObject();battleRow.addProperty("id","minecraft:iron_sword");battleRow.addProperty("source","对玩家或敌对生物造成或受到的最终伤害");
         battleRow.addProperty("itemLevel",0);battleRow.addProperty("baseXp",1);battleGuide.add(battleRow);guide.add("battle_master",battleGuide);
         json.add("professionGuide",guide);
-        json.add("professionShop",config.object("products/profession_shop.toml"));
-        json.addProperty("bloodMoon",state().bloodMoonActive);
-        json.addProperty("flightRemainingMs", person == null ? 0 : Math.max(0L, person.flightExpiryEpochMs - System.currentTimeMillis()));
-        String serialized = json.toString(); if (serialized.equals(lastSnapshots.put(player.getUUID(), serialized))) return;
-        send(player, "state", json);
+            }
+            case "professionShop" -> {json.add("professionShop",config.object("products/profession_shop.toml"));json.addProperty("professionShopRevision",professionShopRevision);}
+            case "npc" -> {JsonObject data=residents.snapshot(player,party);data.remove("draft");json.add("residents",data);}
+            case "npcEffects" -> json.add("residents",residents.effectSnapshot(party));
+            case "draft" -> json.add("residents",residents.draftSnapshot(player,party));
+            case "blueprints" -> {JsonArray stacks=new JsonArray();for(String id:prefabs.catalog.registeredBlueprints()){var e=economy.entries.get("yumis_sky_island:prefab/"+id);if(e!=null)stacks.add(economy.encode(e.template()));}json.add("creativeBlueprints",stacks);}
+            default -> {
+                int split=key.indexOf(':');String id=split<0?"":key.substring(split+1);
+                if(key.startsWith("item:"))json.add("products",catalogRows(id));
+                else if(key.startsWith("block:")){JsonObject values=new JsonObject();values.addProperty(id,party==null?0:party.blockCounts.getOrDefault(id,0L));json.add("counts",values);}
+                else if(key.startsWith("quota:")){JsonObject values=new JsonObject();values.addProperty(id,party==null?"0":party.quota.getOrDefault(id,"0"));json.add("quotas",values);}
+                else if(key.startsWith("stock:")){JsonObject values=new JsonObject();if(party!=null&&party.dailyStock.containsKey(id))values.addProperty(id,party.dailyStock.get(id));else values.add(id,JsonNull.INSTANCE);json.add("stock",values);}
+                else if(key.startsWith("quest:"))json=questEditor.detail(player,id);
+                else if(key.startsWith("editor:"))json=configEditor.view(player,key);
+                else if(key.startsWith("sorter@"))json=sorting.view(player,key);
+                else if(key.startsWith("cannon@"))json=prefabs.view(player,key);
+                else throw new IllegalArgumentException("未知数据类别");
+            }
+        }return json;
     }
     @Override public void close() throws IOException {
         sorting.close();residents.close();prefabs.close();

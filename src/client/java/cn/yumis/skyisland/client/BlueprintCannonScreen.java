@@ -17,8 +17,10 @@ public final class BlueprintCannonScreen extends AbstractContainerScreen<Bluepri
     private String confirmation="";
     private int materialScroll;
     public BlueprintCannonScreen(BlueprintCannonMenu menu,Inventory inventory,Component title){super(menu,inventory,title,364,232);inventoryLabelY=128;}
+    public String syncKey(){return "cannon@"+minecraft.level.dimension().identifier()+"@"+menu.pos.asLong();}
     @Override public void extractBackground(GuiGraphicsExtractor g,int x,int y,float delta){}
     @Override public void extractContents(GuiGraphicsExtractor g,int mx,int my,float delta){
+        SkyIslandClient.CATALOG.sync.status(g,width);
         g.fill(leftPos-7,topPos-7,leftPos+imageWidth+7,topPos+imageHeight+7,UiTheme.PANEL);
         g.text(font,"图纸",leftPos+17,topPos+14,0xFFAEDAFF,false);g.text(font,"弹药",leftPos+53,topPos+14,0xFFAEDAFF,false);g.text(font,"供料栏 · 支持相邻箱与一层潜影盒",leftPos+8,topPos+52,0xFFC6DCE8,false);
         for(var slot:menu.slots){g.fill(leftPos+slot.x-1,topPos+slot.y-1,leftPos+slot.x+17,topPos+slot.y+17,0xFF666666);g.fill(leftPos+slot.x+1,topPos+slot.y+1,leftPos+slot.x+15,topPos+slot.y+15,UiTheme.PANEL);}
@@ -51,7 +53,7 @@ public final class BlueprintCannonScreen extends AbstractContainerScreen<Bluepri
     @Override protected void extractLabels(GuiGraphicsExtractor g,int x,int y){g.text(font,"物品栏",8,128,0xFFC6DCE8,false);}
     private void button(GuiGraphicsExtractor g,String label,int x,int y,int w){g.fill(x,y,x+w,y+20,UiTheme.PANEL);g.text(font,label,x+5,y+6,0xFFE4F3FD,false);}
     @Override public boolean mouseClicked(MouseButtonEvent event,boolean doubleClick){
-        if(event.button()==0&&event.x()>=leftPos+178&&event.x()<leftPos+346){double y=event.y()-topPos;
+        if(SkyIslandClient.CATALOG.sync.ready()&&event.button()==0&&event.x()>=leftPos+178&&event.x()<leftPos+346){double y=event.y()-topPos;
             if(!confirmation.isBlank()&&y>=130&&y<150){if(event.x()<leftPos+258)PrefabClient.cannon(confirmation,menu.pos,confirmationRevision);confirmation="";return true;}
             String status=PrefabClient.cannon.has("status")?PrefabClient.cannon.get("status").getAsString():"idle";
             if(y>=80&&y<100){if(status.equals("idle")){confirmation="start_material";confirmationRevision=PrefabClient.cannon.has("priceRevision")?PrefabClient.cannon.get("priceRevision").getAsLong():-1;}else PrefabClient.cannon("pause",menu.pos);return true;}

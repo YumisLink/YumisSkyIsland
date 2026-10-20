@@ -2118,3 +2118,47 @@ shopRevision = "q34-q48-material-shop-v2"
 "yumis_sky_island:wand_blueprint_256" = 60
 "yumis_sky_island:housing_permit" = 1
 "yumis_sky_island:lottery_ticket" = 0
+
+# 永久区块刷怪球：每日／隐藏供货；每种全队库存1；等级只限制购买，使用不受等级限制。
+
+[itemLevels."yumis_sky_island:spawn_ball_zombie"]
+unlockLevel = 5
+
+[itemLevels."yumis_sky_island:spawn_ball_skeleton"]
+unlockLevel = 5
+
+[itemLevels."yumis_sky_island:spawn_ball_spider"]
+unlockLevel = 5
+
+[itemLevels."yumis_sky_island:spawn_ball_creeper"]
+unlockLevel = 5
+
+[itemLevels."yumis_sky_island:spawn_ball_cave_spider"]
+unlockLevel = 10
+
+[itemLevels."yumis_sky_island:spawn_ball_slime"]
+unlockLevel = 5
+
+[itemLevels."yumis_sky_island:spawn_ball_drowned"]
+unlockLevel = 15
+
+[itemLevels."yumis_sky_island:spawn_ball_magma_cube"]
+unlockLevel = 15
+
+[itemLevels."yumis_sky_island:spawn_ball_zombified_piglin"]
+unlockLevel = 15
+
+[itemLevels."yumis_sky_island:spawn_ball_enderman"]
+unlockLevel = 15
+
+[itemLevels."yumis_sky_island:spawn_ball_blaze"]
+unlockLevel = 15
+
+[itemLevels."yumis_sky_island:spawn_ball_witch"]
+unlockLevel = 25
+
+[itemLevels."yumis_sky_island:spawn_ball_guardian"]
+unlockLevel = 35
+
+[itemLevels."yumis_sky_island:spawn_ball_wither_skeleton"]
+unlockLevel = 35

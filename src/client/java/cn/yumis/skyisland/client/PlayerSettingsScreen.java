@@ -68,14 +68,15 @@ public final class PlayerSettingsScreen extends Screen {
         maxScroll=Math.max(0,rowY+scroll-bodyBottom+8);scroll=Math.clamp(scroll,0,maxScroll);g.disableScissor();hits.removeIf(hit->hit.y()+22<=bodyTop||hit.y()>=bodyBottom);
         if(maxScroll>0){int rail=Math.max(8,bodyBottom-bodyTop),thumb=Math.max(8,rail*rail/(rail+maxScroll)),yy=bodyTop+(rail-thumb)*scroll/maxScroll;g.fill(left+panelWidth-5,bodyTop,left+panelWidth-2,bodyBottom,UiTheme.CARD);g.fill(left+panelWidth-5,yy,left+panelWidth-2,yy+thumb,0xFF8FA9AD);}
         if(!message.isBlank())text(g,message,left+90,top+11,0xFF9DE5C7,panelWidth-102);
-        button(g,busy?"正在保存…":"保存连锁设置",left+12,top+panelHeight-27,120,!busy&&model.state.has("veinMining"),this::save);
+        button(g,busy?"正在保存…":"保存连锁设置",left+12,top+panelHeight-27,120,!busy&&model.sync.ready()&&model.state.has("veinMining"),this::save);
         button(g,"返回",left+panelWidth-68,top+panelHeight-27,56,true,this::onClose);
     }
     private void save(){
-        if(busy||!model.state.has("veinMining"))return;
+        if(busy||!model.sync.ready()||!model.state.has("veinMining"))return;
         try{int requested=VeinMiningRules.checkedLimit(Integer.parseInt(limit.getValue()));if(!ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE)){message="连接已断开，请重连后保存";return;}busy=true;message="";ClientPlayNetworking.send(new ShopPayloads.Request("vein_limit","",requested));}
         catch(IllegalArgumentException invalid){message="连锁数量须为1～128的整数";}
     }
+    public void refreshed(JsonObject data){if(limit!=null&&!limit.isFocused()&&!busy)limit.setValue(data.get("limit").getAsString());}
     public void saved(JsonObject data){busy=false;limit.setValue(data.get("limit").getAsString());message="已保存连锁数量";}
     public void failed(String error){busy=false;message=error;}
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean twice){

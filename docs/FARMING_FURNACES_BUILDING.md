@@ -4,11 +4,9 @@
 
 ## 农作物出售
 
-仅覆盖小麦、甜浆果、胡萝卜、马铃薯、甜菜、南瓜、西瓜片、甘蔗、可可豆、下界疣、紫颂果。种子、树苗、竹子、加工食物和突变作物不在本轮白名单。
+2026-10-19后续修订：已按用户确认删除原11种作物翻倍及作物星级专用倍率，改用统一的副职业出售和星级配置。管理员 `/is admin edit on` 后按 **Ctrl＋】→副职业出售** 调整，保存立即生效。
 
-`shop/shops.toml` 的 `[cropSales]` 按实际物品ID确定范围，`baseMultiplierBps=20000` 使普通作物收入翻倍；`gradeMultiplierBps` 在既有品质系数上分别再乘1／2／3／4／5／6。翻倍后普通／铜／银／金／钻／七彩相对普通作物为1／4／18／60／150／6000。相对此前无星作物总系数为2／8／36／120／300／12000。
-
-倍率位于行情最低价、原品质和耐久之后，再走居民增益和现有售出阶梯。手动、出货箱与客户端收购提示共用规则；每笔最后取整，购买报价不变。配置手改重启，不进入实时白名单。
+职业按产物目录匹配；农夫默认1倍，普通／铜／银／金／钻／七彩统一出售倍率默认1／2／6／15／30／100。每张表只乘一次，出售不再叠加 `quality.toml` 的旧价值倍率。行情、附魔、耐久、居民及售出额度保留，购买、品质属性和产出概率保留。配置路径、范围和完整公式见[出售倍率说明](DEV_GUIDE.md#副职业出售与星级倍率2026-10-19)。
 
 ## 连锁收获
 
@@ -55,4 +53,4 @@
 
 `tools/prepare_farming_furnace_assets.py` 定向生成配方、模型、名称、挖掘标签与开发配置；不重新生成旧饰品目录。`tools/draw_farming_furnaces.lua` 通过Aseprite MCP制作28张16×16熔炉贴图和6张透明饰品图。分层源位于 `art/furnaces/`、`art/icons/building/`，各目录有放大预览。
 
-核心入口为 `CropSaleRules`、`UpgradedFurnaceEntity`、`AccessoryCraft` 与 `AccessoryService`。详细验证结果以本轮实现与验证记录为准。
+核心入口为 `ProfessionSaleSettings`、`UpgradedFurnaceEntity`、`AccessoryCraft` 与 `AccessoryService`。详细验证结果以本轮实现与验证记录为准。

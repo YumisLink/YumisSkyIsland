@@ -138,7 +138,7 @@ public final class AccessoryService {
         if(held.isEmpty()||!held.is(expected))throw new IllegalArgumentException("手持饰品已变化，请重试");
         JsonArray inventory=runtime.economy.capture(player.getInventory());ItemStack remaining=held.copy();remaining.shrink(1);
         inventory.set(slot,runtime.economy.encode(remaining));UUID owner=player.getUUID();
-        if(!runtime.trades.commitInventory(player,new TradeService.InventoryChange(inventory,TradeService.ExperienceChange.none(),null),state->{
+        if(!runtime.trades.commitInventory(player, SyncImpact.person(player.getUUID(),"accessories","profession","settings"),new TradeService.InventoryChange(inventory,TradeService.ExperienceChange.none(),null),state->{
             var current=state.players.get(owner);
             if(current==null||!current.unlockedAccessories.add(id))throw new IllegalArgumentException("该饰品已经解锁，物品未扣除");
             if(!entry.passive()&&AccessoryCraft.fits(current.activeAccessories,id,slots(current)))AccessoryCraft.enable(current.activeAccessories,id);
@@ -152,7 +152,7 @@ public final class AccessoryService {
         var person=runtime.state().players.get(target.getUUID());
         if(person==null)throw new IllegalArgumentException("玩家尚无个人空岛资料");
         Math.addExact(person.pendingAccessoryDraws,amount);UUID owner=target.getUUID();
-        if(!runtime.tryChange(actor,state->{var current=state.players.get(owner);current.pendingAccessoryDraws=Math.addExact(current.pendingAccessoryDraws,amount);},after,
+        if(!runtime.tryChange(actor, SyncImpact.person(owner,"accessories"),state->{var current=state.players.get(owner);current.pendingAccessoryDraws=Math.addExact(current.pendingAccessoryDraws,amount);},after,
             error->YumisSkyIsland.LOGGER.error("无法保存玩家 {} 的饰品抽奖次数",owner,error)))throw new IllegalStateException("数据正在保存，请稍后重试");
     }
     public static void awardMilestones(IslandState state,IslandState.Party party,int before,int after){
@@ -173,7 +173,7 @@ public final class AccessoryService {
         candidates.removeAll(person.unlockedAccessories);
         if(candidates.isEmpty())throw new IllegalArgumentException("所有饰品已解锁，抽取次数保留");
         String chosen=candidates.get(player.getRandom().nextInt(candidates.size()));
-        runtime.change(player,state->{var p=state.players.get(player.getUUID());p.pendingAccessoryDraws--;p.unlockedAccessories.add(chosen);},()->SkyServer.tell(player,"获得饰品："+CATALOG.get(chosen).name()));
+        runtime.change(player, SyncImpact.person(player.getUUID(),"accessories","profession","settings"),state->{var p=state.players.get(player.getUUID());p.pendingAccessoryDraws--;p.unlockedAccessories.add(chosen);},()->SkyServer.tell(player,"获得饰品："+CATALOG.get(chosen).name()));
     }
     public void toggle(ServerPlayer player,String id){
         runtime.parties.requireMember(player);
@@ -183,7 +183,7 @@ public final class AccessoryService {
         if(entry.passive()){SkyServer.tell(player,"鱼饵拥有后自动生效，无需占用激活栏位");return;}
         boolean disabling=person.activeAccessories.contains(id);
         if(!disabling&&!AccessoryCraft.fits(person.activeAccessories,id,slots(person)))throw new IllegalArgumentException("已达到当前饰品栏位上限");
-        runtime.change(player,state->{
+        runtime.change(player, SyncImpact.person(player.getUUID(),"accessories","profession","settings"),state->{
             var active=state.players.get(player.getUUID()).activeAccessories;
             if(!active.remove(id))AccessoryCraft.enable(active,id);
         },()->apply(player,runtime.state().players.get(player.getUUID())));
@@ -199,7 +199,7 @@ public final class AccessoryService {
         List<String> missing=AccessoryCraft.missing(person.unlockedAccessories,id);
         if(!missing.isEmpty())throw new IllegalArgumentException("还缺少"+CATALOG.get(missing.getFirst()).name());
         boolean[] enabled={false};
-        runtime.change(player,state->{
+        runtime.change(player, SyncImpact.person(player.getUUID(),"accessories","profession","settings"),state->{
             var current=state.players.get(player.getUUID());
             if(current==null||current.unlockedAccessories.contains(id))throw new IllegalArgumentException("已经拥有"+entry.name());
             List<String> stillMissing=AccessoryCraft.missing(current.unlockedAccessories,id);
@@ -371,7 +371,7 @@ public final class AccessoryService {
         var party = runtime.parties.active(player.getUUID());
         if (gold < 1 || party == null || party.resetInProgress) return;
         UUID partyId = party.id;
-        runtime.change(player, state -> {
+        runtime.change(player, SyncImpact.none(), state -> {
             IslandState.Party current = state.parties.get(partyId);
             if (current != null && !current.resetInProgress) current.coins = Money.add(current.coins, gold);
         }, () -> {});

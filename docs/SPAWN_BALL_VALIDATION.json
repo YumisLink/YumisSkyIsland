@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-20",
+  "minecraft": "26.2",
+  "unitTests": 32,
+  "clientAssertions": 1210,
+  "naturalSpawnSpecies": 14,
+  "testedDimensions": [
+    "minecraft:overworld",
+    "minecraft:the_nether",
+    "minecraft:the_end"
+  ],
+  "performance": [
+    {
+      "enabled": false,
+      "calls": 300,
+      "spawnedMobs": 1177,
+      "elapsedNs": 103138900,
+      "allocatedBytes": 26961928
+    },
+    {
+      "enabled": true,
+      "calls": 300,
+      "spawnedMobs": 1183,
+      "elapsedNs": 74502200,
+      "allocatedBytes": 28468768
+    }
+  ],
+  "performanceLimits": "Single integrated-server thread; both modes load this mod. Different native species/counts, warmup and GC affect timings. No multiplayer TPS claim.",
+  "dedicatedClassLoading": "SERVER environment: NaturalSpawner Mixin and 14 kinds load; client Minecraft class absent. World not started; EULA not accepted.",
+  "boundaries": [
+    "Native capacity predicate tested; no 50-player/global-cap stress run.",
+    "Persisted policy and inventory receipt recover together; injected journal write failure does not publish either. Not an arbitrary whole-world power-loss guarantee.",
+    "Reset initial transaction clears only overworld policy; full island cleanup retained from existing ResetService, not a complete reset stress run.",
+    "Existing combat/loot/task handlers remain unchanged; long-running automated farm yields and all kill reward combinations were not exhaustively sampled."
+  ],
+  "sha256": {
+    "src/main/java/cn/yumis/skyisland/core/HammerRules.java": "b615186cbaeb1d42593447fa1e10fa246c1ba5d8d00784bf14dfe867dcdfb5b3",
+    "src/main/java/cn/yumis/skyisland/server/SpawnBallService.java": "baec45eaefba9dcb814c587c3bbb5d8933cfd5115d79f1a2b4617dcb94722632",
+    "src/main/java/cn/yumis/skyisland/mixin/SpawnBallSpawnerMixin.java": "6a4e0986ada83e54c266a7fe2b3e007c34ca0205771f2f3f3ddcaa64d029314c",
+    "config/yumis_sky_island/gameplay/spawn_balls.toml": "d034dae3e5c0e95a9c1ba13f42907a8659833c6c025ece3b893285c5464c46eb"
+  }
+}

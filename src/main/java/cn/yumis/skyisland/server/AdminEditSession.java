@@ -13,7 +13,7 @@ public final class AdminEditSession {
     public void set(ServerPlayer player,boolean on){
         if(!Protection.admin(player))throw new IllegalArgumentException("仅管理员可开启编辑模式");
         if(on)enabled.add(player.getUUID());else enabled.remove(player.getUUID());
-        rt.questEditor.sendEditor(player);rt.sendState(player);
+        rt.sendState(player);
         SkyServer.tell(player,on?"管理员编辑模式已开启；Ctrl＋】打开实时配置，商店和任务可直接编辑":"管理员编辑模式已关闭");
     }
 }

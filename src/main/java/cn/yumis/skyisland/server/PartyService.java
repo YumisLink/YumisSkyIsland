@@ -33,17 +33,17 @@ public final class PartyService {
     public void home(ServerPlayer player) {
         IslandState.Party existing = active(player.getUUID());
         if (existing != null) { runtime.worlds.home(player, existing); return; }
-        runtime.change(player, state -> {
+        runtime.change(player, SyncImpact.none(), state -> {
             IslandState.Person p = person(state, player);
             IslandState.Party old = state.parties.get(p.soloParty);
             if (old != null && old.owner.equals(player.getUUID())) { p.activeParty = old.id; p.netherReturnPortal = null; old.members.add(player.getUUID()); }
             else newParty(state, player);
-        }, () -> runtime.worlds.home(player, active(player.getUUID())));
+        }, () -> {runtime.views.impact(SyncImpact.party(active(player.getUUID()).id,"stock","quotas"));runtime.worlds.home(player, active(player.getUUID()));});
     }
     public void invite(ServerPlayer owner, ServerPlayer target) {
         IslandState.Party party = requireOwner(owner);
         if (party.members.contains(target.getUUID())) throw new IllegalArgumentException("玩家已经在本队");
-        runtime.change(owner, s -> {
+        runtime.change(owner, SyncImpact.none(), s -> {
             IslandState.Person p = person(s, target); p.inviteParty = party.id; p.invitationExpiresAt = s.effectiveTicks + 6000;
         }, () -> { runtime.tell(owner, "已邀请 " + target.getGameProfile().name()); runtime.tell(target, owner.getGameProfile().name() + " 邀请你加入空岛，5分钟内输入 /is accept 或 /is reject"); });
     }
@@ -54,7 +54,7 @@ public final class PartyService {
         IslandState.Party old = active(player.getUUID());
         if (old != null && old.owner.equals(player.getUUID()) && old.members.size() > 1)
             throw new IllegalArgumentException("你是岛主，请先 /is transfer <队员> 手动移交再加入其他队伍");
-        runtime.change(player, s -> {
+        runtime.change(player, SyncImpact.none(), s -> {
             if (old != null) s.parties.get(old.id).members.remove(player.getUUID());
             IslandState.Person p = person(s, player); p.activeParty = target.id; p.inviteParty = null; p.netherReturnPortal = null;
             s.parties.get(target.id).members.add(player.getUUID());
@@ -66,7 +66,7 @@ public final class PartyService {
             if (party.members.size() > 1) throw new IllegalArgumentException("岛主必须先 /is transfer <队员> 手动移交，才能离队");
             throw new IllegalArgumentException("你是唯一成员，无其他队伍可离开；可接受其他队伍邀请或重开本岛");
         }
-        runtime.change(player, s -> detach(s, player, party.id), () -> runtime.worlds.home(player, active(player.getUUID())));
+        runtime.change(player, SyncImpact.none(), s -> detach(s, player, party.id), () -> {runtime.views.impact(SyncImpact.party(active(player.getUUID()).id,"stock","quotas"));runtime.worlds.home(player, active(player.getUUID()));});
     }
     private static void detach(IslandState s, ServerPlayer player, UUID fromId) {
         IslandState.Party old = s.parties.get(fromId); old.members.remove(player.getUUID());
@@ -86,19 +86,19 @@ public final class PartyService {
     public void transfer(ServerPlayer owner, UUID successor) {
         IslandState.Party party = requireOwner(owner);
         if (!party.members.contains(successor) || successor.equals(owner.getUUID())) throw new IllegalArgumentException("必须指定另一位现有队员");
-        runtime.change(owner, s -> s.parties.get(party.id).owner = successor, () -> runtime.tell(owner, "岛主身份已手动移交"));
+        runtime.change(owner, SyncImpact.none(), s -> s.parties.get(party.id).owner = successor, () -> runtime.tell(owner, "岛主身份已手动移交"));
     }
     public void trust(ServerPlayer owner, UUID target, boolean enabled) {
         IslandState.Party party = requireOwner(owner);
-        runtime.change(owner, s -> { if (enabled) s.parties.get(party.id).trusted.add(target); else s.parties.get(party.id).trusted.remove(target); }, () -> runtime.tell(owner, enabled ? "已授权建造及容器交互" : "已撤销授权"));
+        runtime.change(owner, SyncImpact.none(), s -> { if (enabled) s.parties.get(party.id).trusted.add(target); else s.parties.get(party.id).trusted.remove(target); }, () -> runtime.tell(owner, enabled ? "已授权建造及容器交互" : "已撤销授权"));
     }
     public void reject(ServerPlayer player) {
-        runtime.change(player, s -> person(s, player).inviteParty = null, () -> runtime.tell(player, "已拒绝邀请"));
+        runtime.change(player, SyncImpact.none(), s -> person(s, player).inviteParty = null, () -> runtime.tell(player, "已拒绝邀请"));
     }
     public void kick(ServerPlayer owner, ServerPlayer target) {
         IslandState.Party party = requireOwner(owner);
         if (owner.getUUID().equals(target.getUUID()) || !party.members.contains(target.getUUID())) throw new IllegalArgumentException("必须指定其他队员");
-        runtime.change(owner, s -> detach(s, target, party.id), () -> { runtime.tell(target, "你已被移出队伍，原队伍资产保留"); runtime.worlds.home(target, active(target.getUUID())); });
+        runtime.change(owner, SyncImpact.none(), s -> detach(s, target, party.id), () -> { runtime.tell(target, "你已被移出队伍，原队伍资产保留");runtime.views.impact(SyncImpact.party(active(target.getUUID()).id,"stock","quotas")); runtime.worlds.home(target, active(target.getUUID())); });
     }
     public IslandState.Party requireMember(ServerPlayer player) {
         IslandState.Party p = active(player.getUUID()); if (p == null) throw new IllegalArgumentException("先输入 /is 创建或加入空岛"); return p;

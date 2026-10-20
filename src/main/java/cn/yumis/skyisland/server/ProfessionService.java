@@ -33,6 +33,7 @@ import java.math.BigInteger;
 
 /** The result stack gets one pending roll before transfer; XP is awarded only on a successful result take. */
 public final class ProfessionService {
+    public static final List<String> ALL_PROFESSIONS = List.of("fisherman", "farmer", "blacksmith", "chef", "hunter", "miner", "battle_master");
     private record Prepared(String profession, int itemLevel, ItemStack template, boolean qualityAllowed) {}
     private record Produced(String profession, int itemLevel, ItemStack template, int quantity, boolean qualityAllowed) {}
     private static final class Click {
@@ -163,6 +164,45 @@ public final class ProfessionService {
             if(!click.player.getInventory().add(part))click.player.drop(part,false);
         }
     }
+    public static String resolveProfession(String value) {
+        for (String id : ALL_PROFESSIONS) if (id.equals(value) || name(id).equals(value)) return id;
+        throw new IllegalArgumentException("未知职业：" + value);
+    }
+
+    public static BigInteger positiveExperience(String value) {
+        if (!value.matches("[0-9]+")) throw new IllegalArgumentException("职业经验数量必须为正整数");
+        BigInteger amount = new BigInteger(value);
+        if (amount.signum() <= 0) throw new IllegalArgumentException("职业经验数量必须大于0");
+        return amount;
+    }
+
+    /** Administrative XP is already a final amount: no coins, scaling, remainder mutation, tasks or fruit rolls. */
+    public void grantExperience(net.minecraft.commands.CommandSourceStack source, ServerPlayer target, String profession, BigInteger amount) {
+        String id = resolveProfession(profession);
+        if (amount.signum() <= 0) throw new IllegalArgumentException("职业经验数量必须大于0");
+        UUID uuid = target.getUUID();
+        if (runtime.server.getPlayerList().getPlayer(uuid) != target || target.hasDisconnected())
+            throw new IllegalStateException("目标玩家已离线，请重试");
+        String targetName = target.getGameProfile().name();
+        if (!runtime.tryChange(source.getPlayer(), SyncImpact.person(uuid, "profession", "settings"), state -> {
+            var person = PartyService.person(state, target);
+            person.professionXp.merge(id, amount, BigInteger::add);
+        }, () -> {
+            var person = runtime.state().players.get(uuid);
+            int level = level(person, id);
+            ServerPlayer online = runtime.server.getPlayerList().getPlayer(uuid);
+            if (online != null && !online.hasDisconnected()) {
+                if (id.equals("fisherman")) FishingService.applyLevel(runtime, online);
+                ProfessionAttributes.apply(runtime, online, person);
+                JsonObject event = new JsonObject(); event.addProperty("profession", id); event.addProperty("amount", amount.toString());
+                runtime.send(online, "profession_xp", event);
+                SkyServer.tell(online, "管理员发放" + name(id) + "经验＋" + amount + "，当前 " + level + " 级（职业币不变）");
+            }
+            source.sendSuccess(() -> Component.literal("已为 " + targetName + " 增加 " + amount + " 点" + name(id) + "经验，当前 " + level + " 级（职业币不变）"), true);
+        }, error -> source.sendFailure(Component.literal("保存失败，职业经验未开放使用"))))
+            throw new IllegalStateException("数据正在保存，请稍后重试");
+    }
+
     private void award(ServerPlayer player,String profession,BigInteger amount){
         if(amount.signum()<=0)return;
         int efficiency=ProfessionExperienceSettings.multiplierBps(runtime.config.object("products/professions.toml"),profession);
@@ -173,7 +213,7 @@ public final class ProfessionService {
         runtime.deferred(()->{
             int[] before={0};
             BigInteger[] awarded={amount};
-            runtime.change(null,state->{
+            runtime.change(null, SyncImpact.person(id,"profession","settings"),state->{
                 IslandState.Person person=PartyService.person(state,player);before[0]=level(person,profession);
                 int remainder=person.residentXpRemainders.getOrDefault(profession,0)*ProfessionRules.EXPERIENCE_SCALE+person.professionXpSubRemainders.getOrDefault(profession,0);
                 var result=ProfessionRules.scaleExperience(amount,efficiency,multiplier,remainder);awarded[0]=result.amount();

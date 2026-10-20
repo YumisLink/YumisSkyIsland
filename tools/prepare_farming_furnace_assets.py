@@ -90,20 +90,15 @@ rarities['itemRarities']['yumis_sky_island:accessory_architect_backpack'] = 'epi
 rarity_file.write_text(tomlkit.dumps(rarities), encoding='utf-8')
 
 source = ROOT / 'config/yumis_sky_island'
-shops_source = tomlkit.parse((source / 'shop/shops.toml').read_text(encoding='utf-8-sig'))
 for folder in ['run/config/yumis_sky_island', 'build/run/clientGameTest/config/yumis_sky_island']:
     target = ROOT / folder
     if not target.exists():
         continue
     backup = ROOT / '.tools/farming-furnaces-before' / folder
-    for relative in ['shop/shops.toml', 'gameplay/furnaces.toml', 'products/quality.toml', 'shop/rarities.toml']:
+    for relative in ['gameplay/furnaces.toml', 'products/quality.toml', 'shop/rarities.toml']:
         dest = target / relative
         original = dest.read_bytes() if dest.exists() else None
-        if relative == 'shop/shops.toml' and dest.exists():
-            current = tomlkit.parse(dest.read_text(encoding='utf-8-sig'))
-            current['cropSales'] = shops_source['cropSales']
-            updated = tomlkit.dumps(current).encode('utf-8')
-        elif relative == 'shop/rarities.toml' and dest.exists():
+        if relative == 'shop/rarities.toml' and dest.exists():
             current = tomlkit.parse(dest.read_text(encoding='utf-8-sig'))
             current['itemRarities']['yumis_sky_island:accessory_architect_backpack'] = 'epic'
             updated = tomlkit.dumps(current).encode('utf-8')
@@ -115,5 +110,4 @@ for folder in ['run/config/yumis_sky_island', 'build/run/clientGameTest/config/y
                 (backup / relative).write_bytes(original)
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(updated)
-    assert tomllib.loads((target / 'shop/shops.toml').read_text(encoding='utf-8-sig'))['cropSales'] == shops_source['cropSales'].unwrap()
 print('Prepared 7 furnace recipes/models, 6 building accessory models, language entries and targeted development TOML.')

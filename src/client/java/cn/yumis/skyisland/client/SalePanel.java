@@ -10,6 +10,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
 import java.util.*;
 
 /** Server quotes are bound to the exact selection shown next to the real inventory. */
@@ -20,7 +21,10 @@ public final class SalePanel {
     private final ClientCatalog model;
     private final Map<Integer,Integer> selected=new TreeMap<>();
     private int ticks, lastSent=-10, scroll, focused=-1;
-    private boolean dirty, confirming;
+    private boolean dirty, confirming, pendingQuote;
+    private String observedRules="";
+    private record InventorySlot(Item item,int count,Object components) {}
+    private List<InventorySlot> observedInventory=List.of();
     private record Tool(String label,int x,int y,int w,int action,boolean active){}
     private final List<Tool> tools=new ArrayList<>();
     private int toolBottom;
@@ -59,8 +63,13 @@ public final class SalePanel {
             tools.add(new Tool(labels[i],x,y,widths[i],i,active));x+=widths[i]+4;
         }toolBottom=y+24;
     }
-    public void tick(){ticks++;if(dirty&&ticks-lastSent>=5){model.lastError="";send("sale_preview",selection());dirty=false;lastSent=ticks;}}
-    public void updated(){confirming=false;if(model.sale.get("selection").getAsString().isEmpty()&&!selection().isEmpty()){selected.clear();focused=-1;dirty=false;}}
+    public void tick(){
+        ticks++;String rules=model.priceRevision+":"+model.residentRevision()+":"+model.sync.versionOf("market")+":"+model.sync.versionOf("quotas");
+        var player=Minecraft.getInstance().player;List<InventorySlot> inventory=new ArrayList<>();if(player!=null)for(int slot=0;slot<36;slot++){var stack=player.getInventory().getItem(slot);inventory.add(new InventorySlot(stack.getItem(),stack.getCount(),stack.getComponentsPatch()));}
+        if(!observedRules.isEmpty()&&(!observedRules.equals(rules)||!observedInventory.equals(inventory)))dirty=true;observedRules=rules;observedInventory=inventory;
+        if(dirty&&!confirming&&ticks-lastSent>=5&&model.sync.ready()){model.lastError="";send("sale_preview",selection());dirty=false;pendingQuote=true;lastSent=ticks;}
+    }
+    public void updated(){confirming=false;pendingQuote=false;if(model.sale.get("selection").getAsString().isEmpty()&&!selection().isEmpty()){selected.clear();focused=-1;dirty=false;}}
     public void failed(){confirming=false;dirty=false;}
     private int cell(){return Math.max(20,Math.min(38,Math.min((width-24)/9,(height-190)/4)));}
     private int left(){return (width-9*cell())/2;}
@@ -101,7 +110,7 @@ public final class SalePanel {
         maxScroll=Math.max(0,start+lines.size()*12+5-(height-65));scroll=Math.clamp(scroll,0,maxScroll);
         g.pose().popMatrix();g.disableScissor();
         if(maxScroll>0){int rail=Math.max(8,height-99),thumb=Math.max(8,rail*rail/(rail+maxScroll)),yy=32+(rail-thumb)*scroll/maxScroll;g.fill(width-6,32,width-3,height-67,UiTheme.CARD);g.fill(width-6,yy,width-3,yy+thumb,0xFF8FA9AD);}
-        boolean quoted=!dirty&&model.sale.has("selection")&&selection().equals(model.sale.get("selection").getAsString());
+        boolean quoted=model.sync.ready()&&!pendingQuote&&!dirty&&model.sale.has("selection")&&selection().equals(model.sale.get("selection").getAsString());
         long coins=quoted&&model.sale.has("coins")?model.sale.get("coins").getAsLong():0;
         text(g,quoted?"合计获得："+Money.format(coins)+"（整笔取整）":"正在更新报价…",12,height-55,0xFFFFDC78,width-24);
         if(!model.lastError.isEmpty())text(g,model.lastError,12,height-42,0xFFFF8888,width-24);
@@ -117,10 +126,10 @@ public final class SalePanel {
     public boolean mouseClicked(MouseButtonEvent e,boolean twice){
         if(confirming)return true;double x=e.x()-parent.contentLeft(),y=e.y()-70;
         if(inside(x,y,12,height-27,confirmWidth(),22)){
-            if(!dirty&&model.sale.has("selection")&&selection().equals(model.sale.get("selection").getAsString())&&model.sale.get("coins").getAsLong()>0){
+            if(model.sync.ready()&&!pendingQuote&&!dirty&&model.sale.has("selection")&&selection().equals(model.sale.get("selection").getAsString())&&model.sale.get("coins").getAsLong()>0){
                 String token=model.sale.get("token").getAsString();
                 long coins=model.sale.get("coins").getAsLong();
-                parent.confirm("确认出售所选物品，获得 "+Money.format(coins)+"？",()->{confirming=true;send("sale_confirm",token);});
+                parent.confirm("确认出售所选物品，获得 "+Money.format(coins)+"？",()->{if(model.sync.ready()&&!dirty&&!pendingQuote){confirming=true;send("sale_confirm",token);}});
             }return true;
         }
         if(inside(x,y,18+confirmWidth(),height-27,confirmWidth(),22)){onClose();return true;}

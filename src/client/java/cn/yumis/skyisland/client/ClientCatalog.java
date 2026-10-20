@@ -60,7 +60,10 @@ public final class ClientCatalog {
     public final FloatingEventHud events=new FloatingEventHud();
     public JsonObject state = new JsonObject(),prices = new JsonObject(),scoring = new JsonObject(),quality = new JsonObject(),enchantments = new JsonObject();
     public long flightSnapshotClientTime;
+    public final ViewSyncClient sync=new ViewSyncClient(this);
     public List<BlockPos> veinPreview=List.of();
+    private record VariantRarity(ItemStack stack,JsonObject patch,String rarity) {}
+    private final Map<Item,List<VariantRarity>> rarityVariants=new HashMap<>();
     public JsonObject itemRarities=new JsonObject(),sale=new JsonObject();
     public String lastError="";
     public static final int MIN_CELL = 40, MAX_CELL = 96, DEFAULT_CELL = 48, DEFAULT_ACCESSORY_CELL = 64;
@@ -70,7 +73,7 @@ public final class ClientCatalog {
     public long prefabAmmunitionPrice=1000;
     public int prefabAmmunitionCredits=1000;
     private QuotaCurve quotaCurve=QuotaCurve.DEFAULT;
-    private cn.yumis.skyisland.core.CropSaleRules cropSales=cn.yumis.skyisland.core.CropSaleRules.NONE;
+    private cn.yumis.skyisland.config.ProfessionSaleSettings professionSales=cn.yumis.skyisland.config.ProfessionSaleSettings.NONE;
     private final Path preferences = FabricLoader.getInstance().getConfigDir().resolve("yumis_sky_island/client.toml");
     public ClientCatalog() {
         try {
@@ -105,7 +108,55 @@ public final class ClientCatalog {
             return cn.yumis.skyisland.config.TomlConfigIO.readOrRepair(preferences,new String(defaults.readAllBytes(),StandardCharsets.UTF_8));
         }
     }
-    public void clearConnection() { disabledProducts.clear();stagingDisabled.clear();priceRevision=0;catalogRevision=-1;stagingRevision=-1;nextCatalogPage=0;stagingProducts.clear();scoringSettings=null;cropSales=cn.yumis.skyisland.core.CropSaleRules.NONE;configState=new JsonObject();configWanted=false;configBusy=false;priceBusy=false;configMessage="";lotteryBusy=false;lotteryRequestSequence=-1;SkyCreativeTabs.blueprints(List.of()); coinGains.clear(); events.clear(); products.clear(); byItem.clear(); tabs.clear(); categories.clear(); state = new JsonObject(); prices = new JsonObject(); scoring = new JsonObject(); quality = new JsonObject(); enchantments = new JsonObject();itemRarities=new JsonObject();sale=new JsonObject();veinPreview=List.of();lastError="";questDetails.clear();ItemPickerCatalog.clear();editorState=new JsonObject();saleDesired=false;taskBusy=false; revision++; }
+    public void clearConnection() { sync.clear();rarityVariants.clear();serverEggBps=2500;serverAccessoryBoxBps=2000; disabledProducts.clear();stagingDisabled.clear();priceRevision=0;catalogRevision=-1;stagingRevision=-1;nextCatalogPage=0;stagingProducts.clear();scoringSettings=null;professionSales=cn.yumis.skyisland.config.ProfessionSaleSettings.NONE;configState=new JsonObject();configWanted=false;configBusy=false;priceBusy=false;configMessage="";lotteryBusy=false;lotteryRequestSequence=-1;SkyCreativeTabs.blueprints(List.of()); coinGains.clear(); events.clear(); products.clear(); byItem.clear(); tabs.clear(); categories.clear(); state = new JsonObject(); prices = new JsonObject(); scoring = new JsonObject(); quality = new JsonObject(); enchantments = new JsonObject();itemRarities=new JsonObject();sale=new JsonObject();veinPreview=List.of();lastError="";questDetails.clear();ItemPickerCatalog.clear();editorState=new JsonObject();saleDesired=false;taskBusy=false; revision++; }
+    public void resetViewData(){clearConnection();}
+    public void applyStatePatch(JsonObject patch){
+        for(var field:patch.entrySet()){
+            String key=field.getKey();JsonElement value=field.getValue();
+            if(Set.of("progression","residents","counts","quotas","stock").contains(key)&&value.isJsonObject()){
+                JsonObject target=state.has(key)&&state.get(key).isJsonObject()?state.getAsJsonObject(key):new JsonObject();
+                for(var e:value.getAsJsonObject().entrySet())if(e.getValue().isJsonNull())target.remove(e.getKey());else target.add(e.getKey(),e.getValue());state.add(key,target);
+            }else state.add(key,value);
+        }
+        if(!editing()){configWanted=false;configBusy=false;priceBusy=false;if(Minecraft.getInstance().gui.screen() instanceof LiveConfigScreen screen)screen.onClose();}
+        if(state.has("lottery")&&state.getAsJsonObject("lottery").has("sequence")&&state.getAsJsonObject("lottery").get("sequence").getAsLong()>lotteryRequestSequence)lotteryBusy=false;
+        revision++;
+    }
+    public void applyView(String key,JsonObject data){
+        if(key.startsWith("quest:")){questDetails.put(key.substring(6),data);taskBusy=false;revision++;return;}
+        if(key.startsWith("editor:")){receiveConfig(data.toString());revision++;return;}
+        if(key.startsWith("sorter@")){SorterScreen.receiveView(data);return;}
+        if(key.startsWith("cannon@")){PrefabClient.cannon=data;return;}
+        if(data.has("products")){
+            boolean replace=key.equals("catalog");if(replace){products.clear();byItem.clear();disabledProducts.clear();}
+            for(var element:data.getAsJsonArray("products")){
+                JsonObject row=element.getAsJsonObject();ItemStack stack=decode(row.get("stack"));
+                Product p=new Product(row.get("id").getAsString(),row.get("name").getAsString(),stack,row.getAsJsonObject("canonical"),row.get("base").getAsLong(),row.get("buyBase").getAsLong(),row.get("buyMultiplierBps").getAsLong(),row.get("rarity").getAsString(),row.get("level").getAsInt(),row.get("buy").getAsBoolean(),row.get("sell").getAsBoolean(),row.get("category").getAsString(),row.get("quotaGroup").getAsString(),Rational.parse(row.get("quotaUnits").getAsString()),row.get("firstAcquisitionPremium").getAsBoolean());
+                Product old=products.put(p.id(),p);if(old!=null){var list=byItem.get(old.stack().getItem());if(list!=null)list.removeIf(v->v.id().equals(p.id()));}byItem.computeIfAbsent(stack.getItem(),_->new ArrayList<>()).add(p);
+                if(!row.get("tradeEnabled").getAsBoolean())disabledProducts.add(p.id());else disabledProducts.remove(p.id());
+            }
+            if(replace){if(tabs.isEmpty())buildTabs();importFavorites();}data.remove("products");
+        }
+        if(data.has("rarityVariants")){rarityVariants.clear();for(var value:data.remove("rarityVariants").getAsJsonArray()){JsonObject row=value.getAsJsonObject();var stack=decode(row.get("stack"));rarityVariants.computeIfAbsent(stack.getItem(),_->new ArrayList<>()).add(new VariantRarity(stack,row.getAsJsonObject("patch"),row.get("rarity").getAsString()));}}
+        if(data.has("itemRarities"))itemRarities=data.remove("itemRarities").getAsJsonObject();
+        if(data.has("quality")){quality=data.remove("quality").getAsJsonObject();if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);}
+        if(data.has("enchantments"))enchantments=data.remove("enchantments").getAsJsonObject();
+        if(data.has("scoring")){scoring=data.remove("scoring").getAsJsonObject();scoringSettings=cn.yumis.skyisland.config.ScoringSettings.parse(scoring);}
+        if(data.has("professionSales"))professionSales=cn.yumis.skyisland.config.ProfessionSaleSettings.parse(data.remove("professionSales").getAsJsonObject(),new JsonObject());
+        if(data.has("quotaTiers")){List<QuotaCurve.Tier> tiers=new ArrayList<>();for(var value:data.remove("quotaTiers").getAsJsonArray()){var t=value.getAsJsonObject();tiers.add(new QuotaCurve.Tier(t.get("upToUnits").isJsonNull()?null:Rational.of(t.get("upToUnits").getAsLong()),t.get("saleMultiplierBps").getAsInt()));}quotaCurve=new QuotaCurve(tiers);}
+        if(data.has("prices"))prices=data.remove("prices").getAsJsonObject();
+        if(data.has("saleDivisor"))saleDivisor=data.remove("saleDivisor").getAsLong();if(data.has("minimumBaseCoins"))minimumBaseCoins=data.remove("minimumBaseCoins").getAsLong();if(data.has("regularBuyMultiplierBps"))regularBuyMultiplierBps=data.remove("regularBuyMultiplierBps").getAsLong();
+        if(data.has("prefabAmmunitionPrice"))prefabAmmunitionPrice=data.remove("prefabAmmunitionPrice").getAsLong();if(data.has("prefabAmmunitionCredits"))prefabAmmunitionCredits=data.remove("prefabAmmunitionCredits").getAsInt();
+        if(data.has("priceRevision"))priceRevision=Math.max(priceRevision,data.remove("priceRevision").getAsLong());
+        if(data.has("genshinMode")){genshinMode=data.remove("genshinMode").getAsBoolean();Money.currencyName(genshinMode?"摩拉":"金币");}
+        if(data.has("fishingAccessoryBoxBps"))serverAccessoryBoxBps=data.get("fishingAccessoryBoxBps").getAsInt();if(data.has("fishingTreasureEggBps"))serverEggBps=data.get("fishingTreasureEggBps").getAsInt();
+        if(data.has("creativeBlueprints")){var ids=new ArrayList<ItemStack>();for(var id:data.remove("creativeBlueprints").getAsJsonArray())ids.add(decode(id));SkyCreativeTabs.blueprints(ids);ItemPickerCatalog.clear();var connection=Minecraft.getInstance().getConnection();if(connection!=null)CreativeModeTabs.tryRebuildTabContents(connection.enabledFeatures(),true,connection.registryAccess());}
+        // Complete aggregate domains replace their maps; keyed responses merge just the requested entry.
+        if(key.equals("stock"))state.remove("stock");if(key.equals("quotas"))state.remove("quotas");
+        if(key.equals("npc")){JsonElement draft=residents().get("draft");state.remove("residents");if(draft!=null){JsonObject npc=data.getAsJsonObject("residents");npc.add("draft",draft);}}
+        applyStatePatch(data);
+        if(key.equals("settings")&&Minecraft.getInstance().gui.screen() instanceof PlayerSettingsScreen settings)settings.refreshed(data.getAsJsonObject("veinMining"));
+    }
     public void receive(String json) {
         JsonObject packet = JsonParser.parseString(json).getAsJsonObject(); String kind = packet.get("kind").getAsString(); JsonElement data = packet.get("data");
         switch (kind) {
@@ -148,12 +199,12 @@ public final class ClientCatalog {
                 long incoming=packet.has("revision")?packet.get("revision").getAsLong():0;if(incoming!=stagingRevision||incoming<catalogRevision)return;
                 JsonObject rules=data.getAsJsonObject();
                 var score=cn.yumis.skyisland.config.ScoringSettings.parse(rules.getAsJsonObject("scoring"));
-                var crop=cn.yumis.skyisland.core.CropSaleRules.parse(rules.has("cropSales")&&!rules.get("cropSales").isJsonNull()?rules.getAsJsonObject("cropSales"):null);
+                var professionSaleRules=rules.has("professionSales")?cn.yumis.skyisland.config.ProfessionSaleSettings.parse(rules.getAsJsonObject("professionSales"),new JsonObject()):cn.yumis.skyisland.config.ProfessionSaleSettings.NONE;
                 products.clear();products.putAll(stagingProducts);byItem.clear();for(var p:products.values())byItem.computeIfAbsent(p.stack().getItem(),_->new ArrayList<>()).add(p);
                 disabledProducts.clear();disabledProducts.addAll(stagingDisabled);catalogRevision=incoming;priceRevision=rules.has("priceRevision")?rules.get("priceRevision").getAsLong():0;stagingProducts.clear();stagingDisabled.clear();stagingRevision=-1;
                 if(tabs.isEmpty())buildTabs();importFavorites();scoring=rules.getAsJsonObject("scoring");scoringSettings=score;
                 quality=rules.getAsJsonObject("quality");enchantments=rules.getAsJsonObject("enchantments");itemRarities=rules.getAsJsonObject("itemRarities");saleDivisor=rules.get("saleDivisor").getAsLong();minimumBaseCoins=rules.get("minimumBaseCoins").getAsLong();regularBuyMultiplierBps=rules.get("regularBuyMultiplierBps").getAsLong();
-                cropSales=crop;
+                professionSales=professionSaleRules;
                 if(rules.has("prefabAmmunitionPrice"))prefabAmmunitionPrice=rules.get("prefabAmmunitionPrice").getAsLong();if(rules.has("prefabAmmunitionCredits"))prefabAmmunitionCredits=rules.get("prefabAmmunitionCredits").getAsInt();
                 genshinMode=rules.has("genshinMode")&&rules.get("genshinMode").getAsBoolean();
                 Money.currencyName(genshinMode?"摩拉":"金币");if(YumisSkyIsland.CONFIG!=null)YumisSkyIsland.CONFIG.useRuntimeQuality(quality);
@@ -219,7 +270,7 @@ public final class ClientCatalog {
     public int level() { return state.has("level") ? state.get("level").getAsInt() : 0; }
     public long wallet() { return state.has("wallet") ? state.get("wallet").getAsLong() : 0; }
     public int bps(Product p) { return prices.has(p.id()) ? prices.get(p.id()).getAsInt() : 10000; }
-    public Rational value(Product p,ItemStack stack) { return quality.has("grades") && enchantments.has("entries") ? ItemEconomy.fullValue(p.base(),bps(p),stack,quality,enchantments,minimumBaseCoins) : Rational.of(Math.max(minimumBaseCoins,Rational.of(p.base()).multiply(Rational.of(bps(p),10000)).floorLongExact())); }
+    public Rational value(Product p,ItemStack stack) { return quality.has("grades") && enchantments.has("entries") ? ItemEconomy.saleBaseValue(p.base(),bps(p),stack,enchantments,minimumBaseCoins).multiply(professionSales.qualityMultiplier(ItemEconomy.grade(stack))) : Rational.of(Math.max(minimumBaseCoins,Rational.of(p.base()).multiply(Rational.of(bps(p),10000)).floorLongExact())); }
     public long price(Product p){return price(p,0);}
     public long price(Product p,int shop) {
         if(p.stack().is(cn.yumis.skyisland.prefab.PrefabItems.AMMUNITION))return prefabAmmunitionPrice;
@@ -230,7 +281,10 @@ public final class ClientCatalog {
     }
     private static String partyId(JsonObject value){return value.has("partyId")?value.get("partyId").getAsString():"";}
     public ItemStack decode(JsonElement data) { var connection=Minecraft.getInstance().getConnection();return data==null||data.isJsonNull()||connection==null?ItemStack.EMPTY:ItemStack.CODEC.parse(RegistryOps.create(JsonOps.INSTANCE,connection.registryAccess()),data).getOrThrow(); }
-    public String rarity(ItemStack stack) {String prize=cn.yumis.skyisland.shop.LotteryItemRarity.get(stack);if(!prize.isEmpty())return prize;var p=match(stack);if(p!=null)return p.rarity();String id=BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();int wandTier=cn.yumis.skyisland.wand.ConstructionWands.specialTier(stack);return itemRarities.has(id)?itemRarities.get(id).isJsonPrimitive()?itemRarities.get(id).getAsString():itemRarities.getAsJsonObject(id).get("rarity").getAsString():wandTier>=0?cn.yumis.skyisland.wand.ConstructionWands.rarity(wandTier):"common";}
+    public String rarity(ItemStack stack) {String prize=cn.yumis.skyisland.shop.LotteryItemRarity.get(stack);if(!prize.isEmpty())return prize;
+        VariantRarity best=null;int score=-1;for(var v:rarityVariants.getOrDefault(stack.getItem(),List.of())){if(ItemStack.isSameItemSameComponents(stack,v.stack()))return v.rarity();if(ItemEconomy.matchesCanonical(stack,v.stack(),v.patch())){int n=ItemEconomy.specificity(v.stack(),v.patch());if(n>score){score=n;best=v;}}}if(best!=null)return best.rarity();
+        String displayId=BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();if(itemRarities.has(displayId)){var value=itemRarities.get(displayId);return value.isJsonPrimitive()?value.getAsString():value.getAsJsonObject().get("rarity").getAsString();}
+        var p=match(stack);if(p!=null)return p.rarity();String id=BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();int wandTier=cn.yumis.skyisland.wand.ConstructionWands.specialTier(stack);return itemRarities.has(id)?itemRarities.get(id).isJsonPrimitive()?itemRarities.get(id).getAsString():itemRarities.getAsJsonObject(id).get("rarity").getAsString():wandTier>=0?cn.yumis.skyisland.wand.ConstructionWands.rarity(wandTier):"common";}
     public int stock(Product p) { return state.has("stock") ? state.getAsJsonObject("stock").has(p.id()) ? state.getAsJsonObject("stock").get(p.id()).getAsInt() : 0 : 0; }
     public String stockText(Product p){return stock(p)==-1?"无限":Integer.toString(stock(p));}
     public boolean hidden() { return state.has("hidden") && state.get("hidden").getAsBoolean(); }
@@ -248,6 +302,15 @@ public final class ClientCatalog {
     public String productName(String id){Product product=products.get(id);if(product!=null)return product.stack().getHoverName().getString();var key=Identifier.tryParse(id);if(key!=null&&BuiltInRegistries.ITEM.containsKey(key))return new ItemStack(BuiltInRegistries.ITEM.getValue(key)).getHoverName().getString();return id;}
     private static String fruitProfession(ItemStack stack){for(var entry:cn.yumis.skyisland.item.ModItems.FRUITS.entrySet())if(stack.is(entry.getValue()))return entry.getKey();return null;}
     public void tooltip(ItemStack stack,List<Component> lines) {
+        sync.noteTooltip(stack);
+        String spawnBallId = BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
+        if (spawnBallId.startsWith("yumis_sky_island:spawn_ball_")) {
+            lines.add(Component.literal("右键消耗1颗，永久改变本人所在16×16区块全高度的自然敌对刷怪").withStyle(ChatFormatting.AQUA));
+            lines.add(Component.literal("仅本队正式成员、三空岛维度；同种重复使用不消耗，换种不返还").withStyle(ChatFormatting.GRAY));
+            boolean water = spawnBallId.endsWith("_guardian") || spawnBallId.endsWith("_drowned");
+            lines.add(Component.literal((water ? "须有水体" : "须有可站立地面") + "；保留亮度、空间、玩家距离与数量上限").withStyle(ChatFormatting.GRAY));
+            lines.add(Component.literal("/is spawnball info 查看；/is spawnball clear 免费清除（不返球）").withStyle(ChatFormatting.GRAY));
+        }
         String fruit=fruitProfession(stack);
         if(fruit!=null){
             int used=0;if(state.has("consumedFruits")&&state.getAsJsonObject("consumedFruits").has(fruit))used=state.getAsJsonObject("consumedFruits").get(fruit).getAsInt();
@@ -260,12 +323,14 @@ public final class ClientCatalog {
         Product p = match(stack);
         int grade = ItemEconomy.grade(stack);
         if (grade > 0 && quality.has("grades")) lines.add(Component.literal("制造品质：" + quality.getAsJsonArray("grades").get(grade).getAsJsonObject().get("name").getAsString()).withStyle(grade == 2 ? ChatFormatting.GOLD : ChatFormatting.AQUA));
-        if (p != null) {
+        boolean stale=sync.stale("item:"+BuiltInRegistries.ITEM.getKey(stack.getItem()))||sync.stale("economy")||sync.stale("market")||sync.stale("npcEffects");
+        if(stale)lines.add(Component.literal("估值资料更新中…").withStyle(ChatFormatting.GRAY));
+        if (p != null && (!stale || quality.has("grades"))) {
             Rational full = value(p,stack), durability = stack.isDamageableItem() ? Durability.multiplier(stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()) : Rational.ONE;
             lines.add(Component.literal("价值：" + Money.format(full.multiply(durability).floorLongExact()) + " / 件").withStyle(ChatFormatting.YELLOW));
-            if (p.sell() && ItemEconomy.safeToSell(stack)) {
+            if (p.sell() && ItemEconomy.safeToSell(stack) && !sync.stale("quota:"+p.quotaGroup())) {
                 String itemId=BuiltInRegistries.ITEM.getKey(stack.getItem()).toString();
-                Rational normal = full.multiply(durability).divide(Rational.of(saleDivisor)).multiply(cropSales.multiplier(itemId,grade)).multiply(Rational.of(residentSaleBps(itemId),10000)), used = Rational.ZERO;
+                Rational normal = full.multiply(durability).divide(Rational.of(saleDivisor)).multiply(professionSales.multiplier(itemId)).multiply(Rational.of(residentSaleBps(itemId),10000)), used = Rational.ZERO;
                 if (state.has("quotas") && state.getAsJsonObject("quotas").has(p.quotaGroup())) used = Rational.parse(state.getAsJsonObject("quotas").get(p.quotaGroup()).getAsString());
                 long quote = quotaCurve.quote(used,stack.getCount(),p.units(),normal).floorLongExact();
                 lines.add(Component.literal("行情后基础价值：" + decimal(normal) + Money.currencyName() + " / 件").withStyle(ChatFormatting.GRAY));
@@ -275,7 +340,7 @@ public final class ClientCatalog {
         Minecraft mc = Minecraft.getInstance();
         if (mc.level != null && mc.level.dimension().equals(Level.OVERWORLD) && stack.getItem() instanceof BlockItem item && scoringSettings!=null) {
             String block = BuiltInRegistries.BLOCK.getKey(item.getBlock()).toString();long base=scoringSettings.base(block);
-            if (base > 0 && state.has("counts")) {
+            if (base > 0 && state.has("counts") && state.getAsJsonObject("counts").has(block) && !sync.stale("block:"+block)) {
                 long count=state.getAsJsonObject("counts").has(block)?state.getAsJsonObject("counts").get(block).getAsLong():0;
                 long placed=item.getBlock() instanceof BedBlock || item.getBlock() instanceof DoorBlock || item.getBlock() instanceof DoublePlantBlock ? 2 : 1;
                 lines.add(Component.literal("放置岛经验：+" + decimal(BlockScorer.marginal(count,placed,base,scoringSettings.tiers())) + "点（主世界当前存量）").withStyle(ChatFormatting.AQUA));
@@ -301,6 +366,7 @@ public final class ClientCatalog {
         }catch(IOException error){YumisSkyIsland.LOGGER.warn("无法保存控制面板偏好",error);lastError="偏好保存失败，请检查 client.toml";}
     }
     public boolean canBuy(Product p,int shop,int quantity){
+        if(!sync.ready())return false;
         if(!p.buy()||quantity<1||level()<p.level()||!state.has("partyId")||state.get("partyId").getAsString().isEmpty())return false;
         if(shop==0&&!p.rarity().equals("common")&&!p.id().startsWith("yumis_sky_island:biome_ball_"))return false;
         if(shop==1&&(!specialAllowed()||!state.has("stock")||!state.getAsJsonObject("stock").has(p.id())||(stock(p)!=-1&&stock(p)<quantity)))return false;
@@ -325,6 +391,8 @@ public final class ClientCatalog {
     public boolean editing(){return admin()&&state.has("adminEditing")&&state.get("adminEditing").getAsBoolean();}
     public void editConfig(String action,JsonObject body){
         if(!editing()){lastError="请先使用 /is admin edit on 开启编辑模式";return;}
+        if(Set.of("open","price_open","item_open","product_open").contains(action)){sync.editor(action,body);return;}
+        if(!sync.ready()){configBusy=false;priceBusy=false;lastError="资料更新中，请稍后操作";return;}
         if(net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(cn.yumis.skyisland.network.ConfigEditPayloads.Request.TYPE))net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(new cn.yumis.skyisland.network.ConfigEditPayloads.Request(action,body.toString()));
     }
     public void receiveConfig(String json){
@@ -343,6 +411,8 @@ public final class ClientCatalog {
         if(kind.equals("item"))panel.productForm(data);
     }
     public void task(String action,JsonObject data){
+        if(action.equals("detail")){sync.selectQuest(data.get("id").getAsString());return;}
+        if(!sync.ready()){taskBusy=false;lastError="资料更新中，请稍后操作";return;}
         if(net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.canSend(cn.yumis.skyisland.network.TaskPayloads.Request.TYPE))
             net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking.send(new cn.yumis.skyisland.network.TaskPayloads.Request(action,data.toString()));
     }

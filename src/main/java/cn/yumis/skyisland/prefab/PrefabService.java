@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.prefab;
 
+import cn.yumis.skyisland.server.SyncImpact;
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.config.GameConfig;
 import cn.yumis.skyisland.data.IslandState;
@@ -122,7 +123,7 @@ public final class PrefabService implements AutoCloseable {
                         var inventory=runtime.economy.capture(player.getInventory());int slot=preview.hand==InteractionHand.MAIN_HAND?player.getInventory().getSelectedSlot():40;
                         ItemStack copy=runtime.economy.decode(inventory.get(slot));selection.write(copy);inventory.set(slot,runtime.economy.encode(copy));
                         if(!runtime.store.available())throw new IllegalStateException("数据正在保存，请稍后确认");
-                        runtime.trades.commitInventory(player,inventory,_->{},()->{previews.remove(player.getUUID());previewQueue.remove(player.getUUID());JsonObject out=new JsonObject();out.addProperty("kind","positioned");send(player,out);SkyServer.tell(player,"图纸位置已保存，请放入本队蓝图大炮施工");});return;}
+                        runtime.trades.commitInventory(player, SyncImpact.none(),inventory,_->{},()->{previews.remove(player.getUUID());previewQueue.remove(player.getUUID());JsonObject out=new JsonObject();out.addProperty("kind","positioned");send(player,out);SkyServer.tell(player,"图纸位置已保存，请放入本队蓝图大炮施工");});return;}
                     case "preview_cancel"->{previews.remove(player.getUUID());previewQueue.remove(player.getUUID());return;}
                     default->throw new IllegalArgumentException("未知图纸操作");
                 }
@@ -138,7 +139,11 @@ public final class PrefabService implements AutoCloseable {
                 case "refresh"->{}
                 default->throw new IllegalArgumentException("未知大炮操作");
             }
-            sendCannon(player,cannon);
+            {
+                Job job=jobFor(cannon);runtime.views.observe("p:"+player.getUUID(),viewKey(player,menu.pos),List.of(cannon.fuel,cannon.message,busy(cannon),locked(cannon.getLevel(),cannon.getBlockPos()),runtime.priceRevision,
+                    cn.yumis.skyisland.prefab.PrefabItems.templateId(cannon.getItem(0)),cannon.getItem(1).getCount(),PrefabItems.ammunition(cannon.getItem(1),rules.ammunitionCredits()),
+                    job==null?"":job.id,job==null?0:job.cursor,job==null?"":job.status,job==null?"":job.message));
+            }
         }catch(Exception e){SkyServer.tell(player,e.getMessage()==null?"预制建筑操作失败":e.getMessage());}
     }
     private void checkBounds(ServerLevel world,BlockPos origin,int rotation,PrefabTemplate template,UUID party,PrefabCatalog.Definition definition){
@@ -218,7 +223,11 @@ public final class PrefabService implements AutoCloseable {
         }
         for(ServerPlayer player:runtime.server.getPlayerList().getPlayers()){
             ArrayDeque<JsonObject> queue=previewQueue.get(player.getUUID());if(queue!=null){for(int i=0;i<2&&!queue.isEmpty();i++)send(player,queue.remove());if(queue.isEmpty())previewQueue.remove(player.getUUID());}
-            if(runtime.tick%10==0&&player.containerMenu instanceof BlueprintCannonMenu menu&&player.level().getBlockEntity(menu.pos) instanceof BlueprintCannonEntity cannon&&canOperate(player,cannon))sendCannon(player,cannon);
+            if(runtime.tick%10==0&&player.containerMenu instanceof BlueprintCannonMenu menu&&player.level().getBlockEntity(menu.pos) instanceof BlueprintCannonEntity cannon&&canOperate(player,cannon)){
+                Job job=jobFor(cannon);runtime.views.observe("p:"+player.getUUID(),viewKey(player,menu.pos),List.of(cannon.fuel,cannon.message,busy(cannon),locked(cannon.getLevel(),cannon.getBlockPos()),runtime.priceRevision,
+                    cn.yumis.skyisland.prefab.PrefabItems.templateId(cannon.getItem(0)),cannon.getItem(1).getCount(),PrefabItems.ammunition(cannon.getItem(1),rules.ammunitionCredits()),
+                    job==null?"":job.id,job==null?0:job.cursor,job==null?"":job.status,job==null?"":job.message));
+            }
         }
     }
     private void start(Validation v)throws IOException {
@@ -239,7 +248,7 @@ public final class PrefabService implements AutoCloseable {
             runtime.deferred(()->{
             var current=runtime.state().parties.get(job.party);
             if(closed||v.cannon.isRemoved()||current==null||current.resetInProgress||current.overworldEpoch!=job.epoch||current.coins<fee){unlock(job);job.pending=false;v.cannon.message="开工取消：大炮、岛屿或余额已变化，未扣费用";return;}
-            runtime.change(v.player,state->{var p=state.parties.get(job.party);if(p==null||p.resetInProgress||p.overworldEpoch!=job.epoch)throw new IllegalStateException("岛屿已变化");p.coins=cn.yumis.skyisland.core.Money.subtract(p.coins,fee);state.prefabJobs.put(job.id,header.deepCopy());},()->{
+            runtime.change(v.player, SyncImpact.none(),state->{var p=state.parties.get(job.party);if(p==null||p.resetInProgress||p.overworldEpoch!=job.epoch)throw new IllegalStateException("岛屿已变化");p.coins=cn.yumis.skyisland.core.Money.subtract(p.coins,fee);state.prefabJobs.put(job.id,header.deepCopy());},()->{
                 try{job.index=journal.index(job.id);jobs.put(job.id,job);applyProgress(job,first);applyFrame(job,first,(ServerLevel)v.cannon.getLevel(),null);job.pending=false;unlock(job);v.cannon.message="施工中";sendCannon(v.player,v.cannon);}
                 catch(Exception e){for(var value:first.getAsJsonArray("groups"))job.replay.put(value.getAsJsonObject().get("chunk").getAsLong(),0);job.pending=false;v.cannon.message="恢复暂停："+e.getMessage();YumisSkyIsland.LOGGER.error("预制开工恢复失败",e);}
             });
@@ -400,13 +409,17 @@ public final class PrefabService implements AutoCloseable {
         Vec3 from=Vec3.atCenterOf(cannon.getBlockPos()).add(0,.4,0),to=Vec3.atCenterOf(target);int count=(int)Math.min(24,Math.max(3,from.distanceTo(to)/3));
         for(int i=0;i<count;i++){double t=(double)i/(count-1);Vec3 p=from.lerp(to,t).add(0,Math.sin(t*Math.PI)*Math.min(8,from.distanceTo(to)*.1),0);world.sendParticles(new DustParticleOptions(0x8EDCFF,0.8F),p.x,p.y,p.z,1,0,0,0,0);}
     }
-    public void sendCannon(ServerPlayer player,BlueprintCannonEntity cannon){
+    public String viewKey(ServerPlayer player,BlockPos pos){return "cannon@"+player.level().dimension().identifier()+"@"+pos.asLong();}
+    public boolean viewAllowed(ServerPlayer player,String key){return player.containerMenu instanceof BlueprintCannonMenu menu&&key.equals(viewKey(player,menu.pos))&&player.level().getBlockEntity(menu.pos) instanceof BlueprintCannonEntity cannon&&canOperate(player,cannon);}
+    public JsonObject view(ServerPlayer player,String key){if(!viewAllowed(player,key))throw new IllegalArgumentException("大炮菜单已关闭");return cannonSnapshot(player,(BlueprintCannonEntity)player.level().getBlockEntity(((BlueprintCannonMenu)player.containerMenu).pos));}
+    public void sendCannon(ServerPlayer player,BlueprintCannonEntity cannon){runtime.views.mark("p:"+player.getUUID(),viewKey(player,cannon.getBlockPos()));}
+    private JsonObject cannonSnapshot(ServerPlayer player,BlueprintCannonEntity cannon){
         // The client must confirm the exact economic revision shown by this menu.
         JsonObject out=new JsonObject();out.addProperty("kind","cannon");out.add("pos",xyz(cannon.getBlockPos()));out.addProperty("fuel",cannon.fuel);out.addProperty("availableFuel",cannon.fuel+(long)PrefabItems.ammunition(cannon.getItem(1),rules.ammunitionCredits())*cannon.getItem(1).getCount());out.addProperty("interval",rules.interval());out.addProperty("message",cannon.message);out.addProperty("busy",busy(cannon));out.addProperty("saving",locked(cannon.getLevel(),cannon.getBlockPos()));
         Job job=jobFor(cannon);if(job!=null){out.addProperty("status",job.status);out.addProperty("message",job.message.isBlank()?cannon.message:job.message);out.addProperty("progress",job.cursor);out.addProperty("total",job.template.cells.size());out.addProperty("mode",job.mode);out.addProperty("job",job.id);}
         else {var definition=catalog.definitions.get(PrefabItems.templateId(cannon.getItem(0)));out.addProperty("status","idle");if(definition!=null){out.addProperty("name",definition.name());out.addProperty("fee",definition.buildFee());try{var template=catalog.load(definition.id());out.addProperty("total",template.cells.size());JsonArray materials=new JsonArray();for(var item:template.materials.entrySet()){JsonObject row=new JsonObject();row.addProperty("item",item.getKey());row.addProperty("count",item.getValue());materials.add(row);}out.add("materials",materials);}catch(Exception e){out.addProperty("message",e.getMessage());}}
         }
-        out.addProperty("priceRevision",runtime.priceRevision);send(player,out);
+        out.addProperty("priceRevision",runtime.priceRevision);return out;
     }
     private static void send(ServerPlayer player,JsonObject value){if(ServerPlayNetworking.canSend(player,PrefabPayloads.Snapshot.TYPE))ServerPlayNetworking.send(player,new PrefabPayloads.Snapshot(value.toString()));}
     public static JsonArray xyz(BlockPos pos){JsonArray out=new JsonArray();out.add(pos.getX());out.add(pos.getY());out.add(pos.getZ());return out;}

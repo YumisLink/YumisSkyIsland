@@ -1229,7 +1229,7 @@ hiddenWeight = 35
 "minecraft:rooted_dirt" = "common"
 "minecraft:rose_bush" = "common"
 "minecraft:rotten_flesh" = "rare"
-"minecraft:saddle" = "common"
+"minecraft:saddle" = "rare"
 "minecraft:salmon" = "rare"
 "minecraft:salmon_bucket" = "common"
 "minecraft:salmon_spawn_egg" = "rare"
@@ -1414,7 +1414,7 @@ hiddenWeight = 35
 "minecraft:trial_key" = "rare"
 "minecraft:trial_spawner" = "legendary"
 "minecraft:trident" = "epic"
-"minecraft:tripwire_hook" = "common"
+"minecraft:tripwire_hook" = "legendary"
 "minecraft:tropical_fish" = "rare"
 "minecraft:tropical_fish_bucket" = "common"
 "minecraft:tropical_fish_spawn_egg" = "rare"
@@ -2157,3 +2157,47 @@ hiddenWeight = 35
 "yumis_sky_island:housing_permit" = "common"
 "yumis_sky_island:lottery_ticket" = "legendary"
 "yumis_sky_island:accessory_architect_backpack" = "epic"
+
+# 永久区块刷怪球：每日／隐藏供货；每种全队库存1；等级只限制购买，使用不受等级限制。
+
+[itemRarities."yumis_sky_island:spawn_ball_zombie"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_skeleton"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_spider"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_creeper"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_cave_spider"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_slime"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_drowned"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_magma_cube"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_zombified_piglin"]
+rarity = "rare"
+
+[itemRarities."yumis_sky_island:spawn_ball_enderman"]
+rarity = "epic"
+
+[itemRarities."yumis_sky_island:spawn_ball_blaze"]
+rarity = "epic"
+
+[itemRarities."yumis_sky_island:spawn_ball_witch"]
+rarity = "epic"
+
+[itemRarities."yumis_sky_island:spawn_ball_guardian"]
+rarity = "epic"
+
+[itemRarities."yumis_sky_island:spawn_ball_wither_skeleton"]
+rarity = "legendary"

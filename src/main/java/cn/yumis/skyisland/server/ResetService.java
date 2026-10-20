@@ -34,13 +34,15 @@ public final class ResetService implements AutoCloseable {
         if (party.resetInProgress) throw new IllegalArgumentException("已有重开任务");
         if(runtime.sorting.transactions.busy()||runtime.sorting.transactions.recovering())throw new IllegalArgumentException("分类器事务正在保存或恢复，请稍后重开");
         if(runtime.residents.transactions.busy()||runtime.residents.transactions.recovering())throw new IllegalArgumentException("居民物资事务正在保存或恢复，请稍后重开");
-        runtime.change(owner,s -> {
+        runtime.change(owner, SyncImpact.none(),s -> {
             var p = s.parties.get(party.id); p.resetInProgress = true; p.resetChunks = null; p.resetCursor = 0; p.overworldEpoch++; p.coins = 0; p.refresh = null; p.blockCounts.clear(); p.islandDeaths.clear(); p.starterReady = false;
             ProgressionService.reset(p);
             cn.yumis.skyisland.npc.ResidentService.reset(p);
+            p.spawnOverrides.keySet().removeIf(key -> key.startsWith("minecraft:overworld|"));
             s.sorters.values().removeIf(device->device.party.equals(p.id)&&device.dimension.equals("minecraft:overworld"));
             s.boxes.entrySet().removeIf(e -> e.getValue().party.equals(p.id) && e.getValue().dimension.equals("minecraft:overworld"));
         }, () -> {
+            runtime.spawnBalls.rebuild();
             for (var player : runtime.server.getPlayerList().getPlayers()) if (player.level().dimension().equals(Level.OVERWORLD) && runtime.claim(player.blockPosition()) != null && runtime.claim(player.blockPosition()).id.equals(party.id)) runtime.worlds.lobby(player);
             SkyServer.tell(owner,"主世界重开已排队；任务可在重启后继续");
         });
@@ -58,12 +60,12 @@ public final class ResetService implements AutoCloseable {
                 try {
                     var indexed=new TreeSet<>(RefreshService.existing(folder,claim,memory));indexed.addAll(RefreshService.existing(entityFolder,claim,List.of()));
                     List<Long> chunks = new ArrayList<>(indexed);
-                    runtime.server.execute(() -> runtime.deferred(() -> runtime.change(null,s -> s.parties.get(party.id).resetChunks = chunks, () -> enumerating.remove(party.id))));
+                    runtime.server.execute(() -> runtime.deferred(() -> runtime.change(null, SyncImpact.none(),s -> s.parties.get(party.id).resetChunks = chunks, () -> enumerating.remove(party.id))));
                 } catch (Exception e) { runtime.server.execute(() -> { enumerating.remove(party.id); cn.yumis.skyisland.YumisSkyIsland.LOGGER.error("重开区块索引失败，保留任务等待重试",e); }); }
             }); return;
         }
         if (party.resetCursor >= party.resetChunks.size()) {
-            runtime.change(null,s -> { var p = s.parties.get(party.id); p.resetInProgress = false; p.resetChunks = null; p.resetCursor = 0; p.blockCounts.clear(); }, () -> {
+            runtime.change(null, SyncImpact.party(party.id,"block","stock","quotas","trade","tasks","bounties","npc","npcEffects","lottery","features"),s -> { var p = s.parties.get(party.id); p.resetInProgress = false; p.resetChunks = null; p.resetCursor = 0; p.blockCounts.clear(); }, () -> {
                 current = null; ServerPlayer owner = runtime.server.getPlayerList().getPlayer(party.owner); if (owner != null) runtime.worlds.home(owner,runtime.state().parties.get(party.id));
             }); return;
         }
@@ -79,7 +81,7 @@ public final class ResetService implements AutoCloseable {
                 if(error!=null){current=null;cn.yumis.skyisland.YumisSkyIsland.LOGGER.error("重开读取失败，保留当前进度",error);return;}
                 if(empty && cache.getChunkNow(pos.x(),pos.z())==null && !entities.areEntitiesLoaded(pos.pack())) {
                     // Skipping empty records changes no world data. A crash may safely repeat these reads.
-                    runtime.deferred(()->{var p=runtime.state().parties.get(work.party);p.resetCursor++;current=null;if(p.resetCursor%32==0)runtime.change(null,_->{},()->{});});
+                    runtime.deferred(()->{var p=runtime.state().parties.get(work.party);p.resetCursor++;current=null;if(p.resetCursor%32==0)runtime.change(null, SyncImpact.none(),_->{},()->{});});
                 } else runtime.worlds.load(runtime.server.overworld(),new BlockPos(pos.getMinBlockX(),80,pos.getMinBlockZ()),0,()->{
                     work.chunk=cache.getChunkNow(pos.x(),pos.z());work.loading=false;
                     if(work.chunk==null)current=null;else {cache.addTicketWithRadius(WorldService.RESET_LOAD,pos,0);((EntityManagerStorageAccessor)entities).yumis$load(pos.pack());}
@@ -110,7 +112,7 @@ public final class ResetService implements AutoCloseable {
             var entitiesSaved=entityStorage.write(pos,(CompoundTag)null).thenCompose(_->entityStorage.synchronize(true));
             CompletableFuture.allOf(terrainSaved,entitiesSaved).whenComplete((ignored,error)->runtime.server.execute(()->{
                 if(error!=null){work.saving=false;cn.yumis.skyisland.YumisSkyIsland.LOGGER.error("重开区块写入失败，保留当前进度",error);return;}
-                runtime.deferred(()->runtime.change(null,s -> s.parties.get(party.id).resetCursor++, () -> { runtime.server.overworld().getChunkSource().removeTicketWithRadius(WorldService.RESET_LOAD,pos,0); current = null; }));
+                runtime.deferred(()->runtime.change(null, SyncImpact.none(),s -> s.parties.get(party.id).resetCursor++, () -> { runtime.server.overworld().getChunkSource().removeTicketWithRadius(WorldService.RESET_LOAD,pos,0); current = null; }));
             }));
         }
     }

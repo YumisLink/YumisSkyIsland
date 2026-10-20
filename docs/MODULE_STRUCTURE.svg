@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2130" viewBox="0 0 1600 2130" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2340" viewBox="0 0 1600 2340" role="img" aria-labelledby="title desc">
   <title id="title">Yumi’s Sky Island 模块结构图</title>
-  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。包含所有世界可用的个人虚空箭袋、TOML、历史放置索引、控制面板、个人职业、仅空岛建造杖、NPC居民、分类器和血月饰品。</desc>
+  <desc id="desc">当前 Minecraft 26.2 Fabric 模组的配置、通用入口、服务端、客户端、网络、持久化、开发工具与测试模块。包含所有世界可用的个人虚空箭袋、TOML、历史放置索引、控制面板、个人职业、仅空岛建造杖、NPC居民、分类器、血月饰品及区块刷怪球。</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#526780"/>
@@ -47,7 +47,7 @@
   <text x="466" y="209" class="body">配置 / 生成器 / 方块 / 效果注册；命令、生命周期与网络事件</text>
   <rect x="442" y="315" width="650" height="135" rx="14" fill="#e6eefc" stroke="#7e9ed0" stroke-width="1.8"/>
   <text x="466" y="354" class="heading">SkyServer · 空岛服务协调器</text>
-  <text x="466" y="386" class="body">服务生命周期、tick、队伍/世界状态、请求路由、快照同步</text>
+  <text x="466" y="386" class="body">服务生命周期、tick、队伍/世界状态、请求路由、分域版本</text>
   <text x="466" y="417" class="body">服务端决定权限、扣物、金币、库存、任务奖励与解锁</text>
   <path d="M 366 232 H 442" class="edge"/>
   <path d="M 767 242 V 315" class="edge"/>
@@ -99,11 +99,12 @@
   <path d="M 767 450 V 492" class="edge"/>
 
   <!-- Durable state -->
-  <rect x="442" y="835" width="650" height="140" rx="14" class="card server"/>
+  <rect x="442" y="835" width="650" height="166" rx="14" class="card server"/>
   <text x="466" y="873" class="heading">data · DurableStore ＋ IslandState</text>
   <text x="466" y="904" class="body">队伍主线 / 个人任务 / 市场 / 刷新 / 重开 / 物品与经验恢复</text>
   <text x="466" y="935" class="body">世界/yumis_sky_island：CRC 日志、落盘后发布、检查点</text>
   <text x="466" y="959" class="small">方块、实体与玩家物品仍由 Minecraft 原生存档保存，协同恢复</text>
+  <text x="466" y="983" class="small">SpawnBallService → 维度／区块索引 → NaturalSpawner；无额外tick或强加载</text>
   <path d="M 767 769 V 835" class="edge"/>
 
   <!-- Client -->
@@ -123,7 +124,7 @@
   <rect x="1154" y="545" width="406" height="106" rx="14" class="card client"/>
   <text x="1175" y="578" class="heading">ShopPayloads / TaskPayloads</text>
   <text x="1175" y="608" class="body">Purchase：上下文与轮次；Task：修订号</text>
-  <text x="1175" y="634" class="body">Snapshot：目录 / 个人任务 / 报价 / 入账</text>
+  <text x="1175" y="634" class="body">ViewSync：版本确认 / 脏通知 / 分片 / HUD增量</text>
   <path d="M 1357 488 V 545" class="edge"/>
   <path d="M 1154 598 H 1123 V 382 H 1092" class="edge" marker-start="url(#arrow)"/>
 
@@ -226,10 +227,10 @@
   <path d="M 1076 1790 H 1038" class="edge"/>
   <text x="40" y="1905" class="subtitle">2026-10-19：虚空箭袋无实物，个人开关与库存跨维度／死亡保留；gameplay/quiver.toml手改重启。</text>
   <rect x="40" y="1940" width="480" height="150" rx="14" class="card foundation"/>
-  <text x="60" y="1972" class="heading">CropSaleRules · 统一作物收购</text>
-  <text x="60" y="2002" class="body">十一类作物：基础翻倍＋五档星级追加</text>
+  <text x="60" y="1972" class="heading">ProfessionSaleSettings · 出售倍率</text>
+  <text x="60" y="2002" class="body">产物目录职业倍率 × 统一六档出售星级</text>
   <text x="60" y="2028" class="body">ItemEconomy／ClientCatalog共用精确倍率</text>
-  <text x="60" y="2054" class="small">手动、出货和提示一致；购买与额度不变</text>
+  <text x="60" y="2054" class="small">Ctrl＋】实时保存；保留购买与额度规则</text>
   <rect x="558" y="1940" width="480" height="150" rx="14" class="card foundation"/>
   <text x="578" y="1972" class="heading">FurnaceContent · 所有世界</text>
   <text x="578" y="2002" class="body">七档2～128倍，原版燃料／三槽菜单</text>
@@ -241,4 +242,21 @@
   <text x="1096" y="2028" class="body">原版触及／破坏属性＋连锁容量</text>
   <text x="1096" y="2054" class="small">启用成品暂停前置；个人限制及128上限</text>
   <text x="40" y="2115" class="subtitle">2026-10-19：shops.toml出售专用配置；furnaces.toml手改重启；普通饰品池43件、完整目录55件。</text>
+  <rect x="40" y="2150" width="480" height="150" rx="14" class="card foundation"/>
+  <text x="60" y="2182" class="heading">TrashService · 所有世界</text>
+  <text x="60" y="2212" class="body">54个个人ID样本；只删除背包36格</text>
+  <text x="60" y="2238" class="body">原生Attachment；死亡／换队／重开保留</text>
+  <text x="60" y="2264" class="small">交易锁／恢复回执保护；打开垃圾桶时暂停</text>
+  <rect x="558" y="2150" width="480" height="150" rx="14" class="card client"/>
+  <text x="578" y="2182" class="heading">TrashMenu / TrashScreen · Ctrl＋=</text>
+  <text x="578" y="2212" class="body">大箱子布局；虚拟样本不搬真实物品</text>
+  <text x="578" y="2238" class="body">独立启用／暂停、清空；忽略额外组件</text>
+  <text x="578" y="2264" class="small">UtilityHotkeys区分Ctrl＋Alt＋=自动挖掘</text>
+  <rect x="1076" y="2150" width="484" height="150" rx="14" class="card foundation"/>
+  <text x="1096" y="2182" class="heading">FoodHealth / 管理员职业经验</text>
+  <text x="1096" y="2212" class="body">每口小数生命上限；持久化后显示提示</text>
+  <text x="1096" y="2238" class="body">profession xp add：精确增加BigInteger经验</text>
+  <text x="1096" y="2264" class="small">职业币不变；不乘倍率、不触发果实或任务</text>
+  <path d="M 520 2225 H 558" class="edge"/>
+  <text x="40" y="2325" class="subtitle">2026-10-20：心之钢逐次增益、个人自动垃圾桶与管理员职业经验；操作见DEV_GUIDE。</text>
 </svg>

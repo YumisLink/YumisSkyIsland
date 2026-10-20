@@ -70,7 +70,7 @@ public final class LotteryService {
         if(initializing||runtime.closing||!runtime.store.available())return;
         if(runtime.state().lotterySeed==null) {
             long seed=new SecureRandom().nextLong();initializing=true;
-            if(!runtime.tryChange(null,s->{if(s.lotterySeed==null)s.lotterySeed=seed;},()->initializing=false,e->initializing=false))initializing=false;
+            if(!runtime.tryChange(null, SyncImpact.none(),s->{if(s.lotterySeed==null)s.lotterySeed=seed;},()->initializing=false,e->initializing=false))initializing=false;
             return;
         }
         if(settings==null)return;
@@ -79,7 +79,7 @@ public final class LotteryService {
             String up=featured(party);
             if(party.lotteryUpEpoch==runtime.epoch()&&catalogKey.equals(party.lotteryUpCatalog)&&(up.isEmpty()||Objects.equals(up,party.lotteryUpId)))continue;
             UUID id=party.id;
-            runtime.change(null,s->{var current=s.parties.get(id);updateUp(s,current);},()->{});return;
+            runtime.change(null, SyncImpact.party(id,"lottery"),s->{var current=s.parties.get(id);updateUp(s,current);},()->{});return;
         }
     }
     private void updateUp(IslandState state,IslandState.Party party) {
@@ -169,7 +169,7 @@ public final class LotteryService {
         receipt.rewardStack=runtime.economy.encode(reward);receipt.prizes=new ArrayList<>();
         if(draw)for(Rolled row:rolled){var prize=new IslandState.LotteryPrize();prize.productId=row.result().prize().id();prize.rarity=LotterySettings.RARITIES.get(row.result().prize().rarity());prize.pity=row.pity();prize.rewardStack=runtime.economy.encode(row.stack());receipt.prizes.add(prize);}
         var change=new TradeService.InventoryChange(inventory,xp?TradeService.ExperienceChange.levels(rules.experienceCost):TradeService.ExperienceChange.none(),receipt);
-        if(!runtime.trades.commitInventory(player,change,state->{
+        if(!runtime.trades.commitInventory(player, SyncImpact.person(player.getUUID(),"lottery"),change,state->{
             var current=state.players.get(owner);var currentParty=state.parties.get(partyId);
             if(current==null||current.lotteryOperationSequence!=request.expectedSequence()||!partyId.equals(current.activeParty)||currentParty==null||currentParty.overworldEpoch!=island||currentParty.resetInProgress)
                 throw new IllegalArgumentException("操作上下文已变化");

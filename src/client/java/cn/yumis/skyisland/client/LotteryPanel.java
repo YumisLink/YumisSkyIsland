@@ -25,7 +25,7 @@ public final class LotteryPanel {
     private int left(int width){return Math.max(14,(width-640)/2);}
     private int maxScroll(int height){return Math.max(0,CONTENT-Math.max(0,height-157));}
     private boolean available(String action){
-        if(model.lotteryBusy||!flag("enabled"))return false;
+        if(!model.sync.ready()||model.lotteryBusy||!flag("enabled"))return false;
         return switch(action){
             case "draw"->flag("canDraw")&&number("tickets",0)>0;
             case "draw_10"->flag("canDraw")&&number("tickets",0)>=10;
@@ -95,7 +95,7 @@ public final class LotteryPanel {
     }
     private boolean hit(double mx,double my,int x,int y,int w,int h){return mx>=x&&mx<x+w&&my>=y&&my<y+h;}
     private boolean send(String action){
-        if(available(action)&&data().has("sequence")&&ClientPlayNetworking.canSend(LotteryPayloads.Operation.TYPE)){
+        if(available(action)&&data().has("sequence")&&model.sync.ready()&&ClientPlayNetworking.canSend(LotteryPayloads.Operation.TYPE)){
             model.lotteryBusy=true;model.lotteryRequestSequence=data().get("sequence").getAsLong();model.lastError="";
             ClientPlayNetworking.send(new LotteryPayloads.Operation(action,model.lotteryRequestSequence,data().get("rulesRevision").getAsLong(),data().get("context").getAsString()));
         }

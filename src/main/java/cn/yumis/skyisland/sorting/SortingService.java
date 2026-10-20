@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.sorting;
 
+import cn.yumis.skyisland.server.SyncImpact;
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.config.GameConfig;
 import cn.yumis.skyisland.core.SortingRules;
@@ -65,7 +66,7 @@ public final class SortingService implements AutoCloseable {
         var claim=rt.claim(pos);SorterData data=new SorterData();data.id=entity.id;data.party=claim.id;data.epoch=claim.overworldEpoch;data.dimension=dim(player.level());data.position=pos.asLong();entity.setChanged();
         // The device may be placed while another durable operation is being published.
         rt.deferred(()->{if(player.level().hasChunkAt(pos)&&player.level().getBlockEntity(pos) instanceof SorterEntity current&&current.id.equals(data.id)&&canOperate(player,pos))
-            rt.change(player,state->state.sorters.putIfAbsent(data.id,copy(data)),this::rebuild);});
+            rt.change(player, SyncImpact.none(),state->state.sorters.putIfAbsent(data.id,copy(data)),this::rebuild);});
     }
     public InteractionResult open(ServerPlayer player,BlockPos pos){
         selections.remove(player.getUUID());
@@ -95,7 +96,7 @@ public final class SortingService implements AutoCloseable {
     }
     private void save(SorterData before,SorterData next,ServerPlayer actor){
         next.revision=before.revision+1;UUID id=before.id;long revision=before.revision;
-        rt.change(actor,state->{var current=state.sorters.get(id);if(current==null||current.revision!=revision)throw new IllegalArgumentException("分类器已变化，请重试");state.sorters.put(id,copy(next));},()->{invalidated.remove(id);messages.remove(id);rebuild();});
+        rt.change(actor, SyncImpact.none(),state->{var current=state.sorters.get(id);if(current==null||current.revision!=revision)throw new IllegalArgumentException("分类器已变化，请重试");state.sorters.put(id,copy(next));},()->{invalidated.remove(id);messages.remove(id);rebuild();});
     }
     public InteractionResult select(ServerPlayer player,BlockPos pos){
         Selection selection=selections.get(player.getUUID());if(selection==null)return InteractionResult.PASS;
@@ -155,7 +156,7 @@ public final class SortingService implements AutoCloseable {
             return rt.tick>s.expires||player==null||active==null||!active.id.equals(s.party)||!dim(player.level()).equals(s.dimension)||data==null||data.revision!=s.revision||party(data)==null;});
         if(rt.store.available()&&!transactions.busy()){
             if(!invalidated.isEmpty()){
-                var ids=Set.copyOf(invalidated);rt.change(null,state->{for(UUID id:ids){var data=state.sorters.get(id);if(data==null)continue;
+                var ids=Set.copyOf(invalidated);rt.change(null, SyncImpact.none(),state->{for(UUID id:ids){var data=state.sorters.get(id);if(data==null)continue;
                     var world=world(data);BlockPos pos=BlockPos.of(data.position);
                     if(world!=null&&world.hasChunkAt(pos)&&(!(world.getBlockEntity(pos) instanceof SorterEntity be)||!be.id.equals(id)))state.sorters.remove(id);
                     else{data.source.clear();data.target.clear();data.revision++;}
@@ -169,18 +170,28 @@ public final class SortingService implements AutoCloseable {
             }
         }
         if(rt.tick%10==0)for(var player:rt.server.getPlayerList().getPlayers())if(player.containerMenu instanceof SorterMenu menu&&menu.stillValid(player)){
-            var be=(SorterEntity)player.level().getBlockEntity(menu.pos);var data=rt.state().sorters.get(be.id);if(data!=null)send(player,data);
+            var be=(SorterEntity)player.level().getBlockEntity(menu.pos);var data=rt.state().sorters.get(be.id);if(data!=null){
+                Set<String> samples=new LinkedHashSet<>();List<Double> centers=new ArrayList<>();String waiting="";try{var b=SortingChest.resolve(rt,player.level(),party(data),data.target,false);for(var stack:b.items())if(!stack.isEmpty())samples.add(BuiltInRegistries.ITEM.getKey(stack.getItem()).toString());centers.addAll(List.of(b.x(),b.y(),b.z()));if(!data.source.isEmpty()){var a=SortingChest.resolve(rt,player.level(),party(data),data.source,false);centers.addAll(List.of(a.x(),a.y(),a.z()));}}catch(SortingChest.Waiting|IllegalArgumentException error){waiting=error.getMessage();}
+                rt.views.observe("p:"+player.getUUID(),viewKey(player,menu.pos),List.of(data.id,data.revision,transactions.status(),messages.getOrDefault(data.id,""),samples,waiting,centers));
+            }
         }
     }
     private String boxLabel(Map<Long,String> ids){if(ids.isEmpty())return "未选择";BlockPos p=BlockPos.of(ids.keySet().iterator().next());return p.getX()+", "+p.getY()+", "+p.getZ()+(ids.size()==2?" 大箱":"");}
-    private void send(ServerPlayer player,SorterData data){
+    public String viewKey(ServerPlayer player,BlockPos pos){return "sorter@"+dim(player.level())+"@"+pos.asLong();}
+    public boolean viewAllowed(ServerPlayer player,String key){return player.containerMenu instanceof SorterMenu menu&&key.equals(viewKey(player,menu.pos))&&menu.stillValid(player);}
+    public JsonObject view(ServerPlayer player,String key){
+        if(!viewAllowed(player,key))throw new IllegalArgumentException("分类器菜单已关闭");var menu=(SorterMenu)player.containerMenu;
+        var be=(SorterEntity)player.level().getBlockEntity(menu.pos);var data=rt.state().sorters.get(be.id);if(data==null)throw new IllegalArgumentException("分类器已变化");return snapshot(player,data);
+    }
+    private void send(ServerPlayer player,SorterData data){rt.views.mark("p:"+player.getUUID(),viewKey(player,BlockPos.of(data.position)));}
+    private JsonObject snapshot(ServerPlayer player,SorterData data){
         JsonObject json=new JsonObject();json.addProperty("position",data.position);json.addProperty("dimension",data.dimension);json.addProperty("device",data.id.toString());json.addProperty("revision",data.revision);json.addProperty("paused",data.paused);json.addProperty("source",boxLabel(data.source));json.addProperty("target",boxLabel(data.target));
         String status=transactions.status();if(status.isEmpty())status=messages.getOrDefault(data.id,"选择A和B后自动搬运；按物品种类匹配");json.addProperty("status",status);
         JsonArray samples=new JsonArray();var claim=party(data);var world=world(data);
         try{if(world!=null&&claim!=null){var b=SortingChest.resolve(rt,world,claim,data.target,false);Set<String> ids=new LinkedHashSet<>();for(var item:b.items())if(!item.isEmpty())ids.add(BuiltInRegistries.ITEM.getKey(item.getItem()).toString());ids.forEach(samples::add);
             if(!data.source.isEmpty()){var a=SortingChest.resolve(rt,world,claim,data.source,false);json.addProperty("distance",Math.sqrt(Math.pow(a.x()-b.x(),2)+Math.pow(a.y()-b.y(),2)+Math.pow(a.z()-b.z(),2)));}
         }}catch(SortingChest.Waiting|IllegalArgumentException ignored){}
-        json.add("samples",samples);ServerPlayNetworking.send(player,new SorterPayloads.Snapshot(json.toString()));
+        json.add("samples",samples);return json;
     }
     @Override public void close()throws IOException{transactions.close();}
 }

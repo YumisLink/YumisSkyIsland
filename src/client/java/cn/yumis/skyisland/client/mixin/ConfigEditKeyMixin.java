@@ -8,5 +8,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(KeyboardHandler.class)
 public abstract class ConfigEditKeyMixin {
     @Inject(method="keyPress",at=@At("HEAD"),cancellable=true)
-    private void configuration(long window,int action,KeyEvent event,CallbackInfo info){if(window==net.minecraft.client.Minecraft.getInstance().getWindow().handle()&&ConfigurationHotkey.key(action,event))info.cancel();}
+    private void configuration(long window,int action,KeyEvent event,CallbackInfo info){if(window==net.minecraft.client.Minecraft.getInstance().getWindow().handle()&&(ConfigurationHotkey.key(action,event)||cn.yumis.skyisland.client.UtilityHotkeys.key(action,event)))info.cancel();}
 }

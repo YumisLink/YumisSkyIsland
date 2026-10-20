@@ -27,6 +27,8 @@ public final class SorterScreen extends AbstractContainerScreen<SorterMenu> {
         ClientPlayConnectionEvents.DISCONNECT.register((handler,client)->snapshot=new JsonObject());
     }
     public SorterScreen(SorterMenu menu,Inventory inventory,Component title){super(menu,inventory,title,SorterMenu.WIDTH,SorterMenu.HEIGHT);}
+    public static void receiveView(JsonObject data){snapshot=data;}
+    public String syncKey(){return "sorter@"+minecraft.level.dimension().identifier()+"@"+menu.pos.asLong();}
     private List<Button> buttons(){return List.of(new Button("source","选择来源",12,64,124),new Button("target","选择目标",144,64,124),
             new Button(data.has("paused")&&data.get("paused").getAsBoolean()?"resume":"pause",data.has("paused")&&data.get("paused").getAsBoolean()?"继续搬运":"暂停搬运",190,138,78),
             new Button("clear","清空绑定",190,162,78),new Button("previous","‹",190,104,18),new Button("next","›",250,104,18));}
@@ -60,6 +62,7 @@ public final class SorterScreen extends AbstractContainerScreen<SorterMenu> {
         }
         text(g,"距离",190,191,0xFF9AA6AA);text(g,data.has("distance")?String.format(Locale.ROOT,"%.1f / 100",data.get("distance").getAsDouble()):"— / 100",190,204,0xFFB7D5D8);
         super.extractContents(g,mouseX,mouseY,delta);
+        SkyIslandClient.CATALOG.sync.status(g,width);
         int mx=mouseX-leftPos,my=mouseY-topPos;
         if(mx>=11&&mx<174&&my>=103&&my<121){
             int index=page*9+Math.max(0,(mx-12)/18);String tip="B箱现有种类，只读；在实际箱子中放入或取走样本";
@@ -78,7 +81,7 @@ public final class SorterScreen extends AbstractContainerScreen<SorterMenu> {
     @Override public boolean mouseClicked(MouseButtonEvent event,boolean doubleClick){
         if(event.button()==0)for(Button button:buttons())if(button.contains(event.x()-leftPos,event.y()-topPos)){
             if(button.action.equals("previous"))page=Math.max(0,page-1);else if(button.action.equals("next"))page++;
-            else if(data.has("device")&&ClientPlayNetworking.canSend(SorterPayloads.Operation.TYPE))ClientPlayNetworking.send(new SorterPayloads.Operation(data.get("device").getAsString(),data.get("revision").getAsLong(),button.action));
+            else if(SkyIslandClient.CATALOG.sync.ready()&&data.has("device")&&ClientPlayNetworking.canSend(SorterPayloads.Operation.TYPE))ClientPlayNetworking.send(new SorterPayloads.Operation(data.get("device").getAsString(),data.get("revision").getAsLong(),button.action));
             return true;
         }
         // Samples never become inventory slots or accept a cursor stack.

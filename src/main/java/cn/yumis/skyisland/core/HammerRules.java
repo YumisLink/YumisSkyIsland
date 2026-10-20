@@ -22,13 +22,15 @@ public final class HammerRules {
             new Offer("minecraft:iron_nugget", 10000, 1, false),
             new Offer("minecraft:gold_nugget", 800, 1, false),
             new Offer("minecraft:lapis_lazuli", 300, 1, true),
-            new Offer("minecraft:diamond", 100, 1, false));
+            new Offer("minecraft:diamond", 10, 1, false),
+            new Offer("minecraft:emerald", 20, 1, false));
     private static final List<Offer> LEVEL_100 = List.of(
             new Offer("minecraft:iron_ingot", 2000, 1, false),
             new Offer("minecraft:gold_nugget", 5000, 1, false),
             new Offer("minecraft:lapis_lazuli", 1500, 1, false),
             new Offer("minecraft:redstone", 1500, 1, false),
-            new Offer("minecraft:diamond", 300, 1, false),
+            new Offer("minecraft:diamond", 30, 1, false),
+            new Offer("minecraft:emerald", 60, 1, false),
             new Offer("minecraft:ancient_debris", 10, 1, false));
     private HammerRules() {}
 
@@ -68,7 +70,7 @@ public final class HammerRules {
         add(rows, "30～49", LEVEL_30, "本段各条目独立判定，可以同时出现");
         add(rows, "50～74", LEVEL_50, "本段各条目独立判定，可以同时出现");
         add(rows, "75～99", LEVEL_75, "本段各条目独立判定，可以同时出现");
-        add(rows, "100 及以上", LEVEL_100, "不再出低级铁粒。青金石和红石各自判定，可以同时出现");
+        add(rows, "100 及以上", LEVEL_100, "本段各条目独立判定，可以同时出现；不再出低级铁粒");
         return List.copyOf(rows);
     }
 

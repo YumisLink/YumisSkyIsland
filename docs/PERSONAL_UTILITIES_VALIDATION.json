@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Asia/Hong_Kong",
+  "formalCheck": "passed",
+  "junit": {
+    "tests": "6",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0"
+  },
+  "clientScenario": {
+    "name": "PersonalUtilitiesScenario",
+    "checks": 55,
+    "result": "passed",
+    "runtime": "Minecraft 26.2 + Fabric, one real client and integrated server"
+  },
+  "coverage": [
+    "native finished and cancelled meal, fractional health, 64/65 boundary, separate foods, restart",
+    "actual Ctrl+= handler, native menu packets and real mouse copy/remove, shift samples, virtual slot transfer rejection",
+    "54 filter capacity, duplicate IDs, quality/name ignored, only main 36 inventory slots, offhand/equipment/chest/cursor preserved, no item drops",
+    "open/pause/clear, inventory locks, teleport wait, spectator, receipt replay, death copy, ordinary world, restart",
+    "admin permission, console, Chinese aliases and native suggestions, invalid amounts, beyond-long XP, exact grant without multipliers/coins/remainder changes/fruit, immediate attribute and restart"
+  ],
+  "limits": [
+    "single-client scenario; no multiplayer stress or arbitrary power-loss testing",
+    "team/reset retention follows player-native attachment; full team/reset scenarios not run",
+    "all-dimension registration inspected; this scenario ran main-world scans"
+  ],
+  "logs": {
+    "build/personal-utilities-test.log": "cd64422260a3a574d5dc27d51bad5d0bebe98a6e99f89d9d391decb00ed219a5",
+    "build/personal-utilities-check.log": "33e3bafc0da7870617db7021bb16cafb0efe8a7ae4bb715ce4e5eadb9e4af825"
+  },
+  "screenshots": {
+    "docs/screenshots/personal-utilities/heartsteel-meal.png": "d005de186f796a6801e2c8e778b1c56f39280b9bd3c3987e9737c0ef810d731b",
+    "docs/screenshots/personal-utilities/auto-trash-wide.png": "86089f405a8fceb76b180fb2887ab628fe02ebc4b63c37a654af9c986e4bc2d1",
+    "docs/screenshots/personal-utilities/auto-trash-small.png": "74da19065a1edc0260da2ab2a35d14d4cdf3cf827f6c4fda302b50587e7921dc"
+  },
+  "sources": {
+    "src/main/java/cn/yumis/skyisland/core/FoodHealthRules.java": "08cf73f07723946248d5edd9b272f8a96e356b8e9778a41dcd4cfe8ed37642de",
+    "src/main/java/cn/yumis/skyisland/server/FoodHealth.java": "80cb44083987dfe6172059b02bb0eff8d233ba9f565d781d408002f1e9a2c85f",
+    "src/main/java/cn/yumis/skyisland/trash/TrashService.java": "45c912ff3e90c089fccca97e5d1e8e41e0f1f59b76b2b7380ae42fb94f7041e1",
+    "src/main/java/cn/yumis/skyisland/trash/TrashMenu.java": "b57c8c0cba2c5be6863172e73ff22afeca9fec613ee56f130201cb2a1806f1d7",
+    "src/main/java/cn/yumis/skyisland/core/TrashState.java": "579ecb3c2ab8612096699803659f6f64749395484b31bc4122f47c720dbc6493",
+    "src/client/java/cn/yumis/skyisland/client/TrashScreen.java": "33c89884d12f4ad8fe7d7ec3bf0173f53a01d4c536097477701d535b1baec47b",
+    "src/client/java/cn/yumis/skyisland/client/UtilityHotkeys.java": "6e5e19af092c7ada8c96363005c761ef46feb9f500011334ae469948e7f1e790",
+    "src/main/java/cn/yumis/skyisland/server/ProfessionService.java": "4485669a967a13aa58f682f1eaee2e1269c71dcee769f11d92b01075ea33aef8",
+    "src/main/java/cn/yumis/skyisland/server/SkyCommands.java": "0b13b40d47b3afed8a52937778e2e28d5e17c3152f638b015194754b35500fd4"
+  }
+}

@@ -1,6 +1,6 @@
 # Yumi’s Sky Island 模块结构图
 
-更新于 2026-10-19。开发必须遵守的最新要求见 [AGENTS.md](../AGENTS.md)；下方 Mermaid 和SVG包含虚空箭袋、分类器、血月饰品及此前模块边界。
+更新于 2026-10-20。开发必须遵守的最新要求见 [AGENTS.md](../AGENTS.md)；下方 Mermaid 和SVG包含条件查询同步、虚空箭袋、分类器、血月饰品及此前模块边界。
 
 ![Yumi’s Sky Island 模块结构图](MODULE_STRUCTURE.svg)
 
@@ -16,13 +16,16 @@
 flowchart TB
     Defaults["仓库默认配置<br/>config/yumis_sky_island"] --> Pack["processResources<br/>JAR defaults/yumis_sky_island"]
     Pack --> Config["GameConfig + ScoringSettings<br/>NightConfig读取／保留注释、缺省计分、原子保存"]
-    RuntimeConfig["运行实例配置<br/>28份中文注释TOML"] --> Config
+    RuntimeConfig["运行实例配置<br/>29份中文注释TOML"] --> Config
     Config --> Main["YumisSkyIsland<br/>Fabric 通用入口与事件注册"]
     Main --> Void["world<br/>VoidWorlds / VoidMarker"]
     Main --> Blocks["block<br/>ModBlocks / ShippingChestBlock / Entity"]
     Main --> Runtime["SkyServer<br/>空岛服务协调、请求路由、tick、同步"]
     Main --> Leap["CloudLeapService + ModEffects<br/>技能验证与踏云护体；普通世界亦可用"]
     Main --> Quiver["QuiverService + QuiverState<br/>所有世界：4096支个人箭库、第9格空时补64"]
+    Main --> Trash["TrashService + TrashState<br/>所有世界：54个个人ID样本、仅清理背包36格、原生玩家保存"]
+    Trash <--> TrashMenu["TrashMenu / TrashScreen / UtilityHotkeys<br/>Ctrl＋=、虚拟样本不搬物、启用／暂停、清空"]
+    Trash --> TrashGuard["在线玩家／交易锁／恢复回执／传送检查<br/>打开垃圾桶时暂停；不扫描容器内容"]
     Main --> Furnaces["FurnaceContent / UpgradedFurnaceEntity<br/>所有世界：七档2～128倍、原生燃料与进度余量、普通熔炉菜单"]
     Config --> Furnaces
     Config --> Quiver
@@ -74,8 +77,11 @@ flowchart TB
     LiveEditor --> ConfigWire["ConfigEditPayloads<br/>服务端白名单、共享编辑模式、修订号与文件摘要"] --> Runtime
     Runtime --> ConfigEditor["AdminEditSession / ConfigEditorService / ItemManagementService<br/>唯一编辑开关、单文件原子保存、版本化目录"]
     ConfigEditor --> Config
-    Runtime --> Snapshots["ShopPayloads.Snapshot + TaskPayloads.Snapshot<br/>目录、规则、行情、队伍、个人任务、报价／入账事件"]
-    Snapshots --> Catalog
+    Runtime --> ViewSync["ViewSyncService + ViewVersions<br/>分域版本、共享序列化缓存、订阅与分片队列"]
+    Services --> Impact["SyncImpact<br/>持久化成功后发布明确影响域"] --> ViewSync
+    ViewSync --> Snapshots["ViewSyncPayloads<br/>条件查询、未变化确认、脏通知、分片、HUD增量"]
+    Snapshots <--> ClientSync["ViewSyncClient<br/>按键缓存、合并请求、租约、原子发布"]
+    ClientSync --> Catalog
     ClientMain --> LeapRequest["CloudLeapPayload<br/>仅发送跳跃模式"] --> Leap
 
     subgraph Services["服务端业务 · src/main"]
@@ -83,6 +89,8 @@ flowchart TB
         Worlds["WorldService + ResetService<br/>初始岛、大厅、门户、传送、分批重开"]
         Refresh["RefreshService<br/>历史放置索引、并发增量、暂停/续扫"]
         Professions["ProfessionService<br/>七个人职业、制造／获钓经验、手工品质"]
+        AdminXP["SkyCommands → ProfessionService.grantExperience<br/>管理员精确发经验、不发职业币／果实、不乘倍率"] --> Professions
+        FoodHP["FoodEatMixin → FoodHealth / FoodHealthRules<br/>每次真实消耗增加小数生命上限、落盘后提示"] --> Store
         Special["AccessoryService / ProfessionShopService / FishingService<br/>饰品解锁、个人职业商店、地区钓鱼"]
         Lottery["LotteryService + LotterySettings<br/>独立等级奖池、每日UP、个人保底与兑换恢复"]
         Runtime --> Lottery --> Trade
@@ -91,6 +99,8 @@ flowchart TB
         Runtime --> Tokens
         Attributes --> Special
         Survival["BloodMoonService / VeinMiningService / ModItems<br/>血月、连锁采集、飞行券／果实／生态球"]
+        SpawnBalls["SpawnBallService / SpawnBallSpawnerMixin<br/>14种区块自然敌对选种；直接索引、背包恢复事务"]
+        Runtime --> SpawnBalls
         Progression["ProgressionService<br/>队伍主线、个人支线／64职业任务、行动追踪、悬赏"]
         Trade["TradeService<br/>购买、出售报价、确认、出货事务"]
         Economy["ItemEconomy<br/>真实物品匹配、组件编解码、独立购入基价、收购估值、普通购价倍率"]
@@ -117,8 +127,8 @@ flowchart TB
     Hooks --> Leap
     Config --> Economy
     Core["core<br/>ClaimGrid / BlockScorer / Money / IncomeNotifications / Rational<br/>QuotaCurve / SalePlanner / BountyRules 等"] --> Services
-    CropSales["CropSaleRules<br/>十一类作物出售专用倍率；服务端／客户端共用"] --> Economy
-    CropSales --> Catalog
+    ProfessionSales["ProfessionSaleSettings<br/>产物目录职业倍率×统一出售星级；服务端／客户端共用"] --> Economy
+    ProfessionSales --> Catalog
     Runtime --> Store["data<br/>DurableStore + IslandState"]
     Store --> Disk["世界/yumis_sky_island<br/>state.journal + state.checkpoint"]
 
@@ -136,7 +146,7 @@ flowchart TB
 YumisSkyIsland/
 ├─ AGENTS.md                         全仓库开发规则与最新要求
 ├─ build.gradle / gradle.properties   Loom、依赖、源集、默认配置打包
-├─ config/yumis_sky_island/           28份仓库默认TOML（含客户端偏好）
+├─ config/yumis_sky_island/           29份仓库默认TOML（含客户端偏好）
 │  ├─ server_rules.*                 原版交易限制
 │  ├─ shop/                          商品、价格、稀有度、等级、库存、售出额度
 │  ├─ islands/                       方块计分、等级阈值、刷新预算
@@ -191,6 +201,8 @@ YumisSkyIsland/
 └─ build/                            忽略：编译产物、报告、隔离测试运行数据
 ```
 
+`ProfessionSaleSettings` 从产物目录及补充归属构建职业倍率和统一出售星级规则，服务端统一报价与客户端提示共用；Ctrl＋】新增同级“副职业出售”，保存后刷新相关规则与目录版本，由查看中的客户端条件拉取。
+
 `*` 表示配置逻辑分组，默认文件使用中文注释TOML，同类字段仅解释一次。默认配置与各运行实例的配置是不同文件，不能假定修改仓库配置会覆盖正在运行的实例。
 
 | 模块 | 当前职责 | 修改入口 |
@@ -206,6 +218,7 @@ YumisSkyIsland/
 | 单池抽奖 | O页同级Tab、独立奖池、UP／个人保底、两种兑换和原子恢复 | [LotteryService.java](../src/main/java/cn/yumis/skyisland/server/LotteryService.java)、[LotterySelector.java](../src/main/java/cn/yumis/skyisland/core/LotterySelector.java)、[LotteryPanel.java](../src/client/java/cn/yumis/skyisland/client/LotteryPanel.java) |
 | 职业与品质 | 手工结果预备/提取结算、七职业独立经验倍率、小数余数持久化、品质与自动化隔离 | [ProfessionService.java](../src/main/java/cn/yumis/skyisland/server/ProfessionService.java)、[ProfessionExperienceSettings.java](../src/main/java/cn/yumis/skyisland/config/ProfessionExperienceSettings.java)、[ProfessionRules.java](../src/main/java/cn/yumis/skyisland/core/ProfessionRules.java) |
 | 连锁与个人设置 | 矿工每5级增加1、连锁锤额外8、封顶128；I页左下角设置打开个人二级页面，服务端保存目标数量并约束预览／实际采集 | [VeinMiningService.java](../src/main/java/cn/yumis/skyisland/server/VeinMiningService.java)、[VeinMiningRules.java](../src/main/java/cn/yumis/skyisland/core/VeinMiningRules.java)、[PlayerSettingsScreen.java](../src/client/java/cn/yumis/skyisland/client/PlayerSettingsScreen.java) |
+| 刷怪球 | 14种球、三空岛维度区块记录、自然刷怪逐位置选种；持久化成功后更新直接索引，无额外tick或强加载 | [SpawnBallService.java](../src/main/java/cn/yumis/skyisland/server/SpawnBallService.java)、[SpawnBallSpawnerMixin.java](../src/main/java/cn/yumis/skyisland/mixin/SpawnBallSpawnerMixin.java)、[操作说明](SPAWN_BALLS.md) |
 | 居民与房屋 | 设施绑定、密闭扫描、每日招募／供养／产出、委托、声望、价格与经验效果、人形NPC／账号皮肤 | [npc](../src/main/java/cn/yumis/skyisland/npc)、[ResidentRules.java](../src/main/java/cn/yumis/skyisland/core/ResidentRules.java)、[ResidentPanel.java](../src/client/java/cn/yumis/skyisland/client/ResidentPanel.java) |
 | 渔力 | 原版同步属性；职业等级和启用饰品提供修正，钓鱼结算与P页来源快照读取同一属性 | [ModAttributes.java](../src/main/java/cn/yumis/skyisland/attribute/ModAttributes.java)、[FishingService.java](../src/main/java/cn/yumis/skyisland/server/FishingService.java)、[ProfessionScreen.java](../src/client/java/cn/yumis/skyisland/client/ProfessionScreen.java) |
 | 成长任务与悬赏 | QuestCatalog／QuestEditorService全服编辑、属性材料分配、本人行动计数、独立功能与个人放置支线、独立悬赏格、首获状态 | [ProgressionService.java](../src/main/java/cn/yumis/skyisland/server/ProgressionService.java)、[BountyRules.java](../src/main/java/cn/yumis/skyisland/core/BountyRules.java) |
@@ -213,7 +226,7 @@ YumisSkyIsland/
 | 梯云纵 | 独立网络接收、服务器冷却/速度检查、踏云护体，借原版效果包同步 | [CloudLeapService.java](../src/main/java/cn/yumis/skyisland/server/CloudLeapService.java)、[ModEffects.java](../src/main/java/cn/yumis/skyisland/effect/ModEffects.java)、[PlayerSafetyMixin.java](../src/main/java/cn/yumis/skyisland/mixin/PlayerSafetyMixin.java) |
 | 虚空箭袋 | 全世界个人存箭、空气目标校验、第9格空时补64、命令开关与配对恢复 | [QuiverService.java](../src/main/java/cn/yumis/skyisland/server/QuiverService.java)、[QuiverState.java](../src/main/java/cn/yumis/skyisland/core/QuiverState.java)、[QuiverClient.java](../src/client/java/cn/yumis/skyisland/client/QuiverClient.java) |
 | 建造杖 | 仅空岛、六档数量、逐块保护、普通建材／随身容器供料、变化失效撤销、无模板逐级锻造 | [wand](../src/main/java/cn/yumis/skyisland/wand)、[WandPayloads.java](../src/main/java/cn/yumis/skyisland/network/WandPayloads.java)、[WandClient.java](../src/client/java/cn/yumis/skyisland/client/WandClient.java) |
-| 网络 | `ShopPayloads` 请求/JSON 快照；`CloudLeapPayload` 只发送跳跃模式 | [network](../src/main/java/cn/yumis/skyisland/network) |
+| 网络 | `ViewSyncPayloads` 条件查询／分片／订阅／HUD增量；业务操作继续使用各自的服务端验证协议；`CloudLeapPayload` 只发送跳跃模式 | [network](../src/main/java/cn/yumis/skyisland/network) |
 | 持久化 | `IslandState` 保存队伍/玩家/市场/刷新/重开/任务等状态；`DurableStore` 用 CRC 日志和检查点，落盘后发布 | [IslandState.java](../src/main/java/cn/yumis/skyisland/data/IslandState.java)、[DurableStore.java](../src/main/java/cn/yumis/skyisland/data/DurableStore.java) |
 | 客户端 | 按键、HUD、稀有度/估值提示、目录缓存、单页控制面板、独立收藏分类、内嵌出售／任务编辑／搜索、确认浮层 | [client](../src/client/java/cn/yumis/skyisland/client) |
 | 原版集成 | 世界生成、方块变化、容器/生产结果、交易限制、门户、伤害和实体/区块存储访问 | [通用 Mixin](../src/main/java/cn/yumis/skyisland/mixin)、[客户端 Mixin](../src/client/java/cn/yumis/skyisland/client/mixin) |
@@ -265,6 +278,8 @@ flowchart LR
 | 隐藏保底与库存 | DailyShopSelector.rollShop、TradeService、ShopPayloads.Purchase | 至少1传说＋2史诗，向下回退、不重复、上下文及轮次校验 |
 | 出货箱支线 | ShippingChestBlock.setPlacedBy、ProgressionService.shippingPlaced | 本人于本队实际成功放置；64原木＋3铁锭＋附魔金镐 |
 | 本地测试隔离 | local-tests、build.gradle、dev.ps1、.gitignore | 已集中取消跟踪；用户已接手后续实机验收 |
+| 个人自动垃圾桶 | TrashService、TrashMenu、TrashState、TrashScreen、UtilityHotkeys | 54个虚拟ID样本；所有世界仅删除个人背包36格；原生玩家保存 |
+| 逐次食物生命与管理员职业经验 | FoodHealthRules、FoodHealth、ProfessionService、SkyCommands | 每口小数增益及提示；管理员独立发经验，职业币不变 |
 
 `QualityFrames` 位于客户端源集，原版槽位／热栏／拖拽Mixin与模组自绘卡片共用绘制算法；仅读取既有品质与职业来源组件。个人设置开关落在本机 `client.toml`，不新增服务端请求、持久化字段或公共协议。
 

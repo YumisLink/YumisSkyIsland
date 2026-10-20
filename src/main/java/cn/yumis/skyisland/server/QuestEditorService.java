@@ -82,13 +82,13 @@ public final class QuestEditorService {
         rt.progression.saveDefinitions(document); // Validate and atomically replace before publishing.
         JsonObject ack=new JsonObject();ack.addProperty("action",action);ack.addProperty("id",id);ack.addProperty("revision",rt.progression.catalog().revision);
         send(player,"saved",ack);
-        for(var online:rt.server.getPlayerList().getPlayers())if(editing(online))sendEditor(online);
+        rt.views.impact(SyncImpact.global("tasks","quest","editor"));
         rt.syncAll();
         if(!action.equals("delete"))sendDetail(player,id);
     }
     private void resetProgress(ServerPlayer player,JsonObject body){
         confirmed(body);String id=body.get("id").getAsString();var quest=rt.progression.catalog().get(id);
-        rt.change(player,state -> {
+        rt.change(player, SyncImpact.global("tasks","quest"),state -> {
             if(quest.kind().equals("main"))for(IslandState.Party p:state.parties.values()){
                 p.completedQuestIds.remove(id);p.readyQuestIds.remove(id);
                 if(p.mainQuestProgress!=null)p.mainQuestProgress.remove(id);
@@ -101,10 +101,11 @@ public final class QuestEditorService {
     }
     private static void confirmed(JsonObject body){if(!body.has("confirmed")||!body.get("confirmed").getAsBoolean())throw new IllegalArgumentException("请先确认此管理员操作");}
     public void sendDetail(ServerPlayer player,String id){
-        var catalog=rt.progression.catalog();
-        JsonObject detail=catalog.detail(rt.parties.active(player.getUUID()),rt.state().players.get(player.getUUID()),catalog.get(id));
-        if(editing(player))detail.add("definition",catalog.get(id).definition().deepCopy());
-        send(player,"detail",detail);
+        send(player,"detail",detail(player,id));
+    }
+    public JsonObject detail(ServerPlayer player,String id){
+        var catalog=rt.progression.catalog();var detail=catalog.detail(rt.parties.active(player.getUUID()),rt.state().players.get(player.getUUID()),catalog.get(id));
+        if(editing(player))detail.add("definition",catalog.get(id).definition().deepCopy());return detail;
     }
     public void sendEditor(ServerPlayer player){
         sendEditor(player,false);

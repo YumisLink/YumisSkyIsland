@@ -68,7 +68,7 @@ public final class ProgressionService {
             if (p.resetInProgress || !allows(p, "bounty.use")) continue;
             String context = context(p);
             if (p.bounties.size() != slots(p) || p.bounties.stream().anyMatch(b -> b.expiresAt <= rt.state().effectiveTicks || invalid(b) || b.material == null && !context.equals(b.attemptContext))) {
-                rt.change(null, s -> maintain(s.parties.get(p.id)), () -> {}); return;
+                rt.change(null, SyncImpact.party(p.id,"bounties"), s -> maintain(s.parties.get(p.id)), () -> {}); return;
             }
         }
     }
@@ -121,7 +121,7 @@ public final class ProgressionService {
         if (expectedPaid != p.paidBountySlots) throw new IllegalArgumentException("购格价格已变化，请查看新报价后确认");
         if (slots(p) >= rules.get("maximumSlots").getAsInt()) throw new IllegalArgumentException("悬赏格已达到上限");
         long after = Money.subtract(p.coins, slotCost(p));
-        rt.change(player, s -> { var current = s.parties.get(p.id); current.coins = after; current.paidBountySlots++; maintain(current); }, () -> SkyServer.tell(player, "已购买悬赏格"));
+        rt.change(player, SyncImpact.party(p.id,"bounties"), s -> { var current = s.parties.get(p.id); current.coins = after; current.paidBountySlots++; maintain(current); }, () -> SkyServer.tell(player, "已购买悬赏格"));
     }
     public void claimBounty(ServerPlayer player, String id) {
         var p = rt.trades.available(player);
@@ -133,7 +133,7 @@ public final class ProgressionService {
         if (b.generation != generation || b.expiresAt <= rt.state().effectiveTicks || b.material == null || invalid(b)) throw new IllegalArgumentException("悬赏已更替，请查看新条目");
         var reward = rt.economy.entries.get(b.reward);
         JsonArray inventory = exchange(player, List.of(new Requirement(b.material, b.quantity)), List.of(b.rewardStack==null?reward.template():rt.economy.decode(b.rewardStack)));
-        rt.trades.commitInventory(player, inventory, s -> {
+        rt.trades.commitInventory(player, SyncImpact.party(p.id,"bounties","trade").and(SyncImpact.person(player.getUUID(),"lottery")), inventory, s -> {
             var current = s.parties.get(p.id); acquired(current, b.reward);
             PersonalTokens.quest(s,current,player.getUUID(),false,rt.lottery.taskReward());
             fill(current, current.bounties.get(slot));
@@ -161,7 +161,7 @@ public final class ProgressionService {
         long balance = Money.add(p.coins,q.get("rewardCoins").getAsLong());
         int accessoryDraws = catalog.accessoryDraws(quest);
         JsonArray inventory = exchangeMaterials(player,quest.requirements(),quest.rewards());
-        rt.trades.commitInventory(player,inventory,q.get("rewardExperiencePoints").getAsInt(),state -> {
+        rt.trades.commitInventory(player, impact(player,id).and(SyncImpact.party(p.id,"features","trade")).and(quest.kind().equals("main")?SyncImpact.members(rt,p.id,"lottery"):SyncImpact.person(player.getUUID(),"lottery")).and(SyncImpact.person(player.getUUID(),"accessories")),inventory,q.get("rewardExperiencePoints").getAsInt(),state -> {
             var current=state.parties.get(p.id); current.coins=balance;
             PersonalTokens.quest(state,current,player.getUUID(),quest.kind().equals("main"),rt.lottery.taskReward());
             if (accessoryDraws > 0) {
@@ -186,7 +186,7 @@ public final class ProgressionService {
             var current=rt.state().parties.get(party);
             var owner=rt.state().players.get(player.getUUID());
             if(current==null || owner==null||!party.equals(owner.activeParty)||current.resetInProgress || current.overworldEpoch!=epoch || catalog.revision!=definitionRevision) return;
-            rt.change(null,state -> {
+            rt.change(null, impact(player,eligible.keySet().toArray(String[]::new)),state -> {
                 var saved=state.parties.get(party);
                 eligible.forEach((id,version) -> {var progress=QuestCatalog.progress(saved,state.players.get(player.getUUID()),catalog.get(id));if(Objects.equals(progress.resetVersions().getOrDefault(id,0L),version) && !progress.completed().contains(id))progress.ready().add(id);});
             }, () -> {});
@@ -205,7 +205,7 @@ public final class ProgressionService {
         rt.deferred(()->{
             var current=rt.state().parties.get(partyId);var actor=rt.state().players.get(owner);
             if(current==null||actor==null||!partyId.equals(actor.activeParty)||current.resetInProgress||current.overworldEpoch!=epoch||catalog.revision!=revision)return;
-            rt.change(null,state->{
+            rt.change(null, impact(player,targets.stream().map(ActionTarget::quest).toArray(String[]::new)),state->{
                 var saved=state.players.get(owner);var savedParty=state.parties.get(partyId);
                 for(var target:targets){var quest=catalog.get(target.quest());
                     if(!catalog.available(savedParty,saved,quest)||catalog.resetVersion(savedParty,saved,quest)!=target.reset())continue;
@@ -261,6 +261,13 @@ public final class ProgressionService {
         }
         for (int i = 0; i < 36; i++) inventory.set(i, rt.economy.encode(copy.getItem(i)));
         return inventory;
+    }
+    private SyncImpact impact(ServerPlayer player,String... ids){
+        SyncImpact result=SyncImpact.none();var p=rt.parties.active(player.getUUID());
+        for(String id:ids){var q=catalog.get(id);result=result.and(q.kind().equals("main")?SyncImpact.party(p==null?null:p.id,"tasks","quest:"+id):SyncImpact.person(player.getUUID(),"tasks","quest:"+id));}return result;
+    }
+    public JsonObject taskSnapshot(IslandState.Party party,IslandState.Person person){
+        JsonObject data=new JsonObject();data.add("quests",catalog.summaries(party,person));data.addProperty("revision",catalog.revision);return data;
     }
     public JsonObject snapshot(IslandState.Party p) {return snapshot(p,null);}
     public JsonObject snapshot(IslandState.Party p,IslandState.Person person) {

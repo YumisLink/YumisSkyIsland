@@ -19,6 +19,7 @@ public final class AccessoryScreen extends Screen {
     private final ClientCatalog model;
     private int scroll;
     private int tab;
+    public int syncTab(){return tab;}
     private String crafting;
     private final LotteryPanel lottery;
     private final PermanentBuffPanel buffs;
@@ -57,6 +58,7 @@ public final class AccessoryScreen extends Screen {
         UiFrame frame=openFrame(g);
         try{draw(g,mx-frame.ox,my-frame.oy,delta);}
         finally{closeFrame(g);}
+        model.sync.status(g,width);
     }
     private UiFrame openFrame(GuiGraphicsExtractor g){
         UiFrame frame=UiFrame.of(width,height,model.uiSize);
@@ -75,6 +77,7 @@ public final class AccessoryScreen extends Screen {
         int tabW=Math.min(94,(width-34)/3);
         String[] names={"饰品",cn.yumis.skyisland.core.LotteryNames.draw(),model.genshinMode?"心之钢":"永久增益"};
         for(int t=0;t<3;t++){int x=17+t*(tabW+6);g.fill(x,43,x+tabW,68,tab==t?UiTheme.SELECTED:UiTheme.BUTTON);if(tab==t)g.fill(x,66,x+tabW,68,0xFF79D5B9);g.text(font,names[t],x+8,51,0xFFEEEEEE,false);}
+        if(!model.sync.loaded())return;
         if(tab==1){lottery.render(g,font,width,height,mx,my);if(!model.lastError.isBlank())g.text(font,model.lastError,17,height-43,0xFFFFAAAA,false);return;}
         if(tab==2){buffs.render(g,font,width,height);return;}
         g.text(font,"已激活 "+activeCount()+"/"+slots()+"    待领取 "+pending(),17,87,0xFFC9E8DB,false);
@@ -122,6 +125,7 @@ public final class AccessoryScreen extends Screen {
     private int activeCount(){var entries=model.state.getAsJsonArray("activeAccessories");return entries==null?0:entries.size();}
     private int slots(){return model.state.has("accessorySlots")?model.state.get("accessorySlots").getAsInt():3;}
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
+        if(model.sync.retryClick(e.y()))return true;
         UiFrame frame=openFrame(null);
         try{return click(frame.move(e),doubleClick);}
         finally{closeFrame(null);}
@@ -202,5 +206,5 @@ public final class AccessoryScreen extends Screen {
         try{if(tab==1)lottery.scroll(sy,height);else if(tab==2)buffs.scroll(sy,height);else scroll=Math.clamp(scroll-(int)Math.signum(sy),0,maxScroll());return true;}
         finally{closeFrame(null);}
     }
-    private void send(String action,String product){model.lastError="";if(ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE))ClientPlayNetworking.send(new ShopPayloads.Request(action,product,0));}
+    private void send(String action,String product){if(!model.sync.ready()){model.lastError="资料更新中，请稍后操作";return;}model.lastError="";if(ClientPlayNetworking.canSend(ShopPayloads.Request.TYPE))ClientPlayNetworking.send(new ShopPayloads.Request(action,product,0));}
 }

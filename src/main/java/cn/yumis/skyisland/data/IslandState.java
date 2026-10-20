@@ -41,6 +41,8 @@ public final class IslandState {
         public Map<String, Long> research = new LinkedHashMap<>();
         /** Dimension and chunk keyed biome overrides survive main-island resets. */
         public Map<String, String> biomeOverrides = new LinkedHashMap<>();
+        /** Dimension|packed chunk -> natural hostile species. Main-world policies clear on reset. */
+        public Map<String, String> spawnOverrides = new LinkedHashMap<>();
         public int highestIslandLevel, paidBountySlots;
         public long lotteryUpEpoch = -1;
         public String lotteryUpCatalog = "";
@@ -76,9 +78,11 @@ public final class IslandState {
         public int veinMiningLimit = cn.yumis.skyisland.core.VeinMiningRules.MAX_LIMIT;
         /** Number of permanently consumed profession fruits, capped independently at 100. */
         public Map<String, Integer> consumedFruits = new LinkedHashMap<>();
-        /** Foods actually eaten, and the max-health points locked in when each group of 64 completed. */
+        /** Foods actually eaten, and fractional max-health points locked in after every meal. */
         public Map<String, Integer> foodEaten = new LinkedHashMap<>();
         public Map<String, Double> foodHealth = new LinkedHashMap<>();
+        /** Per-meal rewards use actual components and must never be repriced from registry defaults on login. */
+        public Set<String> perMealFoodHealth = new LinkedHashSet<>();
         public Set<String> unlockedAccessories = new LinkedHashSet<>();
         public Set<String> activeAccessories = new LinkedHashSet<>();
         public int pendingAccessoryDraws;

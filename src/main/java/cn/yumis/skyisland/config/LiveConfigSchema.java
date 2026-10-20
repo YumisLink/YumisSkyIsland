@@ -9,7 +9,7 @@ public final class LiveConfigSchema {
         public void validate(JsonElement value) {
             if(kind.equals("boolean")) { if(!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isBoolean())throw new IllegalArgumentException(label+"必须为开关"); }
             else if(kind.equals("text")) { if(!value.isJsonPrimitive()||!value.getAsJsonPrimitive().isString()||value.getAsString().isBlank()||value.getAsString().length()>maximum)throw new IllegalArgumentException(label+"长度无效"); }
-            else if(kind.equals("decimal")) ProfessionExperienceSettings.multiplierBps(value);
+            else if(kind.equals("decimal")) {if(key.startsWith("saleQualityMultipliers/"))ProfessionSaleSettings.qualityMultiplierBps(value);else if(key.startsWith("saleMultipliers/"))ProfessionSaleSettings.multiplierBps(value);else ProfessionExperienceSettings.multiplierBps(value);}
             else ScoringSettings.integer(value,minimum,maximum);
         }
     }
@@ -26,6 +26,10 @@ public final class LiveConfigSchema {
         xp.add(num("successfulFishingXp","成功获钓经验",0,Long.MAX_VALUE,"职业经验；地区宝藏箱固定经验不受此项控制"));xp.add(num("lavaFishingXpMultiplier","岩浆获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("voidFishingXpMultiplier","虚空获钓经验倍率",0,Long.MAX_VALUE,"倍，乘在这一杆实际渔夫经验上，宝藏箱固定12同样乘"));xp.add(num("successfulHunterKillXp","成功击杀经验",0,Long.MAX_VALUE,"职业经验"));
         for(String job:List.of("blacksmith","chef","farmer","hunter","miner"))xp.add(num("successfulCraftXp/"+job,switch(job){case "blacksmith"->"铁匠";case "chef"->"厨师";case "farmer"->"农夫";case "miner"->"矿工";default->"猎人";}+"制造默认经验",0,Long.MAX_VALUE,"已有单品baseXp优先"));
         add(groups,"profession_xp","职业经验","products/professions.toml","只影响后续真实行动，不重算历史经验。",xp.toArray(Field[]::new));
+        List<Field> sales=new ArrayList<>();
+        for(String job:ProfessionSaleSettings.PROFESSIONS)sales.add(new Field("saleMultipliers/"+job,switch(job){case "blacksmith"->"铁匠";case "chef"->"厨师";case "farmer"->"农夫";case "hunter"->"猎人";case "fisherman"->"渔夫";case "miner"->"矿工";default->"战斗大师";}+"出售价格倍率","decimal",0,1000,job.equals("battle_master")?"倍；目前无专属产物，需先在产物目录配置归属":"倍；默认1，0使报价为0；普通及全部品质，最多4位小数"));
+        for(int i=0;i<ProfessionSaleSettings.GRADES.size();i++)sales.add(new Field("saleQualityMultipliers/"+ProfessionSaleSettings.GRADES.get(i),List.of("普通","铜星","银星","金星","钻星","七彩星").get(i)+"出售倍率","decimal",0,10000,"倍；直接相对无星基价，只乘一次；最多4位小数，所有职业共用"));
+        add(groups,"profession_sales","副职业出售","products/professions.toml","职业按产物目录匹配，再乘统一星级倍率；保留行情、附魔、耐久、居民和额度，已结算交易保留。",sales.toArray(Field[]::new));
         add(groups,"profession_shop","职业商店","products/profession_shop.toml","从下次购买、活动或使用起生效，已用果实计数保留。",
             num("fruitPrice","果实价格",1,Long.MAX_VALUE,"个人职业积分"),num("lavaBaitPrice","岩浆鱼饵价格",1,Long.MAX_VALUE,"个人职业积分"),num("voidBaitPrice","虚空鱼饵价格",1,Long.MAX_VALUE,"个人职业积分"),num("fruitDropBps","果实掉率",0,10000,"万分数，10=0.1%"),num("fruitUseCap","每种果实使用上限",1,100,"次"));
         add(groups,"blood_moon","血月","gameplay/blood_moon.toml","触发概率从下次夜间判定生效；刷怪和钓鱼从下次事件生效，不重抽今夜。",
@@ -52,6 +56,7 @@ public final class LiveConfigSchema {
         if(group.id.equals("scoring"))ScoringSettings.parse(next);
         if(group.id.equals("lottery"))new LotterySettings(next);
         if(group.id.equals("profession_xp"))ProfessionExperienceSettings.validate(next);
+        if(group.id.equals("profession_sales"))ProfessionSaleSettings.validate(next);
         return next;
     }
     private LiveConfigSchema() {}

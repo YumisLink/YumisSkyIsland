@@ -116,7 +116,7 @@ public final class WorldService implements AutoCloseable {
         lobbyLoading = true;
         load(world, lobbyPoint(), 1, () -> {
             for (int x = 0; x < 20; x++) for (int z = 0; z < 20; z++) world.setBlock(new BlockPos(ClaimGrid.LOBBY_X + x, ClaimGrid.LOBBY_Y, ClaimGrid.LOBBY_Z + z), Blocks.GRASS_BLOCK.defaultBlockState(), 3);
-            runtime.deferred(() -> runtime.change(null, s -> s.lobbyReady = true, () -> lobbyLoading = false));
+            runtime.deferred(() -> runtime.change(null, SyncImpact.none(), s -> s.lobbyReady = true, () -> lobbyLoading = false));
         }, () -> lobbyLoading = false);
     }
     public void lobby(ServerPlayer player) {
@@ -172,7 +172,7 @@ public final class WorldService implements AutoCloseable {
             runtime.deferred(() -> {
                 var ready = runtime.state().parties.get(party.id);
                 if (ready == null || ready.resetInProgress || ready.overworldEpoch != epoch) { finished.run(); return; }
-                runtime.change(owner, s -> {
+                runtime.change(owner, SyncImpact.none(), s -> {
                 IslandState.Party p = s.parties.get(party.id); p.starterReady = true; p.homeX = home.getX(); p.homeY = home.getY(); p.homeZ = home.getZ();
                 runtime.progression.initialize(p);
             }, () -> {
@@ -190,7 +190,7 @@ public final class WorldService implements AutoCloseable {
     public void setHome(ServerPlayer player) {
         IslandState.Party party = runtime.parties.requireMember(player); BlockPos point = player.blockPosition();
         if (!player.level().dimension().equals(Level.OVERWORLD) || runtime.claim(point) != party || !safe(player.level(), point)) throw new IllegalArgumentException("回家点必须在本队主世界区域内且有安全地面");
-        runtime.change(player, s -> { var p = s.parties.get(party.id); p.homeX = point.getX(); p.homeY = point.getY(); p.homeZ = point.getZ(); }, () -> SkyServer.tell(player, "已设置回家点"));
+        runtime.change(player, SyncImpact.none(), s -> { var p = s.parties.get(party.id); p.homeX = point.getX(); p.homeY = point.getY(); p.homeZ = point.getZ(); }, () -> SkyServer.tell(player, "已设置回家点"));
     }
     public static boolean safe(ServerLevel level, BlockPos point) { return level.getBlockState(point).isAir() && level.getBlockState(point.above()).isAir() && level.getBlockState(point.below()).isFaceSturdy(level, point.below(), Direction.UP); }
     public static void teleport(ServerPlayer player, ServerLevel level, BlockPos point) {

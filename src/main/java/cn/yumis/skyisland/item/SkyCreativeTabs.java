@@ -41,6 +41,7 @@ public final class SkyCreativeTabs {
                 output.accept(cn.yumis.skyisland.npc.ResidentContent.PERMIT);
                 for(var item:ModItems.FRUITS.values())output.accept(item);
                 for(var item:ModItems.BIOME_BALLS.values())output.accept(item);
+                for(var item:ModItems.SPAWN_BALLS.values())output.accept(item);
                 for(var item:ModItems.ACCESSORY_ICONS.values())output.accept(item);
                 for(var item:ModItems.FISH.values())output.accept(item);
                 for(var item:ModItems.FISHING_MATERIALS.values())output.accept(item);

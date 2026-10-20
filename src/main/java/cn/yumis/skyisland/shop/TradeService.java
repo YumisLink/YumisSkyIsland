@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.shop;
 
+import cn.yumis.skyisland.server.SyncImpact;
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.block.ShippingChestEntity;
 import cn.yumis.skyisland.core.*;
@@ -46,7 +47,7 @@ public final class TradeService {
         var selection = DailyShopSelector.rollShop(runtime.state().worldSeed, party.id, runtime.epoch(), runtime.level(party), pool,
             hiddenRules.get("chanceBps").getAsInt(), shops.getAsJsonObject("daily").get("slots").getAsInt(), hiddenRules.get("slots").getAsInt(), ordinary, hidden,
             hiddenRules.get("guaranteedLegendary").getAsInt(), hiddenRules.get("guaranteedEpic").getAsInt());
-        runtime.change(null, state -> {
+        runtime.change(null, SyncImpact.party(party.id,"stock","quotas","trade"), state -> {
             var p = state.parties.get(party.id); p.marketEpoch = selection.epoch(); p.hidden = selection.hidden(); p.quota.clear(); p.dailyStock.clear();
             for (var offer : selection.offers()) p.dailyStock.put(offer.productId(), offer.remainingStock());
         }, () -> {});
@@ -90,7 +91,7 @@ public final class TradeService {
         }
         for (int i = 0; i < 36; i++) inventory.set(i, runtime.economy.encode(copy.getItem(i)));
         String actorName=player.getGameProfile().name();
-        if(!commitInventory(player,new InventoryChange(inventory,ExperienceChange.none(),null),state -> {
+        if(!commitInventory(player,SyncImpact.party(party.id,"stock:"+id,"trade"),new InventoryChange(inventory,ExperienceChange.none(),null),state -> {
             var p = state.parties.get(party.id); p.coins = balance;
             runtime.progression.acquired(p, id);
             if (special&&p.dailyStock.get(id)!=-1) p.dailyStock.put(id, p.dailyStock.get(id) - quantity);
@@ -158,14 +159,14 @@ public final class TradeService {
         previews.remove(player.getUUID()); var plan=planner.prepare(party.coins,counters(party),preview.plan.removals());
         JsonArray inventory=runtime.economy.capture(player.getInventory());
         for(var input:plan.removals()){var stack=runtime.economy.decode(inventory.get(input.slot()));stack.shrink(input.quantity());inventory.set(input.slot(),runtime.economy.encode(stack));}
-        commitInventory(player,inventory,s->{var p=s.parties.get(party.id);applyPlan(p,plan);recordSales(p,plan);},()->{runtime.send(player,"sale_done",new JsonObject());SkyServer.tell(player,"出售完成，获得 "+Money.format(plan.coins()));});
+        commitInventory(player,saleImpact(party.id,plan),inventory,s->{var p=s.parties.get(party.id);applyPlan(p,plan);recordSales(p,plan);},()->{runtime.send(player,"sale_done",new JsonObject());SkyServer.tell(player,"出售完成，获得 "+Money.format(plan.coins()));});
     }
     public void forget(ServerPlayer player){previews.remove(player.getUUID());saleModes.remove(player.getUUID());}
-    public void commitInventory(ServerPlayer player, JsonArray inventory, java.util.function.Consumer<IslandState> edit, Runnable after) {
-        commitInventory(player,inventory,0,edit,after);
+    public void commitInventory(ServerPlayer player, SyncImpact impact, JsonArray inventory, java.util.function.Consumer<IslandState> edit, Runnable after) {
+        commitInventory(player,impact,inventory,0,edit,after);
     }
-    public void commitInventory(ServerPlayer player, JsonArray inventory, int experiencePoints, java.util.function.Consumer<IslandState> edit, Runnable after) {
-        if(!commitInventory(player,new InventoryChange(inventory,ExperienceChange.points(experiencePoints),null),edit,()->{},
+    public void commitInventory(ServerPlayer player, SyncImpact impact, JsonArray inventory, int experiencePoints, java.util.function.Consumer<IslandState> edit, Runnable after) {
+        if(!commitInventory(player,impact,new InventoryChange(inventory,ExperienceChange.points(experiencePoints),null),edit,()->{},
             current->{if(current==player)after.run();}))throw new IllegalStateException("数据正在保存，请稍后重试");
     }
     /** Validate before taking a lock; no silent rejection may strand a newly acquired lock. */
@@ -178,7 +179,7 @@ public final class TradeService {
     public boolean blocksExperienceMutation(ServerPlayer player) {
         return runtime.inventoryLocks.contains(player.getUUID())&&!applyingRecovery.contains(player.getUUID());
     }
-    public boolean commitInventory(ServerPlayer player,InventoryChange change,java.util.function.Consumer<IslandState> edit,
+    public boolean commitInventory(ServerPlayer player, SyncImpact impact,InventoryChange change,java.util.function.Consumer<IslandState> edit,
                                    Runnable afterDurable,java.util.function.Consumer<ServerPlayer> afterOnline) {
         requireInventoryReady(player);
         Objects.requireNonNull(change.items());Objects.requireNonNull(change.experience());
@@ -191,7 +192,7 @@ public final class TradeService {
             cn.yumis.skyisland.config.GameConfig.JSON.fromJson(cn.yumis.skyisland.config.GameConfig.JSON.toJson(change.lotteryResult()),IslandState.LotteryDrawResult.class);
         runtime.inventoryLocks.add(id);pendingInventoryCommits.add(id);
         try {
-            boolean accepted=runtime.tryChange(player,state->{
+            boolean accepted=runtime.tryChange(player, impact,state->{
                 edit.accept(state);
                 recovery(state,id,items,experience,change.experience(),draw,quiver);
             },()->{
@@ -213,6 +214,9 @@ public final class TradeService {
     }
     private void recordSales(IslandState.Party p, SalePlanner.Plan plan) {
         for(var input:plan.removals()){var e=runtime.economy.match(runtime.economy.decode(com.google.gson.JsonParser.parseString(input.fingerprint())));if(e!=null)p.soldProductIds.add(e.product().id());}
+    }
+    private SyncImpact saleImpact(UUID party,SalePlanner.Plan plan){
+        SyncImpact result=SyncImpact.none();for(var input:plan.removals())result=result.and(SyncImpact.party(party,"quota:"+input.group()));return result;
     }
     private static Map<String, Rational> counters(IslandState.Party p) { Map<String, Rational> map = new HashMap<>(); p.quota.forEach((k, v) -> map.put(k, Rational.parse(v))); return map; }
     private static void applyPlan(IslandState.Party p, SalePlanner.Plan plan) { p.coins = plan.resultingWallet(); p.quota.clear(); plan.counters().forEach((k, v) -> p.quota.put(k, v.toString())); }
@@ -279,7 +283,7 @@ public final class TradeService {
                 JsonArray after = runtime.economy.capture(box);
                 for (var input : plan.removals()) after.set(input.slot(), JsonNull.INSTANCE);
                 box.locked = true;
-                runtime.change(null, state -> {
+                runtime.change(null, saleImpact(p.id,plan), state -> {
                     applyPlan(state.parties.get(p.id), plan);
                     recordSales(state.parties.get(p.id), plan);
                     IslandState.Box data = state.boxes.computeIfAbsent(box.boxId, _ -> new IslandState.Box());

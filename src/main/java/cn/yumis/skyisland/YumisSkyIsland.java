@@ -40,6 +40,10 @@ public final class YumisSkyIsland implements ModInitializer {
         cn.yumis.skyisland.furnace.FurnaceContent.register();
         cn.yumis.skyisland.wand.ConstructionWandService.register();
         ModAttributes.register(); ModEffects.register(); WardenBags.load(); CloudLeapService.register(); QuiverService.register();
+        cn.yumis.skyisland.trash.TrashService.register();
+        PayloadTypeRegistry.serverboundPlay().register(cn.yumis.skyisland.network.ViewSyncPayloads.Query.TYPE,cn.yumis.skyisland.network.ViewSyncPayloads.Query.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(cn.yumis.skyisland.network.ViewSyncPayloads.Reply.TYPE,cn.yumis.skyisland.network.ViewSyncPayloads.Reply.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(cn.yumis.skyisland.network.ViewSyncPayloads.Query.TYPE,(payload,context)->{var rt=SkyServer.get(context.server());if(rt!=null)rt.views.request(context.player(),payload);});
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Request.TYPE,ShopPayloads.Request.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.Purchase.TYPE,ShopPayloads.Purchase.CODEC);
         PayloadTypeRegistry.serverboundPlay().register(ShopPayloads.ProfessionPurchase.TYPE,ShopPayloads.ProfessionPurchase.CODEC);
@@ -51,6 +55,7 @@ public final class YumisSkyIsland implements ModInitializer {
         PayloadTypeRegistry.clientboundPlay().register(TaskPayloads.Snapshot.TYPE,TaskPayloads.Snapshot.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Request.TYPE,(payload,context) -> {
             if("ender_chest".equals(payload.action())){SkyServer.openEnderChest(context.player());return;}
+            if("auto_trash".equals(payload.action())){cn.yumis.skyisland.trash.TrashService.open(context.player());return;}
             var rt = SkyServer.get(context.server()); if (rt != null) rt.request(context.player(),payload);
         });
         ServerPlayNetworking.registerGlobalReceiver(ShopPayloads.Purchase.TYPE,(payload,context) -> { var rt = SkyServer.get(context.server()); if (rt != null) rt.purchase(context.player(),payload); });

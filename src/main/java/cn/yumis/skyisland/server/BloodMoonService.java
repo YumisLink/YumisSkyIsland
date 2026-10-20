@@ -21,7 +21,7 @@ public final class BloodMoonService {
     public void forceTonight(net.minecraft.server.level.ServerPlayer actor,Runnable after) {
         long target=cn.yumis.skyisland.core.MarketClock.tonight(runtime.server.overworld().getOverworldClockTime());
         long night=Math.floorDiv(target,24000);
-        if(!runtime.tryChange(actor,next->{next.lastBloodMoonNight=night;next.bloodMoonActive=true;next.failedBloodMoonNights=0;},()->{
+        if(!runtime.tryChange(actor, SyncImpact.none(),next->{next.lastBloodMoonNight=night;next.bloodMoonActive=true;next.failedBloodMoonNights=0;},()->{
             AdminTimeService.setClock(runtime,target);
             for(var player:runtime.server.getPlayerList().getPlayers())if(player.level()==runtime.server.overworld())SkyServer.tell(player,"血月升起，怪物变得更危险了！");
             for(Entity entity:runtime.server.overworld().getAllEntities())if(entity instanceof LivingEntity living)apply(living);
@@ -36,11 +36,11 @@ public final class BloodMoonService {
             var settings=runtime.config.object("gameplay/blood_moon.toml");
             long chance=Math.min(10000L,(long)settings.get("initialChanceBps").getAsInt()+(long)state.failedBloodMoonNights*settings.get("missIncrementBps").getAsInt());
             boolean active=runtime.server.overworld().getRandom().nextInt(10000)<chance;
-            runtime.change(null,next->{next.lastBloodMoonNight=night;next.bloodMoonActive=active;next.failedBloodMoonNights=active?0:Math.min(100,next.failedBloodMoonNights+1);},()->{
+            runtime.change(null, SyncImpact.none(),next->{next.lastBloodMoonNight=night;next.bloodMoonActive=active;next.failedBloodMoonNights=active?0:Math.min(100,next.failedBloodMoonNights+1);},()->{
                 if(active)for(var player:runtime.server.getPlayerList().getPlayers())if(player.level()==runtime.server.overworld())SkyServer.tell(player,"血月升起，怪物变得更危险了！");
             });
         }
-        if(dayTick<13000 && state.bloodMoonActive && runtime.store.available())runtime.change(null,next->next.bloodMoonActive=false,()->{});
+        if(dayTick<13000 && state.bloodMoonActive && runtime.store.available())runtime.change(null, SyncImpact.none(),next->next.bloodMoonActive=false,()->{});
         if(runtime.tick%20==0){
             for(Entity entity:runtime.server.overworld().getAllEntities())if(entity instanceof LivingEntity living)apply(living);
             for(ServerPlayer player:runtime.server.getPlayerList().getPlayers())if(player.level()!=runtime.server.overworld())apply(player);

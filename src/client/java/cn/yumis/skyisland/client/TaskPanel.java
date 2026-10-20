@@ -42,6 +42,7 @@ public final class TaskPanel {
             String key=selected+"@"+model.taskRevision()+":"+model.editing();
             if(!requested.equals(key)){JsonObject request=new JsonObject();request.addProperty("id",selected);model.task("detail",request);requested=key;}
         }
+        if(!selected.isEmpty())model.sync.selectQuest(selected);
         if(editor!=null&&!model.editing())editor=null;
     }
     private JsonObject detail(){return model.questDetails.get(selected);}
@@ -99,7 +100,7 @@ public final class TaskPanel {
         for(var reward:quest.getAsJsonArray("rewardItems")){var stack=model.decode(reward);QualityFrames.item(g,stack,left,y);text(g,"奖励："+stack.getHoverName().getString()+" ×"+stack.getCount(),left+23,y+5,RarityColors.color(model.rarity(stack)),right-23);y+=25;String properties=enchantments(stack,false);if(!properties.isEmpty()){text(g,properties,left,y,0xFFAFC3CE,right);y+=14;}int grade=cn.yumis.skyisland.shop.ItemEconomy.grade(stack);if(grade>0){text(g,"品质："+gradeName(grade),left,y,0xFFAFC3CE,right);y+=14;}}
         if(quest.get("rewardCoins").getAsLong()>0){text(g,"奖励："+Money.format(quest.get("rewardCoins").getAsLong()),left,y,0xFFFFDC78,right);y+=15;}
         if(quest.has("rewardExperiencePoints")&&quest.get("rewardExperiencePoints").getAsInt()>0){text(g,"奖励："+quest.get("rewardExperiencePoints").getAsInt()+"点原版经验",left,y,0xFF9DE5C7,right);y+=15;}
-        if(model.state.has("lottery")){var lottery=model.state.getAsJsonObject("lottery");if(lottery.has("taskTokenReward")){text(g,"奖励："+lottery.get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token()+(quest.has("kind")&&quest.get("kind").getAsString().equals("main")?"（全队每人）":""),left,y,0xFFB5B2FF,right);y+=15;}}
+        if(model.state.has("taskTokenReward")){var lottery=new JsonObject();lottery.add("taskTokenReward",model.state.get("taskTokenReward"));if(lottery.has("taskTokenReward")){text(g,"奖励："+lottery.get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token()+(quest.has("kind")&&quest.get("kind").getAsString().equals("main")?"（全队每人）":""),left,y,0xFFB5B2FF,right);y+=15;}}
         if(quest.has("rewardAccessoryDraws")&&quest.get("rewardAccessoryDraws").getAsInt()>0){text(g,"奖励：饰品抽奖 +"+quest.get("rewardAccessoryDraws").getAsInt(),left,y,0xFF7DDEA5,right);y+=15;}
         for(var feature:quest.getAsJsonArray("unlockFeatures")){text(g,"永久解锁："+featureName(feature.getAsString()),left,y,0xFF9DE5C7,right);y+=15;}
         text(g,statusLabel(status()),left,y+5,0xFFADB9C3,right);
@@ -164,7 +165,7 @@ public final class TaskPanel {
 
     public void renderBounties(GuiGraphicsExtractor g,int mx,int my,float delta){
         var data=data();if(!data.has("offers")){text(g,"请先 /is 创建或加入空岛",12,78,0xFFBBC6CE,parent.width-24);return;}
-        String tokenReward=model.state.has("lottery")?" · 每次另得"+model.state.getAsJsonObject("lottery").get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token():"";
+        String tokenReward=model.state.has("taskTokenReward")?" · 每次另得"+model.state.get("taskTokenReward").getAsInt()+cn.yumis.skyisland.core.LotteryNames.token():"";
         text(g,"悬赏格 "+data.get("slots").getAsInt()+"/"+data.get("maximumSlots").getAsInt()+" · 全队共享"+tokenReward,12,68,0xFF9DE5C7,parent.width-24);
         button(g,data.get("slots").getAsInt()>=data.get("maximumSlots").getAsInt()?"格数已满":"购格 "+Money.format(data.get("slotCost").getAsLong()),12,84,Math.min(230,parent.width-24),data.get("slots").getAsInt()<data.get("maximumSlots").getAsInt());
         var offers=data.getAsJsonArray("offers");int visible=Math.max(1,(parent.height-146)/55);bountyScroll=Math.clamp(bountyScroll,0,Math.max(0,offers.size()-visible));

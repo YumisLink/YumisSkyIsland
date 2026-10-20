@@ -42,7 +42,7 @@ public final class VeinMiningService {
     public void setLimit(ServerPlayer player,int requested){
         VeinMiningRules.checkedLimit(requested);
         if(!runtime.store.available())throw new IllegalStateException("数据正在保存，请稍后重试");
-        runtime.tryChange(player,state->PartyService.person(state,player).veinMiningLimit=requested,()->{
+        runtime.tryChange(player, SyncImpact.person(player.getUUID(),"settings"),state->PartyService.person(state,player).veinMiningLimit=requested,()->{
             lastPreview.remove(player.getUUID());sendPreview(player,List.of());runtime.send(player,"vein_settings_saved",settings(player));
         },error->{JsonObject data=new JsonObject();data.addProperty("action","vein_limit");data.addProperty("message","连锁设置保存失败，请稍后重试");runtime.send(player,"request_error",data);});
     }

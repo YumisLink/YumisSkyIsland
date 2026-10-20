@@ -3,7 +3,6 @@ package cn.yumis.skyisland.client;
 import cn.yumis.skyisland.core.FoodHealthRules;
 import cn.yumis.skyisland.core.FruitText;
 import com.google.gson.JsonObject;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.Font;
@@ -64,7 +63,7 @@ public final class PermanentBuffPanel {
             String id = entry.getKey();
             int count = entry.getValue().getAsInt();
             double granted = health != null && health.has(id) ? health.get(id).getAsDouble() : 0;
-            lines.add(name(id) + "  已吃 " + count + "  距下一组 " + FoodHealthRules.untilNext(count) + "  已获得 " + number(granted));
+            lines.add(name(id) + "  已吃 " + count + "  " + FoodHealthRules.number(FoodHealthRules.stacks(count)) + "层  已获得 " + number(granted));
         }
         return lines;
     }
@@ -79,6 +78,6 @@ public final class PermanentBuffPanel {
 
     private static String number(double value) {
         if (!Double.isFinite(value)) return "0";
-        return BigDecimal.valueOf(value).stripTrailingZeros().toPlainString();
+        return FoodHealthRules.number(value);
     }
 }

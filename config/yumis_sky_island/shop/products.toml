@@ -229,6 +229,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:ingredients"
 shopRule = "基础矿物／粉末例外"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 7777
 
 [products."minecraft:amethyst_shard".canonicalStack]
 itemId = "minecraft:amethyst_shard"
@@ -755,6 +756,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:food_and_drinks"
 shopRule = "无种子的原始食材"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 20000
 
 [products."minecraft:beef".canonicalStack]
 itemId = "minecraft:beef"
@@ -2236,6 +2238,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:food_and_drinks"
 shopRule = "无种子的原始食材"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 800
 
 [products."minecraft:chicken".canonicalStack]
 itemId = "minecraft:chicken"
@@ -2614,6 +2617,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:natural_blocks"
 shopRule = "基础原料／无法制作的剩余物资"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 888
 
 [products."minecraft:cobweb".canonicalStack]
 itemId = "minecraft:cobweb"
@@ -2993,6 +2997,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:ingredients"
 shopRule = "基础矿物／粉末例外"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 100
 
 [products."minecraft:copper_ingot".canonicalStack]
 itemId = "minecraft:copper_ingot"
@@ -3925,6 +3930,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:ingredients"
 shopRule = "基础矿物／粉末例外"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 5000
 
 [products."minecraft:emerald".canonicalStack]
 itemId = "minecraft:emerald"
@@ -4973,6 +4979,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:ingredients"
 shopRule = "基础矿物／粉末例外"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 1120
 
 [products."minecraft:gold_ingot".canonicalStack]
 itemId = "minecraft:gold_ingot"
@@ -5991,6 +5998,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:ingredients"
 shopRule = "基础矿物／粉末例外"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 500
 
 [products."minecraft:iron_ingot".canonicalStack]
 itemId = "minecraft:iron_ingot"
@@ -7154,6 +7162,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:food_and_drinks"
 shopRule = "无种子的原始食材"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 20000
 
 [products."minecraft:mutton".canonicalStack]
 itemId = "minecraft:mutton"
@@ -8728,6 +8737,7 @@ buyMultiplierBps = 1000000
 shopCategory = "minecraft:food_and_drinks"
 shopRule = "首种购买为旧价1000倍，回收独立"
 firstAcquisitionPremium = true
+buyBaseValueCoins = 325
 
 [products."minecraft:potato".canonicalStack]
 itemId = "minecraft:potato"
@@ -9135,6 +9145,7 @@ buyMultiplierBps = 10000
 shopCategory = "minecraft:food_and_drinks"
 shopRule = "无种子的原始食材"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 108601
 
 [products."minecraft:rabbit".canonicalStack]
 itemId = "minecraft:rabbit"
@@ -10914,6 +10925,7 @@ buyMultiplierBps = 1000000
 shopCategory = "minecraft:ingredients"
 shopRule = "怪物掉落优先，仅特殊商店100倍新基础价购买"
 firstAcquisitionPremium = false
+buyBaseValueCoins = 10
 
 [products."minecraft:string".canonicalStack]
 itemId = "minecraft:string"
@@ -10972,6 +10984,7 @@ buyMultiplierBps = 1000000
 shopCategory = "minecraft:natural_blocks"
 shopRule = "首种购买为旧价1000倍，回收独立"
 firstAcquisitionPremium = true
+buyBaseValueCoins = 1000
 
 [products."minecraft:sugar_cane".canonicalStack]
 itemId = "minecraft:sugar_cane"
@@ -11251,10 +11264,10 @@ itemId = "minecraft:trial_key"
 [products."minecraft:tripwire_hook"]
 productId = "minecraft:tripwire_hook"
 name = "绊线钩"
-categoryHint = "红石方块"
-baseValueCoins = 525
-tradeMode = "buy_sell"
-acquisitionNote = "绊线钩加入商店；沿用配方估值"
+categoryHint = "管理员新增"
+baseValueCoins = 5250
+tradeMode = "sell_only"
+acquisitionNote = "管理员从控制面板新增"
 dailyStock = 64
 offerWeight = 1
 priceOrigin = "administrator"
@@ -11263,9 +11276,9 @@ legacyTradeMode = "buy_sell"
 legacyRarity = "common"
 buyMultiplierBps = 10000
 shopCategory = "minecraft:redstone_blocks"
-shopRule = "管理员加入的常驻商品"
+shopRule = "管理员新增商品"
 firstAcquisitionPremium = false
-buyBaseValueCoins = 525
+buyBaseValueCoins = 5250
 
 [products."minecraft:tripwire_hook".canonicalStack]
 itemId = "minecraft:tripwire_hook"
@@ -23806,7 +23819,7 @@ itemId = "yumis_sky_island:biome_ball_wooded_badlands"
 productId = "yumis_sky_island:sky_carp"
 name = "空岛鲤鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 600
+baseValueCoins = 5000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23827,7 +23840,7 @@ itemId = "yumis_sky_island:sky_carp"
 productId = "yumis_sky_island:lava_eel"
 name = "熔岩鳗鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 3000
+baseValueCoins = 12000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23848,7 +23861,7 @@ itemId = "yumis_sky_island:lava_eel"
 productId = "yumis_sky_island:void_fish"
 name = "虚空鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 12000
+baseValueCoins = 20000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23869,7 +23882,7 @@ itemId = "yumis_sky_island:void_fish"
 productId = "yumis_sky_island:frost_trout"
 name = "霜鳟"
 categoryHint = "钓鱼产物"
-baseValueCoins = 800
+baseValueCoins = 7000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23890,7 +23903,7 @@ itemId = "yumis_sky_island:frost_trout"
 productId = "yumis_sky_island:desert_lungfish"
 name = "沙漠肺鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 800
+baseValueCoins = 7000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -23911,7 +23924,7 @@ itemId = "yumis_sky_island:desert_lungfish"
 productId = "yumis_sky_island:mushroom_fish"
 name = "蘑菇鱼"
 categoryHint = "钓鱼产物"
-baseValueCoins = 1100
+baseValueCoins = 9000
 tradeMode = "sell_only"
 dailyStock = 1
 offerWeight = 1
@@ -24381,9 +24394,269 @@ itemId = "yumis_sky_island:sky_fruit"
 
 [products."yumis_sky_island:sky_fruit".canonicalStack.componentPatch]
 
+[products."minecraft:saddle"]
+dailyStock = 64
+acquisitionNote = "管理员从控制面板新增"
+productId = "minecraft:saddle"
+baseValueCoins = 100
+categoryHint = "管理员新增"
+buyMultiplierBps = 10000
+priceOrigin = "administrator"
+shopCategory = "minecraft:tools_and_utilities"
+offerWeight = 1
+name = "鞍"
+shopRule = "管理员新增商品"
+firstAcquisitionPremium = false
+buyBaseValueCoins = 100
+tradeMode = "sell_only"
+
+[products."minecraft:saddle".canonicalStack]
+itemId = "minecraft:saddle"
+
+[products."minecraft:saddle".canonicalStack.componentPatch]
 # 物品管理的最终经济定义，表键为商品ID；优先于原商品、等级、稀有度和旧购价覆盖。
 # 每条记录保存 baseValueCoins（收购估值）、buyBaseValueCoins（购入基价，特殊弹药为固定金额）、
 # tradeMode（buy_sell/buy_only/sell_only）、tradeEnabled（交易启停）、rarity、unlockLevel、dailyStock（-1不限）；
 # 已验收外置建筑图纸另存 buildFee（后续开工成品费）。停用不移除估值或奖池定义，库存下轮04:00采用。
 # 原始商品与资产作为底值；手改已管理商品请修改本表，缺省 tradeEnabled 为 true。
 [productOverrides]
+
+# 永久区块刷怪球：每日／隐藏供货；每种全队库存1；等级只限制购买，使用不受等级限制。
+
+[products."yumis_sky_island:spawn_ball_zombie"]
+productId = "yumis_sky_island:spawn_ball_zombie"
+name = "僵尸刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 200000
+buyBaseValueCoins = 200000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_zombie".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_zombie"
+
+[products."yumis_sky_island:spawn_ball_zombie".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_skeleton"]
+productId = "yumis_sky_island:spawn_ball_skeleton"
+name = "骷髅刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 200000
+buyBaseValueCoins = 200000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_skeleton".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_skeleton"
+
+[products."yumis_sky_island:spawn_ball_skeleton".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_spider"]
+productId = "yumis_sky_island:spawn_ball_spider"
+name = "蜘蛛刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 200000
+buyBaseValueCoins = 200000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_spider".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_spider"
+
+[products."yumis_sky_island:spawn_ball_spider".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_creeper"]
+productId = "yumis_sky_island:spawn_ball_creeper"
+name = "爬行者刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 300000
+buyBaseValueCoins = 300000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_creeper".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_creeper"
+
+[products."yumis_sky_island:spawn_ball_creeper".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_cave_spider"]
+productId = "yumis_sky_island:spawn_ball_cave_spider"
+name = "洞穴蜘蛛刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 300000
+buyBaseValueCoins = 300000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_cave_spider".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_cave_spider"
+
+[products."yumis_sky_island:spawn_ball_cave_spider".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_slime"]
+productId = "yumis_sky_island:spawn_ball_slime"
+name = "史莱姆刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 500000
+buyBaseValueCoins = 500000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_slime".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_slime"
+
+[products."yumis_sky_island:spawn_ball_slime".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_drowned"]
+productId = "yumis_sky_island:spawn_ball_drowned"
+name = "溺尸刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 500000
+buyBaseValueCoins = 500000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_drowned".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_drowned"
+
+[products."yumis_sky_island:spawn_ball_drowned".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_magma_cube"]
+productId = "yumis_sky_island:spawn_ball_magma_cube"
+name = "岩浆怪刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 500000
+buyBaseValueCoins = 500000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_magma_cube".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_magma_cube"
+
+[products."yumis_sky_island:spawn_ball_magma_cube".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_zombified_piglin"]
+productId = "yumis_sky_island:spawn_ball_zombified_piglin"
+name = "僵尸猪灵刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 800000
+buyBaseValueCoins = 800000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_zombified_piglin".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_zombified_piglin"
+
+[products."yumis_sky_island:spawn_ball_zombified_piglin".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_enderman"]
+productId = "yumis_sky_island:spawn_ball_enderman"
+name = "末影人刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 800000
+buyBaseValueCoins = 800000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_enderman".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_enderman"
+
+[products."yumis_sky_island:spawn_ball_enderman".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_blaze"]
+productId = "yumis_sky_island:spawn_ball_blaze"
+name = "烈焰人刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 1000000
+buyBaseValueCoins = 1000000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_blaze".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_blaze"
+
+[products."yumis_sky_island:spawn_ball_blaze".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_witch"]
+productId = "yumis_sky_island:spawn_ball_witch"
+name = "女巫刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 1000000
+buyBaseValueCoins = 1000000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_witch".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_witch"
+
+[products."yumis_sky_island:spawn_ball_witch".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_guardian"]
+productId = "yumis_sky_island:spawn_ball_guardian"
+name = "守护者刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 1500000
+buyBaseValueCoins = 1500000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_guardian".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_guardian"
+
+[products."yumis_sky_island:spawn_ball_guardian".canonicalStack.componentPatch]
+
+[products."yumis_sky_island:spawn_ball_wither_skeleton"]
+productId = "yumis_sky_island:spawn_ball_wither_skeleton"
+name = "凋零骷髅刷怪球"
+categoryHint = "刷怪球"
+shopCategory = "minecraft:spawn_eggs"
+baseValueCoins = 3000000
+buyBaseValueCoins = 3000000
+buyMultiplierBps = 10000
+tradeMode = "buy_only"
+dailyStock = 1
+offerWeight = 1
+
+[products."yumis_sky_island:spawn_ball_wither_skeleton".canonicalStack]
+itemId = "yumis_sky_island:spawn_ball_wither_skeleton"
+
+[products."yumis_sky_island:spawn_ball_wither_skeleton".canonicalStack.componentPatch]

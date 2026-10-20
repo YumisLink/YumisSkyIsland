@@ -1,5 +1,6 @@
 package cn.yumis.skyisland.item;
 
+import cn.yumis.skyisland.server.SyncImpact;
 import cn.yumis.skyisland.YumisSkyIsland;
 import cn.yumis.skyisland.data.IslandState;
 import cn.yumis.skyisland.server.Protection;
@@ -38,6 +39,7 @@ public final class ModItems {
     public static Item BIOME_TREASURE_BOX;
     public static Item WARDEN_TREASURE_BAG;
     public static final Map<String, Item> BIOME_BALLS = new LinkedHashMap<>();
+    public static final Map<String, Item> SPAWN_BALLS = new LinkedHashMap<>();
     public static final Map<String, Item> FRUITS = new LinkedHashMap<>();
     public static final Map<String, Item> ACCESSORY_ICONS = new LinkedHashMap<>();
     public static final Map<String, Item> FISH = new LinkedHashMap<>();
@@ -54,6 +56,8 @@ public final class ModItems {
             @Override public net.minecraft.network.chat.Component getName(ItemStack stack){return net.minecraft.network.chat.Component.literal(cn.yumis.skyisland.core.LotteryNames.ticket());}
         });
         FLIGHT_TICKET = register("flight_ticket", new FlightTicket(properties("flight_ticket").stacksTo(4)));
+        for (var kind : cn.yumis.skyisland.server.SpawnBallService.KINDS)
+            SPAWN_BALLS.put(kind.id(), register("spawn_ball_" + kind.id(), new SpawnBall(kind, properties("spawn_ball_" + kind.id()).stacksTo(16))));
         for (String profession : PROFESSIONS) FRUITS.put(profession, register("fruit_" + profession, new Fruit(profession, properties("fruit_" + profession).stacksTo(64))));
         // Preserve legacy IDs in old inventories, but never offer or consume their fruit.
         for(String legacy:List.of("stonemason","artisan"))register("fruit_"+legacy,new Item(properties("fruit_"+legacy).stacksTo(64)));
@@ -114,7 +118,7 @@ public final class ModItems {
             JsonArray inventory = runtime.economy.capture(player.getInventory());
             ItemStack remaining = hand.copy(); remaining.shrink(1);
             inventory.set(slot, runtime.economy.encode(remaining));
-            runtime.trades.commitInventory(player, inventory, edit, after);
+            runtime.trades.commitInventory(player, item instanceof Fruit?SyncImpact.person(player.getUUID(),"buffs","profession","settings"):SyncImpact.none(), inventory, edit, after);
         } catch(IllegalArgumentException|IllegalStateException|ArithmeticException error) {SkyServer.tell(player,error.getMessage());}
     }
     private static final class FlightTicket extends Item {
@@ -133,6 +137,21 @@ public final class ModItems {
                 SkyServer.tell(player, "飞行时间增加10分钟");
             });
             return InteractionResult.SUCCESS;
+        }
+    }
+    private static final class SpawnBall extends Item {
+        private final cn.yumis.skyisland.server.SpawnBallService.Kind kind;
+        SpawnBall(cn.yumis.skyisland.server.SpawnBallService.Kind kind, Properties properties) { super(properties); this.kind = kind; }
+        @Override public InteractionResult use(Level level, net.minecraft.world.entity.player.Player user, InteractionHand hand) {
+            if (level.isClientSide()) return InteractionResult.SUCCESS;
+            if (!(user instanceof ServerPlayer player) || !(level instanceof ServerLevel world)) return InteractionResult.FAIL;
+            var runtime = SkyServer.get(world.getServer());
+            if (runtime == null) { SkyServer.tell(player, "刷怪球仅限本队空岛维度使用"); return InteractionResult.FAIL; }
+            try { runtime.spawnBalls.use(player, hand, kind); return InteractionResult.SUCCESS; }
+            catch (IllegalArgumentException | IllegalStateException | ArithmeticException error) { SkyServer.tell(player, error.getMessage()); return InteractionResult.FAIL; }
+        }
+        @Override public InteractionResult useOn(UseOnContext context) {
+            return context.getPlayer() == null ? InteractionResult.PASS : use(context.getLevel(), context.getPlayer(), context.getHand());
         }
     }
     private static final class BiomeBall extends Item {

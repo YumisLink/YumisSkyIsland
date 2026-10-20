@@ -199,5 +199,20 @@
   "item.yumis_sky_island.accessory_extender_grip": "延长抓钩",
   "item.yumis_sky_island.accessory_excavator": "挖掘器",
   "item.yumis_sky_island.accessory_portable_cement_mixer": "便携式水泥搅拌器",
-  "item.yumis_sky_island.accessory_architect_backpack": "建筑师发明背包"
+  "item.yumis_sky_island.accessory_architect_backpack": "建筑师发明背包",
+  "item.yumis_sky_island.spawn_ball_zombie": "僵尸刷怪球",
+  "item.yumis_sky_island.spawn_ball_skeleton": "骷髅刷怪球",
+  "item.yumis_sky_island.spawn_ball_spider": "蜘蛛刷怪球",
+  "item.yumis_sky_island.spawn_ball_creeper": "爬行者刷怪球",
+  "item.yumis_sky_island.spawn_ball_cave_spider": "洞穴蜘蛛刷怪球",
+  "item.yumis_sky_island.spawn_ball_slime": "史莱姆刷怪球",
+  "item.yumis_sky_island.spawn_ball_drowned": "溺尸刷怪球",
+  "item.yumis_sky_island.spawn_ball_magma_cube": "岩浆怪刷怪球",
+  "item.yumis_sky_island.spawn_ball_zombified_piglin": "僵尸猪灵刷怪球",
+  "item.yumis_sky_island.spawn_ball_enderman": "末影人刷怪球",
+  "item.yumis_sky_island.spawn_ball_blaze": "烈焰人刷怪球",
+  "item.yumis_sky_island.spawn_ball_witch": "女巫刷怪球",
+  "item.yumis_sky_island.spawn_ball_guardian": "守护者刷怪球",
+  "item.yumis_sky_island.spawn_ball_wither_skeleton": "凋零骷髅刷怪球",
+  "key.yumis_sky_island.auto_trash": "自动垃圾桶（Ctrl＋主键）"
 }

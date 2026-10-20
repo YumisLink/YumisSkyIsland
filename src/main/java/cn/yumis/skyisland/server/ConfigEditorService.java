@@ -18,6 +18,18 @@ public final class ConfigEditorService {
     private final Map<String,Long> revisions=new HashMap<>();
     private final ItemManagementService items;
     public ConfigEditorService(SkyServer rt){this.rt=rt;items=new ItemManagementService(rt);}
+    private JsonObject captured;
+    private boolean capturing;
+    public String viewDependency(String key){
+        String[] parts=key.split(":",3);if(parts.length!=3)return "editorProducts";
+        if(!parts[1].equals("open"))return "editorProducts";
+        var body=JsonParser.parseString(parts[2]).getAsJsonObject();var g=group(body.has("group")?body.get("group").getAsString():"economy");return "editorFile:"+g.file();
+    }
+    public JsonObject view(ServerPlayer player,String key){
+        String[] parts=key.split(":",3);if(parts.length!=3||!Set.of("open","price_open","item_open","product_open").contains(parts[1]))throw new IllegalArgumentException("无效编辑查询");
+        capturing=true;captured=null;try{request(player,new ConfigEditPayloads.Request(parts[1],parts[2]));if(captured==null)throw new IllegalArgumentException("未返回编辑数据");if(captured.get("kind").getAsString().equals("error"))throw new IllegalArgumentException(captured.get("message").getAsString());return captured;}finally{capturing=false;captured=null;}
+    }
+    public void emit(ServerPlayer player,JsonObject data){if(capturing){captured=data;return;}if(ServerPlayNetworking.canSend(player,ConfigEditPayloads.Snapshot.TYPE))ServerPlayNetworking.send(player,new ConfigEditPayloads.Snapshot(data.toString()));}
     public void request(ServerPlayer player,ConfigEditPayloads.Request request){
         try {
             rt.editors.require(player);
@@ -52,6 +64,7 @@ public final class ConfigEditorService {
     }
     private void saveGroup(ServerPlayer player,JsonObject body)throws IOException {
         var group=group(body.get("group").getAsString());requireCurrent(body,group.file());
+        if(group.id().equals("profession_sales"))rt.config.requireDiskCurrent("products/goods.toml",rt.config.loadedDigest("products/goods.toml"));
         JsonObject next=LiveConfigSchema.patch(group,rt.config.object(group.file()),body.getAsJsonObject("changes"));
         rt.config.saveChecked(group.file(),next,body.get("digest").getAsString());
         revisions.merge(group.file(),1L,Math::addExact);
@@ -224,5 +237,5 @@ public final class ConfigEditorService {
         else table.addProperty(id,value);
         return true;
     }
-    private void send(ServerPlayer player,JsonObject data){if(ServerPlayNetworking.canSend(player,ConfigEditPayloads.Snapshot.TYPE))ServerPlayNetworking.send(player,new ConfigEditPayloads.Snapshot(data.toString()));}
+    private void send(ServerPlayer player,JsonObject data){emit(player,data);}
 }

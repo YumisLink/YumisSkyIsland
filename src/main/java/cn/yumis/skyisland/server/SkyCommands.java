@@ -51,10 +51,23 @@ public final class SkyCommands {
             if (rt == null) { c.getSource().sendFailure(Component.literal("当前不是 Yumi 空岛世界")); return 0; }
             try {
                 var party = rt.parties.requireMember(target);
-                rt.change(c.getSource().getPlayer(),s -> s.parties.get(party.id).coins = amount,() -> c.getSource().sendSuccess(() -> Component.literal("共享"+Money.currencyName()+"已设置为 " + Money.format(amount)),true));
+                rt.change(c.getSource().getPlayer(), SyncImpact.none(),s -> s.parties.get(party.id).coins = amount,() -> c.getSource().sendSuccess(() -> Component.literal("共享"+Money.currencyName()+"已设置为 " + Money.format(amount)),true));
                 return 1;
             } catch (IllegalArgumentException e) { c.getSource().sendFailure(Component.literal(e.getMessage())); return 0; }
         })))));
+        // Brigadier's unquoted word argument excludes Chinese; literal aliases accept both forms and complete natively.
+        var professionPlayer = argument("player", EntityArgument.player());
+        for (String profession : ProfessionService.ALL_PROFESSIONS) {
+            for (String alias : List.of(profession, ProfessionService.name(profession))) {
+                professionPlayer.then(literal(alias).then(argument("amount", StringArgumentType.word()).executes(c -> {
+                    ServerPlayer recipient = EntityArgument.getPlayer(c, "player");
+                    return admin(c, (rt, source) -> rt.professions.grantExperience(source, recipient, profession,
+                        ProfessionService.positiveExperience(StringArgumentType.getString(c, "amount"))));
+                })));
+            }
+        }
+        island.then(literal("admin").requires(hasPermission(LEVEL_GAMEMASTERS))
+            .then(literal("profession").then(literal("xp").then(literal("add").then(professionPlayer)))));
         island.then(literal("admin").requires(hasPermission(LEVEL_GAMEMASTERS))
             .then(literal("edit")
                 .then(literal("on").executes(c -> run(c,(rt,p) -> rt.questEditor.setMode(p,true))))
@@ -63,7 +76,7 @@ public final class SkyCommands {
             .then(literal("accessory").then(literal("draws").then(argument("player",EntityArgument.player()).then(argument("count",IntegerArgumentType.integer(1)).executes(c->{
                 ServerPlayer recipient=EntityArgument.getPlayer(c,"player");int count=IntegerArgumentType.getInteger(c,"count");
                 return admin(c,(rt,source)->{
-                    if(!rt.tryChange(source.getPlayer(),state->{
+                    if(!rt.tryChange(source.getPlayer(), SyncImpact.person(recipient.getUUID(),"lottery"),state->{
                         var person=state.players.computeIfAbsent(recipient.getUUID(),id->new cn.yumis.skyisland.data.IslandState.Person());
                         person.name=recipient.getGameProfile().name();person.pendingAccessoryDraws=Math.addExact(person.pendingAccessoryDraws,count);
                     },()->source.sendSuccess(()->Component.literal("已为 "+recipient.getGameProfile().name()+" 增加 "+count+" 次饰品抽奖"),true),error->source.sendFailure(Component.literal("保存失败，次数未开放使用"))))
@@ -72,6 +85,10 @@ public final class SkyCommands {
             })))))
             .then(literal("nextday").executes(c->admin(c,(rt,source)->{AdminTimeService.nextDay(rt);source.sendSuccess(()->Component.literal("已快进到下一次每日刷新时刻；悬赏剩余时间保持"),true);})))
             .then(literal("bloodmoon").then(literal("tonight").executes(c->admin(c,(rt,source)->rt.bloodMoon.forceTonight(source.getPlayer(),()->source.sendSuccess(()->Component.literal("今晚血月已开启"),true)))))));
+        island.then(literal("spawnball")
+            .executes(c -> run(c, (rt,p) -> rt.spawnBalls.info(p)))
+            .then(literal("info").executes(c -> run(c, (rt,p) -> rt.spawnBalls.info(p))))
+            .then(literal("clear").executes(c -> run(c, (rt,p) -> rt.spawnBalls.clear(p)))));
         d.register(island);
         d.register(literal("refresh").executes(c -> run(c,(rt,p) -> rt.refresh.request(p))));
         d.register(literal("shop").executes(c -> run(c,(rt,p) -> rt.openShop(p))));

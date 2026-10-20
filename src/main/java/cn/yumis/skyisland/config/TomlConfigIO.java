@@ -265,6 +265,9 @@ public final class TomlConfigIO {
             case "message" -> "跨档文案；支持{block}、{threshold}、{nextPoints}、{nextMultiplier}";
             case "successfulFishingXp" -> "每次真实成功获钓的渔夫经验；默认12，空收杆与钩实体不计";
             case "experienceMultipliers" -> "各职业经验效率倍率；0～1000，最多4位小数，1保持原速，0停止经验与积分；与地区及居民效果相乘，小数余数持久保存";
+            case "saleMultipliers" -> "各副职业出售价格倍率；0～1000，最多4位小数，默认1，0使报价为0；叠加统一出售星级、行情、附魔、耐久、居民和额度，只改变后续出售";
+            case "saleItemProfessions" -> "按物品ID补充职业归属；优先于采集／制造目录，不读取职业来源标记，每件只用一个职业倍率；本表手改重启";
+            case "saleQualityMultipliers" -> "统一出售星级倍率；普通／铜／银／金／钻／七彩直接相对无星估值，0～10000，最多4位小数；不叠加旧品质价值倍率或作物专用倍率，购买与品质属性保留";
             case "lavaFishingXpMultiplier" -> "岩浆获钓经验倍率；非负整数，乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘";
             case "voidFishingXpMultiplier" -> "虚空获钓经验倍率；非负整数，乘在这一杆实际渔夫经验上，地区宝藏箱的固定12同样乘";
             case "requirements" -> "需求列表；附魔与品质至少达到指定值，未指定属性不限制";

@@ -110,9 +110,9 @@ public final class ItemManagementService {
         if(active==null){
             var buy=ItemEconomy.fullValue(p.buyBaseCoins(),10000,c.stack(),rt.config.object("products/quality.toml"),rt.config.object("shop/enchantments.toml"),rt.config.minimumBaseCoins).multiply(Rational.of(p.buyMultiplierBps(),10000));
             special=c.stack().is(PrefabItems.AMMUNITION)?p.buyBaseCoins():buy.floorLongExact();permanent=c.stack().is(PrefabItems.AMMUNITION)?p.buyBaseCoins():buy.multiply(Rational.of(p.id().startsWith("yumis_sky_island:biome_ball_")?10000:rt.config.regularBuyMultiplierBps,10000)).floorLongExact();
-            normal=ItemEconomy.fullValue(p.baseCoins(),10000,c.stack(),rt.config.object("products/quality.toml"),rt.config.object("shop/enchantments.toml"),rt.config.minimumBaseCoins).divide(Rational.of(rt.config.saleDivisor));
-        }else{permanent=c.stack().is(PrefabItems.AMMUNITION)?p.buyBaseCoins():rt.economy.buyPrice(entry,party,!p.id().startsWith("yumis_sky_island:biome_ball_"));special=c.stack().is(PrefabItems.AMMUNITION)?p.buyBaseCoins():rt.economy.buyPrice(entry,party,false);normal=rt.economy.full(entry,c.stack()).divide(Rational.of(rt.config.saleDivisor));}
-        String item=BuiltInRegistries.ITEM.getKey(c.stack().getItem()).toString();normal=normal.multiply(rt.config.cropSales.multiplier(item,0)).multiply(Rational.of(active==null?10000:rt.residents.saleBps(active,item),10000));
+            normal=ItemEconomy.saleBaseValue(p.baseCoins(),10000,c.stack(),rt.config.object("shop/enchantments.toml"),rt.config.minimumBaseCoins).divide(Rational.of(rt.config.saleDivisor));
+        }else{permanent=c.stack().is(PrefabItems.AMMUNITION)?p.buyBaseCoins():rt.economy.buyPrice(entry,party,!p.id().startsWith("yumis_sky_island:biome_ball_"));special=c.stack().is(PrefabItems.AMMUNITION)?p.buyBaseCoins():rt.economy.buyPrice(entry,party,false);normal=ItemEconomy.saleBaseValue(p.baseCoins(),rt.economy.marketBps(p.id()),c.stack(),rt.config.object("shop/enchantments.toml"),rt.config.minimumBaseCoins).divide(Rational.of(rt.config.saleDivisor));}
+        String item=BuiltInRegistries.ITEM.getKey(c.stack().getItem()).toString();normal=normal.multiply(rt.config.professionSales.qualityMultiplier(ItemEconomy.grade(c.stack()))).multiply(rt.config.professionSales.multiplier(item)).multiply(Rational.of(active==null?10000:rt.residents.saleBps(active,item),10000));
         Rational used=active==null?Rational.ZERO:Rational.parse(active.quota.getOrDefault(item,"0"));
         out.addProperty("permanentPrice",permanent);out.addProperty("specialPrice",special);out.addProperty("normalSale",normal.toString());out.addProperty("currentSale",rt.config.quotaCurve.quote(used,1,Rational.ONE,normal).floorLongExact());
         out.addProperty("previewContext",active==null?"中性行情，无队伍加成":"当前队伍行情、居民效果与已用额度");
@@ -142,5 +142,5 @@ public final class ItemManagementService {
         if(value.isJsonArray()){var out=new JsonArray();for(var item:value.getAsJsonArray())out.add(sorted(item));return out;}return value;
     }
     private static String text(JsonObject object,String key){return object.has(key)?object.get(key).getAsString():"";}
-    private static void send(ServerPlayer player,JsonObject out){if(ServerPlayNetworking.canSend(player,ConfigEditPayloads.Snapshot.TYPE))ServerPlayNetworking.send(player,new ConfigEditPayloads.Snapshot(out.toString()));}
+    private void send(ServerPlayer player,JsonObject out){rt.configEditor.emit(player,out);}
 }
