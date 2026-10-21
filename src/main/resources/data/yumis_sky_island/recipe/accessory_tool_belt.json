@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "LLL",
+    "ISI",
+    " L "
+  ],
+  "key": {
+    "L": "minecraft:leather",
+    "I": "minecraft:iron_ingot",
+    "S": "minecraft:string"
+  },
+  "result": {
+    "id": "yumis_sky_island:accessory_tool_belt",
+    "count": 1
+  }
+}

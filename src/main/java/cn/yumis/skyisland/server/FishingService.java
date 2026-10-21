@@ -264,8 +264,16 @@ public final class FishingService {
     private static void addSoul(List<Drop> pool){pool.add(drop(Items.SOUL_SAND,24));pool.add(drop(Items.SOUL_SOIL,20));pool.add(drop(Items.BONE,14));pool.add(drop(Items.GHAST_TEAR,6));}
     private static Drop drop(Item item,int weight){return new Drop(BuiltInRegistries.ITEM.getKey(item).toString(),item,weight,false);}
     public static boolean validLava(ServerLevel level,BlockPos pos){
-        for(int dx=-2;dx<=2;dx++)for(int dz=-2;dz<=2;dz++){
-            BlockPos at=pos.offset(dx,0,dz);
+        var fluid=level.getFluidState(pos);
+        if(!fluid.is(FluidTags.LAVA)||!fluid.isSource()||!level.getBlockState(pos.above()).isAir())return false;
+        // Any 5x5 source surface containing the hook qualifies, including its edges and corners.
+        for(int dx=-4;dx<=0;dx++)for(int dz=-4;dz<=0;dz++)
+            if(validLavaArea(level,pos.offset(dx,0,dz)))return true;
+        return false;
+    }
+    private static boolean validLavaArea(ServerLevel level,BlockPos corner){
+        for(int dx=0;dx<5;dx++)for(int dz=0;dz<5;dz++){
+            BlockPos at=corner.offset(dx,0,dz);
             var fluid=level.getFluidState(at);
             if(!fluid.is(FluidTags.LAVA)||!fluid.isSource()||!level.getBlockState(at.above()).isAir())return false;
         }

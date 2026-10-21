@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "BIB",
+    "CSC",
+    " S "
+  ],
+  "key": {
+    "B": "minecraft:iron_block",
+    "I": "minecraft:iron_ingot",
+    "C": "minecraft:iron_chain",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "yumis_sky_island:accessory_chain_hammer",
+    "count": 1
+  }
+}
