@@ -3,6 +3,7 @@ package cn.yumis.skyisland.client;
 import cn.yumis.skyisland.core.FruitText;
 import cn.yumis.skyisland.item.ModItems;
 import cn.yumis.skyisland.network.ShopPayloads;
+import cn.yumis.skyisland.server.AccessoryService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.math.BigDecimal;
@@ -167,11 +168,12 @@ public final class ProfessionScreen extends Screen {
     private int fishingBottom(){return height-(model.lastError.isBlank()?32:52);}
     private int fishingStatsHeight(){return 40+fishingLines().size()*13;}
     private boolean compactBait(){return width<520;}
-    private int baitHeight(){return compactBait()?88:65;}
+    private List<FormattedCharSequence> baitDescription(String id){return font.split(Component.literal(AccessoryService.CATALOG.get(id).effect()),Math.max(40,width-87));}
+    private int baitHeight(String id){return 77+baitDescription(id).size()*13;}
     private int baitButtonX(){return compactBait()?28:Math.max(20,width-235);}
     private int baitButtonWidth(){return compactBait()?width-56:215;}
-    private int baitButtonY(int y){return y+(compactBait()?54:24);}
-    private int maximumFishingScroll(){return Math.max(0,fishingStatsHeight()+2*baitHeight()+24-(fishingBottom()-FISHING_TOP));}
+    private int baitButtonY(int y,String id){return y+baitHeight(id)-34;}
+    private int maximumFishingScroll(){return Math.max(0,fishingStatsHeight()+baitHeight("lava_bait")+baitHeight("void_bait")+24-(fishingBottom()-FISHING_TOP));}
     private int firstBaitY(){return FISHING_TOP-fishingScroll+fishingStatsHeight()+12;}
     private void fishing(GuiGraphicsExtractor g,int mx,int my){
         int maximum=maximumFishingScroll();
@@ -185,8 +187,8 @@ public final class ProfessionScreen extends Screen {
         int lineY=y+31;
         for(var line:fishingLines()){g.text(font,line,28,lineY,0xFFCCDDE4,false);lineY+=13;}
         int baitY=firstBaitY();
-        bait(g,mx,my,baitY,"lava_bait","熔岩鱼饵","拥有后可在岩浆钓鱼",price("lavaBaitPrice"));
-        bait(g,mx,my,baitY+baitHeight()+12,"void_bait","虚空鱼饵","拥有后可在虚空钓鱼",price("voidBaitPrice"));
+        bait(g,mx,my,baitY,"lava_bait","熔岩鱼饵",price("lavaBaitPrice"));
+        bait(g,mx,my,baitY+baitHeight("lava_bait")+12,"void_bait","虚空鱼饵",price("voidBaitPrice"));
         g.disableScissor();
         if(maximum>0){
             int viewport=fishingBottom()-FISHING_TOP;
@@ -197,10 +199,12 @@ public final class ProfessionScreen extends Screen {
             g.text(font,"滚轮查看渔力来源和鱼饵",20,height-24,0xFFA7BEC0,false);
         }
     }
-    private void bait(GuiGraphicsExtractor g,int mx,int my,int y,String id,String name,String description,long price){
-        g.fill(19,y,width-19,y+baitHeight(),UiTheme.CARD);g.item(new ItemStack(Items.FISHING_ROD),30,y+15);
-        g.text(font,name,59,y+13,0xFFF0E8B0,false);g.text(font,description,59,y+32,0xFFC9D5DD,false);
-        int x=baitButtonX(),buttonY=baitButtonY(y),w=baitButtonWidth();
+    private void bait(GuiGraphicsExtractor g,int mx,int my,int y,String id,String name,long price){
+        g.fill(19,y,width-19,y+baitHeight(id),UiTheme.CARD);g.item(new ItemStack(Items.FISHING_ROD),30,y+15);
+        g.text(font,name,59,y+13,0xFFF0E8B0,false);
+        var lines=baitDescription(id);
+        for(int i=0;i<lines.size();i++)g.text(font,lines.get(i),59,y+32+i*13,0xFFC9D5DD,false);
+        int x=baitButtonX(),buttonY=baitButtonY(y,id),w=baitButtonWidth();
         button(g,unlocked(id)?"已永久解锁":"解锁 · "+price+" 职业积分",x,buttonY,w,unlocked(id),inside(mx,my,x,buttonY,w,25));
     }
     @Override public boolean mouseClicked(MouseButtonEvent e,boolean doubleClick){
@@ -221,8 +225,8 @@ public final class ProfessionScreen extends Screen {
         else if(e.button()==0 && tab==IDS.size()-1 && e.y()>=FISHING_TOP && e.y()<fishingBottom()){
             fishingScroll=Math.clamp(fishingScroll,0,maximumFishingScroll());
             int baitY=firstBaitY(),w=baitButtonWidth();
-            if(inside(e.x(),e.y(),baitButtonX(),baitButtonY(baitY),w,25) && !unlocked("lava_bait"))purchase("fisherman:lava_bait",1);
-            else if(inside(e.x(),e.y(),baitButtonX(),baitButtonY(baitY+baitHeight()+12),w,25) && !unlocked("void_bait"))purchase("fisherman:void_bait",1);
+            if(inside(e.x(),e.y(),baitButtonX(),baitButtonY(baitY,"lava_bait"),w,25) && !unlocked("lava_bait"))purchase("fisherman:lava_bait",1);
+            else if(inside(e.x(),e.y(),baitButtonX(),baitButtonY(baitY+baitHeight("lava_bait")+12,"void_bait"),w,25) && !unlocked("void_bait"))purchase("fisherman:void_bait",1);
             else return super.mouseClicked(e,doubleClick);
         }
         else return super.mouseClicked(e,doubleClick);

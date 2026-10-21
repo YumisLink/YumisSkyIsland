@@ -46,7 +46,7 @@ public final class AccessoryService {
         special("treasure_compass","寻宝罗盘","宝藏出现概率提高10%","compass",false);
         bonus("bobber","幸运浮标","渔力增加25","fishing_rod",ModAttributes.FISHING_POWER,25,AttributeModifier.Operation.ADD_VALUE);
         special("chain_hammer","连锁锤","连锁采集上限增加8","iron_pickaxe",false);
-        special("lava_bait","熔岩鱼饵","拥有后可以岩浆钓鱼","blaze_powder",true);
+        special("lava_bait","熔岩鱼饵","拥有后可以岩浆钓鱼。岩浆湖判定规则：以鱼钩所在格为中心，前后左右各延伸2格，同一高度5×5共25格必须全是岩浆源。只检查这一层，1格深即可；这25格正上方均须为空气。","blaze_powder",true);
         special("void_bait","虚空鱼饵","拥有后可以虚空钓鱼","ender_pearl",true);
         bonus("iron_heart","铁心","护甲增加0.5","iron_ingot",Attributes.ARMOR,0.5,AttributeModifier.Operation.ADD_VALUE);
         bonus("cherry_charm","樱花护符","最大生命增加1","cherry_sapling",Attributes.MAX_HEALTH,1,AttributeModifier.Operation.ADD_VALUE);

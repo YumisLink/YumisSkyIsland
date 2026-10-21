@@ -114,10 +114,12 @@ public final class AccessoryScreen extends Screen {
         g.text(font,"左键开关；合成饰品先打开配方；鱼饵自动生效",17,height-27,0xFFC4CED0,false);
         if(crafting!=null&&(!AccessoryCraft.crafted(crafting)||contains("unlockedAccessories",crafting)))crafting=null;
         if(hovered!=null&&crafting==null){
-            var entry=AccessoryService.CATALOG.get(hovered);int w=Math.min(width-20,Math.max(165,font.width(entry.effect())+20));
-            int x=Math.clamp(mx+8,8,width-w-8),y=Math.clamp(my+8,8,height-46);
-            g.fill(x,y,x+w,y+35,UiTheme.PANEL);g.text(font,entry.name(),x+8,y+6,0xFFF2E5AA,false);
-            g.text(font,entry.effect(),x+8,y+19,0xFFD6E3EA,false);
+            var entry=AccessoryService.CATALOG.get(hovered);int w=Math.min(width-20,Math.max(165,Math.min(320,font.width(entry.effect())+20)));
+            var lines=font.split(Component.literal(entry.effect()),w-16);
+            int h=25+lines.size()*13;
+            int x=Math.clamp(mx+8,8,width-w-8),y=Math.clamp(my+8,8,Math.max(8,height-h-8));
+            g.fill(x,y,x+w,y+h,UiTheme.PANEL);g.text(font,entry.name(),x+8,y+6,0xFFF2E5AA,false);
+            for(int i=0;i<lines.size();i++)g.text(font,lines.get(i),x+8,y+19+i*13,0xFFD6E3EA,false);
         }
         if(!model.lastError.isBlank())g.text(font,model.lastError,17,height-43,0xFFFFAAAA,false);
         if(crafting!=null)renderCraft(g,mx,my);
